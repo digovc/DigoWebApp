@@ -28,6 +28,16 @@ public abstract class Objeto {
 		_intIndex = intIndex;
 	}
 
+	private String _strNome;
+
+	public String getStrNome() {
+		return _strNome;
+	}
+
+	public void setStrNome(String strNome) {
+		_strNome = strNome;
+	}
+
 	// FIM ATRIBUTOS
 
 	// CONSTRUTORES

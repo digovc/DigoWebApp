@@ -1,5 +1,7 @@
 package com.digosofter.digowebapp;
 
+import java.util.List;
+
 import com.digosofter.digowebapp.erro.Erro;
 
 public abstract class Utils {
@@ -26,9 +28,11 @@ public abstract class Utils {
 		try {
 			// AÇÕES
 
-			if (!str.equals(Utils.STRING_VAZIA))
-				booStrVaziaResultado = false;
-			if (str != null)
+			if (str == null)
+				booStrVaziaResultado = true;
+			else if (str.equals(Utils.STRING_VAZIA))
+				booStrVaziaResultado = true;
+			else
 				booStrVaziaResultado = false;
 
 			// FIM AÇÕES
@@ -40,6 +44,35 @@ public abstract class Utils {
 		}
 		return booStrVaziaResultado;
 	}
+
+	public static String getStrConcatenarLst(List<String> lstStr,
+			String strDelimitador) {
+		// VARIÁVEIS
+
+		StringBuilder objStringBuilder = new StringBuilder();
+
+		String strConcatenadaResultado = Utils.STRING_VAZIA;
+		String strDelimitador2 = Utils.STRING_VAZIA;
+
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			for (String str : lstStr) {
+				objStringBuilder.append(strDelimitador2).append(str);
+				strDelimitador2 = strDelimitador;
+			}
+			strConcatenadaResultado = objStringBuilder.toString();
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex.getMessage());
+
+		} finally {
+		}
+		return strConcatenadaResultado;
+	}
+
 	// FIM MÉTODOS
 
 	// EVENTOS
