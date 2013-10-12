@@ -1,10 +1,11 @@
 package com.digosofter.digowebapp.html;
 
+import com.digosofter.digowebapp.AppWeb;
 import com.digosofter.digowebapp.Objeto;
 import com.digosofter.digowebapp.css.Css;
 import com.digosofter.digowebapp.erro.Erro;
 
-public class Pagina extends Objeto {
+public class PaginaHtml extends Objeto {
 	// CONSTANTES
 	// FIM CONSTANTES
 
@@ -29,6 +30,23 @@ public class Pagina extends Objeto {
 			_cssImp.setStrId("cssImp");
 		}
 		return _cssImp;
+	}
+
+	private String _strTitulo;
+
+	public String getStrTitulo() {
+		return _strTitulo;
+	}
+
+	public void setStrTitulo(String strTitulo) {
+		_strTitulo = strTitulo;
+		this.getTagTitle().setStrConteudo(_strTitulo);
+	}
+
+	@Override
+	public void setStrNome(String strNome) {
+		super.setStrNome(strNome);
+		this.setStrTitulo(strNome);
 	}
 
 	private Tag _tagBody;
@@ -96,22 +114,35 @@ public class Pagina extends Objeto {
 		return _tagMeta;
 	}
 
+	private Tag _tagTitle;
+
+	public Tag getTagTitle() {
+		if (_tagTitle == null) {
+			_tagTitle = new Tag();
+			_tagTitle.setStrTagNome("title");
+			_tagTitle.setTagPai(this.getTagHead());
+			this.setStrTitulo("Página sem título - " + AppWeb.getInstancia().getStrNome());
+		}
+		return _tagTitle;
+	}
+
 	// FIM ATRIBUTOS
 
 	// CONSTRUTORES
 
-	public Pagina() {
+	public PaginaHtml() {
 		// VARIÁVEIS
 		// FIM VARIÁVEIS
 		try {
 			// AÇÕES
 
-			this.getCss();
-			this.getCssImp();
 			this.getTagDocType();
 			this.getTagHead();
 			this.getTagHtml();
 			this.getTagMeta();
+			this.getTagTitle();
+			this.getCss();
+			this.getCssImp();
 			this.getTagBody();
 
 			// FIM AÇÕES
