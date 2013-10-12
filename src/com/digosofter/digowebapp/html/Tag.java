@@ -7,6 +7,8 @@ import org.apache.tomcat.util.codec.binary.StringUtils;
 
 import com.digosofter.digowebapp.Objeto;
 import com.digosofter.digowebapp.Utils;
+import com.digosofter.digowebapp.css.Css;
+import com.digosofter.digowebapp.css.Css.EnmCssAtributo;
 import com.digosofter.digowebapp.erro.Erro;
 
 public class Tag extends Objeto {
@@ -31,7 +33,7 @@ public class Tag extends Objeto {
 
 	private boolean _booForcarTagDupla = false;
 
-	private boolean getBooForcarTagDupla() {
+	protected boolean getBooForcarTagDupla() {
 		return _booForcarTagDupla;
 	}
 
@@ -45,8 +47,9 @@ public class Tag extends Objeto {
 		return _intPaddingBottom;
 	}
 
-	private void setIntPaddingBottom(int intPaddingBottom) {
+	public void setIntPaddingBottom(int intPaddingBottom) {
 		_intPaddingBottom = intPaddingBottom;
+		this.getAtrClass().getLstStrValor().add(Css.addCss(EnmCssAtributo.PADDING_BOTTOM, String.valueOf(_intPaddingBottom) + "px"));
 	}
 
 	private List<Atributo> _lstAtr = new ArrayList<Atributo>();
@@ -61,7 +64,7 @@ public class Tag extends Objeto {
 
 	private List<Tag> _lstTag = new ArrayList<Tag>();
 
-	private List<Tag> getLstTag() {
+	protected List<Tag> getLstTag() {
 		return _lstTag;
 	}
 
@@ -71,7 +74,7 @@ public class Tag extends Objeto {
 
 	private String _strAbertura = "<";
 
-	private String getStrAbertura() {
+	protected String getStrAbertura() {
 		return _strAbertura;
 	}
 
@@ -91,7 +94,7 @@ public class Tag extends Objeto {
 
 	private String _strFechamento = ">";
 
-	private String getStrFechamento() {
+	protected String getStrFechamento() {
 		return _strFechamento;
 	}
 
@@ -116,7 +119,7 @@ public class Tag extends Objeto {
 
 	private String _strTagNome = "div";
 
-	private String getStrTagNome() {
+	protected String getStrTagNome() {
 		return _strTagNome;
 	}
 
@@ -142,7 +145,7 @@ public class Tag extends Objeto {
 
 	// MÉTODOS
 
-	private String getStrAtributoFormatado() {
+	protected String getStrAtributoFormatado() {
 		// VARIÁVEIS
 
 		StringBuilder strBuilderAtributoFormatado = new StringBuilder();
