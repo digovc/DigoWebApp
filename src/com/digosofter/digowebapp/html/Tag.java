@@ -3,12 +3,8 @@ package com.digosofter.digowebapp.html;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.tomcat.util.codec.binary.StringUtils;
-
 import com.digosofter.digowebapp.Objeto;
 import com.digosofter.digowebapp.Utils;
-import com.digosofter.digowebapp.css.Css;
-import com.digosofter.digowebapp.css.Css.EnmCssAtributo;
 import com.digosofter.digowebapp.erro.Erro;
 
 public class Tag extends Objeto {
@@ -22,6 +18,7 @@ public class Tag extends Objeto {
 	public Atributo getAtrClass() {
 		if (_atrClass == null) {
 			_atrClass = new Atributo("class");
+			
 			this.getLstAtr().add(_atrClass);
 		}
 		return _atrClass;
@@ -39,17 +36,6 @@ public class Tag extends Objeto {
 
 	public void setBooForcarTagDupla(boolean booForcarTagDupla) {
 		_booForcarTagDupla = booForcarTagDupla;
-	}
-
-	private int _intPaddingBottom;
-
-	private int getIntPaddingBottom() {
-		return _intPaddingBottom;
-	}
-
-	public void setIntPaddingBottom(int intPaddingBottom) {
-		_intPaddingBottom = intPaddingBottom;
-		this.getAtrClass().getLstStrValor().add(Css.addCss(EnmCssAtributo.PADDING_BOTTOM, String.valueOf(_intPaddingBottom) + "px"));
 	}
 
 	private List<Atributo> _lstAtr = new ArrayList<Atributo>();
@@ -158,7 +144,7 @@ public class Tag extends Objeto {
 				strBuilderAtributoFormatado.append(" ");
 				strBuilderAtributoFormatado.append(atr.getStrNome());
 				strBuilderAtributoFormatado.append("=\"");
-				strBuilderAtributoFormatado.append(Utils.getStrConcatenarLst(atr.getLstStrValor(), atr.getStrDelimitador()));
+				strBuilderAtributoFormatado.append(Utils.getStrConcatenarLst(atr.getLstStrValor(), atr.getStrDelimitador(), true));
 				strBuilderAtributoFormatado.append("\"");
 			}
 

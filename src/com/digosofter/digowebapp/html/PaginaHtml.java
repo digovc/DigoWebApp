@@ -2,7 +2,6 @@ package com.digosofter.digowebapp.html;
 
 import com.digosofter.digowebapp.AppWeb;
 import com.digosofter.digowebapp.Objeto;
-import com.digosofter.digowebapp.css.Css;
 import com.digosofter.digowebapp.erro.Erro;
 
 public class PaginaHtml extends Objeto {
@@ -11,14 +10,17 @@ public class PaginaHtml extends Objeto {
 
 	// ATRIBUTOS
 
-	private CssTag _css;
+	private CssTag _cssMain;
 
-	private CssTag getCss() {
-		if (_css == null) {
-			_css = Css.getCssMain();
-			_css.setTagPai(this.getTagHead());
+	public CssTag getCssMain() {
+		if (_cssMain == null) {
+			_cssMain = new CssTag();
+			
+			_cssMain.setCssMainInstancia(_cssMain);
+			_cssMain.setTagPai(this.getTagHead());
+			_cssImp.setStrId("cssMain");
 		}
-		return _css;
+		return _cssMain;
 	}
 
 	private CssTag _cssImp;
@@ -40,6 +42,7 @@ public class PaginaHtml extends Objeto {
 
 	public void setStrTitulo(String strTitulo) {
 		_strTitulo = strTitulo;
+		_strTitulo = _strTitulo + " - " + AppWeb.getInstancia().getStrNome();
 		this.getTagTitle().setStrConteudo(_strTitulo);
 	}
 
@@ -141,7 +144,7 @@ public class PaginaHtml extends Objeto {
 			this.getTagHtml();
 			this.getTagMeta();
 			this.getTagTitle();
-			this.getCss();
+			this.getCssMain();
 			this.getCssImp();
 			this.getTagBody();
 

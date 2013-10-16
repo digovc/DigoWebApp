@@ -2,7 +2,7 @@ package com.digosofter.digowebapp.html;
 
 import com.digosofter.digowebapp.erro.Erro;
 
-public class Painel extends Tag {
+public class Imagem extends Tag {
 	// CONSTANTES
 	// FIM CONSTANTES
 
@@ -11,17 +11,17 @@ public class Painel extends Tag {
 
 	// CONSTRUTORES
 
-	public Painel() {
+	public Imagem() {
 		// VARIÁVEIS		
 		// FIM VARIÁVEIS
 		try {
 			// AÇÕES
 			
-			this.setStrTagNome("div");
+			this.setStrTagNome("img");
 			this.setBooForcarTagDupla(true);
 
 			// CSS
-			this.getAtrClass().getLstStrValor().add(CssTag.getCssMainInstancia().setTextAlign("center"));
+//			this.getAtrClass().getLstStrValor().add(CssTag.getCssMainInstancia().setTextAlign("center"));
 			
 			// FIM AÇÕES
 		} catch (Exception ex) {

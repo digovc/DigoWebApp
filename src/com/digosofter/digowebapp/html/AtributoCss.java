@@ -2,26 +2,36 @@ package com.digosofter.digowebapp.html;
 
 import com.digosofter.digowebapp.erro.Erro;
 
-public class Painel extends Tag {
+public class AtributoCss extends Atributo {
 	// CONSTANTES
 	// FIM CONSTANTES
 
 	// ATRIBUTOS
+
+	private String _strClassAssociada;
+
+	public String getStrClassAssociada() {
+		return _strClassAssociada;
+	}
+
+	public void setStrClassAssociada(String strClassAssociada) {
+		_strClassAssociada = strClassAssociada;
+	}
+
 	// FIM ATRIBUTOS
 
 	// CONSTRUTORES
 
-	public Painel() {
-		// VARIÁVEIS		
+	public AtributoCss(String strNome, String strValor) {
+		// VARIÁVEIS
+
+		super(strNome);
+
 		// FIM VARIÁVEIS
 		try {
 			// AÇÕES
 			
-			this.setStrTagNome("div");
-			this.setBooForcarTagDupla(true);
-
-			// CSS
-			this.getAtrClass().getLstStrValor().add(CssTag.getCssMainInstancia().setTextAlign("center"));
+			this.setStrValor(strValor);
 			
 			// FIM AÇÕES
 		} catch (Exception ex) {
@@ -30,6 +40,7 @@ public class Painel extends Tag {
 
 		} finally {
 		}
+
 	}
 
 	// FIM CONSTRUTORES

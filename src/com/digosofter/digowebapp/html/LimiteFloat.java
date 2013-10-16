@@ -2,7 +2,7 @@ package com.digosofter.digowebapp.html;
 
 import com.digosofter.digowebapp.erro.Erro;
 
-public class Painel extends Tag {
+public class LimiteFloat extends Tag {
 	// CONSTANTES
 	// FIM CONSTANTES
 
@@ -11,7 +11,7 @@ public class Painel extends Tag {
 
 	// CONSTRUTORES
 
-	public Painel() {
+	public LimiteFloat() {
 		// VARIÁVEIS		
 		// FIM VARIÁVEIS
 		try {
@@ -21,7 +21,7 @@ public class Painel extends Tag {
 			this.setBooForcarTagDupla(true);
 
 			// CSS
-			this.getAtrClass().getLstStrValor().add(CssTag.getCssMainInstancia().setTextAlign("center"));
+			this.getAtrClass().getLstStrValor().add(CssTag.getCssMainInstancia().setClearBoth());
 			
 			// FIM AÇÕES
 		} catch (Exception ex) {

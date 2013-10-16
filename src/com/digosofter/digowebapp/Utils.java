@@ -1,5 +1,6 @@
 package com.digosofter.digowebapp;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.digosofter.digowebapp.erro.Erro;
@@ -45,11 +46,14 @@ public abstract class Utils {
 		return booStrVaziaResultado;
 	}
 
-	public static String getStrConcatenarLst(List<String> lstStr,
-			String strDelimitador) {
+	public static String getStrConcatenarLst(List<String> lstStr, String strDelimitador, boolean booEliminarDuplicata) {
 		// VARIÁVEIS
 
-		StringBuilder objStringBuilder = new StringBuilder();
+		boolean booStrIncluida = false;
+
+		List<String> lstStrIncluida = new ArrayList<String>();
+
+		StringBuilder strBuilder = new StringBuilder();
 
 		String strConcatenadaResultado = Utils.STRING_VAZIA;
 		String strDelimitador2 = Utils.STRING_VAZIA;
@@ -59,10 +63,21 @@ public abstract class Utils {
 			// AÇÕES
 
 			for (String str : lstStr) {
-				objStringBuilder.append(strDelimitador2).append(str);
-				strDelimitador2 = strDelimitador;
+				if (booEliminarDuplicata) {
+					for (String strInserida : lstStrIncluida) {
+						if (strInserida == str) {
+							booStrIncluida = true;
+						}
+					}
+				}
+
+				if (!booStrIncluida) {
+					strBuilder.append(strDelimitador2).append(str);
+					lstStrIncluida.add(str);
+					strDelimitador2 = strDelimitador;
+				}
 			}
-			strConcatenadaResultado = objStringBuilder.toString();
+			strConcatenadaResultado = strBuilder.toString();
 			// FIM AÇÕES
 		} catch (Exception ex) {
 
