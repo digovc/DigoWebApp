@@ -18,7 +18,7 @@ public class Tag extends Objeto {
 	public Atributo getAtrClass() {
 		if (_atrClass == null) {
 			_atrClass = new Atributo("class");
-			
+
 			this.getLstAtr().add(_atrClass);
 		}
 		return _atrClass;
@@ -127,6 +127,22 @@ public class Tag extends Objeto {
 	// FIM ATRIBUTOS
 
 	// CONSTRUTORES
+
+	public Tag() {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex.getMessage());
+
+		} finally {
+		}
+	}
+
 	// FIM CONSTRUTORES
 
 	// MÉTODOS
@@ -134,6 +150,7 @@ public class Tag extends Objeto {
 	protected String getStrAtributoFormatado() {
 		// VARIÁVEIS
 
+		String strAtributoIncluido = Utils.STRING_VAZIA;
 		StringBuilder strBuilderAtributoFormatado = new StringBuilder();
 
 		// FIM VARIÁVEIS
@@ -141,11 +158,14 @@ public class Tag extends Objeto {
 			// AÇÕES
 
 			for (Atributo atr : this.getLstAtr()) {
-				strBuilderAtributoFormatado.append(" ");
-				strBuilderAtributoFormatado.append(atr.getStrNome());
-				strBuilderAtributoFormatado.append("=\"");
-				strBuilderAtributoFormatado.append(Utils.getStrConcatenarLst(atr.getLstStrValor(), atr.getStrDelimitador(), true));
-				strBuilderAtributoFormatado.append("\"");
+				if (!strAtributoIncluido.contains("#" + atr.getStrNome() + "#")) {
+					strAtributoIncluido += "#" + atr.getStrNome() + "#";
+					strBuilderAtributoFormatado.append(" ");
+					strBuilderAtributoFormatado.append(atr.getStrNome());
+					strBuilderAtributoFormatado.append("=\"");
+					strBuilderAtributoFormatado.append(Utils.getStrConcatenarLst(atr.getLstStrValor(), atr.getStrDelimitador(), true));
+					strBuilderAtributoFormatado.append("\"");
+				}
 			}
 
 			// FIM AÇÕES

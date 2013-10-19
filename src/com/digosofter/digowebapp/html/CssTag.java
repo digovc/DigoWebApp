@@ -11,6 +11,10 @@ public class CssTag extends Tag {
 
 	public static final String CSS_BORDER_TIPO_SOLID = "solid";
 
+	public static final String CSS_DISPLAY_BLOCK = "block";
+	public static final String CSS_DISPLAY_NONE = "none";
+	public static final String CSS_DISPLAY_TABLE = "table";
+	
 	public static final String CSS_FLOAT_DIREITA = "right";
 	public static final String CSS_FLOAT_ESQUERDA = "left";
 
@@ -23,6 +27,18 @@ public class CssTag extends Tag {
 	public static final String CSS_COR_PRETO = "#000";
 	public static final String CSS_COR_VERDE = "#008000";
 	public static final String CSS_COR_VERMERLHO = "#FF0000";
+
+	public static final String CSS_CURSOR_AJUDA = "help";
+    public static final String CSS_CURSOR_CRUZ = "crosshair";
+    public static final String CSS_CURSOR_MOVER = "move";
+    public static final String CSS_CURSOR_POINTER = "pointer";
+    public static final String CSS_CURSOR_PROGRESS = "progress";
+    public static final String CSS_CURSOR_REDIM_DIAG_CIMA = "ne-resize";
+    public static final String CSS_CURSOR_REDIM_DIAG_BAIXO = "nw-resize";
+    public static final String CSS_CURSOR_REDIM_HOR = "e-resize";
+    public static final String CSS_CURSOR_REDIM_VERT = "n-resize";
+    public static final String CSS_CURSOR_WAIT = "wait";
+    public static final String CSS_CURSOR_TEXT = "text";
 
 	public static final String CSS_GRANDEZA_PORCENTAGEM = "%";
 	public static final String CSS_GRANDEZA_PIXEL = "px";
@@ -446,6 +462,27 @@ public class CssTag extends Tag {
 
 	public String setColor(String hexColor) {
 		// VARIÁVEIS
+		
+		String strClassAssociada = Utils.STRING_VAZIA;
+		
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+			
+			strClassAssociada = this.addCss("color", hexColor);
+			
+			// FIM AÇÕES
+		} catch (Exception ex) {
+			
+			new Erro("Erro inesperado.\n", ex.getMessage());
+			
+		} finally {
+		}
+		return strClassAssociada;
+	}
+	
+	public String setCursor(String strCursor) {
+		// VARIÁVEIS
 
 		String strClassAssociada = Utils.STRING_VAZIA;
 
@@ -453,7 +490,7 @@ public class CssTag extends Tag {
 		try {
 			// AÇÕES
 
-			strClassAssociada = this.addCss("color", hexColor);
+			strClassAssociada = this.addCss("cursor", strCursor);
 
 			// FIM AÇÕES
 		} catch (Exception ex) {
@@ -465,6 +502,30 @@ public class CssTag extends Tag {
 		return strClassAssociada;
 	}
 
+	public String setDisplay(String strDisplay) {
+		// VARIÁVEIS
+		
+		String strClassAssociada = Utils.STRING_VAZIA;
+		StringBuilder strBulderValorEstrutura = new StringBuilder();
+		
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+			
+			strBulderValorEstrutura.append(strDisplay);
+			
+			strClassAssociada = this.addCss("display", strBulderValorEstrutura.toString());
+			
+			// FIM AÇÕES
+		} catch (Exception ex) {
+			
+			new Erro("Erro inesperado.\n", ex.getMessage());
+			
+		} finally {
+		}
+		return strClassAssociada;
+	}
+	
 	public String setFloat(String strFloat) {
 		// VARIÁVEIS
 

@@ -1,5 +1,8 @@
 package com.digosofter.digowebapp.html;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.digosofter.digowebapp.AppWeb;
 import com.digosofter.digowebapp.Objeto;
 import com.digosofter.digowebapp.erro.Erro;
@@ -15,7 +18,7 @@ public class PaginaHtml extends Objeto {
 	public CssTag getCssMain() {
 		if (_cssMain == null) {
 			_cssMain = new CssTag();
-			
+
 			_cssMain.setCssMainInstancia(_cssMain);
 			_cssMain.setTagPai(this.getTagHead());
 			_cssImp.setStrId("cssMain");
@@ -32,6 +35,12 @@ public class PaginaHtml extends Objeto {
 			_cssImp.setStrId("cssImp");
 		}
 		return _cssImp;
+	}
+
+	private List<JavaScriptTag> _lstObjJavaScriptTag = new ArrayList<JavaScriptTag>();
+
+	public List<JavaScriptTag> getLstObjJavaScriptTag() {
+		return _lstObjJavaScriptTag;
 	}
 
 	private String _strTitulo;
@@ -135,9 +144,24 @@ public class PaginaHtml extends Objeto {
 
 	public PaginaHtml() {
 		// VARIÁVEIS
+
+		JavaScriptTag objJsAppWeb = new JavaScriptTag("res/lib/DigoWebAppLib/js/AppWeb.js");
+		JavaScriptTag objJsJQuery = new JavaScriptTag("res/lib/DigoWebAppLib/js/lib/jquery-2.0.3.js");
+		JavaScriptTag objJsErro = new JavaScriptTag("res/lib/DigoWebAppLib/js/Erro.js");
+		JavaScriptTag objJsObjeto = new JavaScriptTag("res/lib/DigoWebAppLib/js/Objeto.js");
+		JavaScriptTag objJsPainel = new JavaScriptTag("res/lib/DigoWebAppLib/js/Painel.js");
+		JavaScriptTag objJsTag = new JavaScriptTag("res/lib/DigoWebAppLib/js/Tag.js");
+
 		// FIM VARIÁVEIS
 		try {
 			// AÇÕES
+
+			this.getLstObjJavaScriptTag().add(objJsJQuery);
+			this.getLstObjJavaScriptTag().add(objJsErro);
+			this.getLstObjJavaScriptTag().add(objJsObjeto);
+			this.getLstObjJavaScriptTag().add(objJsAppWeb);
+			this.getLstObjJavaScriptTag().add(objJsTag);
+			this.getLstObjJavaScriptTag().add(objJsPainel);
 
 			this.getTagDocType();
 			this.getTagHead();
@@ -169,6 +193,10 @@ public class PaginaHtml extends Objeto {
 		// FIM VARIÁVEIS
 		try {
 			// AÇÕES
+
+			for (JavaScriptTag objJavaScriptTag : this.getLstObjJavaScriptTag()) {
+				objJavaScriptTag.setTagPai(this.getTagHead());
+			}
 
 			objStringBuilderPaginaFormatada.append(this.getTagDocType().toString());
 			objStringBuilderPaginaFormatada.append(this.getTagHtml().toString());
