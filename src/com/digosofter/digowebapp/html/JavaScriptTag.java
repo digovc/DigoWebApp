@@ -47,7 +47,7 @@ public class JavaScriptTag extends Tag {
 			// FIM AÇÕES
 		} catch (Exception ex) {
 
-			new Erro("Erro inesperado.\n", ex.getMessage());
+			new Erro("Erro inesperado.\n", ex);
 
 		} finally {
 		}

@@ -14,7 +14,7 @@ public class CssTag extends Tag {
 	public static final String CSS_DISPLAY_BLOCK = "block";
 	public static final String CSS_DISPLAY_NONE = "none";
 	public static final String CSS_DISPLAY_TABLE = "table";
-	
+
 	public static final String CSS_FLOAT_DIREITA = "right";
 	public static final String CSS_FLOAT_ESQUERDA = "left";
 
@@ -29,16 +29,16 @@ public class CssTag extends Tag {
 	public static final String CSS_COR_VERMERLHO = "#FF0000";
 
 	public static final String CSS_CURSOR_AJUDA = "help";
-    public static final String CSS_CURSOR_CRUZ = "crosshair";
-    public static final String CSS_CURSOR_MOVER = "move";
-    public static final String CSS_CURSOR_POINTER = "pointer";
-    public static final String CSS_CURSOR_PROGRESS = "progress";
-    public static final String CSS_CURSOR_REDIM_DIAG_CIMA = "ne-resize";
-    public static final String CSS_CURSOR_REDIM_DIAG_BAIXO = "nw-resize";
-    public static final String CSS_CURSOR_REDIM_HOR = "e-resize";
-    public static final String CSS_CURSOR_REDIM_VERT = "n-resize";
-    public static final String CSS_CURSOR_WAIT = "wait";
-    public static final String CSS_CURSOR_TEXT = "text";
+	public static final String CSS_CURSOR_CRUZ = "crosshair";
+	public static final String CSS_CURSOR_MOVER = "move";
+	public static final String CSS_CURSOR_POINTER = "pointer";
+	public static final String CSS_CURSOR_PROGRESS = "progress";
+	public static final String CSS_CURSOR_REDIM_DIAG_CIMA = "ne-resize";
+	public static final String CSS_CURSOR_REDIM_DIAG_BAIXO = "nw-resize";
+	public static final String CSS_CURSOR_REDIM_HOR = "e-resize";
+	public static final String CSS_CURSOR_REDIM_VERT = "n-resize";
+	public static final String CSS_CURSOR_WAIT = "wait";
+	public static final String CSS_CURSOR_TEXT = "text";
 
 	public static final String CSS_GRANDEZA_PORCENTAGEM = "%";
 	public static final String CSS_GRANDEZA_PIXEL = "px";
@@ -105,7 +105,7 @@ public class CssTag extends Tag {
 			// FIM AÇÕES
 		} catch (Exception ex) {
 
-			new Erro("Erro inesperado.\n", ex.getMessage());
+			new Erro("Erro inesperado.\n", ex);
 
 		} finally {
 		}
@@ -129,7 +129,7 @@ public class CssTag extends Tag {
 			// FIM AÇÕES
 		} catch (Exception ex) {
 
-			new Erro("Erro inesperado.\n", ex.getMessage());
+			new Erro("Erro inesperado.\n", ex);
 
 		} finally {
 		}
@@ -151,7 +151,7 @@ public class CssTag extends Tag {
 			// AÇÕES
 
 			for (AtributoCss atrCss : this.getLstAtrCss()) {
-				if (atrCss.getStrNome().equals(strCssNome) && atrCss.getStrValor().equals(strValor)) { 
+				if (atrCss.getStrNome().equals(strCssNome) && atrCss.getStrValor().equals(strValor)) {
 					booExiste = true;
 					strClassAssociadaResultado = atrCss.getStrClassAssociada();
 				}
@@ -167,7 +167,7 @@ public class CssTag extends Tag {
 			// FIM AÇÕES
 		} catch (Exception ex) {
 
-			new Erro("Erro inesperado.\n", ex.getMessage());
+			new Erro("Erro inesperado.\n", ex);
 
 		} finally {
 		}
@@ -188,7 +188,7 @@ public class CssTag extends Tag {
 			// FIM AÇÕES
 		} catch (Exception ex) {
 
-			new Erro("Erro inesperado.\n", ex.getMessage());
+			new Erro("Erro inesperado.\n", ex);
 
 		} finally {
 		}
@@ -212,7 +212,7 @@ public class CssTag extends Tag {
 			// FIM AÇÕES
 		} catch (Exception ex) {
 
-			new Erro("Erro inesperado.\n", ex.getMessage());
+			new Erro("Erro inesperado.\n", ex);
 
 		} finally {
 		}
@@ -240,7 +240,7 @@ public class CssTag extends Tag {
 			// FIM AÇÕES
 		} catch (Exception ex) {
 
-			new Erro("Erro inesperado.\n", ex.getMessage());
+			new Erro("Erro inesperado.\n", ex);
 
 		} finally {
 		}
@@ -258,7 +258,7 @@ public class CssTag extends Tag {
 			// AÇÕES
 
 			strBulderValorEstrutura.append(intBorderBottomPx);
-			strBulderValorEstrutura.append("px ");
+			strBulderValorEstrutura.append("px solid ");
 			strBulderValorEstrutura.append(hexColor);
 
 			strClassAssociada = this.addCss("border-bottom", strBulderValorEstrutura.toString());
@@ -266,7 +266,7 @@ public class CssTag extends Tag {
 			// FIM AÇÕES
 		} catch (Exception ex) {
 
-			new Erro("Erro inesperado.\n", ex.getMessage());
+			new Erro("Erro inesperado.\n", ex);
 
 		} finally {
 		}
@@ -284,7 +284,7 @@ public class CssTag extends Tag {
 			// AÇÕES
 
 			strBulderValorEstrutura.append(intBorderLeftPx);
-			strBulderValorEstrutura.append("px ");
+			strBulderValorEstrutura.append("px solid ");
 			strBulderValorEstrutura.append(hexColor);
 
 			strClassAssociada = this.addCss("border-left", strBulderValorEstrutura.toString());
@@ -292,7 +292,7 @@ public class CssTag extends Tag {
 			// FIM AÇÕES
 		} catch (Exception ex) {
 
-			new Erro("Erro inesperado.\n", ex.getMessage());
+			new Erro("Erro inesperado.\n", ex);
 
 		} finally {
 		}
@@ -324,7 +324,7 @@ public class CssTag extends Tag {
 			// FIM AÇÕES
 		} catch (Exception ex) {
 
-			new Erro("Erro inesperado.\n", ex.getMessage());
+			new Erro("Erro inesperado.\n", ex);
 
 		} finally {
 		}
@@ -342,7 +342,7 @@ public class CssTag extends Tag {
 			// AÇÕES
 
 			strBulderValorEstrutura.append(intBorderRightPx);
-			strBulderValorEstrutura.append("px ");
+			strBulderValorEstrutura.append("px solid ");
 			strBulderValorEstrutura.append(hexColor);
 
 			strClassAssociada = this.addCss("border-right", strBulderValorEstrutura.toString());
@@ -350,7 +350,7 @@ public class CssTag extends Tag {
 			// FIM AÇÕES
 		} catch (Exception ex) {
 
-			new Erro("Erro inesperado.\n", ex.getMessage());
+			new Erro("Erro inesperado.\n", ex);
 
 		} finally {
 		}
@@ -368,7 +368,7 @@ public class CssTag extends Tag {
 			// AÇÕES
 
 			strBulderValorEstrutura.append(intBorderTopPx);
-			strBulderValorEstrutura.append("px ");
+			strBulderValorEstrutura.append("px solid ");
 			strBulderValorEstrutura.append(hexColor);
 
 			strClassAssociada = this.addCss("border-top", strBulderValorEstrutura.toString());
@@ -376,7 +376,7 @@ public class CssTag extends Tag {
 			// FIM AÇÕES
 		} catch (Exception ex) {
 
-			new Erro("Erro inesperado.\n", ex.getMessage());
+			new Erro("Erro inesperado.\n", ex);
 
 		} finally {
 		}
@@ -400,7 +400,7 @@ public class CssTag extends Tag {
 			// FIM AÇÕES
 		} catch (Exception ex) {
 
-			new Erro("Erro inesperado.\n", ex.getMessage());
+			new Erro("Erro inesperado.\n", ex);
 
 		} finally {
 		}
@@ -432,7 +432,7 @@ public class CssTag extends Tag {
 			// FIM AÇÕES
 		} catch (Exception ex) {
 
-			new Erro("Erro inesperado.\n", ex.getMessage());
+			new Erro("Erro inesperado.\n", ex);
 
 		} finally {
 		}
@@ -453,7 +453,7 @@ public class CssTag extends Tag {
 			// FIM AÇÕES
 		} catch (Exception ex) {
 
-			new Erro("Erro inesperado.\n", ex.getMessage());
+			new Erro("Erro inesperado.\n", ex);
 
 		} finally {
 		}
@@ -462,25 +462,25 @@ public class CssTag extends Tag {
 
 	public String setColor(String hexColor) {
 		// VARIÁVEIS
-		
+
 		String strClassAssociada = Utils.STRING_VAZIA;
-		
+
 		// FIM VARIÁVEIS
 		try {
 			// AÇÕES
-			
+
 			strClassAssociada = this.addCss("color", hexColor);
-			
+
 			// FIM AÇÕES
 		} catch (Exception ex) {
-			
-			new Erro("Erro inesperado.\n", ex.getMessage());
-			
+
+			new Erro("Erro inesperado.\n", ex);
+
 		} finally {
 		}
 		return strClassAssociada;
 	}
-	
+
 	public String setCursor(String strCursor) {
 		// VARIÁVEIS
 
@@ -495,7 +495,7 @@ public class CssTag extends Tag {
 			// FIM AÇÕES
 		} catch (Exception ex) {
 
-			new Erro("Erro inesperado.\n", ex.getMessage());
+			new Erro("Erro inesperado.\n", ex);
 
 		} finally {
 		}
@@ -504,28 +504,28 @@ public class CssTag extends Tag {
 
 	public String setDisplay(String strDisplay) {
 		// VARIÁVEIS
-		
+
 		String strClassAssociada = Utils.STRING_VAZIA;
 		StringBuilder strBulderValorEstrutura = new StringBuilder();
-		
+
 		// FIM VARIÁVEIS
 		try {
 			// AÇÕES
-			
+
 			strBulderValorEstrutura.append(strDisplay);
-			
+
 			strClassAssociada = this.addCss("display", strBulderValorEstrutura.toString());
-			
+
 			// FIM AÇÕES
 		} catch (Exception ex) {
-			
-			new Erro("Erro inesperado.\n", ex.getMessage());
-			
+
+			new Erro("Erro inesperado.\n", ex);
+
 		} finally {
 		}
 		return strClassAssociada;
 	}
-	
+
 	public String setFloat(String strFloat) {
 		// VARIÁVEIS
 
@@ -543,13 +543,83 @@ public class CssTag extends Tag {
 			// FIM AÇÕES
 		} catch (Exception ex) {
 
-			new Erro("Erro inesperado.\n", ex.getMessage());
+			new Erro("Erro inesperado.\n", ex);
 
 		} finally {
 		}
 		return strClassAssociada;
 	}
 
+	public String setFontFamily(String strFontFamily) {
+		// VARIÁVEIS
+
+		String strClassAssociada = Utils.STRING_VAZIA;
+		StringBuilder strBulderValorEstrutura = new StringBuilder();
+
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			strBulderValorEstrutura.append(strFontFamily);
+
+			strClassAssociada = this.addCss("font-family", strBulderValorEstrutura.toString());
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+		return strClassAssociada;
+	}
+
+	public String setFontNegrito() {
+		// VARIÁVEIS
+
+		String strClassAssociada = Utils.STRING_VAZIA;
+
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			strClassAssociada = this.addCss("font-Weight", "bold");
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+		return strClassAssociada;
+	}
+
+	public String setFontSize(int intFontSize, String strGrandeza) {
+		// VARIÁVEIS
+		
+		String strClassAssociada = Utils.STRING_VAZIA;
+		StringBuilder strBulderValorEstrutura = new StringBuilder();
+		
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+			
+			strBulderValorEstrutura.append(intFontSize);
+			strBulderValorEstrutura.append(strGrandeza);
+			
+			strClassAssociada = this.addCss("font-size", strBulderValorEstrutura.toString());
+			
+			// FIM AÇÕES
+		} catch (Exception ex) {
+			
+			new Erro("Erro inesperado.\n", ex);
+			
+		} finally {
+		}
+		return strClassAssociada;
+	}
+	
 	public String setHeight(int intHeight, String strGrandeza) {
 		// VARIÁVEIS
 
@@ -568,7 +638,7 @@ public class CssTag extends Tag {
 			// FIM AÇÕES
 		} catch (Exception ex) {
 
-			new Erro("Erro inesperado.\n", ex.getMessage());
+			new Erro("Erro inesperado.\n", ex);
 
 		} finally {
 		}
@@ -592,7 +662,7 @@ public class CssTag extends Tag {
 			// FIM AÇÕES
 		} catch (Exception ex) {
 
-			new Erro("Erro inesperado.\n", ex.getMessage());
+			new Erro("Erro inesperado.\n", ex);
 
 		} finally {
 		}
@@ -617,7 +687,7 @@ public class CssTag extends Tag {
 			// FIM AÇÕES
 		} catch (Exception ex) {
 
-			new Erro("Erro inesperado.\n", ex.getMessage());
+			new Erro("Erro inesperado.\n", ex);
 
 		} finally {
 		}
@@ -642,7 +712,7 @@ public class CssTag extends Tag {
 			// FIM AÇÕES
 		} catch (Exception ex) {
 
-			new Erro("Erro inesperado.\n", ex.getMessage());
+			new Erro("Erro inesperado.\n", ex);
 
 		} finally {
 		}
@@ -667,7 +737,7 @@ public class CssTag extends Tag {
 			// FIM AÇÕES
 		} catch (Exception ex) {
 
-			new Erro("Erro inesperado.\n", ex.getMessage());
+			new Erro("Erro inesperado.\n", ex);
 
 		} finally {
 		}
@@ -692,7 +762,7 @@ public class CssTag extends Tag {
 			// FIM AÇÕES
 		} catch (Exception ex) {
 
-			new Erro("Erro inesperado.\n", ex.getMessage());
+			new Erro("Erro inesperado.\n", ex);
 
 		} finally {
 		}
@@ -717,7 +787,7 @@ public class CssTag extends Tag {
 			// FIM AÇÕES
 		} catch (Exception ex) {
 
-			new Erro("Erro inesperado.\n", ex.getMessage());
+			new Erro("Erro inesperado.\n", ex);
 
 		} finally {
 		}
@@ -742,7 +812,7 @@ public class CssTag extends Tag {
 			// FIM AÇÕES
 		} catch (Exception ex) {
 
-			new Erro("Erro inesperado.\n", ex.getMessage());
+			new Erro("Erro inesperado.\n", ex);
 
 		} finally {
 		}
@@ -767,7 +837,7 @@ public class CssTag extends Tag {
 			// FIM AÇÕES
 		} catch (Exception ex) {
 
-			new Erro("Erro inesperado.\n", ex.getMessage());
+			new Erro("Erro inesperado.\n", ex);
 
 		} finally {
 		}
@@ -792,7 +862,7 @@ public class CssTag extends Tag {
 			// FIM AÇÕES
 		} catch (Exception ex) {
 
-			new Erro("Erro inesperado.\n", ex.getMessage());
+			new Erro("Erro inesperado.\n", ex);
 
 		} finally {
 		}
@@ -817,7 +887,7 @@ public class CssTag extends Tag {
 			// FIM AÇÕES
 		} catch (Exception ex) {
 
-			new Erro("Erro inesperado.\n", ex.getMessage());
+			new Erro("Erro inesperado.\n", ex);
 
 		} finally {
 		}
@@ -842,7 +912,7 @@ public class CssTag extends Tag {
 			// FIM AÇÕES
 		} catch (Exception ex) {
 
-			new Erro("Erro inesperado.\n", ex.getMessage());
+			new Erro("Erro inesperado.\n", ex);
 
 		} finally {
 		}
@@ -866,7 +936,7 @@ public class CssTag extends Tag {
 			// FIM AÇÕES
 		} catch (Exception ex) {
 
-			new Erro("Erro inesperado.\n", ex.getMessage());
+			new Erro("Erro inesperado.\n", ex);
 
 		} finally {
 		}
@@ -890,7 +960,7 @@ public class CssTag extends Tag {
 			// FIM AÇÕES
 		} catch (Exception ex) {
 
-			new Erro("Erro inesperado.\n", ex.getMessage());
+			new Erro("Erro inesperado.\n", ex);
 
 		} finally {
 		}
@@ -914,7 +984,37 @@ public class CssTag extends Tag {
 			// FIM AÇÕES
 		} catch (Exception ex) {
 
-			new Erro("Erro inesperado.\n", ex.getMessage());
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+		return strClassAssociada;
+	}
+
+	public String setTextShadow(int intX, int intY, int intBlur, String strColor) {
+		// VARIÁVEIS
+
+		String strClassAssociada = Utils.STRING_VAZIA;
+		StringBuilder strBulderValorEstrutura = new StringBuilder();
+
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			strBulderValorEstrutura.append(intX);
+			strBulderValorEstrutura.append("px ");
+			strBulderValorEstrutura.append(intY);
+			strBulderValorEstrutura.append("px ");
+			strBulderValorEstrutura.append(intBlur);
+			strBulderValorEstrutura.append("px ");
+			strBulderValorEstrutura.append(strColor);
+
+			strClassAssociada = this.addCss("text-shadow", strBulderValorEstrutura.toString());
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
 
 		} finally {
 		}
@@ -939,7 +1039,7 @@ public class CssTag extends Tag {
 			// FIM AÇÕES
 		} catch (Exception ex) {
 
-			new Erro("Erro inesperado.\n", ex.getMessage());
+			new Erro("Erro inesperado.\n", ex);
 
 		} finally {
 		}
@@ -964,7 +1064,7 @@ public class CssTag extends Tag {
 			// FIM AÇÕES
 		} catch (Exception ex) {
 
-			new Erro("Erro inesperado.\n", ex.getMessage());
+			new Erro("Erro inesperado.\n", ex);
 
 		} finally {
 		}

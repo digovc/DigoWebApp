@@ -7,17 +7,17 @@ public class Erro extends Objeto {
 	// FIM CONSTANTES
 
 	// ATRIBUTOS
-	
+
 	private String _strMensagem;
-	
+
 	private String getstrMensagem() {
 		return _strMensagem;
 	}
-	
+
 	private void setstrMensagem(String strMensagem) {
 		_strMensagem = strMensagem;
 	}
-	
+
 	private String _strMensagemDetalhada;
 
 	private String getstrMensagemDetalhada() {
@@ -27,28 +27,16 @@ public class Erro extends Objeto {
 	private void setstrMensagemDetalhada(String strMensagemDetalhada) {
 		_strMensagemDetalhada = strMensagemDetalhada;
 	}
-	
+
 	// FIM ATRIBUTOS
 
 	// CONSTRUTORES
-	
-	public  Erro(String strMensagem,String strMensagemDetalhada) {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-			
-			
-			
-			// FIM AÇÕES
-		} catch (Exception ex) {
 
-			new Erro("Erro inesperado.\n", ex.getMessage());
-
-		} finally {
-		}
+	public Erro(String strMensagem, Exception ex) {
+		Exception objException = new Exception(ex.toString());
+		objException.printStackTrace();
 	}
-	
+
 	// FIM CONSTRUTORES
 
 	// MÉTODOS

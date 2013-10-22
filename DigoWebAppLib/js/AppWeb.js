@@ -1,9 +1,3 @@
-/**
- * Descrição de AppWeb
- * 
- * @autor Rodrigo
- * 
- */
 /* CONSTANTE */
 
 /* CLASSE */

@@ -2,7 +2,7 @@ package com.digosofter.digowebapp.html;
 
 import com.digosofter.digowebapp.erro.Erro;
 
-public class LimiteFloat extends Tag {
+public class Formulario extends Tag {
 	// CONSTANTES
 	// FIM CONSTANTES
 
@@ -11,18 +11,14 @@ public class LimiteFloat extends Tag {
 
 	// CONSTRUTORES
 
-	public LimiteFloat() {
-		// VARIÁVEIS		
+	public Formulario() {
+		// VARIÁVEIS
 		// FIM VARIÁVEIS
 		try {
 			// AÇÕES
 			
-			this.setStrTagNome("div");
-			this.setBooForcarTagDupla(true);
+			this.setStrTagNome("form");
 
-			// CSS
-			this.getAtrClass().getLstStrValor().add(CssTag.getCssMainInstancia().setClearBoth());
-			
 			// FIM AÇÕES
 		} catch (Exception ex) {
 

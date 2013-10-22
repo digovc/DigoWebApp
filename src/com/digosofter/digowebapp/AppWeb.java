@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.digosofter.digowebapp.erro.Erro;
 
@@ -46,12 +47,13 @@ public abstract class AppWeb extends Objeto {
 		try {
 			// A합ES
 
-			this.setStrPaginaSolicitada(_objHttpServletRequest.getRequestURI().replace("/relatar/", Utils.STRING_VAZIA));
+			this.setStrPaginaSolicitada(_objHttpServletRequest.getRequestURI().replace("/relatar/app/", Utils.STRING_VAZIA));
+			this.setObjHttpSession(this.getObjHttpServletRequest().getSession());
 
 			// FIM A합ES
 		} catch (Exception ex) {
 
-			new Erro("Erro inesperado.\n", ex.getMessage());
+			new Erro("Erro inesperado.\n", ex);
 
 		} finally {
 		}
@@ -75,7 +77,37 @@ public abstract class AppWeb extends Objeto {
 			// FIM A합ES
 		} catch (Exception ex) {
 
-			new Erro("Erro inesperado.\n", ex.getMessage());
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+	}
+
+	private HttpSession _objHttpSession;
+
+	private HttpSession getObjHttpSession() {
+		return _objHttpSession;
+	}
+
+	private void setObjHttpSession(HttpSession objHttpSession) {
+		// VARI햂EIS
+
+		_objHttpSession = objHttpSession;
+		Usuario objUsuario = null;
+
+		// FIM VARI햂EIS
+		try {
+			// A합ES
+
+			if (!this.getBooUsuarioExiste(_objHttpSession.getId())) {
+				objUsuario = new Usuario();
+				objUsuario.setStrSessaoId(_objHttpSession.getId());
+			}
+
+			// FIM A합ES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
 
 		} finally {
 		}
@@ -117,7 +149,7 @@ public abstract class AppWeb extends Objeto {
 			// FIM A합ES
 		} catch (Exception ex) {
 
-			new Erro("Erro inesperado.\n", ex.getMessage());
+			new Erro("Erro inesperado.\n", ex);
 
 		} finally {
 		}
@@ -138,7 +170,7 @@ public abstract class AppWeb extends Objeto {
 			// FIM A합ES
 		} catch (Exception ex) {
 
-			new Erro("Erro inesperado.\n", ex.getMessage());
+			new Erro("Erro inesperado.\n", ex);
 
 		} finally {
 		}
@@ -163,7 +195,7 @@ public abstract class AppWeb extends Objeto {
 			// FIM A합ES
 		} catch (Exception ex) {
 
-			new Erro("Erro inesperado.\n", ex.getMessage());
+			new Erro("Erro inesperado.\n", ex);
 
 		} finally {
 		}
@@ -178,7 +210,7 @@ public abstract class AppWeb extends Objeto {
 			// FIM A합ES
 		} catch (Exception ex) {
 
-			new Erro("Erro inesperado.\n", ex.getMessage());
+			new Erro("Erro inesperado.\n", ex);
 
 		} finally {
 		}

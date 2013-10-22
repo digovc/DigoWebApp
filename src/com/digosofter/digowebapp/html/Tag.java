@@ -28,6 +28,21 @@ public class Tag extends Objeto {
 		_atrClass = atrClass;
 	}
 
+	private Atributo _atrType;
+
+	public Atributo getAtrType() {
+		if (_atrType == null) {
+			_atrType = new Atributo("type");
+
+			this.getLstAtr().add(_atrType);
+		}
+		return _atrType;
+	}
+
+	private void setAtrType(Atributo atrType) {
+		_atrType = atrType;
+	}
+
 	private boolean _booForcarTagDupla = false;
 
 	protected boolean getBooForcarTagDupla() {
@@ -103,6 +118,12 @@ public class Tag extends Objeto {
 		this.getLstAtr().add(new Atributo("id", _strId));
 	}
 
+	private String _strLink;
+
+	private String getStrLink() {
+		return _strLink;
+	}
+
 	private String _strTagNome = "div";
 
 	protected String getStrTagNome() {
@@ -137,7 +158,7 @@ public class Tag extends Objeto {
 			// FIM AÇÕES
 		} catch (Exception ex) {
 
-			new Erro("Erro inesperado.\n", ex.getMessage());
+			new Erro("Erro inesperado.\n", ex);
 
 		} finally {
 		}
@@ -146,6 +167,23 @@ public class Tag extends Objeto {
 	// FIM CONSTRUTORES
 
 	// MÉTODOS
+
+	public void adicionaCss(String strClassCss) {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			this.getAtrClass().getLstStrValor().add(strClassCss);
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+	}
 
 	protected String getStrAtributoFormatado() {
 		// VARIÁVEIS
@@ -171,7 +209,7 @@ public class Tag extends Objeto {
 			// FIM AÇÕES
 		} catch (Exception ex) {
 
-			new Erro("Erro inesperado.\n", ex.getMessage());
+			new Erro("Erro inesperado.\n", ex);
 
 		} finally {
 		}
@@ -213,7 +251,7 @@ public class Tag extends Objeto {
 			// FIM AÇÕES
 		} catch (Exception ex) {
 
-			new Erro("Erro inesperado.\n", ex.getMessage());
+			new Erro("Erro inesperado.\n", ex);
 
 		} finally {
 		}

@@ -6,6 +6,16 @@ public class Usuario extends Objeto {
 
 	// ATRIBUTOS
 
+	private boolean _booLogado = false;
+
+	private boolean getBooLogado() {
+		return _booLogado;
+	}
+
+	private void setBooLogado(boolean booLogado) {
+		_booLogado = booLogado;
+	}
+
 	private String _strSessaoId;
 
 	public String getStrSessaoId() {
@@ -21,7 +31,7 @@ public class Usuario extends Objeto {
 	// CONSTRUTORES
 	// FIM CONSTRUTORES
 
-	// MÉTODOS	
+	// MÉTODOS
 	// FIM MÉTODOS
 
 	// EVENTOS

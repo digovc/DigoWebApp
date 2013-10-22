@@ -2,13 +2,16 @@ package com.digosofter.digowebapp;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import com.digosofter.digowebapp.erro.Erro;
 
 public abstract class Utils {
 	// CONSTANTES
 
-	public final static String STRING_VAZIA = "";
+	public static final Locale LOCAL_BRASIL = new Locale("pt", "BR");
+
+	public static final String STRING_VAZIA = "";
 
 	// FIM CONSTANTES
 
@@ -81,11 +84,63 @@ public abstract class Utils {
 			// FIM AÇÕES
 		} catch (Exception ex) {
 
-			new Erro("Erro inesperado.\n", ex.getMessage());
+			new Erro("Erro inesperado.\n", ex);
 
 		} finally {
 		}
 		return strConcatenadaResultado;
+	}
+
+	public static String getStrLinkHtml(String strTexto, String strLink) {
+		// VARIÁVEIS
+
+		String strLinkHtmlResultado = Utils.STRING_VAZIA;
+
+		StringBuilder strBuilder = new StringBuilder();
+
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			strBuilder.append("<a href=\"" + strLink + "\">" + strTexto + "</a>");
+			strLinkHtmlResultado = strBuilder.toString();
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+		return strLinkHtmlResultado;
+	}
+
+	public static String getStrSimplificada(String strComplexa) {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			strComplexa = strComplexa.toLowerCase(Utils.LOCAL_BRASIL);
+			String[] arrChrAcentos = new String[] { "ç", "á", "é", "í", "ó", "ú", "ý", "à", "è", "ì", "ò", "ù", "ã", "õ", "ñ", "ä", "ë", "ï", "ö",
+					"ü", "ÿ", "â", "ê", "î", "ô", "û" };
+			String[] arrChrSemAcento = new String[] { "c", "a", "e", "i", "o", "u", "y", "a", "e", "i", "o", "u", "a", "o", "n", "a", "e", "i", "o",
+					"u", "y", "a", "e", "i", "o", "u" };
+			for (int intTemp = 0; intTemp < arrChrAcentos.length; intTemp++) {
+				strComplexa = strComplexa.replace(arrChrAcentos[intTemp], arrChrSemAcento[intTemp]);
+			}
+			String[] arrChrCaracteresEspeciais = { "\\.", ",", "-", ":", "\\(", "\\)", "ª", "\\|", "\\\\", "°", "^\\s+", "\\s+$", "\\s+", ".", "(",
+					")" };
+			for (int intTemp = 0; intTemp < arrChrCaracteresEspeciais.length; intTemp++) {
+				strComplexa = strComplexa.replace(arrChrCaracteresEspeciais[intTemp], "");
+			}
+			strComplexa = strComplexa.replace(" ", "");
+
+			// FIM AÇÕES
+		} catch (Exception e) {
+		} finally {
+		}
+		return strComplexa;
 	}
 
 	// FIM MÉTODOS

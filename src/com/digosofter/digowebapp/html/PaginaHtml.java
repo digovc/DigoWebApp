@@ -21,7 +21,7 @@ public class PaginaHtml extends Objeto {
 
 			_cssMain.setCssMainInstancia(_cssMain);
 			_cssMain.setTagPai(this.getTagHead());
-			_cssImp.setStrId("cssMain");
+			_cssMain.setStrId("cssMain");
 		}
 		return _cssMain;
 	}
@@ -175,7 +175,7 @@ public class PaginaHtml extends Objeto {
 			// FIM AÇÕES
 		} catch (Exception ex) {
 
-			new Erro("Erro inesperado.\n", ex.getMessage());
+			new Erro("Erro inesperado.\n", ex);
 
 		} finally {
 		}
@@ -204,7 +204,7 @@ public class PaginaHtml extends Objeto {
 			// FIM AÇÕES
 		} catch (Exception ex) {
 
-			new Erro("Erro inesperado.\n", ex.getMessage());
+			new Erro("Erro inesperado.\n", ex);
 
 		} finally {
 		}

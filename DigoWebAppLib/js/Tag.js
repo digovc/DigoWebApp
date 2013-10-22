@@ -24,6 +24,15 @@ function Tag() {
 		_objJQuery = $("#" + this.getStrId());
 		return _objJQuery;
 	}
+	this.getJQuery = function() {
+		return this.getObjJQuery();
+	}
+	this.getJQ = function() {
+		return this.getObjJQuery();
+	}
+	this.getJq = function() {
+		return this.getObjJQuery();
+	}
 
 	var _strId;
 	this.getStrId = function() {
