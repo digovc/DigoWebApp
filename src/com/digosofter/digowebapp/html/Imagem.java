@@ -13,6 +13,9 @@ public class Imagem extends Tag {
 
 	public Imagem() {
 		// VARIÁVEIS		
+
+		JavaScriptTag objJsImagem = new JavaScriptTag("res/lib/DigoWebAppLib/js/html/Imagem.js");
+
 		// FIM VARIÁVEIS
 		try {
 			// AÇÕES
@@ -22,7 +25,9 @@ public class Imagem extends Tag {
 
 			// CSS
 //			this.getAtrClass().getLstStrValor().add(CssTag.getCssMainInstancia().setTextAlign("center"));
-			
+
+			PaginaHtml.getPagHtmlInstancia().getLstObjJavaScriptTag().add(objJsImagem);
+
 			// FIM AÇÕES
 		} catch (Exception ex) {
 

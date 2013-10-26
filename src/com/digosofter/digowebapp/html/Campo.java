@@ -119,6 +119,15 @@ public class Campo extends Tag {
 		}
 	}
 
+	private String _strId;
+
+	@Override
+	public void setStrId(String strId) {
+		super.setStrId(strId);
+		_strId = this.getStrId();
+		this.getLstAtr().add(new Atributo("name", _strId));
+	}
+
 	private String _strPlaceHolder;
 
 	private String getStrPlaceHolder() {
@@ -136,11 +145,16 @@ public class Campo extends Tag {
 
 	public Campo() {
 		// VARIÁVEIS
+
+		JavaScriptTag objJsCampo = new JavaScriptTag("res/lib/DigoWebAppLib/js/html/Campo.js");
+
 		// FIM VARIÁVEIS
 		try {
 			// AÇÕES
 
 			this.setStrTagNome("input");
+
+			PaginaHtml.getPagHtmlInstancia().getLstObjJavaScriptTag().add(objJsCampo);
 
 			// FIM AÇÕES
 		} catch (Exception ex) {

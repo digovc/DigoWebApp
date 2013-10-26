@@ -1,6 +1,8 @@
 package com.digosofter.digowebapp.html;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import com.digosofter.digowebapp.AppWeb;
@@ -41,6 +43,42 @@ public class PaginaHtml extends Objeto {
 
 	public List<JavaScriptTag> getLstObjJavaScriptTag() {
 		return _lstObjJavaScriptTag;
+	}
+
+	private List<JavaScriptTag> _lstObjJavaScriptTagOrdenada;
+
+	private List<JavaScriptTag> getLstObjJavaScriptTagOrdenada() {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			_lstObjJavaScriptTagOrdenada = this.getLstObjJavaScriptTag();
+			Collections.sort(_lstObjJavaScriptTagOrdenada, new Comparator<JavaScriptTag>() {
+				public int compare(final JavaScriptTag objJavaScriptTag1, final JavaScriptTag objJavaScriptTag2) {
+					return objJavaScriptTag1.getIntPrioridade() < objJavaScriptTag2.getIntPrioridade() ? -1
+							: (objJavaScriptTag1.getIntPrioridade() > objJavaScriptTag2.getIntPrioridade() ? +1 : 0);
+				}
+			});
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+		return _lstObjJavaScriptTagOrdenada;
+	}
+
+	private static PaginaHtml _pagHtmlInstancia;
+
+	public static PaginaHtml getPagHtmlInstancia() {
+		return _pagHtmlInstancia;
+	}
+
+	private static void setPagHtmlInstancia(PaginaHtml pagHtmlInstancia) {
+		_pagHtmlInstancia = pagHtmlInstancia;
 	}
 
 	private String _strTitulo;
@@ -146,22 +184,24 @@ public class PaginaHtml extends Objeto {
 		// VARIÁVEIS
 
 		JavaScriptTag objJsAppWeb = new JavaScriptTag("res/lib/DigoWebAppLib/js/AppWeb.js");
-		JavaScriptTag objJsJQuery = new JavaScriptTag("res/lib/DigoWebAppLib/js/lib/jquery-2.0.3.js");
 		JavaScriptTag objJsErro = new JavaScriptTag("res/lib/DigoWebAppLib/js/Erro.js");
+		JavaScriptTag objJsJQuery = new JavaScriptTag("res/lib/DigoWebAppLib/js/lib/jquery-2.0.3.js");
+		JavaScriptTag objJsMd5 = new JavaScriptTag("res/lib/DigoWebAppLib/js/lib/md5.js");
 		JavaScriptTag objJsObjeto = new JavaScriptTag("res/lib/DigoWebAppLib/js/Objeto.js");
-		JavaScriptTag objJsPainel = new JavaScriptTag("res/lib/DigoWebAppLib/js/Painel.js");
-		JavaScriptTag objJsTag = new JavaScriptTag("res/lib/DigoWebAppLib/js/Tag.js");
+		JavaScriptTag objJsTag = new JavaScriptTag("res/lib/DigoWebAppLib/js/html/Tag.js");
 
 		// FIM VARIÁVEIS
 		try {
 			// AÇÕES
 
+			PaginaHtml.setPagHtmlInstancia(this);
+
 			this.getLstObjJavaScriptTag().add(objJsJQuery);
+			this.getLstObjJavaScriptTag().add(objJsMd5);
 			this.getLstObjJavaScriptTag().add(objJsErro);
 			this.getLstObjJavaScriptTag().add(objJsObjeto);
 			this.getLstObjJavaScriptTag().add(objJsAppWeb);
 			this.getLstObjJavaScriptTag().add(objJsTag);
-			this.getLstObjJavaScriptTag().add(objJsPainel);
 
 			this.getTagDocType();
 			this.getTagHead();
@@ -194,7 +234,7 @@ public class PaginaHtml extends Objeto {
 		try {
 			// AÇÕES
 
-			for (JavaScriptTag objJavaScriptTag : this.getLstObjJavaScriptTag()) {
+			for (JavaScriptTag objJavaScriptTag : this.getLstObjJavaScriptTagOrdenada()) {
 				objJavaScriptTag.setTagPai(this.getTagHead());
 			}
 

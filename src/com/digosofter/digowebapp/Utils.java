@@ -115,6 +115,27 @@ public abstract class Utils {
 		return strLinkHtmlResultado;
 	}
 
+	public static String getStrRemoverUltimaLetra(String str) {
+		// VARIÁVEIS
+
+		String strResultado = Utils.STRING_VAZIA;
+
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			strResultado = str.substring(0, str.length() - 1);
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+		return strResultado;
+	}
+
 	public static String getStrSimplificada(String strComplexa) {
 		// VARIÁVEIS
 		// FIM VARIÁVEIS

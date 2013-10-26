@@ -80,6 +80,16 @@ public class DbColuna extends Objeto {
 		_lstStrOpcao = lstStrOpcao;
 	}
 
+	private String _strValor;
+
+	public String getStrValor() {
+		return _strValor;
+	}
+
+	public void setStrValor(String strValor) {
+		_strValor = strValor;
+	}
+
 	private DbTabela _tbl;
 
 	private DbTabela getTbl() {

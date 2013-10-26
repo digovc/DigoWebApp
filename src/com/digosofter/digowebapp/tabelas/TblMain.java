@@ -1,5 +1,7 @@
 package com.digosofter.digowebapp.tabelas;
 
+import java.sql.ResultSet;
+
 import com.digosofter.digowebapp.database.DataBase;
 import com.digosofter.digowebapp.database.DbColuna;
 import com.digosofter.digowebapp.database.DbTabela;
@@ -12,14 +14,14 @@ public abstract class TblMain extends DbTabela {
 	// ATRIBUTOS
 
 	private DbColuna _clnBooAtivo;
-	
+
 	public DbColuna getClnBooAtivo() {
 		if (_clnBooAtivo == null) {
 			_clnBooAtivo = new DbColuna("booAtivo", this, DbColuna.EnmClnTipo.BOOLEAN);
 		}
 		return _clnBooAtivo;
 	}
-	
+
 	private DbColuna _clnBooExcluido;
 
 	public DbColuna getClnBooExcluido() {
@@ -76,6 +78,15 @@ public abstract class TblMain extends DbTabela {
 		// FIM VARIÁVEIS
 		try {
 			// AÇÕES
+			
+			this.getClnBooAtivo();
+			this.getClnBooExcluido();
+			this.getClnDttAlteracao();
+			this.getClnDttCadastro();
+			this.getClnDttExclusao();
+			this.getClnIntId();
+			this.getClnNome();
+			
 			// FIM AÇÕES
 		} catch (Exception ex) {
 
@@ -84,9 +95,38 @@ public abstract class TblMain extends DbTabela {
 		} finally {
 		}
 	}
+
 	// FIM CONSTRUTORES
 
 	// MÉTODOS
+
+	public void buscarRegistroPeloId(int intId) {
+		// VARIÁVEIS
+
+		ResultSet objResultSet = null;
+
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			objResultSet = this.getResultSet(this.getClnIntId(), intId);
+
+			if (objResultSet != null) {
+				objResultSet.first();
+				for (DbColuna cln : this.getLstCln()) {
+					cln.setStrValor(objResultSet.getString(cln.getStrNomeSimplificado()));
+				}
+			}
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+	}
+
 	// FIM MÉTODOS
 
 	// EVENTOS

@@ -43,9 +43,21 @@ public class CssTag extends Tag {
 	public static final String CSS_GRANDEZA_PORCENTAGEM = "%";
 	public static final String CSS_GRANDEZA_PIXEL = "px";
 
+	public static final String CSS_OVERFLOW_AUTO = "auto";
+	public static final String CSS_OVERFLOW_HIDDEN = "hidden";
+	public static final String CSS_OVERFLOW_INHERIT = "inherit";
+	public static final String CSS_OVERFLOW_SCROLL = "scroll";
+	public static final String CSS_OVERFLOW_VISIBLE = "visible";
+
 	public static final String CSS_POSITION_ABSOLUTE = "absolute";
 	public static final String CSS_POSITION_FIXED = "fixed";
 	public static final String CSS_POSITION_RELATIVE = "relative";
+
+	public static final String CSS_REPEAT = "repeat";
+	public static final String CSS_REPEAT_INHERIT = "inherit";
+	public static final String CSS_REPEAT_NO_REPEAT = "no-repeat";
+	public static final String CSS_REPEAT_Y = "repeat-y";
+	public static final String CSS_REPEAT_X = "repeat-x";
 
 	public static final String CSS_TEXT_ALIGN_CENTRO = "center";
 	public static final String CSS_TEXT_ALIGN_DIREITA = "right";
@@ -184,6 +196,56 @@ public class CssTag extends Tag {
 			// AÇÕES
 
 			strClassAssociada = this.addCss("background-color", hexColor);
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+		return strClassAssociada;
+	}
+
+	public String setBackgroundImage(String strSrcImagem) {
+		// VARIÁVEIS
+		
+		String strClassAssociada = Utils.STRING_VAZIA;
+		StringBuilder strBulderValorEstrutura = new StringBuilder();
+		
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+			
+			strBulderValorEstrutura.append("url('");
+			strBulderValorEstrutura.append(strSrcImagem);
+			strBulderValorEstrutura.append("')");
+			
+			strClassAssociada = this.addCss("background-image", strBulderValorEstrutura.toString());
+			
+			// FIM AÇÕES
+		} catch (Exception ex) {
+			
+			new Erro("Erro inesperado.\n", ex);
+			
+		} finally {
+		}
+		return strClassAssociada;
+	}
+	
+	public String setBackgroundRepeat(String strRepeat) {
+		// VARIÁVEIS
+
+		String strClassAssociada = Utils.STRING_VAZIA;
+		StringBuilder strBulderValorEstrutura = new StringBuilder();
+
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			strBulderValorEstrutura.append(strRepeat);
+
+			strClassAssociada = this.addCss("background-repeat", strBulderValorEstrutura.toString());
 
 			// FIM AÇÕES
 		} catch (Exception ex) {
@@ -597,29 +659,29 @@ public class CssTag extends Tag {
 
 	public String setFontSize(int intFontSize, String strGrandeza) {
 		// VARIÁVEIS
-		
+
 		String strClassAssociada = Utils.STRING_VAZIA;
 		StringBuilder strBulderValorEstrutura = new StringBuilder();
-		
+
 		// FIM VARIÁVEIS
 		try {
 			// AÇÕES
-			
+
 			strBulderValorEstrutura.append(intFontSize);
 			strBulderValorEstrutura.append(strGrandeza);
-			
+
 			strClassAssociada = this.addCss("font-size", strBulderValorEstrutura.toString());
-			
+
 			// FIM AÇÕES
 		} catch (Exception ex) {
-			
+
 			new Erro("Erro inesperado.\n", ex);
-			
+
 		} finally {
 		}
 		return strClassAssociada;
 	}
-	
+
 	public String setHeight(int intHeight, String strGrandeza) {
 		// VARIÁVEIS
 
@@ -783,6 +845,30 @@ public class CssTag extends Tag {
 			strBulderValorEstrutura.append("px");
 
 			strClassAssociada = this.addCss("margin-top", strBulderValorEstrutura.toString());
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+		return strClassAssociada;
+	}
+
+	public String setOverflow(String strOverflowPx) {
+		// VARIÁVEIS
+
+		String strClassAssociada = Utils.STRING_VAZIA;
+		StringBuilder strBulderValorEstrutura = new StringBuilder();
+
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			strBulderValorEstrutura.append(strOverflowPx);
+
+			strClassAssociada = this.addCss("overflow", strBulderValorEstrutura.toString());
 
 			// FIM AÇÕES
 		} catch (Exception ex) {

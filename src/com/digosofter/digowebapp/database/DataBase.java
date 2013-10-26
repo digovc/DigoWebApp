@@ -46,7 +46,7 @@ public abstract class DataBase extends Objeto {
 				url = "jdbc:" + this.getStrDriveName() + "://" + this.getStrHost() + ":" + String.valueOf(this.getIntPort()) + "/"
 						+ this.getStrDbName();
 				Class.forName("org.postgresql.Driver");
-				_objConnection = DriverManager.getConnection(url, objProperties); 
+				_objConnection = DriverManager.getConnection(url, objProperties);
 			}
 
 			// FIM AÇÕES
@@ -82,7 +82,7 @@ public abstract class DataBase extends Objeto {
 		_strHost = strHost;
 	}
 
-	private String _strPassword;
+	private String _strPassword = "postgres";
 
 	private String getStrPassword() {
 		return _strPassword;
@@ -92,7 +92,7 @@ public abstract class DataBase extends Objeto {
 		_strPassword = strPassword;
 	}
 
-	private String _strUser;
+	private String _strUser = "postgres";
 
 	private String getStrUser() {
 		return _strUser;
@@ -139,8 +139,8 @@ public abstract class DataBase extends Objeto {
 		try {
 			// AÇÕES
 
-			Statement objStatement = this.getObjConnection().createStatement();
-			objResultSetResultado = objStatement.executeQuery(sql); 
+			Statement objStatement = this.getObjConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+			objResultSetResultado = objStatement.executeQuery(sql);
 
 			// FIM AÇÕES
 		} catch (Exception ex) {
@@ -151,7 +151,6 @@ public abstract class DataBase extends Objeto {
 		}
 		return objResultSetResultado;
 	}
-
 	// FIM MÉTODOS
 
 	// EVENTOS

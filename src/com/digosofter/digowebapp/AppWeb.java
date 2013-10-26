@@ -26,6 +26,42 @@ public abstract class AppWeb extends Objeto {
 		_appWebInstancia = appWebInstancia;
 	}
 
+	private List<String> _lstStrGet;
+
+	public List<String> getLstStrGet() {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+		return _lstStrGet;
+	}
+
+	private List<String> _lstStrPost;
+
+	public List<String> getLstStrPost() {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+		return _lstStrPost;
+	}
+
 	private List<Usuario> _lstUsuarioSessao = new ArrayList<Usuario>();
 
 	public List<Usuario> getLstUsuarioSessao() {
@@ -102,6 +138,7 @@ public abstract class AppWeb extends Objeto {
 			if (!this.getBooUsuarioExiste(_objHttpSession.getId())) {
 				objUsuario = new Usuario();
 				objUsuario.setStrSessaoId(_objHttpSession.getId());
+				this.getLstUsuarioSessao().add(objUsuario);
 			}
 
 			// FIM AÇÕES
@@ -131,6 +168,18 @@ public abstract class AppWeb extends Objeto {
 
 	private void setStrPaginaSolicitada(String strPaginaSolicitada) {
 		_strPaginaSolicitada = strPaginaSolicitada;
+	}
+
+	private Usuario _objUsuarioAtual;
+
+	public Usuario getObjUsuarioAtual() {
+		for (Usuario objUsuario : this.getLstUsuarioSessao()) {
+			if (objUsuario.getStrSessaoId() == this.getObjHttpSession().getId()) {
+				_objUsuarioAtual = objUsuario;
+				break;
+			}
+		}
+		return _objUsuarioAtual;
 	}
 
 	// FIM ATRIBUTOS
@@ -215,6 +264,27 @@ public abstract class AppWeb extends Objeto {
 		} finally {
 		}
 		return AppWeb.getAppWebInstancia();
+	}
+
+	public String getStrPostParametro(String strParametroNome) {
+		// VARIÁVEIS
+
+		String strParametroValorResultado = Utils.STRING_VAZIA;
+
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			strParametroValorResultado = this.getObjHttpServletRequest().getParameter(strParametroNome);
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+		return strParametroValorResultado;
 	}
 
 	// FIM MÉTODOS

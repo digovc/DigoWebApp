@@ -8,12 +8,22 @@ public class Usuario extends Objeto {
 
 	private boolean _booLogado = false;
 
-	private boolean getBooLogado() {
+	public boolean getBooLogado() {
 		return _booLogado;
 	}
 
-	private void setBooLogado(boolean booLogado) {
+	public void setBooLogado(boolean booLogado) {
 		_booLogado = booLogado;
+	}
+
+	private String _strId;
+
+	public String getStrId() {
+		return _strId;
+	}
+
+	public void setStrId(String strId) {
+		_strId = strId;
 	}
 
 	private String _strSessaoId;

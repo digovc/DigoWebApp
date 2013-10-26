@@ -1,6 +1,5 @@
 package com.digosofter.digowebapp.html;
 
-import com.digosofter.digowebapp.AppWeb;
 import com.digosofter.digowebapp.erro.Erro;
 
 public class Botao extends Tag {
@@ -14,6 +13,9 @@ public class Botao extends Tag {
 
 	public Botao() {
 		// VARIÁVEIS
+		
+		JavaScriptTag objJsBotao = new JavaScriptTag("res/lib/DigoWebAppLib/js/html/Botao.js");
+
 		// FIM VARIÁVEIS
 		try {
 			// AÇÕES
@@ -22,8 +24,10 @@ public class Botao extends Tag {
 			this.setStrConteudo("Botão");
 			this.getLstAtr().add(new Atributo("type", "button"));
 
+			PaginaHtml.getPagHtmlInstancia().getLstObjJavaScriptTag().add(objJsBotao);
+
 			// CSS
-			this.adicionaCss(CssTag.getCssMainInstancia().setPaddingTop(5)); 
+			this.adicionaCss(CssTag.getCssMainInstancia().setPaddingTop(5));
 			this.adicionaCss(CssTag.getCssMainInstancia().setPaddingBottom(5));
 			this.adicionaCss(CssTag.getCssMainInstancia().setPaddingLeft(15));
 			this.adicionaCss(CssTag.getCssMainInstancia().setPaddingRight(15));

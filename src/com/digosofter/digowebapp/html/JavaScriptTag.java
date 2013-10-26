@@ -18,6 +18,16 @@ public class JavaScriptTag extends Tag {
 		return _atrSrc;
 	}
 
+	private int _intPrioridade = 5;
+
+	public int getIntPrioridade() {
+		return _intPrioridade;
+	}
+
+	public void setIntPrioridade(int intPrioridade) {
+		_intPrioridade = intPrioridade;
+	}
+
 	private String _strSrc;
 
 	private String getStrSrc() {
