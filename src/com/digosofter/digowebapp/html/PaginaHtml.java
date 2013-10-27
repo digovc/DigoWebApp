@@ -71,6 +71,18 @@ public class PaginaHtml extends Objeto {
 		return _lstObjJavaScriptTagOrdenada;
 	}
 
+	private JavaScriptTag _objJavaScriptMain;
+
+	private JavaScriptTag getObjJavaScriptMain() {
+		if (_objJavaScriptMain == null) {
+			_objJavaScriptMain = new JavaScriptTag(null);
+
+			this.getLstObjJavaScriptTag().add(_objJavaScriptMain);
+			_objJavaScriptMain.setIntPrioridade(6);
+		}
+		return _objJavaScriptMain;
+	}
+
 	private static PaginaHtml _pagHtmlInstancia;
 
 	public static PaginaHtml getPagHtmlInstancia() {
@@ -182,26 +194,13 @@ public class PaginaHtml extends Objeto {
 
 	public PaginaHtml() {
 		// VARIÁVEIS
-
-		JavaScriptTag objJsAppWeb = new JavaScriptTag("res/lib/DigoWebAppLib/js/AppWeb.js");
-		JavaScriptTag objJsErro = new JavaScriptTag("res/lib/DigoWebAppLib/js/Erro.js");
-		JavaScriptTag objJsJQuery = new JavaScriptTag("res/lib/DigoWebAppLib/js/lib/jquery-2.0.3.js");
-		JavaScriptTag objJsMd5 = new JavaScriptTag("res/lib/DigoWebAppLib/js/lib/md5.js");
-		JavaScriptTag objJsObjeto = new JavaScriptTag("res/lib/DigoWebAppLib/js/Objeto.js");
-		JavaScriptTag objJsTag = new JavaScriptTag("res/lib/DigoWebAppLib/js/html/Tag.js");
-
 		// FIM VARIÁVEIS
 		try {
 			// AÇÕES
 
 			PaginaHtml.setPagHtmlInstancia(this);
 
-			this.getLstObjJavaScriptTag().add(objJsJQuery);
-			this.getLstObjJavaScriptTag().add(objJsMd5);
-			this.getLstObjJavaScriptTag().add(objJsErro);
-			this.getLstObjJavaScriptTag().add(objJsObjeto);
-			this.getLstObjJavaScriptTag().add(objJsAppWeb);
-			this.getLstObjJavaScriptTag().add(objJsTag);
+			this.adicionarJs();
 
 			this.getTagDocType();
 			this.getTagHead();
@@ -224,6 +223,55 @@ public class PaginaHtml extends Objeto {
 	// FIM CONSTRUTORES
 
 	// MÉTODOS
+
+	private void adicionarJs() {
+		// VARIÁVEIS
+
+		JavaScriptTag objJsAppWeb = new JavaScriptTag("res/lib/DigoWebAppLib/js/AppWeb.js");
+		JavaScriptTag objJsErro = new JavaScriptTag("res/lib/DigoWebAppLib/js/Erro.js");
+		JavaScriptTag objJsUsuario = new JavaScriptTag("res/lib/DigoWebAppLib/js/Usuario.js");
+		JavaScriptTag objJsJQuery = new JavaScriptTag("res/lib/DigoWebAppLib/js/lib/jquery-2.0.3.js");
+		JavaScriptTag objJsMd5 = new JavaScriptTag("res/lib/DigoWebAppLib/js/lib/md5.js");
+		JavaScriptTag objJsObjeto = new JavaScriptTag("res/lib/DigoWebAppLib/js/Objeto.js");
+		JavaScriptTag objJsTag = new JavaScriptTag("res/lib/DigoWebAppLib/js/html/Tag.js");
+
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			this.getLstObjJavaScriptTag().add(objJsJQuery);
+			this.getLstObjJavaScriptTag().add(objJsMd5);
+			this.getLstObjJavaScriptTag().add(objJsErro);
+			this.getLstObjJavaScriptTag().add(objJsObjeto);
+			this.getLstObjJavaScriptTag().add(objJsAppWeb);
+			this.getLstObjJavaScriptTag().add(objJsUsuario);
+			this.getLstObjJavaScriptTag().add(objJsTag);
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+	}
+
+	public void adicionarJsCodigo(String strJsCodigo) {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			this.getObjJavaScriptMain().adicionarJsCodigo(strJsCodigo);
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+	}
 
 	public String getStrPaginaFormatada() {
 		// VARIÁVEIS

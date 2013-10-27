@@ -287,6 +287,24 @@ public abstract class AppWeb extends Objeto {
 		return strParametroValorResultado;
 	}
 
+
+	public void reencaminhar(String strUrl) {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+			
+			this.getObjHttpServletResponse().sendRedirect(strUrl);			
+			
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+	}
+	
 	// FIM MÉTODOS
 
 	// EVENTOS

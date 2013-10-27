@@ -13,9 +13,9 @@ function Tag() {
 	this.setBooVisivel = function(booVisivel) {
 		_booVisivel = booVisivel;
 		if (_booVisivel) {
-			$("#" + this.getStrId()).show();
+			$("#" + this.getStrId()).slideDown("fast");
 		} else {
-			$("#" + this.getStrId()).hide("slow");
+			$("#" + this.getStrId()).slideUp("slow");
 		}
 	}
 

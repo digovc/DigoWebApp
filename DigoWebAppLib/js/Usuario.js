@@ -1,0 +1,31 @@
+// CONSTANTE
+// ATRIBUTOS GLOBAIS
+// CLASSE
+function Usuario() {
+	// HERANÇA
+	Objeto.apply(this);
+
+	// ATRIBUTO
+
+	var _booLogado = false;
+	this.getBooLogado = function() {
+		return _booLogado;
+	}
+	this.setBooLogado = function(booLogado) {
+		_booLogado = booLogado;
+	}
+
+	// MÉTODO
+
+	/* Construtor */
+	{
+		// VARIÁVEL
+		// AÇÃO
+	}
+
+}
+// INICIALIZAÇÃO
+var objUsuario;
+$(document).ready(function() {
+	objUsuario = new Usuario();
+});
