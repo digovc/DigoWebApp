@@ -5,27 +5,22 @@ import com.digosofter.digowebapp.erro.Erro;
 public class DbPostgresql extends DataBase {
 
 	// CONSTANTES
+
+	private static final String STR_DRIVE_NAME = "postgresql";
+	private static final String STR_PACKEGE_CLASS_NAME = "org.postgresql.Driver";
+
 	// FIM CONSTANTES
 
 	// ATRIBUTOS
-
-	private String _strDriveName = "postgresql";
-	
-	@Override
-	protected String getStrDriveName() {
-		return _strDriveName;
-	}
-
-
 	// FIM ATRIBUTOS
 
 	// CONSTRUTORES
 
-	public DbPostgresql(String strHost, String strDbName, String strUser, String strPassword) {
+	public DbPostgresql(String strHost, int intPort, String strDbName, String strUser, String strPassword) {
+
+		super(strHost, intPort, strDbName, strUser, strPassword);
+
 		// VARIÁVEIS
-
-		super(strHost, strDbName, strUser, strPassword);
-
 		// FIM VARIÁVEIS
 		try {
 			// AÇÕES
@@ -41,6 +36,17 @@ public class DbPostgresql extends DataBase {
 	// FIM CONSTRUTORES
 
 	// MÉTODOS
+
+	@Override
+	protected String getStrDriveName() {
+		return STR_DRIVE_NAME;
+	}
+
+	@Override
+	protected String getStrPackegeClassName() {
+		return STR_PACKEGE_CLASS_NAME;
+	}
+
 	// FIM MÉTODOS
 
 	// EVENTOS

@@ -22,7 +22,7 @@ public class Formulario extends Tag {
 	private void setEnmMetodo(EnmMetodo enmMetodo) {
 		// VARIÁVEIS
 
-		String strMetodo = "get";
+		String strMetodo;
 
 		// FIM VARIÁVEIS
 		try {
@@ -40,6 +40,7 @@ public class Formulario extends Tag {
 				strMetodo = "get";
 				break;
 			}
+
 			this.getLstAtr().add(new Atributo("method", strMetodo));
 
 			// FIM AÇÕES
@@ -58,8 +59,21 @@ public class Formulario extends Tag {
 	}
 
 	private void setStrAction(String strAction) {
-		_strAction = strAction;
-		this.getLstAtr().add(new Atributo("action", _strAction));
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			_strAction = strAction;
+			this.getLstAtr().add(new Atributo("action", _strAction));
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
 	}
 
 	// FIM ATRIBUTOS
@@ -68,19 +82,16 @@ public class Formulario extends Tag {
 
 	public Formulario(String strAction, EnmMetodo enmMetodo) {
 		// VARIÁVEIS
-		
-		JavaScriptTag objJsFormulario = new JavaScriptTag("res/lib/DigoWebAppLib/js/html/Formulario.js");
-
 		// FIM VARIÁVEIS
 		try {
 			// AÇÕES
-			
+
 			this.setStrTagNome("form");
 			this.setStrAction(strAction);
 			this.setEnmMetodo(enmMetodo);
 
-			PaginaHtml.getPagHtmlInstancia().getLstObjJavaScriptTag().add(objJsFormulario);
-			
+			PaginaHtml.getI().getLstObjJavaScriptTag().add(new JavaScriptTag("res/lib/DigoWebAppLib/js/html/Formulario.js"));
+
 			// FIM AÇÕES
 		} catch (Exception ex) {
 

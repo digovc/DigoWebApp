@@ -70,9 +70,23 @@ public class DbColuna extends Objeto {
 	private List<String> _lstStrOpcao;
 
 	public List<String> getLstStrOpcao() {
-		if (_lstStrOpcao == null) {
-			_lstStrOpcao = new ArrayList<String>();
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			if (_lstStrOpcao == null) {
+				_lstStrOpcao = new ArrayList<String>();
+			}
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
 		}
+
 		return _lstStrOpcao;
 	}
 
@@ -86,8 +100,16 @@ public class DbColuna extends Objeto {
 		return _strValor;
 	}
 
+	public int getIntValor() {
+		return Integer.valueOf(this.getStrValor());
+	}
+
 	public void setStrValor(String strValor) {
 		_strValor = strValor;
+	}
+
+	public void setIntValor(int intValor) {
+		this.setStrValor(String.valueOf(intValor));
 	}
 
 	private DbTabela _tbl;
@@ -97,8 +119,21 @@ public class DbColuna extends Objeto {
 	}
 
 	private void setTbl(DbTabela tbl) {
-		_tbl = tbl;
-		_tbl.getLstCln().add(this);
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			_tbl = tbl;
+			_tbl.getLstCln().add(this);
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
 	}
 
 	// FIM ATRIBUTOS

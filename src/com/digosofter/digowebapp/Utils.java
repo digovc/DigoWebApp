@@ -75,7 +75,10 @@ public abstract class Utils {
 				}
 
 				if (!booStrIncluida) {
-					strBuilder.append(strDelimitador2).append(str);
+					if (strDelimitador2 != null && strDelimitador2 != "") {
+						strBuilder.append(strDelimitador2);
+					}
+					strBuilder.append(str);
 					lstStrIncluida.add(str);
 					strDelimitador2 = strDelimitador;
 				}

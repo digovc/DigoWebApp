@@ -23,16 +23,16 @@ public class AtributoCss extends Atributo {
 	// CONSTRUTORES
 
 	public AtributoCss(String strNome, String strValor) {
-		// VARIÁVEIS
 
 		super(strNome);
 
+		// VARIÁVEIS
 		// FIM VARIÁVEIS
 		try {
 			// AÇÕES
-			
+
 			this.setStrValor(strValor);
-			
+
 			// FIM AÇÕES
 		} catch (Exception ex) {
 

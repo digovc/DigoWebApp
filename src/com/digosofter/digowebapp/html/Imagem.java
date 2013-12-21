@@ -12,21 +12,15 @@ public class Imagem extends Tag {
 	// CONSTRUTORES
 
 	public Imagem() {
-		// VARIÁVEIS		
-
-		JavaScriptTag objJsImagem = new JavaScriptTag("res/lib/DigoWebAppLib/js/html/Imagem.js");
-
+		// VARIÁVEIS
 		// FIM VARIÁVEIS
 		try {
 			// AÇÕES
-			
+
 			this.setStrTagNome("img");
 			this.setBooForcarTagDupla(true);
 
-			// CSS
-//			this.getAtrClass().getLstStrValor().add(CssTag.getCssMainInstancia().setTextAlign("center"));
-
-			PaginaHtml.getPagHtmlInstancia().getLstObjJavaScriptTag().add(objJsImagem);
+			PaginaHtml.getI().getLstObjJavaScriptTag().add(new JavaScriptTag("res/lib/DigoWebAppLib/js/html/Imagem.js"));
 
 			// FIM AÇÕES
 		} catch (Exception ex) {
@@ -40,6 +34,24 @@ public class Imagem extends Tag {
 	// FIM CONSTRUTORES
 
 	// MÉTODOS
+
+	public void setStrSrc(String strImagemSrc) {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			this.getLstAtr().add(new Atributo("src", strImagemSrc));
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+	}
+
 	// FIM MÉTODOS
 
 	// EVENTOS

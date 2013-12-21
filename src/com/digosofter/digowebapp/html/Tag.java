@@ -16,11 +16,25 @@ public class Tag extends Objeto {
 	private Atributo _atrClass;
 
 	public Atributo getAtrClass() {
-		if (_atrClass == null) {
-			_atrClass = new Atributo("class");
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
 
-			this.getLstAtr().add(_atrClass);
+			if (_atrClass == null) {
+
+				_atrClass = new Atributo("class");
+				this.getLstAtr().add(_atrClass);
+			}
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
 		}
+
 		return _atrClass;
 	}
 
@@ -31,11 +45,25 @@ public class Tag extends Objeto {
 	private Atributo _atrType;
 
 	public Atributo getAtrType() {
-		if (_atrType == null) {
-			_atrType = new Atributo("type");
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
 
-			this.getLstAtr().add(_atrType);
+			if (_atrType == null) {
+
+				_atrType = new Atributo("type");
+				this.getLstAtr().add(_atrType);
+			}
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
 		}
+
 		return _atrType;
 	}
 
@@ -65,7 +93,7 @@ public class Tag extends Objeto {
 
 	private List<Tag> _lstTag = new ArrayList<Tag>();
 
-	protected List<Tag> getLstTag() {
+	public List<Tag> getLstTag() {
 		return _lstTag;
 	}
 
@@ -106,16 +134,44 @@ public class Tag extends Objeto {
 	private String _strId = Utils.STRING_VAZIA;
 
 	public String getStrId() {
-		if (Utils.getBooStrVazia(_strId)) {
-			_strId = "id" + String.valueOf(this.getIntId());
-			this.getLstAtr().add(new Atributo("id", _strId));
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			if (Utils.getBooStrVazia(_strId)) {
+
+				_strId = "id" + String.valueOf(this.getIntId());
+				this.getLstAtr().add(new Atributo("id", _strId));
+			}
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
 		}
+
 		return _strId;
 	}
 
 	public void setStrId(String strId) {
-		_strId = strId;
-		this.getLstAtr().add(new Atributo("id", _strId));
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			_strId = strId;
+			this.getLstAtr().add(new Atributo("id", _strId));
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
 	}
 
 	private String _strLink;
@@ -136,24 +192,18 @@ public class Tag extends Objeto {
 
 	private Tag _tagPai;
 
-	private Tag getTagPai() {
+	public Tag getTagPai() {
 		return _tagPai;
 	}
 
 	public void setTagPai(Tag tagPai) {
-		_tagPai = tagPai;
-		_tagPai.getLstTag().add(this);
-	}
-
-	// FIM ATRIBUTOS
-
-	// CONSTRUTORES
-
-	public Tag() {
 		// VARIÁVEIS
 		// FIM VARIÁVEIS
 		try {
 			// AÇÕES
+
+			_tagPai = tagPai;
+			_tagPai.getLstTag().add(this);
 
 			// FIM AÇÕES
 		} catch (Exception ex) {
@@ -164,11 +214,14 @@ public class Tag extends Objeto {
 		}
 	}
 
+	// FIM ATRIBUTOS
+
+	// CONSTRUTORES
 	// FIM CONSTRUTORES
 
 	// MÉTODOS
 
-	public void adicionaCss(String strClassCss) {
+	public void adicionarCss(String strClassCss) {
 		// VARIÁVEIS
 		// FIM VARIÁVEIS
 		try {
@@ -189,20 +242,22 @@ public class Tag extends Objeto {
 		// VARIÁVEIS
 
 		String strAtributoIncluido = Utils.STRING_VAZIA;
-		StringBuilder strBuilderAtributoFormatado = new StringBuilder();
+		StringBuilder stbAtrFormatado = new StringBuilder();
 
 		// FIM VARIÁVEIS
 		try {
 			// AÇÕES
 
 			for (Atributo atr : this.getLstAtr()) {
+
 				if (!strAtributoIncluido.contains("#" + atr.getStrNome() + "#")) {
+
 					strAtributoIncluido += "#" + atr.getStrNome() + "#";
-					strBuilderAtributoFormatado.append(" ");
-					strBuilderAtributoFormatado.append(atr.getStrNome());
-					strBuilderAtributoFormatado.append("=\"");
-					strBuilderAtributoFormatado.append(Utils.getStrConcatenarLst(atr.getLstStrValor(), atr.getStrDelimitador(), true));
-					strBuilderAtributoFormatado.append("\"");
+					stbAtrFormatado.append(" ");
+					stbAtrFormatado.append(atr.getStrNome());
+					stbAtrFormatado.append("=\"");
+					stbAtrFormatado.append(Utils.getStrConcatenarLst(atr.getLstStrValor(), atr.getStrDelimitador(), true));
+					stbAtrFormatado.append("\"");
 				}
 			}
 
@@ -213,39 +268,43 @@ public class Tag extends Objeto {
 
 		} finally {
 		}
-		return strBuilderAtributoFormatado.toString();
+
+		return stbAtrFormatado.toString();
 	}
 
 	public String getStrTagFormatada() {
 		// VARIÁVEIS
 
-		StringBuilder strBuilderTagFormatadaResultado = new StringBuilder();
+		StringBuilder stbTagFormatada = new StringBuilder();
 
 		// FIM VARIÁVEIS
 		try {
 			// AÇÕES
 
 			if (!Utils.getBooStrVazia(this.getStrConteudo()) || !this.getLstTag().isEmpty() || this.getBooForcarTagDupla()) {
-				strBuilderTagFormatadaResultado.append(this.getStrAbertura());
-				strBuilderTagFormatadaResultado.append(this.getStrTagNome());
-				strBuilderTagFormatadaResultado.append(this.getStrAtributoFormatado());
-				strBuilderTagFormatadaResultado.append(this.getStrFechamento());
 
-				strBuilderTagFormatadaResultado.append(this.getStrConteudo());
+				stbTagFormatada.append(this.getStrAbertura());
+				stbTagFormatada.append(this.getStrTagNome());
+				stbTagFormatada.append(this.getStrAtributoFormatado());
+				stbTagFormatada.append(this.getStrFechamento());
+				stbTagFormatada.append(this.getStrConteudo());
+
 				for (Tag tag : this.getLstTag()) {
-					strBuilderTagFormatadaResultado.append(tag.getStrTagFormatada());
+					stbTagFormatada.append(tag.getStrTagFormatada());
 				}
 
-				strBuilderTagFormatadaResultado.append(this.getStrAbertura());
-				strBuilderTagFormatadaResultado.append("/");
-				strBuilderTagFormatadaResultado.append(this.getStrTagNome());
-				strBuilderTagFormatadaResultado.append(this.getStrFechamento());
+				stbTagFormatada.append(this.getStrAbertura());
+				stbTagFormatada.append("/");
+				stbTagFormatada.append(this.getStrTagNome());
+				stbTagFormatada.append(this.getStrFechamento());
+
 			} else {
-				strBuilderTagFormatadaResultado.append(this.getStrAbertura());
-				strBuilderTagFormatadaResultado.append(this.getStrTagNome());
-				strBuilderTagFormatadaResultado.append(this.getStrAtributoFormatado());
-				strBuilderTagFormatadaResultado.append("/");
-				strBuilderTagFormatadaResultado.append(this.getStrFechamento());
+
+				stbTagFormatada.append(this.getStrAbertura());
+				stbTagFormatada.append(this.getStrTagNome());
+				stbTagFormatada.append(this.getStrAtributoFormatado());
+				stbTagFormatada.append("/");
+				stbTagFormatada.append(this.getStrFechamento());
 			}
 
 			// FIM AÇÕES
@@ -255,7 +314,8 @@ public class Tag extends Objeto {
 
 		} finally {
 		}
-		return strBuilderTagFormatadaResultado.toString();
+
+		return stbTagFormatada.toString();
 	}
 
 	public String toHtml() {

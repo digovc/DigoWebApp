@@ -7,25 +7,25 @@ function Erro(strMensagem, e) {
 
 	// ATRIBUTO
 	var _strMensagem = "Erro inesperado.";
-	var getStrMensagem = function() {
+	this.getStrMensagem = function() {
 		return _strMensagem;
 	}
-	var setStrMensagem = function(strMensagem) {
+	this.setStrMensagem = function(strMensagem) {
 		_strMensagem = strMensagem;
 	}
 
 	var _strMensagemFormatada;
-	var getStrMensagemFormatada = function() {
+	this.getStrMensagemFormatada = function() {
 		// VARIÁVEIS
 		try {
 			// AÇÕES
 			_strMensagemFormatada = "";
-			_strMensagemFormatada += getStrMensagem();
-			if (getStrMensagemTecnica() != "") {
+			_strMensagemFormatada += this.getStrMensagem();
+			if (this.getStrMensagemTecnica() != "") {
 				_strMensagemFormatada += "\n\n\n"
-				_strMensagemFormatada += "Detalhe técnico:"
+				_strMensagemFormatada += "Detalhes:"
 				_strMensagemFormatada += "\n\n"
-				_strMensagemFormatada += getStrMensagemTecnica();
+				_strMensagemFormatada += this.getStrMensagemTecnica();
 			}
 
 		} catch (e) {
@@ -34,11 +34,11 @@ function Erro(strMensagem, e) {
 		return _strMensagemFormatada;
 	}
 
-	var _strMensagemTecnica = "";
-	var getStrMensagemTecnica = function() {
+	var _strMensagemTecnica = "<Sem detalhes>";
+	this.getStrMensagemTecnica = function() {
 		return _strMensagemTecnica;
 	}
-	var setStrMensagemTecnica = function(strMensagemTecnica) {
+	this.setStrMensagemTecnica = function(strMensagemTecnica) {
 		_strMensagemTecnica = strMensagemTecnica;
 	}
 
@@ -48,9 +48,11 @@ function Erro(strMensagem, e) {
 	{
 		// VARIÁVEL
 		// AÇÃO
-		setStrMensagem(strMensagem);
-		setStrMensagemTecnica(e.message)
-		alert(getStrMensagemFormatada());
+		this.setStrMensagem(strMensagem);
+		if (e != null) {
+			this.setStrMensagemTecnica(e.message)
+		}
+		alert(this.getStrMensagemFormatada());
 	}
 
 }

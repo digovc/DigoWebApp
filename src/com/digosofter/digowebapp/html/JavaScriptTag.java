@@ -15,10 +15,24 @@ public class JavaScriptTag extends Tag {
 	private Atributo _atrSrc;
 
 	private Atributo getAtrSrc() {
-		if (_atrSrc == null) {
-			_atrSrc = new Atributo("src");
-			this.getLstAtr().add(_atrSrc);
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			if (_atrSrc == null) {
+				_atrSrc = new Atributo("src");
+				this.getLstAtr().add(_atrSrc);
+			}
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
 		}
+
 		return _atrSrc;
 	}
 
@@ -45,9 +59,23 @@ public class JavaScriptTag extends Tag {
 	}
 
 	public void setStrSrc(String strSrc) {
-		_strSrc = strSrc;
-		if (_strSrc != null && !_strSrc.equals(Utils.STRING_VAZIA)) {
-			this.getAtrSrc().setStrValor(strSrc);
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			_strSrc = strSrc;
+
+			if (_strSrc != null && !_strSrc.equals(Utils.STRING_VAZIA)) {
+				this.getAtrSrc().setStrValor(strSrc);
+			}
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
 		}
 	}
 
@@ -100,13 +128,15 @@ public class JavaScriptTag extends Tag {
 	public String getStrTagFormatada() {
 		// VARIÁVEIS
 
-		StringBuilder strBuilder = new StringBuilder();
+		StringBuilder strBuilder;
 
 		// FIM VARIÁVEIS
 		try {
 			// AÇÕES
 
 			if (!this.getLstStrMetodos().isEmpty()) {
+
+				strBuilder = new StringBuilder();
 				strBuilder.append("$(document).ready(function(){");
 				strBuilder.append(Utils.getStrConcatenarLst(this.getLstStrMetodos(), null, true));
 				strBuilder.append("});");
@@ -120,7 +150,7 @@ public class JavaScriptTag extends Tag {
 			new Erro("Erro inesperado.\n", ex);
 
 		} finally {
-		} 
+		}
 		return super.getStrTagFormatada();
 	}
 

@@ -99,28 +99,34 @@ public class DbFiltro extends Objeto {
 		// VARIÁVEIS
 
 		String strDbFiltroResultado = Utils.STRING_VAZIA;
-		StringBuilder strBuilder = new StringBuilder();
+		StringBuilder strBuilder;
 
 		// FIM VARIÁVEIS
 		try {
 			// AÇÕES
 
 			if (this.getBooSelect()) {
+
 				strDbFiltroResultado = this.getStrValor();
+
 			} else {
+
+				strBuilder = new StringBuilder();
+
 				if (this.getBooAndOr()) {
 					strBuilder.append("and ");
 				} else {
 					strBuilder.append("or ");
 				}
+
 				strBuilder.append(this.getStrNomeSimplificado());
 				strBuilder.append(this.getStrOperador());
 				strBuilder.append("'");
 				strBuilder.append(this.getStrValor());
 				strBuilder.append("' ");
-			}
 
-			strDbFiltroResultado = strBuilder.toString();
+				strDbFiltroResultado = strBuilder.toString();
+			}
 
 			// FIM AÇÕES
 		} catch (Exception ex) {
@@ -129,6 +135,7 @@ public class DbFiltro extends Objeto {
 
 		} finally {
 		}
+
 		return strDbFiltroResultado;
 	}
 

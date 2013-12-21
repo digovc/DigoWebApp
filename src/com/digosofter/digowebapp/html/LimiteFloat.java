@@ -19,9 +19,7 @@ public class LimiteFloat extends Tag {
 			
 			this.setStrTagNome("div");
 			this.setBooForcarTagDupla(true);
-
-			// CSS
-			this.getAtrClass().getLstStrValor().add(CssTag.getCssMainInstancia().setClearBoth());
+			this.adicionarCss(CssTag.getCssMainInstancia().setClearBoth());
 			
 			// FIM AÇÕES
 		} catch (Exception ex) {

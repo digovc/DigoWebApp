@@ -1,11 +1,19 @@
 // CONSTANTE
+// FIM CONSTANTE
+
 // ATRIBUTOS GLOBAIS
+// FIM ATRIBUTOS GLOBAIS
+
 // CLASSE
 function Tag() {
 	// HERANÇA
+
 	Objeto.apply(this);
 
+	// FIM HERANÇA
+
 	// ATRIBUTO
+
 	var _booVisivel = true;
 	this.getBooVisivel = function() {
 		return _booVisivel;
@@ -13,9 +21,43 @@ function Tag() {
 	this.setBooVisivel = function(booVisivel) {
 		_booVisivel = booVisivel;
 		if (_booVisivel) {
-			$("#" + this.getStrId()).slideDown("fast");
+			$("#" + this.getStrId()).slideDown("100");
 		} else {
-			$("#" + this.getStrId()).slideUp("slow");
+			$("#" + this.getStrId()).slideUp("100");
+		}
+	}
+
+	var _fncOnClick;
+	this.getFncOnClick = function() {
+		return _fncOnClick;
+	}
+	this.setFncOnClick = function(fncOnClick) {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			_fncOnClick = fncOnClick;
+
+			this.getJq().click(_fncOnClick);
+
+			// FIM AÇÕES
+		} catch (e) {
+			new Erro("Erro inesperado.", e);
+		}
+	}
+
+	this.click = function(fncOnClick) {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			this.setFncOnClick(fncOnClick);
+
+			// FIM AÇÕES
+		} catch (e) {
+			new Erro("Erro inesperado.", e);
 		}
 	}
 
@@ -42,7 +84,94 @@ function Tag() {
 		_strId = strId;
 	}
 
+	var _strPlaceholder = "";
+	this.getStrPlaceholder = function() {
+
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			_strPlaceholder = this.getJq().attr("placeholder");
+
+			// FIM AÇÕES
+		} catch (e) {
+			new Erro("Erro inesperado.", e);
+		}
+
+		return _strPlaceholder;
+	}
+	this.setStrPlaceholder = function(strPlaceholder) {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			_strPlaceholder = strPlaceholder;
+
+			this.getJq().attr("placeholder", _strPlaceholder);
+
+			// FIM AÇÕES
+		} catch (e) {
+			new Erro("Erro inesperado.", e);
+		}
+	}
+
+	var _strTitle = "";
+	this.getStrTitle = function() {
+
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			_strTitle = this.getJq().attr("title");
+
+			// FIM AÇÕES
+		} catch (e) {
+			new Erro("Erro inesperado.", e);
+		}
+
+		return _strTitle;
+	}
+	this.setStrTitle = function(strTitle) {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			_strTitle = strTitle;
+
+			this.getJq().attr("title", _strTitle);
+
+			// FIM AÇÕES
+		} catch (e) {
+			new Erro("Erro inesperado.", e);
+		}
+	}
+	this.setStrTitulo = function(strTitle) {
+		this.setStrTitle(strTitle);
+	}
+
+	// FIM ATRIBUTO
+
 	// MÉTODO
+
+	this.addStrConteudo = function(strConteudo) {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			$("#" + this.getStrId()).append(strConteudo);
+
+			// FIM AÇÕES
+		} catch (e) {
+			new Erro("Erro inesperado.", e);
+		}
+	}
+
+	// FIM MÉTODO
 
 	/* Construtor */
 	{

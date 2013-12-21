@@ -31,21 +31,22 @@ public abstract class DataBase extends Objeto {
 	private Connection getObjConnection() {
 		// VARIÁVEIS
 
-		Properties objProperties = null;
-		String url = Utils.STRING_VAZIA;
+		Properties objProperties;
+		String url;
 
 		// FIM VARIÁVEIS
 		try {
 			// AÇÕES
 
 			if (_objConnection == null) {
+
 				objProperties = new Properties();
 				objProperties.setProperty("user", this.getStrUser());
 				objProperties.setProperty("password", this.getStrPassword());
 
 				url = "jdbc:" + this.getStrDriveName() + "://" + this.getStrHost() + ":" + String.valueOf(this.getIntPort()) + "/"
 						+ this.getStrDbName();
-				Class.forName("org.postgresql.Driver");
+				Class.forName(this.getStrPackegeClassName());
 				_objConnection = DriverManager.getConnection(url, objProperties);
 			}
 
@@ -55,6 +56,7 @@ public abstract class DataBase extends Objeto {
 
 		} finally {
 		}
+
 		return _objConnection;
 	}
 
@@ -67,10 +69,6 @@ public abstract class DataBase extends Objeto {
 	private void setStrDbName(String strDbName) {
 		_strDbName = strDbName;
 	}
-
-	private String _strDriveName;
-
-	protected abstract String getStrDriveName();
 
 	private String _strHost;
 
@@ -106,13 +104,14 @@ public abstract class DataBase extends Objeto {
 
 	// CONSTRUTORES
 
-	public DataBase(String strHost, String strDbName, String strUser, String strPassword) {
+	public DataBase(String strHost, int intPort, String strDbName, String strUser, String strPassword) {
 		// VARIÁVEIS
 		// FIM VARIÁVEIS
 		try {
 			// AÇÕES
 
 			this.setStrHost(strHost);
+			this.setIntPort(intPort);
 			this.setStrDbName(strDbName);
 			this.setStrUser(strUser);
 			this.setStrPassword(strPassword);
@@ -134,12 +133,13 @@ public abstract class DataBase extends Objeto {
 		// VARIÁVEIS
 
 		ResultSet objResultSetResultado = null;
+		Statement objStatement;
 
 		// FIM VARIÁVEIS
 		try {
 			// AÇÕES
 
-			Statement objStatement = this.getObjConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+			objStatement = this.getObjConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 			objResultSetResultado = objStatement.executeQuery(sql);
 
 			// FIM AÇÕES
@@ -149,8 +149,63 @@ public abstract class DataBase extends Objeto {
 
 		} finally {
 		}
+
 		return objResultSetResultado;
 	}
+
+	public void execSql(String sql) {
+		// VARIÁVEIS
+
+		Statement objStatement;
+
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			objStatement = this.getObjConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+			objStatement.execute(sql);
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+	}
+
+	public ResultSet execView(String strViewNome) {
+		// VARIÁVEIS
+
+		ResultSet objResultSetResultado = null;
+		StringBuilder strBuilder;
+
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			strBuilder = new StringBuilder();
+			strBuilder.append("select * from ");
+			strBuilder.append(strViewNome);
+			strBuilder.append(";");
+
+			objResultSetResultado = this.execSqlRetornaResultSet(strBuilder.toString());
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+
+		return objResultSetResultado;
+	}
+
+	protected abstract String getStrDriveName();
+
+	protected abstract String getStrPackegeClassName();
+
 	// FIM MÉTODOS
 
 	// EVENTOS

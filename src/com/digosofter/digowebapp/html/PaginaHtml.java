@@ -15,27 +15,97 @@ public class PaginaHtml extends Objeto {
 
 	// ATRIBUTOS
 
-	private CssTag _cssMain;
+	private static PaginaHtml i;
+
+	public static PaginaHtml getI() {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			if (i == null) {
+				i = new PaginaHtml();
+			}
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro ao instanciar objeto do tipo 'PaginaHtml'.\n", ex);
+
+		} finally {
+		}
+
+		return i;
+	}
+
+	private void setI(PaginaHtml _i) {
+		i = _i;
+	}
+
+	private boolean _booCssMainAdicionado;
+
+	private boolean getBooCssMainAdicionado() {
+		return _booCssMainAdicionado;
+	}
+
+	private void setBooCssMainAdicionado(boolean booCssMainAdicionado) {
+		_booCssMainAdicionado = booCssMainAdicionado;
+	}
+
+	private static CssTag _cssMain;
 
 	public CssTag getCssMain() {
-		if (_cssMain == null) {
-			_cssMain = new CssTag();
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
 
-			_cssMain.setCssMainInstancia(_cssMain);
-			_cssMain.setTagPai(this.getTagHead());
-			_cssMain.setStrId("cssMain");
+			if (_cssMain == null) {
+				_cssMain = new CssTag();
+
+				CssTag.setCssMainInstancia(_cssMain);
+				_cssMain.setStrId("cssMain");
+			}
+
+			if (!this.getBooCssMainAdicionado()) {
+				_cssMain.setTagPai(this.getTagHead());
+				this.setBooCssMainAdicionado(true);
+			}
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
 		}
+
 		return _cssMain;
 	}
 
 	private CssTag _cssImp;
 
 	private CssTag getCssImp() {
-		if (_cssImp == null) {
-			_cssImp = new CssTag();
-			_cssImp.setTagPai(this.getTagHead());
-			_cssImp.setStrId("cssImp");
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			if (_cssImp == null) {
+
+				_cssImp = new CssTag();
+				_cssImp.setTagPai(this.getTagHead());
+				_cssImp.setStrId("cssImp");
+			}
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
 		}
+
 		return _cssImp;
 	}
 
@@ -54,6 +124,7 @@ public class PaginaHtml extends Objeto {
 			// AÇÕES
 
 			_lstObjJavaScriptTagOrdenada = this.getLstObjJavaScriptTag();
+
 			Collections.sort(_lstObjJavaScriptTagOrdenada, new Comparator<JavaScriptTag>() {
 				public int compare(final JavaScriptTag objJavaScriptTag1, final JavaScriptTag objJavaScriptTag2) {
 					return objJavaScriptTag1.getIntPrioridade() < objJavaScriptTag2.getIntPrioridade() ? -1
@@ -68,29 +139,35 @@ public class PaginaHtml extends Objeto {
 
 		} finally {
 		}
+
 		return _lstObjJavaScriptTagOrdenada;
 	}
 
 	private JavaScriptTag _objJavaScriptMain;
 
 	private JavaScriptTag getObjJavaScriptMain() {
-		if (_objJavaScriptMain == null) {
-			_objJavaScriptMain = new JavaScriptTag(null);
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
 
-			this.getLstObjJavaScriptTag().add(_objJavaScriptMain);
-			_objJavaScriptMain.setIntPrioridade(6);
+			if (_objJavaScriptMain == null) {
+
+				_objJavaScriptMain = new JavaScriptTag(null);
+				_objJavaScriptMain.setIntPrioridade(6);
+
+				this.getLstObjJavaScriptTag().add(_objJavaScriptMain);
+			}
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
 		}
+
 		return _objJavaScriptMain;
-	}
-
-	private static PaginaHtml _pagHtmlInstancia;
-
-	public static PaginaHtml getPagHtmlInstancia() {
-		return _pagHtmlInstancia;
-	}
-
-	private static void setPagHtmlInstancia(PaginaHtml pagHtmlInstancia) {
-		_pagHtmlInstancia = pagHtmlInstancia;
 	}
 
 	private String _strTitulo;
@@ -100,91 +177,206 @@ public class PaginaHtml extends Objeto {
 	}
 
 	public void setStrTitulo(String strTitulo) {
-		_strTitulo = strTitulo;
-		_strTitulo = _strTitulo + " - " + AppWeb.getInstancia().getStrNome();
-		this.getTagTitle().setStrConteudo(_strTitulo);
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			_strTitulo = strTitulo;
+			_strTitulo += " - " + AppWeb.getI().getStrNome();
+
+			this.getTagTitle().setStrConteudo(_strTitulo);
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
 	}
 
 	@Override
 	public void setStrNome(String strNome) {
+
 		super.setStrNome(strNome);
-		this.setStrTitulo(strNome);
+
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			this.setStrTitulo(strNome);
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
 	}
 
 	private Tag _tagBody;
 
 	public Tag getTagBody() {
-		if (_tagBody == null) {
-			_tagBody = new Tag();
-			_tagBody.setStrTagNome("body");
-			_tagBody.setTagPai(this.getTagHtml());
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			if (_tagBody == null) {
+
+				_tagBody = new Tag();
+				_tagBody.setStrTagNome("body");
+				_tagBody.setTagPai(this.getTagHtml());
+			}
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
 		}
+
 		return _tagBody;
 	}
 
 	private Tag _tagDocType;
 
 	private Tag getTagDocType() {
-		if (_tagDocType == null) {
-			_tagDocType = new Tag();
-			_tagDocType.setStrTagNome("!DOCTYPE html");
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			if (_tagDocType == null) {
+
+				_tagDocType = new Tag();
+				_tagDocType.setStrTagNome("!DOCTYPE html");
+			}
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
 		}
+
 		return _tagDocType;
 	}
 
 	private Tag _tagHead;
 
 	private Tag getTagHead() {
-		if (_tagHead == null) {
-			_tagHead = new Tag();
-			_tagHead.setStrTagNome("head");
-			_tagHead.setTagPai(this.getTagHtml());
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			if (_tagHead == null) {
+
+				_tagHead = new Tag();
+				_tagHead.setStrTagNome("head");
+				_tagHead.setTagPai(this.getTagHtml());
+			}
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
 		}
+
 		return _tagHead;
 	}
 
 	private Tag _tagHtml;
 
 	private Tag getTagHtml() {
-		if (_tagHtml == null) {
-			_tagHtml = new Tag();
-			_tagHtml.setStrTagNome("html");
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
 
-			_tagHtml.getLstAtr().add(new Atributo("xmlns", "http://www.w3.org/1999/xhtml"));
+			if (_tagHtml == null) {
 
-			_tagHtml.getLstAtr().add(new Atributo("lang", "pt-br"));
+				_tagHtml = new Tag();
+				_tagHtml.setStrTagNome("html");
+				_tagHtml.getLstAtr().add(new Atributo("xmlns", "http://www.w3.org/1999/xhtml"));
+				_tagHtml.getLstAtr().add(new Atributo("lang", "pt-br"));
+			}
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
 		}
+
 		return _tagHtml;
 	}
 
 	private Tag _tagMeta;
 
 	private Tag getTagMeta() {
-		if (_tagMeta == null) {
-			_tagMeta = new Tag();
-			_tagMeta.setStrTagNome("meta");
-			_tagMeta.setTagPai(this.getTagHead());
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
 
-			_tagMeta.getLstAtr().add(new Atributo("http-equiv", "Content-Type"));
+			if (_tagMeta == null) {
 
-			_tagMeta.getLstAtr().add(new Atributo("content"));
-			_tagMeta.getLstAtr().get(1).setStrDelimitador(";");
-			_tagMeta.getLstAtr().get(1).getLstStrValor().add("text/html");
-			_tagMeta.getLstAtr().get(1).getLstStrValor().add(" charset=ISO-8859-1");
-			// _tagMeta.getLstAtr().get(1).getLstStrValor().add(" charset=utf-8");
+				_tagMeta = new Tag();
+				_tagMeta.setStrTagNome("meta");
+				_tagMeta.setTagPai(this.getTagHead());
+				_tagMeta.getLstAtr().add(new Atributo("http-equiv", "Content-Type"));
+				_tagMeta.getLstAtr().add(new Atributo("content"));
+				_tagMeta.getLstAtr().get(1).setStrDelimitador(";");
+				_tagMeta.getLstAtr().get(1).getLstStrValor().add("text/html");
+				_tagMeta.getLstAtr().get(1).getLstStrValor().add(" charset=ISO-8859-1");
+			}
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
 		}
+
 		return _tagMeta;
 	}
 
 	private Tag _tagTitle;
 
 	public Tag getTagTitle() {
-		if (_tagTitle == null) {
-			_tagTitle = new Tag();
-			_tagTitle.setStrTagNome("title");
-			_tagTitle.setTagPai(this.getTagHead());
-			this.setStrTitulo("Página sem título - " + AppWeb.getInstancia().getStrNome());
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			if (_tagTitle == null) {
+
+				_tagTitle = new Tag();
+				_tagTitle.setStrTagNome("title");
+				_tagTitle.setTagPai(this.getTagHead());
+
+				this.setStrTitulo("Página sem título");
+			}
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
 		}
+
 		return _tagTitle;
 	}
 
@@ -198,10 +390,8 @@ public class PaginaHtml extends Objeto {
 		try {
 			// AÇÕES
 
-			PaginaHtml.setPagHtmlInstancia(this);
-
+			this.setI(this);
 			this.adicionarJs();
-
 			this.getTagDocType();
 			this.getTagHead();
 			this.getTagHtml();
@@ -210,6 +400,7 @@ public class PaginaHtml extends Objeto {
 			this.getCssMain();
 			this.getCssImp();
 			this.getTagBody();
+			this.getObjJavaScriptMain().adicionarJsCodigo("appWeb.setStrSessionId('" + AppWeb.getI().getObjUsuarioAtual().getStrSessaoId() + "');");
 
 			// FIM AÇÕES
 		} catch (Exception ex) {
@@ -226,26 +417,20 @@ public class PaginaHtml extends Objeto {
 
 	private void adicionarJs() {
 		// VARIÁVEIS
-
-		JavaScriptTag objJsAppWeb = new JavaScriptTag("res/lib/DigoWebAppLib/js/AppWeb.js");
-		JavaScriptTag objJsErro = new JavaScriptTag("res/lib/DigoWebAppLib/js/Erro.js");
-		JavaScriptTag objJsUsuario = new JavaScriptTag("res/lib/DigoWebAppLib/js/Usuario.js");
-		JavaScriptTag objJsJQuery = new JavaScriptTag("res/lib/DigoWebAppLib/js/lib/jquery-2.0.3.js");
-		JavaScriptTag objJsMd5 = new JavaScriptTag("res/lib/DigoWebAppLib/js/lib/md5.js");
-		JavaScriptTag objJsObjeto = new JavaScriptTag("res/lib/DigoWebAppLib/js/Objeto.js");
-		JavaScriptTag objJsTag = new JavaScriptTag("res/lib/DigoWebAppLib/js/html/Tag.js");
-
 		// FIM VARIÁVEIS
 		try {
 			// AÇÕES
 
-			this.getLstObjJavaScriptTag().add(objJsJQuery);
-			this.getLstObjJavaScriptTag().add(objJsMd5);
-			this.getLstObjJavaScriptTag().add(objJsErro);
-			this.getLstObjJavaScriptTag().add(objJsObjeto);
-			this.getLstObjJavaScriptTag().add(objJsAppWeb);
-			this.getLstObjJavaScriptTag().add(objJsUsuario);
-			this.getLstObjJavaScriptTag().add(objJsTag);
+			this.getLstObjJavaScriptTag().add(new JavaScriptTag("res/lib/DigoWebAppLib/js/lib/jquery-2.0.3.js"));
+			this.getLstObjJavaScriptTag().add(new JavaScriptTag("res/lib/DigoWebAppLib/js/lib/md5.js"));
+			this.getLstObjJavaScriptTag().add(new JavaScriptTag("res/lib/DigoWebAppLib/js/listas/LstStrErro.js"));
+			this.getLstObjJavaScriptTag().add(new JavaScriptTag("res/lib/DigoWebAppLib/js/erro/Erro.js"));
+			this.getLstObjJavaScriptTag().add(new JavaScriptTag("res/lib/DigoWebAppLib/js/Objeto.js"));
+			this.getLstObjJavaScriptTag().add(new JavaScriptTag("res/lib/DigoWebAppLib/js/AppWeb.js"));
+			this.getLstObjJavaScriptTag().add(new JavaScriptTag("res/lib/DigoWebAppLib/js/websocket/WebSocketMain.js"));
+			this.getLstObjJavaScriptTag().add(new JavaScriptTag("res/lib/DigoWebAppLib/js/websocket/wsobjetos/WsObjetoMain.js"));
+			this.getLstObjJavaScriptTag().add(new JavaScriptTag("res/lib/DigoWebAppLib/js/Usuario.js"));
+			this.getLstObjJavaScriptTag().add(new JavaScriptTag("res/lib/DigoWebAppLib/js/html/Tag.js"));
 
 			// FIM AÇÕES
 		} catch (Exception ex) {
@@ -276,7 +461,7 @@ public class PaginaHtml extends Objeto {
 	public String getStrPaginaFormatada() {
 		// VARIÁVEIS
 
-		StringBuilder objStringBuilderPaginaFormatada = new StringBuilder();
+		StringBuilder stbPgFormatada = new StringBuilder();
 
 		// FIM VARIÁVEIS
 		try {
@@ -286,8 +471,8 @@ public class PaginaHtml extends Objeto {
 				objJavaScriptTag.setTagPai(this.getTagHead());
 			}
 
-			objStringBuilderPaginaFormatada.append(this.getTagDocType().toString());
-			objStringBuilderPaginaFormatada.append(this.getTagHtml().toString());
+			stbPgFormatada.append(this.getTagDocType().toString());
+			stbPgFormatada.append(this.getTagHtml().toString());
 
 			// FIM AÇÕES
 		} catch (Exception ex) {
@@ -296,7 +481,8 @@ public class PaginaHtml extends Objeto {
 
 		} finally {
 		}
-		return objStringBuilderPaginaFormatada.toString();
+
+		return stbPgFormatada.toString();
 	}
 
 	@Override

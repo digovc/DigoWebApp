@@ -12,22 +12,17 @@ public class Painel extends Tag {
 	// CONSTRUTORES
 
 	public Painel() {
-		// VARIÁVEIS	
-
-		JavaScriptTag objJsPainel = new JavaScriptTag("res/lib/DigoWebAppLib/js/html/Painel.js");
-
+		// VARIÁVEIS
 		// FIM VARIÁVEIS
 		try {
 			// AÇÕES
-			
+
 			this.setStrTagNome("div");
 			this.setBooForcarTagDupla(true);
-			
-			PaginaHtml.getPagHtmlInstancia().getLstObjJavaScriptTag().add(objJsPainel);
+			this.adicionarCss(CssTag.getCssMainInstancia().setTextAlign("center"));
 
-			// CSS
-			this.getAtrClass().getLstStrValor().add(CssTag.getCssMainInstancia().setTextAlign("center"));
-			
+			PaginaHtml.getI().getLstObjJavaScriptTag().add(new JavaScriptTag("res/lib/DigoWebAppLib/js/html/Painel.js"));
+
 			// FIM AÇÕES
 		} catch (Exception ex) {
 

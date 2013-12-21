@@ -8,7 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.digosofter.digowebapp.design.PaletaCor;
 import com.digosofter.digowebapp.erro.Erro;
+import com.digosofter.digowebapp.websocket.WsConexaoMain;
 
 public abstract class AppWeb extends Objeto {
 	// CONSTANTES
@@ -16,14 +18,14 @@ public abstract class AppWeb extends Objeto {
 
 	// ATRIBUTOS
 
-	private static AppWeb _appWebInstancia;
+	private static AppWeb i;
 
-	private static AppWeb getAppWebInstancia() {
-		return _appWebInstancia;
+	public static AppWeb getI() {
+		return i;
 	}
 
-	private static void setAppWebInstancia(AppWeb appWebInstancia) {
-		_appWebInstancia = appWebInstancia;
+	private void setI(AppWeb _i) {
+		i = _i;
 	}
 
 	private List<String> _lstStrGet;
@@ -62,10 +64,29 @@ public abstract class AppWeb extends Objeto {
 		return _lstStrPost;
 	}
 
-	private List<Usuario> _lstUsuarioSessao = new ArrayList<Usuario>();
+	private List<WsConexaoMain> _lstObjWsConexaoMain = new ArrayList<WsConexaoMain>();
 
-	public List<Usuario> getLstUsuarioSessao() {
-		return _lstUsuarioSessao;
+	public List<WsConexaoMain> getLstObjWsConexaoMain() {
+		return _lstObjWsConexaoMain;
+	}
+
+	private static List<PaletaCor> _lstObjPaletaCor;
+
+	public List<PaletaCor> getLstObjPaletaCor() {
+		if (_lstObjPaletaCor == null) {
+			_lstObjPaletaCor = new ArrayList<PaletaCor>();
+		}
+		return _lstObjPaletaCor;
+	}
+
+	public void setLstObjPaletaCor(List<PaletaCor> lstObjPaletaCor) {
+		_lstObjPaletaCor = lstObjPaletaCor;
+	}
+
+	private List<Usuario> _lstObjUsuarioSessao = new ArrayList<Usuario>();
+
+	public List<Usuario> getLstObjUsuarioSessao() {
+		return _lstObjUsuarioSessao;
 	}
 
 	private HttpServletRequest _objHttpServletRequest;
@@ -138,7 +159,7 @@ public abstract class AppWeb extends Objeto {
 			if (!this.getBooUsuarioExiste(_objHttpSession.getId())) {
 				objUsuario = new Usuario();
 				objUsuario.setStrSessaoId(_objHttpSession.getId());
-				this.getLstUsuarioSessao().add(objUsuario);
+				this.getLstObjUsuarioSessao().add(objUsuario);
 			}
 
 			// FIM AÇÕES
@@ -148,6 +169,32 @@ public abstract class AppWeb extends Objeto {
 
 		} finally {
 		}
+	}
+
+	private PaletaCor _objPaletaCorSelecionada;
+
+	public PaletaCor getObjPaletaCorSelecionada() {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			for (PaletaCor objPaletaCor : this.getLstObjPaletaCor()) {
+				if (objPaletaCor.getBooSelecionado()) {
+					_objPaletaCorSelecionada = objPaletaCor;
+					break;
+				}
+			}
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+
+		return _objPaletaCorSelecionada;
 	}
 
 	private PrintWriter _objPrintWriter;
@@ -173,7 +220,7 @@ public abstract class AppWeb extends Objeto {
 	private Usuario _objUsuarioAtual;
 
 	public Usuario getObjUsuarioAtual() {
-		for (Usuario objUsuario : this.getLstUsuarioSessao()) {
+		for (Usuario objUsuario : this.getLstObjUsuarioSessao()) {
 			if (objUsuario.getStrSessaoId() == this.getObjHttpSession().getId()) {
 				_objUsuarioAtual = objUsuario;
 				break;
@@ -192,7 +239,7 @@ public abstract class AppWeb extends Objeto {
 		try {
 			// AÇÕES
 
-			AppWeb.setAppWebInstancia(this);
+			this.setI(this);
 			this.setStrNome(strAppNome);
 
 			// FIM AÇÕES
@@ -208,7 +255,7 @@ public abstract class AppWeb extends Objeto {
 
 	// MÉTODOS
 
-	public void escreveStrHtmlResposta(String strHtml) {
+	public void escreverStrHtmlResposta(String strHtml) {
 		// VARIÁVEIS
 		// FIM VARIÁVEIS
 		try {
@@ -234,7 +281,7 @@ public abstract class AppWeb extends Objeto {
 		try {
 			// AÇÕES
 
-			for (Usuario usuario : this.getLstUsuarioSessao()) {
+			for (Usuario usuario : this.getLstObjUsuarioSessao()) {
 				if (usuario.getStrSessaoId().equals(strSessaoId)) {
 					booUsuarioExisteResultado = true;
 					break;
@@ -251,11 +298,15 @@ public abstract class AppWeb extends Objeto {
 		return booUsuarioExisteResultado;
 	}
 
-	public static AppWeb getInstancia() {
+	public void getResposta(HttpServletRequest objRequest, HttpServletResponse objResponse) {
 		// VARIÁVEIS
 		// FIM VARIÁVEIS
 		try {
 			// AÇÕES
+
+			this.setObjHttpServletRequest(objRequest);
+			this.setObjHttpServletResponse(objResponse);
+
 			// FIM AÇÕES
 		} catch (Exception ex) {
 
@@ -263,7 +314,6 @@ public abstract class AppWeb extends Objeto {
 
 		} finally {
 		}
-		return AppWeb.getAppWebInstancia();
 	}
 
 	public String getStrPostParametro(String strParametroNome) {
@@ -287,15 +337,14 @@ public abstract class AppWeb extends Objeto {
 		return strParametroValorResultado;
 	}
 
-
 	public void reencaminhar(String strUrl) {
 		// VARIÁVEIS
 		// FIM VARIÁVEIS
 		try {
 			// AÇÕES
-			
-			this.getObjHttpServletResponse().sendRedirect(strUrl);			
-			
+
+			this.getObjHttpServletResponse().sendRedirect(strUrl);
+
 			// FIM AÇÕES
 		} catch (Exception ex) {
 
@@ -304,7 +353,7 @@ public abstract class AppWeb extends Objeto {
 		} finally {
 		}
 	}
-	
+
 	// FIM MÉTODOS
 
 	// EVENTOS

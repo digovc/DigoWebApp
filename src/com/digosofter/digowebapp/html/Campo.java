@@ -23,13 +23,13 @@ public class Campo extends Tag {
 	public void setEnmTipo(EnmTipo enmTipo) {
 		// VARIÁVEIS
 
-		_enmTipo = enmTipo;
-
-		String strTipo = "text";
+		String strTipo;
 
 		// FIM VARIÁVEIS
 		try {
 			// AÇÕES
+
+			_enmTipo = enmTipo;
 
 			switch (_enmTipo) {
 			case BUTTON:
@@ -108,6 +108,7 @@ public class Campo extends Tag {
 				strTipo = "text";
 				break;
 			}
+
 			this.getAtrType().setStrValor(strTipo);
 
 			// FIM AÇÕES
@@ -123,9 +124,24 @@ public class Campo extends Tag {
 
 	@Override
 	public void setStrId(String strId) {
+
 		super.setStrId(strId);
-		_strId = this.getStrId();
-		this.getLstAtr().add(new Atributo("name", _strId));
+
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			_strId = this.getStrId();
+			this.getLstAtr().add(new Atributo("name", _strId));
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
 	}
 
 	private String _strPlaceHolder;
@@ -135,8 +151,21 @@ public class Campo extends Tag {
 	}
 
 	public void setStrPlaceHolder(String strPlaceHolder) {
-		_strPlaceHolder = strPlaceHolder;
-		this.getLstAtr().add(new Atributo("placeholder", _strPlaceHolder));
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			_strPlaceHolder = strPlaceHolder;
+			this.getLstAtr().add(new Atributo("placeholder", _strPlaceHolder));
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
 	}
 
 	// FIM ATRIBUTOS
@@ -145,16 +174,12 @@ public class Campo extends Tag {
 
 	public Campo() {
 		// VARIÁVEIS
-
-		JavaScriptTag objJsCampo = new JavaScriptTag("res/lib/DigoWebAppLib/js/html/Campo.js");
-
 		// FIM VARIÁVEIS
 		try {
 			// AÇÕES
 
 			this.setStrTagNome("input");
-
-			PaginaHtml.getPagHtmlInstancia().getLstObjJavaScriptTag().add(objJsCampo);
+			PaginaHtml.getI().getLstObjJavaScriptTag().add(new JavaScriptTag("res/lib/DigoWebAppLib/js/html/Campo.js"));
 
 			// FIM AÇÕES
 		} catch (Exception ex) {

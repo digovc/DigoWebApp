@@ -16,56 +16,140 @@ public abstract class TblMain extends DbTabela {
 	private DbColuna _clnBooAtivo;
 
 	public DbColuna getClnBooAtivo() {
-		if (_clnBooAtivo == null) {
-			_clnBooAtivo = new DbColuna("booAtivo", this, DbColuna.EnmClnTipo.BOOLEAN);
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			if (_clnBooAtivo == null) {
+				_clnBooAtivo = new DbColuna("booAtivo", this, DbColuna.EnmClnTipo.BOOLEAN);
+			}
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
 		}
+
 		return _clnBooAtivo;
 	}
 
 	private DbColuna _clnBooExcluido;
 
 	public DbColuna getClnBooExcluido() {
-		if (_clnBooExcluido == null) {
-			_clnBooExcluido = new DbColuna("booExcluido", this, DbColuna.EnmClnTipo.BOOLEAN);
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			if (_clnBooExcluido == null) {
+				_clnBooExcluido = new DbColuna("booExcluido", this, DbColuna.EnmClnTipo.BOOLEAN);
+			}
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
 		}
+
 		return _clnBooExcluido;
 	}
 
 	private DbColuna _clnDttAlteracao;
 
 	public DbColuna getClnDttAlteracao() {
-		if (_clnDttAlteracao == null) {
-			_clnDttAlteracao = new DbColuna("dttAlteracao", this, DbColuna.EnmClnTipo.TIMESTAMP_WITHOUT_TIME_ZONE);
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			if (_clnDttAlteracao == null) {
+				_clnDttAlteracao = new DbColuna("dttAlteracao", this, DbColuna.EnmClnTipo.TIMESTAMP_WITHOUT_TIME_ZONE);
+			}
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
 		}
+
 		return _clnDttAlteracao;
 	}
 
 	private DbColuna _clnDttCadastro;
 
 	public DbColuna getClnDttCadastro() {
-		if (_clnDttCadastro == null) {
-			_clnDttCadastro = new DbColuna("dttCadastro", this, DbColuna.EnmClnTipo.TIMESTAMP_WITHOUT_TIME_ZONE);
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			if (_clnDttCadastro == null) {
+				_clnDttCadastro = new DbColuna("dttCadastro", this, DbColuna.EnmClnTipo.TIMESTAMP_WITHOUT_TIME_ZONE);
+			}
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
 		}
+
 		return _clnDttCadastro;
 	}
 
 	private DbColuna _clnDttExclusao;
 
 	public DbColuna getClnDttExclusao() {
-		if (_clnDttExclusao == null) {
-			_clnDttExclusao = new DbColuna("dttExclusao", this, DbColuna.EnmClnTipo.TIMESTAMP_WITHOUT_TIME_ZONE);
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			if (_clnDttExclusao == null) {
+				_clnDttExclusao = new DbColuna("dttExclusao", this, DbColuna.EnmClnTipo.TIMESTAMP_WITHOUT_TIME_ZONE);
+			}
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
 		}
+
 		return _clnDttExclusao;
 	}
 
 	private DbColuna _clnIntId;
 
 	public DbColuna getClnIntId() {
-		if (_clnIntId == null) {
-			_clnIntId = new DbColuna("intId", this, DbColuna.EnmClnTipo.BIGSERIAL);
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
 
-			_clnIntId.setBooChavePrimaria(true);
+			if (_clnIntId == null) {
+
+				_clnIntId = new DbColuna("intId", this, DbColuna.EnmClnTipo.BIGSERIAL);
+				_clnIntId.setBooChavePrimaria(true);
+			}
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
 		}
+
 		return _clnIntId;
 	}
 
@@ -73,12 +157,14 @@ public abstract class TblMain extends DbTabela {
 
 	// CONSTRUTORES
 	public TblMain(String strNome, DataBase objDataBase) {
-		// VARIÁVEIS
+
 		super(strNome, objDataBase);
+
+		// VARIÁVEIS
 		// FIM VARIÁVEIS
 		try {
 			// AÇÕES
-			
+
 			this.getClnBooAtivo();
 			this.getClnBooExcluido();
 			this.getClnDttAlteracao();
@@ -86,7 +172,7 @@ public abstract class TblMain extends DbTabela {
 			this.getClnDttExclusao();
 			this.getClnIntId();
 			this.getClnNome();
-			
+
 			// FIM AÇÕES
 		} catch (Exception ex) {
 
@@ -103,17 +189,20 @@ public abstract class TblMain extends DbTabela {
 	public void buscarRegistroPeloId(int intId) {
 		// VARIÁVEIS
 
-		ResultSet objResultSet = null;
+		ResultSet objResultSet;
 
 		// FIM VARIÁVEIS
 		try {
 			// AÇÕES
 
-			objResultSet = this.getResultSet(this.getClnIntId(), intId);
+			objResultSet = this.getResultSet(this.getClnIntId(), String.valueOf(intId));
 
 			if (objResultSet != null) {
+
 				objResultSet.first();
+
 				for (DbColuna cln : this.getLstCln()) {
+
 					cln.setStrValor(objResultSet.getString(cln.getStrNomeSimplificado()));
 				}
 			}

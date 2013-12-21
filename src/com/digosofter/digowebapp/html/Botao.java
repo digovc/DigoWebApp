@@ -13,9 +13,6 @@ public class Botao extends Tag {
 
 	public Botao() {
 		// VARIÁVEIS
-		
-		JavaScriptTag objJsBotao = new JavaScriptTag("res/lib/DigoWebAppLib/js/html/Botao.js");
-
 		// FIM VARIÁVEIS
 		try {
 			// AÇÕES
@@ -23,14 +20,12 @@ public class Botao extends Tag {
 			this.setStrTagNome("button");
 			this.setStrConteudo("Botão");
 			this.getLstAtr().add(new Atributo("type", "button"));
+			this.adicionarCss(CssTag.getCssMainInstancia().setPaddingTop(5));
+			this.adicionarCss(CssTag.getCssMainInstancia().setPaddingBottom(5));
+			this.adicionarCss(CssTag.getCssMainInstancia().setPaddingLeft(15));
+			this.adicionarCss(CssTag.getCssMainInstancia().setPaddingRight(15));
 
-			PaginaHtml.getPagHtmlInstancia().getLstObjJavaScriptTag().add(objJsBotao);
-
-			// CSS
-			this.adicionaCss(CssTag.getCssMainInstancia().setPaddingTop(5));
-			this.adicionaCss(CssTag.getCssMainInstancia().setPaddingBottom(5));
-			this.adicionaCss(CssTag.getCssMainInstancia().setPaddingLeft(15));
-			this.adicionaCss(CssTag.getCssMainInstancia().setPaddingRight(15));
+			PaginaHtml.getI().getLstObjJavaScriptTag().add(new JavaScriptTag("res/lib/DigoWebAppLib/js/html/Botao.js"));
 
 			// FIM AÇÕES
 		} catch (Exception ex) {

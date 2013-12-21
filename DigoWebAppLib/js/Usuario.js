@@ -24,6 +24,7 @@ function Usuario() {
 	}
 
 }
+
 // INICIALIZAÇÃO
 var objUsuario;
 $(document).ready(function() {

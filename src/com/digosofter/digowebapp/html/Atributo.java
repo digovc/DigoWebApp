@@ -40,9 +40,23 @@ public class Atributo extends Objeto {
 	}
 
 	public void setStrValor(String strValor) {
-		_strValor = strValor;
-		this.getLstStrValor().clear();
-		this.getLstStrValor().add(_strValor);
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			_strValor = strValor;
+			
+			this.getLstStrValor().clear();
+			this.getLstStrValor().add(_strValor);
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
 	}
 
 	// FIM ATRIBUTOS
@@ -58,6 +72,7 @@ public class Atributo extends Objeto {
 			if (Utils.getBooStrVazia(strNome)) {
 				strNome = "attr";
 			}
+
 			this.setStrNome(strNome);
 
 			// FIM AÇÕES
@@ -78,8 +93,9 @@ public class Atributo extends Objeto {
 			if (Utils.getBooStrVazia(strNome)) {
 				strNome = "attr";
 			}
+
 			this.setStrNome(strNome);
-			this.setStrValor(strValor);			
+			this.setStrValor(strValor);
 
 			// FIM AÇÕES
 		} catch (Exception ex) {

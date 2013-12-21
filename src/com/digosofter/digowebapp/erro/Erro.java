@@ -10,21 +10,21 @@ public class Erro extends Objeto {
 
 	private String _strMensagem;
 
-	private String getstrMensagem() {
+	private String getStrMensagem() {
 		return _strMensagem;
 	}
 
-	private void setstrMensagem(String strMensagem) {
+	private void setStrMensagem(String strMensagem) {
 		_strMensagem = strMensagem;
 	}
 
 	private String _strMensagemDetalhada;
 
-	private String getstrMensagemDetalhada() {
+	private String getStrMensagemDetalhada() {
 		return _strMensagemDetalhada;
 	}
 
-	private void setstrMensagemDetalhada(String strMensagemDetalhada) {
+	private void setStrMensagemDetalhada(String strMensagemDetalhada) {
 		_strMensagemDetalhada = strMensagemDetalhada;
 	}
 
@@ -33,8 +33,18 @@ public class Erro extends Objeto {
 	// CONSTRUTORES
 
 	public Erro(String strMensagem, Exception ex) {
-		Exception objException = new Exception(ex.toString());
-		objException.printStackTrace();
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			Exception objException = new Exception(ex.toString());
+			objException.printStackTrace();
+
+			// FIM AÇÕES
+		} catch (Exception ex2) {
+		} finally {
+		}
 	}
 
 	// FIM CONSTRUTORES

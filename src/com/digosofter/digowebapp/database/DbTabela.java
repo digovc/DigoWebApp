@@ -17,33 +17,75 @@ public abstract class DbTabela extends Objeto {
 	private DbColuna _clnChavePrimaria;
 
 	private DbColuna getClnChavePrimaria() {
-		for (DbColuna cln : this.getLstCln()) {
-			if (cln.getBooChavePrimaria()) {
-				_clnChavePrimaria = cln;
-				break;
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			for (DbColuna cln : this.getLstCln()) {
+				if (cln.getBooChavePrimaria()) {
+					_clnChavePrimaria = cln;
+					break;
+				}
 			}
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
 		}
+
 		return _clnChavePrimaria;
 	}
 
 	private DbColuna _clnNome;
 
 	public DbColuna getClnNome() {
-		for (DbColuna cln : this.getLstCln()) {
-			if (cln.getBooClnNome()) {
-				_clnNome = cln;
-				break;
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			for (DbColuna cln : this.getLstCln()) {
+				if (cln.getBooClnNome()) {
+					_clnNome = cln;
+					break;
+				}
 			}
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
 		}
+
 		return _clnNome;
 	}
 
 	private List<DbColuna> _lstCln;
 
 	public List<DbColuna> getLstCln() {
-		if (_lstCln == null) {
-			_lstCln = new ArrayList<DbColuna>();
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			if (_lstCln == null) {
+				_lstCln = new ArrayList<DbColuna>();
+			}
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
 		}
+
 		return _lstCln;
 	}
 
@@ -83,23 +125,96 @@ public abstract class DbTabela extends Objeto {
 
 	// MÉTODOS
 
-	public ResultSet getResultSet(List<DbColuna> lstCln, List<DbFiltro> lstObjDbFiltro, List<DbColuna> lstClnOrdem) {
+	public List<Integer> getLstIntColunaValor(DbColuna cln) {
 		// VARIÁVEIS
 
-		ResultSet objResultSetResultado = null;
-
-		String sql = Utils.STRING_VAZIA;
-		String strClnNomes = Utils.STRING_VAZIA;
-		String strWhere = Utils.STRING_VAZIA;
-		String strOrderBy = Utils.STRING_VAZIA;
-
-		StringBuilder strBuilder = new StringBuilder();
+		List<Integer> lstIntResultado = null;
+		List<String> lstStr;
 
 		// FIM VARIÁVEIS
 		try {
 			// AÇÕES
 
+			lstStr = this.getLstStrColunaValor(cln);
+
+			if (lstStr != null) {
+
+				lstIntResultado = new ArrayList<Integer>();
+
+				for (int intIndex = 0; intIndex < lstStr.size(); intIndex++) {
+					lstIntResultado.add(Integer.valueOf(lstStr.get(intIndex)));
+				}
+			}
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+
+		return lstIntResultado;
+	}
+
+	public List<String> getLstStrColunaValor(DbColuna cln) {
+		// VARIÁVEIS
+
+		List<String> lstStrResultado = null;
+		ResultSet objResultSet;
+		String sql;
+
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			sql = "select " + cln.getStrNomeSimplificado() + " from " + this.getStrNomeSimplificado() + ";";
+
+			objResultSet = this.getObjDataBase().execSqlRetornaResultSet(sql);
+
+			if (objResultSet != null) {
+				if (objResultSet.first()) {
+
+					lstStrResultado = new ArrayList<String>();
+
+					do {
+
+						lstStrResultado.add(objResultSet.getString(1));
+
+					} while (objResultSet.next());
+				}
+			}
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+
+		return lstStrResultado;
+	}
+
+	public ResultSet getResultSet(List<DbColuna> lstCln, List<DbFiltro> lstObjDbFiltro, List<DbColuna> lstClnOrdem) {
+		// VARIÁVEIS
+
+		ResultSet objResultSetResultado = null;
+
+		String sql;
+		String strClnNomes = Utils.STRING_VAZIA;
+		String strWhere = Utils.STRING_VAZIA;
+		String strOrderBy = Utils.STRING_VAZIA;
+
+		StringBuilder strBuilder;
+
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			strBuilder = new StringBuilder();
 			strBuilder.append("select ");
+			
 			if (lstCln == null) {
 				strBuilder.append("*");
 			} else {
@@ -118,26 +233,31 @@ public abstract class DbTabela extends Objeto {
 				for (DbFiltro objDbFiltro : lstObjDbFiltro) {
 					strWhere += objDbFiltro.toString();
 				}
+
 				strWhere = strWhere.substring(4);
 				strWhere = Utils.getStrRemoverUltimaLetra(strWhere);
+				
 				strBuilder.append(strWhere);
 			}
 
 			if (lstClnOrdem != null) {
+
 				strBuilder.append(" order by ");
+				
 				for (DbColuna clnOrdem : lstClnOrdem) {
+				
 					strOrderBy += "tbl" + this.getIntId() + ".";
 					strOrderBy += clnOrdem.getStrNomeSimplificado();
 					strOrderBy += " ";
+
 				}
+				
 				strOrderBy = Utils.getStrRemoverUltimaLetra(strOrderBy);
 				strBuilder.append(strOrderBy);
 			}
 
 			strBuilder.append(";");
-
 			sql = strBuilder.toString();
-
 			objResultSetResultado = this.getObjDataBase().execSqlRetornaResultSet(sql);
 
 			// FIM AÇÕES
@@ -147,19 +267,21 @@ public abstract class DbTabela extends Objeto {
 
 		} finally {
 		}
+		
 		return objResultSetResultado;
 	}
 
 	public ResultSet getResultSet(DbColuna cln, List<DbFiltro> lstObjDbFiltro, List<DbColuna> lstClnOrdem) {
 		// VARIÁVEIS
 
-		List<DbColuna> lstCln = new ArrayList<DbColuna>();
+		List<DbColuna> lstCln;
 		ResultSet objResultSetResultado = null;
 
 		// FIM VARIÁVEIS
 		try {
 			// AÇÕES
 
+			lstCln = new ArrayList<DbColuna>();
 			lstCln.add(cln);
 
 			objResultSetResultado = this.getResultSet(lstCln, lstObjDbFiltro, lstClnOrdem);
@@ -171,21 +293,22 @@ public abstract class DbTabela extends Objeto {
 
 		} finally {
 		}
+
 		return objResultSetResultado;
 	}
 
-	public ResultSet getResultSet(DbColuna clnIntId, int intId) {
+	public ResultSet getResultSet(DbColuna clnFiltro, String strFiltro) {
 		// VARIÁVEIS
 
-		List<DbFiltro> lstObjDbFiltro = new ArrayList<DbFiltro>();
-
+		List<DbFiltro> lstObjDbFiltro;
 		ResultSet objResultSetResultado = null;
 
 		// FIM VARIÁVEIS
 		try {
 			// AÇÕES
 
-			lstObjDbFiltro.add(new DbFiltro(clnIntId.getStrNomeSimplificado(), String.valueOf(intId)));
+			lstObjDbFiltro = new ArrayList<DbFiltro>();
+			lstObjDbFiltro.add(new DbFiltro(clnFiltro.getStrNomeSimplificado(), strFiltro));
 
 			objResultSetResultado = this.getResultSet(this.getLstCln(), lstObjDbFiltro, null);
 
@@ -197,6 +320,79 @@ public abstract class DbTabela extends Objeto {
 		} finally {
 		}
 		return objResultSetResultado;
+	}
+
+	public int inserir() {
+		// VARIÁVEIS
+
+		int intIdResultado = 0;
+
+		List<String> lstStrClnNome;
+		List<String> lstStrClnValor;
+
+		ResultSet objResultSet;
+
+		StringBuilder stbSql;
+
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			lstStrClnNome = new ArrayList<String>();
+			lstStrClnValor = new ArrayList<String>();
+			
+			for (DbColuna cln : this.getLstCln()) {
+
+				if (!cln.getStrValor().equals(Utils.STRING_VAZIA)) {
+
+					lstStrClnNome.add(cln.getStrNomeSimplificado());
+					lstStrClnValor.add("'" + cln.getStrValor() + "'");
+
+				}
+			}
+
+			stbSql = new StringBuilder();
+			stbSql.append("INSERT INTO ");
+			stbSql.append(this.getStrNomeSimplificado());
+			stbSql.append("(" + Utils.getStrConcatenarLst(lstStrClnNome, ",", false) + ")VALUES(");
+			stbSql.append(Utils.getStrConcatenarLst(lstStrClnValor, ",", false) + ")RETURNING intid;");
+
+			objResultSet = this.getObjDataBase().execSqlRetornaResultSet(stbSql.toString());
+
+			if (objResultSet != null) {
+				if (objResultSet.first()) {
+					intIdResultado = objResultSet.getInt(1);
+				}
+			}
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+
+		return intIdResultado;
+	}
+
+	public void limparColunas() {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			for (DbColuna cln : this.getLstCln()) {
+				cln.setStrValor(Utils.STRING_VAZIA);
+			}
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
 	}
 
 	// FIM MÉTODOS
