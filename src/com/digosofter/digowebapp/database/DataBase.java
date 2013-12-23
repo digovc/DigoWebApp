@@ -4,10 +4,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 import com.digosofter.digowebapp.Objeto;
-import com.digosofter.digowebapp.Utils;
 import com.digosofter.digowebapp.erro.Erro;
 
 public abstract class DataBase extends Objeto {
@@ -128,6 +129,40 @@ public abstract class DataBase extends Objeto {
 	// FIM CONSTRUTORES
 
 	// MÉTODOS
+
+	public List<Integer> execSqlRetornaLstInt(String sql) {
+		// VARIÁVEIS
+
+		ResultSet objResultSet;
+		List<Integer> lstIntResultado = null;
+
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			objResultSet = this.execSqlRetornaResultSet(sql);
+
+			if (objResultSet != null && objResultSet.first()) {
+
+				lstIntResultado = new ArrayList<Integer>();
+				
+				do {
+
+					lstIntResultado.add(objResultSet.getInt(1));
+				
+				} while (objResultSet.next());
+			}
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+
+		return lstIntResultado;
+	}
 
 	public ResultSet execSqlRetornaResultSet(String sql) {
 		// VARIÁVEIS

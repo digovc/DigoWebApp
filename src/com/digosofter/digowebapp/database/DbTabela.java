@@ -125,6 +125,39 @@ public abstract class DbTabela extends Objeto {
 
 	// MÉTODOS
 
+	public void buscarRegistroPorCln(DbColuna cln, String strFiltroValor) {
+		// VARIÁVEIS
+
+		ResultSet objResultSet;
+
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			this.limparColunas();
+			objResultSet = this.getResultSet(cln, strFiltroValor);
+
+			if (objResultSet != null && objResultSet.first()) {
+
+				for (DbColuna cln2 : this.getLstCln()) {
+
+					cln2.setStrValor(objResultSet.getString(cln2.getStrNomeSimplificado()));
+				}
+			}
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+	}
+
+	public void buscarRegistroPorCln(DbColuna cln, int intValor) {
+		this.buscarRegistroPorCln(cln, String.valueOf(intValor));
+	}
+
 	public List<Integer> getLstIntColunaValor(DbColuna cln) {
 		// VARIÁVEIS
 
@@ -214,7 +247,7 @@ public abstract class DbTabela extends Objeto {
 
 			strBuilder = new StringBuilder();
 			strBuilder.append("select ");
-			
+
 			if (lstCln == null) {
 				strBuilder.append("*");
 			} else {
@@ -236,22 +269,22 @@ public abstract class DbTabela extends Objeto {
 
 				strWhere = strWhere.substring(4);
 				strWhere = Utils.getStrRemoverUltimaLetra(strWhere);
-				
+
 				strBuilder.append(strWhere);
 			}
 
 			if (lstClnOrdem != null) {
 
 				strBuilder.append(" order by ");
-				
+
 				for (DbColuna clnOrdem : lstClnOrdem) {
-				
+
 					strOrderBy += "tbl" + this.getIntId() + ".";
 					strOrderBy += clnOrdem.getStrNomeSimplificado();
 					strOrderBy += " ";
 
 				}
-				
+
 				strOrderBy = Utils.getStrRemoverUltimaLetra(strOrderBy);
 				strBuilder.append(strOrderBy);
 			}
@@ -267,7 +300,7 @@ public abstract class DbTabela extends Objeto {
 
 		} finally {
 		}
-		
+
 		return objResultSetResultado;
 	}
 
@@ -340,7 +373,7 @@ public abstract class DbTabela extends Objeto {
 
 			lstStrClnNome = new ArrayList<String>();
 			lstStrClnValor = new ArrayList<String>();
-			
+
 			for (DbColuna cln : this.getLstCln()) {
 
 				if (!cln.getStrValor().equals(Utils.STRING_VAZIA)) {

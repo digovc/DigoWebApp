@@ -180,6 +180,10 @@ public class Tag extends Objeto {
 		return _strLink;
 	}
 
+	public void setStrLink(String strLink) {
+		_strLink = strLink;
+	}
+
 	private String _strTagNome = "div";
 
 	protected String getStrTagNome() {
@@ -283,6 +287,12 @@ public class Tag extends Objeto {
 
 			if (!Utils.getBooStrVazia(this.getStrConteudo()) || !this.getLstTag().isEmpty() || this.getBooForcarTagDupla()) {
 
+				if (!Utils.getBooStrVazia(this.getStrLink())) {
+					stbTagFormatada.append("<a href=\"");
+					stbTagFormatada.append(this.getStrLink());
+					stbTagFormatada.append("\">");
+				}
+
 				stbTagFormatada.append(this.getStrAbertura());
 				stbTagFormatada.append(this.getStrTagNome());
 				stbTagFormatada.append(this.getStrAtributoFormatado());
@@ -305,6 +315,10 @@ public class Tag extends Objeto {
 				stbTagFormatada.append(this.getStrAtributoFormatado());
 				stbTagFormatada.append("/");
 				stbTagFormatada.append(this.getStrFechamento());
+				
+				if (!Utils.getBooStrVazia(this.getStrLink())) {
+					stbTagFormatada.append("</a>");
+				}
 			}
 
 			// FIM AÇÕES

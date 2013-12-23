@@ -187,33 +187,11 @@ public abstract class TblMain extends DbTabela {
 	// MÉTODOS
 
 	public void buscarRegistroPeloId(int intId) {
-		// VARIÁVEIS
+		this.buscarRegistroPorCln(this.getClnIntId(), String.valueOf(intId));
+	}
 
-		ResultSet objResultSet;
-
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-
-			objResultSet = this.getResultSet(this.getClnIntId(), String.valueOf(intId));
-
-			if (objResultSet != null) {
-
-				objResultSet.first();
-
-				for (DbColuna cln : this.getLstCln()) {
-
-					cln.setStrValor(objResultSet.getString(cln.getStrNomeSimplificado()));
-				}
-			}
-
-			// FIM AÇÕES
-		} catch (Exception ex) {
-
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
+	public void buscarRegistroPeloId(String strId) {
+		this.buscarRegistroPeloId(Integer.valueOf(strId));
 	}
 
 	// FIM MÉTODOS
