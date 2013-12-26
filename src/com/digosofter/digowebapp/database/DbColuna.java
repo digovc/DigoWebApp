@@ -1,5 +1,7 @@
 package com.digosofter.digowebapp.database;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -98,6 +100,30 @@ public class DbColuna extends Objeto {
 
 	public String getStrValor() {
 		return _strValor;
+	}
+
+	public Date getDttValor() {
+		// VARIÁVEIS
+
+		SimpleDateFormat objSimpleDateFormat;
+		Date dttResultado = null;
+
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			objSimpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+			dttResultado = new Date(objSimpleDateFormat.parse(this.getStrValor()).getTime());
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+
+		return dttResultado;
 	}
 
 	public int getIntValor() {

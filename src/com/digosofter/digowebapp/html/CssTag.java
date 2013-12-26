@@ -63,6 +63,8 @@ public class CssTag extends Tag {
 	public static final String CSS_TEXT_ALIGN_DIREITA = "right";
 	public static final String CSS_TEXT_ALIGN_ESQUERDA = "left";
 
+	public static final String CSS_TEXT_DECORATION_NONE = "none";
+
 	// FIM CONSTANTES
 
 	// ATRIBUTOS
@@ -1154,6 +1156,32 @@ public class CssTag extends Tag {
 
 	public String setTextAlign(String strTextAlign) {
 		// VARIÁVEIS
+		
+		String strClassAssociada = Utils.STRING_VAZIA;
+		StringBuilder strBulderValorEstrutura;
+		
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+			
+			strBulderValorEstrutura = new StringBuilder();
+			strBulderValorEstrutura.append(strTextAlign);
+			
+			strClassAssociada = this.addCss("text-align", strBulderValorEstrutura.toString());
+			
+			// FIM AÇÕES
+		} catch (Exception ex) {
+			
+			new Erro("Erro inesperado.\n", ex);
+			
+		} finally {
+		}
+		
+		return strClassAssociada;
+	}
+	
+	public String setTextDecoration(String strTextDecoration) {
+		// VARIÁVEIS
 
 		String strClassAssociada = Utils.STRING_VAZIA;
 		StringBuilder strBulderValorEstrutura;
@@ -1163,9 +1191,9 @@ public class CssTag extends Tag {
 			// AÇÕES
 
 			strBulderValorEstrutura = new StringBuilder();
-			strBulderValorEstrutura.append(strTextAlign);
+			strBulderValorEstrutura.append(strTextDecoration);
 
-			strClassAssociada = this.addCss("text-align", strBulderValorEstrutura.toString());
+			strClassAssociada = this.addCss("text-decoration", strBulderValorEstrutura.toString());
 
 			// FIM AÇÕES
 		} catch (Exception ex) {

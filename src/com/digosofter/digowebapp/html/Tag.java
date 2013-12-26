@@ -120,6 +120,10 @@ public class Tag extends Objeto {
 	public void setStrConteudo(String strConteudo) {
 		_strConteudo = strConteudo;
 	}
+	
+	public void setStrConteudo(StringBuilder stbConteudo) {
+		this.setStrConteudo(stbConteudo.toString());
+	}
 
 	private String _strFechamento = ">";
 
@@ -308,14 +312,24 @@ public class Tag extends Objeto {
 				stbTagFormatada.append(this.getStrTagNome());
 				stbTagFormatada.append(this.getStrFechamento());
 
+				if (!Utils.getBooStrVazia(this.getStrLink())) {
+					stbTagFormatada.append("</a>");
+				}
+
 			} else {
+
+				if (!Utils.getBooStrVazia(this.getStrLink())) {
+					stbTagFormatada.append("<a href=\"");
+					stbTagFormatada.append(this.getStrLink());
+					stbTagFormatada.append("\">");
+				}
 
 				stbTagFormatada.append(this.getStrAbertura());
 				stbTagFormatada.append(this.getStrTagNome());
 				stbTagFormatada.append(this.getStrAtributoFormatado());
 				stbTagFormatada.append("/");
 				stbTagFormatada.append(this.getStrFechamento());
-				
+
 				if (!Utils.getBooStrVazia(this.getStrLink())) {
 					stbTagFormatada.append("</a>");
 				}

@@ -25,7 +25,22 @@ public abstract class AppWeb extends Objeto {
 	}
 
 	private void setI(AppWeb _i) {
-		i = _i;
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			if (i == null) {
+				i = _i;
+			}
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro ao instanciar objeto do tipo 'AppWeb'.\n", ex);
+
+		} finally {
+		}
 	}
 
 	private List<String> _lstStrGet;

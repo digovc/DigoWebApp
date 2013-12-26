@@ -1,6 +1,8 @@
 package com.digosofter.digowebapp;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -8,6 +10,10 @@ import com.digosofter.digowebapp.erro.Erro;
 
 public abstract class Utils {
 	// CONSTANTES
+
+	public enum EnmDataFormato {
+		DD_MM, DD_MM_YYYY, DD_MM_YYYY_HH_MM, DD_MM_YYYY_HH_MM_SS, HH_MM_DD_MM_YYYY, HH_MM_SS_DD_MM_YYYY, YYYY_MM_DD_HH_MM_SS
+	}
 
 	public static final Locale LOCAL_BRASIL = new Locale("pt", "BR");
 
@@ -94,6 +100,54 @@ public abstract class Utils {
 		return strConcatenadaResultado;
 	}
 
+	public static String getStrDataFormatada(Date objDate, EnmDataFormato enmDataFormato) {
+		// VARIÁVEIS
+		String strDataFormato = Utils.STRING_VAZIA;
+		SimpleDateFormat objSimpleDateFormat = null;
+
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			switch (enmDataFormato) {
+			case DD_MM:
+				strDataFormato = "dd/MM";
+				break;
+			case DD_MM_YYYY:
+				strDataFormato = "dd/MM/yyyy";
+				break;
+			case DD_MM_YYYY_HH_MM:
+				strDataFormato = "dd/MM/yyyy HH:mm";
+				break;
+			case DD_MM_YYYY_HH_MM_SS:
+				strDataFormato = "dd/MM/yyyy HH:mm:ss";
+				break;
+			case HH_MM_DD_MM_YYYY:
+				strDataFormato = "HH:mm dd/MM/yyyy";
+				break;
+			case HH_MM_SS_DD_MM_YYYY:
+				strDataFormato = "HH:mm:ss dd/MM/yyyy";
+				break;
+			case YYYY_MM_DD_HH_MM_SS:
+				strDataFormato = "yyyy/MM/dd HH:mm:ss";
+				break;
+			default:
+				strDataFormato = "dd/MM/yyyy";
+				break;
+			}
+			
+			objSimpleDateFormat = new SimpleDateFormat(strDataFormato, LOCAL_BRASIL);
+
+			// FIM AÇÕES
+		} catch (Exception e) {
+		} finally {
+			// LIMPAR VARIÁVEIS
+			// FIM LIMPAR VARIÁVEIS
+		}
+		
+		return objSimpleDateFormat.format(objDate);
+	}
+	
 	public static String getStrLinkHtml(String strTexto, String strLink) {
 		// VARIÁVEIS
 
