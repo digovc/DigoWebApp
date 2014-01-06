@@ -526,7 +526,7 @@ public class CssTag extends Tag {
 		return strClassAssociada;
 	}
 
-	public String setBoxShadow(int intHorizontal, int intVertical, int intBlur, int intSpread, int hexColor) {
+	public String setBoxShadow(int intHorizontal, int intVertical, int intBlur, int intSpread, String hexColor) {
 		// VARIÁVEIS
 
 		String strClassAssociada = Utils.STRING_VAZIA;
@@ -538,13 +538,13 @@ public class CssTag extends Tag {
 
 			strBulderValorEstrutura = new StringBuilder();
 			strBulderValorEstrutura.append(intHorizontal);
-			strBulderValorEstrutura.append(" ");
+			strBulderValorEstrutura.append("px ");
 			strBulderValorEstrutura.append(intVertical);
-			strBulderValorEstrutura.append(" ");
+			strBulderValorEstrutura.append("px ");
 			strBulderValorEstrutura.append(intBlur);
-			strBulderValorEstrutura.append(" ");
+			strBulderValorEstrutura.append("px ");
 			strBulderValorEstrutura.append(intSpread);
-			strBulderValorEstrutura.append(" ");
+			strBulderValorEstrutura.append("px ");
 			strBulderValorEstrutura.append(hexColor);
 
 			strClassAssociada = this.addCss("box-shadow", strBulderValorEstrutura.toString());

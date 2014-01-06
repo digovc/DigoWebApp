@@ -1,13 +1,58 @@
 // CONSTANTE
+// FIM CONSTANTE
 // ATRIBUTOS GLOBAIS
+// FIM ATRIBUTOS GLOBAIS
 // CLASSE
+
+/**
+ * 
+ */
 function Campo() {
 	// HERANÇA
+
 	Tag.apply(this);
 	Objeto.apply(this);
 
-	// ATRIBUTO	
+	// FIM HERANÇA
+
+	// ATRIBUTO
+
+	var _strValor = null;
+	this.getStrValor = function() {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			_strValor = this.getJq().val();
+
+			// FIM AÇÕES
+		} catch (e) {
+			new Erro("Erro inesperado.", e);
+		}
+
+		return _strValor;
+	}
+
+	this.setStrValor = function(strValor) {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			_strValor = strValor;
+			this.getJq().val(_strValor);
+
+			// FIM AÇÕES
+		} catch (e) {
+			new Erro("Erro inesperado.", e);
+		}
+	}
+
+	// FIM ATRIBUTO
+
 	// MÉTODO
+	// FIM MÉTODO
 
 	/* Construtor */
 	{
@@ -16,3 +61,11 @@ function Campo() {
 	}
 
 }
+// INICIALIZAÇÃO
+
+// var objCampo;
+// $(document).ready(function() {
+// objCampo = new Campo();
+// });
+
+// FIM INICIALIZAÇÃO

@@ -120,7 +120,7 @@ public class Tag extends Objeto {
 	public void setStrConteudo(String strConteudo) {
 		_strConteudo = strConteudo;
 	}
-	
+
 	public void setStrConteudo(StringBuilder stbConteudo) {
 		this.setStrConteudo(stbConteudo.toString());
 	}
@@ -188,6 +188,10 @@ public class Tag extends Objeto {
 		_strLink = strLink;
 	}
 
+	public void setStrLinkNovaJanela(String strLink) {
+		_strLink = strLink + "\"target=\"_blank\"";
+	}
+
 	private String _strTagNome = "div";
 
 	protected String getStrTagNome() {
@@ -196,6 +200,34 @@ public class Tag extends Objeto {
 
 	protected void setStrTagNome(String strTagNome) {
 		_strTagNome = strTagNome;
+	}
+
+	private String _strTitle;
+
+	private String getStrTitle() {
+		return _strTitle;
+	}
+
+	public void setStrTitle(String strTitle) {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			_strTitle = strTitle;
+			this.getLstAtr().add(new Atributo("title", _strTitle));
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+	}
+
+	public void setStrTitulo(String strTitulo) {
+		this.setStrTitle(strTitulo);
 	}
 
 	private Tag _tagPai;
@@ -234,8 +266,25 @@ public class Tag extends Objeto {
 		// FIM VARIÁVEIS
 		try {
 			// AÇÕES
-
+			
 			this.getAtrClass().getLstStrValor().add(strClassCss);
+			
+			// FIM AÇÕES
+		} catch (Exception ex) {
+			
+			new Erro("Erro inesperado.\n", ex);
+			
+		} finally {
+		}
+	}
+	
+	public void adicionarAtr(String strNome, String strValor) {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			this.getLstAtr().add(new Atributo(strNome, strValor));
 
 			// FIM AÇÕES
 		} catch (Exception ex) {

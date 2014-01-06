@@ -36,10 +36,111 @@ function Tag() {
 		// FIM VARIÁVEIS
 		try {
 			// AÇÕES
-
+			
 			_fncOnClick = fncOnClick;
-
+			
 			this.getJq().click(_fncOnClick);
+			
+			// FIM AÇÕES
+		} catch (e) {
+			new Erro("Erro inesperado.", e);
+		}
+	}
+	
+	this.click = function(fncOnClick) {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+			
+			this.setFncOnClick(fncOnClick);
+			
+			// FIM AÇÕES
+		} catch (e) {
+			new Erro("Erro inesperado.", e);
+		}
+	}
+	
+	var _fncKeyDown;
+	this.getFncKeyDown = function() {
+		return _fncKeyDown;
+	}
+	this.setFncKeyDown = function(fncKeyDown) {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+			
+			_fncKeyDown = fncKeyDown;
+			
+			this.getJq().keydown(_fncKeyDown);
+			
+			// FIM AÇÕES
+		} catch (e) {
+			new Erro("Erro inesperado.", e);
+		}
+	}
+	
+	this.keyDown = function(fncKeyDown) {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+			
+			this.setFncKeyDown(fncKeyDown);
+			
+			// FIM AÇÕES
+		} catch (e) {
+			new Erro("Erro inesperado.", e);
+		}
+	}
+	
+	var _fncKeyPress;
+	this.getFncKeyPress = function() {
+		return _fncKeyPress;
+	}
+	this.setFncKeyPress = function(fncKeyPress) {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+			
+			_fncKeyPress = fncKeyPress;
+			
+			this.getJq().keypress(_fncKeyPress);
+			
+			// FIM AÇÕES
+		} catch (e) {
+			new Erro("Erro inesperado.", e);
+		}
+	}
+	
+	this.keyPress = function(fncKeyPress) {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+			
+			this.setFncKeyPress(fncKeyPress);
+			
+			// FIM AÇÕES
+		} catch (e) {
+			new Erro("Erro inesperado.", e);
+		}
+	}
+	var _fncKeyUp;
+	this.getFncKeyUp = function() {
+		return _fncKeyUp;
+	}
+	this.setFncKeyUp = function(fncKeyUp) {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			_fncKeyUp = fncKeyUp;
+
+			this.getJq().keyup(_fncKeyUp);
 
 			// FIM AÇÕES
 		} catch (e) {
@@ -47,13 +148,13 @@ function Tag() {
 		}
 	}
 
-	this.click = function(fncOnClick) {
+	this.keyUp = function(fncKeyUp) {
 		// VARIÁVEIS
 		// FIM VARIÁVEIS
 		try {
 			// AÇÕES
 
-			this.setFncOnClick(fncOnClick);
+			this.setFncKeyUp(fncKeyUp);
 
 			// FIM AÇÕES
 		} catch (e) {

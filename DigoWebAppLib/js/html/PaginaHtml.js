@@ -7,10 +7,9 @@
 /**
  * 
  */
-function Formulario() {
+function PaginaHtml() {
 	// HERANÇA
 	
-	Tag.apply(this);
 	Objeto.apply(this);
 	
 	// FIM HERANÇA
@@ -19,21 +18,6 @@ function Formulario() {
 	// FIM ATRIBUTO
 
 	// MÉTODO
-	
-	this.enviar = function() {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-			
-			this.getJq().submit();
-			
-			// FIM AÇÕES
-		} catch (e) {
-			new Erro("Erro inesperado.", e);
-		}
-	}
-	
 	// FIM MÉTODO
 
 	/* Construtor */{
@@ -44,9 +28,9 @@ function Formulario() {
 }
 // INICIALIZAÇÃO
 
-// var objFormulario;
+// var objPaginaHtml;
 // $(document).ready(function() {
-//	objFormulario = new Formulario();
+//	objPaginaHtml = new PaginaHtml();
 // });
 
 // FIM INICIALIZAÇÃO

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import com.digosofter.digowebapp.design.PaletaCor;
 import com.digosofter.digowebapp.erro.Erro;
+import com.digosofter.digowebapp.html.PaginaHtml;
 import com.digosofter.digowebapp.websocket.WsConexaoMain;
 
 public abstract class AppWeb extends Objeto {
@@ -88,14 +89,24 @@ public abstract class AppWeb extends Objeto {
 	private static List<PaletaCor> _lstObjPaletaCor;
 
 	public List<PaletaCor> getLstObjPaletaCor() {
-		if (_lstObjPaletaCor == null) {
-			_lstObjPaletaCor = new ArrayList<PaletaCor>();
-		}
-		return _lstObjPaletaCor;
-	}
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
 
-	public void setLstObjPaletaCor(List<PaletaCor> lstObjPaletaCor) {
-		_lstObjPaletaCor = lstObjPaletaCor;
+			if (_lstObjPaletaCor == null) {
+				_lstObjPaletaCor = new ArrayList<PaletaCor>();
+			}
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+
+		return _lstObjPaletaCor;
 	}
 
 	private List<Usuario> _lstObjUsuarioSessao = new ArrayList<Usuario>();
@@ -119,7 +130,7 @@ public abstract class AppWeb extends Objeto {
 		try {
 			// AÇÕES
 
-			this.setStrPaginaSolicitada(_objHttpServletRequest.getRequestURI().replace("/relatar/app/", Utils.STRING_VAZIA));
+			this.setStrPaginaSolicitada(_objHttpServletRequest.getRequestURI().replace(_objHttpServletRequest.getContextPath() + "/app/", Utils.STRING_VAZIA));
 			this.setObjHttpSession(this.getObjHttpServletRequest().getSession());
 
 			// FIM AÇÕES
@@ -194,11 +205,8 @@ public abstract class AppWeb extends Objeto {
 		try {
 			// AÇÕES
 
-			for (PaletaCor objPaletaCor : this.getLstObjPaletaCor()) {
-				if (objPaletaCor.getBooSelecionado()) {
-					_objPaletaCorSelecionada = objPaletaCor;
-					break;
-				}
+			if (_objPaletaCorSelecionada == null) {
+				this.getLstObjPaletaCor();
 			}
 
 			// FIM AÇÕES
@@ -210,6 +218,10 @@ public abstract class AppWeb extends Objeto {
 		}
 
 		return _objPaletaCorSelecionada;
+	}
+
+	public void setObjPaletaCorSelecionada(PaletaCor objPaletaCorSelecionada) {
+		_objPaletaCorSelecionada = objPaletaCorSelecionada;
 	}
 
 	private PrintWriter _objPrintWriter;

@@ -2,7 +2,6 @@ package com.digosofter.digowebapp.design;
 
 import com.digosofter.digowebapp.AppWeb;
 import com.digosofter.digowebapp.Objeto;
-import com.digosofter.digowebapp.Utils;
 import com.digosofter.digowebapp.erro.Erro;
 import com.digosofter.digowebapp.html.JavaScriptTag;
 import com.digosofter.digowebapp.html.PaginaHtml;
@@ -25,15 +24,11 @@ public class PaletaCor extends Objeto {
 		try {
 			// AÇÕES
 
-			if (_booSelecionado) {
-				for (PaletaCor objPaletaCor : AppWeb.getI().getLstObjPaletaCor()) {
-					objPaletaCor.setBooSelecionado(false);
-				}
-			} else {
-				AppWeb.getI().getLstObjPaletaCor().get(0).setBooSelecionado(true);
-			}
-
 			_booSelecionado = booSelecionado;
+
+			if (_booSelecionado) {
+				AppWeb.getI().setObjPaletaCorSelecionada(this);
+			}
 
 			// FIM AÇÕES
 		} catch (Exception ex) {
@@ -46,7 +41,7 @@ public class PaletaCor extends Objeto {
 
 	private String _strCorControleClicado;
 
-	private String getStrCorControleClicado() {
+	public String getStrCorControleClicado() {
 		return _strCorControleClicado;
 	}
 
@@ -74,7 +69,7 @@ public class PaletaCor extends Objeto {
 
 	private String _strCorControleMouse;
 
-	private String getStrCorControleMouse() {
+	public String getStrCorControleMouse() {
 		return _strCorControleMouse;
 	}
 
@@ -102,7 +97,7 @@ public class PaletaCor extends Objeto {
 
 	private String _strCorControleNormal;
 
-	private String getStrCorControleNormal() {
+	public String getStrCorControleNormal() {
 		return _strCorControleNormal;
 	}
 
@@ -130,7 +125,7 @@ public class PaletaCor extends Objeto {
 
 	private String _strCorFundo;
 
-	private String getStrCorFundo() {
+	public String getStrCorFundo() {
 		return _strCorFundo;
 	}
 
@@ -191,7 +186,10 @@ public class PaletaCor extends Objeto {
 
 			this.setStrNome(strNome);
 			this.addJs("var " + this.getStrObjetoJavaScriptNome() + "= new PaletaCor('" + this.getStrNome() + "');");
+
 			PaginaHtml.getI().getLstObjJavaScriptTag().add(new JavaScriptTag("res/lib/DigoWebAppLib/js/design/PaletaCor.js"));
+
+			AppWeb.getI().getLstObjPaletaCor().add(this);
 
 			// FIM AÇÕES
 		} catch (Exception ex) {

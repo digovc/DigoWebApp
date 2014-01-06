@@ -400,7 +400,7 @@ public class PaginaHtml extends Objeto {
 			this.getCssMain();
 			this.getCssImp();
 			this.getTagBody();
-			this.getObjJavaScriptMain().adicionarJsCodigo("appWeb.setStrSessionId('" + AppWeb.getI().getObjUsuarioAtual().getStrSessaoId() + "');");
+			this.getObjJavaScriptMain().adicionarJsCodigo("appWeb.setStrSessionId('" + AppWeb.getI().getObjUsuarioAtual().getStrSessaoId() + "');");			
 
 			// FIM AÇÕES
 		} catch (Exception ex) {
@@ -425,12 +425,14 @@ public class PaginaHtml extends Objeto {
 			this.getLstObjJavaScriptTag().add(new JavaScriptTag("res/lib/DigoWebAppLib/js/lib/md5.js"));
 			this.getLstObjJavaScriptTag().add(new JavaScriptTag("res/lib/DigoWebAppLib/js/listas/LstStrErro.js"));
 			this.getLstObjJavaScriptTag().add(new JavaScriptTag("res/lib/DigoWebAppLib/js/erro/Erro.js"));
+			this.getLstObjJavaScriptTag().add(new JavaScriptTag("res/lib/DigoWebAppLib/js/Utils.js"));
 			this.getLstObjJavaScriptTag().add(new JavaScriptTag("res/lib/DigoWebAppLib/js/Objeto.js"));
 			this.getLstObjJavaScriptTag().add(new JavaScriptTag("res/lib/DigoWebAppLib/js/AppWeb.js"));
 			this.getLstObjJavaScriptTag().add(new JavaScriptTag("res/lib/DigoWebAppLib/js/websocket/WebSocketMain.js"));
 			this.getLstObjJavaScriptTag().add(new JavaScriptTag("res/lib/DigoWebAppLib/js/websocket/wsobjetos/WsObjetoMain.js"));
 			this.getLstObjJavaScriptTag().add(new JavaScriptTag("res/lib/DigoWebAppLib/js/Usuario.js"));
 			this.getLstObjJavaScriptTag().add(new JavaScriptTag("res/lib/DigoWebAppLib/js/html/Tag.js"));
+			this.getLstObjJavaScriptTag().add(new JavaScriptTag("res/lib/DigoWebAppLib/js/html/PaginaHtml.js"));
 
 			// FIM AÇÕES
 		} catch (Exception ex) {
@@ -485,6 +487,32 @@ public class PaginaHtml extends Objeto {
 		return stbPgFormatada.toString();
 	}
 
+	public void mostrarMensagemInformacaoCliente(String strMensagem) {
+		// VARIÁVEIS
+
+		String strJsCodigo, strMensagemFormatada;
+
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			strMensagemFormatada = "Informação:";
+			strMensagemFormatada += "\\n\\n\\n";
+			strMensagemFormatada += strMensagem;
+
+			strJsCodigo = "alert('" + strMensagemFormatada + "');";
+
+			this.adicionarJsCodigo(strJsCodigo);
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+	}
+	
 	@Override
 	public String toString() {
 		return this.getStrPaginaFormatada();

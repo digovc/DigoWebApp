@@ -33,83 +33,82 @@ public class Campo extends Tag {
 
 			switch (_enmTipo) {
 			case BUTTON:
-				strTipo = "button";
+				this.getAtrType().setStrValor("button");
 				break;
 			case CHECKBOX:
-				strTipo = "checkbox";
+				this.getAtrType().setStrValor("checkbox");
 				break;
 			case COLOR:
-				strTipo = "color";
+				this.getAtrType().setStrValor("color");
 				break;
 			case DATE:
-				strTipo = "date";
+				this.getAtrType().setStrValor("date");
 				break;
 			case DATETIME:
-				strTipo = "datetime";
+				this.getAtrType().setStrValor("datetime");
 				break;
 			case DATETIME_LOCAL:
-				strTipo = "datetime-local";
+				this.getAtrType().setStrValor("datetime-local");
 				break;
 			case EMAIL:
-				strTipo = "email";
+				this.getAtrType().setStrValor("email");
 				break;
 			case FILE:
-				strTipo = "file";
+				this.getAtrType().setStrValor("file");
 				break;
 			case HIDDEN:
-				strTipo = "hidden";
+				this.getAtrType().setStrValor("hidden");
 				break;
 			case IMAGE:
-				strTipo = "image";
+				this.getAtrType().setStrValor("image");
 				break;
 			case MONTH:
-				strTipo = "month";
+				this.getAtrType().setStrValor("month");
 				break;
 			case NUMBER:
-				strTipo = "number";
+				this.getAtrType().setStrValor("number");
 				break;
 			case PASSWORD:
-				strTipo = "password";
+				this.getAtrType().setStrValor("password");
 				break;
 			case RADIO:
-				strTipo = "radio";
+				this.getAtrType().setStrValor("radio");
 				break;
 			case RANGE:
-				strTipo = "range";
+				this.getAtrType().setStrValor("range");
 				break;
 			case RESET:
-				strTipo = "reset";
+				this.getAtrType().setStrValor("reset");
 				break;
 			case SEARCH:
-				strTipo = "search";
+				this.getAtrType().setStrValor("search");
 				break;
 			case SUBMIT:
-				strTipo = "submit";
+				this.getAtrType().setStrValor("submit");
 				break;
 			case TEL:
-				strTipo = "tel";
+				this.getAtrType().setStrValor("tel");
 				break;
 			case TEXT:
-				strTipo = "text";
+				this.getAtrType().setStrValor("text");
 				break;
 			case TEXT_AREA:
-				strTipo = "textarea";
+				this.setStrTagNome("textarea");
+				this.setBooForcarTagDupla(true);
 				break;
 			case TIME:
-				strTipo = "time";
+				this.getAtrType().setStrValor("time");
 				break;
 			case URL:
-				strTipo = "url";
+				this.getAtrType().setStrValor("url");
 				break;
 			case WEEK:
-				strTipo = "week";
+				this.getAtrType().setStrValor("week");
 				break;
 			default:
-				strTipo = "text";
+				this.getAtrType().setStrValor("text");
 				break;
 			}
-
-			this.getAtrType().setStrValor(strTipo);
 
 			// FIM AÇÕES
 		} catch (Exception ex) {

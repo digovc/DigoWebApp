@@ -1,10 +1,12 @@
 package com.digosofter.digowebapp;
 
+import java.awt.Color;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 
 import com.digosofter.digowebapp.erro.Erro;
 
@@ -28,7 +30,7 @@ public abstract class Utils {
 	// FIM CONSTRUTORES
 
 	// MÉTODOS
-
+		
 	public static boolean getBooStrVazia(String str) {
 		// VARIÁVEIS
 
@@ -55,6 +57,29 @@ public abstract class Utils {
 		return booStrVaziaResultado;
 	}
 
+	public static int getIntNumeroAleatorio(int intMaximo) {
+		// VARIÁVEIS
+
+		int intResultado = 0;
+		Random objRandom = new Random(); 
+
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+			
+			intResultado = objRandom.nextInt(intMaximo);
+			
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro ao gerar cor aleatória.\n" , ex);
+
+		} finally {
+		}
+		
+		return intResultado;
+	}
+	
 	public static String getStrConcatenarLst(List<String> lstStr, String strDelimitador, boolean booEliminarDuplicata) {
 		// VARIÁVEIS
 

@@ -1,11 +1,118 @@
 // CONSTANTE
+// FIM CONSTANTE
 // ATRIBUTOS GLOBAIS
+// FIM ATRIBUTOS GLOBAIS
 // CLASSE
-function Utils() {
+
+/**
+ * 
+ */
+function _Utils() {
 	// HERANÇA
+	// FIM HERANÇA
 
 	// ATRIBUTO
+	// FIM ATRIBUTO
+
 	// MÉTODO
+
+	this.getBooVazia = function(str) {
+		// VARIÁVEIS
+
+		var booResultado = false;
+
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			if (str == null) {
+				booResultado = true;
+			} else if (str == "") {
+				booResultado = true;
+			}
+
+			// FIM AÇÕES
+		} catch (e) {
+			new Erro("Erro inesperado.", e);
+		}
+
+		return booResultado;
+	}
+
+	this.getBooValidarEmail = function(strEmail) {
+		// VARIÁVEIS
+
+		var booResultado = false;
+		var objRe;
+
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			objRe = new RegExp(/^[A-Za-z0-9_\-\.]+@[A-Za-z0-9_\-\.]{2,}\.[A-Za-z0-9]{2,}(\.[A-Za-z0-9])?/);
+
+			if (Utils.getBooVazia(strEmail)) {
+				booResultado = true;
+			} else if (objRe.test(strEmail)) {
+				booResultado = true;
+			}
+
+			// FIM AÇÕES
+		} catch (e) {
+			new Erro("Erro inesperado.", e);
+		}
+
+		return booResultado;
+	}
+
+	this.mostrarMensagemInformacao = function(strMensagem) {
+		// VARIÁVEIS
+
+		var strMensagemFormatada;
+
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			strMensagemFormatada += strMensagem;
+
+			alert(strMensagemFormatada);
+
+			// FIM AÇÕES
+		} catch (e) {
+			new Erro("Erro inesperado.", e);
+		}
+	}
+
+	this.mostrarMensagemInformacao = function(lstStrMensagem) {
+		// VARIÁVEIS
+
+		var strMensagemFormatada = "";
+
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			strMensagemFormatada = "Informação:";
+			strMensagemFormatada += "\n\n\n";
+			
+			if (lstStrMensagem != null && lstStrMensagem.length > 0) {
+
+				for (var intIndex in lstStrMensagem) {
+					strMensagemFormatada += "\n";
+					strMensagemFormatada += lstStrMensagem[intIndex];
+				}
+			}
+
+			alert(strMensagemFormatada);
+
+			// FIM AÇÕES
+		} catch (e) {
+			new Erro("Erro inesperado.", e);
+		}
+	}
+
+	// FIM MÉTODO
 
 	/* Construtor */
 	{
@@ -14,3 +121,11 @@ function Utils() {
 	}
 
 }
+// INICIALIZAÇÃO
+
+var Utils;
+$(document).ready(function() {
+	Utils = new _Utils();
+});
+
+// FIM INICIALIZAÇÃO
