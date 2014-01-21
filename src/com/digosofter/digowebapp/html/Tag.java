@@ -71,6 +71,16 @@ public class Tag extends Objeto {
 		_atrType = atrType;
 	}
 
+	private boolean _booBarraNoFinal = true;
+
+	private boolean getBooBarraNoFinal() {
+		return _booBarraNoFinal;
+	}
+
+	private void setBooBarraNoFinal(boolean booBarraNoFinal) {
+		_booBarraNoFinal = booBarraNoFinal;
+	}
+
 	private boolean _booForcarTagDupla = false;
 
 	protected boolean getBooForcarTagDupla() {
@@ -266,18 +276,18 @@ public class Tag extends Objeto {
 		// FIM VARIÁVEIS
 		try {
 			// AÇÕES
-			
+
 			this.getAtrClass().getLstStrValor().add(strClassCss);
-			
+
 			// FIM AÇÕES
 		} catch (Exception ex) {
-			
+
 			new Erro("Erro inesperado.\n", ex);
-			
+
 		} finally {
 		}
 	}
-	
+
 	public void adicionarAtr(String strNome, String strValor) {
 		// VARIÁVEIS
 		// FIM VARIÁVEIS
@@ -357,7 +367,11 @@ public class Tag extends Objeto {
 				}
 
 				stbTagFormatada.append(this.getStrAbertura());
-				stbTagFormatada.append("/");
+
+				if (this.getBooBarraNoFinal()) {
+					stbTagFormatada.append("/");
+				}
+
 				stbTagFormatada.append(this.getStrTagNome());
 				stbTagFormatada.append(this.getStrFechamento());
 
@@ -376,7 +390,11 @@ public class Tag extends Objeto {
 				stbTagFormatada.append(this.getStrAbertura());
 				stbTagFormatada.append(this.getStrTagNome());
 				stbTagFormatada.append(this.getStrAtributoFormatado());
-				stbTagFormatada.append("/");
+
+				if (this.getBooBarraNoFinal()) {
+					stbTagFormatada.append("/");
+				}
+
 				stbTagFormatada.append(this.getStrFechamento());
 
 				if (!Utils.getBooStrVazia(this.getStrLink())) {
