@@ -77,7 +77,7 @@ public class Tag extends Objeto {
 		return _booBarraNoFinal;
 	}
 
-	private void setBooBarraNoFinal(boolean booBarraNoFinal) {
+	public void setBooBarraNoFinal(boolean booBarraNoFinal) {
 		_booBarraNoFinal = booBarraNoFinal;
 	}
 

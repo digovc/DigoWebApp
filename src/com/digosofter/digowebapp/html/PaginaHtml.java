@@ -254,6 +254,7 @@ public class PaginaHtml extends Objeto {
 			if (_tagDocType == null) {
 
 				_tagDocType = new Tag();
+				_tagDocType.setBooBarraNoFinal(false);
 				_tagDocType.setStrTagNome("!DOCTYPE html");
 			}
 

@@ -82,20 +82,20 @@ public abstract class Utils {
 	
 	public static String getStrConcatenarLst(List<String> lstStr, String strDelimitador, boolean booEliminarDuplicata) {
 		// VARIÁVEIS
-
+		
 		boolean booStrIncluida = false;
-
+		
 		List<String> lstStrIncluida = new ArrayList<String>();
-
+		
 		StringBuilder strBuilder = new StringBuilder();
-
+		
 		String strConcatenadaResultado = Utils.STRING_VAZIA;
 		String strDelimitador2 = Utils.STRING_VAZIA;
-
+		
 		// FIM VARIÁVEIS
 		try {
 			// AÇÕES
-
+			
 			for (String str : lstStr) {
 				if (booEliminarDuplicata) {
 					for (String strInserida : lstStrIncluida) {
@@ -104,7 +104,7 @@ public abstract class Utils {
 						}
 					}
 				}
-
+				
 				if (!booStrIncluida) {
 					if (strDelimitador2 != null && strDelimitador2 != "") {
 						strBuilder.append(strDelimitador2);
@@ -117,12 +117,37 @@ public abstract class Utils {
 			strConcatenadaResultado = strBuilder.toString();
 			// FIM AÇÕES
 		} catch (Exception ex) {
+			
+			new Erro("Erro inesperado.\n", ex);
+			
+		} finally {
+		}
+		return strConcatenadaResultado;
+	}
+	
+	public static String getStrConcatenarLst(String[] arrStr, String strDelimitador, boolean booEliminarDuplicata) {
+		// VARIÁVEIS
+		
+		List<String> lstStr = null;
+		
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			lstStr = new ArrayList<String>();
+			
+			for (String str : arrStr) {
+				lstStr.add(str);	
+			}
+			// FIM AÇÕES
+		} catch (Exception ex) {
 
 			new Erro("Erro inesperado.\n", ex);
 
 		} finally {
 		}
-		return strConcatenadaResultado;
+		
+		return Utils.getStrConcatenarLst(lstStr, strDelimitador, booEliminarDuplicata);
 	}
 
 	public static String getStrDataFormatada(Date objDate, EnmDataFormato enmDataFormato) {

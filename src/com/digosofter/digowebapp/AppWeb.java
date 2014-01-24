@@ -117,7 +117,7 @@ public abstract class AppWeb extends Objeto {
 
 	private HttpServletRequest _objHttpServletRequest;
 
-	private HttpServletRequest getObjHttpServletRequest() {
+	public HttpServletRequest getObjHttpServletRequest() {
 		return _objHttpServletRequest;
 	}
 

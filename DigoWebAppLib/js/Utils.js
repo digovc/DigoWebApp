@@ -16,6 +16,27 @@ function _Utils() {
 
 	// MÉTODO
 
+	this.carregarImagem = function(strSrc, evtOnLoad) {
+		// VARIÁVEIS
+		
+		var img;
+		
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+			
+			img = new Image;
+			img.src = strSrc;
+			img.onload = evtOnLoad;
+			
+			// FIM AÇÕES
+		} catch (e) {
+			new Erro("Erro inesperado.", e);
+		}
+		
+		return img;
+	}
+	
 	this.getBooVazia = function(str) {
 		// VARIÁVEIS
 

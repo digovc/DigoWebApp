@@ -272,6 +272,34 @@ function Tag() {
 		}
 	}
 
+	this.esconder = function() {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+			
+			this.getJq().fadeOut("fast");
+			
+			// FIM AÇÕES
+		} catch (e) {
+			new Erro("Erro inesperado.", e);
+		}
+	}
+	
+	this.mostrar = function() {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+			
+			this.getJq().fadeIn("slow");
+			
+			// FIM AÇÕES
+		} catch (e) {
+			new Erro("Erro inesperado.", e);
+		}
+	}
+	
 	// FIM MÉTODO
 
 	/* Construtor */

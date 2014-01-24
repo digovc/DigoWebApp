@@ -512,6 +512,7 @@ public class CssTag extends Tag {
 
 			strBulderValorEstrutura = new StringBuilder();
 			strBulderValorEstrutura.append(intBottom);
+			strBulderValorEstrutura.append("px");
 
 			strClassAssociada = this.addCss("bottom", strBulderValorEstrutura.toString());
 
@@ -753,7 +754,7 @@ public class CssTag extends Tag {
 		return strClassAssociada;
 	}
 
-	public String setHeight(int intHeight, String strGrandeza) {
+	public String setHeight(double dblHeight, String strGrandeza) {
 		// VARIÁVEIS
 
 		String strClassAssociada = Utils.STRING_VAZIA;
@@ -764,7 +765,7 @@ public class CssTag extends Tag {
 			// AÇÕES
 
 			strBulderValorEstrutura = new StringBuilder();
-			strBulderValorEstrutura.append(intHeight);
+			strBulderValorEstrutura.append(dblHeight);
 			strBulderValorEstrutura.append(strGrandeza);
 
 			strClassAssociada = this.addCss("height", strBulderValorEstrutura.toString());
@@ -792,6 +793,7 @@ public class CssTag extends Tag {
 
 			strBulderValorEstrutura = new StringBuilder();
 			strBulderValorEstrutura.append(intLeft);
+			strBulderValorEstrutura.append("px");
 
 			strClassAssociada = this.addCss("left", strBulderValorEstrutura.toString());
 
@@ -941,6 +943,32 @@ public class CssTag extends Tag {
 		return strClassAssociada;
 	}
 
+	public String setOpacity(double dblOpacity) {
+		// VARIÁVEIS
+		
+		String strClassAssociada = Utils.STRING_VAZIA;
+		StringBuilder strBulderValorEstrutura;
+		
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+			
+			strBulderValorEstrutura = new StringBuilder();
+			strBulderValorEstrutura.append(dblOpacity);
+			
+			strClassAssociada = this.addCss("opacity", strBulderValorEstrutura.toString());
+			
+			// FIM AÇÕES
+		} catch (Exception ex) {
+			
+			new Erro("Erro inesperado.\n", ex);
+			
+		} finally {
+		}
+		
+		return strClassAssociada;
+	}
+	
 	public String setOverflow(String strOverflowPx) {
 		// VARIÁVEIS
 
@@ -1140,6 +1168,7 @@ public class CssTag extends Tag {
 
 			strBulderValorEstrutura = new StringBuilder();
 			strBulderValorEstrutura.append(intRight);
+			strBulderValorEstrutura.append("px");
 
 			strClassAssociada = this.addCss("right", strBulderValorEstrutura.toString());
 
