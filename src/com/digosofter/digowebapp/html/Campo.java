@@ -178,7 +178,7 @@ public class Campo extends Tag {
 			// AÇÕES
 
 			this.setStrTagNome("input");
-			PaginaHtml.getI().getLstObjJavaScriptTag().add(new JavaScriptTag("res/lib/DigoWebAppLib/js/html/Campo.js"));
+			PaginaHtml.getI().getLstObjJavaScriptTag().add(new JavaScriptTag("res/js/lib/JDigo/html/Campo.js"));
 
 			// FIM AÇÕES
 		} catch (Exception ex) {

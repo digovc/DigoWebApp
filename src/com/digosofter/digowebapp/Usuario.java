@@ -41,6 +41,24 @@ public class Usuario extends Objeto {
 	// FIM ATRIBUTOS
 
 	// CONSTRUTORES
+	
+	public Usuario() {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+			
+			AppWeb.getI().getLstObjUsuarioSessao().add(this);
+			
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+	}
+	
 	// FIM CONSTRUTORES
 
 	// MÉTODOS

@@ -12,8 +12,8 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="DigoWebAppLib/java/gson-2.2.4.jar"/>
-	<classpathentry kind="lib" path="D:/Projetos/DigoWebApp/DigoWebAppLib/java/commons-email-1.3.2.jar"/>
-	<classpathentry kind="lib" path="D:/Projetos/DigoWebApp/DigoWebAppLib/java/mail.jar"/>
+	<classpathentry kind="lib" path="D:/Projetos/DigoWebApp/lib/gson-2.2.4.jar"/>
+	<classpathentry kind="lib" path="D:/Projetos/DigoWebApp/lib/commons-email-1.3.2.jar"/>
+	<classpathentry kind="lib" path="D:/Projetos/DigoWebApp/lib/mail.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

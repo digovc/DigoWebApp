@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.digosofter.digowebapp.Objeto;
 import com.digosofter.digowebapp.Utils;
+import com.digosofter.digowebapp.database.frm.FormularioTbl;
 import com.digosofter.digowebapp.erro.Erro;
 
 public abstract class DbTabela extends Objeto {
@@ -64,6 +65,33 @@ public abstract class DbTabela extends Objeto {
 		}
 
 		return _clnNome;
+	}
+
+	private FormularioTbl _frmTbl;
+
+	public FormularioTbl getFrmTbl() {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			if (_frmTbl == null) {
+				_frmTbl = new FormularioTbl(this);
+			}
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+
+		return _frmTbl;
+	}
+
+	private void setFrmTbl(FormularioTbl frmTbl) {
+		_frmTbl = frmTbl;
 	}
 
 	private List<DbColuna> _lstCln;
@@ -156,6 +184,42 @@ public abstract class DbTabela extends Objeto {
 
 	public void buscarRegistroPorCln(DbColuna cln, int intValor) {
 		this.buscarRegistroPorCln(cln, String.valueOf(intValor));
+	}
+
+	/**
+	 * Retorna a quantidade de campos que existe na linha indicada por
+	 * parâmetro.
+	 */
+	public int getIntQtdCampoPorLinha(int intLinha) {
+		// VARIÁVEIS
+
+		int intResultado = 0;
+
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			for (DbColuna cln : this.getLstCln()) {
+
+				if (cln.getIntFrmLinha() == intLinha) {
+					intResultado++;
+				}
+			}
+
+			if (intResultado == this.getLstCln().size()) {
+				intResultado = 1;
+			}
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+
+		return intResultado;
+
 	}
 
 	public List<Integer> getLstIntColunaValor(DbColuna cln) {

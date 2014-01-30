@@ -422,18 +422,18 @@ public class PaginaHtml extends Objeto {
 		try {
 			// AÇÕES
 
-			this.getLstObjJavaScriptTag().add(new JavaScriptTag("res/lib/DigoWebAppLib/js/lib/jquery-2.0.3.js"));
-			this.getLstObjJavaScriptTag().add(new JavaScriptTag("res/lib/DigoWebAppLib/js/lib/md5.js"));
-			this.getLstObjJavaScriptTag().add(new JavaScriptTag("res/lib/DigoWebAppLib/js/listas/LstStrErro.js"));
-			this.getLstObjJavaScriptTag().add(new JavaScriptTag("res/lib/DigoWebAppLib/js/erro/Erro.js"));
-			this.getLstObjJavaScriptTag().add(new JavaScriptTag("res/lib/DigoWebAppLib/js/Utils.js"));
-			this.getLstObjJavaScriptTag().add(new JavaScriptTag("res/lib/DigoWebAppLib/js/Objeto.js"));
-			this.getLstObjJavaScriptTag().add(new JavaScriptTag("res/lib/DigoWebAppLib/js/AppWeb.js"));
-			this.getLstObjJavaScriptTag().add(new JavaScriptTag("res/lib/DigoWebAppLib/js/websocket/WebSocketMain.js"));
-			this.getLstObjJavaScriptTag().add(new JavaScriptTag("res/lib/DigoWebAppLib/js/websocket/wsobjetos/WsObjetoMain.js"));
-			this.getLstObjJavaScriptTag().add(new JavaScriptTag("res/lib/DigoWebAppLib/js/Usuario.js"));
-			this.getLstObjJavaScriptTag().add(new JavaScriptTag("res/lib/DigoWebAppLib/js/html/Tag.js"));
-			this.getLstObjJavaScriptTag().add(new JavaScriptTag("res/lib/DigoWebAppLib/js/html/PaginaHtml.js"));
+			this.getLstObjJavaScriptTag().add(new JavaScriptTag("res/js/lib/JDigo/lib/jquery-2.0.3.js"));
+			this.getLstObjJavaScriptTag().add(new JavaScriptTag("res/js/lib/JDigo/lib/md5.js"));
+			this.getLstObjJavaScriptTag().add(new JavaScriptTag("res/js/lib/JDigo/listas/LstStrErro.js"));
+			this.getLstObjJavaScriptTag().add(new JavaScriptTag("res/js/lib/JDigo/erro/Erro.js"));
+			this.getLstObjJavaScriptTag().add(new JavaScriptTag("res/js/lib/JDigo/Utils.js"));
+			this.getLstObjJavaScriptTag().add(new JavaScriptTag("res/js/lib/JDigo/Objeto.js"));
+			this.getLstObjJavaScriptTag().add(new JavaScriptTag("res/js/lib/JDigo/AppWeb.js"));
+			this.getLstObjJavaScriptTag().add(new JavaScriptTag("res/js/lib/JDigo/websocket/WebSocketMain.js"));
+			this.getLstObjJavaScriptTag().add(new JavaScriptTag("res/js/lib/JDigo/websocket/wsobjetos/WsObjetoMain.js"));
+			this.getLstObjJavaScriptTag().add(new JavaScriptTag("res/js/lib/JDigo/Usuario.js"));
+			this.getLstObjJavaScriptTag().add(new JavaScriptTag("res/js/lib/JDigo/html/Tag.js"));
+			this.getLstObjJavaScriptTag().add(new JavaScriptTag("res/js/lib/JDigo/html/PaginaHtml.js"));
 
 			// FIM AÇÕES
 		} catch (Exception ex) {

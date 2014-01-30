@@ -90,7 +90,7 @@ public class Formulario extends Tag {
 			this.setStrAction(strAction);
 			this.setEnmMetodo(enmMetodo);
 
-			PaginaHtml.getI().getLstObjJavaScriptTag().add(new JavaScriptTag("res/lib/DigoWebAppLib/js/html/Formulario.js"));
+			PaginaHtml.getI().getLstObjJavaScriptTag().add(new JavaScriptTag("res/js/lib/JDigo/html/Formulario.js"));
 
 			// FIM AÇÕES
 		} catch (Exception ex) {

@@ -20,7 +20,7 @@ public class Imagem extends Tag {
 			this.setStrTagNome("img");
 			this.setBooForcarTagDupla(true);
 
-			PaginaHtml.getI().getLstObjJavaScriptTag().add(new JavaScriptTag("res/lib/DigoWebAppLib/js/html/Imagem.js"));
+			PaginaHtml.getI().getLstObjJavaScriptTag().add(new JavaScriptTag("res/js/lib/JDigo/html/Imagem.js"));
 
 			// FIM AÇÕES
 		} catch (Exception ex) {

@@ -10,7 +10,6 @@ import javax.servlet.http.HttpSession;
 
 import com.digosofter.digowebapp.design.PaletaCor;
 import com.digosofter.digowebapp.erro.Erro;
-import com.digosofter.digowebapp.html.PaginaHtml;
 import com.digosofter.digowebapp.websocket.WsConexaoMain;
 
 public abstract class AppWeb extends Objeto {
@@ -80,9 +79,26 @@ public abstract class AppWeb extends Objeto {
 		return _lstStrPost;
 	}
 
-	private List<WsConexaoMain> _lstObjWsConexaoMain = new ArrayList<WsConexaoMain>();
+	private List<WsConexaoMain> _lstObjWsConexaoMain;
 
 	public List<WsConexaoMain> getLstObjWsConexaoMain() {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			if (_lstObjWsConexaoMain == null) {
+				_lstObjWsConexaoMain = new ArrayList<WsConexaoMain>();
+			}
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+
 		return _lstObjWsConexaoMain;
 	}
 
@@ -109,9 +125,26 @@ public abstract class AppWeb extends Objeto {
 		return _lstObjPaletaCor;
 	}
 
-	private List<Usuario> _lstObjUsuarioSessao = new ArrayList<Usuario>();
+	private List<Usuario> _lstObjUsuarioSessao;
 
 	public List<Usuario> getLstObjUsuarioSessao() {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			if (_lstObjUsuarioSessao == null) {
+				_lstObjUsuarioSessao = new ArrayList<Usuario>();
+			}
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+
 		return _lstObjUsuarioSessao;
 	}
 
@@ -123,13 +156,12 @@ public abstract class AppWeb extends Objeto {
 
 	public void setObjHttpServletRequest(HttpServletRequest objHttpServletRequest) {
 		// VARIÁVEIS
-
-		_objHttpServletRequest = objHttpServletRequest;
-
 		// FIM VARIÁVEIS
 		try {
 			// AÇÕES
 
+
+			_objHttpServletRequest = objHttpServletRequest;
 			this.setStrPaginaSolicitada(_objHttpServletRequest.getRequestURI().replace(_objHttpServletRequest.getContextPath() + "/app/", Utils.STRING_VAZIA));
 			this.setObjHttpSession(this.getObjHttpServletRequest().getSession());
 
@@ -175,17 +207,18 @@ public abstract class AppWeb extends Objeto {
 	private void setObjHttpSession(HttpSession objHttpSession) {
 		// VARIÁVEIS
 
-		_objHttpSession = objHttpSession;
-		Usuario objUsuario = null;
+		Usuario objUsuario;
 
 		// FIM VARIÁVEIS
 		try {
 			// AÇÕES
 
+			_objHttpSession = objHttpSession;
+
 			if (!this.getBooUsuarioExiste(_objHttpSession.getId())) {
+
 				objUsuario = new Usuario();
 				objUsuario.setStrSessaoId(_objHttpSession.getId());
-				this.getLstObjUsuarioSessao().add(objUsuario);
 			}
 
 			// FIM AÇÕES
@@ -247,12 +280,26 @@ public abstract class AppWeb extends Objeto {
 	private Usuario _objUsuarioAtual;
 
 	public Usuario getObjUsuarioAtual() {
-		for (Usuario objUsuario : this.getLstObjUsuarioSessao()) {
-			if (objUsuario.getStrSessaoId() == this.getObjHttpSession().getId()) {
-				_objUsuarioAtual = objUsuario;
-				break;
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			for (Usuario objUsuario : this.getLstObjUsuarioSessao()) {
+				if (objUsuario.getStrSessaoId() == this.getObjHttpSession().getId()) {
+					_objUsuarioAtual = objUsuario;
+					break;
+				}
 			}
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
 		}
+		
 		return _objUsuarioAtual;
 	}
 
@@ -302,7 +349,7 @@ public abstract class AppWeb extends Objeto {
 	public boolean getBooUsuarioExiste(String strSessaoId) {
 		// VARIÁVEIS
 
-		boolean booUsuarioExisteResultado = false;
+		boolean booResultado = false;
 
 		// FIM VARIÁVEIS
 		try {
@@ -310,7 +357,7 @@ public abstract class AppWeb extends Objeto {
 
 			for (Usuario usuario : this.getLstObjUsuarioSessao()) {
 				if (usuario.getStrSessaoId().equals(strSessaoId)) {
-					booUsuarioExisteResultado = true;
+					booResultado = true;
 					break;
 				}
 			}
@@ -322,7 +369,8 @@ public abstract class AppWeb extends Objeto {
 
 		} finally {
 		}
-		return booUsuarioExisteResultado;
+		
+		return booResultado;
 	}
 
 	public void getResposta(HttpServletRequest objRequest, HttpServletResponse objResponse) {

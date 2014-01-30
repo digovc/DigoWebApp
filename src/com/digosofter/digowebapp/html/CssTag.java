@@ -1194,8 +1194,7 @@ public class CssTag extends Tag {
 			// AÇÕES
 			
 			strBulderValorEstrutura = new StringBuilder();
-			strBulderValorEstrutura.append(strTextAlign);
-			
+			strBulderValorEstrutura.append(strTextAlign);			
 			strClassAssociada = this.addCss("text-align", strBulderValorEstrutura.toString());
 			
 			// FIM AÇÕES

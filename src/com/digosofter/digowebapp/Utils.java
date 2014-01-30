@@ -1,6 +1,5 @@
 package com.digosofter.digowebapp;
 
-import java.awt.Color;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -14,7 +13,7 @@ public abstract class Utils {
 	// CONSTANTES
 
 	public enum EnmDataFormato {
-		DD_MM, DD_MM_YYYY, DD_MM_YYYY_HH_MM, DD_MM_YYYY_HH_MM_SS, HH_MM_DD_MM_YYYY, HH_MM_SS_DD_MM_YYYY, YYYY_MM_DD_HH_MM_SS
+		DD_MM, DD_MM_YYYY, DD_MM_YYYY_HH_MM, DD_MM_YYYY_HH_MM_SS, HH_MM,HH_MM_DD_MM_YYYY, HH_MM_SS_DD_MM_YYYY, YYYY_MM_DD_HH_MM_SS
 	}
 
 	public static final Locale LOCAL_BRASIL = new Locale("pt", "BR");
@@ -30,7 +29,7 @@ public abstract class Utils {
 	// FIM CONSTRUTORES
 
 	// MÉTODOS
-		
+
 	public static boolean getBooStrVazia(String str) {
 		// VARIÁVEIS
 
@@ -61,41 +60,41 @@ public abstract class Utils {
 		// VARIÁVEIS
 
 		int intResultado = 0;
-		Random objRandom = new Random(); 
+		Random objRandom = new Random();
 
 		// FIM VARIÁVEIS
 		try {
 			// AÇÕES
-			
+
 			intResultado = objRandom.nextInt(intMaximo);
-			
+
 			// FIM AÇÕES
 		} catch (Exception ex) {
 
-			new Erro("Erro ao gerar cor aleatória.\n" , ex);
+			new Erro("Erro ao gerar cor aleatória.\n", ex);
 
 		} finally {
 		}
-		
+
 		return intResultado;
 	}
-	
+
 	public static String getStrConcatenarLst(List<String> lstStr, String strDelimitador, boolean booEliminarDuplicata) {
 		// VARIÁVEIS
-		
+
 		boolean booStrIncluida = false;
-		
+
 		List<String> lstStrIncluida = new ArrayList<String>();
-		
+
 		StringBuilder strBuilder = new StringBuilder();
-		
+
 		String strConcatenadaResultado = Utils.STRING_VAZIA;
 		String strDelimitador2 = Utils.STRING_VAZIA;
-		
+
 		// FIM VARIÁVEIS
 		try {
 			// AÇÕES
-			
+
 			for (String str : lstStr) {
 				if (booEliminarDuplicata) {
 					for (String strInserida : lstStrIncluida) {
@@ -104,7 +103,7 @@ public abstract class Utils {
 						}
 					}
 				}
-				
+
 				if (!booStrIncluida) {
 					if (strDelimitador2 != null && strDelimitador2 != "") {
 						strBuilder.append(strDelimitador2);
@@ -117,27 +116,27 @@ public abstract class Utils {
 			strConcatenadaResultado = strBuilder.toString();
 			// FIM AÇÕES
 		} catch (Exception ex) {
-			
+
 			new Erro("Erro inesperado.\n", ex);
-			
+
 		} finally {
 		}
 		return strConcatenadaResultado;
 	}
-	
+
 	public static String getStrConcatenarLst(String[] arrStr, String strDelimitador, boolean booEliminarDuplicata) {
 		// VARIÁVEIS
-		
+
 		List<String> lstStr = null;
-		
+
 		// FIM VARIÁVEIS
 		try {
 			// AÇÕES
 
 			lstStr = new ArrayList<String>();
-			
+
 			for (String str : arrStr) {
-				lstStr.add(str);	
+				lstStr.add(str);
 			}
 			// FIM AÇÕES
 		} catch (Exception ex) {
@@ -146,7 +145,7 @@ public abstract class Utils {
 
 		} finally {
 		}
-		
+
 		return Utils.getStrConcatenarLst(lstStr, strDelimitador, booEliminarDuplicata);
 	}
 
@@ -172,6 +171,9 @@ public abstract class Utils {
 			case DD_MM_YYYY_HH_MM_SS:
 				strDataFormato = "dd/MM/yyyy HH:mm:ss";
 				break;
+			case HH_MM:
+				strDataFormato = "HH:mm";
+				break;
 			case HH_MM_DD_MM_YYYY:
 				strDataFormato = "HH:mm dd/MM/yyyy";
 				break;
@@ -185,7 +187,7 @@ public abstract class Utils {
 				strDataFormato = "dd/MM/yyyy";
 				break;
 			}
-			
+
 			objSimpleDateFormat = new SimpleDateFormat(strDataFormato, LOCAL_BRASIL);
 
 			// FIM AÇÕES
@@ -194,10 +196,10 @@ public abstract class Utils {
 			// LIMPAR VARIÁVEIS
 			// FIM LIMPAR VARIÁVEIS
 		}
-		
+
 		return objSimpleDateFormat.format(objDate);
 	}
-	
+
 	public static String getStrLinkHtml(String strTexto, String strLink) {
 		// VARIÁVEIS
 
@@ -250,15 +252,12 @@ public abstract class Utils {
 			// AÇÕES
 
 			strComplexa = strComplexa.toLowerCase(Utils.LOCAL_BRASIL);
-			String[] arrChrAcentos = new String[] { "ç", "á", "é", "í", "ó", "ú", "ý", "à", "è", "ì", "ò", "ù", "ã", "õ", "ñ", "ä", "ë", "ï", "ö",
-					"ü", "ÿ", "â", "ê", "î", "ô", "û" };
-			String[] arrChrSemAcento = new String[] { "c", "a", "e", "i", "o", "u", "y", "a", "e", "i", "o", "u", "a", "o", "n", "a", "e", "i", "o",
-					"u", "y", "a", "e", "i", "o", "u" };
+			String[] arrChrAcentos = new String[] { "ç", "á", "é", "í", "ó", "ú", "ý", "à", "è", "ì", "ò", "ù", "ã", "õ", "ñ", "ä", "ë", "ï", "ö", "ü", "ÿ", "â", "ê", "î", "ô", "û" };
+			String[] arrChrSemAcento = new String[] { "c", "a", "e", "i", "o", "u", "y", "a", "e", "i", "o", "u", "a", "o", "n", "a", "e", "i", "o", "u", "y", "a", "e", "i", "o", "u" };
 			for (int intTemp = 0; intTemp < arrChrAcentos.length; intTemp++) {
 				strComplexa = strComplexa.replace(arrChrAcentos[intTemp], arrChrSemAcento[intTemp]);
 			}
-			String[] arrChrCaracteresEspeciais = { "\\.", ",", "-", ":", "\\(", "\\)", "ª", "\\|", "\\\\", "°", "^\\s+", "\\s+$", "\\s+", ".", "(",
-					")" };
+			String[] arrChrCaracteresEspeciais = { "\\.", ",", "-", ":", "\\(", "\\)", "ª", "\\|", "\\\\", "°", "^\\s+", "\\s+$", "\\s+", ".", "(", ")" };
 			for (int intTemp = 0; intTemp < arrChrCaracteresEspeciais.length; intTemp++) {
 				strComplexa = strComplexa.replace(arrChrCaracteresEspeciais[intTemp], "");
 			}

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.digosofter.digowebapp.Objeto;
+import com.digosofter.digowebapp.database.frm.CampoFrmTbl;
 import com.digosofter.digowebapp.erro.Erro;
 
 public class DbColuna extends Objeto {
@@ -41,7 +42,7 @@ public class DbColuna extends Objeto {
 
 	private boolean _booSenha = false;
 
-	private boolean getBooSenha() {
+	public boolean getBooSenha() {
 		return _booSenha;
 	}
 
@@ -51,7 +52,7 @@ public class DbColuna extends Objeto {
 
 	private DbColuna _clnReferencia;
 
-	private DbColuna getClnReferencia() {
+	public DbColuna getClnReferencia() {
 		return _clnReferencia;
 	}
 
@@ -67,6 +68,26 @@ public class DbColuna extends Objeto {
 
 	public void setEnmClnTipo(EnmClnTipo enmClnTipo) {
 		_enmClnTipo = enmClnTipo;
+	}
+
+	private int _intFrmLinha;
+
+	public int getIntFrmLinha() {
+		return _intFrmLinha;
+	}
+
+	public void setIntFrmLinha(int intFrmLinha) {
+		_intFrmLinha = intFrmLinha;
+	}
+
+	private int _intFrmLinhaPeso = 1;
+
+	private int getIntFrmLinhaPeso() {
+		return _intFrmLinhaPeso;
+	}
+
+	public void setIntFrmLinhaPeso(int intFrmLinhaPeso) {
+		_intFrmLinhaPeso = intFrmLinhaPeso;
 	}
 
 	private List<String> _lstStrOpcao;
@@ -94,6 +115,33 @@ public class DbColuna extends Objeto {
 
 	private void setLstStrOpcao(List<String> lstStrOpcao) {
 		_lstStrOpcao = lstStrOpcao;
+	}
+
+	private CampoFrmTbl _objCampoFrmTbl;
+
+	private CampoFrmTbl getObjCampoFrmTbl() {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			if (_objCampoFrmTbl == null) {
+				_objCampoFrmTbl = new CampoFrmTbl(this);
+			}
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+
+		return _objCampoFrmTbl;
+	}
+
+	private void setObjCampoFrmTbl(CampoFrmTbl objCampoFrmTbl) {
+		_objCampoFrmTbl = objCampoFrmTbl;
 	}
 
 	private String _strValor;
@@ -140,7 +188,7 @@ public class DbColuna extends Objeto {
 
 	private DbTabela _tbl;
 
-	private DbTabela getTbl() {
+	public DbTabela getTbl() {
 		return _tbl;
 	}
 
@@ -188,6 +236,27 @@ public class DbColuna extends Objeto {
 	// FIM CONSTRUTORES
 
 	// MÉTODOS
+
+	/**
+	 * Adiciona um campo ao formulário passado como parâmetro.
+	 */
+	public void adicionarCampoFrm() {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			this.getObjCampoFrmTbl().setTagPai(this.getTbl().getFrmTbl());
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+	}
+
 	// FIM MÉTODOS
 
 	// EVENTOS

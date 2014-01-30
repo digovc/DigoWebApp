@@ -91,9 +91,26 @@ public class Tag extends Objeto {
 		_booForcarTagDupla = booForcarTagDupla;
 	}
 
-	private List<Atributo> _lstAtr = new ArrayList<Atributo>();
+	private List<Atributo> _lstAtr;
 
 	public List<Atributo> getLstAtr() {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			if (_lstAtr == null) {
+				_lstAtr = new ArrayList<Atributo>();
+			}
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+
 		return _lstAtr;
 	}
 
@@ -101,9 +118,26 @@ public class Tag extends Objeto {
 		_lstAtr = lstAtr;
 	}
 
-	private List<Tag> _lstTag = new ArrayList<Tag>();
+	private List<Tag> _lstTag;
 
 	public List<Tag> getLstTag() {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			if (_lstTag == null) {
+				_lstTag = new ArrayList<Tag>();
+			}
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+
 		return _lstTag;
 	}
 
