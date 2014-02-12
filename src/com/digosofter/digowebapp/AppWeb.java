@@ -43,42 +43,6 @@ public abstract class AppWeb extends Objeto {
 		}
 	}
 
-	private List<String> _lstStrGet;
-
-	public List<String> getLstStrGet() {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-
-			// FIM AÇÕES
-		} catch (Exception ex) {
-
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
-		return _lstStrGet;
-	}
-
-	private List<String> _lstStrPost;
-
-	public List<String> getLstStrPost() {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-
-			// FIM AÇÕES
-		} catch (Exception ex) {
-
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
-		return _lstStrPost;
-	}
-
 	private List<WsConexaoMain> _lstObjWsConexaoMain;
 
 	public List<WsConexaoMain> getLstObjWsConexaoMain() {
@@ -160,10 +124,9 @@ public abstract class AppWeb extends Objeto {
 		try {
 			// AÇÕES
 
-
 			_objHttpServletRequest = objHttpServletRequest;
 			this.setStrPaginaSolicitada(_objHttpServletRequest.getRequestURI().replace(_objHttpServletRequest.getContextPath() + "/app/", Utils.STRING_VAZIA));
-			this.setObjHttpSession(this.getObjHttpServletRequest().getSession());
+			this.setObjHttpSession(_objHttpServletRequest.getSession());
 
 			// FIM AÇÕES
 		} catch (Exception ex) {
@@ -299,7 +262,7 @@ public abstract class AppWeb extends Objeto {
 
 		} finally {
 		}
-		
+
 		return _objUsuarioAtual;
 	}
 
@@ -369,7 +332,7 @@ public abstract class AppWeb extends Objeto {
 
 		} finally {
 		}
-		
+
 		return booResultado;
 	}
 
@@ -389,6 +352,32 @@ public abstract class AppWeb extends Objeto {
 
 		} finally {
 		}
+	}
+
+	/**
+	 * Retorna o valor do parâmetro get ou post vindo do cliente indicado pelo
+	 * nome contido em "strParamNome". Caso não exista retorna "null".
+	 */
+	public String getParametro(String strParamNome) {
+		// VARIÁVEIS
+
+		String strResultado = null;
+
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			strResultado = this.getObjHttpServletRequest().getParameter(strParamNome);
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+
+		return strResultado;
 	}
 
 	public String getStrPostParametro(String strParametroNome) {

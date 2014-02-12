@@ -1,13 +1,15 @@
 package com.digosofter.digowebapp.database;
 
 import java.sql.Date;
+import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.digosofter.digowebapp.Objeto;
-import com.digosofter.digowebapp.database.frm.CampoFrmTbl;
+import com.digosofter.digowebapp.componente.item.CampoFrmTbl;
 import com.digosofter.digowebapp.erro.Erro;
+import com.digosofter.digowebapp.html.CampoComboBox;
 
 public class DbColuna extends Objeto {
 	// CONSTANTES
@@ -50,6 +52,26 @@ public class DbColuna extends Objeto {
 		_booSenha = booSenha;
 	}
 
+	private boolean _booVisivelCadastro = true;
+
+	public boolean getBooVisivelCadastro() {
+		return _booVisivelCadastro;
+	}
+
+	public void setBooVisivelCadastro(boolean booVisivelCadastro) {
+		_booVisivelCadastro = booVisivelCadastro;
+	}
+
+	private boolean _booVisivelConsulta = true;
+
+	public boolean getBooVisivelConsulta() {
+		return _booVisivelConsulta;
+	}
+
+	public void setBooVisivelConsulta(boolean booVisivelConsulta) {
+		_booVisivelConsulta = booVisivelConsulta;
+	}
+
 	private DbColuna _clnReferencia;
 
 	public DbColuna getClnReferencia() {
@@ -62,7 +84,7 @@ public class DbColuna extends Objeto {
 
 	private EnmClnTipo _enmClnTipo = EnmClnTipo.INTEGER;
 
-	private EnmClnTipo getEnmClnTipo() {
+	public EnmClnTipo getEnmClnTipo() {
 		return _enmClnTipo;
 	}
 
@@ -70,7 +92,7 @@ public class DbColuna extends Objeto {
 		_enmClnTipo = enmClnTipo;
 	}
 
-	private int _intFrmLinha;
+	private int _intFrmLinha = 1;
 
 	public int getIntFrmLinha() {
 		return _intFrmLinha;
@@ -82,12 +104,22 @@ public class DbColuna extends Objeto {
 
 	private int _intFrmLinhaPeso = 1;
 
-	private int getIntFrmLinhaPeso() {
+	public int getIntFrmLinhaPeso() {
 		return _intFrmLinhaPeso;
 	}
 
 	public void setIntFrmLinhaPeso(int intFrmLinhaPeso) {
 		_intFrmLinhaPeso = intFrmLinhaPeso;
+	}
+
+	private int _intTamanhoCampo = 50;
+
+	public int getIntTamanhoCampo() {
+		return _intTamanhoCampo;
+	}
+
+	public void setIntTamanhoCampo(int intTamanhoCampo) {
+		_intTamanhoCampo = intTamanhoCampo;
 	}
 
 	private List<String> _lstStrOpcao;
@@ -119,28 +151,11 @@ public class DbColuna extends Objeto {
 
 	private CampoFrmTbl _objCampoFrmTbl;
 
-	private CampoFrmTbl getObjCampoFrmTbl() {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-
-			if (_objCampoFrmTbl == null) {
-				_objCampoFrmTbl = new CampoFrmTbl(this);
-			}
-
-			// FIM AÇÕES
-		} catch (Exception ex) {
-
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
-
+	public CampoFrmTbl getObjCampoFrmTbl() {
 		return _objCampoFrmTbl;
 	}
 
-	private void setObjCampoFrmTbl(CampoFrmTbl objCampoFrmTbl) {
+	public void setObjCampoFrmTbl(CampoFrmTbl objCampoFrmTbl) {
 		_objCampoFrmTbl = objCampoFrmTbl;
 	}
 
@@ -238,15 +253,48 @@ public class DbColuna extends Objeto {
 	// MÉTODOS
 
 	/**
-	 * Adiciona um campo ao formulário passado como parâmetro.
+	 * Carrega "comboBox" com os devidos valores de acordo com a tabela
+	 * referenciada ou as opções default da coluna.
 	 */
-	public void adicionarCampoFrm() {
+	public void carregarComboBox(CampoComboBox objCampoComboBox) {
 		// VARIÁVEIS
+
+		int intIndex;
+		ResultSet objResultSet;
+
 		// FIM VARIÁVEIS
 		try {
 			// AÇÕES
 
-			this.getObjCampoFrmTbl().setTagPai(this.getTbl().getFrmTbl());
+			if (this.getClnReferencia() != null) {
+
+				objResultSet = this.getClnReferencia().getTbl().getObjResultSetNomeValor();
+
+				if (objResultSet != null && objResultSet.first()) {
+
+					do {
+
+						objCampoComboBox.getLstStrValor().add(objResultSet.getString(1));
+						objCampoComboBox.getLstStrNome().add(objResultSet.getString(2));
+
+					} while (objResultSet.next());
+
+					return;
+				}
+			}
+
+			if (this.getLstStrOpcao().size() > 0) {
+
+				intIndex = 0;
+
+				for (String strOpcao : this.getLstStrOpcao()) {
+
+					objCampoComboBox.getLstStrValor().add(String.valueOf(++intIndex));
+					objCampoComboBox.getLstStrNome().add(strOpcao);
+				}
+
+				return;
+			}
 
 			// FIM AÇÕES
 		} catch (Exception ex) {

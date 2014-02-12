@@ -95,6 +95,7 @@ public class Campo extends Tag {
 			case TEXT_AREA:
 				this.setStrTagNome("textarea");
 				this.setBooForcarTagDupla(true);
+				this.adicionarAtr("rows", "10");
 				break;
 			case TIME:
 				this.getAtrType().setStrValor("time");
@@ -178,6 +179,7 @@ public class Campo extends Tag {
 			// AÇÕES
 
 			this.setStrTagNome("input");
+			this.adicionarCss(CssTag.getCssMainInstancia().addCss("box-sizing", "border-box"));
 			PaginaHtml.getI().getLstObjJavaScriptTag().add(new JavaScriptTag("res/js/lib/JDigo/html/Campo.js"));
 
 			// FIM AÇÕES

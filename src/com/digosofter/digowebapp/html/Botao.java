@@ -19,11 +19,11 @@ public class Botao extends Tag {
 
 			this.setStrTagNome("button");
 			this.setStrConteudo("Botão");
-			this.getLstAtr().add(new Atributo("type", "button"));
-			this.adicionarCss(CssTag.getCssMainInstancia().setPaddingTop(5));
-			this.adicionarCss(CssTag.getCssMainInstancia().setPaddingBottom(5));
-			this.adicionarCss(CssTag.getCssMainInstancia().setPaddingLeft(15));
-			this.adicionarCss(CssTag.getCssMainInstancia().setPaddingRight(15));
+			this.adicionarCss(CssTag.getCssMainInstancia().setFloat("right"));
+			this.adicionarCss(CssTag.getCssMainInstancia().setPaddingBottom(7));
+			this.adicionarCss(CssTag.getCssMainInstancia().setPaddingLeft(25));
+			this.adicionarCss(CssTag.getCssMainInstancia().setPaddingRight(25));
+			this.adicionarCss(CssTag.getCssMainInstancia().setPaddingTop(7));
 
 			PaginaHtml.getI().getLstObjJavaScriptTag().add(new JavaScriptTag("res/js/lib/JDigo/html/Botao.js"));
 

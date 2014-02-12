@@ -1,6 +1,4 @@
-package com.digosofter.digowebapp.tabelas;
-
-import java.sql.ResultSet;
+package com.digosofter.digowebapp.tabela;
 
 import com.digosofter.digowebapp.database.DataBase;
 import com.digosofter.digowebapp.database.DbColuna;
@@ -23,6 +21,10 @@ public abstract class TblMain extends DbTabela {
 
 			if (_clnBooAtivo == null) {
 				_clnBooAtivo = new DbColuna("booAtivo", this, DbColuna.EnmClnTipo.BOOLEAN);
+				_clnBooAtivo.setBooVisivelCadastro(false);
+				_clnBooAtivo.setBooVisivelConsulta(false);
+				_clnBooAtivo.setIntFrmLinha(2);
+				_clnBooAtivo.setIntFrmLinhaPeso(2);
 			}
 
 			// FIM AÇÕES
@@ -36,29 +38,6 @@ public abstract class TblMain extends DbTabela {
 		return _clnBooAtivo;
 	}
 
-	private DbColuna _clnBooExcluido;
-
-	public DbColuna getClnBooExcluido() {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-
-			if (_clnBooExcluido == null) {
-				_clnBooExcluido = new DbColuna("booExcluido", this, DbColuna.EnmClnTipo.BOOLEAN);
-			}
-
-			// FIM AÇÕES
-		} catch (Exception ex) {
-
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
-
-		return _clnBooExcluido;
-	}
-
 	private DbColuna _clnDttAlteracao;
 
 	public DbColuna getClnDttAlteracao() {
@@ -69,6 +48,8 @@ public abstract class TblMain extends DbTabela {
 
 			if (_clnDttAlteracao == null) {
 				_clnDttAlteracao = new DbColuna("dttAlteracao", this, DbColuna.EnmClnTipo.TIMESTAMP_WITHOUT_TIME_ZONE);
+				_clnDttAlteracao.setBooVisivelCadastro(false);
+				_clnDttAlteracao.setBooVisivelConsulta(false);
 			}
 
 			// FIM AÇÕES
@@ -92,6 +73,8 @@ public abstract class TblMain extends DbTabela {
 
 			if (_clnDttCadastro == null) {
 				_clnDttCadastro = new DbColuna("dttCadastro", this, DbColuna.EnmClnTipo.TIMESTAMP_WITHOUT_TIME_ZONE);
+				_clnDttCadastro.setBooVisivelCadastro(false);
+				_clnDttCadastro.setBooVisivelConsulta(false);
 			}
 
 			// FIM AÇÕES
@@ -115,6 +98,8 @@ public abstract class TblMain extends DbTabela {
 
 			if (_clnDttExclusao == null) {
 				_clnDttExclusao = new DbColuna("dttExclusao", this, DbColuna.EnmClnTipo.TIMESTAMP_WITHOUT_TIME_ZONE);
+				_clnDttExclusao.setBooVisivelCadastro(false);
+				_clnDttExclusao.setBooVisivelConsulta(false);
 			}
 
 			// FIM AÇÕES
@@ -140,6 +125,8 @@ public abstract class TblMain extends DbTabela {
 
 				_clnIntId = new DbColuna("intId", this, DbColuna.EnmClnTipo.BIGSERIAL);
 				_clnIntId.setBooChavePrimaria(true);
+				_clnIntId.setBooVisivelCadastro(false);
+				_clnIntId.setBooVisivelConsulta(false);
 			}
 
 			// FIM AÇÕES
@@ -164,15 +151,6 @@ public abstract class TblMain extends DbTabela {
 		// FIM VARIÁVEIS
 		try {
 			// AÇÕES
-
-			this.getClnBooAtivo();
-			this.getClnBooExcluido();
-			this.getClnDttAlteracao();
-			this.getClnDttCadastro();
-			this.getClnDttExclusao();
-			this.getClnIntId();
-			this.getClnNome();
-
 			// FIM AÇÕES
 		} catch (Exception ex) {
 

@@ -236,6 +236,29 @@ public class Tag extends Objeto {
 		_strLink = strLink + "\"target=\"_blank\"";
 	}
 
+	private String _strNome;
+
+	public void setStrNome(String strNome) {
+
+		super.setStrNome(strNome);
+
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			_strNome = strNome;
+			this.adicionarAtr("name", _strNome);
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+	}
+
 	private String _strTagNome = "div";
 
 	protected String getStrTagNome() {
