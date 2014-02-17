@@ -806,6 +806,7 @@ public abstract class DbTabela extends Objeto {
 
 		return intResultado;
 	}
+
 	// FIM MÉTODOS
 
 	// EVENTOS

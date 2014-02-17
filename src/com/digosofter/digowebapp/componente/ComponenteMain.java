@@ -1,11 +1,11 @@
 package com.digosofter.digowebapp.componente;
 
-import com.digosofter.digowebapp.Objeto;
 import com.digosofter.digowebapp.erro.Erro;
 import com.digosofter.digowebapp.html.CssTag;
 import com.digosofter.digowebapp.html.Painel;
+import com.digosofter.digowebapp.html.Tag;
 
-public abstract class ComponenteMain extends Objeto {
+public abstract class ComponenteMain extends Tag {
 	// CONSTANTES
 	// FIM CONSTANTES
 

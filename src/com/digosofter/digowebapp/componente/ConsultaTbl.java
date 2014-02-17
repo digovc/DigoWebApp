@@ -181,31 +181,31 @@ public class ConsultaTbl extends ComponenteMain {
 	private void montarLayoutLinha(ResultSet objResultSet) {
 		// VARIÁVEIS
 
-		String strNome;
-		String strValor;
-
-		LinhaConsultaTbl objLinhaConsultaTbl;
+//		String strNome;
+//		String strValor;
+//
+//		LinhaConsultaTbl objLinhaConsultaTbl;
 
 		// FIM VARIÁVEIS
 		try {
 			// AÇÕES
 
-			objLinhaConsultaTbl = new LinhaConsultaTbl();
-			objLinhaConsultaTbl.setStrNome(objResultSet.getString(this.getTbl().getClnNome().getStrNomeSimplificado()));
-
-			for (DbColuna cln : this.getTbl().getLstClnVisivelConsulta()) {
-
-				if (!cln.getBooClnNome()) {
-
-					strNome = cln.getStrNomeExibicao();
-					objLinhaConsultaTbl.getLstStrNome().add(strNome);
-					strValor = objResultSet.getString(cln.getStrNomeSimplificado());
-					objLinhaConsultaTbl.getLstStrValor().add(strValor);
-				}
-			}
-
-			objLinhaConsultaTbl.getPnlContainer().setTagPai(this.getPnlLista());
-			objLinhaConsultaTbl.montarLayout();
+//			objLinhaConsultaTbl = new LinhaConsultaTbl();
+//			objLinhaConsultaTbl.setStrNome(objResultSet.getString(this.getTbl().getClnNome().getStrNomeSimplificado()));
+//
+//			for (DbColuna cln : this.getTbl().getLstClnVisivelConsulta()) {
+//
+//				if (!cln.getBooClnNome()) {
+//
+//					strNome = cln.getStrNomeExibicao();
+//					objLinhaConsultaTbl.getLstStrNome().add(strNome);
+//					strValor = objResultSet.getString(cln.getStrNomeSimplificado());
+//					objLinhaConsultaTbl.getLstStrValor().add(strValor);
+//				}
+//			}
+//
+//			objLinhaConsultaTbl.getPnlContainer().setTagPai(this.getPnlLista());
+//			objLinhaConsultaTbl.montarLayout();
 
 			// FIM AÇÕES
 		} catch (Exception ex) {
