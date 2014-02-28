@@ -8,9 +8,9 @@ import com.digosofter.digowebapp.html.PaginaHtml;
 
 public class PaletaCor extends Objeto {
 
-	// FIM CONSTANTES
 
-	// ATRIBUTOS
+
+
 
 	private boolean _booSelecionado;
 
@@ -178,9 +178,9 @@ public class PaletaCor extends Objeto {
 		}
 	}
 
-	// FIM ATRIBUTOS
 
-	// CONSTRUTORES
+
+
 
 	public void setStrCorControleNormal(String strCorControleNormal) {
 		// VARIÁVEIS
@@ -206,9 +206,9 @@ public class PaletaCor extends Objeto {
 		}
 	}
 
-	// FIM CONSTRUTORES
 
-	// MÉTODOS
+
+
 
 	public void setStrCorFundo(String strCorFundo) {
 		// VARIÁVEIS
@@ -233,8 +233,8 @@ public class PaletaCor extends Objeto {
 		}
 	}
 
-	// FIM MÉTODOS
 
-	// EVENTOS
-	// FIM EVENTOS
+
+
+
 }

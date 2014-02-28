@@ -12,9 +12,9 @@ import com.digosofter.digowebapp.html.Painel;
 
 public class FormularioTbl extends ComponenteMain {
 
-	// FIM CONSTANTES
 
-	// ATRIBUTOS
+
+
 
 	private Botao _btnSalvar;
 
@@ -171,17 +171,17 @@ public class FormularioTbl extends ComponenteMain {
 		return _pnlCampos;
 	}
 
-	// FIM ATRIBUTOS
 
-	// CONSTRUTORES
+
+
 
 	private DbTabela getTbl() {
 		return _tbl;
 	}
 
-	// FIM CONSTRUTORES
 
-	// MÉTODOS
+
+
 
 	@Override
 	public void montarLayout() {
@@ -296,8 +296,8 @@ public class FormularioTbl extends ComponenteMain {
 		_tbl = tbl;
 	}
 
-	// FIM MÉTODOS
 
-	// EVENTOS
-	// FIM EVENTOS
+
+
+
 }

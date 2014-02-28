@@ -7,9 +7,9 @@ import com.digosofter.digowebapp.erro.Erro;
 
 public abstract class TblMain extends DbTabela {
 
-	// FIM CONSTANTES
 
-	// ATRIBUTOS
+
+
 
 	private DbColuna _clnBooAtivo;
 
@@ -21,7 +21,7 @@ public abstract class TblMain extends DbTabela {
 
 	private DbColuna _clnIntId;
 
-	// CONSTRUTORES
+
 	public TblMain(String strNome, DataBase objDataBase) {
 
 		super(strNome, objDataBase);
@@ -97,7 +97,7 @@ public abstract class TblMain extends DbTabela {
 		return _clnDttAlteracao;
 	}
 
-	// FIM ATRIBUTOS
+
 
 	public DbColuna getClnDttCadastro() {
 		// VARIÁVEIS
@@ -123,9 +123,9 @@ public abstract class TblMain extends DbTabela {
 		return _clnDttCadastro;
 	}
 
-	// FIM CONSTRUTORES
 
-	// MÉTODOS
+
+
 
 	public DbColuna getClnDttExclusao() {
 		// VARIÁVEIS
@@ -177,8 +177,8 @@ public abstract class TblMain extends DbTabela {
 		return _clnIntId;
 	}
 
-	// FIM MÉTODOS
 
-	// EVENTOS
-	// FIM EVENTOS
+
+
+
 }

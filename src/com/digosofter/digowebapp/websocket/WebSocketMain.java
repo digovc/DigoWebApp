@@ -11,18 +11,18 @@ public abstract class WebSocketMain extends WebSocketServlet {
 
 	private static final long serialVersionUID = 1L;
 
-	// FIM CONSTANTES
 
-	// ATRIBUTOS
-	// FIM ATRIBUTOS
 
-	// CONSTRUTORES
-	// FIM CONSTRUTORES
 
-	// MÉTODOS
-	// FIM MÉTODOS
 
-	// EVENTOS
+
+
+
+
+
+
+
+
 
 	@Override
 	protected StreamInbound createWebSocketInbound(String arg0,
@@ -42,5 +42,5 @@ public abstract class WebSocketMain extends WebSocketServlet {
 		return null;
 	}
 
-	// FIM EVENTOS
+
 }

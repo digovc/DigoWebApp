@@ -8,9 +8,9 @@ import com.digosofter.digowebapp.erro.Erro;
 
 public class JavaScriptTag extends Tag {
 
-	// FIM CONSTANTES
 
-	// ATRIBUTOS
+
+
 
 	private Atributo _atrSrc;
 
@@ -91,9 +91,9 @@ public class JavaScriptTag extends Tag {
 		return _strSrc;
 	}
 
-	// FIM ATRIBUTOS
 
-	// CONSTRUTORES
+
+
 
 	@Override
 	public String getStrTagFormatada() {
@@ -126,9 +126,9 @@ public class JavaScriptTag extends Tag {
 		return super.getStrTagFormatada();
 	}
 
-	// FIM CONSTRUTORES
 
-	// MÉTODOS
+
+
 
 	public void setIntPrioridade(int intPrioridade) {
 		_intPrioridade = intPrioridade;
@@ -155,8 +155,8 @@ public class JavaScriptTag extends Tag {
 		}
 	}
 
-	// FIM MÉTODOS
 
-	// EVENTOS
-	// FIM EVENTOS
+
+
+
 }

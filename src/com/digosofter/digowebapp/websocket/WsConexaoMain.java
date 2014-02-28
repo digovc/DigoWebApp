@@ -16,9 +16,9 @@ import com.google.gson.Gson;
 
 public abstract class WsConexaoMain extends MessageInbound {
 
-	// FIM CONSTANTES
 
-	// ATRIBUTOS
+
+
 
 	public static WsConexaoMain getObjWsConexaoMainPeloIntUsuarioId(
 			int intUsuarioId) {
@@ -98,17 +98,17 @@ public abstract class WsConexaoMain extends MessageInbound {
 		return _objUsuario;
 	}
 
-	// FIM ATRIBUTOS
 
-	// CONSTRUTORES
+
+
 
 	private WsOutbound getObjWsOutbound() {
 		return _objWsOutbound;
 	}
 
-	// FIM CONSTRUTORES
 
-	// MÉTODOS
+
+
 
 	@Override
 	protected void onBinaryMessage(ByteBuffer arg0) throws IOException {
@@ -146,9 +146,9 @@ public abstract class WsConexaoMain extends MessageInbound {
 		}
 	}
 
-	// FIM MÉTODOS
 
-	// EVENTOS
+
+
 
 	@Override
 	protected void onOpen(WsOutbound outbound) {
@@ -210,5 +210,5 @@ public abstract class WsConexaoMain extends MessageInbound {
 		_objWsOutbound = objWsOutbound;
 	}
 
-	// FIM EVENTOS
+
 }

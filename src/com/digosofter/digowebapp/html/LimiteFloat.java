@@ -4,12 +4,12 @@ import com.digosofter.digowebapp.erro.Erro;
 
 public class LimiteFloat extends Tag {
 
-	// FIM CONSTANTES
 
-	// ATRIBUTOS
-	// FIM ATRIBUTOS
 
-	// CONSTRUTORES
+
+
+
+
 
 	public LimiteFloat() {
 		// VARIÁVEIS
@@ -30,11 +30,11 @@ public class LimiteFloat extends Tag {
 		}
 	}
 
-	// FIM CONSTRUTORES
 
-	// MÉTODOS
-	// FIM MÉTODOS
 
-	// EVENTOS
-	// FIM EVENTOS
+
+
+
+
+
 }

@@ -8,9 +8,9 @@ public class Formulario extends Tag {
 		GET, POST
 	}
 
-	// FIM CONSTANTES
 
-	// ATRIBUTOS
+
+
 
 	private EnmMetodo _enmMetodo = EnmMetodo.POST;
 
@@ -82,9 +82,9 @@ public class Formulario extends Tag {
 		}
 	}
 
-	// FIM ATRIBUTOS
 
-	// CONSTRUTORES
+
+
 
 	private void setStrAction(String strAction) {
 		// VARIÁVEIS
@@ -104,11 +104,11 @@ public class Formulario extends Tag {
 		}
 	}
 
-	// FIM CONSTRUTORES
 
-	// MÉTODOS
-	// FIM MÉTODOS
 
-	// EVENTOS
-	// FIM EVENTOS
+
+
+
+
+
 }

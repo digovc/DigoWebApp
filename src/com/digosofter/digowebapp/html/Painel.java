@@ -4,12 +4,12 @@ import com.digosofter.digowebapp.erro.Erro;
 
 public class Painel extends Tag {
 
-	// FIM CONSTANTES
 
-	// ATRIBUTOS
-	// FIM ATRIBUTOS
 
-	// CONSTRUTORES
+
+
+
+
 
 	public Painel() {
 		// VARIÁVEIS
@@ -34,11 +34,11 @@ public class Painel extends Tag {
 		}
 	}
 
-	// FIM CONSTRUTORES
 
-	// MÉTODOS
-	// FIM MÉTODOS
 
-	// EVENTOS
-	// FIM EVENTOS
+
+
+
+
+
 }

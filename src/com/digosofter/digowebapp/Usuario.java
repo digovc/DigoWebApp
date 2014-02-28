@@ -4,10 +4,6 @@ import com.digosofter.digowebapp.erro.Erro;
 
 public class Usuario extends Objeto {
 
-	// FIM CONSTANTES
-
-	// ATRIBUTOS
-
 	public static Usuario getObjUsuarioPelaSessionId(String strSessionId) {
 		// VARIÁVEIS
 
@@ -74,24 +70,12 @@ public class Usuario extends Objeto {
 		_booLogado = booLogado;
 	}
 
-	// FIM ATRIBUTOS
-
-	// CONSTRUTORES
-
 	public void setIntUsuarioId(int intUsuarioId) {
 		_intUsuarioId = intUsuarioId;
 	}
-
-	// FIM CONSTRUTORES
-
-	// MÉTODOS
 
 	public void setStrSessaoId(String strSessaoId) {
 		_strSessaoId = strSessaoId;
 	}
 
-	// FIM MÉTODOS
-
-	// EVENTOS
-	// FIM EVENTOS
 }

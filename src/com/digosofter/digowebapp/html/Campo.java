@@ -9,9 +9,9 @@ public class Campo extends Tag {
 
 	}
 
-	// FIM CONSTANTES
 
-	// ATRIBUTOS
+
+
 
 	private EnmTipo _enmTipo = EnmTipo.TEXT;
 
@@ -170,9 +170,9 @@ public class Campo extends Tag {
 		}
 	}
 
-	// FIM ATRIBUTOS
 
-	// CONSTRUTORES
+
+
 
 	public void setStrPlaceHolder(String strPlaceHolder) {
 		// VARIÁVEIS
@@ -192,11 +192,11 @@ public class Campo extends Tag {
 		}
 	}
 
-	// FIM CONSTRUTORES
 
-	// MÉTODOS
-	// FIM MÉTODOS
 
-	// EVENTOS
-	// FIM EVENTOS
+
+
+
+
+
 }

@@ -4,12 +4,12 @@ import com.digosofter.digowebapp.erro.Erro;
 
 public class Botao extends Tag {
 
-	// FIM CONSTANTES
 
-	// ATRIBUTOS
-	// FIM ATRIBUTOS
 
-	// CONSTRUTORES
+
+
+
+
 
 	public Botao() {
 		// VARIÁVEIS
@@ -37,11 +37,11 @@ public class Botao extends Tag {
 		}
 	}
 
-	// FIM CONSTRUTORES
 
-	// MÉTODOS
-	// FIM MÉTODOS
 
-	// EVENTOS
-	// FIM EVENTOS
+
+
+
+
+
 }

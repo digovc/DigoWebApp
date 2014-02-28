@@ -9,9 +9,9 @@ import com.digosofter.digowebapp.erro.Erro;
 
 public class Tag extends Objeto {
 
-	// FIM CONSTANTES
 
-	// ATRIBUTOS
+
+
 
 	private Atributo _atrClass;
 
@@ -425,12 +425,12 @@ public class Tag extends Objeto {
 		}
 	}
 
-	// FIM ATRIBUTOS
 
-	// CONSTRUTORES
-	// FIM CONSTRUTORES
 
-	// MÉTODOS
+
+
+
+
 
 	protected void setStrTagNome(String strTagNome) {
 		_strTagNome = strTagNome;
@@ -485,8 +485,8 @@ public class Tag extends Objeto {
 		return this.getStrTagFormatada();
 	}
 
-	// FIM MÉTODOS
 
-	// EVENTOS
-	// FIM EVENTOS
+
+
+
 }

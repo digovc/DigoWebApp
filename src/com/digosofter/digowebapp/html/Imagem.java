@@ -4,12 +4,12 @@ import com.digosofter.digowebapp.erro.Erro;
 
 public class Imagem extends Tag {
 
-	// FIM CONSTANTES
 
-	// ATRIBUTOS
-	// FIM ATRIBUTOS
 
-	// CONSTRUTORES
+
+
+
+
 
 	public Imagem() {
 		// VARIÁVEIS
@@ -32,9 +32,9 @@ public class Imagem extends Tag {
 		}
 	}
 
-	// FIM CONSTRUTORES
 
-	// MÉTODOS
+
+
 
 	public void setStrSrc(String strImagemSrc) {
 		// VARIÁVEIS
@@ -53,8 +53,8 @@ public class Imagem extends Tag {
 		}
 	}
 
-	// FIM MÉTODOS
 
-	// EVENTOS
-	// FIM EVENTOS
+
+
+
 }

@@ -7,9 +7,9 @@ import com.digosofter.digowebapp.erro.Erro;
 
 public class CampoComboBox extends Campo {
 
-	// FIM CONSTANTES
 
-	// ATRIBUTOS
+
+
 
 	private List<String> _lstStrNome;
 
@@ -117,7 +117,7 @@ public class CampoComboBox extends Campo {
 		return super.getStrTagFormatada();
 	}
 
-	// FIM MÉTODOS
+
 
 	private String getStrValorSelecionado() {
 		return _strValorSelecionado;
@@ -127,22 +127,22 @@ public class CampoComboBox extends Campo {
 		_lstStrNome = lstStrNome;
 	}
 
-	// FIM ATRIBUTOS
 
-	// CONSTRUTORES
+
+
 
 	public void setLstStrValor(List<String> lstStrValor) {
 		_lstStrValor = lstStrValor;
 	}
 
-	// FIM CONSTRUTORES
 
-	// MÉTODOS
+
+
 
 	public void setStrValorSelecionado(String strValorSelecionado) {
 		_strValorSelecionado = strValorSelecionado;
 	}
 
-	// EVENTOS
-	// FIM EVENTOS
+
+
 }

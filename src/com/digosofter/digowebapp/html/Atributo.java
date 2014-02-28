@@ -9,9 +9,9 @@ import com.digosofter.digowebapp.erro.Erro;
 
 public class Atributo extends Objeto {
 
-	// FIM CONSTANTES
 
-	// ATRIBUTOS
+
+
 
 	private List<String> _lstStrValor = new ArrayList<String>();
 
@@ -78,9 +78,9 @@ public class Atributo extends Objeto {
 		_lstStrValor = lstStrValor;
 	}
 
-	// FIM ATRIBUTOS
 
-	// CONSTRUTORES
+
+
 
 	public void setStrDelimitador(String strDelimitador) {
 		_strDelimitador = strDelimitador;
@@ -106,11 +106,11 @@ public class Atributo extends Objeto {
 		}
 	}
 
-	// FIM CONSTRUTORES
 
-	// MÉTODOS
-	// FIM MÉTODOS
 
-	// EVENTOS
-	// FIM EVENTOS
+
+
+
+
+
 }

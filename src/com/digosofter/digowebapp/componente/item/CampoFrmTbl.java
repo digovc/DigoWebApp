@@ -12,9 +12,9 @@ import com.digosofter.digowebapp.html.Painel;
 
 public class CampoFrmTbl extends ComponenteMain {
 
-	// FIM CONSTANTES
 
-	// ATRIBUTOS
+
+
 
 	private DbColuna _cln;
 
@@ -201,9 +201,9 @@ public class CampoFrmTbl extends ComponenteMain {
 		return intResultado;
 	}
 
-	// FIM ATRIBUTOS
 
-	// CONSTRUTORES
+
+
 
 	private Campo getObjCampo() {
 		// VARIÁVEIS
@@ -234,9 +234,9 @@ public class CampoFrmTbl extends ComponenteMain {
 		return _objCampo;
 	}
 
-	// FIM CONSTRUTORES
 
-	// MÉTODOS
+
+
 
 	private Painel getPnlCampo() {
 		// VARIÁVEIS
@@ -348,8 +348,8 @@ public class CampoFrmTbl extends ComponenteMain {
 		_objCampo = objCampo;
 	}
 
-	// FIM MÉTODOS
 
-	// EVENTOS
-	// FIM EVENTOS
+
+
+
 }

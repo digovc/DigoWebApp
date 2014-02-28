@@ -4,10 +4,6 @@ import com.digosofter.digowebapp.erro.Erro;
 
 public abstract class Objeto {
 
-	// FIM CONSTANTES
-
-	// ATRIBUTOS
-
 	private int _intId;
 
 	private static int _intIndex;
@@ -73,20 +69,8 @@ public abstract class Objeto {
 		_strNome = strNome;
 	}
 
-	// FIM ATRIBUTOS
-
-	// CONSTRUTORES
-
 	public void setStrNomeExibicao(String strNomeExibicao) {
 		_strNomeExibicao = strNomeExibicao;
 	}
-
-	// FIM CONSTRUTORES
-
-	// MÉTODOS
-	// FIM MÉTODOS
-
-	// EVENTOS
-	// FIM EVENTOS
 
 }

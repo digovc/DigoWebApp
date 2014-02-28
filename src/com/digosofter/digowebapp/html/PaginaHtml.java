@@ -11,9 +11,9 @@ import com.digosofter.digowebapp.erro.Erro;
 
 public class PaginaHtml extends Objeto {
 
-	// FIM CONSTANTES
 
-	// ATRIBUTOS
+
+
 
 	private static PaginaHtml i;
 
@@ -398,9 +398,9 @@ public class PaginaHtml extends Objeto {
 		return _tagHead;
 	}
 
-	// FIM ATRIBUTOS
 
-	// CONSTRUTORES
+
+
 
 	private Tag getTagHtml() {
 		// VARIÁVEIS
@@ -428,9 +428,9 @@ public class PaginaHtml extends Objeto {
 		return _tagHtml;
 	}
 
-	// FIM CONSTRUTORES
 
-	// MÉTODOS
+
+
 
 	private Tag getTagMeta() {
 		// VARIÁVEIS
@@ -588,8 +588,8 @@ public class PaginaHtml extends Objeto {
 		return this.getStrPaginaFormatada();
 	}
 
-	// FIM MÉTODOS
 
-	// EVENTOS
-	// FIM EVENTOS
+
+
+
 }

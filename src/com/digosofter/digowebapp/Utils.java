@@ -19,16 +19,6 @@ public abstract class Utils {
 
 	public static final String STRING_VAZIA = "";
 
-	// FIM CONSTANTES
-
-	// ATRIBUTOS
-	// FIM ATRIBUTOS
-
-	// CONSTRUTORES
-	// FIM CONSTRUTORES
-
-	// MÉTODOS
-
 	public static boolean getBooStrVazia(String str) {
 		// VARIÁVEIS
 
@@ -283,8 +273,4 @@ public abstract class Utils {
 		return strComplexa;
 	}
 
-	// FIM MÉTODOS
-
-	// EVENTOS
-	// FIM EVENTOS
 }

@@ -4,9 +4,9 @@ import com.digosofter.digowebapp.erro.Erro;
 
 public class AtributoCss extends Atributo {
 
-	// FIM CONSTANTES
 
-	// ATRIBUTOS
+
+
 
 	private String _strClassAssociada;
 
@@ -35,19 +35,19 @@ public class AtributoCss extends Atributo {
 		return _strClassAssociada;
 	}
 
-	// FIM ATRIBUTOS
 
-	// CONSTRUTORES
+
+
 
 	public void setStrClassAssociada(String strClassAssociada) {
 		_strClassAssociada = strClassAssociada;
 	}
 
-	// FIM CONSTRUTORES
 
-	// MÉTODOS
-	// FIM MÉTODOS
 
-	// EVENTOS
-	// FIM EVENTOS
+
+
+
+
+
 }

@@ -5,9 +5,9 @@ import com.digosofter.digowebapp.erro.Erro;
 
 public class WsObjetoMain extends Objeto {
 
-	// FIM CONSTANTES
 
-	// ATRIBUTOS
+
+
 
 	private int _intMensagemId;
 
@@ -42,19 +42,19 @@ public class WsObjetoMain extends Objeto {
 		_intMensagemId = intMensagemId;
 	}
 
-	// FIM ATRIBUTOS
 
-	// CONSTRUTORES
+
+
 
 	public void setStrJsonFilho(String strJsonFilho) {
 		_strJsonFilho = strJsonFilho;
 	}
 
-	// FIM CONSTRUTORES
 
-	// MÉTODOS
-	// FIM MÉTODOS
 
-	// EVENTOS
-	// FIM EVENTOS
+
+
+
+
+
 }

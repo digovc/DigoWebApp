@@ -13,9 +13,9 @@ import com.digosofter.digowebapp.erro.Erro;
 
 public abstract class DataBase extends Objeto {
 
-	// FIM CONSTANTES
 
-	// ATRIBUTOS
+
+
 
 	private int _intPort = 5432;
 
@@ -214,17 +214,17 @@ public abstract class DataBase extends Objeto {
 
 	protected abstract String getStrPackegeClassName();
 
-	// FIM ATRIBUTOS
 
-	// CONSTRUTORES
+
+
 
 	private String getStrPassword() {
 		return _strPassword;
 	}
 
-	// FIM CONSTRUTORES
 
-	// MÉTODOS
+
+
 
 	private String getStrUser() {
 		return _strUser;
@@ -250,8 +250,8 @@ public abstract class DataBase extends Objeto {
 		_strUser = strUser;
 	}
 
-	// FIM MÉTODOS
 
-	// EVENTOS
-	// FIM EVENTOS
+
+
+
 }

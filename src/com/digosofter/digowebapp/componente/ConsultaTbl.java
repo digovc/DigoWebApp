@@ -11,9 +11,9 @@ import com.digosofter.digowebapp.html.Painel;
 
 public class ConsultaTbl extends ComponenteMain {
 
-	// FIM CONSTANTES
 
-	// ATRIBUTOS
+
+
 
 	private Botao _btnNovo;
 
@@ -138,9 +138,9 @@ public class ConsultaTbl extends ComponenteMain {
 		return _tbl;
 	}
 
-	// FIM ATRIBUTOS
 
-	// CONSTRUTORES
+
+
 
 	@Override
 	public void montarLayout() {
@@ -165,9 +165,9 @@ public class ConsultaTbl extends ComponenteMain {
 		}
 	}
 
-	// FIM CONSTRUTORES
 
-	// MÉTODOS
+
+
 
 	/**
 	 * Monta o layout de uma linha baseado no registro posicionado no objeto
@@ -247,8 +247,8 @@ public class ConsultaTbl extends ComponenteMain {
 		_tbl = tbl;
 	}
 
-	// FIM MÉTODOS
 
-	// EVENTOS
-	// FIM EVENTOS
+
+
+
 }

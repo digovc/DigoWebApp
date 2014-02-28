@@ -4,9 +4,9 @@ import com.digosofter.digowebapp.Objeto;
 
 public class Erro extends Objeto {
 
-	// FIM CONSTANTES
 
-	// ATRIBUTOS
+
+
 
 	private String _strMensagem;
 
@@ -27,31 +27,31 @@ public class Erro extends Objeto {
 		}
 	}
 
-	private String getStrMensagem() {
+	protected String getStrMensagem() {
 		return _strMensagem;
 	}
 
-	private String getStrMensagemDetalhada() {
+	protected String getStrMensagemDetalhada() {
 		return _strMensagemDetalhada;
 	}
 
-	private void setStrMensagem(String strMensagem) {
+	protected void setStrMensagem(String strMensagem) {
 		_strMensagem = strMensagem;
 	}
 
-	// FIM ATRIBUTOS
 
-	// CONSTRUTORES
 
-	private void setStrMensagemDetalhada(String strMensagemDetalhada) {
+
+
+	protected void setStrMensagemDetalhada(String strMensagemDetalhada) {
 		_strMensagemDetalhada = strMensagemDetalhada;
 	}
 
-	// FIM CONSTRUTORES
 
-	// MÉTODOS
-	// FIM MÉTODOS
 
-	// EVENTOS
-	// FIM EVENTOS
+
+
+
+
+
 }

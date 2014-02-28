@@ -6,9 +6,9 @@ import com.digosofter.digowebapp.erro.Erro;
 
 public class DbFiltro extends Objeto {
 
-	// FIM CONSTANTES
 
-	// ATRIBUTOS
+
+
 
 	private boolean _booAndOr = true;
 
@@ -78,9 +78,9 @@ public class DbFiltro extends Objeto {
 		_booSelect = booSelect;
 	}
 
-	// FIM ATRIBUTOS
 
-	// CONSTRUTORES
+
+
 
 	public void setStrOperador(String strOperador) {
 		_strOperador = strOperador;
@@ -90,9 +90,9 @@ public class DbFiltro extends Objeto {
 		_strValor = strValor;
 	}
 
-	// FIM CONSTRUTORES
 
-	// MÉTODOS
+
+
 
 	@Override
 	public String toString() {
@@ -139,8 +139,8 @@ public class DbFiltro extends Objeto {
 		return strDbFiltroResultado;
 	}
 
-	// FIM MÉTODOS
 
-	// EVENTOS
-	// FIM EVENTOS
+
+
+
 }

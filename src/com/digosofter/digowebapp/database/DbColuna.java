@@ -17,9 +17,9 @@ public class DbColuna extends Objeto {
 		BIGINT, BIGSERIAL, BOOLEAN, CHAR, DATE, DECIMAL, DOUBLE, INTEGER, INTERVAL, MONEY, NUMERIC, REAL, SERIAL, SMALLINT, TEXT, TIME_WITH_TIME_ZONE, TIME_WITHOUT_TIME_ZONE, TIMESTAMP_WITH_TIME_ZONE, TIMESTAMP_WITHOUT_TIME_ZONE, VARCHAR
 	}
 
-	// FIM CONSTANTES
 
-	// ATRIBUTOS
+
+
 
 	private boolean _booChavePrimaria = false;
 
@@ -290,17 +290,17 @@ public class DbColuna extends Objeto {
 		_objCampoFrmTbl = objCampoFrmTbl;
 	}
 
-	// FIM ATRIBUTOS
 
-	// CONSTRUTORES
+
+
 
 	public void setStrValor(String strValor) {
 		_strValor = strValor;
 	}
 
-	// FIM CONSTRUTORES
 
-	// MÉTODOS
+
+
 
 	private void setTbl(DbTabela tbl) {
 		// VARIÁVEIS
@@ -320,8 +320,8 @@ public class DbColuna extends Objeto {
 		}
 	}
 
-	// FIM MÉTODOS
 
-	// EVENTOS
-	// FIM EVENTOS
+
+
+
 }

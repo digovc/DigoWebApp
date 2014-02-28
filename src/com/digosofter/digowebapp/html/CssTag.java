@@ -64,9 +64,9 @@ public class CssTag extends Tag {
 
 	public static final String CSS_TEXT_DECORATION_NONE = "none";
 
-	// FIM CONSTANTES
 
-	// ATRIBUTOS
+
+
 
 	private static CssTag _cssMainInstancia;
 
@@ -146,9 +146,9 @@ public class CssTag extends Tag {
 		return _lstAtrCss;
 	}
 
-	// FIM ATRIBUTOS
 
-	// CONSTRUTORES
+
+
 
 	@Override
 	public String getStrConteudo() {
@@ -192,9 +192,9 @@ public class CssTag extends Tag {
 		return _strConteudo;
 	}
 
-	// FIM CONSTRUTORES
 
-	// MÉTODOS
+
+
 
 	public String setBackgroundColor(String hexColor) {
 		// VARIÁVEIS
@@ -1386,8 +1386,8 @@ public class CssTag extends Tag {
 		return strClassAssociada;
 	}
 
-	// FIM MÉTODOS
 
-	// EVENTOS
-	// FIM EVENTOS
+
+
+
 }

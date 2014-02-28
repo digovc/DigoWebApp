@@ -7,12 +7,12 @@ public class DbPostgresql extends DataBase {
 	private static final String STR_DRIVE_NAME = "postgresql";
 	private static final String STR_PACKEGE_CLASS_NAME = "org.postgresql.Driver";
 
-	// FIM CONSTANTES
 
-	// ATRIBUTOS
-	// FIM ATRIBUTOS
 
-	// CONSTRUTORES
+
+
+
+
 
 	public DbPostgresql(String strHost, int intPort, String strDbName,
 			String strUser, String strPassword) {
@@ -32,9 +32,9 @@ public class DbPostgresql extends DataBase {
 		}
 	}
 
-	// FIM CONSTRUTORES
 
-	// MÉTODOS
+
+
 
 	@Override
 	protected String getStrDriveName() {
@@ -46,8 +46,8 @@ public class DbPostgresql extends DataBase {
 		return STR_PACKEGE_CLASS_NAME;
 	}
 
-	// FIM MÉTODOS
 
-	// EVENTOS
-	// FIM EVENTOS
+
+
+
 }

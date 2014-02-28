@@ -7,9 +7,9 @@ import com.digosofter.digowebapp.html.Tag;
 
 public abstract class ComponenteMain extends Tag {
 
-	// FIM CONSTANTES
 
-	// ATRIBUTOS
+
+
 
 	private Painel _pnlComando;
 
@@ -85,12 +85,12 @@ public abstract class ComponenteMain extends Tag {
 		return _pnlTitulo;
 	}
 
-	// FIM ATRIBUTOS
 
-	// CONSTRUTORES
-	// FIM CONSTRUTORES
 
-	// MÉTODOS
+
+
+
+
 
 	/**
 	 * Retorna o componente pronto para ser usado no html.
@@ -122,8 +122,8 @@ public abstract class ComponenteMain extends Tag {
 	 */
 	public abstract void montarLayout();
 
-	// FIM MÉTODOS
 
-	// EVENTOS
-	// FIM EVENTOS
+
+
+
 }

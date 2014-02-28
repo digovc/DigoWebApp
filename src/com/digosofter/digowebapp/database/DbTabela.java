@@ -14,9 +14,9 @@ import com.digosofter.digowebapp.html.Tag;
 
 public abstract class DbTabela extends Objeto {
 
-	// FIM CONSTANTES
 
-	// ATRIBUTOS
+
+
 
 	private DbColuna _clnChavePrimaria;
 
@@ -287,9 +287,9 @@ public abstract class DbTabela extends Objeto {
 		return _lstClnVisivelCadastro;
 	}
 
-	// FIM ATRIBUTOS
 
-	// CONSTRUTORES
+
+
 
 	public List<DbColuna> getLstClnVisivelConsulta() {
 		// VARIÁVEIS
@@ -320,9 +320,9 @@ public abstract class DbTabela extends Objeto {
 		return _lstClnVisivelConsulta;
 	}
 
-	// FIM CONSTRUTORES
 
-	// MÉTODOS
+
+
 
 	/**
 	 * Retorna uma "List<Integer>" contendo toda a coluna indicada no parâmetro
@@ -803,8 +803,8 @@ public abstract class DbTabela extends Objeto {
 		this.limparColunas();
 	}
 
-	// FIM MÉTODOS
 
-	// EVENTOS
-	// FIM EVENTOS
+
+
+
 }
