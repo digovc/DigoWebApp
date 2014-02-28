@@ -3,7 +3,6 @@ package com.digosofter.digowebapp.html;
 import com.digosofter.digowebapp.erro.Erro;
 
 public class Campo extends Tag {
-	// CONSTANTES
 
 	public enum EnmTipo {
 		BUTTON, CHECKBOX, COLOR, DATE, DATETIME, DATETIME_LOCAL, EMAIL, FILE, HIDDEN, IMAGE, MONTH, NUMBER, PASSWORD, RADIO, RANGE, RESET, SEARCH, SUBMIT, TEL, TEXT, TEXT_AREA, TIME, URL, WEEK
@@ -16,8 +15,37 @@ public class Campo extends Tag {
 
 	private EnmTipo _enmTipo = EnmTipo.TEXT;
 
+	private String _strId;
+
+	private String _strPlaceHolder;
+
+	public Campo() {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			this.setStrTagNome("input");
+			this.adicionarCss(CssTag.getCssMainInstancia().addCss("box-sizing",
+					"border-box"));
+			PaginaHtml.getI().getLstObjJavaScriptTag()
+					.add(new JavaScriptTag("res/js/lib/JDigo/html/Campo.js"));
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+	}
+
 	private EnmTipo getEnmTipo() {
 		return _enmTipo;
+	}
+
+	private String getStrPlaceHolder() {
+		return _strPlaceHolder;
 	}
 
 	public void setEnmTipo(EnmTipo enmTipo) {
@@ -120,8 +148,6 @@ public class Campo extends Tag {
 		}
 	}
 
-	private String _strId;
-
 	@Override
 	public void setStrId(String strId) {
 
@@ -144,11 +170,9 @@ public class Campo extends Tag {
 		}
 	}
 
-	private String _strPlaceHolder;
+	// FIM ATRIBUTOS
 
-	private String getStrPlaceHolder() {
-		return _strPlaceHolder;
-	}
+	// CONSTRUTORES
 
 	public void setStrPlaceHolder(String strPlaceHolder) {
 		// VARIÁVEIS
@@ -158,29 +182,6 @@ public class Campo extends Tag {
 
 			_strPlaceHolder = strPlaceHolder;
 			this.getLstAtr().add(new Atributo("placeholder", _strPlaceHolder));
-
-			// FIM AÇÕES
-		} catch (Exception ex) {
-
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
-	}
-
-	// FIM ATRIBUTOS
-
-	// CONSTRUTORES
-
-	public Campo() {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-
-			this.setStrTagNome("input");
-			this.adicionarCss(CssTag.getCssMainInstancia().addCss("box-sizing", "border-box"));
-			PaginaHtml.getI().getLstObjJavaScriptTag().add(new JavaScriptTag("res/js/lib/JDigo/html/Campo.js"));
 
 			// FIM AÇÕES
 		} catch (Exception ex) {

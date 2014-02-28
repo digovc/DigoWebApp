@@ -6,12 +6,33 @@ import java.util.List;
 import com.digosofter.digowebapp.erro.Erro;
 
 public class CampoComboBox extends Campo {
-	// CONSTANTES
+
 	// FIM CONSTANTES
 
 	// ATRIBUTOS
 
 	private List<String> _lstStrNome;
+
+	private List<String> _lstStrValor;
+
+	private String _strValorSelecionado;
+
+	public CampoComboBox() {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			this.setStrTagNome("select");
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+	}
 
 	public List<String> getLstStrNome() {
 		// VARIÁVEIS
@@ -34,12 +55,6 @@ public class CampoComboBox extends Campo {
 		return _lstStrNome;
 	}
 
-	public void setLstStrNome(List<String> lstStrNome) {
-		_lstStrNome = lstStrNome;
-	}
-
-	private List<String> _lstStrValor;
-
 	public List<String> getLstStrValor() {
 		// VARIÁVEIS
 		// FIM VARIÁVEIS
@@ -61,45 +76,6 @@ public class CampoComboBox extends Campo {
 		return _lstStrValor;
 	}
 
-	public void setLstStrValor(List<String> lstStrValor) {
-		_lstStrValor = lstStrValor;
-	}
-
-	private String _strValorSelecionado;
-
-	private String getStrValorSelecionado() {
-		return _strValorSelecionado;
-	}
-
-	public void setStrValorSelecionado(String strValorSelecionado) {
-		_strValorSelecionado = strValorSelecionado;
-	}
-
-	// FIM ATRIBUTOS
-
-	// CONSTRUTORES
-
-	public CampoComboBox() {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-
-			this.setStrTagNome("select");
-
-			// FIM AÇÕES
-		} catch (Exception ex) {
-
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
-	}
-
-	// FIM CONSTRUTORES
-
-	// MÉTODOS
-
 	@Override
 	public String getStrTagFormatada() {
 		// VARIÁVEIS
@@ -119,7 +95,9 @@ public class CampoComboBox extends Campo {
 
 			for (int intIndex = 0; intIndex < this.getLstStrValor().size(); intIndex++) {
 
-				strTagNome = this.getStrValorSelecionado() == this.getLstStrValor().get(intIndex) ? "option selected" : "option";
+				strTagNome = this.getStrValorSelecionado() == this
+						.getLstStrValor().get(intIndex) ? "option selected"
+						: "option";
 
 				tag = new Tag();
 				tag.setStrTagNome(strTagNome);
@@ -138,7 +116,32 @@ public class CampoComboBox extends Campo {
 
 		return super.getStrTagFormatada();
 	}
+
 	// FIM MÉTODOS
+
+	private String getStrValorSelecionado() {
+		return _strValorSelecionado;
+	}
+
+	public void setLstStrNome(List<String> lstStrNome) {
+		_lstStrNome = lstStrNome;
+	}
+
+	// FIM ATRIBUTOS
+
+	// CONSTRUTORES
+
+	public void setLstStrValor(List<String> lstStrValor) {
+		_lstStrValor = lstStrValor;
+	}
+
+	// FIM CONSTRUTORES
+
+	// MÉTODOS
+
+	public void setStrValorSelecionado(String strValorSelecionado) {
+		_strValorSelecionado = strValorSelecionado;
+	}
 
 	// EVENTOS
 	// FIM EVENTOS

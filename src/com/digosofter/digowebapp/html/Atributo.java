@@ -8,60 +8,16 @@ import com.digosofter.digowebapp.Utils;
 import com.digosofter.digowebapp.erro.Erro;
 
 public class Atributo extends Objeto {
-	// CONSTANTES
+
 	// FIM CONSTANTES
 
 	// ATRIBUTOS
 
 	private List<String> _lstStrValor = new ArrayList<String>();
 
-	public List<String> getLstStrValor() {
-		return _lstStrValor;
-	}
-
-	private void setLstStrValor(List<String> lstStrValor) {
-		_lstStrValor = lstStrValor;
-	}
-
 	private String _strDelimitador = " ";
 
-	public String getStrDelimitador() {
-		return _strDelimitador;
-	}
-
-	public void setStrDelimitador(String strDelimitador) {
-		_strDelimitador = strDelimitador;
-	}
-
 	private String _strValor;
-
-	public String getStrValor() {
-		return _strValor;
-	}
-
-	public void setStrValor(String strValor) {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-
-			_strValor = strValor;
-			
-			this.getLstStrValor().clear();
-			this.getLstStrValor().add(_strValor);
-
-			// FIM AÇÕES
-		} catch (Exception ex) {
-
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
-	}
-
-	// FIM ATRIBUTOS
-
-	// CONSTRUTORES
 
 	public Atributo(String strNome) {
 		// VARIÁVEIS
@@ -96,6 +52,50 @@ public class Atributo extends Objeto {
 
 			this.setStrNome(strNome);
 			this.setStrValor(strValor);
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+	}
+
+	public List<String> getLstStrValor() {
+		return _lstStrValor;
+	}
+
+	public String getStrDelimitador() {
+		return _strDelimitador;
+	}
+
+	public String getStrValor() {
+		return _strValor;
+	}
+
+	private void setLstStrValor(List<String> lstStrValor) {
+		_lstStrValor = lstStrValor;
+	}
+
+	// FIM ATRIBUTOS
+
+	// CONSTRUTORES
+
+	public void setStrDelimitador(String strDelimitador) {
+		_strDelimitador = strDelimitador;
+	}
+
+	public void setStrValor(String strValor) {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			_strValor = strValor;
+
+			this.getLstStrValor().clear();
+			this.getLstStrValor().add(_strValor);
 
 			// FIM AÇÕES
 		} catch (Exception ex) {

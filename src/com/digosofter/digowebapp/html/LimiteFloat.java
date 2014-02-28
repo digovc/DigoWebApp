@@ -3,7 +3,7 @@ package com.digosofter.digowebapp.html;
 import com.digosofter.digowebapp.erro.Erro;
 
 public class LimiteFloat extends Tag {
-	// CONSTANTES
+
 	// FIM CONSTANTES
 
 	// ATRIBUTOS
@@ -12,15 +12,15 @@ public class LimiteFloat extends Tag {
 	// CONSTRUTORES
 
 	public LimiteFloat() {
-		// VARIÁVEIS		
+		// VARIÁVEIS
 		// FIM VARIÁVEIS
 		try {
 			// AÇÕES
-			
+
 			this.setStrTagNome("div");
 			this.setBooForcarTagDupla(true);
 			this.adicionarCss(CssTag.getCssMainInstancia().setClearBoth());
-			
+
 			// FIM AÇÕES
 		} catch (Exception ex) {
 

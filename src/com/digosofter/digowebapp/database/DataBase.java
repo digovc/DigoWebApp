@@ -12,100 +12,25 @@ import com.digosofter.digowebapp.Objeto;
 import com.digosofter.digowebapp.erro.Erro;
 
 public abstract class DataBase extends Objeto {
-	// CONSTANTES
+
 	// FIM CONSTANTES
 
 	// ATRIBUTOS
 
 	private int _intPort = 5432;
 
-	private int getIntPort() {
-		return _intPort;
-	}
-
-	private void setIntPort(int intPort) {
-		_intPort = intPort;
-	}
-
 	private Connection _objConnection;
-
-	private Connection getObjConnection() {
-		// VARIÁVEIS
-
-		Properties objProperties;
-		String url;
-
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-
-			if (_objConnection == null) {
-
-				objProperties = new Properties();
-				objProperties.setProperty("user", this.getStrUser());
-				objProperties.setProperty("password", this.getStrPassword());
-
-				url = "jdbc:" + this.getStrDriveName() + "://" + this.getStrHost() + ":" + String.valueOf(this.getIntPort()) + "/"
-						+ this.getStrDbName();
-				Class.forName(this.getStrPackegeClassName());
-				_objConnection = DriverManager.getConnection(url, objProperties);
-			}
-
-			// FIM AÇÕES
-		} catch (Exception ex) {
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
-
-		return _objConnection;
-	}
 
 	private String _strDbName;
 
-	private String getStrDbName() {
-		return _strDbName;
-	}
-
-	private void setStrDbName(String strDbName) {
-		_strDbName = strDbName;
-	}
-
 	private String _strHost;
-
-	private String getStrHost() {
-		return _strHost;
-	}
-
-	private void setStrHost(String strHost) {
-		_strHost = strHost;
-	}
 
 	private String _strPassword = "postgres";
 
-	private String getStrPassword() {
-		return _strPassword;
-	}
-
-	private void setStrPassword(String strPassword) {
-		_strPassword = strPassword;
-	}
-
 	private String _strUser = "postgres";
 
-	private String getStrUser() {
-		return _strUser;
-	}
-
-	private void setStrUser(String strUser) {
-		_strUser = strUser;
-	}
-
-	// FIM ATRIBUTOS
-
-	// CONSTRUTORES
-
-	public DataBase(String strHost, int intPort, String strDbName, String strUser, String strPassword) {
+	public DataBase(String strHost, int intPort, String strDbName,
+			String strUser, String strPassword) {
 		// VARIÁVEIS
 		// FIM VARIÁVEIS
 		try {
@@ -126,9 +51,28 @@ public abstract class DataBase extends Objeto {
 		}
 	}
 
-	// FIM CONSTRUTORES
+	public void execSql(String sql) {
+		// VARIÁVEIS
 
-	// MÉTODOS
+		Statement objStatement;
+
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			objStatement = this.getObjConnection().createStatement(
+					ResultSet.TYPE_SCROLL_INSENSITIVE,
+					ResultSet.CONCUR_READ_ONLY);
+			objStatement.execute(sql);
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+	}
 
 	public List<Integer> execSqlRetornaLstInt(String sql) {
 		// VARIÁVEIS
@@ -145,11 +89,11 @@ public abstract class DataBase extends Objeto {
 			if (objResultSet != null && objResultSet.first()) {
 
 				lstIntResultado = new ArrayList<Integer>();
-				
+
 				do {
 
 					lstIntResultado.add(objResultSet.getInt(1));
-				
+
 				} while (objResultSet.next());
 			}
 
@@ -174,7 +118,9 @@ public abstract class DataBase extends Objeto {
 		try {
 			// AÇÕES
 
-			objStatement = this.getObjConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+			objStatement = this.getObjConnection().createStatement(
+					ResultSet.TYPE_SCROLL_INSENSITIVE,
+					ResultSet.CONCUR_READ_ONLY);
 			objResultSetResultado = objStatement.executeQuery(sql);
 
 			// FIM AÇÕES
@@ -186,27 +132,6 @@ public abstract class DataBase extends Objeto {
 		}
 
 		return objResultSetResultado;
-	}
-
-	public void execSql(String sql) {
-		// VARIÁVEIS
-
-		Statement objStatement;
-
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-
-			objStatement = this.getObjConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-			objStatement.execute(sql);
-
-			// FIM AÇÕES
-		} catch (Exception ex) {
-
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
 	}
 
 	public ResultSet execView(String strViewNome) {
@@ -224,7 +149,8 @@ public abstract class DataBase extends Objeto {
 			strBuilder.append(strViewNome);
 			strBuilder.append(";");
 
-			objResultSetResultado = this.execSqlRetornaResultSet(strBuilder.toString());
+			objResultSetResultado = this.execSqlRetornaResultSet(strBuilder
+					.toString());
 
 			// FIM AÇÕES
 		} catch (Exception ex) {
@@ -237,9 +163,92 @@ public abstract class DataBase extends Objeto {
 		return objResultSetResultado;
 	}
 
+	private int getIntPort() {
+		return _intPort;
+	}
+
+	private Connection getObjConnection() {
+		// VARIÁVEIS
+
+		Properties objProperties;
+		String url;
+
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			if (_objConnection == null) {
+
+				objProperties = new Properties();
+				objProperties.setProperty("user", this.getStrUser());
+				objProperties.setProperty("password", this.getStrPassword());
+
+				url = "jdbc:" + this.getStrDriveName() + "://"
+						+ this.getStrHost() + ":"
+						+ String.valueOf(this.getIntPort()) + "/"
+						+ this.getStrDbName();
+				Class.forName(this.getStrPackegeClassName());
+				_objConnection = DriverManager
+						.getConnection(url, objProperties);
+			}
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+
+		return _objConnection;
+	}
+
+	private String getStrDbName() {
+		return _strDbName;
+	}
+
 	protected abstract String getStrDriveName();
 
+	private String getStrHost() {
+		return _strHost;
+	}
+
 	protected abstract String getStrPackegeClassName();
+
+	// FIM ATRIBUTOS
+
+	// CONSTRUTORES
+
+	private String getStrPassword() {
+		return _strPassword;
+	}
+
+	// FIM CONSTRUTORES
+
+	// MÉTODOS
+
+	private String getStrUser() {
+		return _strUser;
+	}
+
+	private void setIntPort(int intPort) {
+		_intPort = intPort;
+	}
+
+	private void setStrDbName(String strDbName) {
+		_strDbName = strDbName;
+	}
+
+	private void setStrHost(String strHost) {
+		_strHost = strHost;
+	}
+
+	private void setStrPassword(String strPassword) {
+		_strPassword = strPassword;
+	}
+
+	private void setStrUser(String strUser) {
+		_strUser = strUser;
+	}
 
 	// FIM MÉTODOS
 

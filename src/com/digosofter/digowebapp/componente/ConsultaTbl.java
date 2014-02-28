@@ -2,23 +2,45 @@ package com.digosofter.digowebapp.componente;
 
 import java.sql.ResultSet;
 
-import com.digosofter.digowebapp.componente.item.LinhaConsultaTbl;
-import com.digosofter.digowebapp.database.DbColuna;
 import com.digosofter.digowebapp.database.DbTabela;
 import com.digosofter.digowebapp.erro.Erro;
 import com.digosofter.digowebapp.html.Botao;
 import com.digosofter.digowebapp.html.CssTag;
 import com.digosofter.digowebapp.html.LimiteFloat;
 import com.digosofter.digowebapp.html.Painel;
-import com.digosofter.digowebapp.html.Tag;
 
 public class ConsultaTbl extends ComponenteMain {
-	// CONSTANTES
+
 	// FIM CONSTANTES
 
 	// ATRIBUTOS
 
 	private Botao _btnNovo;
+
+	private Painel _pnlContainer;
+
+	private Painel _pnlLista;
+
+	private LimiteFloat _tagLimiteFloat;
+
+	private DbTabela _tbl;
+
+	public ConsultaTbl(DbTabela tbl) {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			this.setTbl(tbl);
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+	}
 
 	private Botao getBtnNovo() {
 		// VARIÁVEIS
@@ -43,8 +65,6 @@ public class ConsultaTbl extends ComponenteMain {
 		return _btnNovo;
 	}
 
-	private Painel _pnlContainer;
-
 	@Override
 	public Painel getPnlContainer() {
 		// VARIÁVEIS
@@ -55,8 +75,10 @@ public class ConsultaTbl extends ComponenteMain {
 			if (_pnlContainer == null) {
 
 				_pnlContainer = super.getPnlContainer();
-				_pnlContainer.adicionarCss(CssTag.getCssMainInstancia().setPadding(5, "px"));
-				_pnlContainer.adicionarCss(CssTag.getCssMainInstancia().setBorder(1, "solid", "black"));
+				_pnlContainer.adicionarCss(CssTag.getCssMainInstancia()
+						.setPadding(5, "px"));
+				_pnlContainer.adicionarCss(CssTag.getCssMainInstancia()
+						.setBorder(1, "solid", "black"));
 			}
 
 			// FIM AÇÕES
@@ -69,8 +91,6 @@ public class ConsultaTbl extends ComponenteMain {
 
 		return _pnlContainer;
 	}
-
-	private Painel _pnlLista;
 
 	private Painel getPnlLista() {
 		// VARIÁVEIS
@@ -93,15 +113,13 @@ public class ConsultaTbl extends ComponenteMain {
 		return _pnlLista;
 	}
 
-	private LimiteFloat _tagLimiteFloat;
-
 	private LimiteFloat getTagLimiteFloat() {
 		// VARIÁVEIS
 		// FIM VARIÁVEIS
 		try {
 			// AÇÕES
 
-			if (_tagLimiteFloat==null) {
+			if (_tagLimiteFloat == null) {
 				_tagLimiteFloat = new LimiteFloat();
 			}
 
@@ -116,40 +134,13 @@ public class ConsultaTbl extends ComponenteMain {
 		return _tagLimiteFloat;
 	}
 
-	private DbTabela _tbl;
-
 	private DbTabela getTbl() {
 		return _tbl;
-	}
-
-	private void setTbl(DbTabela tbl) {
-		_tbl = tbl;
 	}
 
 	// FIM ATRIBUTOS
 
 	// CONSTRUTORES
-
-	public ConsultaTbl(DbTabela tbl) {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-
-			this.setTbl(tbl);
-
-			// FIM AÇÕES
-		} catch (Exception ex) {
-
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
-	}
-
-	// FIM CONSTRUTORES
-
-	// MÉTODOS
 
 	@Override
 	public void montarLayout() {
@@ -174,6 +165,10 @@ public class ConsultaTbl extends ComponenteMain {
 		}
 	}
 
+	// FIM CONSTRUTORES
+
+	// MÉTODOS
+
 	/**
 	 * Monta o layout de uma linha baseado no registro posicionado no objeto
 	 * "objResultSet".
@@ -181,31 +176,31 @@ public class ConsultaTbl extends ComponenteMain {
 	private void montarLayoutLinha(ResultSet objResultSet) {
 		// VARIÁVEIS
 
-//		String strNome;
-//		String strValor;
-//
-//		LinhaConsultaTbl objLinhaConsultaTbl;
+		// String strNome;
+		// String strValor;
+		//
+		// LinhaConsultaTbl objLinhaConsultaTbl;
 
 		// FIM VARIÁVEIS
 		try {
 			// AÇÕES
 
-//			objLinhaConsultaTbl = new LinhaConsultaTbl();
-//			objLinhaConsultaTbl.setStrNome(objResultSet.getString(this.getTbl().getClnNome().getStrNomeSimplificado()));
-//
-//			for (DbColuna cln : this.getTbl().getLstClnVisivelConsulta()) {
-//
-//				if (!cln.getBooClnNome()) {
-//
-//					strNome = cln.getStrNomeExibicao();
-//					objLinhaConsultaTbl.getLstStrNome().add(strNome);
-//					strValor = objResultSet.getString(cln.getStrNomeSimplificado());
-//					objLinhaConsultaTbl.getLstStrValor().add(strValor);
-//				}
-//			}
-//
-//			objLinhaConsultaTbl.getPnlContainer().setTagPai(this.getPnlLista());
-//			objLinhaConsultaTbl.montarLayout();
+			// objLinhaConsultaTbl = new LinhaConsultaTbl();
+			// objLinhaConsultaTbl.setStrNome(objResultSet.getString(this.getTbl().getClnNome().getStrNomeSimplificado()));
+			//
+			// for (DbColuna cln : this.getTbl().getLstClnVisivelConsulta()) {
+			//
+			// if (!cln.getBooClnNome()) {
+			//
+			// strNome = cln.getStrNomeExibicao();
+			// objLinhaConsultaTbl.getLstStrNome().add(strNome);
+			// strValor = objResultSet.getString(cln.getStrNomeSimplificado());
+			// objLinhaConsultaTbl.getLstStrValor().add(strValor);
+			// }
+			// }
+			//
+			// objLinhaConsultaTbl.getPnlContainer().setTagPai(this.getPnlLista());
+			// objLinhaConsultaTbl.montarLayout();
 
 			// FIM AÇÕES
 		} catch (Exception ex) {
@@ -246,6 +241,10 @@ public class ConsultaTbl extends ComponenteMain {
 
 		} finally {
 		}
+	}
+
+	private void setTbl(DbTabela tbl) {
+		_tbl = tbl;
 	}
 
 	// FIM MÉTODOS

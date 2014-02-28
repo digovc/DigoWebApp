@@ -5,142 +5,26 @@ import com.digosofter.digowebapp.database.DbColuna;
 import com.digosofter.digowebapp.database.DbColuna.EnmClnTipo;
 import com.digosofter.digowebapp.erro.Erro;
 import com.digosofter.digowebapp.html.Campo;
+import com.digosofter.digowebapp.html.Campo.EnmTipo;
 import com.digosofter.digowebapp.html.CampoComboBox;
 import com.digosofter.digowebapp.html.CssTag;
 import com.digosofter.digowebapp.html.Painel;
-import com.digosofter.digowebapp.html.Campo.EnmTipo;
 
 public class CampoFrmTbl extends ComponenteMain {
-	// CONSTANTES
+
 	// FIM CONSTANTES
 
 	// ATRIBUTOS
 
 	private DbColuna _cln;
 
-	private DbColuna getCln() {
-		return _cln;
-	}
-
-	private void setCln(DbColuna cln) {
-		_cln = cln;
-	}
-
 	private Campo _objCampo;
-
-	private Campo getObjCampo() {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-
-			if (_objCampo == null) {
-
-				this.definirTipoCampo();
-
-				_objCampo.setStrNome(this.getCln().getStrNomeSimplificado());
-				_objCampo.adicionarCss(CssTag.getCssMainInstancia().setPadding(5, "px"));
-				_objCampo.adicionarCss(CssTag.getCssMainInstancia().setWidth(100, "%"));
-
-			}
-
-			// FIM AÇÕES
-		} catch (Exception ex) {
-
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
-
-		return _objCampo;
-	}
-
-	private void setObjCampo(Campo objCampo) {
-		_objCampo = objCampo;
-	}
 
 	private Painel _pnlCampo;
 
-	private Painel getPnlCampo() {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-
-			if (_pnlCampo == null) {
-				_pnlCampo = new Painel();
-				_pnlCampo.adicionarCss(CssTag.getCssMainInstancia().setPaddingLeft(10));
-				_pnlCampo.adicionarCss(CssTag.getCssMainInstancia().setPaddingRight(10));
-			}
-
-			// FIM AÇÕES
-		} catch (Exception ex) {
-
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
-
-		return _pnlCampo;
-	}
-
 	private Painel _pnlContainer;
 
-	@Override
-	public Painel getPnlContainer() {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-
-			if (_pnlContainer == null) {
-				_pnlContainer = super.getPnlContainer();
-				_pnlContainer.adicionarCss(CssTag.getCssMainInstancia().setFloat("left"));
-				_pnlContainer.adicionarCss(CssTag.getCssMainInstancia().setWidth(this.getDblCampoWidth(), "%"));
-			}
-
-			// FIM AÇÕES
-		} catch (Exception ex) {
-
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
-
-		return _pnlContainer;
-	}
-
 	private Painel _pnlTitulo;
-
-	@Override
-	protected Painel getPnlTitulo() {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-
-			if (_pnlTitulo == null) {
-				_pnlTitulo = super.getPnlTitulo();
-				_pnlTitulo.setStrConteudo(this.getCln().getStrNomeExibicao());
-				_pnlTitulo.adicionarCss(CssTag.getCssMainInstancia().setPaddingLeft(10));
-				_pnlTitulo.adicionarCss(CssTag.getCssMainInstancia().setPaddingRight(10));
-				_pnlTitulo.adicionarCss(CssTag.getCssMainInstancia().setTextAlign("left"));
-			}
-
-			// FIM AÇÕES
-		} catch (Exception ex) {
-
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
-
-		return _pnlTitulo;
-	}
-
-	// FIM ATRIBUTOS
-
-	// CONSTRUTORES
 
 	public CampoFrmTbl(DbColuna cln) {
 		// VARIÁVEIS
@@ -159,10 +43,6 @@ public class CampoFrmTbl extends ComponenteMain {
 		}
 	}
 
-	// FIM CONSTRUTORES
-
-	// MÉTODOS
-
 	/**
 	 * Define o tipo de campo a ser colocado no formulário de acordo com o tipo
 	 * de dado que é esperado para o mesmo.
@@ -174,7 +54,8 @@ public class CampoFrmTbl extends ComponenteMain {
 			// AÇÕES
 
 			// ComboBox
-			if (this.getCln().getClnReferencia() != null || this.getCln().getLstStrOpcao().size() > 0) {
+			if (this.getCln().getClnReferencia() != null
+					|| this.getCln().getLstStrOpcao().size() > 0) {
 				this.definirTipoCampoComboBox();
 				return;
 			}
@@ -253,6 +134,10 @@ public class CampoFrmTbl extends ComponenteMain {
 		}
 	}
 
+	private DbColuna getCln() {
+		return _cln;
+	}
+
 	/**
 	 * Retorna o tamanho horizontal do campo.
 	 */
@@ -269,7 +154,7 @@ public class CampoFrmTbl extends ComponenteMain {
 
 			intPeso = this.getCln().getIntFrmLinhaPeso();
 			intPesoSoma = this.getIntPesoSoma();
-			dblResultado = 100 / (double) intPesoSoma * (double) intPeso;
+			dblResultado = 100 / (double) intPesoSoma * intPeso;
 
 			// FIM AÇÕES
 		} catch (Exception ex) {
@@ -294,7 +179,8 @@ public class CampoFrmTbl extends ComponenteMain {
 		try {
 			// AÇÕES
 
-			for (DbColuna cln : this.getCln().getTbl().getLstClnVisivelCadastro()) {
+			for (DbColuna cln : this.getCln().getTbl()
+					.getLstClnVisivelCadastro()) {
 				if (cln.getIntFrmLinha() == this.getCln().getIntFrmLinha()) {
 					intResultado = intResultado + cln.getIntFrmLinhaPeso();
 				}
@@ -315,6 +201,123 @@ public class CampoFrmTbl extends ComponenteMain {
 		return intResultado;
 	}
 
+	// FIM ATRIBUTOS
+
+	// CONSTRUTORES
+
+	private Campo getObjCampo() {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			if (_objCampo == null) {
+
+				this.definirTipoCampo();
+
+				_objCampo.setStrNome(this.getCln().getStrNomeSimplificado());
+				_objCampo.adicionarCss(CssTag.getCssMainInstancia().setPadding(
+						5, "px"));
+				_objCampo.adicionarCss(CssTag.getCssMainInstancia().setWidth(
+						100, "%"));
+
+			}
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+
+		return _objCampo;
+	}
+
+	// FIM CONSTRUTORES
+
+	// MÉTODOS
+
+	private Painel getPnlCampo() {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			if (_pnlCampo == null) {
+				_pnlCampo = new Painel();
+				_pnlCampo.adicionarCss(CssTag.getCssMainInstancia()
+						.setPaddingLeft(10));
+				_pnlCampo.adicionarCss(CssTag.getCssMainInstancia()
+						.setPaddingRight(10));
+			}
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+
+		return _pnlCampo;
+	}
+
+	@Override
+	public Painel getPnlContainer() {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			if (_pnlContainer == null) {
+				_pnlContainer = super.getPnlContainer();
+				_pnlContainer.adicionarCss(CssTag.getCssMainInstancia()
+						.setFloat("left"));
+				_pnlContainer.adicionarCss(CssTag.getCssMainInstancia()
+						.setWidth(this.getDblCampoWidth(), "%"));
+			}
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+
+		return _pnlContainer;
+	}
+
+	@Override
+	protected Painel getPnlTitulo() {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			if (_pnlTitulo == null) {
+				_pnlTitulo = super.getPnlTitulo();
+				_pnlTitulo.setStrConteudo(this.getCln().getStrNomeExibicao());
+				_pnlTitulo.adicionarCss(CssTag.getCssMainInstancia()
+						.setPaddingLeft(10));
+				_pnlTitulo.adicionarCss(CssTag.getCssMainInstancia()
+						.setPaddingRight(10));
+				_pnlTitulo.adicionarCss(CssTag.getCssMainInstancia()
+						.setTextAlign("left"));
+			}
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+
+		return _pnlTitulo;
+	}
+
 	@Override
 	public void montarLayout() {
 		// VARIÁVEIS
@@ -325,7 +328,8 @@ public class CampoFrmTbl extends ComponenteMain {
 			this.getPnlTitulo().setTagPai(this.getPnlContainer());
 			this.getPnlCampo().setTagPai(this.getPnlContainer());
 			this.getObjCampo().setTagPai(this.getPnlCampo());
-			this.getPnlContainer().setTagPai(this.getCln().getTbl().getFrmTbl().getPnlCampos());
+			this.getPnlContainer().setTagPai(
+					this.getCln().getTbl().getFrmTbl().getPnlCampos());
 
 			// FIM AÇÕES
 		} catch (Exception ex) {
@@ -334,6 +338,14 @@ public class CampoFrmTbl extends ComponenteMain {
 
 		} finally {
 		}
+	}
+
+	private void setCln(DbColuna cln) {
+		_cln = cln;
+	}
+
+	private void setObjCampo(Campo objCampo) {
+		_objCampo = objCampo;
 	}
 
 	// FIM MÉTODOS

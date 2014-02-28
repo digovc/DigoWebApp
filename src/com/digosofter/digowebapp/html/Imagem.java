@@ -3,7 +3,7 @@ package com.digosofter.digowebapp.html;
 import com.digosofter.digowebapp.erro.Erro;
 
 public class Imagem extends Tag {
-	// CONSTANTES
+
 	// FIM CONSTANTES
 
 	// ATRIBUTOS
@@ -20,7 +20,8 @@ public class Imagem extends Tag {
 			this.setStrTagNome("img");
 			this.setBooForcarTagDupla(true);
 
-			PaginaHtml.getI().getLstObjJavaScriptTag().add(new JavaScriptTag("res/js/lib/JDigo/html/Imagem.js"));
+			PaginaHtml.getI().getLstObjJavaScriptTag()
+					.add(new JavaScriptTag("res/js/lib/JDigo/html/Imagem.js"));
 
 			// FIM AÇÕES
 		} catch (Exception ex) {

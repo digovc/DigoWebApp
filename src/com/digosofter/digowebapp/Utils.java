@@ -10,10 +10,9 @@ import java.util.Random;
 import com.digosofter.digowebapp.erro.Erro;
 
 public abstract class Utils {
-	// CONSTANTES
 
 	public enum EnmDataFormato {
-		DD_MM, DD_MM_YYYY, DD_MM_YYYY_HH_MM, DD_MM_YYYY_HH_MM_SS, HH_MM,HH_MM_DD_MM_YYYY, HH_MM_SS_DD_MM_YYYY, YYYY_MM_DD_HH_MM_SS
+		DD_MM, DD_MM_YYYY, DD_MM_YYYY_HH_MM, DD_MM_YYYY_HH_MM_SS, HH_MM, HH_MM_DD_MM_YYYY, HH_MM_SS_DD_MM_YYYY, YYYY_MM_DD_HH_MM_SS
 	}
 
 	public static final Locale LOCAL_BRASIL = new Locale("pt", "BR");
@@ -79,7 +78,8 @@ public abstract class Utils {
 		return intResultado;
 	}
 
-	public static String getStrConcatenarLst(List<String> lstStr, String strDelimitador, boolean booEliminarDuplicata) {
+	public static String getStrConcatenarLst(List<String> lstStr,
+			String strDelimitador, boolean booEliminarDuplicata) {
 		// VARIÁVEIS
 
 		boolean booStrIncluida = false;
@@ -124,7 +124,8 @@ public abstract class Utils {
 		return strConcatenadaResultado;
 	}
 
-	public static String getStrConcatenarLst(String[] arrStr, String strDelimitador, boolean booEliminarDuplicata) {
+	public static String getStrConcatenarLst(String[] arrStr,
+			String strDelimitador, boolean booEliminarDuplicata) {
 		// VARIÁVEIS
 
 		List<String> lstStr = null;
@@ -146,10 +147,12 @@ public abstract class Utils {
 		} finally {
 		}
 
-		return Utils.getStrConcatenarLst(lstStr, strDelimitador, booEliminarDuplicata);
+		return Utils.getStrConcatenarLst(lstStr, strDelimitador,
+				booEliminarDuplicata);
 	}
 
-	public static String getStrDataFormatada(Date objDate, EnmDataFormato enmDataFormato) {
+	public static String getStrDataFormatada(Date objDate,
+			EnmDataFormato enmDataFormato) {
 		// VARIÁVEIS
 		String strDataFormato = Utils.STRING_VAZIA;
 		SimpleDateFormat objSimpleDateFormat = null;
@@ -188,7 +191,8 @@ public abstract class Utils {
 				break;
 			}
 
-			objSimpleDateFormat = new SimpleDateFormat(strDataFormato, LOCAL_BRASIL);
+			objSimpleDateFormat = new SimpleDateFormat(strDataFormato,
+					LOCAL_BRASIL);
 
 			// FIM AÇÕES
 		} catch (Exception e) {
@@ -211,7 +215,8 @@ public abstract class Utils {
 		try {
 			// AÇÕES
 
-			strBuilder.append("<a href=\"" + strLink + "\">" + strTexto + "</a>");
+			strBuilder.append("<a href=\"" + strLink + "\">" + strTexto
+					+ "</a>");
 			strLinkHtmlResultado = strBuilder.toString();
 
 			// FIM AÇÕES
@@ -252,14 +257,22 @@ public abstract class Utils {
 			// AÇÕES
 
 			strComplexa = strComplexa.toLowerCase(Utils.LOCAL_BRASIL);
-			String[] arrChrAcentos = new String[] { "ç", "á", "é", "í", "ó", "ú", "ý", "à", "è", "ì", "ò", "ù", "ã", "õ", "ñ", "ä", "ë", "ï", "ö", "ü", "ÿ", "â", "ê", "î", "ô", "û" };
-			String[] arrChrSemAcento = new String[] { "c", "a", "e", "i", "o", "u", "y", "a", "e", "i", "o", "u", "a", "o", "n", "a", "e", "i", "o", "u", "y", "a", "e", "i", "o", "u" };
+			String[] arrChrAcentos = new String[] { "ç", "á", "é", "í", "ó",
+					"ú", "ý", "à", "è", "ì", "ò", "ù", "ã", "õ", "ñ", "ä", "ë",
+					"ï", "ö", "ü", "ÿ", "â", "ê", "î", "ô", "û" };
+			String[] arrChrSemAcento = new String[] { "c", "a", "e", "i", "o",
+					"u", "y", "a", "e", "i", "o", "u", "a", "o", "n", "a", "e",
+					"i", "o", "u", "y", "a", "e", "i", "o", "u" };
 			for (int intTemp = 0; intTemp < arrChrAcentos.length; intTemp++) {
-				strComplexa = strComplexa.replace(arrChrAcentos[intTemp], arrChrSemAcento[intTemp]);
+				strComplexa = strComplexa.replace(arrChrAcentos[intTemp],
+						arrChrSemAcento[intTemp]);
 			}
-			String[] arrChrCaracteresEspeciais = { "\\.", ",", "-", ":", "\\(", "\\)", "ª", "\\|", "\\\\", "°", "^\\s+", "\\s+$", "\\s+", ".", "(", ")" };
+			String[] arrChrCaracteresEspeciais = { "\\.", ",", "-", ":", "\\(",
+					"\\)", "ª", "\\|", "\\\\", "°", "^\\s+", "\\s+$", "\\s+",
+					".", "(", ")" };
 			for (int intTemp = 0; intTemp < arrChrCaracteresEspeciais.length; intTemp++) {
-				strComplexa = strComplexa.replace(arrChrCaracteresEspeciais[intTemp], "");
+				strComplexa = strComplexa.replace(
+						arrChrCaracteresEspeciais[intTemp], "");
 			}
 			strComplexa = strComplexa.replace(" ", "");
 

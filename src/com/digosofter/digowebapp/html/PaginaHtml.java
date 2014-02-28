@@ -10,12 +10,14 @@ import com.digosofter.digowebapp.Objeto;
 import com.digosofter.digowebapp.erro.Erro;
 
 public class PaginaHtml extends Objeto {
-	// CONSTANTES
+
 	// FIM CONSTANTES
 
 	// ATRIBUTOS
 
 	private static PaginaHtml i;
+
+	private static CssTag _cssMain;
 
 	public static PaginaHtml getI() {
 		// VARIÁVEIS
@@ -38,11 +40,174 @@ public class PaginaHtml extends Objeto {
 		return i;
 	}
 
-	private void setI(PaginaHtml _i) {
-		i = _i;
+	private CssTag _cssImp;
+
+	private List<JavaScriptTag> _lstObjJavaScriptTag = new ArrayList<JavaScriptTag>();
+
+	private List<JavaScriptTag> _lstObjJavaScriptTagOrdenado;
+
+	private JavaScriptTag _objJavaScriptMain;
+
+	private String _strTitulo;
+
+	private Tag _tagBody;
+
+	private Tag _tagDocType;
+
+	private Tag _tagHead;
+
+	private Tag _tagHtml;
+
+	private Tag _tagMeta;
+
+	private Tag _tagTitle;
+
+	public PaginaHtml() {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			this.setI(this);
+			this.adicionarJs();
+			this.adicionarJsCodigo();
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
 	}
 
-	private static CssTag _cssMain;
+	/**
+	 * Acrescenta os arquivos de "JavaScript" para a "tagHead" na ordem correta.
+	 */
+	private void acrescentarJsAoCabecalho() {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			for (JavaScriptTag objJavaScriptTag : this
+					.getLstObjJavaScriptTagOrdenado()) {
+				objJavaScriptTag.setTagPai(this.getTagHead());
+			}
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+	}
+
+	private void adicionarJs() {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			this.getLstObjJavaScriptTag().add(
+					new JavaScriptTag("res/js/lib/JDigo/lib/jquery-2.0.3.js"));
+			this.getLstObjJavaScriptTag().add(
+					new JavaScriptTag("res/js/lib/JDigo/lib/md5.js"));
+			this.getLstObjJavaScriptTag().add(
+					new JavaScriptTag("res/js/lib/JDigo/listas/LstStrErro.js"));
+			this.getLstObjJavaScriptTag().add(
+					new JavaScriptTag("res/js/lib/JDigo/erro/Erro.js"));
+			this.getLstObjJavaScriptTag().add(
+					new JavaScriptTag("res/js/lib/JDigo/Utils.js"));
+			this.getLstObjJavaScriptTag().add(
+					new JavaScriptTag("res/js/lib/JDigo/Objeto.js"));
+			this.getLstObjJavaScriptTag().add(
+					new JavaScriptTag("res/js/lib/JDigo/AppWeb.js"));
+			this.getLstObjJavaScriptTag().add(
+					new JavaScriptTag(
+							"res/js/lib/JDigo/websocket/WebSocketMain.js"));
+			this.getLstObjJavaScriptTag()
+					.add(new JavaScriptTag(
+							"res/js/lib/JDigo/websocket/wsobjetos/WsObjetoMain.js"));
+			this.getLstObjJavaScriptTag().add(
+					new JavaScriptTag("res/js/lib/JDigo/Usuario.js"));
+			this.getLstObjJavaScriptTag().add(
+					new JavaScriptTag("res/js/lib/JDigo/html/Tag.js"));
+			this.getLstObjJavaScriptTag().add(
+					new JavaScriptTag("res/js/lib/JDigo/html/PaginaHtml.js"));
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+	}
+
+	/**
+	 * Adiciona códigos "JavaScript" indispensáveis para cada página.
+	 */
+	private void adicionarJsCodigo() {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			this.getObjJavaScriptMain().adicionarJsCodigo(
+					"appWeb.setStrSessionId('"
+							+ AppWeb.getI().getObjUsuarioAtual()
+									.getStrSessaoId() + "');");
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+	}
+
+	public void adicionarJsCodigo(String strJsCodigo) {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			this.getObjJavaScriptMain().adicionarJsCodigo(strJsCodigo);
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+	}
+
+	private CssTag getCssImp() {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			if (_cssImp == null) {
+
+				_cssImp = new CssTag();
+				_cssImp.setStrId("cssImp");
+			}
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+
+		return _cssImp;
+	}
 
 	public CssTag getCssMain() {
 		// VARIÁVEIS
@@ -69,38 +234,9 @@ public class PaginaHtml extends Objeto {
 		return _cssMain;
 	}
 
-	private CssTag _cssImp;
-
-	private CssTag getCssImp() {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-
-			if (_cssImp == null) {
-
-				_cssImp = new CssTag();
-				_cssImp.setStrId("cssImp");
-			}
-
-			// FIM AÇÕES
-		} catch (Exception ex) {
-
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
-
-		return _cssImp;
-	}
-
-	private List<JavaScriptTag> _lstObjJavaScriptTag = new ArrayList<JavaScriptTag>();
-
 	public List<JavaScriptTag> getLstObjJavaScriptTag() {
 		return _lstObjJavaScriptTag;
 	}
-
-	private List<JavaScriptTag> _lstObjJavaScriptTagOrdenado;
 
 	private List<JavaScriptTag> getLstObjJavaScriptTagOrdenado() {
 		// VARIÁVEIS
@@ -110,14 +246,20 @@ public class PaginaHtml extends Objeto {
 
 			_lstObjJavaScriptTagOrdenado = this.getLstObjJavaScriptTag();
 
-			Collections.sort(_lstObjJavaScriptTagOrdenado, new Comparator<JavaScriptTag>() {
+			Collections.sort(_lstObjJavaScriptTagOrdenado,
+					new Comparator<JavaScriptTag>() {
 
-				public int compare(final JavaScriptTag objJavaScriptTag1, final JavaScriptTag objJavaScriptTag2) {
+						@Override
+						public int compare(
+								final JavaScriptTag objJavaScriptTag1,
+								final JavaScriptTag objJavaScriptTag2) {
 
-					return objJavaScriptTag1.getIntPrioridade() < objJavaScriptTag2.getIntPrioridade() ? -1
-							: (objJavaScriptTag1.getIntPrioridade() > objJavaScriptTag2.getIntPrioridade() ? +1 : 0);
-				}
-			});
+							return objJavaScriptTag1.getIntPrioridade() < objJavaScriptTag2
+									.getIntPrioridade() ? -1
+									: (objJavaScriptTag1.getIntPrioridade() > objJavaScriptTag2
+											.getIntPrioridade() ? +1 : 0);
+						}
+					});
 
 			// FIM AÇÕES
 		} catch (Exception ex) {
@@ -129,8 +271,6 @@ public class PaginaHtml extends Objeto {
 
 		return _lstObjJavaScriptTagOrdenado;
 	}
-
-	private JavaScriptTag _objJavaScriptMain;
 
 	private JavaScriptTag getObjJavaScriptMain() {
 		// VARIÁVEIS
@@ -155,329 +295,6 @@ public class PaginaHtml extends Objeto {
 		}
 
 		return _objJavaScriptMain;
-	}
-
-	private String _strTitulo;
-
-	public String getStrTitulo() {
-		return _strTitulo;
-	}
-
-	public void setStrTitulo(String strTitulo) {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-
-			_strTitulo = strTitulo;
-			_strTitulo += " - " + AppWeb.getI().getStrNome();
-
-			this.getTagTitle().setStrConteudo(_strTitulo);
-
-			// FIM AÇÕES
-		} catch (Exception ex) {
-
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
-	}
-
-	@Override
-	public void setStrNome(String strNome) {
-
-		super.setStrNome(strNome);
-
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-
-			this.setStrTitulo(strNome);
-
-			// FIM AÇÕES
-		} catch (Exception ex) {
-
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
-	}
-
-	private Tag _tagBody;
-
-	public Tag getTagBody() {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-
-			if (_tagBody == null) {
-
-				_tagBody = new Tag();
-				_tagBody.setStrTagNome("body");
-			}
-
-			// FIM AÇÕES
-		} catch (Exception ex) {
-
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
-
-		return _tagBody;
-	}
-
-	private Tag _tagDocType;
-
-	private Tag getTagDocType() {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-
-			if (_tagDocType == null) {
-
-				_tagDocType = new Tag();
-				_tagDocType.setBooBarraNoFinal(false);
-				_tagDocType.setStrTagNome("!DOCTYPE html");
-			}
-
-			// FIM AÇÕES
-		} catch (Exception ex) {
-
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
-
-		return _tagDocType;
-	}
-
-	private Tag _tagHead;
-
-	private Tag getTagHead() {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-
-			if (_tagHead == null) {
-
-				_tagHead = new Tag();
-				_tagHead.setStrTagNome("head");
-			}
-
-			// FIM AÇÕES
-		} catch (Exception ex) {
-
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
-
-		return _tagHead;
-	}
-
-	private Tag _tagHtml;
-
-	private Tag getTagHtml() {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-
-			if (_tagHtml == null) {
-
-				_tagHtml = new Tag();
-				_tagHtml.setStrTagNome("html");
-				_tagHtml.getLstAtr().add(new Atributo("xmlns", "http://www.w3.org/1999/xhtml"));
-				_tagHtml.getLstAtr().add(new Atributo("lang", "pt-br"));
-			}
-
-			// FIM AÇÕES
-		} catch (Exception ex) {
-
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
-
-		return _tagHtml;
-	}
-
-	private Tag _tagMeta;
-
-	private Tag getTagMeta() {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-
-			if (_tagMeta == null) {
-
-				_tagMeta = new Tag();
-				_tagMeta.setStrTagNome("meta");
-				_tagMeta.getLstAtr().add(new Atributo("http-equiv", "Content-Type"));
-				_tagMeta.getLstAtr().add(new Atributo("content"));
-				_tagMeta.getLstAtr().get(1).setStrDelimitador(";");
-				_tagMeta.getLstAtr().get(1).getLstStrValor().add("text/html");
-				_tagMeta.getLstAtr().get(1).getLstStrValor().add(" charset=ISO-8859-1");
-			}
-
-			// FIM AÇÕES
-		} catch (Exception ex) {
-
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
-
-		return _tagMeta;
-	}
-
-	private Tag _tagTitle;
-
-	public Tag getTagTitle() {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-
-			if (_tagTitle == null) {
-
-				_tagTitle = new Tag();
-				_tagTitle.setStrTagNome("title");
-
-				this.setStrTitulo("Página sem título");
-			}
-
-			// FIM AÇÕES
-		} catch (Exception ex) {
-
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
-
-		return _tagTitle;
-	}
-
-	// FIM ATRIBUTOS
-
-	// CONSTRUTORES
-
-	public PaginaHtml() {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-
-			this.setI(this);
-			this.adicionarJs();
-			this.adicionarJsCodigo();
-
-			// FIM AÇÕES
-		} catch (Exception ex) {
-
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
-	}
-
-	// FIM CONSTRUTORES
-
-	// MÉTODOS
-
-	/**
-	 * Acrescenta os arquivos de "JavaScript" para a "tagHead" na ordem correta.
-	 */
-	private void acrescentarJsAoCabecalho() {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-
-			for (JavaScriptTag objJavaScriptTag : this.getLstObjJavaScriptTagOrdenado()) {
-				objJavaScriptTag.setTagPai(this.getTagHead());
-			}
-
-			// FIM AÇÕES
-		} catch (Exception ex) {
-
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
-	}
-
-	private void adicionarJs() {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-
-			this.getLstObjJavaScriptTag().add(new JavaScriptTag("res/js/lib/JDigo/lib/jquery-2.0.3.js"));
-			this.getLstObjJavaScriptTag().add(new JavaScriptTag("res/js/lib/JDigo/lib/md5.js"));
-			this.getLstObjJavaScriptTag().add(new JavaScriptTag("res/js/lib/JDigo/listas/LstStrErro.js"));
-			this.getLstObjJavaScriptTag().add(new JavaScriptTag("res/js/lib/JDigo/erro/Erro.js"));
-			this.getLstObjJavaScriptTag().add(new JavaScriptTag("res/js/lib/JDigo/Utils.js"));
-			this.getLstObjJavaScriptTag().add(new JavaScriptTag("res/js/lib/JDigo/Objeto.js"));
-			this.getLstObjJavaScriptTag().add(new JavaScriptTag("res/js/lib/JDigo/AppWeb.js"));
-			this.getLstObjJavaScriptTag().add(new JavaScriptTag("res/js/lib/JDigo/websocket/WebSocketMain.js"));
-			this.getLstObjJavaScriptTag()
-					.add(new JavaScriptTag("res/js/lib/JDigo/websocket/wsobjetos/WsObjetoMain.js"));
-			this.getLstObjJavaScriptTag().add(new JavaScriptTag("res/js/lib/JDigo/Usuario.js"));
-			this.getLstObjJavaScriptTag().add(new JavaScriptTag("res/js/lib/JDigo/html/Tag.js"));
-			this.getLstObjJavaScriptTag().add(new JavaScriptTag("res/js/lib/JDigo/html/PaginaHtml.js"));
-
-			// FIM AÇÕES
-		} catch (Exception ex) {
-
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
-	}
-
-	/**
-	 * Adiciona códigos "JavaScript" indispensáveis para cada página.
-	 */
-	private void adicionarJsCodigo() {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-
-			this.getObjJavaScriptMain().adicionarJsCodigo(
-					"appWeb.setStrSessionId('" + AppWeb.getI().getObjUsuarioAtual().getStrSessaoId() + "');");
-
-			// FIM AÇÕES
-		} catch (Exception ex) {
-
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
-	}
-
-	public void adicionarJsCodigo(String strJsCodigo) {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-
-			this.getObjJavaScriptMain().adicionarJsCodigo(strJsCodigo);
-
-			// FIM AÇÕES
-		} catch (Exception ex) {
-
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
 	}
 
 	public String getStrPaginaFormatada() {
@@ -507,9 +324,167 @@ public class PaginaHtml extends Objeto {
 		return stbResultado.toString();
 	}
 
-	@Override
-	public String toString() {
-		return this.getStrPaginaFormatada();
+	public String getStrTitulo() {
+		return _strTitulo;
+	}
+
+	public Tag getTagBody() {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			if (_tagBody == null) {
+
+				_tagBody = new Tag();
+				_tagBody.setStrTagNome("body");
+			}
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+
+		return _tagBody;
+	}
+
+	private Tag getTagDocType() {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			if (_tagDocType == null) {
+
+				_tagDocType = new Tag();
+				_tagDocType.setBooBarraNoFinal(false);
+				_tagDocType.setStrTagNome("!DOCTYPE html");
+			}
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+
+		return _tagDocType;
+	}
+
+	private Tag getTagHead() {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			if (_tagHead == null) {
+
+				_tagHead = new Tag();
+				_tagHead.setStrTagNome("head");
+			}
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+
+		return _tagHead;
+	}
+
+	// FIM ATRIBUTOS
+
+	// CONSTRUTORES
+
+	private Tag getTagHtml() {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			if (_tagHtml == null) {
+
+				_tagHtml = new Tag();
+				_tagHtml.setStrTagNome("html");
+				_tagHtml.getLstAtr().add(
+						new Atributo("xmlns", "http://www.w3.org/1999/xhtml"));
+				_tagHtml.getLstAtr().add(new Atributo("lang", "pt-br"));
+			}
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+
+		return _tagHtml;
+	}
+
+	// FIM CONSTRUTORES
+
+	// MÉTODOS
+
+	private Tag getTagMeta() {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			if (_tagMeta == null) {
+
+				_tagMeta = new Tag();
+				_tagMeta.setStrTagNome("meta");
+				_tagMeta.getLstAtr().add(
+						new Atributo("http-equiv", "Content-Type"));
+				_tagMeta.getLstAtr().add(new Atributo("content"));
+				_tagMeta.getLstAtr().get(1).setStrDelimitador(";");
+				_tagMeta.getLstAtr().get(1).getLstStrValor().add("text/html");
+				_tagMeta.getLstAtr().get(1).getLstStrValor()
+						.add(" charset=ISO-8859-1");
+			}
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+
+		return _tagMeta;
+	}
+
+	public Tag getTagTitle() {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			if (_tagTitle == null) {
+
+				_tagTitle = new Tag();
+				_tagTitle.setStrTagNome("title");
+
+				this.setStrTitulo("Página sem título");
+			}
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+
+		return _tagTitle;
 	}
 
 	/**
@@ -535,7 +510,7 @@ public class PaginaHtml extends Objeto {
 
 		} finally {
 		}
-	};
+	}
 
 	public void mostrarMsgInfoCliente(String strMensagem) {
 		// VARIÁVEIS
@@ -561,6 +536,56 @@ public class PaginaHtml extends Objeto {
 
 		} finally {
 		}
+	}
+
+	private void setI(PaginaHtml _i) {
+		i = _i;
+	}
+
+	@Override
+	public void setStrNome(String strNome) {
+
+		super.setStrNome(strNome);
+
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			this.setStrTitulo(strNome);
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+	}
+
+	public void setStrTitulo(String strTitulo) {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			_strTitulo = strTitulo;
+			_strTitulo += " - " + AppWeb.getI().getStrNome();
+
+			this.getTagTitle().setStrConteudo(_strTitulo);
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+	};
+
+	@Override
+	public String toString() {
+		return this.getStrPaginaFormatada();
 	}
 
 	// FIM MÉTODOS

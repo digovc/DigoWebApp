@@ -3,65 +3,10 @@ package com.digosofter.digowebapp;
 import com.digosofter.digowebapp.erro.Erro;
 
 public class Usuario extends Objeto {
-	// CONSTANTES
+
 	// FIM CONSTANTES
 
 	// ATRIBUTOS
-
-	private boolean _booLogado = false;
-
-	public boolean getBooLogado() {
-		return _booLogado;
-	}
-
-	public void setBooLogado(boolean booLogado) {
-		_booLogado = booLogado;
-	}
-
-	private int _intUsuarioId;
-
-	public int getIntUsuarioId() {
-		return _intUsuarioId;
-	}
-
-	public void setIntUsuarioId(int intUsuarioId) {
-		_intUsuarioId = intUsuarioId;
-	}
-
-	private String _strSessaoId;
-
-	public String getStrSessaoId() {
-		return _strSessaoId;
-	}
-
-	public void setStrSessaoId(String strSessaoId) {
-		_strSessaoId = strSessaoId;
-	}
-
-	// FIM ATRIBUTOS
-
-	// CONSTRUTORES
-	
-	public Usuario() {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-			
-			AppWeb.getI().getLstObjUsuarioSessao().add(this);
-			
-			// FIM AÇÕES
-		} catch (Exception ex) {
-
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
-	}
-	
-	// FIM CONSTRUTORES
-
-	// MÉTODOS
 
 	public static Usuario getObjUsuarioPelaSessionId(String strSessionId) {
 		// VARIÁVEIS
@@ -86,8 +31,63 @@ public class Usuario extends Objeto {
 
 		} finally {
 		}
-		
+
 		return objUsuarioResultado;
+	}
+
+	private boolean _booLogado = false;
+
+	private int _intUsuarioId;
+
+	private String _strSessaoId;
+
+	public Usuario() {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			AppWeb.getI().getLstObjUsuarioSessao().add(this);
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+	}
+
+	public boolean getBooLogado() {
+		return _booLogado;
+	}
+
+	public int getIntUsuarioId() {
+		return _intUsuarioId;
+	}
+
+	public String getStrSessaoId() {
+		return _strSessaoId;
+	}
+
+	public void setBooLogado(boolean booLogado) {
+		_booLogado = booLogado;
+	}
+
+	// FIM ATRIBUTOS
+
+	// CONSTRUTORES
+
+	public void setIntUsuarioId(int intUsuarioId) {
+		_intUsuarioId = intUsuarioId;
+	}
+
+	// FIM CONSTRUTORES
+
+	// MÉTODOS
+
+	public void setStrSessaoId(String strSessaoId) {
+		_strSessaoId = strSessaoId;
 	}
 
 	// FIM MÉTODOS

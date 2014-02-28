@@ -8,7 +8,6 @@ import org.apache.catalina.websocket.WebSocketServlet;
 import com.digosofter.digowebapp.erro.Erro;
 
 public abstract class WebSocketMain extends WebSocketServlet {
-	// CONSTANTES
 
 	private static final long serialVersionUID = 1L;
 
@@ -26,7 +25,8 @@ public abstract class WebSocketMain extends WebSocketServlet {
 	// EVENTOS
 
 	@Override
-	protected StreamInbound createWebSocketInbound(String arg0, HttpServletRequest arg1) {
+	protected StreamInbound createWebSocketInbound(String arg0,
+			HttpServletRequest arg1) {
 		// VARIÁVEIS
 		// FIM VARIÁVEIS
 		try {

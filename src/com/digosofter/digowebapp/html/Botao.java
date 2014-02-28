@@ -3,7 +3,7 @@ package com.digosofter.digowebapp.html;
 import com.digosofter.digowebapp.erro.Erro;
 
 public class Botao extends Tag {
-	// CONSTANTES
+
 	// FIM CONSTANTES
 
 	// ATRIBUTOS
@@ -25,7 +25,8 @@ public class Botao extends Tag {
 			this.adicionarCss(CssTag.getCssMainInstancia().setPaddingRight(25));
 			this.adicionarCss(CssTag.getCssMainInstancia().setPaddingTop(7));
 
-			PaginaHtml.getI().getLstObjJavaScriptTag().add(new JavaScriptTag("res/js/lib/JDigo/html/Botao.js"));
+			PaginaHtml.getI().getLstObjJavaScriptTag()
+					.add(new JavaScriptTag("res/js/lib/JDigo/html/Botao.js"));
 
 			// FIM AÇÕES
 		} catch (Exception ex) {

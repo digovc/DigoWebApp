@@ -5,54 +5,36 @@ import com.digosofter.digowebapp.Utils;
 import com.digosofter.digowebapp.erro.Erro;
 
 public class DbFiltro extends Objeto {
-	// CONSTANTES
+
 	// FIM CONSTANTES
 
 	// ATRIBUTOS
 
 	private boolean _booAndOr = true;
 
-	private boolean getBooAndOr() {
-		return _booAndOr;
-	}
-
-	public void setBooAndOr(boolean booAndOr) {
-		_booAndOr = booAndOr;
-	}
-
 	private boolean _booSelect = false;
-
-	private boolean getBooSelect() {
-		return _booSelect;
-	}
-
-	public void setBooSelect(boolean booSelect) {
-		_booSelect = booSelect;
-	}
 
 	private String _strOperador = "=";
 
-	private String getStrOperador() {
-		return _strOperador;
-	}
-
-	public void setStrOperador(String strOperador) {
-		_strOperador = strOperador;
-	}
-
 	private String _strValor;
 
-	private String getStrValor() {
-		return _strValor;
+	public DbFiltro(DbColuna cln, String strValor) {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			this.setStrNome(cln.getStrNomeSimplificado());
+			this.setStrValor(strValor);
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
 	}
-
-	public void setStrValor(String strValor) {
-		_strValor = strValor;
-	}
-
-	// FIM ATRIBUTOS
-
-	// CONSTRUTORES
 
 	public DbFiltro(String strNome, String strValor) {
 		// VARIÁVEIS
@@ -72,22 +54,40 @@ public class DbFiltro extends Objeto {
 		}
 	}
 
-	public DbFiltro(DbColuna cln, String strValor) {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+	private boolean getBooAndOr() {
+		return _booAndOr;
+	}
 
-			this.setStrNome(cln.getStrNomeSimplificado());
-			this.setStrValor(strValor);
+	private boolean getBooSelect() {
+		return _booSelect;
+	}
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+	private String getStrOperador() {
+		return _strOperador;
+	}
 
-			new Erro("Erro inesperado.\n", ex);
+	private String getStrValor() {
+		return _strValor;
+	}
 
-		} finally {
-		}
+	public void setBooAndOr(boolean booAndOr) {
+		_booAndOr = booAndOr;
+	}
+
+	public void setBooSelect(boolean booSelect) {
+		_booSelect = booSelect;
+	}
+
+	// FIM ATRIBUTOS
+
+	// CONSTRUTORES
+
+	public void setStrOperador(String strOperador) {
+		_strOperador = strOperador;
+	}
+
+	public void setStrValor(String strValor) {
+		_strValor = strValor;
 	}
 
 	// FIM CONSTRUTORES

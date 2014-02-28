@@ -3,34 +3,14 @@ package com.digosofter.digowebapp.erro;
 import com.digosofter.digowebapp.Objeto;
 
 public class Erro extends Objeto {
-	// CONSTANTES
+
 	// FIM CONSTANTES
 
 	// ATRIBUTOS
 
 	private String _strMensagem;
 
-	private String getStrMensagem() {
-		return _strMensagem;
-	}
-
-	private void setStrMensagem(String strMensagem) {
-		_strMensagem = strMensagem;
-	}
-
 	private String _strMensagemDetalhada;
-
-	private String getStrMensagemDetalhada() {
-		return _strMensagemDetalhada;
-	}
-
-	private void setStrMensagemDetalhada(String strMensagemDetalhada) {
-		_strMensagemDetalhada = strMensagemDetalhada;
-	}
-
-	// FIM ATRIBUTOS
-
-	// CONSTRUTORES
 
 	public Erro(String strMensagem, Exception ex) {
 		// VARIÁVEIS
@@ -45,6 +25,26 @@ public class Erro extends Objeto {
 		} catch (Exception ex2) {
 		} finally {
 		}
+	}
+
+	private String getStrMensagem() {
+		return _strMensagem;
+	}
+
+	private String getStrMensagemDetalhada() {
+		return _strMensagemDetalhada;
+	}
+
+	private void setStrMensagem(String strMensagem) {
+		_strMensagem = strMensagem;
+	}
+
+	// FIM ATRIBUTOS
+
+	// CONSTRUTORES
+
+	private void setStrMensagemDetalhada(String strMensagemDetalhada) {
+		_strMensagemDetalhada = strMensagemDetalhada;
 	}
 
 	// FIM CONSTRUTORES

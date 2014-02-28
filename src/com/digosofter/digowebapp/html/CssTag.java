@@ -7,7 +7,6 @@ import com.digosofter.digowebapp.Utils;
 import com.digosofter.digowebapp.erro.Erro;
 
 public class CssTag extends Tag {
-	// CONSTANTES
 
 	public static final String CSS_BORDER_TIPO_SOLID = "solid";
 
@@ -81,15 +80,75 @@ public class CssTag extends Tag {
 
 	private List<AtributoCss> _lstAtrCss = new ArrayList<AtributoCss>();
 
+	private String _strConteudo;
+
+	public CssTag() {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			this.setStrTagNome("style");
+			this.setBooForcarTagDupla(true);
+			this.getLstAtr().add(new Atributo("type", "text/css"));
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+	}
+
+	public String addCss(String strCssNome, String strValor) {
+		// VARIÁVEIS
+
+		AtributoCss atrCssNovo;
+		boolean booExiste = false;
+		String strClassAssociadaResultado = Utils.STRING_VAZIA;
+
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			for (AtributoCss atrCss : this.getLstAtrCss()) {
+
+				if (atrCss.getStrNome().equals(strCssNome)
+						&& atrCss.getStrValor().equals(strValor)) {
+
+					booExiste = true;
+					strClassAssociadaResultado = atrCss.getStrClassAssociada();
+				}
+			}
+
+			if (!booExiste) {
+
+				atrCssNovo = new AtributoCss(strCssNome, strValor);
+				strClassAssociadaResultado = "c"
+						+ String.valueOf(this.getLstAtrCss().size());
+				atrCssNovo.setStrClassAssociada(strClassAssociadaResultado);
+				this.getLstAtrCss().add(atrCssNovo);
+			}
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+
+		return strClassAssociadaResultado;
+	}
+
 	public List<AtributoCss> getLstAtrCss() {
 		return _lstAtrCss;
 	}
 
-	private void setLstAtrCss(List<AtributoCss> lstAtrCss) {
-		_lstAtrCss = lstAtrCss;
-	}
+	// FIM ATRIBUTOS
 
-	private String _strConteudo;
+	// CONSTRUTORES
 
 	@Override
 	public String getStrConteudo() {
@@ -133,71 +192,9 @@ public class CssTag extends Tag {
 		return _strConteudo;
 	}
 
-	// FIM ATRIBUTOS
-
-	// CONSTRUTORES
-
-	public CssTag() {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-
-			this.setStrTagNome("style");
-			this.setBooForcarTagDupla(true);
-			this.getLstAtr().add(new Atributo("type", "text/css"));
-
-			// FIM AÇÕES
-		} catch (Exception ex) {
-
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
-	}
-
 	// FIM CONSTRUTORES
 
 	// MÉTODOS
-
-	public String addCss(String strCssNome, String strValor) {
-		// VARIÁVEIS
-
-		AtributoCss atrCssNovo;
-		boolean booExiste = false;
-		String strClassAssociadaResultado = Utils.STRING_VAZIA;
-
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-
-			for (AtributoCss atrCss : this.getLstAtrCss()) {
-
-				if (atrCss.getStrNome().equals(strCssNome) && atrCss.getStrValor().equals(strValor)) {
-
-					booExiste = true;
-					strClassAssociadaResultado = atrCss.getStrClassAssociada();
-				}
-			}
-
-			if (!booExiste) {
-
-				atrCssNovo = new AtributoCss(strCssNome, strValor);
-				strClassAssociadaResultado = "c" + String.valueOf(this.getLstAtrCss().size());
-				atrCssNovo.setStrClassAssociada(strClassAssociadaResultado);
-				this.getLstAtrCss().add(atrCssNovo);
-			}
-
-			// FIM AÇÕES
-		} catch (Exception ex) {
-
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
-
-		return strClassAssociadaResultado;
-	}
 
 	public String setBackgroundColor(String hexColor) {
 		// VARIÁVEIS
@@ -236,7 +233,8 @@ public class CssTag extends Tag {
 			strBulderValorEstrutura.append(strSrcImagem);
 			strBulderValorEstrutura.append("')");
 
-			strClassAssociada = this.addCss("background-image", strBulderValorEstrutura.toString());
+			strClassAssociada = this.addCss("background-image",
+					strBulderValorEstrutura.toString());
 
 			// FIM AÇÕES
 		} catch (Exception ex) {
@@ -262,7 +260,8 @@ public class CssTag extends Tag {
 			strBulderValorEstrutura = new StringBuilder();
 			strBulderValorEstrutura.append(strRepeat);
 
-			strClassAssociada = this.addCss("background-repeat", strBulderValorEstrutura.toString());
+			strClassAssociada = this.addCss("background-repeat",
+					strBulderValorEstrutura.toString());
 
 			// FIM AÇÕES
 		} catch (Exception ex) {
@@ -287,7 +286,8 @@ public class CssTag extends Tag {
 			strBulderValorEstrutura = new StringBuilder();
 			strBulderValorEstrutura.append(strSize);
 
-			strClassAssociada = this.addCss("background-size", strBulderValorEstrutura.toString());
+			strClassAssociada = this.addCss("background-size",
+					strBulderValorEstrutura.toString());
 
 			// FIM AÇÕES
 		} catch (Exception ex) {
@@ -313,7 +313,8 @@ public class CssTag extends Tag {
 			strBulderValorEstrutura = new StringBuilder();
 			strBulderValorEstrutura.append("0 auto");
 
-			strClassAssociada = this.addCss("margin", strBulderValorEstrutura.toString());
+			strClassAssociada = this.addCss("margin",
+					strBulderValorEstrutura.toString());
 
 			// FIM AÇÕES
 		} catch (Exception ex) {
@@ -343,7 +344,8 @@ public class CssTag extends Tag {
 			strBulderValorEstrutura.append(" ");
 			strBulderValorEstrutura.append(hexColor);
 
-			strClassAssociada = this.addCss("border", strBulderValorEstrutura.toString());
+			strClassAssociada = this.addCss("border",
+					strBulderValorEstrutura.toString());
 
 			// FIM AÇÕES
 		} catch (Exception ex) {
@@ -371,7 +373,8 @@ public class CssTag extends Tag {
 			strBulderValorEstrutura.append("px solid ");
 			strBulderValorEstrutura.append(hexColor);
 
-			strClassAssociada = this.addCss("border-bottom", strBulderValorEstrutura.toString());
+			strClassAssociada = this.addCss("border-bottom",
+					strBulderValorEstrutura.toString());
 
 			// FIM AÇÕES
 		} catch (Exception ex) {
@@ -399,7 +402,8 @@ public class CssTag extends Tag {
 			strBulderValorEstrutura.append("px solid ");
 			strBulderValorEstrutura.append(hexColor);
 
-			strClassAssociada = this.addCss("border-left", strBulderValorEstrutura.toString());
+			strClassAssociada = this.addCss("border-left",
+					strBulderValorEstrutura.toString());
 
 			// FIM AÇÕES
 		} catch (Exception ex) {
@@ -411,7 +415,8 @@ public class CssTag extends Tag {
 		return strClassAssociada;
 	}
 
-	public String setBorderRadius(int intTopLeftPx, int intTopRightPx, int intBottomLeftPx, int intBottomRightPx) {
+	public String setBorderRadius(int intTopLeftPx, int intTopRightPx,
+			int intBottomLeftPx, int intBottomRightPx) {
 		// VARIÁVEIS
 
 		String strClassAssociada = Utils.STRING_VAZIA;
@@ -431,7 +436,8 @@ public class CssTag extends Tag {
 			strBulderValorEstrutura.append(intBottomLeftPx);
 			strBulderValorEstrutura.append("px");
 
-			strClassAssociada = this.addCss("border-radius", strBulderValorEstrutura.toString());
+			strClassAssociada = this.addCss("border-radius",
+					strBulderValorEstrutura.toString());
 
 			// FIM AÇÕES
 		} catch (Exception ex) {
@@ -459,7 +465,8 @@ public class CssTag extends Tag {
 			strBulderValorEstrutura.append("px solid ");
 			strBulderValorEstrutura.append(hexColor);
 
-			strClassAssociada = this.addCss("border-right", strBulderValorEstrutura.toString());
+			strClassAssociada = this.addCss("border-right",
+					strBulderValorEstrutura.toString());
 
 			// FIM AÇÕES
 		} catch (Exception ex) {
@@ -487,7 +494,8 @@ public class CssTag extends Tag {
 			strBulderValorEstrutura.append("px solid ");
 			strBulderValorEstrutura.append(hexColor);
 
-			strClassAssociada = this.addCss("border-top", strBulderValorEstrutura.toString());
+			strClassAssociada = this.addCss("border-top",
+					strBulderValorEstrutura.toString());
 
 			// FIM AÇÕES
 		} catch (Exception ex) {
@@ -514,7 +522,8 @@ public class CssTag extends Tag {
 			strBulderValorEstrutura.append(intBottom);
 			strBulderValorEstrutura.append("px");
 
-			strClassAssociada = this.addCss("bottom", strBulderValorEstrutura.toString());
+			strClassAssociada = this.addCss("bottom",
+					strBulderValorEstrutura.toString());
 
 			// FIM AÇÕES
 		} catch (Exception ex) {
@@ -527,7 +536,8 @@ public class CssTag extends Tag {
 		return strClassAssociada;
 	}
 
-	public String setBoxShadow(int intHorizontal, int intVertical, int intBlur, int intSpread, String hexColor) {
+	public String setBoxShadow(int intHorizontal, int intVertical, int intBlur,
+			int intSpread, String hexColor) {
 		// VARIÁVEIS
 
 		String strClassAssociada = Utils.STRING_VAZIA;
@@ -548,7 +558,8 @@ public class CssTag extends Tag {
 			strBulderValorEstrutura.append("px ");
 			strBulderValorEstrutura.append(hexColor);
 
-			strClassAssociada = this.addCss("box-shadow", strBulderValorEstrutura.toString());
+			strClassAssociada = this.addCss("box-shadow",
+					strBulderValorEstrutura.toString());
 
 			// FIM AÇÕES
 		} catch (Exception ex) {
@@ -640,7 +651,8 @@ public class CssTag extends Tag {
 			strBulderValorEstrutura = new StringBuilder();
 			strBulderValorEstrutura.append(strDisplay);
 
-			strClassAssociada = this.addCss("display", strBulderValorEstrutura.toString());
+			strClassAssociada = this.addCss("display",
+					strBulderValorEstrutura.toString());
 
 			// FIM AÇÕES
 		} catch (Exception ex) {
@@ -666,7 +678,8 @@ public class CssTag extends Tag {
 			strBulderValorEstrutura = new StringBuilder();
 			strBulderValorEstrutura.append(strFloat);
 
-			strClassAssociada = this.addCss("float", strBulderValorEstrutura.toString());
+			strClassAssociada = this.addCss("float",
+					strBulderValorEstrutura.toString());
 
 			// FIM AÇÕES
 		} catch (Exception ex) {
@@ -692,7 +705,8 @@ public class CssTag extends Tag {
 			strBulderValorEstrutura = new StringBuilder();
 			strBulderValorEstrutura.append(strFontFamily);
 
-			strClassAssociada = this.addCss("font-family", strBulderValorEstrutura.toString());
+			strClassAssociada = this.addCss("font-family",
+					strBulderValorEstrutura.toString());
 
 			// FIM AÇÕES
 		} catch (Exception ex) {
@@ -741,7 +755,8 @@ public class CssTag extends Tag {
 			strBulderValorEstrutura.append(intFontSize);
 			strBulderValorEstrutura.append(strGrandeza);
 
-			strClassAssociada = this.addCss("font-size", strBulderValorEstrutura.toString());
+			strClassAssociada = this.addCss("font-size",
+					strBulderValorEstrutura.toString());
 
 			// FIM AÇÕES
 		} catch (Exception ex) {
@@ -768,7 +783,8 @@ public class CssTag extends Tag {
 			strBulderValorEstrutura.append(dblHeight);
 			strBulderValorEstrutura.append(strGrandeza);
 
-			strClassAssociada = this.addCss("height", strBulderValorEstrutura.toString());
+			strClassAssociada = this.addCss("height",
+					strBulderValorEstrutura.toString());
 
 			// FIM AÇÕES
 		} catch (Exception ex) {
@@ -795,7 +811,8 @@ public class CssTag extends Tag {
 			strBulderValorEstrutura.append(intLeft);
 			strBulderValorEstrutura.append("px");
 
-			strClassAssociada = this.addCss("left", strBulderValorEstrutura.toString());
+			strClassAssociada = this.addCss("left",
+					strBulderValorEstrutura.toString());
 
 			// FIM AÇÕES
 		} catch (Exception ex) {
@@ -806,6 +823,10 @@ public class CssTag extends Tag {
 		}
 
 		return strClassAssociada;
+	}
+
+	private void setLstAtrCss(List<AtributoCss> lstAtrCss) {
+		_lstAtrCss = lstAtrCss;
 	}
 
 	public String setMargin(int intMarginPx, String strGrandeza) {
@@ -822,7 +843,8 @@ public class CssTag extends Tag {
 			strBulderValorEstrutura.append(intMarginPx);
 			strBulderValorEstrutura.append(strGrandeza);
 
-			strClassAssociada = this.addCss("margin", strBulderValorEstrutura.toString());
+			strClassAssociada = this.addCss("margin",
+					strBulderValorEstrutura.toString());
 
 			// FIM AÇÕES
 		} catch (Exception ex) {
@@ -849,7 +871,8 @@ public class CssTag extends Tag {
 			strBulderValorEstrutura.append(intMarginBottomPx);
 			strBulderValorEstrutura.append("px");
 
-			strClassAssociada = this.addCss("margin-bottom", strBulderValorEstrutura.toString());
+			strClassAssociada = this.addCss("margin-bottom",
+					strBulderValorEstrutura.toString());
 
 			// FIM AÇÕES
 		} catch (Exception ex) {
@@ -876,7 +899,8 @@ public class CssTag extends Tag {
 			strBulderValorEstrutura.append(intMarginLeftPx);
 			strBulderValorEstrutura.append("px");
 
-			strClassAssociada = this.addCss("margin-left", strBulderValorEstrutura.toString());
+			strClassAssociada = this.addCss("margin-left",
+					strBulderValorEstrutura.toString());
 
 			// FIM AÇÕES
 		} catch (Exception ex) {
@@ -903,7 +927,8 @@ public class CssTag extends Tag {
 			strBulderValorEstrutura.append(intMarginRightPx);
 			strBulderValorEstrutura.append("px");
 
-			strClassAssociada = this.addCss("margin-right", strBulderValorEstrutura.toString());
+			strClassAssociada = this.addCss("margin-right",
+					strBulderValorEstrutura.toString());
 
 			// FIM AÇÕES
 		} catch (Exception ex) {
@@ -930,7 +955,8 @@ public class CssTag extends Tag {
 			strBulderValorEstrutura.append(intMarginTopPx);
 			strBulderValorEstrutura.append("px");
 
-			strClassAssociada = this.addCss("margin-top", strBulderValorEstrutura.toString());
+			strClassAssociada = this.addCss("margin-top",
+					strBulderValorEstrutura.toString());
 
 			// FIM AÇÕES
 		} catch (Exception ex) {
@@ -945,30 +971,31 @@ public class CssTag extends Tag {
 
 	public String setOpacity(double dblOpacity) {
 		// VARIÁVEIS
-		
+
 		String strClassAssociada = Utils.STRING_VAZIA;
 		StringBuilder strBulderValorEstrutura;
-		
+
 		// FIM VARIÁVEIS
 		try {
 			// AÇÕES
-			
+
 			strBulderValorEstrutura = new StringBuilder();
 			strBulderValorEstrutura.append(dblOpacity);
-			
-			strClassAssociada = this.addCss("opacity", strBulderValorEstrutura.toString());
-			
+
+			strClassAssociada = this.addCss("opacity",
+					strBulderValorEstrutura.toString());
+
 			// FIM AÇÕES
 		} catch (Exception ex) {
-			
+
 			new Erro("Erro inesperado.\n", ex);
-			
+
 		} finally {
 		}
-		
+
 		return strClassAssociada;
 	}
-	
+
 	public String setOverflow(String strOverflowPx) {
 		// VARIÁVEIS
 
@@ -982,7 +1009,8 @@ public class CssTag extends Tag {
 			strBulderValorEstrutura = new StringBuilder();
 			strBulderValorEstrutura.append(strOverflowPx);
 
-			strClassAssociada = this.addCss("overflow", strBulderValorEstrutura.toString());
+			strClassAssociada = this.addCss("overflow",
+					strBulderValorEstrutura.toString());
 
 			// FIM AÇÕES
 		} catch (Exception ex) {
@@ -1009,7 +1037,8 @@ public class CssTag extends Tag {
 			strBulderValorEstrutura.append(intPaddingPx);
 			strBulderValorEstrutura.append(strGrandeza);
 
-			strClassAssociada = this.addCss("padding", strBulderValorEstrutura.toString());
+			strClassAssociada = this.addCss("padding",
+					strBulderValorEstrutura.toString());
 
 			// FIM AÇÕES
 		} catch (Exception ex) {
@@ -1036,7 +1065,8 @@ public class CssTag extends Tag {
 			strBulderValorEstrutura.append(intPaddingBottomPx);
 			strBulderValorEstrutura.append("px");
 
-			strClassAssociada = this.addCss("padding-bottom", strBulderValorEstrutura.toString());
+			strClassAssociada = this.addCss("padding-bottom",
+					strBulderValorEstrutura.toString());
 
 			// FIM AÇÕES
 		} catch (Exception ex) {
@@ -1063,7 +1093,8 @@ public class CssTag extends Tag {
 			strBulderValorEstrutura.append(intPaddingLeftPx);
 			strBulderValorEstrutura.append("px");
 
-			strClassAssociada = this.addCss("padding-left", strBulderValorEstrutura.toString());
+			strClassAssociada = this.addCss("padding-left",
+					strBulderValorEstrutura.toString());
 
 			// FIM AÇÕES
 		} catch (Exception ex) {
@@ -1090,7 +1121,8 @@ public class CssTag extends Tag {
 			strBulderValorEstrutura.append(intPaddingRightPx);
 			strBulderValorEstrutura.append("px");
 
-			strClassAssociada = this.addCss("padding-right", strBulderValorEstrutura.toString());
+			strClassAssociada = this.addCss("padding-right",
+					strBulderValorEstrutura.toString());
 
 			// FIM AÇÕES
 		} catch (Exception ex) {
@@ -1117,7 +1149,8 @@ public class CssTag extends Tag {
 			strBulderValorEstrutura.append(intPaddingTopPx);
 			strBulderValorEstrutura.append("px");
 
-			strClassAssociada = this.addCss("padding-top", strBulderValorEstrutura.toString());
+			strClassAssociada = this.addCss("padding-top",
+					strBulderValorEstrutura.toString());
 
 			// FIM AÇÕES
 		} catch (Exception ex) {
@@ -1143,7 +1176,8 @@ public class CssTag extends Tag {
 			strBulderValorEstrutura = new StringBuilder();
 			strBulderValorEstrutura.append(strPosition);
 
-			strClassAssociada = this.addCss("position", strBulderValorEstrutura.toString());
+			strClassAssociada = this.addCss("position",
+					strBulderValorEstrutura.toString());
 
 			// FIM AÇÕES
 		} catch (Exception ex) {
@@ -1170,7 +1204,8 @@ public class CssTag extends Tag {
 			strBulderValorEstrutura.append(intRight);
 			strBulderValorEstrutura.append("px");
 
-			strClassAssociada = this.addCss("right", strBulderValorEstrutura.toString());
+			strClassAssociada = this.addCss("right",
+					strBulderValorEstrutura.toString());
 
 			// FIM AÇÕES
 		} catch (Exception ex) {
@@ -1185,29 +1220,30 @@ public class CssTag extends Tag {
 
 	public String setTextAlign(String strTextAlign) {
 		// VARIÁVEIS
-		
+
 		String strClassAssociada = Utils.STRING_VAZIA;
 		StringBuilder strBulderValorEstrutura;
-		
+
 		// FIM VARIÁVEIS
 		try {
 			// AÇÕES
-			
+
 			strBulderValorEstrutura = new StringBuilder();
-			strBulderValorEstrutura.append(strTextAlign);			
-			strClassAssociada = this.addCss("text-align", strBulderValorEstrutura.toString());
-			
+			strBulderValorEstrutura.append(strTextAlign);
+			strClassAssociada = this.addCss("text-align",
+					strBulderValorEstrutura.toString());
+
 			// FIM AÇÕES
 		} catch (Exception ex) {
-			
+
 			new Erro("Erro inesperado.\n", ex);
-			
+
 		} finally {
 		}
-		
+
 		return strClassAssociada;
 	}
-	
+
 	public String setTextDecoration(String strTextDecoration) {
 		// VARIÁVEIS
 
@@ -1221,7 +1257,8 @@ public class CssTag extends Tag {
 			strBulderValorEstrutura = new StringBuilder();
 			strBulderValorEstrutura.append(strTextDecoration);
 
-			strClassAssociada = this.addCss("text-decoration", strBulderValorEstrutura.toString());
+			strClassAssociada = this.addCss("text-decoration",
+					strBulderValorEstrutura.toString());
 
 			// FIM AÇÕES
 		} catch (Exception ex) {
@@ -1253,7 +1290,8 @@ public class CssTag extends Tag {
 			strBulderValorEstrutura.append("px ");
 			strBulderValorEstrutura.append(strColor);
 
-			strClassAssociada = this.addCss("text-shadow", strBulderValorEstrutura.toString());
+			strClassAssociada = this.addCss("text-shadow",
+					strBulderValorEstrutura.toString());
 
 			// FIM AÇÕES
 		} catch (Exception ex) {
@@ -1280,7 +1318,8 @@ public class CssTag extends Tag {
 			strBulderValorEstrutura.append(intTop);
 			strBulderValorEstrutura.append("px");
 
-			strClassAssociada = this.addCss("top", strBulderValorEstrutura.toString());
+			strClassAssociada = this.addCss("top",
+					strBulderValorEstrutura.toString());
 
 			// FIM AÇÕES
 		} catch (Exception ex) {
@@ -1307,7 +1346,8 @@ public class CssTag extends Tag {
 			strBulderValorEstrutura.append(dblWidth);
 			strBulderValorEstrutura.append(strGrandeza);
 
-			strClassAssociada = this.addCss("width", strBulderValorEstrutura.toString());
+			strClassAssociada = this.addCss("width",
+					strBulderValorEstrutura.toString());
 
 			// FIM AÇÕES
 		} catch (Exception ex) {
@@ -1332,7 +1372,8 @@ public class CssTag extends Tag {
 
 			strBulderValorEstrutura = new StringBuilder();
 			strBulderValorEstrutura.append(intZ);
-			strClassAssociada = this.addCss("z-index", strBulderValorEstrutura.toString());
+			strClassAssociada = this.addCss("z-index",
+					strBulderValorEstrutura.toString());
 
 			// FIM AÇÕES
 		} catch (Exception ex) {

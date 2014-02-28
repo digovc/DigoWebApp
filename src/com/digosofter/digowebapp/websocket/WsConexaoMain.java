@@ -15,78 +15,13 @@ import com.digosofter.digowebapp.websocket.wsobjetos.WsObjetoMain;
 import com.google.gson.Gson;
 
 public abstract class WsConexaoMain extends MessageInbound {
-	// CONSTANTES
+
 	// FIM CONSTANTES
 
 	// ATRIBUTOS
 
-	private Usuario _objUsuario;
-
-	public Usuario getObjUsuario() {
-		return _objUsuario;
-	}
-
-	private void setObjUsuario(Usuario objUsuario) {
-		_objUsuario = objUsuario;
-	}
-
-	private WsOutbound _objWsOutbound;
-
-	private WsOutbound getObjWsOutbound() {
-		return _objWsOutbound;
-	}
-
-	private void setObjWsOutbound(WsOutbound objWsOutbound) {
-		_objWsOutbound = objWsOutbound;
-	}
-
-	// FIM ATRIBUTOS
-
-	// CONSTRUTORES
-
-	public WsConexaoMain(String strSessionId) {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-
-			this.setObjUsuario(Usuario.getObjUsuarioPelaSessionId(strSessionId));
-
-			// FIM AÇÕES
-		} catch (Exception ex) {
-
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
-	}
-
-	// FIM CONSTRUTORES
-
-	// MÉTODOS
-
-	public void enviar(WsObjetoMain objWsObjetoMain) {
-		// VARIÁVEIS
-
-		Gson objJson;
-
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-
-			objJson = new Gson();
-			this.getObjWsOutbound().writeTextMessage(CharBuffer.wrap(objJson.toJson(objWsObjetoMain)));
-
-			// FIM AÇÕES
-		} catch (Exception ex) {
-
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
-	}
-
-	public static WsConexaoMain getObjWsConexaoMainPeloIntUsuarioId(int intUsuarioId) {
+	public static WsConexaoMain getObjWsConexaoMainPeloIntUsuarioId(
+			int intUsuarioId) {
 		// VARIÁVEIS
 
 		WsConexaoMain objConexaoMainResultado = null;
@@ -95,7 +30,8 @@ public abstract class WsConexaoMain extends MessageInbound {
 		try {
 			// AÇÕES
 
-			for (WsConexaoMain objConexaoMain : AppWeb.getI().getLstObjWsConexaoMain()) {
+			for (WsConexaoMain objConexaoMain : AppWeb.getI()
+					.getLstObjWsConexaoMain()) {
 
 				if (objConexaoMain.getObjUsuario().getIntUsuarioId() == intUsuarioId) {
 
@@ -115,9 +51,64 @@ public abstract class WsConexaoMain extends MessageInbound {
 		return objConexaoMainResultado;
 	}
 
-	// FIM MÉTODOS
+	private Usuario _objUsuario;
 
-	// EVENTOS
+	private WsOutbound _objWsOutbound;
+
+	public WsConexaoMain(String strSessionId) {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			this.setObjUsuario(Usuario.getObjUsuarioPelaSessionId(strSessionId));
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+	}
+
+	public void enviar(WsObjetoMain objWsObjetoMain) {
+		// VARIÁVEIS
+
+		Gson objJson;
+
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			objJson = new Gson();
+			this.getObjWsOutbound().writeTextMessage(
+					CharBuffer.wrap(objJson.toJson(objWsObjetoMain)));
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+	}
+
+	public Usuario getObjUsuario() {
+		return _objUsuario;
+	}
+
+	// FIM ATRIBUTOS
+
+	// CONSTRUTORES
+
+	private WsOutbound getObjWsOutbound() {
+		return _objWsOutbound;
+	}
+
+	// FIM CONSTRUTORES
+
+	// MÉTODOS
 
 	@Override
 	protected void onBinaryMessage(ByteBuffer arg0) throws IOException {
@@ -155,6 +146,10 @@ public abstract class WsConexaoMain extends MessageInbound {
 		}
 	}
 
+	// FIM MÉTODOS
+
+	// EVENTOS
+
 	@Override
 	protected void onOpen(WsOutbound outbound) {
 
@@ -178,7 +173,8 @@ public abstract class WsConexaoMain extends MessageInbound {
 	}
 
 	@Override
-	protected void onTextMessage(CharBuffer objCharBufferMensagem) throws IOException {
+	protected void onTextMessage(CharBuffer objCharBufferMensagem)
+			throws IOException {
 		// VARIÁVEIS
 
 		String strSessionId = Utils.STRING_VAZIA;
@@ -190,9 +186,11 @@ public abstract class WsConexaoMain extends MessageInbound {
 			if (objCharBufferMensagem.toString().contains("strSessionId")) {
 
 				strSessionId = objCharBufferMensagem.toString();
-				strSessionId = strSessionId.replace("strSessionId=", Utils.STRING_VAZIA);
+				strSessionId = strSessionId.replace("strSessionId=",
+						Utils.STRING_VAZIA);
 
-				this.setObjUsuario(Usuario.getObjUsuarioPelaSessionId(strSessionId));
+				this.setObjUsuario(Usuario
+						.getObjUsuarioPelaSessionId(strSessionId));
 			}
 
 			// FIM AÇÕES
@@ -202,6 +200,14 @@ public abstract class WsConexaoMain extends MessageInbound {
 
 		} finally {
 		}
+	}
+
+	private void setObjUsuario(Usuario objUsuario) {
+		_objUsuario = objUsuario;
+	}
+
+	private void setObjWsOutbound(WsOutbound objWsOutbound) {
+		_objWsOutbound = objWsOutbound;
 	}
 
 	// FIM EVENTOS

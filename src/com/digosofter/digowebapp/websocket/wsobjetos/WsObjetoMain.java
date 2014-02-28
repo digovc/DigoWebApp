@@ -4,43 +4,23 @@ import com.digosofter.digowebapp.Objeto;
 import com.digosofter.digowebapp.erro.Erro;
 
 public class WsObjetoMain extends Objeto {
-	// CONSTANTES
+
 	// FIM CONSTANTES
 
 	// ATRIBUTOS
 
 	private int _intMensagemId;
 
-	public int getIntMensagemId() {
-		return _intMensagemId;
-	}
-
-	private void setIntMensagemId(int intMensagemId) {
-		_intMensagemId = intMensagemId;
-	}
-
 	private String _strJsonFilho;
-
-	public String getStrJsonFilho() {
-		return _strJsonFilho;
-	}
-
-	public void setStrJsonFilho(String strJsonFilho) {
-		_strJsonFilho = strJsonFilho;
-	}
-
-	// FIM ATRIBUTOS
-
-	// CONSTRUTORES
 
 	public WsObjetoMain(int intMensagemId) {
 		// VARIÁVEIS
 		// FIM VARIÁVEIS
 		try {
 			// AÇÕES
-			
+
 			this.setIntMensagemId(intMensagemId);
-			
+
 			// FIM AÇÕES
 		} catch (Exception ex) {
 
@@ -48,6 +28,26 @@ public class WsObjetoMain extends Objeto {
 
 		} finally {
 		}
+	}
+
+	public int getIntMensagemId() {
+		return _intMensagemId;
+	}
+
+	public String getStrJsonFilho() {
+		return _strJsonFilho;
+	}
+
+	private void setIntMensagemId(int intMensagemId) {
+		_intMensagemId = intMensagemId;
+	}
+
+	// FIM ATRIBUTOS
+
+	// CONSTRUTORES
+
+	public void setStrJsonFilho(String strJsonFilho) {
+		_strJsonFilho = strJsonFilho;
 	}
 
 	// FIM CONSTRUTORES

@@ -6,12 +6,16 @@ import com.digosofter.digowebapp.html.Painel;
 import com.digosofter.digowebapp.html.Tag;
 
 public abstract class ComponenteMain extends Tag {
-	// CONSTANTES
+
 	// FIM CONSTANTES
 
 	// ATRIBUTOS
 
 	private Painel _pnlComando;
+
+	private Painel _pnlContainer;
+
+	private Painel _pnlTitulo;
 
 	public Painel getPnlComando() {
 		// VARIÁVEIS
@@ -22,8 +26,10 @@ public abstract class ComponenteMain extends Tag {
 			if (_pnlComando == null) {
 
 				_pnlComando = new Painel();
-				_pnlComando.adicionarCss(CssTag.getCssMainInstancia().setPaddingLeft(10));
-				_pnlComando.adicionarCss(CssTag.getCssMainInstancia().setPaddingRight(10));
+				_pnlComando.adicionarCss(CssTag.getCssMainInstancia()
+						.setPaddingLeft(10));
+				_pnlComando.adicionarCss(CssTag.getCssMainInstancia()
+						.setPaddingRight(10));
 			}
 
 			// FIM AÇÕES
@@ -36,8 +42,6 @@ public abstract class ComponenteMain extends Tag {
 
 		return _pnlComando;
 	}
-
-	private Painel _pnlContainer;
 
 	public Painel getPnlContainer() {
 		// VARIÁVEIS
@@ -59,8 +63,6 @@ public abstract class ComponenteMain extends Tag {
 
 		return _pnlContainer;
 	}
-
-	private Painel _pnlTitulo;
 
 	protected Painel getPnlTitulo() {
 		// VARIÁVEIS

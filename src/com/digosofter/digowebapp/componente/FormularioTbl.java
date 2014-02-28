@@ -11,12 +11,40 @@ import com.digosofter.digowebapp.html.LimiteFloat;
 import com.digosofter.digowebapp.html.Painel;
 
 public class FormularioTbl extends ComponenteMain {
-	// CONSTANTES
+
 	// FIM CONSTANTES
 
 	// ATRIBUTOS
 
 	private Botao _btnSalvar;
+
+	private Formulario _frm;
+
+	private LimiteFloat _objLimiteFloat;
+
+	private Painel _pnlCampos;
+
+	private DbTabela _tbl;
+
+	/**
+	 * Formulário para cadastro de um registro da tabela passada como parâmetro.
+	 */
+	public FormularioTbl(DbTabela tbl) {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			this.setTbl(tbl);
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+	}
 
 	private Botao getBtnSalvar() {
 		// VARIÁVEIS
@@ -40,8 +68,6 @@ public class FormularioTbl extends ComponenteMain {
 
 		return _btnSalvar;
 	}
-
-	private Formulario _frm;
 
 	private Formulario getFrm() {
 		// VARIÁVEIS
@@ -73,91 +99,6 @@ public class FormularioTbl extends ComponenteMain {
 		return _frm;
 	}
 
-	private LimiteFloat _objLimiteFloat;
-
-	private LimiteFloat getObjLimiteFloat() {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-
-			if (_objLimiteFloat == null) {
-				_objLimiteFloat = new LimiteFloat();
-			}
-
-			// FIM AÇÕES
-		} catch (Exception ex) {
-
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
-
-		return _objLimiteFloat;
-	}
-
-	private Painel _pnlCampos;
-
-	public Painel getPnlCampos() {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-
-			if (_pnlCampos == null) {
-
-				_pnlCampos = new Painel();
-			}
-
-			// FIM AÇÕES
-		} catch (Exception ex) {
-
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
-
-		return _pnlCampos;
-	}
-
-	private DbTabela _tbl;
-
-	private DbTabela getTbl() {
-		return _tbl;
-	}
-
-	private void setTbl(DbTabela tbl) {
-		_tbl = tbl;
-	}
-
-	// FIM ATRIBUTOS
-
-	// CONSTRUTORES
-
-	/**
-	 * Formulário para cadastro de um registro da tabela passada como parâmetro.
-	 */
-	public FormularioTbl(DbTabela tbl) {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-
-			this.setTbl(tbl);
-
-			// FIM AÇÕES
-		} catch (Exception ex) {
-
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
-	}
-
-	// FIM CONSTRUTORES
-
-	// MÉTODOS
-
 	/**
 	 * Retorna a quantidade de linhas contidas no formulário.
 	 */
@@ -187,6 +128,61 @@ public class FormularioTbl extends ComponenteMain {
 		return intResultado;
 	}
 
+	private LimiteFloat getObjLimiteFloat() {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			if (_objLimiteFloat == null) {
+				_objLimiteFloat = new LimiteFloat();
+			}
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+
+		return _objLimiteFloat;
+	}
+
+	public Painel getPnlCampos() {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			if (_pnlCampos == null) {
+
+				_pnlCampos = new Painel();
+			}
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+
+		return _pnlCampos;
+	}
+
+	// FIM ATRIBUTOS
+
+	// CONSTRUTORES
+
+	private DbTabela getTbl() {
+		return _tbl;
+	}
+
+	// FIM CONSTRUTORES
+
+	// MÉTODOS
+
 	@Override
 	public void montarLayout() {
 		// VARIÁVEIS
@@ -197,7 +193,8 @@ public class FormularioTbl extends ComponenteMain {
 		try {
 			// AÇÕES
 
-			strParam = AppWeb.getI().getParametro(this.getTbl().getStrNomeSimplificado());
+			strParam = AppWeb.getI().getParametro(
+					this.getTbl().getStrNomeSimplificado());
 
 			if (strParam == null) {
 
@@ -293,6 +290,10 @@ public class FormularioTbl extends ComponenteMain {
 
 		} finally {
 		}
+	}
+
+	private void setTbl(DbTabela tbl) {
+		_tbl = tbl;
 	}
 
 	// FIM MÉTODOS

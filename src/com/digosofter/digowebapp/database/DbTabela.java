@@ -13,12 +13,132 @@ import com.digosofter.digowebapp.erro.Erro;
 import com.digosofter.digowebapp.html.Tag;
 
 public abstract class DbTabela extends Objeto {
-	// CONSTANTES
+
 	// FIM CONSTANTES
 
 	// ATRIBUTOS
 
 	private DbColuna _clnChavePrimaria;
+
+	private DbColuna _clnNome;
+
+	private FormularioTbl _frmTbl;
+
+	private List<DbColuna> _lstCln;
+
+	private List<DbColuna> _lstClnVisivelCadastro;
+
+	private List<DbColuna> _lstClnVisivelConsulta;
+
+	private ConsultaTbl _objConsultaTbl;
+
+	private DataBase _objDataBase;
+
+	public DbTabela(String strNome, DataBase objDataBase) {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			this.setStrNome(strNome);
+			this.setObjDataBase(objDataBase);
+			this.inicializarColunas();
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+	}
+
+	/**
+	 * Adiciona a estrutura completa de uma lista na tag passada como parâmetro.
+	 */
+	public void adicionarConsultaTbl(Tag tag) {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			this.setObjConsultaTbl(new ConsultaTbl(this));
+			this.getObjConsultaTbl().montarLayout();
+			this.getObjConsultaTbl().getPnlContainer().setTagPai(tag);
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+	}
+
+	/**
+	 * Adiciona a estrutura completa de um formulário na tag passada como
+	 * parâmetro.
+	 */
+	public void adicionarFrmTbl(Tag tag) {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			this.setFrmTbl(new FormularioTbl(this));
+			this.getFrmTbl().montarLayout();
+			this.getFrmTbl().getPnlContainer().setTagPai(tag);
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+	}
+
+	/**
+	 * Apelido para o método
+	 * "buscarRegistroPorCln(DbColuna cln, String strFiltroValor)".
+	 */
+	public void buscarRegistroPorCln(DbColuna cln, int intValor) {
+		this.buscarRegistroPorCln(cln, String.valueOf(intValor));
+	}
+
+	/**
+	 * Atualizar os valores das colunas da tabela com o registro que satisfaz o
+	 * filtro passado nos parâmetros "cln" e "strFiltroValor".
+	 */
+	public void buscarRegistroPorCln(DbColuna cln, String strFiltroValor) {
+		// VARIÁVEIS
+
+		ResultSet objResultSet;
+
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			this.limparColunas();
+			objResultSet = this.getObjResultSet(cln, strFiltroValor);
+
+			if (objResultSet != null && objResultSet.first()) {
+
+				for (DbColuna cln2 : this.getLstCln()) {
+
+					cln2.setStrValor(objResultSet.getString(cln2
+							.getStrNomeSimplificado()));
+				}
+			}
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+	}
 
 	private DbColuna getClnChavePrimaria() {
 		// VARIÁVEIS
@@ -43,8 +163,6 @@ public abstract class DbTabela extends Objeto {
 
 		return _clnChavePrimaria;
 	}
-
-	private DbColuna _clnNome;
 
 	public DbColuna getClnNome() {
 		// VARIÁVEIS
@@ -79,232 +197,8 @@ public abstract class DbTabela extends Objeto {
 		return _clnNome;
 	}
 
-	private FormularioTbl _frmTbl;
-
 	public FormularioTbl getFrmTbl() {
 		return _frmTbl;
-	}
-
-	private void setFrmTbl(FormularioTbl frmTbl) {
-		_frmTbl = frmTbl;
-	}
-
-	private List<DbColuna> _lstCln;
-
-	public List<DbColuna> getLstCln() {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-
-			if (_lstCln == null) {
-				_lstCln = new ArrayList<DbColuna>();
-			}
-
-			// FIM AÇÕES
-		} catch (Exception ex) {
-
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
-
-		return _lstCln;
-	}
-
-	private List<DbColuna> _lstClnVisivelCadastro;
-
-	public List<DbColuna> getLstClnVisivelCadastro() {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-
-			if (_lstClnVisivelCadastro == null) {
-
-				_lstClnVisivelCadastro = new ArrayList<DbColuna>();
-
-				for (DbColuna cln : this.getLstCln()) {
-
-					if (cln.getBooVisivelCadastro()) {
-						_lstClnVisivelCadastro.add(cln);
-					}
-				}
-			}
-
-			// FIM AÇÕES
-		} catch (Exception ex) {
-
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
-
-		return _lstClnVisivelCadastro;
-	}
-
-	private List<DbColuna> _lstClnVisivelConsulta;
-
-	public List<DbColuna> getLstClnVisivelConsulta() {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-
-			if (_lstClnVisivelConsulta == null) {
-
-				_lstClnVisivelConsulta = new ArrayList<DbColuna>();
-
-				for (DbColuna cln : this.getLstCln()) {
-
-					if (cln.getBooVisivelConsulta()) {
-						_lstClnVisivelConsulta.add(cln);
-					}
-				}
-			}
-
-			// FIM AÇÕES
-		} catch (Exception ex) {
-
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
-
-		return _lstClnVisivelConsulta;
-	}
-
-	private ConsultaTbl _objConsultaTbl;
-
-	private ConsultaTbl getObjConsultaTbl() {
-		return _objConsultaTbl;
-	}
-
-	private void setObjConsultaTbl(ConsultaTbl objConsultaTbl) {
-		_objConsultaTbl = objConsultaTbl;
-	}
-
-	private DataBase _objDataBase;
-
-	public DataBase getObjDataBase() {
-		return _objDataBase;
-	}
-
-	private void setObjDataBase(DataBase objDataBase) {
-		_objDataBase = objDataBase;
-	}
-
-	// FIM ATRIBUTOS
-
-	// CONSTRUTORES
-
-	public DbTabela(String strNome, DataBase objDataBase) {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-
-			this.setStrNome(strNome);
-			this.setObjDataBase(objDataBase);
-			this.inicializarColunas();
-
-			// FIM AÇÕES
-		} catch (Exception ex) {
-
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
-	}
-
-	// FIM CONSTRUTORES
-
-	// MÉTODOS
-
-	/**
-	 * Adiciona a estrutura completa de um formulário na tag passada como
-	 * parâmetro.
-	 */
-	public void adicionarFrmTbl(Tag tag) {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-
-			this.setFrmTbl(new FormularioTbl(this));
-			this.getFrmTbl().montarLayout();
-			this.getFrmTbl().getPnlContainer().setTagPai(tag);
-
-			// FIM AÇÕES
-		} catch (Exception ex) {
-
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
-	}
-
-	/**
-	 * Adiciona a estrutura completa de uma lista na tag passada como parâmetro.
-	 */
-	public void adicionarConsultaTbl(Tag tag) {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-
-			this.setObjConsultaTbl(new ConsultaTbl(this));
-			this.getObjConsultaTbl().montarLayout();
-			this.getObjConsultaTbl().getPnlContainer().setTagPai(tag);
-
-			// FIM AÇÕES
-		} catch (Exception ex) {
-
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
-	}
-
-	/**
-	 * Atualizar os valores das colunas da tabela com o registro que satisfaz o
-	 * filtro passado nos parâmetros "cln" e "strFiltroValor".
-	 */
-	public void buscarRegistroPorCln(DbColuna cln, String strFiltroValor) {
-		// VARIÁVEIS
-
-		ResultSet objResultSet;
-
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-
-			this.limparColunas();
-			objResultSet = this.getObjResultSet(cln, strFiltroValor);
-
-			if (objResultSet != null && objResultSet.first()) {
-
-				for (DbColuna cln2 : this.getLstCln()) {
-
-					cln2.setStrValor(objResultSet.getString(cln2.getStrNomeSimplificado()));
-				}
-			}
-
-			// FIM AÇÕES
-		} catch (Exception ex) {
-
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
-	}
-
-	/**
-	 * Apelido para o método
-	 * "buscarRegistroPorCln(DbColuna cln, String strFiltroValor)".
-	 */
-	public void buscarRegistroPorCln(DbColuna cln, int intValor) {
-		this.buscarRegistroPorCln(cln, String.valueOf(intValor));
 	}
 
 	/**
@@ -342,6 +236,93 @@ public abstract class DbTabela extends Objeto {
 		return intResultado;
 
 	}
+
+	public List<DbColuna> getLstCln() {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			if (_lstCln == null) {
+				_lstCln = new ArrayList<DbColuna>();
+			}
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+
+		return _lstCln;
+	}
+
+	public List<DbColuna> getLstClnVisivelCadastro() {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			if (_lstClnVisivelCadastro == null) {
+
+				_lstClnVisivelCadastro = new ArrayList<DbColuna>();
+
+				for (DbColuna cln : this.getLstCln()) {
+
+					if (cln.getBooVisivelCadastro()) {
+						_lstClnVisivelCadastro.add(cln);
+					}
+				}
+			}
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+
+		return _lstClnVisivelCadastro;
+	}
+
+	// FIM ATRIBUTOS
+
+	// CONSTRUTORES
+
+	public List<DbColuna> getLstClnVisivelConsulta() {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			if (_lstClnVisivelConsulta == null) {
+
+				_lstClnVisivelConsulta = new ArrayList<DbColuna>();
+
+				for (DbColuna cln : this.getLstCln()) {
+
+					if (cln.getBooVisivelConsulta()) {
+						_lstClnVisivelConsulta.add(cln);
+					}
+				}
+			}
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+
+		return _lstClnVisivelConsulta;
+	}
+
+	// FIM CONSTRUTORES
+
+	// MÉTODOS
 
 	/**
 	 * Retorna uma "List<Integer>" contendo toda a coluna indicada no parâmetro
@@ -381,7 +362,7 @@ public abstract class DbTabela extends Objeto {
 
 	/**
 	 * Retorna um "List<String>" com os nomes das colunas.
-	 *
+	 * 
 	 * @param "booPreenchida": Indica se o retorno só contém nome de colunas com
 	 *        valores diferente de "null".
 	 */
@@ -419,7 +400,7 @@ public abstract class DbTabela extends Objeto {
 	/**
 	 * Retorna um "List<String>" com os nomes das colunas e seus valores na
 	 * síntese "tblNome.clnNome='clnValorFormatado'";.
-	 *
+	 * 
 	 * @param "booPreenchida": Indica se o retorno só contém nome de colunas com
 	 *        valores diferente de "null".
 	 */
@@ -469,7 +450,8 @@ public abstract class DbTabela extends Objeto {
 		try {
 			// AÇÕES
 
-			sql = "select " + cln.getStrNomeSimplificado() + " from " + this.getStrNomeSimplificado() + ";";
+			sql = "select " + cln.getStrNomeSimplificado() + " from "
+					+ this.getStrNomeSimplificado() + ";";
 
 			objResultSet = this.getObjDataBase().execSqlRetornaResultSet(sql);
 
@@ -497,7 +479,71 @@ public abstract class DbTabela extends Objeto {
 		return lstStrResultado;
 	}
 
-	public ResultSet getObjResultSet(List<DbColuna> lstCln, List<DbFiltro> lstObjDbFiltro, List<DbColuna> lstClnOrdem) {
+	private ConsultaTbl getObjConsultaTbl() {
+		return _objConsultaTbl;
+	}
+
+	public DataBase getObjDataBase() {
+		return _objDataBase;
+	}
+
+	public ResultSet getObjResultSet(DbColuna cln,
+			List<DbFiltro> lstObjDbFiltro, List<DbColuna> lstClnOrdem) {
+		// VARIÁVEIS
+
+		List<DbColuna> lstCln;
+		ResultSet objResultSetResultado = null;
+
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			lstCln = new ArrayList<DbColuna>();
+			lstCln.add(cln);
+
+			objResultSetResultado = this.getObjResultSet(lstCln,
+					lstObjDbFiltro, lstClnOrdem);
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+
+		return objResultSetResultado;
+	}
+
+	public ResultSet getObjResultSet(DbColuna clnFiltro, String strFiltro) {
+		// VARIÁVEIS
+
+		List<DbFiltro> lstObjDbFiltro;
+		ResultSet objResultSetResultado = null;
+
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			lstObjDbFiltro = new ArrayList<DbFiltro>();
+			lstObjDbFiltro.add(new DbFiltro(clnFiltro.getStrNomeSimplificado(),
+					strFiltro));
+
+			objResultSetResultado = this.getObjResultSet(this.getLstCln(),
+					lstObjDbFiltro, null);
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
+		return objResultSetResultado;
+	}
+
+	public ResultSet getObjResultSet(List<DbColuna> lstCln,
+			List<DbFiltro> lstObjDbFiltro, List<DbColuna> lstClnOrdem) {
 		// VARIÁVEIS
 
 		ResultSet objResultSetResultado = null;
@@ -562,7 +608,8 @@ public abstract class DbTabela extends Objeto {
 
 			strBuilder.append(";");
 			sql = strBuilder.toString();
-			objResultSetResultado = this.getObjDataBase().execSqlRetornaResultSet(sql);
+			objResultSetResultado = this.getObjDataBase()
+					.execSqlRetornaResultSet(sql);
 
 			// FIM AÇÕES
 		} catch (Exception ex) {
@@ -572,57 +619,6 @@ public abstract class DbTabela extends Objeto {
 		} finally {
 		}
 
-		return objResultSetResultado;
-	}
-
-	public ResultSet getObjResultSet(DbColuna cln, List<DbFiltro> lstObjDbFiltro, List<DbColuna> lstClnOrdem) {
-		// VARIÁVEIS
-
-		List<DbColuna> lstCln;
-		ResultSet objResultSetResultado = null;
-
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-
-			lstCln = new ArrayList<DbColuna>();
-			lstCln.add(cln);
-
-			objResultSetResultado = this.getObjResultSet(lstCln, lstObjDbFiltro, lstClnOrdem);
-
-			// FIM AÇÕES
-		} catch (Exception ex) {
-
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
-
-		return objResultSetResultado;
-	}
-
-	public ResultSet getObjResultSet(DbColuna clnFiltro, String strFiltro) {
-		// VARIÁVEIS
-
-		List<DbFiltro> lstObjDbFiltro;
-		ResultSet objResultSetResultado = null;
-
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-
-			lstObjDbFiltro = new ArrayList<DbFiltro>();
-			lstObjDbFiltro.add(new DbFiltro(clnFiltro.getStrNomeSimplificado(), strFiltro));
-
-			objResultSetResultado = this.getObjResultSet(this.getLstCln(), lstObjDbFiltro, null);
-
-			// FIM AÇÕES
-		} catch (Exception ex) {
-
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
 		return objResultSetResultado;
 	}
 
@@ -639,7 +635,8 @@ public abstract class DbTabela extends Objeto {
 		try {
 			// AÇÕES
 
-			objResultSetResultado = this.getObjResultSet(this.getLstClnVisivelConsulta(), null, null);
+			objResultSetResultado = this.getObjResultSet(
+					this.getLstClnVisivelConsulta(), null, null);
 
 			// FIM AÇÕES
 		} catch (Exception ex) {
@@ -675,7 +672,8 @@ public abstract class DbTabela extends Objeto {
 			lstClnOrdem = new ArrayList<DbColuna>();
 			lstClnOrdem.add(this.getClnNome());
 
-			objResultSetResultado = this.getObjResultSet(lstCln, null, lstClnOrdem);
+			objResultSetResultado = this.getObjResultSet(lstCln, null,
+					lstClnOrdem);
 
 			// FIM AÇÕES
 		} catch (Exception ex) {
@@ -713,17 +711,38 @@ public abstract class DbTabela extends Objeto {
 	}
 
 	/**
-	 * Apelido para "limparColunas()".
+	 * Persiste os valores atuais das colunas no banco de dados. Caso o valor da
+	 * coluna chave-primária já exista faz apenas um "update", do contrário
+	 * insere uma nova linha na tabela. Logo após incluir o registro, atualiza
+	 * os valores de todas as colunas pelo que está no banco de dados.
 	 */
-	public void zerarColunas() {
-		this.limparColunas();
-	}
+	public void salvar() {
+		// VARIÁVEIS
 
-	/**
-	 * Apelido para "limparColunas()".
-	 */
-	public void zerarValores() {
-		this.limparColunas();
+		ResultSet objResultSet;
+
+		String sql;
+
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			// Object[]
+
+			// sql =
+			// "UPDATE %1$ SET %6$ WHERE %2$=%3$; INSERT INTO %1$ (%4$) SELECT %5$ WHERE NOT EXISTS (SELECT 1 FROM %1$ WHERE %2$=%3$);";
+			// sql = sql.format(this.getStrNomeSimplificado(),
+			// this.getClnChavePrimaria().getStrNomeSimplificado(),
+			// this.getClnChavePrimaria()
+			// .getStrValor(), strClnNomes, strClnValores, strClnNomesValores);
+
+			// FIM AÇÕES
+		} catch (Exception ex) {
+
+			new Erro("Erro inesperado.\n", ex);
+
+		} finally {
+		}
 	}
 
 	/**
@@ -742,7 +761,8 @@ public abstract class DbTabela extends Objeto {
 
 			for (DbColuna cln : this.getLstClnVisivelCadastro()) {
 
-				strPostValor = AppWeb.getI().getParametro(cln.getStrNomeSimplificado());
+				strPostValor = AppWeb.getI().getParametro(
+						cln.getStrNomeSimplificado());
 				cln.setStrValor(strPostValor);
 			}
 
@@ -757,36 +777,30 @@ public abstract class DbTabela extends Objeto {
 		}
 	}
 
+	private void setFrmTbl(FormularioTbl frmTbl) {
+		_frmTbl = frmTbl;
+	}
+
+	private void setObjConsultaTbl(ConsultaTbl objConsultaTbl) {
+		_objConsultaTbl = objConsultaTbl;
+	}
+
+	private void setObjDataBase(DataBase objDataBase) {
+		_objDataBase = objDataBase;
+	}
+
 	/**
-	 * Persiste os valores atuais das colunas no banco de dados. Caso o valor da
-	 * coluna chave-primária já exista faz apenas um "update", do contrário
-	 * insere uma nova linha na tabela. Logo após incluir o registro, atualiza
-	 * os valores de todas as colunas pelo que está no banco de dados.
+	 * Apelido para "limparColunas()".
 	 */
-	public void salvar() {
-		// VARIÁVEIS
+	public void zerarColunas() {
+		this.limparColunas();
+	}
 
-		ResultSet objResultSet;
-
-		String sql;
-
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-
-//			Object[]
-
-//			sql = "UPDATE %1$ SET %6$ WHERE %2$=%3$; INSERT INTO %1$ (%4$) SELECT %5$ WHERE NOT EXISTS (SELECT 1 FROM %1$ WHERE %2$=%3$);";
-//			sql = sql.format(this.getStrNomeSimplificado(), this.getClnChavePrimaria().getStrNomeSimplificado(), this.getClnChavePrimaria()
-//					.getStrValor(), strClnNomes, strClnValores, strClnNomesValores);
-
-			// FIM AÇÕES
-		} catch (Exception ex) {
-
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
+	/**
+	 * Apelido para "limparColunas()".
+	 */
+	public void zerarValores() {
+		this.limparColunas();
 	}
 
 	// FIM MÉTODOS

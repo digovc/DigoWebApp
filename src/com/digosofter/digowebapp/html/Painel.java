@@ -3,7 +3,7 @@ package com.digosofter.digowebapp.html;
 import com.digosofter.digowebapp.erro.Erro;
 
 public class Painel extends Tag {
-	// CONSTANTES
+
 	// FIM CONSTANTES
 
 	// ATRIBUTOS
@@ -19,9 +19,11 @@ public class Painel extends Tag {
 
 			this.setStrTagNome("div");
 			this.setBooForcarTagDupla(true);
-			this.adicionarCss(CssTag.getCssMainInstancia().setTextAlign("center"));
+			this.adicionarCss(CssTag.getCssMainInstancia().setTextAlign(
+					"center"));
 
-			PaginaHtml.getI().getLstObjJavaScriptTag().add(new JavaScriptTag("res/js/lib/JDigo/html/Painel.js"));
+			PaginaHtml.getI().getLstObjJavaScriptTag()
+					.add(new JavaScriptTag("res/js/lib/JDigo/html/Painel.js"));
 
 			// FIM AÇÕES
 		} catch (Exception ex) {
