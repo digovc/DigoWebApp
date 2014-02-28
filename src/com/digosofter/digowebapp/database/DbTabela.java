@@ -385,10 +385,9 @@ public abstract class DbTabela extends Objeto {
 	 * @param "booPreenchida": Indica se o retorno só contém nome de colunas com
 	 *        valores diferente de "null".
 	 */
-	private List<String> getLstStrClnNome(boolean booPreenchida) {
+	protected List<String> getLstStrClnNome(boolean booPreenchida) {
 		// VARIÁVEIS
 
-		String strNome;
 		List<String> lstStrRetorno = null;
 
 		// FIM VARIÁVEIS
@@ -403,9 +402,6 @@ public abstract class DbTabela extends Objeto {
 					continue;
 				}
 
-				strNome = "tbl";
-				strNome += cln.getTbl().getIntId();
-				strNome += ".";
 				lstStrRetorno.add(cln.getStrNomeSimplificado());
 			}
 
@@ -427,10 +423,9 @@ public abstract class DbTabela extends Objeto {
 	 * @param "booPreenchida": Indica se o retorno só contém nome de colunas com
 	 *        valores diferente de "null".
 	 */
-	private List<String> getLstStrClnNomeValor(boolean booPreenchida) {
+	protected List<String> getLstStrClnNomeValor(boolean booPreenchida) {
 		// VARIÁVEIS
 
-		String strNome;
 		List<String> lstStrRetorno = null;
 
 		// FIM VARIÁVEIS
@@ -445,9 +440,6 @@ public abstract class DbTabela extends Objeto {
 					continue;
 				}
 
-				strNome = "tbl";
-				strNome += cln.getTbl().getIntId();
-				strNome += ".";
 				lstStrRetorno.add(cln.getStrNomeSimplificado());
 			}
 
@@ -768,18 +760,11 @@ public abstract class DbTabela extends Objeto {
 	/**
 	 * Persiste os valores atuais das colunas no banco de dados. Caso o valor da
 	 * coluna chave-primária já exista faz apenas um "update", do contrário
-	 * insere uma nova linha na tabela.
-	 *
-	 * @return: Id de identificação do registro na tabela.
+	 * insere uma nova linha na tabela. Logo após incluir o registro, atualiza
+	 * os valores de todas as colunas pelo que está no banco de dados.
 	 */
-	public int salvar() {
+	public void salvar() {
 		// VARIÁVEIS
-
-		String[] arrStrClnNome;
-		String[] arrStrClnNomesValor;
-		String[] arrStrClnValor;
-
-		int intResultado = 0;
 
 		ResultSet objResultSet;
 
@@ -789,12 +774,11 @@ public abstract class DbTabela extends Objeto {
 		try {
 			// AÇÕES
 
-			sql = "UPDATE %1$ SET %6$ WHERE %2$=%3$; INSERT INTO %1$ (%4$) SELECT %5$ WHERE NOT EXISTS (SELECT 1 FROM %1$ WHERE %2$=%3$);";
-			// sql = sql.format(this.getStrNomeSimplificado(),
-			// this.getClnChavePrimaria().getStrNomeSimplificado(),
-			// this.getClnChavePrimaria().getStrValor(), strClnNomes,
-			// strClnValores,
-			// strClnNomesValores);
+//			Object[]
+
+//			sql = "UPDATE %1$ SET %6$ WHERE %2$=%3$; INSERT INTO %1$ (%4$) SELECT %5$ WHERE NOT EXISTS (SELECT 1 FROM %1$ WHERE %2$=%3$);";
+//			sql = sql.format(this.getStrNomeSimplificado(), this.getClnChavePrimaria().getStrNomeSimplificado(), this.getClnChavePrimaria()
+//					.getStrValor(), strClnNomes, strClnValores, strClnNomesValores);
 
 			// FIM AÇÕES
 		} catch (Exception ex) {
@@ -803,8 +787,6 @@ public abstract class DbTabela extends Objeto {
 
 		} finally {
 		}
-
-		return intResultado;
 	}
 
 	// FIM MÉTODOS

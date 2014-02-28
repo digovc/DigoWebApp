@@ -112,6 +112,16 @@ public class DbColuna extends Objeto {
 		_intFrmLinhaPeso = intFrmLinhaPeso;
 	}
 
+	private int _intOrdem;
+
+	protected int getIntOrdem() {
+		return _intOrdem;
+	}
+
+	public void setIntOrdem(int intOrdem) {
+		_intOrdem = intOrdem;
+	}
+
 	private int _intTamanhoCampo = 50;
 
 	public int getIntTamanhoCampo() {
@@ -145,7 +155,7 @@ public class DbColuna extends Objeto {
 		return _lstStrOpcao;
 	}
 
-	private void setLstStrOpcao(List<String> lstStrOpcao) {
+	protected void setLstStrOpcao(List<String> lstStrOpcao) {
 		_lstStrOpcao = lstStrOpcao;
 	}
 
