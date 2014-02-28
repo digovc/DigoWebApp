@@ -9,108 +9,93 @@ import com.digosofter.digowebapp.erro.Erro;
 
 public class Atributo extends Objeto {
 
+  private List<String> _lstStrValor = new ArrayList<String>();
 
+  private String _strDelimitador = " ";
 
+  private String _strValor;
 
+  public Atributo(String strNome) {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-	private List<String> _lstStrValor = new ArrayList<String>();
+      if (Utils.getBooStrVazia(strNome)) {
+        strNome = "attr";
+      }
 
-	private String _strDelimitador = " ";
+      this.setStrNome(strNome);
 
-	private String _strValor;
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-	public Atributo(String strNome) {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+      new Erro("Erro inesperado.\n", ex);
 
-			if (Utils.getBooStrVazia(strNome)) {
-				strNome = "attr";
-			}
+    } finally {
+    }
+  }
 
-			this.setStrNome(strNome);
+  public Atributo(String strNome, String strValor) {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+      if (Utils.getBooStrVazia(strNome)) {
+        strNome = "attr";
+      }
 
-			new Erro("Erro inesperado.\n", ex);
+      this.setStrNome(strNome);
+      this.setStrValor(strValor);
 
-		} finally {
-		}
-	}
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-	public Atributo(String strNome, String strValor) {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+      new Erro("Erro inesperado.\n", ex);
 
-			if (Utils.getBooStrVazia(strNome)) {
-				strNome = "attr";
-			}
+    } finally {
+    }
+  }
 
-			this.setStrNome(strNome);
-			this.setStrValor(strValor);
+  public List<String> getLstStrValor() {
+    return _lstStrValor;
+  }
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+  public String getStrDelimitador() {
+    return _strDelimitador;
+  }
 
-			new Erro("Erro inesperado.\n", ex);
+  public String getStrValor() {
+    return _strValor;
+  }
 
-		} finally {
-		}
-	}
+  private void setLstStrValor(List<String> lstStrValor) {
+    _lstStrValor = lstStrValor;
+  }
 
-	public List<String> getLstStrValor() {
-		return _lstStrValor;
-	}
+  public void setStrDelimitador(String strDelimitador) {
+    _strDelimitador = strDelimitador;
+  }
 
-	public String getStrDelimitador() {
-		return _strDelimitador;
-	}
+  public void setStrValor(String strValor) {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-	public String getStrValor() {
-		return _strValor;
-	}
+      _strValor = strValor;
 
-	private void setLstStrValor(List<String> lstStrValor) {
-		_lstStrValor = lstStrValor;
-	}
+      this.getLstStrValor().clear();
+      this.getLstStrValor().add(_strValor);
 
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
+      new Erro("Erro inesperado.\n", ex);
 
-
-
-	public void setStrDelimitador(String strDelimitador) {
-		_strDelimitador = strDelimitador;
-	}
-
-	public void setStrValor(String strValor) {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-
-			_strValor = strValor;
-
-			this.getLstStrValor().clear();
-			this.getLstStrValor().add(_strValor);
-
-			// FIM AÇÕES
-		} catch (Exception ex) {
-
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
-	}
-
-
-
-
-
-
-
+    } finally {
+    }
+  }
 
 }

@@ -7,142 +7,125 @@ import com.digosofter.digowebapp.erro.Erro;
 
 public class CampoComboBox extends Campo {
 
+  private List<String> _lstStrNome;
 
+  private List<String> _lstStrValor;
 
+  private String _strValorSelecionado;
 
+  public CampoComboBox() {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-	private List<String> _lstStrNome;
+      this.setStrTagNome("select");
 
-	private List<String> _lstStrValor;
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-	private String _strValorSelecionado;
+      new Erro("Erro inesperado.\n", ex);
 
-	public CampoComboBox() {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+    } finally {
+    }
+  }
 
-			this.setStrTagNome("select");
+  public List<String> getLstStrNome() {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+      if (_lstStrNome == null) {
+        _lstStrNome = new ArrayList<String>();
+      }
 
-			new Erro("Erro inesperado.\n", ex);
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-		} finally {
-		}
-	}
+      new Erro("Erro inesperado.\n", ex);
 
-	public List<String> getLstStrNome() {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+    } finally {
+    }
 
-			if (_lstStrNome == null) {
-				_lstStrNome = new ArrayList<String>();
-			}
+    return _lstStrNome;
+  }
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+  public List<String> getLstStrValor() {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-			new Erro("Erro inesperado.\n", ex);
+      if (_lstStrValor == null) {
+        _lstStrValor = new ArrayList<String>();
+      }
 
-		} finally {
-		}
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-		return _lstStrNome;
-	}
+      new Erro("Erro inesperado.\n", ex);
 
-	public List<String> getLstStrValor() {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+    } finally {
+    }
 
-			if (_lstStrValor == null) {
-				_lstStrValor = new ArrayList<String>();
-			}
+    return _lstStrValor;
+  }
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+  @Override
+  public String getStrTagFormatada() {
+    // VARIÁVEIS
 
-			new Erro("Erro inesperado.\n", ex);
+    String strTagNome;
+    Tag tag;
 
-		} finally {
-		}
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-		return _lstStrValor;
-	}
+      if (this.getLstStrValor().size() == 0) {
 
-	@Override
-	public String getStrTagFormatada() {
-		// VARIÁVEIS
+        this.getLstStrValor().add("-1");
+        this.getLstStrNome().add("");
+      }
 
-		String strTagNome;
-		Tag tag;
+      for (int intIndex = 0; intIndex < this.getLstStrValor().size(); intIndex++) {
 
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+        strTagNome = this.getStrValorSelecionado() == this.getLstStrValor().get(intIndex) ? "option selected"
+            : "option";
 
-			if (this.getLstStrValor().size() == 0) {
+        tag = new Tag();
+        tag.setStrTagNome(strTagNome);
+        tag.addAtr("value", this.getLstStrValor().get(intIndex));
+        tag.setStrConteudo(this.getLstStrNome().get(intIndex));
+        tag.setTagPai(this);
+      }
 
-				this.getLstStrValor().add("-1");
-				this.getLstStrNome().add("");
-			}
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-			for (int intIndex = 0; intIndex < this.getLstStrValor().size(); intIndex++) {
+      new Erro("Erro inesperado.\n", ex);
 
-				strTagNome = this.getStrValorSelecionado() == this
-						.getLstStrValor().get(intIndex) ? "option selected"
-						: "option";
+    } finally {
+    }
 
-				tag = new Tag();
-				tag.setStrTagNome(strTagNome);
-				tag.adicionarAtr("value", this.getLstStrValor().get(intIndex));
-				tag.setStrConteudo(this.getLstStrNome().get(intIndex));
-				tag.setTagPai(this);
-			}
+    return super.getStrTagFormatada();
+  }
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+  private String getStrValorSelecionado() {
+    return _strValorSelecionado;
+  }
 
-			new Erro("Erro inesperado.\n", ex);
+  public void setLstStrNome(List<String> lstStrNome) {
+    _lstStrNome = lstStrNome;
+  }
 
-		} finally {
-		}
+  public void setLstStrValor(List<String> lstStrValor) {
+    _lstStrValor = lstStrValor;
+  }
 
-		return super.getStrTagFormatada();
-	}
-
-
-
-	private String getStrValorSelecionado() {
-		return _strValorSelecionado;
-	}
-
-	public void setLstStrNome(List<String> lstStrNome) {
-		_lstStrNome = lstStrNome;
-	}
-
-
-
-
-
-	public void setLstStrValor(List<String> lstStrValor) {
-		_lstStrValor = lstStrValor;
-	}
-
-
-
-
-
-	public void setStrValorSelecionado(String strValorSelecionado) {
-		_strValorSelecionado = strValorSelecionado;
-	}
-
-
+  public void setStrValorSelecionado(String strValorSelecionado) {
+    _strValorSelecionado = strValorSelecionado;
+  }
 
 }

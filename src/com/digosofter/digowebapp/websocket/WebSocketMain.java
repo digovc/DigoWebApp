@@ -9,38 +9,23 @@ import com.digosofter.digowebapp.erro.Erro;
 
 public abstract class WebSocketMain extends WebSocketServlet {
 
-	private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
+  @Override
+  protected StreamInbound createWebSocketInbound(String arg0, HttpServletRequest arg1) {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
+      new Erro("Erro inesperado.\n", ex);
 
-
-
-
-
-
-
-
-
-
-
-	@Override
-	protected StreamInbound createWebSocketInbound(String arg0,
-			HttpServletRequest arg1) {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-
-			// FIM AÇÕES
-		} catch (Exception ex) {
-
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
-		return null;
-	}
-
+    } finally {
+    }
+    return null;
+  }
 
 }

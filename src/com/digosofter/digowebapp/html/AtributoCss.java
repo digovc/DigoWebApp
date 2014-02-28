@@ -4,50 +4,35 @@ import com.digosofter.digowebapp.erro.Erro;
 
 public class AtributoCss extends Atributo {
 
+  private String _strClassAssociada;
 
+  public AtributoCss(String strNome, String strValor) {
 
+    super(strNome);
 
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-	private String _strClassAssociada;
+      this.setStrValor(strValor);
 
-	public AtributoCss(String strNome, String strValor) {
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-		super(strNome);
+      new Erro("Erro inesperado.\n", ex);
 
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+    } finally {
+    }
 
-			this.setStrValor(strValor);
+  }
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+  public String getStrClassAssociada() {
+    return _strClassAssociada;
+  }
 
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
-
-	}
-
-	public String getStrClassAssociada() {
-		return _strClassAssociada;
-	}
-
-
-
-
-
-	public void setStrClassAssociada(String strClassAssociada) {
-		_strClassAssociada = strClassAssociada;
-	}
-
-
-
-
-
-
-
+  public void setStrClassAssociada(String strClassAssociada) {
+    _strClassAssociada = strClassAssociada;
+  }
 
 }

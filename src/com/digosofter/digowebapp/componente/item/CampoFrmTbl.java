@@ -12,344 +12,316 @@ import com.digosofter.digowebapp.html.Painel;
 
 public class CampoFrmTbl extends ComponenteMain {
 
+  private DbColuna _cln;
 
+  private Campo _objCampo;
 
+  private Painel _pnlCampo;
 
+  private Painel _pnlContainer;
 
-	private DbColuna _cln;
+  private Painel _pnlTitulo;
 
-	private Campo _objCampo;
+  public CampoFrmTbl(DbColuna cln) {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-	private Painel _pnlCampo;
+      this.setCln(cln);
 
-	private Painel _pnlContainer;
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-	private Painel _pnlTitulo;
+      new Erro("Erro inesperado.\n", ex);
 
-	public CampoFrmTbl(DbColuna cln) {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+    } finally {
+    }
+  }
 
-			this.setCln(cln);
+  /**
+   * Define o tipo de campo a ser colocado no formulário de acordo com o tipo de
+   * dado que é esperado para o mesmo.
+   */
+  private void definirTipoCampo() {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+      // ComboBox
+      if (this.getCln().getClnReferencia() != null || this.getCln().getLstStrOpcao().size() > 0) {
+        this.definirTipoCampoComboBox();
+        return;
+      }
 
-			new Erro("Erro inesperado.\n", ex);
+      // CheckBox
+      if (this.getCln().getEnmClnTipo() == EnmClnTipo.BOOLEAN) {
+        this.definirTipoCampoCheckBox();
+        return;
+      }
 
-		} finally {
-		}
-	}
+      // Comum
+      this.setObjCampo(new Campo());
 
-	/**
-	 * Define o tipo de campo a ser colocado no formulário de acordo com o tipo
-	 * de dado que é esperado para o mesmo.
-	 */
-	private void definirTipoCampo() {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+      if (this.getCln().getIntTamanhoCampo() >= 120) {
+        this.getObjCampo().setEnmTipo(EnmTipo.TEXT_AREA);
+      }
 
-			// ComboBox
-			if (this.getCln().getClnReferencia() != null
-					|| this.getCln().getLstStrOpcao().size() > 0) {
-				this.definirTipoCampoComboBox();
-				return;
-			}
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-			// CheckBox
-			if (this.getCln().getEnmClnTipo() == EnmClnTipo.BOOLEAN) {
-				this.definirTipoCampoCheckBox();
-				return;
-			}
+      new Erro("Erro inesperado.\n", ex);
 
-			// Comum
-			this.setObjCampo(new Campo());
+    } finally {
+    }
+  }
 
-			if (this.getCln().getIntTamanhoCampo() >= 120) {
-				this.getObjCampo().setEnmTipo(EnmTipo.TEXT_AREA);
-			}
+  /**
+   * Define o campo como um "checkBox" para seleção de valores sim ou não.
+   */
+  private void definirTipoCampoCheckBox() {
+    // VARIÁVEIS
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+    Campo objCampo;
 
-			new Erro("Erro inesperado.\n", ex);
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-		} finally {
-		}
-	}
+      objCampo = new Campo();
+      objCampo.setEnmTipo(EnmTipo.CHECKBOX);
 
-	/**
-	 * Define o campo como um "checkBox" para seleção de valores sim ou não.
-	 */
-	private void definirTipoCampoCheckBox() {
-		// VARIÁVEIS
+      this.setObjCampo(objCampo);
 
-		Campo objCampo;
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+      new Erro("Erro inesperado.\n", ex);
 
-			objCampo = new Campo();
-			objCampo.setEnmTipo(EnmTipo.CHECKBOX);
+    } finally {
+    }
+  }
 
-			this.setObjCampo(objCampo);
+  /**
+   * Define o campo como um "comboBox" para seleção de valor entre os
+   * pré-definidos.
+   */
+  private void definirTipoCampoComboBox() {
+    // VARIÁVEIS
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+    CampoComboBox objCampoComboBox;
 
-			new Erro("Erro inesperado.\n", ex);
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-		} finally {
-		}
-	}
+      objCampoComboBox = new CampoComboBox();
+      this.getCln().carregarComboBox(objCampoComboBox);
+      this.setObjCampo(objCampoComboBox);
 
-	/**
-	 * Define o campo como um "comboBox" para seleção de valor entre os
-	 * pré-definidos.
-	 */
-	private void definirTipoCampoComboBox() {
-		// VARIÁVEIS
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-		CampoComboBox objCampoComboBox;
+      new Erro("Erro inesperado.\n", ex);
 
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+    } finally {
+    }
+  }
 
-			objCampoComboBox = new CampoComboBox();
-			this.getCln().carregarComboBox(objCampoComboBox);
-			this.setObjCampo(objCampoComboBox);
+  private DbColuna getCln() {
+    return _cln;
+  }
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+  /**
+   * Retorna o tamanho horizontal do campo.
+   */
+  private double getDblCampoWidth() {
+    // VARIÁVEIS
 
-			new Erro("Erro inesperado.\n", ex);
+    double dblResultado = 100;
+    int intPesoSoma;
+    int intPeso;
 
-		} finally {
-		}
-	}
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-	private DbColuna getCln() {
-		return _cln;
-	}
+      intPeso = this.getCln().getIntFrmLinhaPeso();
+      intPesoSoma = this.getIntPesoSoma();
+      dblResultado = 100 / (double) intPesoSoma * intPeso;
 
-	/**
-	 * Retorna o tamanho horizontal do campo.
-	 */
-	private double getDblCampoWidth() {
-		// VARIÁVEIS
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-		double dblResultado = 100;
-		int intPesoSoma;
-		int intPeso;
+      new Erro("Erro inesperado.\n", ex);
 
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+    } finally {
+    }
 
-			intPeso = this.getCln().getIntFrmLinhaPeso();
-			intPesoSoma = this.getIntPesoSoma();
-			dblResultado = 100 / (double) intPesoSoma * intPeso;
+    return dblResultado;
+  }
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+  /**
+   * Retorna a soma dos pesos dos campos da linha deste campo.
+   */
+  private int getIntPesoSoma() {
+    // VARIÁVEIS
 
-			new Erro("Erro inesperado.\n", ex);
+    int intResultado = 0;
 
-		} finally {
-		}
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-		return dblResultado;
-	}
+      for (DbColuna cln : this.getCln().getTbl().getLstClnVisivelCadastro()) {
+        if (cln.getIntFrmLinha() == this.getCln().getIntFrmLinha()) {
+          intResultado = intResultado + cln.getIntFrmLinhaPeso();
+        }
+      }
 
-	/**
-	 * Retorna a soma dos pesos dos campos da linha deste campo.
-	 */
-	private int getIntPesoSoma() {
-		// VARIÁVEIS
+      if (intResultado == 0) {
+        intResultado = 1;
+      }
 
-		int intResultado = 0;
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+      new Erro("Erro inesperado.\n", ex);
 
-			for (DbColuna cln : this.getCln().getTbl()
-					.getLstClnVisivelCadastro()) {
-				if (cln.getIntFrmLinha() == this.getCln().getIntFrmLinha()) {
-					intResultado = intResultado + cln.getIntFrmLinhaPeso();
-				}
-			}
+    } finally {
+    }
 
-			if (intResultado == 0) {
-				intResultado = 1;
-			}
+    return intResultado;
+  }
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+  private Campo getObjCampo() {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-			new Erro("Erro inesperado.\n", ex);
+      if (_objCampo == null) {
 
-		} finally {
-		}
+        this.definirTipoCampo();
 
-		return intResultado;
-	}
+        _objCampo.setStrNome(this.getCln().getStrNomeSimplificado());
+        _objCampo.addCss(CssTag.getCssMainInst().setPadding(5, "px"));
+        _objCampo.addCss(CssTag.getCssMainInst().setWidth(100, "%"));
 
+      }
 
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
+      new Erro("Erro inesperado.\n", ex);
 
+    } finally {
+    }
 
-	private Campo getObjCampo() {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+    return _objCampo;
+  }
 
-			if (_objCampo == null) {
+  private Painel getPnlCampo() {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-				this.definirTipoCampo();
+      if (_pnlCampo == null) {
+        _pnlCampo = new Painel();
+        _pnlCampo.addCss(CssTag.getCssMainInst().setPaddingLeft(10));
+        _pnlCampo.addCss(CssTag.getCssMainInst().setPaddingRight(10));
+      }
 
-				_objCampo.setStrNome(this.getCln().getStrNomeSimplificado());
-				_objCampo.adicionarCss(CssTag.getCssMainInstancia().setPadding(
-						5, "px"));
-				_objCampo.adicionarCss(CssTag.getCssMainInstancia().setWidth(
-						100, "%"));
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-			}
+      new Erro("Erro inesperado.\n", ex);
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+    } finally {
+    }
 
-			new Erro("Erro inesperado.\n", ex);
+    return _pnlCampo;
+  }
 
-		} finally {
-		}
+  @Override
+  public Painel getPnlContainer() {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-		return _objCampo;
-	}
+      if (_pnlContainer == null) {
+        _pnlContainer = super.getPnlContainer();
+        _pnlContainer.addCss(CssTag.getCssMainInst().setFloat("left"));
+        _pnlContainer.addCss(CssTag.getCssMainInst().setWidth(this.getDblCampoWidth(), "%"));
+      }
 
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
+      new Erro("Erro inesperado.\n", ex);
 
+    } finally {
+    }
 
+    return _pnlContainer;
+  }
 
-	private Painel getPnlCampo() {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+  @Override
+  protected Painel getPnlTitulo() {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-			if (_pnlCampo == null) {
-				_pnlCampo = new Painel();
-				_pnlCampo.adicionarCss(CssTag.getCssMainInstancia()
-						.setPaddingLeft(10));
-				_pnlCampo.adicionarCss(CssTag.getCssMainInstancia()
-						.setPaddingRight(10));
-			}
+      if (_pnlTitulo == null) {
+        _pnlTitulo = super.getPnlTitulo();
+        _pnlTitulo.setStrConteudo(this.getCln().getStrNomeExibicao());
+        _pnlTitulo.addCss(CssTag.getCssMainInst().setPaddingLeft(10));
+        _pnlTitulo.addCss(CssTag.getCssMainInst().setPaddingRight(10));
+        _pnlTitulo.addCss(CssTag.getCssMainInst().setTextAlign("left"));
+      }
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-			new Erro("Erro inesperado.\n", ex);
+      new Erro("Erro inesperado.\n", ex);
 
-		} finally {
-		}
+    } finally {
+    }
 
-		return _pnlCampo;
-	}
+    return _pnlTitulo;
+  }
 
-	@Override
-	public Painel getPnlContainer() {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+  @Override
+  public void montarLayout() {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-			if (_pnlContainer == null) {
-				_pnlContainer = super.getPnlContainer();
-				_pnlContainer.adicionarCss(CssTag.getCssMainInstancia()
-						.setFloat("left"));
-				_pnlContainer.adicionarCss(CssTag.getCssMainInstancia()
-						.setWidth(this.getDblCampoWidth(), "%"));
-			}
+      this.getPnlTitulo().setTagPai(this.getPnlContainer());
+      this.getPnlCampo().setTagPai(this.getPnlContainer());
+      this.getObjCampo().setTagPai(this.getPnlCampo());
+      this.getPnlContainer().setTagPai(this.getCln().getTbl().getFrmTbl().getPnlCampos());
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-			new Erro("Erro inesperado.\n", ex);
+      new Erro("Erro inesperado.\n", ex);
 
-		} finally {
-		}
+    } finally {
+    }
+  }
 
-		return _pnlContainer;
-	}
+  private void setCln(DbColuna cln) {
+    _cln = cln;
+  }
 
-	@Override
-	protected Painel getPnlTitulo() {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-
-			if (_pnlTitulo == null) {
-				_pnlTitulo = super.getPnlTitulo();
-				_pnlTitulo.setStrConteudo(this.getCln().getStrNomeExibicao());
-				_pnlTitulo.adicionarCss(CssTag.getCssMainInstancia()
-						.setPaddingLeft(10));
-				_pnlTitulo.adicionarCss(CssTag.getCssMainInstancia()
-						.setPaddingRight(10));
-				_pnlTitulo.adicionarCss(CssTag.getCssMainInstancia()
-						.setTextAlign("left"));
-			}
-
-			// FIM AÇÕES
-		} catch (Exception ex) {
-
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
-
-		return _pnlTitulo;
-	}
-
-	@Override
-	public void montarLayout() {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-
-			this.getPnlTitulo().setTagPai(this.getPnlContainer());
-			this.getPnlCampo().setTagPai(this.getPnlContainer());
-			this.getObjCampo().setTagPai(this.getPnlCampo());
-			this.getPnlContainer().setTagPai(
-					this.getCln().getTbl().getFrmTbl().getPnlCampos());
-
-			// FIM AÇÕES
-		} catch (Exception ex) {
-
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
-	}
-
-	private void setCln(DbColuna cln) {
-		_cln = cln;
-	}
-
-	private void setObjCampo(Campo objCampo) {
-		_objCampo = objCampo;
-	}
-
-
-
-
+  private void setObjCampo(Campo objCampo) {
+    _objCampo = objCampo;
+  }
 
 }

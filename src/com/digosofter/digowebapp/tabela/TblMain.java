@@ -7,178 +7,161 @@ import com.digosofter.digowebapp.erro.Erro;
 
 public abstract class TblMain extends DbTabela {
 
+  private DbColuna _clnBooAtivo;
 
+  private DbColuna _clnDttAlteracao;
 
+  private DbColuna _clnDttCadastro;
 
+  private DbColuna _clnDttExclusao;
 
-	private DbColuna _clnBooAtivo;
+  private DbColuna _clnIntId;
 
-	private DbColuna _clnDttAlteracao;
+  public TblMain(String strNome, DataBase objDataBase) {
 
-	private DbColuna _clnDttCadastro;
+    super(strNome, objDataBase);
 
-	private DbColuna _clnDttExclusao;
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-	private DbColuna _clnIntId;
+      new Erro("Erro inesperado.\n", ex);
 
+    } finally {
+    }
+  }
 
-	public TblMain(String strNome, DataBase objDataBase) {
+  public void buscarRegistroPeloId(int intId) {
+    this.buscarRegistroPorCln(this.getClnIntId(), String.valueOf(intId));
+  }
 
-		super(strNome, objDataBase);
+  public void buscarRegistroPeloId(String strId) {
+    this.buscarRegistroPeloId(Integer.valueOf(strId));
+  }
 
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-			// FIM AÇÕES
-		} catch (Exception ex) {
+  public DbColuna getClnBooAtivo() {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-			new Erro("Erro inesperado.\n", ex);
+      if (_clnBooAtivo == null) {
+        _clnBooAtivo = new DbColuna("booAtivo", this, DbColuna.EnmClnTipo.BOOLEAN);
+        _clnBooAtivo.setBooVisivelCadastro(false);
+        _clnBooAtivo.setBooVisivelConsulta(false);
+        _clnBooAtivo.setIntFrmLinha(2);
+        _clnBooAtivo.setIntFrmLinhaPeso(2);
+      }
 
-		} finally {
-		}
-	}
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-	public void buscarRegistroPeloId(int intId) {
-		this.buscarRegistroPorCln(this.getClnIntId(), String.valueOf(intId));
-	}
+      new Erro("Erro inesperado.\n", ex);
 
-	public void buscarRegistroPeloId(String strId) {
-		this.buscarRegistroPeloId(Integer.valueOf(strId));
-	}
+    } finally {
+    }
 
-	public DbColuna getClnBooAtivo() {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+    return _clnBooAtivo;
+  }
 
-			if (_clnBooAtivo == null) {
-				_clnBooAtivo = new DbColuna("booAtivo", this,
-						DbColuna.EnmClnTipo.BOOLEAN);
-				_clnBooAtivo.setBooVisivelCadastro(false);
-				_clnBooAtivo.setBooVisivelConsulta(false);
-				_clnBooAtivo.setIntFrmLinha(2);
-				_clnBooAtivo.setIntFrmLinhaPeso(2);
-			}
+  public DbColuna getClnDttAlteracao() {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+      if (_clnDttAlteracao == null) {
+        _clnDttAlteracao = new DbColuna("dttAlteracao", this,
+            DbColuna.EnmClnTipo.TIMESTAMP_WITHOUT_TIME_ZONE);
+        _clnDttAlteracao.setBooVisivelCadastro(false);
+        _clnDttAlteracao.setBooVisivelConsulta(false);
+      }
 
-			new Erro("Erro inesperado.\n", ex);
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-		} finally {
-		}
+      new Erro("Erro inesperado.\n", ex);
 
-		return _clnBooAtivo;
-	}
+    } finally {
+    }
 
-	public DbColuna getClnDttAlteracao() {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+    return _clnDttAlteracao;
+  }
 
-			if (_clnDttAlteracao == null) {
-				_clnDttAlteracao = new DbColuna("dttAlteracao", this,
-						DbColuna.EnmClnTipo.TIMESTAMP_WITHOUT_TIME_ZONE);
-				_clnDttAlteracao.setBooVisivelCadastro(false);
-				_clnDttAlteracao.setBooVisivelConsulta(false);
-			}
+  public DbColuna getClnDttCadastro() {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+      if (_clnDttCadastro == null) {
+        _clnDttCadastro = new DbColuna("dttCadastro", this,
+            DbColuna.EnmClnTipo.TIMESTAMP_WITHOUT_TIME_ZONE);
+        _clnDttCadastro.setBooVisivelCadastro(false);
+        _clnDttCadastro.setBooVisivelConsulta(false);
+      }
 
-			new Erro("Erro inesperado.\n", ex);
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-		} finally {
-		}
+      new Erro("Erro inesperado.\n", ex);
 
-		return _clnDttAlteracao;
-	}
+    } finally {
+    }
 
+    return _clnDttCadastro;
+  }
 
+  public DbColuna getClnDttExclusao() {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-	public DbColuna getClnDttCadastro() {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+      if (_clnDttExclusao == null) {
+        _clnDttExclusao = new DbColuna("dttExclusao", this,
+            DbColuna.EnmClnTipo.TIMESTAMP_WITHOUT_TIME_ZONE);
+        _clnDttExclusao.setBooVisivelCadastro(false);
+        _clnDttExclusao.setBooVisivelConsulta(false);
+      }
 
-			if (_clnDttCadastro == null) {
-				_clnDttCadastro = new DbColuna("dttCadastro", this,
-						DbColuna.EnmClnTipo.TIMESTAMP_WITHOUT_TIME_ZONE);
-				_clnDttCadastro.setBooVisivelCadastro(false);
-				_clnDttCadastro.setBooVisivelConsulta(false);
-			}
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+      new Erro("Erro inesperado.\n", ex);
 
-			new Erro("Erro inesperado.\n", ex);
+    } finally {
+    }
 
-		} finally {
-		}
+    return _clnDttExclusao;
+  }
 
-		return _clnDttCadastro;
-	}
+  public DbColuna getClnIntId() {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
+      if (_clnIntId == null) {
 
+        _clnIntId = new DbColuna("intId", this, DbColuna.EnmClnTipo.BIGSERIAL);
+        _clnIntId.setBooChavePrimaria(true);
+        _clnIntId.setBooVisivelCadastro(false);
+        _clnIntId.setBooVisivelConsulta(false);
+      }
 
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
+      new Erro("Erro inesperado.\n", ex);
 
-	public DbColuna getClnDttExclusao() {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+    } finally {
+    }
 
-			if (_clnDttExclusao == null) {
-				_clnDttExclusao = new DbColuna("dttExclusao", this,
-						DbColuna.EnmClnTipo.TIMESTAMP_WITHOUT_TIME_ZONE);
-				_clnDttExclusao.setBooVisivelCadastro(false);
-				_clnDttExclusao.setBooVisivelConsulta(false);
-			}
-
-			// FIM AÇÕES
-		} catch (Exception ex) {
-
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
-
-		return _clnDttExclusao;
-	}
-
-	public DbColuna getClnIntId() {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-
-			if (_clnIntId == null) {
-
-				_clnIntId = new DbColuna("intId", this,
-						DbColuna.EnmClnTipo.BIGSERIAL);
-				_clnIntId.setBooChavePrimaria(true);
-				_clnIntId.setBooVisivelCadastro(false);
-				_clnIntId.setBooVisivelConsulta(false);
-			}
-
-			// FIM AÇÕES
-		} catch (Exception ex) {
-
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
-
-		return _clnIntId;
-	}
-
-
-
-
+    return _clnIntId;
+  }
 
 }

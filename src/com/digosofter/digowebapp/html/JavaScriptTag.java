@@ -8,155 +8,138 @@ import com.digosofter.digowebapp.erro.Erro;
 
 public class JavaScriptTag extends Tag {
 
+  private Atributo _atrSrc;
 
+  private int _intPrioridade = 5;
 
+  private List<String> _lstStrMetodos = new ArrayList<String>();
 
+  private String _strSrc;
 
-	private Atributo _atrSrc;
+  public JavaScriptTag(String strSrc) {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-	private int _intPrioridade = 5;
+      this.setStrTagNome("script");
+      this.setBooForcarTagDupla(true);
+      this.getLstAtr().add(new Atributo("type", "text/javascript"));
+      this.setStrSrc(strSrc);
 
-	private List<String> _lstStrMetodos = new ArrayList<String>();
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-	private String _strSrc;
+      new Erro("Erro inesperado.\n", ex);
 
-	public JavaScriptTag(String strSrc) {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+    } finally {
+    }
+  }
 
-			this.setStrTagNome("script");
-			this.setBooForcarTagDupla(true);
-			this.getLstAtr().add(new Atributo("type", "text/javascript"));
-			this.setStrSrc(strSrc);
+  public void adicionarJsCodigo(String strJsCodigo) {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+      getLstStrMetodos().add(strJsCodigo);
 
-			new Erro("Erro inesperado.\n", ex);
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-		} finally {
-		}
-	}
+      new Erro("Erro inesperado.\n", ex);
 
-	public void adicionarJsCodigo(String strJsCodigo) {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+    } finally {
+    }
+  }
 
-			getLstStrMetodos().add(strJsCodigo);
+  private Atributo getAtrSrc() {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+      if (_atrSrc == null) {
+        _atrSrc = new Atributo("src");
+        this.getLstAtr().add(_atrSrc);
+      }
 
-			new Erro("Erro inesperado.\n", ex);
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-		} finally {
-		}
-	}
+      new Erro("Erro inesperado.\n", ex);
 
-	private Atributo getAtrSrc() {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+    } finally {
+    }
 
-			if (_atrSrc == null) {
-				_atrSrc = new Atributo("src");
-				this.getLstAtr().add(_atrSrc);
-			}
+    return _atrSrc;
+  }
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+  public int getIntPrioridade() {
+    return _intPrioridade;
+  }
 
-			new Erro("Erro inesperado.\n", ex);
+  public List<String> getLstStrMetodos() {
+    return _lstStrMetodos;
+  }
 
-		} finally {
-		}
+  private String getStrSrc() {
+    return _strSrc;
+  }
 
-		return _atrSrc;
-	}
+  @Override
+  public String getStrTagFormatada() {
+    // VARIÁVEIS
 
-	public int getIntPrioridade() {
-		return _intPrioridade;
-	}
+    StringBuilder strBuilder;
 
-	public List<String> getLstStrMetodos() {
-		return _lstStrMetodos;
-	}
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-	private String getStrSrc() {
-		return _strSrc;
-	}
+      if (!this.getLstStrMetodos().isEmpty()) {
 
+        strBuilder = new StringBuilder();
+        strBuilder.append("$(document).ready(function(){");
+        strBuilder.append(Utils.getStrConcatenarLst(this.getLstStrMetodos(), null, true));
+        strBuilder.append("});");
 
+        this.setStrConteudo(strBuilder.toString());
+      }
 
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
+      new Erro("Erro inesperado.\n", ex);
 
-	@Override
-	public String getStrTagFormatada() {
-		// VARIÁVEIS
+    } finally {
+    }
+    return super.getStrTagFormatada();
+  }
 
-		StringBuilder strBuilder;
+  public void setIntPrioridade(int intPrioridade) {
+    _intPrioridade = intPrioridade;
+  }
 
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+  public void setStrSrc(String strSrc) {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-			if (!this.getLstStrMetodos().isEmpty()) {
+      _strSrc = strSrc;
 
-				strBuilder = new StringBuilder();
-				strBuilder.append("$(document).ready(function(){");
-				strBuilder.append(Utils.getStrConcatenarLst(
-						this.getLstStrMetodos(), null, true));
-				strBuilder.append("});");
+      if (_strSrc != null && !_strSrc.equals(Utils.STRING_VAZIA)) {
+        this.getAtrSrc().setStrValor(strSrc);
+      }
 
-				this.setStrConteudo(strBuilder.toString());
-			}
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+      new Erro("Erro inesperado.\n", ex);
 
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
-		return super.getStrTagFormatada();
-	}
-
-
-
-
-
-	public void setIntPrioridade(int intPrioridade) {
-		_intPrioridade = intPrioridade;
-	}
-
-	public void setStrSrc(String strSrc) {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-
-			_strSrc = strSrc;
-
-			if (_strSrc != null && !_strSrc.equals(Utils.STRING_VAZIA)) {
-				this.getAtrSrc().setStrValor(strSrc);
-			}
-
-			// FIM AÇÕES
-		} catch (Exception ex) {
-
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
-	}
-
-
-
-
+    } finally {
+    }
+  }
 
 }

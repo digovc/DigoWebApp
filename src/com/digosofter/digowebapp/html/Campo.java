@@ -4,199 +4,183 @@ import com.digosofter.digowebapp.erro.Erro;
 
 public class Campo extends Tag {
 
-	public enum EnmTipo {
-		BUTTON, CHECKBOX, COLOR, DATE, DATETIME, DATETIME_LOCAL, EMAIL, FILE, HIDDEN, IMAGE, MONTH, NUMBER, PASSWORD, RADIO, RANGE, RESET, SEARCH, SUBMIT, TEL, TEXT, TEXT_AREA, TIME, URL, WEEK
+  public enum EnmTipo {
+    BUTTON, CHECKBOX, COLOR, DATE, DATETIME, DATETIME_LOCAL, EMAIL, FILE, HIDDEN, IMAGE, MONTH, NUMBER, PASSWORD, RADIO, RANGE, RESET, SEARCH, SUBMIT, TEL, TEXT, TEXT_AREA, TIME, URL, WEEK
 
-	}
+  }
 
+  private EnmTipo _enmTipo = EnmTipo.TEXT;
 
+  private String _strId;
 
+  private String _strPlaceHolder;
 
+  public Campo() {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-	private EnmTipo _enmTipo = EnmTipo.TEXT;
+      this.setStrTagNome("input");
+      this.addCss(CssTag.getCssMainInst().addCss("box-sizing", "border-box"));
+      PaginaHtml.getI().getLstObjJavaScriptTag()
+          .add(new JavaScriptTag("res/js/lib/JDigo/html/Campo.js"));
 
-	private String _strId;
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-	private String _strPlaceHolder;
+      new Erro("Erro inesperado.\n", ex);
 
-	public Campo() {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+    } finally {
+    }
+  }
 
-			this.setStrTagNome("input");
-			this.adicionarCss(CssTag.getCssMainInstancia().addCss("box-sizing",
-					"border-box"));
-			PaginaHtml.getI().getLstObjJavaScriptTag()
-					.add(new JavaScriptTag("res/js/lib/JDigo/html/Campo.js"));
+  private EnmTipo getEnmTipo() {
+    return _enmTipo;
+  }
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+  private String getStrPlaceHolder() {
+    return _strPlaceHolder;
+  }
 
-			new Erro("Erro inesperado.\n", ex);
+  public void setEnmTipo(EnmTipo enmTipo) {
+    // VARIÁVEIS
 
-		} finally {
-		}
-	}
+    String strTipo;
 
-	private EnmTipo getEnmTipo() {
-		return _enmTipo;
-	}
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-	private String getStrPlaceHolder() {
-		return _strPlaceHolder;
-	}
+      _enmTipo = enmTipo;
 
-	public void setEnmTipo(EnmTipo enmTipo) {
-		// VARIÁVEIS
+      switch (_enmTipo) {
+        case BUTTON:
+          this.getAtrType().setStrValor("button");
+          break;
+        case CHECKBOX:
+          this.getAtrType().setStrValor("checkbox");
+          break;
+        case COLOR:
+          this.getAtrType().setStrValor("color");
+          break;
+        case DATE:
+          this.getAtrType().setStrValor("date");
+          break;
+        case DATETIME:
+          this.getAtrType().setStrValor("datetime");
+          break;
+        case DATETIME_LOCAL:
+          this.getAtrType().setStrValor("datetime-local");
+          break;
+        case EMAIL:
+          this.getAtrType().setStrValor("email");
+          break;
+        case FILE:
+          this.getAtrType().setStrValor("file");
+          break;
+        case HIDDEN:
+          this.getAtrType().setStrValor("hidden");
+          break;
+        case IMAGE:
+          this.getAtrType().setStrValor("image");
+          break;
+        case MONTH:
+          this.getAtrType().setStrValor("month");
+          break;
+        case NUMBER:
+          this.getAtrType().setStrValor("number");
+          break;
+        case PASSWORD:
+          this.getAtrType().setStrValor("password");
+          break;
+        case RADIO:
+          this.getAtrType().setStrValor("radio");
+          break;
+        case RANGE:
+          this.getAtrType().setStrValor("range");
+          break;
+        case RESET:
+          this.getAtrType().setStrValor("reset");
+          break;
+        case SEARCH:
+          this.getAtrType().setStrValor("search");
+          break;
+        case SUBMIT:
+          this.getAtrType().setStrValor("submit");
+          break;
+        case TEL:
+          this.getAtrType().setStrValor("tel");
+          break;
+        case TEXT:
+          this.getAtrType().setStrValor("text");
+          break;
+        case TEXT_AREA:
+          this.setStrTagNome("textarea");
+          this.setBooForcarTagDupla(true);
+          this.addAtr("rows", "10");
+          break;
+        case TIME:
+          this.getAtrType().setStrValor("time");
+          break;
+        case URL:
+          this.getAtrType().setStrValor("url");
+          break;
+        case WEEK:
+          this.getAtrType().setStrValor("week");
+          break;
+        default:
+          this.getAtrType().setStrValor("text");
+          break;
+      }
 
-		String strTipo;
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+      new Erro("Erro inesperado.\n", ex);
 
-			_enmTipo = enmTipo;
+    } finally {
+    }
+  }
 
-			switch (_enmTipo) {
-			case BUTTON:
-				this.getAtrType().setStrValor("button");
-				break;
-			case CHECKBOX:
-				this.getAtrType().setStrValor("checkbox");
-				break;
-			case COLOR:
-				this.getAtrType().setStrValor("color");
-				break;
-			case DATE:
-				this.getAtrType().setStrValor("date");
-				break;
-			case DATETIME:
-				this.getAtrType().setStrValor("datetime");
-				break;
-			case DATETIME_LOCAL:
-				this.getAtrType().setStrValor("datetime-local");
-				break;
-			case EMAIL:
-				this.getAtrType().setStrValor("email");
-				break;
-			case FILE:
-				this.getAtrType().setStrValor("file");
-				break;
-			case HIDDEN:
-				this.getAtrType().setStrValor("hidden");
-				break;
-			case IMAGE:
-				this.getAtrType().setStrValor("image");
-				break;
-			case MONTH:
-				this.getAtrType().setStrValor("month");
-				break;
-			case NUMBER:
-				this.getAtrType().setStrValor("number");
-				break;
-			case PASSWORD:
-				this.getAtrType().setStrValor("password");
-				break;
-			case RADIO:
-				this.getAtrType().setStrValor("radio");
-				break;
-			case RANGE:
-				this.getAtrType().setStrValor("range");
-				break;
-			case RESET:
-				this.getAtrType().setStrValor("reset");
-				break;
-			case SEARCH:
-				this.getAtrType().setStrValor("search");
-				break;
-			case SUBMIT:
-				this.getAtrType().setStrValor("submit");
-				break;
-			case TEL:
-				this.getAtrType().setStrValor("tel");
-				break;
-			case TEXT:
-				this.getAtrType().setStrValor("text");
-				break;
-			case TEXT_AREA:
-				this.setStrTagNome("textarea");
-				this.setBooForcarTagDupla(true);
-				this.adicionarAtr("rows", "10");
-				break;
-			case TIME:
-				this.getAtrType().setStrValor("time");
-				break;
-			case URL:
-				this.getAtrType().setStrValor("url");
-				break;
-			case WEEK:
-				this.getAtrType().setStrValor("week");
-				break;
-			default:
-				this.getAtrType().setStrValor("text");
-				break;
-			}
+  @Override
+  public void setStrId(String strId) {
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+    super.setStrId(strId);
 
-			new Erro("Erro inesperado.\n", ex);
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-		} finally {
-		}
-	}
+      _strId = this.getStrId();
+      this.getLstAtr().add(new Atributo("name", _strId));
 
-	@Override
-	public void setStrId(String strId) {
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-		super.setStrId(strId);
+      new Erro("Erro inesperado.\n", ex);
 
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+    } finally {
+    }
+  }
 
-			_strId = this.getStrId();
-			this.getLstAtr().add(new Atributo("name", _strId));
+  public void setStrPlaceHolder(String strPlaceHolder) {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+      _strPlaceHolder = strPlaceHolder;
+      this.getLstAtr().add(new Atributo("placeholder", _strPlaceHolder));
 
-			new Erro("Erro inesperado.\n", ex);
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-		} finally {
-		}
-	}
+      new Erro("Erro inesperado.\n", ex);
 
-
-
-
-
-	public void setStrPlaceHolder(String strPlaceHolder) {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-
-			_strPlaceHolder = strPlaceHolder;
-			this.getLstAtr().add(new Atributo("placeholder", _strPlaceHolder));
-
-			// FIM AÇÕES
-		} catch (Exception ex) {
-
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
-	}
-
-
-
-
-
-
-
+    } finally {
+    }
+  }
 
 }

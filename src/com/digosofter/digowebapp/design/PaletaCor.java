@@ -8,233 +8,210 @@ import com.digosofter.digowebapp.html.PaginaHtml;
 
 public class PaletaCor extends Objeto {
 
+  private boolean _booSelecionado;
 
+  private String _strCorControleClicado;
 
+  private String _strCorControleMouse;
 
+  private String _strCorControleNormal;
 
-	private boolean _booSelecionado;
+  private String _strCorFundo;
 
-	private String _strCorControleClicado;
+  private String _strObjetoJavaScriptNome = "";
 
-	private String _strCorControleMouse;
+  public PaletaCor(String strNome) {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-	private String _strCorControleNormal;
+      this.setStrNome(strNome);
+      this.addJs("var " + this.getStrObjetoJavaScriptNome() + "= new PaletaCor('"
+          + this.getStrNome() + "');");
 
-	private String _strCorFundo;
+      PaginaHtml.getI().getLstObjJavaScriptTag()
+          .add(new JavaScriptTag("res/js/lib/JDigo/design/PaletaCor.js"));
 
-	private String _strObjetoJavaScriptNome = "";
+      AppWeb.getI().getLstObjPaletaCor().add(this);
 
-	public PaletaCor(String strNome) {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-			this.setStrNome(strNome);
-			this.addJs("var " + this.getStrObjetoJavaScriptNome()
-					+ "= new PaletaCor('" + this.getStrNome() + "');");
+      new Erro("Erro inesperado.\n", ex);
 
-			PaginaHtml
-					.getI()
-					.getLstObjJavaScriptTag()
-					.add(new JavaScriptTag(
-							"res/js/lib/JDigo/design/PaletaCor.js"));
+    } finally {
+    }
+  }
 
-			AppWeb.getI().getLstObjPaletaCor().add(this);
+  private void addJs(String strJs) {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+      PaginaHtml.getI().adicionarJsCodigo(strJs);
 
-			new Erro("Erro inesperado.\n", ex);
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-		} finally {
-		}
-	}
+      new Erro("Erro inesperado.\n", ex);
 
-	private void addJs(String strJs) {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+    } finally {
+    }
+  }
 
-			PaginaHtml.getI().adicionarJsCodigo(strJs);
+  public boolean getBooSelecionado() {
+    return _booSelecionado;
+  }
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+  public String getStrCorControleClicado() {
+    return _strCorControleClicado;
+  }
 
-			new Erro("Erro inesperado.\n", ex);
+  public String getStrCorControleMouse() {
+    return _strCorControleMouse;
+  }
 
-		} finally {
-		}
-	}
+  public String getStrCorControleNormal() {
+    return _strCorControleNormal;
+  }
 
-	public boolean getBooSelecionado() {
-		return _booSelecionado;
-	}
+  public String getStrCorFundo() {
+    return _strCorFundo;
+  }
 
-	public String getStrCorControleClicado() {
-		return _strCorControleClicado;
-	}
+  private String getStrObjetoJavaScriptNome() {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-	public String getStrCorControleMouse() {
-		return _strCorControleMouse;
-	}
+      if (_strObjetoJavaScriptNome == "") {
+        _strObjetoJavaScriptNome = "objPaletaCor" + this.getStrNome();
+      }
 
-	public String getStrCorControleNormal() {
-		return _strCorControleNormal;
-	}
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-	public String getStrCorFundo() {
-		return _strCorFundo;
-	}
+      new Erro("Erro inesperado.\n", ex);
 
-	private String getStrObjetoJavaScriptNome() {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+    } finally {
+    }
 
-			if (_strObjetoJavaScriptNome == "") {
-				_strObjetoJavaScriptNome = "objPaletaCor" + this.getStrNome();
-			}
+    return _strObjetoJavaScriptNome;
+  }
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+  public void setBooSelecionado(boolean booSelecionado) {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-			new Erro("Erro inesperado.\n", ex);
+      _booSelecionado = booSelecionado;
 
-		} finally {
-		}
+      if (_booSelecionado) {
+        AppWeb.getI().setObjPaletaCorSelecionada(this);
+      }
 
-		return _strObjetoJavaScriptNome;
-	}
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-	public void setBooSelecionado(boolean booSelecionado) {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+      new Erro("Erro inesperado.\n", ex);
 
-			_booSelecionado = booSelecionado;
+    } finally {
+    }
+  }
 
-			if (_booSelecionado) {
-				AppWeb.getI().setObjPaletaCorSelecionada(this);
-			}
+  public void setStrCorControleClicado(String strCorControleClicado) {
+    // VARIÁVEIS
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+    String strJs;
 
-			new Erro("Erro inesperado.\n", ex);
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-		} finally {
-		}
-	}
+      _strCorControleClicado = strCorControleClicado;
+      strJs = this.getStrObjetoJavaScriptNome() + ".setStrCorControleClicado('"
+          + _strCorControleClicado + "');";
+      this.addJs(strJs);
 
-	public void setStrCorControleClicado(String strCorControleClicado) {
-		// VARIÁVEIS
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-		String strJs;
+      new Erro("Erro inesperado.\n", ex);
 
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+    } finally {
+    }
+  }
 
-			_strCorControleClicado = strCorControleClicado;
-			strJs = this.getStrObjetoJavaScriptNome()
-					+ ".setStrCorControleClicado('" + _strCorControleClicado
-					+ "');";
-			this.addJs(strJs);
+  public void setStrCorControleMouse(String strCorControleMouse) {
+    // VARIÁVEIS
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+    String strJs;
 
-			new Erro("Erro inesperado.\n", ex);
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-		} finally {
-		}
-	}
+      _strCorControleMouse = strCorControleMouse;
+      strJs = this.getStrObjetoJavaScriptNome() + ".setStrCorControleMouse('"
+          + _strCorControleMouse + "');";
+      this.addJs(strJs);
 
-	public void setStrCorControleMouse(String strCorControleMouse) {
-		// VARIÁVEIS
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-		String strJs;
+      new Erro("Erro inesperado.\n", ex);
 
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+    } finally {
+    }
+  }
 
-			_strCorControleMouse = strCorControleMouse;
-			strJs = this.getStrObjetoJavaScriptNome()
-					+ ".setStrCorControleMouse('" + _strCorControleMouse
-					+ "');";
-			this.addJs(strJs);
+  public void setStrCorControleNormal(String strCorControleNormal) {
+    // VARIÁVEIS
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+    String strJs;
 
-			new Erro("Erro inesperado.\n", ex);
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-		} finally {
-		}
-	}
+      _strCorControleNormal = strCorControleNormal;
+      strJs = this.getStrObjetoJavaScriptNome() + ".setStrCorControleNormal('"
+          + _strCorControleNormal + "');";
+      this.addJs(strJs);
 
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
+      new Erro("Erro inesperado.\n", ex);
 
+    } finally {
+    }
+  }
 
+  public void setStrCorFundo(String strCorFundo) {
+    // VARIÁVEIS
 
-	public void setStrCorControleNormal(String strCorControleNormal) {
-		// VARIÁVEIS
+    String strJs;
 
-		String strJs;
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+      _strCorFundo = strCorFundo;
+      strJs = this.getStrObjetoJavaScriptNome() + ".setStrCorFundo('" + _strCorFundo + "');";
+      this.addJs(strJs);
 
-			_strCorControleNormal = strCorControleNormal;
-			strJs = this.getStrObjetoJavaScriptNome()
-					+ ".setStrCorControleNormal('" + _strCorControleNormal
-					+ "');";
-			this.addJs(strJs);
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+      new Erro("Erro inesperado.\n", ex);
 
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
-	}
-
-
-
-
-
-	public void setStrCorFundo(String strCorFundo) {
-		// VARIÁVEIS
-
-		String strJs;
-
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-
-			_strCorFundo = strCorFundo;
-			strJs = this.getStrObjetoJavaScriptNome() + ".setStrCorFundo('"
-					+ _strCorFundo + "');";
-			this.addJs(strJs);
-
-			// FIM AÇÕES
-		} catch (Exception ex) {
-
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
-	}
-
-
-
-
+    } finally {
+    }
+  }
 
 }

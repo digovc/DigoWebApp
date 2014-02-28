@@ -13,315 +13,293 @@ import com.digosofter.digowebapp.html.CampoComboBox;
 
 public class DbColuna extends Objeto {
 
-	public static enum EnmClnTipo {
-		BIGINT, BIGSERIAL, BOOLEAN, CHAR, DATE, DECIMAL, DOUBLE, INTEGER, INTERVAL, MONEY, NUMERIC, REAL, SERIAL, SMALLINT, TEXT, TIME_WITH_TIME_ZONE, TIME_WITHOUT_TIME_ZONE, TIMESTAMP_WITH_TIME_ZONE, TIMESTAMP_WITHOUT_TIME_ZONE, VARCHAR
-	}
+  public static enum EnmClnTipo {
+    BIGINT, BIGSERIAL, BOOLEAN, CHAR, DATE, DECIMAL, DOUBLE, INTEGER, INTERVAL, MONEY, NUMERIC, REAL, SERIAL, SMALLINT, TEXT, TIME_WITH_TIME_ZONE, TIME_WITHOUT_TIME_ZONE, TIMESTAMP_WITH_TIME_ZONE, TIMESTAMP_WITHOUT_TIME_ZONE, VARCHAR
+  }
 
+  private boolean _booChavePrimaria = false;
 
+  private boolean _booClnNome = false;
 
+  private boolean _booSenha = false;
 
+  private boolean _booVisivelCadastro = true;
 
-	private boolean _booChavePrimaria = false;
+  private boolean _booVisivelConsulta = true;
 
-	private boolean _booClnNome = false;
+  private DbColuna _clnReferencia;
 
-	private boolean _booSenha = false;
+  private EnmClnTipo _enmClnTipo = EnmClnTipo.INTEGER;
 
-	private boolean _booVisivelCadastro = true;
+  private int _intFrmLinha = 1;
 
-	private boolean _booVisivelConsulta = true;
+  private int _intFrmLinhaPeso = 1;
 
-	private DbColuna _clnReferencia;
+  private int _intOrdem;
 
-	private EnmClnTipo _enmClnTipo = EnmClnTipo.INTEGER;
+  private int _intTamanhoCampo = 50;
 
-	private int _intFrmLinha = 1;
+  private List<String> _lstStrOpcao;
 
-	private int _intFrmLinhaPeso = 1;
+  private CampoFrmTbl _objCampoFrmTbl;
 
-	private int _intOrdem;
+  private String _strValor;
 
-	private int _intTamanhoCampo = 50;
+  private DbTabela _tbl;
 
-	private List<String> _lstStrOpcao;
+  public DbColuna(String strNome, DbTabela tbl, EnmClnTipo enmClnTipo) {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-	private CampoFrmTbl _objCampoFrmTbl;
+      this.setStrNome(strNome);
+      this.setTbl(tbl);
+      this.setEnmClnTipo(enmClnTipo);
 
-	private String _strValor;
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-	private DbTabela _tbl;
+      new Erro("Erro inesperado.\n", ex);
 
-	public DbColuna(String strNome, DbTabela tbl, EnmClnTipo enmClnTipo) {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+    } finally {
+    }
+  }
 
-			this.setStrNome(strNome);
-			this.setTbl(tbl);
-			this.setEnmClnTipo(enmClnTipo);
+  /**
+   * Carrega "comboBox" com os devidos valores de acordo com a tabela
+   * referenciada ou as opções default da coluna.
+   */
+  public void carregarComboBox(CampoComboBox objCampoComboBox) {
+    // VARIÁVEIS
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+    int intIndex;
+    ResultSet objResultSet;
 
-			new Erro("Erro inesperado.\n", ex);
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-		} finally {
-		}
-	}
+      if (this.getClnReferencia() != null) {
 
-	/**
-	 * Carrega "comboBox" com os devidos valores de acordo com a tabela
-	 * referenciada ou as opções default da coluna.
-	 */
-	public void carregarComboBox(CampoComboBox objCampoComboBox) {
-		// VARIÁVEIS
+        objResultSet = this.getClnReferencia().getTbl().getObjResultSetNomeValor();
 
-		int intIndex;
-		ResultSet objResultSet;
+        if (objResultSet != null && objResultSet.first()) {
 
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+          do {
 
-			if (this.getClnReferencia() != null) {
+            objCampoComboBox.getLstStrValor().add(objResultSet.getString(1));
+            objCampoComboBox.getLstStrNome().add(objResultSet.getString(2));
 
-				objResultSet = this.getClnReferencia().getTbl()
-						.getObjResultSetNomeValor();
+          } while (objResultSet.next());
 
-				if (objResultSet != null && objResultSet.first()) {
+          return;
+        }
+      }
 
-					do {
+      if (this.getLstStrOpcao().size() > 0) {
 
-						objCampoComboBox.getLstStrValor().add(
-								objResultSet.getString(1));
-						objCampoComboBox.getLstStrNome().add(
-								objResultSet.getString(2));
+        intIndex = 0;
 
-					} while (objResultSet.next());
+        for (String strOpcao : this.getLstStrOpcao()) {
 
-					return;
-				}
-			}
+          objCampoComboBox.getLstStrValor().add(String.valueOf(++intIndex));
+          objCampoComboBox.getLstStrNome().add(strOpcao);
+        }
 
-			if (this.getLstStrOpcao().size() > 0) {
+        return;
+      }
 
-				intIndex = 0;
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-				for (String strOpcao : this.getLstStrOpcao()) {
+      new Erro("Erro inesperado.\n", ex);
 
-					objCampoComboBox.getLstStrValor().add(
-							String.valueOf(++intIndex));
-					objCampoComboBox.getLstStrNome().add(strOpcao);
-				}
+    } finally {
+    }
+  }
 
-				return;
-			}
+  public boolean getBooChavePrimaria() {
+    return _booChavePrimaria;
+  }
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+  public boolean getBooClnNome() {
+    return _booClnNome;
+  }
 
-			new Erro("Erro inesperado.\n", ex);
+  public boolean getBooSenha() {
+    return _booSenha;
+  }
 
-		} finally {
-		}
-	}
+  public boolean getBooVisivelCadastro() {
+    return _booVisivelCadastro;
+  }
 
-	public boolean getBooChavePrimaria() {
-		return _booChavePrimaria;
-	}
+  public boolean getBooVisivelConsulta() {
+    return _booVisivelConsulta;
+  }
 
-	public boolean getBooClnNome() {
-		return _booClnNome;
-	}
+  public DbColuna getClnReferencia() {
+    return _clnReferencia;
+  }
 
-	public boolean getBooSenha() {
-		return _booSenha;
-	}
+  public Date getDttValor() {
+    // VARIÁVEIS
 
-	public boolean getBooVisivelCadastro() {
-		return _booVisivelCadastro;
-	}
+    SimpleDateFormat objSimpleDateFormat;
+    Date dttResultado = null;
 
-	public boolean getBooVisivelConsulta() {
-		return _booVisivelConsulta;
-	}
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-	public DbColuna getClnReferencia() {
-		return _clnReferencia;
-	}
+      objSimpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+      dttResultado = new Date(objSimpleDateFormat.parse(this.getStrValor()).getTime());
 
-	public Date getDttValor() {
-		// VARIÁVEIS
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-		SimpleDateFormat objSimpleDateFormat;
-		Date dttResultado = null;
+      new Erro("Erro inesperado.\n", ex);
 
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+    } finally {
+    }
 
-			objSimpleDateFormat = new SimpleDateFormat(
-					"yyyy-MM-dd HH:mm:ss.SSS");
-			dttResultado = new Date(objSimpleDateFormat.parse(
-					this.getStrValor()).getTime());
+    return dttResultado;
+  }
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+  public EnmClnTipo getEnmClnTipo() {
+    return _enmClnTipo;
+  }
 
-			new Erro("Erro inesperado.\n", ex);
+  public int getIntFrmLinha() {
+    return _intFrmLinha;
+  }
 
-		} finally {
-		}
+  public int getIntFrmLinhaPeso() {
+    return _intFrmLinhaPeso;
+  }
 
-		return dttResultado;
-	}
+  protected int getIntOrdem() {
+    return _intOrdem;
+  }
 
-	public EnmClnTipo getEnmClnTipo() {
-		return _enmClnTipo;
-	}
+  public int getIntTamanhoCampo() {
+    return _intTamanhoCampo;
+  }
 
-	public int getIntFrmLinha() {
-		return _intFrmLinha;
-	}
+  public int getIntValor() {
+    return Integer.valueOf(this.getStrValor());
+  }
 
-	public int getIntFrmLinhaPeso() {
-		return _intFrmLinhaPeso;
-	}
+  public List<String> getLstStrOpcao() {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-	protected int getIntOrdem() {
-		return _intOrdem;
-	}
+      if (_lstStrOpcao == null) {
+        _lstStrOpcao = new ArrayList<String>();
+      }
 
-	public int getIntTamanhoCampo() {
-		return _intTamanhoCampo;
-	}
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-	public int getIntValor() {
-		return Integer.valueOf(this.getStrValor());
-	}
+      new Erro("Erro inesperado.\n", ex);
 
-	public List<String> getLstStrOpcao() {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+    } finally {
+    }
 
-			if (_lstStrOpcao == null) {
-				_lstStrOpcao = new ArrayList<String>();
-			}
+    return _lstStrOpcao;
+  }
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+  public CampoFrmTbl getObjCampoFrmTbl() {
+    return _objCampoFrmTbl;
+  }
 
-			new Erro("Erro inesperado.\n", ex);
+  public String getStrValor() {
+    return _strValor;
+  }
 
-		} finally {
-		}
+  public DbTabela getTbl() {
+    return _tbl;
+  }
 
-		return _lstStrOpcao;
-	}
+  public void setBooChavePrimaria(boolean booChavePrimaria) {
+    _booChavePrimaria = booChavePrimaria;
+  }
 
-	public CampoFrmTbl getObjCampoFrmTbl() {
-		return _objCampoFrmTbl;
-	}
+  public void setBooClnNome(boolean booClnNome) {
+    _booClnNome = booClnNome;
+  }
 
-	public String getStrValor() {
-		return _strValor;
-	}
+  public void setBooSenha(boolean booSenha) {
+    _booSenha = booSenha;
+  }
 
-	public DbTabela getTbl() {
-		return _tbl;
-	}
+  public void setBooVisivelCadastro(boolean booVisivelCadastro) {
+    _booVisivelCadastro = booVisivelCadastro;
+  }
 
-	public void setBooChavePrimaria(boolean booChavePrimaria) {
-		_booChavePrimaria = booChavePrimaria;
-	}
+  public void setBooVisivelConsulta(boolean booVisivelConsulta) {
+    _booVisivelConsulta = booVisivelConsulta;
+  }
 
-	public void setBooClnNome(boolean booClnNome) {
-		_booClnNome = booClnNome;
-	}
+  public void setClnReferencia(DbColuna clnReferencia) {
+    _clnReferencia = clnReferencia;
+  }
 
-	public void setBooSenha(boolean booSenha) {
-		_booSenha = booSenha;
-	}
+  public void setEnmClnTipo(EnmClnTipo enmClnTipo) {
+    _enmClnTipo = enmClnTipo;
+  }
 
-	public void setBooVisivelCadastro(boolean booVisivelCadastro) {
-		_booVisivelCadastro = booVisivelCadastro;
-	}
+  public void setIntFrmLinha(int intFrmLinha) {
+    _intFrmLinha = intFrmLinha;
+  }
 
-	public void setBooVisivelConsulta(boolean booVisivelConsulta) {
-		_booVisivelConsulta = booVisivelConsulta;
-	}
+  public void setIntFrmLinhaPeso(int intFrmLinhaPeso) {
+    _intFrmLinhaPeso = intFrmLinhaPeso;
+  }
 
-	public void setClnReferencia(DbColuna clnReferencia) {
-		_clnReferencia = clnReferencia;
-	}
+  public void setIntOrdem(int intOrdem) {
+    _intOrdem = intOrdem;
+  }
 
-	public void setEnmClnTipo(EnmClnTipo enmClnTipo) {
-		_enmClnTipo = enmClnTipo;
-	}
+  public void setIntTamanhoCampo(int intTamanhoCampo) {
+    _intTamanhoCampo = intTamanhoCampo;
+  }
 
-	public void setIntFrmLinha(int intFrmLinha) {
-		_intFrmLinha = intFrmLinha;
-	}
+  public void setIntValor(int intValor) {
+    this.setStrValor(String.valueOf(intValor));
+  }
 
-	public void setIntFrmLinhaPeso(int intFrmLinhaPeso) {
-		_intFrmLinhaPeso = intFrmLinhaPeso;
-	}
+  protected void setLstStrOpcao(List<String> lstStrOpcao) {
+    _lstStrOpcao = lstStrOpcao;
+  }
 
-	public void setIntOrdem(int intOrdem) {
-		_intOrdem = intOrdem;
-	}
+  public void setObjCampoFrmTbl(CampoFrmTbl objCampoFrmTbl) {
+    _objCampoFrmTbl = objCampoFrmTbl;
+  }
 
-	public void setIntTamanhoCampo(int intTamanhoCampo) {
-		_intTamanhoCampo = intTamanhoCampo;
-	}
+  public void setStrValor(String strValor) {
+    _strValor = strValor;
+  }
 
-	public void setIntValor(int intValor) {
-		this.setStrValor(String.valueOf(intValor));
-	}
+  private void setTbl(DbTabela tbl) {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-	protected void setLstStrOpcao(List<String> lstStrOpcao) {
-		_lstStrOpcao = lstStrOpcao;
-	}
+      _tbl = tbl;
+      _tbl.getLstCln().add(this);
 
-	public void setObjCampoFrmTbl(CampoFrmTbl objCampoFrmTbl) {
-		_objCampoFrmTbl = objCampoFrmTbl;
-	}
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
+      new Erro("Erro inesperado.\n", ex);
 
-
-
-
-	public void setStrValor(String strValor) {
-		_strValor = strValor;
-	}
-
-
-
-
-
-	private void setTbl(DbTabela tbl) {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-
-			_tbl = tbl;
-			_tbl.getLstCln().add(this);
-
-			// FIM AÇÕES
-		} catch (Exception ex) {
-
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
-	}
-
-
-
-
+    } finally {
+    }
+  }
 
 }

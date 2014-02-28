@@ -6,141 +6,125 @@ import com.digosofter.digowebapp.erro.Erro;
 
 public class DbFiltro extends Objeto {
 
+  private boolean _booAndOr = true;
 
+  private boolean _booSelect = false;
 
+  private String _strOperador = "=";
 
+  private String _strValor;
 
-	private boolean _booAndOr = true;
+  public DbFiltro(DbColuna cln, String strValor) {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-	private boolean _booSelect = false;
+      this.setStrNome(cln.getStrNomeSimplificado());
+      this.setStrValor(strValor);
 
-	private String _strOperador = "=";
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-	private String _strValor;
+      new Erro("Erro inesperado.\n", ex);
 
-	public DbFiltro(DbColuna cln, String strValor) {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+    } finally {
+    }
+  }
 
-			this.setStrNome(cln.getStrNomeSimplificado());
-			this.setStrValor(strValor);
+  public DbFiltro(String strNome, String strValor) {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+      this.setStrNome(strNome);
+      this.setStrValor(strValor);
 
-			new Erro("Erro inesperado.\n", ex);
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-		} finally {
-		}
-	}
+      new Erro("Erro inesperado.\n", ex);
 
-	public DbFiltro(String strNome, String strValor) {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+    } finally {
+    }
+  }
 
-			this.setStrNome(strNome);
-			this.setStrValor(strValor);
+  private boolean getBooAndOr() {
+    return _booAndOr;
+  }
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+  private boolean getBooSelect() {
+    return _booSelect;
+  }
 
-			new Erro("Erro inesperado.\n", ex);
+  private String getStrOperador() {
+    return _strOperador;
+  }
 
-		} finally {
-		}
-	}
+  private String getStrValor() {
+    return _strValor;
+  }
 
-	private boolean getBooAndOr() {
-		return _booAndOr;
-	}
+  public void setBooAndOr(boolean booAndOr) {
+    _booAndOr = booAndOr;
+  }
 
-	private boolean getBooSelect() {
-		return _booSelect;
-	}
+  public void setBooSelect(boolean booSelect) {
+    _booSelect = booSelect;
+  }
 
-	private String getStrOperador() {
-		return _strOperador;
-	}
+  public void setStrOperador(String strOperador) {
+    _strOperador = strOperador;
+  }
 
-	private String getStrValor() {
-		return _strValor;
-	}
+  public void setStrValor(String strValor) {
+    _strValor = strValor;
+  }
 
-	public void setBooAndOr(boolean booAndOr) {
-		_booAndOr = booAndOr;
-	}
+  @Override
+  public String toString() {
+    // VARIÁVEIS
 
-	public void setBooSelect(boolean booSelect) {
-		_booSelect = booSelect;
-	}
+    String strDbFiltroResultado = Utils.STRING_VAZIA;
+    StringBuilder strBuilder;
 
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
+      if (this.getBooSelect()) {
 
+        strDbFiltroResultado = this.getStrValor();
 
+      } else {
 
-	public void setStrOperador(String strOperador) {
-		_strOperador = strOperador;
-	}
+        strBuilder = new StringBuilder();
 
-	public void setStrValor(String strValor) {
-		_strValor = strValor;
-	}
+        if (this.getBooAndOr()) {
+          strBuilder.append("and ");
+        } else {
+          strBuilder.append("or ");
+        }
 
+        strBuilder.append(this.getStrNomeSimplificado());
+        strBuilder.append(this.getStrOperador());
+        strBuilder.append("'");
+        strBuilder.append(this.getStrValor());
+        strBuilder.append("' ");
 
+        strDbFiltroResultado = strBuilder.toString();
+      }
 
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
+      new Erro("Erro inesperado.\n", ex);
 
-	@Override
-	public String toString() {
-		// VARIÁVEIS
+    } finally {
+    }
 
-		String strDbFiltroResultado = Utils.STRING_VAZIA;
-		StringBuilder strBuilder;
-
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-
-			if (this.getBooSelect()) {
-
-				strDbFiltroResultado = this.getStrValor();
-
-			} else {
-
-				strBuilder = new StringBuilder();
-
-				if (this.getBooAndOr()) {
-					strBuilder.append("and ");
-				} else {
-					strBuilder.append("or ");
-				}
-
-				strBuilder.append(this.getStrNomeSimplificado());
-				strBuilder.append(this.getStrOperador());
-				strBuilder.append("'");
-				strBuilder.append(this.getStrValor());
-				strBuilder.append("' ");
-
-				strDbFiltroResultado = strBuilder.toString();
-			}
-
-			// FIM AÇÕES
-		} catch (Exception ex) {
-
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
-
-		return strDbFiltroResultado;
-	}
-
-
-
-
+    return strDbFiltroResultado;
+  }
 
 }

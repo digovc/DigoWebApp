@@ -4,111 +4,93 @@ import com.digosofter.digowebapp.erro.Erro;
 
 public class Formulario extends Tag {
 
-	public enum EnmMetodo {
-		GET, POST
-	}
+  public enum EnmMetodo {
+    GET, POST
+  }
 
+  private EnmMetodo _enmMetodo = EnmMetodo.POST;
 
+  private String _strAction;
 
+  public Formulario(String strAction, EnmMetodo enmMetodo) {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
+      this.setStrTagNome("form");
+      this.setStrAction(strAction);
+      this.setEnmMetodo(enmMetodo);
 
-	private EnmMetodo _enmMetodo = EnmMetodo.POST;
+      PaginaHtml.getI().getLstObjJavaScriptTag()
+          .add(new JavaScriptTag("res/js/lib/JDigo/html/Formulario.js"));
 
-	private String _strAction;
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-	public Formulario(String strAction, EnmMetodo enmMetodo) {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+      new Erro("Erro inesperado.\n", ex);
 
-			this.setStrTagNome("form");
-			this.setStrAction(strAction);
-			this.setEnmMetodo(enmMetodo);
+    } finally {
+    }
+  }
 
-			PaginaHtml
-					.getI()
-					.getLstObjJavaScriptTag()
-					.add(new JavaScriptTag(
-							"res/js/lib/JDigo/html/Formulario.js"));
+  private EnmMetodo getEnmMetodo() {
+    return _enmMetodo;
+  }
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+  private String getStrAction() {
+    return _strAction;
+  }
 
-			new Erro("Erro inesperado.\n", ex);
+  private void setEnmMetodo(EnmMetodo enmMetodo) {
+    // VARIÁVEIS
 
-		} finally {
-		}
-	}
+    String strMetodo;
 
-	private EnmMetodo getEnmMetodo() {
-		return _enmMetodo;
-	}
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-	private String getStrAction() {
-		return _strAction;
-	}
+      _enmMetodo = enmMetodo;
+      switch (_enmMetodo) {
+        case GET:
+          strMetodo = "get";
+          break;
+        case POST:
+          strMetodo = "post";
+          break;
+        default:
+          strMetodo = "get";
+          break;
+      }
 
-	private void setEnmMetodo(EnmMetodo enmMetodo) {
-		// VARIÁVEIS
+      this.getLstAtr().add(new Atributo("method", strMetodo));
 
-		String strMetodo;
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+      new Erro("Erro inesperado.\n", ex);
 
-			_enmMetodo = enmMetodo;
-			switch (_enmMetodo) {
-			case GET:
-				strMetodo = "get";
-				break;
-			case POST:
-				strMetodo = "post";
-				break;
-			default:
-				strMetodo = "get";
-				break;
-			}
+    } finally {
+    }
+  }
 
-			this.getLstAtr().add(new Atributo("method", strMetodo));
+  private void setStrAction(String strAction) {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+      _strAction = strAction;
+      this.getLstAtr().add(new Atributo("action", _strAction));
 
-			new Erro("Erro inesperado.\n", ex);
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-		} finally {
-		}
-	}
+      new Erro("Erro inesperado.\n", ex);
 
-
-
-
-
-	private void setStrAction(String strAction) {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-
-			_strAction = strAction;
-			this.getLstAtr().add(new Atributo("action", _strAction));
-
-			// FIM AÇÕES
-		} catch (Exception ex) {
-
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
-	}
-
-
-
-
-
-
-
+    } finally {
+    }
+  }
 
 }

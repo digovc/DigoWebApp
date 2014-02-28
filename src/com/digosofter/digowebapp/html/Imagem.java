@@ -4,57 +4,42 @@ import com.digosofter.digowebapp.erro.Erro;
 
 public class Imagem extends Tag {
 
+  public Imagem() {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
+      this.setStrTagNome("img");
+      this.setBooForcarTagDupla(true);
 
+      PaginaHtml.getI().getLstObjJavaScriptTag()
+          .add(new JavaScriptTag("res/js/lib/JDigo/html/Imagem.js"));
 
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
+      new Erro("Erro inesperado.\n", ex);
 
+    } finally {
+    }
+  }
 
+  public void setStrSrc(String strImagemSrc) {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-	public Imagem() {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+      this.getLstAtr().add(new Atributo("src", strImagemSrc));
 
-			this.setStrTagNome("img");
-			this.setBooForcarTagDupla(true);
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-			PaginaHtml.getI().getLstObjJavaScriptTag()
-					.add(new JavaScriptTag("res/js/lib/JDigo/html/Imagem.js"));
+      new Erro("Erro inesperado.\n", ex);
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
-
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
-	}
-
-
-
-
-
-	public void setStrSrc(String strImagemSrc) {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-
-			this.getLstAtr().add(new Atributo("src", strImagemSrc));
-
-			// FIM AÇÕES
-		} catch (Exception ex) {
-
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
-	}
-
-
-
-
+    } finally {
+    }
+  }
 
 }

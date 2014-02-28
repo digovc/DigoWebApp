@@ -14,404 +14,397 @@ import com.digosofter.digowebapp.websocket.WsConexaoMain;
 
 public abstract class AppWeb extends Objeto {
 
-	private static AppWeb i;
+  private static AppWeb i;
 
-	public static AppWeb getI() {
-		return i;
-	}
+  public static AppWeb getI() {
+    return i;
+  }
 
-	private List<WsConexaoMain> _lstObjWsConexaoMain;
+  private List<WsConexaoMain> _lstObjWsConexaoMain;
 
-	private static List<PaletaCor> _lstObjPaletaCor;
+  private static List<PaletaCor> _lstObjPaletaCor;
 
-	private List<Usuario> _lstObjUsuarioSessao;
+  private List<Usuario> _lstObjUsuarioSessao;
 
-	private HttpServletRequest _objHttpServletRequest;
+  private HttpServletRequest _objHttpServletRequest;
 
-	private HttpServletResponse _objHttpServletResponse;
+  private HttpServletResponse _objHttpServletResponse;
 
-	private HttpSession _objHttpSession;
+  private HttpSession _objHttpSession;
 
-	private PaletaCor _objPaletaCorSelecionada;
+  private PaletaCor _objPaletaCorSelecionada;
 
-	private PrintWriter _objPrintWriter;
+  private PrintWriter _objPrintWriter;
 
-	private String _strPaginaSolicitada;
+  private String _strPaginaSolicitada;
 
-	private Usuario _objUsuarioAtual;
+  private Usuario _objUsuarioAtual;
 
-	public AppWeb(String strAppNome) {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+  public AppWeb(String strAppNome) {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-			this.setI(this);
-			this.setStrNome(strAppNome);
+      this.setI(this);
+      this.setStrNome(strAppNome);
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-			new Erro("Erro inesperado.\n", ex);
+      new Erro("Erro inesperado.\n", ex);
 
-		} finally {
-		}
-	}
+    } finally {
+    }
+  }
 
-	public void escreverStrHtmlResposta(String strHtml) {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+  public void escreverStrHtmlResposta(String strHtml) {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-			this.getObjPrintWriter().print(strHtml);
+      this.getObjPrintWriter().print(strHtml);
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-			new Erro("Erro inesperado.\n", ex);
+      new Erro("Erro inesperado.\n", ex);
 
-		} finally {
-		}
-	}
+    } finally {
+    }
+  }
 
-	public boolean getBooUsuarioExiste(String strSessaoId) {
-		// VARIÁVEIS
+  public boolean getBooUsuarioExiste(String strSessaoId) {
+    // VARIÁVEIS
 
-		boolean booResultado = false;
+    boolean booResultado = false;
 
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-			for (Usuario usuario : this.getLstObjUsuarioSessao()) {
-				if (usuario.getStrSessaoId().equals(strSessaoId)) {
-					booResultado = true;
-					break;
-				}
-			}
+      for (Usuario usuario : this.getLstObjUsuarioSessao()) {
+        if (usuario.getStrSessaoId().equals(strSessaoId)) {
+          booResultado = true;
+          break;
+        }
+      }
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-			new Erro("Erro inesperado.\n", ex);
+      new Erro("Erro inesperado.\n", ex);
 
-		} finally {
-		}
+    } finally {
+    }
 
-		return booResultado;
-	}
+    return booResultado;
+  }
 
-	public List<PaletaCor> getLstObjPaletaCor() {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+  public List<PaletaCor> getLstObjPaletaCor() {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-			if (_lstObjPaletaCor == null) {
-				_lstObjPaletaCor = new ArrayList<PaletaCor>();
-			}
+      if (_lstObjPaletaCor == null) {
+        _lstObjPaletaCor = new ArrayList<PaletaCor>();
+      }
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-			new Erro("Erro inesperado.\n", ex);
+      new Erro("Erro inesperado.\n", ex);
 
-		} finally {
-		}
+    } finally {
+    }
 
-		return _lstObjPaletaCor;
-	}
+    return _lstObjPaletaCor;
+  }
 
-	public List<Usuario> getLstObjUsuarioSessao() {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+  public List<Usuario> getLstObjUsuarioSessao() {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-			if (_lstObjUsuarioSessao == null) {
-				_lstObjUsuarioSessao = new ArrayList<Usuario>();
-			}
+      if (_lstObjUsuarioSessao == null) {
+        _lstObjUsuarioSessao = new ArrayList<Usuario>();
+      }
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-			new Erro("Erro inesperado.\n", ex);
+      new Erro("Erro inesperado.\n", ex);
 
-		} finally {
-		}
+    } finally {
+    }
 
-		return _lstObjUsuarioSessao;
-	}
+    return _lstObjUsuarioSessao;
+  }
 
-	public List<WsConexaoMain> getLstObjWsConexaoMain() {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+  public List<WsConexaoMain> getLstObjWsConexaoMain() {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-			if (_lstObjWsConexaoMain == null) {
-				_lstObjWsConexaoMain = new ArrayList<WsConexaoMain>();
-			}
+      if (_lstObjWsConexaoMain == null) {
+        _lstObjWsConexaoMain = new ArrayList<WsConexaoMain>();
+      }
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-			new Erro("Erro inesperado.\n", ex);
+      new Erro("Erro inesperado.\n", ex);
 
-		} finally {
-		}
+    } finally {
+    }
 
-		return _lstObjWsConexaoMain;
-	}
+    return _lstObjWsConexaoMain;
+  }
 
-	public HttpServletRequest getObjHttpServletRequest() {
-		return _objHttpServletRequest;
-	}
+  public HttpServletRequest getObjHttpServletRequest() {
+    return _objHttpServletRequest;
+  }
 
-	private HttpServletResponse getObjHttpServletResponse() {
-		return _objHttpServletResponse;
-	}
+  private HttpServletResponse getObjHttpServletResponse() {
+    return _objHttpServletResponse;
+  }
 
-	private HttpSession getObjHttpSession() {
-		return _objHttpSession;
-	}
+  private HttpSession getObjHttpSession() {
+    return _objHttpSession;
+  }
 
-	public PaletaCor getObjPaletaCorSelecionada() {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+  public PaletaCor getObjPaletaCorSelecionada() {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-			if (_objPaletaCorSelecionada == null) {
-				this.getLstObjPaletaCor();
-			}
+      if (_objPaletaCorSelecionada == null) {
+        this.getLstObjPaletaCor();
+      }
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-			new Erro("Erro inesperado.\n", ex);
+      new Erro("Erro inesperado.\n", ex);
 
-		} finally {
-		}
+    } finally {
+    }
 
-		return _objPaletaCorSelecionada;
-	}
+    return _objPaletaCorSelecionada;
+  }
 
-	private PrintWriter getObjPrintWriter() {
-		return _objPrintWriter;
-	}
+  private PrintWriter getObjPrintWriter() {
+    return _objPrintWriter;
+  }
 
-	public Usuario getObjUsuarioAtual() {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+  public Usuario getObjUsuarioAtual() {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-			for (Usuario objUsuario : this.getLstObjUsuarioSessao()) {
-				if (objUsuario.getStrSessaoId() == this.getObjHttpSession()
-						.getId()) {
-					_objUsuarioAtual = objUsuario;
-					break;
-				}
-			}
+      for (Usuario objUsuario : this.getLstObjUsuarioSessao()) {
+        if (objUsuario.getStrSessaoId() == this.getObjHttpSession().getId()) {
+          _objUsuarioAtual = objUsuario;
+          break;
+        }
+      }
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-			new Erro("Erro inesperado.\n", ex);
+      new Erro("Erro inesperado.\n", ex);
 
-		} finally {
-		}
+    } finally {
+    }
 
-		return _objUsuarioAtual;
-	}
+    return _objUsuarioAtual;
+  }
 
-	/**
-	 * Retorna o valor do parâmetro get ou post vindo do cliente indicado pelo
-	 * nome contido em "strParamNome". Caso não exista retorna "null".
-	 */
-	public String getParametro(String strParamNome) {
-		// VARIÁVEIS
+  /**
+   * Retorna o valor do parâmetro get ou post vindo do cliente indicado pelo
+   * nome contido em "strParamNome". Caso não exista retorna "null".
+   */
+  public String getParametro(String strParamNome) {
+    // VARIÁVEIS
 
-		String strResultado = null;
+    String strResultado = null;
 
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-			strResultado = this.getObjHttpServletRequest().getParameter(
-					strParamNome);
+      strResultado = this.getObjHttpServletRequest().getParameter(strParamNome);
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-			new Erro("Erro inesperado.\n", ex);
+      new Erro("Erro inesperado.\n", ex);
 
-		} finally {
-		}
+    } finally {
+    }
 
-		return strResultado;
-	}
+    return strResultado;
+  }
 
-	public void getResposta(HttpServletRequest objRequest,
-			HttpServletResponse objResponse) {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+  public void getResposta(HttpServletRequest objRequest, HttpServletResponse objResponse) {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-			this.setObjHttpServletRequest(objRequest);
-			this.setObjHttpServletResponse(objResponse);
+      this.setObjHttpServletRequest(objRequest);
+      this.setObjHttpServletResponse(objResponse);
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-			new Erro("Erro inesperado.\n", ex);
+      new Erro("Erro inesperado.\n", ex);
 
-		} finally {
-		}
-	}
+    } finally {
+    }
+  }
 
-	public String getStrPaginaSolicitada() {
-		return _strPaginaSolicitada;
-	}
+  public String getStrPaginaSolicitada() {
+    return _strPaginaSolicitada;
+  }
 
-	public String getStrPostParametro(String strParametroNome) {
-		// VARIÁVEIS
+  public String getStrPostParametro(String strParametroNome) {
+    // VARIÁVEIS
 
-		String strParametroValorResultado = Utils.STRING_VAZIA;
+    String strParametroValorResultado = Utils.STRING_VAZIA;
 
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-			strParametroValorResultado = this.getObjHttpServletRequest()
-					.getParameter(strParametroNome);
+      strParametroValorResultado = this.getObjHttpServletRequest().getParameter(strParametroNome);
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-			new Erro("Erro inesperado.\n", ex);
+      new Erro("Erro inesperado.\n", ex);
 
-		} finally {
-		}
-		return strParametroValorResultado;
-	}
+    } finally {
+    }
+    return strParametroValorResultado;
+  }
 
-	public void reencaminhar(String strUrl) {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+  public void reencaminhar(String strUrl) {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-			this.getObjHttpServletResponse().sendRedirect(strUrl);
+      this.getObjHttpServletResponse().sendRedirect(strUrl);
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-			new Erro("Erro inesperado.\n", ex);
+      new Erro("Erro inesperado.\n", ex);
 
-		} finally {
-		}
-	}
+    } finally {
+    }
+  }
 
-	private void setI(AppWeb _i) {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+  private void setI(AppWeb _i) {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-			if (i == null) {
-				i = _i;
-			}
+      if (i == null) {
+        i = _i;
+      }
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-			new Erro("Erro ao instanciar objeto do tipo 'AppWeb'.\n", ex);
+      new Erro("Erro ao instanciar objeto do tipo 'AppWeb'.\n", ex);
 
-		} finally {
-		}
-	}
+    } finally {
+    }
+  }
 
-	public void setObjHttpServletRequest(
-			HttpServletRequest objHttpServletRequest) {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+  public void setObjHttpServletRequest(HttpServletRequest objHttpServletRequest) {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-			_objHttpServletRequest = objHttpServletRequest;
-			this.setStrPaginaSolicitada(_objHttpServletRequest.getRequestURI()
-					.replace(_objHttpServletRequest.getContextPath() + "/app/",
-							Utils.STRING_VAZIA));
-			this.setObjHttpSession(_objHttpServletRequest.getSession());
+      _objHttpServletRequest = objHttpServletRequest;
+      this.setStrPaginaSolicitada(_objHttpServletRequest.getRequestURI().replace(
+          _objHttpServletRequest.getContextPath() + "/app/", Utils.STRING_VAZIA));
+      this.setObjHttpSession(_objHttpServletRequest.getSession());
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-			new Erro("Erro inesperado.\n", ex);
+      new Erro("Erro inesperado.\n", ex);
 
-		} finally {
-		}
-	}
+    } finally {
+    }
+  }
 
-	public void setObjHttpServletResponse(
-			HttpServletResponse objHttpServletResponse) {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+  public void setObjHttpServletResponse(HttpServletResponse objHttpServletResponse) {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-			_objHttpServletResponse = objHttpServletResponse;
-			this.setObjPrintWriter(_objHttpServletResponse.getWriter());
+      _objHttpServletResponse = objHttpServletResponse;
+      this.setObjPrintWriter(_objHttpServletResponse.getWriter());
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-			new Erro("Erro inesperado.\n", ex);
+      new Erro("Erro inesperado.\n", ex);
 
-		} finally {
-		}
-	}
+    } finally {
+    }
+  }
 
-	private void setObjHttpSession(HttpSession objHttpSession) {
-		// VARIÁVEIS
+  private void setObjHttpSession(HttpSession objHttpSession) {
+    // VARIÁVEIS
 
-		Usuario objUsuario;
+    Usuario objUsuario;
 
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-			_objHttpSession = objHttpSession;
+      _objHttpSession = objHttpSession;
 
-			if (!this.getBooUsuarioExiste(_objHttpSession.getId())) {
+      if (!this.getBooUsuarioExiste(_objHttpSession.getId())) {
 
-				objUsuario = new Usuario();
-				objUsuario.setStrSessaoId(_objHttpSession.getId());
-			}
+        objUsuario = new Usuario();
+        objUsuario.setStrSessaoId(_objHttpSession.getId());
+      }
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-			new Erro("Erro inesperado.\n", ex);
+      new Erro("Erro inesperado.\n", ex);
 
-		} finally {
-		}
-	}
+    } finally {
+    }
+  }
 
-	public void setObjPaletaCorSelecionada(PaletaCor objPaletaCorSelecionada) {
-		_objPaletaCorSelecionada = objPaletaCorSelecionada;
-	}
+  public void setObjPaletaCorSelecionada(PaletaCor objPaletaCorSelecionada) {
+    _objPaletaCorSelecionada = objPaletaCorSelecionada;
+  }
 
-	public void setObjPrintWriter(PrintWriter objPrintWriter) {
-		_objPrintWriter = objPrintWriter;
-	}
+  public void setObjPrintWriter(PrintWriter objPrintWriter) {
+    _objPrintWriter = objPrintWriter;
+  }
 
-	private void setStrPaginaSolicitada(String strPaginaSolicitada) {
-		_strPaginaSolicitada = strPaginaSolicitada;
-	}
+  private void setStrPaginaSolicitada(String strPaginaSolicitada) {
+    _strPaginaSolicitada = strPaginaSolicitada;
+  }
 
 }

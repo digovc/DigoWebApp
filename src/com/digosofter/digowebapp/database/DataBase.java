@@ -13,245 +13,222 @@ import com.digosofter.digowebapp.erro.Erro;
 
 public abstract class DataBase extends Objeto {
 
+  private int _intPort = 5432;
 
+  private Connection _objConnection;
 
+  private String _strDbName;
 
+  private String _strHost;
 
-	private int _intPort = 5432;
+  private String _strPassword = "postgres";
 
-	private Connection _objConnection;
+  private String _strUser = "postgres";
 
-	private String _strDbName;
+  public DataBase(String strHost, int intPort, String strDbName, String strUser, String strPassword) {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-	private String _strHost;
+      this.setStrHost(strHost);
+      this.setIntPort(intPort);
+      this.setStrDbName(strDbName);
+      this.setStrUser(strUser);
+      this.setStrPassword(strPassword);
 
-	private String _strPassword = "postgres";
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-	private String _strUser = "postgres";
+      new Erro("Erro inesperado.\n", ex);
 
-	public DataBase(String strHost, int intPort, String strDbName,
-			String strUser, String strPassword) {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+    } finally {
+    }
+  }
 
-			this.setStrHost(strHost);
-			this.setIntPort(intPort);
-			this.setStrDbName(strDbName);
-			this.setStrUser(strUser);
-			this.setStrPassword(strPassword);
+  public void execSql(String sql) {
+    // VARIÁVEIS
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+    Statement objStatement;
 
-			new Erro("Erro inesperado.\n", ex);
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-		} finally {
-		}
-	}
+      objStatement = this.getObjConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+          ResultSet.CONCUR_READ_ONLY);
+      objStatement.execute(sql);
 
-	public void execSql(String sql) {
-		// VARIÁVEIS
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-		Statement objStatement;
+      new Erro("Erro inesperado.\n", ex);
 
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+    } finally {
+    }
+  }
 
-			objStatement = this.getObjConnection().createStatement(
-					ResultSet.TYPE_SCROLL_INSENSITIVE,
-					ResultSet.CONCUR_READ_ONLY);
-			objStatement.execute(sql);
+  public List<Integer> execSqlRetornaLstInt(String sql) {
+    // VARIÁVEIS
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+    ResultSet objResultSet;
+    List<Integer> lstIntResultado = null;
 
-			new Erro("Erro inesperado.\n", ex);
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-		} finally {
-		}
-	}
+      objResultSet = this.execSqlRetornaResultSet(sql);
 
-	public List<Integer> execSqlRetornaLstInt(String sql) {
-		// VARIÁVEIS
+      if (objResultSet != null && objResultSet.first()) {
 
-		ResultSet objResultSet;
-		List<Integer> lstIntResultado = null;
+        lstIntResultado = new ArrayList<Integer>();
 
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+        do {
 
-			objResultSet = this.execSqlRetornaResultSet(sql);
+          lstIntResultado.add(objResultSet.getInt(1));
 
-			if (objResultSet != null && objResultSet.first()) {
+        } while (objResultSet.next());
+      }
 
-				lstIntResultado = new ArrayList<Integer>();
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-				do {
+      new Erro("Erro inesperado.\n", ex);
 
-					lstIntResultado.add(objResultSet.getInt(1));
+    } finally {
+    }
 
-				} while (objResultSet.next());
-			}
+    return lstIntResultado;
+  }
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+  public ResultSet execSqlRetornaResultSet(String sql) {
+    // VARIÁVEIS
 
-			new Erro("Erro inesperado.\n", ex);
+    ResultSet objResultSetResultado = null;
+    Statement objStatement;
 
-		} finally {
-		}
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-		return lstIntResultado;
-	}
+      objStatement = this.getObjConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+          ResultSet.CONCUR_READ_ONLY);
+      objResultSetResultado = objStatement.executeQuery(sql);
 
-	public ResultSet execSqlRetornaResultSet(String sql) {
-		// VARIÁVEIS
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-		ResultSet objResultSetResultado = null;
-		Statement objStatement;
+      new Erro("Erro inesperado.\n", ex);
 
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+    } finally {
+    }
 
-			objStatement = this.getObjConnection().createStatement(
-					ResultSet.TYPE_SCROLL_INSENSITIVE,
-					ResultSet.CONCUR_READ_ONLY);
-			objResultSetResultado = objStatement.executeQuery(sql);
+    return objResultSetResultado;
+  }
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+  public ResultSet execView(String strViewNome) {
+    // VARIÁVEIS
 
-			new Erro("Erro inesperado.\n", ex);
+    ResultSet objResultSetResultado = null;
+    StringBuilder strBuilder;
 
-		} finally {
-		}
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-		return objResultSetResultado;
-	}
+      strBuilder = new StringBuilder();
+      strBuilder.append("select * from ");
+      strBuilder.append(strViewNome);
+      strBuilder.append(";");
 
-	public ResultSet execView(String strViewNome) {
-		// VARIÁVEIS
+      objResultSetResultado = this.execSqlRetornaResultSet(strBuilder.toString());
 
-		ResultSet objResultSetResultado = null;
-		StringBuilder strBuilder;
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+      new Erro("Erro inesperado.\n", ex);
 
-			strBuilder = new StringBuilder();
-			strBuilder.append("select * from ");
-			strBuilder.append(strViewNome);
-			strBuilder.append(";");
+    } finally {
+    }
 
-			objResultSetResultado = this.execSqlRetornaResultSet(strBuilder
-					.toString());
+    return objResultSetResultado;
+  }
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+  private int getIntPort() {
+    return _intPort;
+  }
 
-			new Erro("Erro inesperado.\n", ex);
+  private Connection getObjConnection() {
+    // VARIÁVEIS
 
-		} finally {
-		}
+    Properties objProperties;
+    String url;
 
-		return objResultSetResultado;
-	}
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-	private int getIntPort() {
-		return _intPort;
-	}
+      if (_objConnection == null) {
 
-	private Connection getObjConnection() {
-		// VARIÁVEIS
+        objProperties = new Properties();
+        objProperties.setProperty("user", this.getStrUser());
+        objProperties.setProperty("password", this.getStrPassword());
 
-		Properties objProperties;
-		String url;
+        url = "jdbc:" + this.getStrDriveName() + "://" + this.getStrHost() + ":"
+            + String.valueOf(this.getIntPort()) + "/" + this.getStrDbName();
+        Class.forName(this.getStrPackegeClassName());
+        _objConnection = DriverManager.getConnection(url, objProperties);
+      }
 
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+      // FIM AÇÕES
+    } catch (Exception ex) {
+      new Erro("Erro inesperado.\n", ex);
 
-			if (_objConnection == null) {
+    } finally {
+    }
 
-				objProperties = new Properties();
-				objProperties.setProperty("user", this.getStrUser());
-				objProperties.setProperty("password", this.getStrPassword());
+    return _objConnection;
+  }
 
-				url = "jdbc:" + this.getStrDriveName() + "://"
-						+ this.getStrHost() + ":"
-						+ String.valueOf(this.getIntPort()) + "/"
-						+ this.getStrDbName();
-				Class.forName(this.getStrPackegeClassName());
-				_objConnection = DriverManager
-						.getConnection(url, objProperties);
-			}
+  private String getStrDbName() {
+    return _strDbName;
+  }
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
-			new Erro("Erro inesperado.\n", ex);
+  protected abstract String getStrDriveName();
 
-		} finally {
-		}
+  private String getStrHost() {
+    return _strHost;
+  }
 
-		return _objConnection;
-	}
+  protected abstract String getStrPackegeClassName();
 
-	private String getStrDbName() {
-		return _strDbName;
-	}
+  private String getStrPassword() {
+    return _strPassword;
+  }
 
-	protected abstract String getStrDriveName();
+  private String getStrUser() {
+    return _strUser;
+  }
 
-	private String getStrHost() {
-		return _strHost;
-	}
+  private void setIntPort(int intPort) {
+    _intPort = intPort;
+  }
 
-	protected abstract String getStrPackegeClassName();
+  private void setStrDbName(String strDbName) {
+    _strDbName = strDbName;
+  }
 
+  private void setStrHost(String strHost) {
+    _strHost = strHost;
+  }
 
+  private void setStrPassword(String strPassword) {
+    _strPassword = strPassword;
+  }
 
-
-
-	private String getStrPassword() {
-		return _strPassword;
-	}
-
-
-
-
-
-	private String getStrUser() {
-		return _strUser;
-	}
-
-	private void setIntPort(int intPort) {
-		_intPort = intPort;
-	}
-
-	private void setStrDbName(String strDbName) {
-		_strDbName = strDbName;
-	}
-
-	private void setStrHost(String strHost) {
-		_strHost = strHost;
-	}
-
-	private void setStrPassword(String strPassword) {
-		_strPassword = strPassword;
-	}
-
-	private void setStrUser(String strUser) {
-		_strUser = strUser;
-	}
-
-
-
-
+  private void setStrUser(String strUser) {
+    _strUser = strUser;
+  }
 
 }

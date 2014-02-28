@@ -12,292 +12,275 @@ import com.digosofter.digowebapp.html.Painel;
 
 public class FormularioTbl extends ComponenteMain {
 
+  private Botao _btnSalvar;
 
+  private Formulario _frm;
 
+  private LimiteFloat _objLimiteFloat;
 
+  private Painel _pnlCampos;
 
-	private Botao _btnSalvar;
+  private DbTabela _tbl;
 
-	private Formulario _frm;
+  /**
+   * Formulário para cadastro de um registro da tabela passada como parâmetro.
+   */
+  public FormularioTbl(DbTabela tbl) {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-	private LimiteFloat _objLimiteFloat;
+      this.setTbl(tbl);
 
-	private Painel _pnlCampos;
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-	private DbTabela _tbl;
+      new Erro("Erro inesperado.\n", ex);
 
-	/**
-	 * Formulário para cadastro de um registro da tabela passada como parâmetro.
-	 */
-	public FormularioTbl(DbTabela tbl) {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+    } finally {
+    }
+  }
 
-			this.setTbl(tbl);
+  private Botao getBtnSalvar() {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+      if (_btnSalvar == null) {
 
-			new Erro("Erro inesperado.\n", ex);
+        _btnSalvar = new Botao();
+        _btnSalvar.setStrConteudo("Salvar");
+      }
 
-		} finally {
-		}
-	}
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-	private Botao getBtnSalvar() {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+      new Erro("Erro inesperado.\n", ex);
 
-			if (_btnSalvar == null) {
+    } finally {
+    }
 
-				_btnSalvar = new Botao();
-				_btnSalvar.setStrConteudo("Salvar");
-			}
+    return _btnSalvar;
+  }
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+  private Formulario getFrm() {
+    // VARIÁVEIS
 
-			new Erro("Erro inesperado.\n", ex);
+    String strAction;
 
-		} finally {
-		}
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-		return _btnSalvar;
-	}
+      if (_frm == null) {
 
-	private Formulario getFrm() {
-		// VARIÁVEIS
+        strAction = AppWeb.getI().getStrPaginaSolicitada();
+        strAction += "?";
+        strAction += this.getTbl().getStrNomeSimplificado();
+        // strAction += "=salvar";
 
-		String strAction;
+        _frm = new Formulario(strAction, Formulario.EnmMetodo.POST);
+      }
 
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-			if (_frm == null) {
+      new Erro("Erro inesperado.\n", ex);
 
-				strAction = AppWeb.getI().getStrPaginaSolicitada();
-				strAction += "?";
-				strAction += this.getTbl().getStrNomeSimplificado();
-				// strAction += "=salvar";
+    } finally {
+    }
 
-				_frm = new Formulario(strAction, Formulario.EnmMetodo.POST);
-			}
+    return _frm;
+  }
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+  /**
+   * Retorna a quantidade de linhas contidas no formulário.
+   */
+  private int getIntQtdLinha() {
+    // VARIÁVEIS
 
-			new Erro("Erro inesperado.\n", ex);
+    int intResultado = 1;
 
-		} finally {
-		}
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-		return _frm;
-	}
+      for (DbColuna cln : this.getTbl().getLstClnVisivelCadastro()) {
+        if (intResultado < cln.getIntFrmLinha()) {
+          intResultado = cln.getIntFrmLinha();
+        }
+      }
 
-	/**
-	 * Retorna a quantidade de linhas contidas no formulário.
-	 */
-	private int getIntQtdLinha() {
-		// VARIÁVEIS
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-		int intResultado = 1;
+      new Erro("Erro inesperado.\n", ex);
 
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+    } finally {
+    }
 
-			for (DbColuna cln : this.getTbl().getLstClnVisivelCadastro()) {
-				if (intResultado < cln.getIntFrmLinha()) {
-					intResultado = cln.getIntFrmLinha();
-				}
-			}
+    return intResultado;
+  }
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+  private LimiteFloat getObjLimiteFloat() {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-			new Erro("Erro inesperado.\n", ex);
+      if (_objLimiteFloat == null) {
+        _objLimiteFloat = new LimiteFloat();
+      }
 
-		} finally {
-		}
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-		return intResultado;
-	}
+      new Erro("Erro inesperado.\n", ex);
 
-	private LimiteFloat getObjLimiteFloat() {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+    } finally {
+    }
 
-			if (_objLimiteFloat == null) {
-				_objLimiteFloat = new LimiteFloat();
-			}
+    return _objLimiteFloat;
+  }
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+  public Painel getPnlCampos() {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-			new Erro("Erro inesperado.\n", ex);
+      if (_pnlCampos == null) {
 
-		} finally {
-		}
+        _pnlCampos = new Painel();
+      }
 
-		return _objLimiteFloat;
-	}
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-	public Painel getPnlCampos() {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+      new Erro("Erro inesperado.\n", ex);
 
-			if (_pnlCampos == null) {
+    } finally {
+    }
 
-				_pnlCampos = new Painel();
-			}
+    return _pnlCampos;
+  }
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+  private DbTabela getTbl() {
+    return _tbl;
+  }
 
-			new Erro("Erro inesperado.\n", ex);
+  @Override
+  public void montarLayout() {
+    // VARIÁVEIS
 
-		} finally {
-		}
+    String strParam;
 
-		return _pnlCampos;
-	}
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
+      strParam = AppWeb.getI().getParametro(this.getTbl().getStrNomeSimplificado());
 
+      if (strParam == null) {
 
+        this.montarLayoutCadastro();
 
+      } else {
 
-	private DbTabela getTbl() {
-		return _tbl;
-	}
+        this.salvarRegistro();
+        this.montarLayoutSalvo();
+      }
 
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
+      new Erro("Erro inesperado.\n", ex);
 
+    } finally {
+    }
+  }
 
+  public void montarLayoutCadastro() {
+    // VARIÁVEIS
 
-	@Override
-	public void montarLayout() {
-		// VARIÁVEIS
+    int intQtdLinha;
 
-		String strParam;
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+      this.getPnlTitulo().setTagPai(this.getPnlContainer());
+      this.getFrm().setTagPai(this.getPnlContainer());
+      this.getPnlCampos().setTagPai(this.getFrm());
+      this.getPnlComando().setTagPai(this.getFrm());
+      this.getBtnSalvar().setTagPai(this.getPnlComando());
 
-			strParam = AppWeb.getI().getParametro(
-					this.getTbl().getStrNomeSimplificado());
+      intQtdLinha = this.getIntQtdLinha();
 
-			if (strParam == null) {
+      for (int intIndex = 1; intIndex <= intQtdLinha; intIndex++) {
 
-				this.montarLayoutCadastro();
+        for (DbColuna cln : this.getTbl().getLstClnVisivelCadastro()) {
 
-			} else {
+          if (cln.getIntFrmLinha() == intIndex) {
 
-				this.salvarRegistro();
-				this.montarLayoutSalvo();
-			}
+            cln.setObjCampoFrmTbl(new CampoFrmTbl(cln));
+            cln.getObjCampoFrmTbl().montarLayout();
+          }
+        }
+      }
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+      this.getObjLimiteFloat().setTagPai(this.getPnlContainer());
 
-			new Erro("Erro inesperado.\n", ex);
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-		} finally {
-		}
-	}
+      new Erro("Erro inesperado.\n", ex);
 
-	public void montarLayoutCadastro() {
-		// VARIÁVEIS
+    } finally {
+    }
+  }
 
-		int intQtdLinha;
+  private void montarLayoutSalvo() {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+      this.getPnlContainer().setStrConteudo("Salvo com sucesso!");
 
-			this.getPnlTitulo().setTagPai(this.getPnlContainer());
-			this.getFrm().setTagPai(this.getPnlContainer());
-			this.getPnlCampos().setTagPai(this.getFrm());
-			this.getPnlComando().setTagPai(this.getFrm());
-			this.getBtnSalvar().setTagPai(this.getPnlComando());
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-			intQtdLinha = this.getIntQtdLinha();
+      new Erro("Erro inesperado.\n", ex);
 
-			for (int intIndex = 1; intIndex <= intQtdLinha; intIndex++) {
+    } finally {
+    }
+  }
 
-				for (DbColuna cln : this.getTbl().getLstClnVisivelCadastro()) {
+  /**
+   * Persiste os dados vindos do cliente no banco de dados.
+   */
+  private void salvarRegistro() {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-					if (cln.getIntFrmLinha() == intIndex) {
+      this.getTbl().salvarRegistroPost();
 
-						cln.setObjCampoFrmTbl(new CampoFrmTbl(cln));
-						cln.getObjCampoFrmTbl().montarLayout();
-					}
-				}
-			}
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-			this.getObjLimiteFloat().setTagPai(this.getPnlContainer());
+      new Erro("Erro inesperado.\n", ex);
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+    } finally {
+    }
+  }
 
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
-	}
-
-	private void montarLayoutSalvo() {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-
-			this.getPnlContainer().setStrConteudo("Salvo com sucesso!");
-
-			// FIM AÇÕES
-		} catch (Exception ex) {
-
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
-	}
-
-	/**
-	 * Persiste os dados vindos do cliente no banco de dados.
-	 */
-	private void salvarRegistro() {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-
-			this.getTbl().salvarRegistroPost();
-
-			// FIM AÇÕES
-		} catch (Exception ex) {
-
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
-	}
-
-	private void setTbl(DbTabela tbl) {
-		_tbl = tbl;
-	}
-
-
-
-
+  private void setTbl(DbTabela tbl) {
+    _tbl = tbl;
+  }
 
 }

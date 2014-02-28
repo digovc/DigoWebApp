@@ -11,244 +11,226 @@ import com.digosofter.digowebapp.html.Painel;
 
 public class ConsultaTbl extends ComponenteMain {
 
+  private Botao _btnNovo;
 
+  private Painel _pnlContainer;
 
+  private Painel _pnlLista;
 
+  private LimiteFloat _tagLimiteFloat;
 
-	private Botao _btnNovo;
+  private DbTabela _tbl;
 
-	private Painel _pnlContainer;
+  public ConsultaTbl(DbTabela tbl) {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-	private Painel _pnlLista;
+      this.setTbl(tbl);
 
-	private LimiteFloat _tagLimiteFloat;
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-	private DbTabela _tbl;
+      new Erro("Erro inesperado.\n", ex);
 
-	public ConsultaTbl(DbTabela tbl) {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+    } finally {
+    }
+  }
 
-			this.setTbl(tbl);
+  private Botao getBtnNovo() {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+      if (_btnNovo == null) {
 
-			new Erro("Erro inesperado.\n", ex);
+        _btnNovo = new Botao();
+        _btnNovo.setStrConteudo("Novo");
+      }
 
-		} finally {
-		}
-	}
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-	private Botao getBtnNovo() {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+      new Erro("Erro inesperado.\n", ex);
 
-			if (_btnNovo == null) {
+    } finally {
+    }
 
-				_btnNovo = new Botao();
-				_btnNovo.setStrConteudo("Novo");
-			}
+    return _btnNovo;
+  }
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+  @Override
+  public Painel getPnlContainer() {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-			new Erro("Erro inesperado.\n", ex);
+      if (_pnlContainer == null) {
 
-		} finally {
-		}
+        _pnlContainer = super.getPnlContainer();
+        _pnlContainer.addCss(CssTag.getCssMainInst().setPadding(5, "px"));
+        _pnlContainer.addCss(CssTag.getCssMainInst().setBorder(1, "solid", "black"));
+      }
 
-		return _btnNovo;
-	}
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-	@Override
-	public Painel getPnlContainer() {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+      new Erro("Erro inesperado.\n", ex);
 
-			if (_pnlContainer == null) {
+    } finally {
+    }
 
-				_pnlContainer = super.getPnlContainer();
-				_pnlContainer.adicionarCss(CssTag.getCssMainInstancia()
-						.setPadding(5, "px"));
-				_pnlContainer.adicionarCss(CssTag.getCssMainInstancia()
-						.setBorder(1, "solid", "black"));
-			}
+    return _pnlContainer;
+  }
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+  private Painel getPnlLista() {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-			new Erro("Erro inesperado.\n", ex);
+      if (_pnlLista == null) {
+        _pnlLista = new Painel();
+      }
 
-		} finally {
-		}
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-		return _pnlContainer;
-	}
+      new Erro("Erro inesperado.\n", ex);
 
-	private Painel getPnlLista() {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+    } finally {
+    }
 
-			if (_pnlLista == null) {
-				_pnlLista = new Painel();
-			}
+    return _pnlLista;
+  }
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+  private LimiteFloat getTagLimiteFloat() {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      if (_tagLimiteFloat == null) {
+        _tagLimiteFloat = new LimiteFloat();
+      }
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+
+    return _tagLimiteFloat;
+  }
 
-			new Erro("Erro inesperado.\n", ex);
+  private DbTabela getTbl() {
+    return _tbl;
+  }
 
-		} finally {
-		}
-
-		return _pnlLista;
-	}
-
-	private LimiteFloat getTagLimiteFloat() {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-
-			if (_tagLimiteFloat == null) {
-				_tagLimiteFloat = new LimiteFloat();
-			}
-
-			// FIM AÇÕES
-		} catch (Exception ex) {
-
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
-
-		return _tagLimiteFloat;
-	}
-
-	private DbTabela getTbl() {
-		return _tbl;
-	}
-
-
-
-
-
-	@Override
-	public void montarLayout() {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-
-			this.getPnlTitulo().setTagPai(this.getPnlContainer());
-			this.getPnlLista().setTagPai(this.getPnlContainer());
-			this.montarLayoutLista();
-			this.getPnlComando().setTagPai(this.getPnlContainer());
-			this.getBtnNovo().setTagPai(this.getPnlComando());
-			this.getTagLimiteFloat().setTagPai(this.getPnlComando());
-
-			// FIM AÇÕES
-		} catch (Exception ex) {
-
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
-	}
-
-
-
-
-
-	/**
-	 * Monta o layout de uma linha baseado no registro posicionado no objeto
-	 * "objResultSet".
-	 */
-	private void montarLayoutLinha(ResultSet objResultSet) {
-		// VARIÁVEIS
-
-		// String strNome;
-		// String strValor;
-		//
-		// LinhaConsultaTbl objLinhaConsultaTbl;
-
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-
-			// objLinhaConsultaTbl = new LinhaConsultaTbl();
-			// objLinhaConsultaTbl.setStrNome(objResultSet.getString(this.getTbl().getClnNome().getStrNomeSimplificado()));
-			//
-			// for (DbColuna cln : this.getTbl().getLstClnVisivelConsulta()) {
-			//
-			// if (!cln.getBooClnNome()) {
-			//
-			// strNome = cln.getStrNomeExibicao();
-			// objLinhaConsultaTbl.getLstStrNome().add(strNome);
-			// strValor = objResultSet.getString(cln.getStrNomeSimplificado());
-			// objLinhaConsultaTbl.getLstStrValor().add(strValor);
-			// }
-			// }
-			//
-			// objLinhaConsultaTbl.getPnlContainer().setTagPai(this.getPnlLista());
-			// objLinhaConsultaTbl.montarLayout();
-
-			// FIM AÇÕES
-		} catch (Exception ex) {
-
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
-	}
-
-	/**
-	 * Monta o layout da lista com os valores da "tbl".
-	 */
-	private void montarLayoutLista() {
-		// VARIÁVEIS
-
-		ResultSet objResultSet;
-
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-
-			objResultSet = this.getTbl().getObjResultSetConsulta();
-
-			if (objResultSet != null && objResultSet.first()) {
-
-				do {
-
-					this.montarLayoutLinha(objResultSet);
-
-				} while (objResultSet.next());
-			}
-
-			// FIM AÇÕES
-		} catch (Exception ex) {
-
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
-	}
-
-	private void setTbl(DbTabela tbl) {
-		_tbl = tbl;
-	}
-
-
-
-
+  @Override
+  public void montarLayout() {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      this.getPnlTitulo().setTagPai(this.getPnlContainer());
+      this.getPnlLista().setTagPai(this.getPnlContainer());
+      this.montarLayoutLista();
+      this.getPnlComando().setTagPai(this.getPnlContainer());
+      this.getBtnNovo().setTagPai(this.getPnlComando());
+      this.getTagLimiteFloat().setTagPai(this.getPnlComando());
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+  }
+
+  /**
+   * Monta o layout de uma linha baseado no registro posicionado no objeto
+   * "objResultSet".
+   */
+  private void montarLayoutLinha(ResultSet objResultSet) {
+    // VARIÁVEIS
+
+    // String strNome;
+    // String strValor;
+    //
+    // LinhaConsultaTbl objLinhaConsultaTbl;
+
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      // objLinhaConsultaTbl = new LinhaConsultaTbl();
+      // objLinhaConsultaTbl.setStrNome(objResultSet.getString(this.getTbl().getClnNome().getStrNomeSimplificado()));
+      //
+      // for (DbColuna cln : this.getTbl().getLstClnVisivelConsulta()) {
+      //
+      // if (!cln.getBooClnNome()) {
+      //
+      // strNome = cln.getStrNomeExibicao();
+      // objLinhaConsultaTbl.getLstStrNome().add(strNome);
+      // strValor = objResultSet.getString(cln.getStrNomeSimplificado());
+      // objLinhaConsultaTbl.getLstStrValor().add(strValor);
+      // }
+      // }
+      //
+      // objLinhaConsultaTbl.getPnlContainer().setTagPai(this.getPnlLista());
+      // objLinhaConsultaTbl.montarLayout();
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+  }
+
+  /**
+   * Monta o layout da lista com os valores da "tbl".
+   */
+  private void montarLayoutLista() {
+    // VARIÁVEIS
+
+    ResultSet objResultSet;
+
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      objResultSet = this.getTbl().getObjResultSetConsulta();
+
+      if (objResultSet != null && objResultSet.first()) {
+
+        do {
+
+          this.montarLayoutLinha(objResultSet);
+
+        } while (objResultSet.next());
+      }
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+  }
+
+  private void setTbl(DbTabela tbl) {
+    _tbl = tbl;
+  }
 
 }

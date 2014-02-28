@@ -7,123 +7,106 @@ import com.digosofter.digowebapp.html.Tag;
 
 public abstract class ComponenteMain extends Tag {
 
+  private Painel _pnlComando;
 
+  private Painel _pnlContainer;
 
+  private Painel _pnlTitulo;
 
+  public Painel getPnlComando() {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-	private Painel _pnlComando;
+      if (_pnlComando == null) {
 
-	private Painel _pnlContainer;
+        _pnlComando = new Painel();
+        _pnlComando.addCss(CssTag.getCssMainInst().setPaddingLeft(10));
+        _pnlComando.addCss(CssTag.getCssMainInst().setPaddingRight(10));
+      }
 
-	private Painel _pnlTitulo;
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-	public Painel getPnlComando() {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+      new Erro("Erro inesperado.\n", ex);
 
-			if (_pnlComando == null) {
+    } finally {
+    }
 
-				_pnlComando = new Painel();
-				_pnlComando.adicionarCss(CssTag.getCssMainInstancia()
-						.setPaddingLeft(10));
-				_pnlComando.adicionarCss(CssTag.getCssMainInstancia()
-						.setPaddingRight(10));
-			}
+    return _pnlComando;
+  }
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+  public Painel getPnlContainer() {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-			new Erro("Erro inesperado.\n", ex);
+      if (_pnlContainer == null) {
+        _pnlContainer = new Painel();
+      }
 
-		} finally {
-		}
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-		return _pnlComando;
-	}
+      new Erro("Erro inesperado.\n", ex);
 
-	public Painel getPnlContainer() {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+    } finally {
+    }
 
-			if (_pnlContainer == null) {
-				_pnlContainer = new Painel();
-			}
+    return _pnlContainer;
+  }
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+  protected Painel getPnlTitulo() {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-			new Erro("Erro inesperado.\n", ex);
+      if (_pnlTitulo == null) {
+        _pnlTitulo = new Painel();
+      }
 
-		} finally {
-		}
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-		return _pnlContainer;
-	}
+      new Erro("Erro inesperado.\n", ex);
 
-	protected Painel getPnlTitulo() {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+    } finally {
+    }
 
-			if (_pnlTitulo == null) {
-				_pnlTitulo = new Painel();
-			}
+    return _pnlTitulo;
+  }
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+  /**
+   * Retorna o componente pronto para ser usado no html.
+   */
+  public String getStrCompFormatado() {
+    // VARIÁVEIS
 
-			new Erro("Erro inesperado.\n", ex);
+    String strResultado = null;
 
-		} finally {
-		}
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-		return _pnlTitulo;
-	}
+      strResultado = this.getPnlContainer().getStrTagFormatada();
 
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
+      new Erro("Erro inesperado.\n", ex);
 
+    } finally {
+    }
 
+    return strResultado;
+  }
 
-
-
-
-	/**
-	 * Retorna o componente pronto para ser usado no html.
-	 */
-	public String getStrCompFormatado() {
-		// VARIÁVEIS
-
-		String strResultado = null;
-
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-
-			strResultado = this.getPnlContainer().getStrTagFormatada();
-
-			// FIM AÇÕES
-		} catch (Exception ex) {
-
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
-
-		return strResultado;
-	}
-
-	/**
-	 * Prepara o layout final do componente.
-	 */
-	public abstract void montarLayout();
-
-
-
-
+  /**
+   * Prepara o layout final do componente.
+   */
+  public abstract void montarLayout();
 
 }

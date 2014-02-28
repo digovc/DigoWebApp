@@ -4,50 +4,35 @@ import com.digosofter.digowebapp.erro.Erro;
 
 public class DbPostgresql extends DataBase {
 
-	private static final String STR_DRIVE_NAME = "postgresql";
-	private static final String STR_PACKEGE_CLASS_NAME = "org.postgresql.Driver";
+  private static final String STR_DRIVE_NAME = "postgresql";
+  private static final String STR_PACKEGE_CLASS_NAME = "org.postgresql.Driver";
 
+  public DbPostgresql(String strHost, int intPort, String strDbName, String strUser,
+      String strPassword) {
 
+    super(strHost, intPort, strDbName, strUser, strPassword);
 
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
+      new Erro("Erro inesperado.\n", ex);
 
+    } finally {
+    }
+  }
 
+  @Override
+  protected String getStrDriveName() {
+    return STR_DRIVE_NAME;
+  }
 
-
-	public DbPostgresql(String strHost, int intPort, String strDbName,
-			String strUser, String strPassword) {
-
-		super(strHost, intPort, strDbName, strUser, strPassword);
-
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-			// FIM AÇÕES
-		} catch (Exception ex) {
-
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
-	}
-
-
-
-
-
-	@Override
-	protected String getStrDriveName() {
-		return STR_DRIVE_NAME;
-	}
-
-	@Override
-	protected String getStrPackegeClassName() {
-		return STR_PACKEGE_CLASS_NAME;
-	}
-
-
-
-
+  @Override
+  protected String getStrPackegeClassName() {
+    return STR_PACKEGE_CLASS_NAME;
+  }
 
 }

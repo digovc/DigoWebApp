@@ -4,54 +4,39 @@ import com.digosofter.digowebapp.Objeto;
 
 public class Erro extends Objeto {
 
+  private String _strMensagem;
 
+  private String _strMensagemDetalhada;
 
+  public Erro(String strMensagem, Exception ex) {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
+      Exception objException = new Exception(ex.toString());
+      objException.printStackTrace();
 
-	private String _strMensagem;
+      // FIM AÇÕES
+    } catch (Exception ex2) {
+    } finally {
+    }
+  }
 
-	private String _strMensagemDetalhada;
+  protected String getStrMensagem() {
+    return _strMensagem;
+  }
 
-	public Erro(String strMensagem, Exception ex) {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+  protected String getStrMensagemDetalhada() {
+    return _strMensagemDetalhada;
+  }
 
-			Exception objException = new Exception(ex.toString());
-			objException.printStackTrace();
+  protected void setStrMensagem(String strMensagem) {
+    _strMensagem = strMensagem;
+  }
 
-			// FIM AÇÕES
-		} catch (Exception ex2) {
-		} finally {
-		}
-	}
-
-	protected String getStrMensagem() {
-		return _strMensagem;
-	}
-
-	protected String getStrMensagemDetalhada() {
-		return _strMensagemDetalhada;
-	}
-
-	protected void setStrMensagem(String strMensagem) {
-		_strMensagem = strMensagem;
-	}
-
-
-
-
-
-	protected void setStrMensagemDetalhada(String strMensagemDetalhada) {
-		_strMensagemDetalhada = strMensagemDetalhada;
-	}
-
-
-
-
-
-
-
+  protected void setStrMensagemDetalhada(String strMensagemDetalhada) {
+    _strMensagemDetalhada = strMensagemDetalhada;
+  }
 
 }

@@ -5,56 +5,41 @@ import com.digosofter.digowebapp.erro.Erro;
 
 public class WsObjetoMain extends Objeto {
 
+  private int _intMensagemId;
 
+  private String _strJsonFilho;
 
+  public WsObjetoMain(int intMensagemId) {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
+      this.setIntMensagemId(intMensagemId);
 
-	private int _intMensagemId;
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-	private String _strJsonFilho;
+      new Erro("Erro inesperado.\n", ex);
 
-	public WsObjetoMain(int intMensagemId) {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+    } finally {
+    }
+  }
 
-			this.setIntMensagemId(intMensagemId);
+  public int getIntMensagemId() {
+    return _intMensagemId;
+  }
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+  public String getStrJsonFilho() {
+    return _strJsonFilho;
+  }
 
-			new Erro("Erro inesperado.\n", ex);
+  private void setIntMensagemId(int intMensagemId) {
+    _intMensagemId = intMensagemId;
+  }
 
-		} finally {
-		}
-	}
-
-	public int getIntMensagemId() {
-		return _intMensagemId;
-	}
-
-	public String getStrJsonFilho() {
-		return _strJsonFilho;
-	}
-
-	private void setIntMensagemId(int intMensagemId) {
-		_intMensagemId = intMensagemId;
-	}
-
-
-
-
-
-	public void setStrJsonFilho(String strJsonFilho) {
-		_strJsonFilho = strJsonFilho;
-	}
-
-
-
-
-
-
-
+  public void setStrJsonFilho(String strJsonFilho) {
+    _strJsonFilho = strJsonFilho;
+  }
 
 }

@@ -16,199 +16,176 @@ import com.google.gson.Gson;
 
 public abstract class WsConexaoMain extends MessageInbound {
 
+  public static WsConexaoMain getObjWsConexaoMainPeloIntUsuarioId(int intUsuarioId) {
+    // VARIÁVEIS
 
+    WsConexaoMain objConexaoMainResultado = null;
 
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
+      for (WsConexaoMain objConexaoMain : AppWeb.getI().getLstObjWsConexaoMain()) {
 
-	public static WsConexaoMain getObjWsConexaoMainPeloIntUsuarioId(
-			int intUsuarioId) {
-		// VARIÁVEIS
+        if (objConexaoMain.getObjUsuario().getIntUsuarioId() == intUsuarioId) {
 
-		WsConexaoMain objConexaoMainResultado = null;
+          objConexaoMainResultado = objConexaoMain;
+          break;
+        }
+      }
 
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-			for (WsConexaoMain objConexaoMain : AppWeb.getI()
-					.getLstObjWsConexaoMain()) {
+      new Erro("Erro inesperado.\n", ex);
 
-				if (objConexaoMain.getObjUsuario().getIntUsuarioId() == intUsuarioId) {
+    } finally {
+    }
 
-					objConexaoMainResultado = objConexaoMain;
-					break;
-				}
-			}
+    return objConexaoMainResultado;
+  }
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+  private Usuario _objUsuario;
 
-			new Erro("Erro inesperado.\n", ex);
+  private WsOutbound _objWsOutbound;
 
-		} finally {
-		}
+  public WsConexaoMain(String strSessionId) {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-		return objConexaoMainResultado;
-	}
+      this.setObjUsuario(Usuario.getObjUsuarioPelaSessionId(strSessionId));
 
-	private Usuario _objUsuario;
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-	private WsOutbound _objWsOutbound;
+      new Erro("Erro inesperado.\n", ex);
 
-	public WsConexaoMain(String strSessionId) {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+    } finally {
+    }
+  }
 
-			this.setObjUsuario(Usuario.getObjUsuarioPelaSessionId(strSessionId));
+  public void enviar(WsObjetoMain objWsObjetoMain) {
+    // VARIÁVEIS
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+    Gson objJson;
 
-			new Erro("Erro inesperado.\n", ex);
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-		} finally {
-		}
-	}
+      objJson = new Gson();
+      this.getObjWsOutbound().writeTextMessage(CharBuffer.wrap(objJson.toJson(objWsObjetoMain)));
 
-	public void enviar(WsObjetoMain objWsObjetoMain) {
-		// VARIÁVEIS
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-		Gson objJson;
+      new Erro("Erro inesperado.\n", ex);
 
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+    } finally {
+    }
+  }
 
-			objJson = new Gson();
-			this.getObjWsOutbound().writeTextMessage(
-					CharBuffer.wrap(objJson.toJson(objWsObjetoMain)));
+  public Usuario getObjUsuario() {
+    return _objUsuario;
+  }
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+  private WsOutbound getObjWsOutbound() {
+    return _objWsOutbound;
+  }
 
-			new Erro("Erro inesperado.\n", ex);
+  @Override
+  protected void onBinaryMessage(ByteBuffer arg0) throws IOException {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-		} finally {
-		}
-	}
+      new Erro("Erro inesperado.\n", ex);
 
-	public Usuario getObjUsuario() {
-		return _objUsuario;
-	}
+    } finally {
+    }
+  }
 
+  @Override
+  protected void onClose(int status) {
 
+    super.onClose(status);
 
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
+      AppWeb.getI().getLstObjWsConexaoMain().remove(this);
 
-	private WsOutbound getObjWsOutbound() {
-		return _objWsOutbound;
-	}
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
+      new Erro("Erro inesperado.\n", ex);
 
+    } finally {
+    }
+  }
 
+  @Override
+  protected void onOpen(WsOutbound outbound) {
 
+    super.onOpen(outbound);
 
-	@Override
-	protected void onBinaryMessage(ByteBuffer arg0) throws IOException {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-			// FIM AÇÕES
-		} catch (Exception ex) {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-			new Erro("Erro inesperado.\n", ex);
+      AppWeb.getI().getLstObjWsConexaoMain().add(this);
+      this.setObjWsOutbound(outbound);
 
-		} finally {
-		}
-	}
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
-	@Override
-	protected void onClose(int status) {
+      new Erro("Erro inesperado.\n", ex);
 
-		super.onClose(status);
+    } finally {
+    }
+  }
 
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+  @Override
+  protected void onTextMessage(CharBuffer objCharBufferMensagem) throws IOException {
+    // VARIÁVEIS
 
-			AppWeb.getI().getLstObjWsConexaoMain().remove(this);
+    String strSessionId = Utils.STRING_VAZIA;
 
-			// FIM AÇÕES
-		} catch (Exception ex) {
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-			new Erro("Erro inesperado.\n", ex);
+      if (objCharBufferMensagem.toString().contains("strSessionId")) {
 
-		} finally {
-		}
-	}
+        strSessionId = objCharBufferMensagem.toString();
+        strSessionId = strSessionId.replace("strSessionId=", Utils.STRING_VAZIA);
 
+        this.setObjUsuario(Usuario.getObjUsuarioPelaSessionId(strSessionId));
+      }
 
+      // FIM AÇÕES
+    } catch (Exception ex) {
 
+      new Erro("Erro inesperado.\n", ex);
 
+    } finally {
+    }
+  }
 
-	@Override
-	protected void onOpen(WsOutbound outbound) {
+  private void setObjUsuario(Usuario objUsuario) {
+    _objUsuario = objUsuario;
+  }
 
-		super.onOpen(outbound);
-
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-
-			AppWeb.getI().getLstObjWsConexaoMain().add(this);
-			this.setObjWsOutbound(outbound);
-
-			// FIM AÇÕES
-		} catch (Exception ex) {
-
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
-	}
-
-	@Override
-	protected void onTextMessage(CharBuffer objCharBufferMensagem)
-			throws IOException {
-		// VARIÁVEIS
-
-		String strSessionId = Utils.STRING_VAZIA;
-
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-
-			if (objCharBufferMensagem.toString().contains("strSessionId")) {
-
-				strSessionId = objCharBufferMensagem.toString();
-				strSessionId = strSessionId.replace("strSessionId=",
-						Utils.STRING_VAZIA);
-
-				this.setObjUsuario(Usuario
-						.getObjUsuarioPelaSessionId(strSessionId));
-			}
-
-			// FIM AÇÕES
-		} catch (Exception ex) {
-
-			new Erro("Erro inesperado.\n", ex);
-
-		} finally {
-		}
-	}
-
-	private void setObjUsuario(Usuario objUsuario) {
-		_objUsuario = objUsuario;
-	}
-
-	private void setObjWsOutbound(WsOutbound objWsOutbound) {
-		_objWsOutbound = objWsOutbound;
-	}
-
+  private void setObjWsOutbound(WsOutbound objWsOutbound) {
+    _objWsOutbound = objWsOutbound;
+  }
 
 }
