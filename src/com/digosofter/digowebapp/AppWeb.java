@@ -14,17 +14,17 @@ import com.digosofter.digowebapp.websocket.WsConexaoMain;
 
 public abstract class AppWeb extends Objeto {
 
+  private static List<PaletaCor> _lstObjPaletaCor;
+
   private static AppWeb i;
 
   public static AppWeb getI() {
     return i;
   }
 
-  private List<WsConexaoMain> _lstObjWsConexaoMain;
-
-  private static List<PaletaCor> _lstObjPaletaCor;
-
   private List<Usuario> _lstObjUsuarioSessao;
+
+  private List<WsConexaoMain> _lstObjWsConexaoMain;
 
   private HttpServletRequest _objHttpServletRequest;
 
@@ -36,9 +36,9 @@ public abstract class AppWeb extends Objeto {
 
   private PrintWriter _objPrintWriter;
 
-  private String _strPaginaSolicitada;
-
   private Usuario _objUsuarioAtual;
+
+  private String _strPaginaSolicitada;
 
   public AppWeb(String strAppNome) {
     // VARIÁVEIS

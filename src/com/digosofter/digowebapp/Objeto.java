@@ -4,8 +4,6 @@ import com.digosofter.digowebapp.erro.Erro;
 
 public abstract class Objeto {
 
-  private int _intId;
-
   private static int _intIndex;
 
   private static int getIntIndex() {
@@ -15,6 +13,8 @@ public abstract class Objeto {
   private static void setIntIndex(int intIndex) {
     _intIndex = intIndex;
   }
+
+  private int _intId;
 
   private String _strNome;
 

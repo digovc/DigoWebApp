@@ -11,9 +11,9 @@ import com.digosofter.digowebapp.erro.Erro;
 
 public class PaginaHtml extends Objeto {
 
-  private static PaginaHtml i;
-
   private static CssTag _cssMain;
+
+  private static PaginaHtml i;
 
   public static PaginaHtml getI() {
     // VARIÁVEIS
@@ -457,7 +457,7 @@ public class PaginaHtml extends Objeto {
   /**
    * Método que monta o layout antes de gerar o html da página.
    */
-  public void montarLayout() {
+  protected void montarLayout() {
     // VARIÁVEIS
     // FIM VARIÁVEIS
     try {

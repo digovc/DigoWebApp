@@ -8,63 +8,63 @@ import com.digosofter.digowebapp.erro.Erro;
 
 public class CssTag extends Tag {
 
+  private static CssTag _cssMainInst;
+
   public static final String CSS_BORDER_TIPO_SOLID = "solid";
-
-  public static final String CSS_DISPLAY_BLOCK = "block";
-  public static final String CSS_DISPLAY_NONE = "none";
-  public static final String CSS_DISPLAY_TABLE = "table";
-
-  public static final String CSS_FLOAT_DIREITA = "right";
-  public static final String CSS_FLOAT_ESQUERDA = "left";
-
   public static final String CSS_COR_AMARELO = "#FFFF00";
   public static final String CSS_COR_AZUL = "#0000FF";
+
   public static final String CSS_COR_BRANCO = "#FFFFFF";
   public static final String CSS_COR_CINZA = "#C0C0C0";
+
   public static final String CSS_COR_GRAY = "#808080";
   public static final String CSS_COR_LARANJA = "#FFA500";
   public static final String CSS_COR_PRETO = "#000";
   public static final String CSS_COR_VERDE = "#008000";
   public static final String CSS_COR_VERMERLHO = "#FF0000";
-
   public static final String CSS_CURSOR_AJUDA = "help";
   public static final String CSS_CURSOR_CRUZ = "crosshair";
   public static final String CSS_CURSOR_MOVER = "move";
   public static final String CSS_CURSOR_POINTER = "pointer";
+
   public static final String CSS_CURSOR_PROGRESS = "progress";
-  public static final String CSS_CURSOR_REDIM_DIAG_CIMA = "ne-resize";
   public static final String CSS_CURSOR_REDIM_DIAG_BAIXO = "nw-resize";
+  public static final String CSS_CURSOR_REDIM_DIAG_CIMA = "ne-resize";
   public static final String CSS_CURSOR_REDIM_HOR = "e-resize";
   public static final String CSS_CURSOR_REDIM_VERT = "n-resize";
-  public static final String CSS_CURSOR_WAIT = "wait";
   public static final String CSS_CURSOR_TEXT = "text";
+  public static final String CSS_CURSOR_WAIT = "wait";
+  public static final String CSS_DISPLAY_BLOCK = "block";
+  public static final String CSS_DISPLAY_NONE = "none";
+  public static final String CSS_DISPLAY_TABLE = "table";
+  public static final String CSS_FLOAT_DIREITA = "right";
 
-  public static final String CSS_GRANDEZA_PORCENTAGEM = "%";
+  public static final String CSS_FLOAT_ESQUERDA = "left";
   public static final String CSS_GRANDEZA_PIXEL = "px";
 
+  public static final String CSS_GRANDEZA_PORCENTAGEM = "%";
   public static final String CSS_OVERFLOW_AUTO = "auto";
   public static final String CSS_OVERFLOW_HIDDEN = "hidden";
   public static final String CSS_OVERFLOW_INHERIT = "inherit";
   public static final String CSS_OVERFLOW_SCROLL = "scroll";
-  public static final String CSS_OVERFLOW_VISIBLE = "visible";
 
+  public static final String CSS_OVERFLOW_VISIBLE = "visible";
   public static final String CSS_POSITION_ABSOLUTE = "absolute";
   public static final String CSS_POSITION_FIXED = "fixed";
-  public static final String CSS_POSITION_RELATIVE = "relative";
 
+  public static final String CSS_POSITION_RELATIVE = "relative";
   public static final String CSS_REPEAT = "repeat";
   public static final String CSS_REPEAT_INHERIT = "inherit";
   public static final String CSS_REPEAT_NO_REPEAT = "no-repeat";
-  public static final String CSS_REPEAT_Y = "repeat-y";
   public static final String CSS_REPEAT_X = "repeat-x";
 
+  public static final String CSS_REPEAT_Y = "repeat-y";
   public static final String CSS_TEXT_ALIGN_CENTRO = "center";
   public static final String CSS_TEXT_ALIGN_DIREITA = "right";
+
   public static final String CSS_TEXT_ALIGN_ESQUERDA = "left";
 
   public static final String CSS_TEXT_DECORATION_NONE = "none";
-
-  private static CssTag _cssMainInst;
 
   public static CssTag getCssMainInst() {
     return _cssMainInst;
