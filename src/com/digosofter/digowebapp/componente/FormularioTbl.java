@@ -76,7 +76,7 @@ public class FormularioTbl extends ComponenteMain {
 
       if (_frm == null) {
 
-        strAction = AppWeb.getI().getStrPaginaSolicitada();
+        strAction = AppWeb.getI().getStrPagSolicitada();
         strAction += "?";
         strAction += this.getTbl().getStrNomeSimplificado();
         // strAction += "=salvar";

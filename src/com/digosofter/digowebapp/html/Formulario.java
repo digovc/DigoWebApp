@@ -22,7 +22,7 @@ public class Formulario extends Tag {
       this.setStrAction(strAction);
       this.setEnmMetodo(enmMetodo);
 
-      PaginaHtml.getI().getLstObjJavaScriptTag()
+      PaginaHtml.getI().getLstObjJsTag()
           .add(new JavaScriptTag("res/js/lib/JDigo/html/Formulario.js"));
 
       // FIM AÇÕES

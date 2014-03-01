@@ -23,7 +23,7 @@ public class Campo extends Tag {
 
       this.setStrTagNome("input");
       this.addCss(CssTag.getCssMainInst().addCss("box-sizing", "border-box"));
-      PaginaHtml.getI().getLstObjJavaScriptTag()
+      PaginaHtml.getI().getLstObjJsTag()
           .add(new JavaScriptTag("res/js/lib/JDigo/html/Campo.js"));
 
       // FIM AÇÕES

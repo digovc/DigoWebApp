@@ -18,7 +18,7 @@ public class Botao extends Tag {
       this.addCss(CssTag.getCssMainInst().setPaddingRight(25));
       this.addCss(CssTag.getCssMainInst().setPaddingTop(7));
 
-      PaginaHtml.getI().getLstObjJavaScriptTag()
+      PaginaHtml.getI().getLstObjJsTag()
           .add(new JavaScriptTag("res/js/lib/JDigo/html/Botao.js"));
 
       // FIM AÇÕES

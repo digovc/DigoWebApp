@@ -38,9 +38,9 @@ public class PaginaHtml extends Objeto {
 
   private CssTag _cssImp;
 
-  private List<JavaScriptTag> _lstObjJavaScriptTag = new ArrayList<JavaScriptTag>();
+  private List<JavaScriptTag> _lstObjJsTag = new ArrayList<JavaScriptTag>();
 
-  private List<JavaScriptTag> _lstObjJavaScriptTagOrdenado;
+  private List<JavaScriptTag> _lstObjJsTagOrdenado;
 
   private JavaScriptTag _objJavaScriptMain;
 
@@ -86,7 +86,8 @@ public class PaginaHtml extends Objeto {
     try {
       // AÇÕES
 
-      for (JavaScriptTag objJavaScriptTag : this.getLstObjJavaScriptTagOrdenado()) {
+      for (JavaScriptTag objJavaScriptTag : this.getLstObjJsTagOrdenado()) {
+
         objJavaScriptTag.setTagPai(this.getTagHead());
       }
 
@@ -99,26 +100,25 @@ public class PaginaHtml extends Objeto {
     }
   }
 
-  private void adicionarJs() {
+  protected void adicionarJs() {
     // VARIÁVEIS
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      this.getLstObjJavaScriptTag().add(new JavaScriptTag("res/js/lib/JDigo/lib/jquery-2.0.3.js"));
-      this.getLstObjJavaScriptTag().add(new JavaScriptTag("res/js/lib/JDigo/lib/md5.js"));
-      this.getLstObjJavaScriptTag().add(new JavaScriptTag("res/js/lib/JDigo/listas/LstStrErro.js"));
-      this.getLstObjJavaScriptTag().add(new JavaScriptTag("res/js/lib/JDigo/erro/Erro.js"));
-      this.getLstObjJavaScriptTag().add(new JavaScriptTag("res/js/lib/JDigo/Utils.js"));
-      this.getLstObjJavaScriptTag().add(new JavaScriptTag("res/js/lib/JDigo/Objeto.js"));
-      this.getLstObjJavaScriptTag().add(new JavaScriptTag("res/js/lib/JDigo/AppWeb.js"));
-      this.getLstObjJavaScriptTag().add(
-          new JavaScriptTag("res/js/lib/JDigo/websocket/WebSocketMain.js"));
-      this.getLstObjJavaScriptTag().add(
+      this.getLstObjJsTag().add(new JavaScriptTag("res/js/lib/JDigo/lib/jquery-2.0.3.js"));
+      this.getLstObjJsTag().add(new JavaScriptTag("res/js/lib/JDigo/lib/md5.js"));
+      this.getLstObjJsTag().add(new JavaScriptTag("res/js/lib/JDigo/lista/LstStrErro.js"));
+      this.getLstObjJsTag().add(new JavaScriptTag("res/js/lib/JDigo/erro/Erro.js"));
+      this.getLstObjJsTag().add(new JavaScriptTag("res/js/lib/JDigo/Utils.js"));
+      this.getLstObjJsTag().add(new JavaScriptTag("res/js/lib/JDigo/Objeto.js"));
+      this.getLstObjJsTag().add(new JavaScriptTag("res/js/lib/JDigo/AppWeb.js"));
+      this.getLstObjJsTag().add(new JavaScriptTag("res/js/lib/JDigo/websocket/WebSocketMain.js"));
+      this.getLstObjJsTag().add(
           new JavaScriptTag("res/js/lib/JDigo/websocket/wsobjetos/WsObjetoMain.js"));
-      this.getLstObjJavaScriptTag().add(new JavaScriptTag("res/js/lib/JDigo/Usuario.js"));
-      this.getLstObjJavaScriptTag().add(new JavaScriptTag("res/js/lib/JDigo/html/Tag.js"));
-      this.getLstObjJavaScriptTag().add(new JavaScriptTag("res/js/lib/JDigo/html/PaginaHtml.js"));
+      this.getLstObjJsTag().add(new JavaScriptTag("res/js/lib/JDigo/Usuario.js"));
+      this.getLstObjJsTag().add(new JavaScriptTag("res/js/lib/JDigo/html/Tag.js"));
+      this.getLstObjJsTag().add(new JavaScriptTag("res/js/lib/JDigo/html/PaginaHtml.js"));
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -198,8 +198,6 @@ public class PaginaHtml extends Objeto {
 
       if (_cssMain == null) {
 
-        CssTag.setCssMainInst(new CssTag());
-
         _cssMain = CssTag.getCssMainInst();
         _cssMain.setStrId("cssMain");
       }
@@ -215,27 +213,25 @@ public class PaginaHtml extends Objeto {
     return _cssMain;
   }
 
-  public List<JavaScriptTag> getLstObjJavaScriptTag() {
-    return _lstObjJavaScriptTag;
+  public List<JavaScriptTag> getLstObjJsTag() {
+    return _lstObjJsTag;
   }
 
-  private List<JavaScriptTag> getLstObjJavaScriptTagOrdenado() {
+  private List<JavaScriptTag> getLstObjJsTagOrdenado() {
     // VARIÁVEIS
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      _lstObjJavaScriptTagOrdenado = this.getLstObjJavaScriptTag();
+      _lstObjJsTagOrdenado = this.getLstObjJsTag();
 
-      Collections.sort(_lstObjJavaScriptTagOrdenado, new Comparator<JavaScriptTag>() {
+      Collections.sort(_lstObjJsTagOrdenado, new Comparator<JavaScriptTag>() {
 
         @Override
-        public int compare(final JavaScriptTag objJavaScriptTag1,
-            final JavaScriptTag objJavaScriptTag2) {
+        public int compare(final JavaScriptTag objJsTag1, final JavaScriptTag objJsTag2) {
 
-          return objJavaScriptTag1.getIntPrioridade() < objJavaScriptTag2.getIntPrioridade() ? -1
-              : (objJavaScriptTag1.getIntPrioridade() > objJavaScriptTag2.getIntPrioridade() ? +1
-                  : 0);
+          return objJsTag1.getIntPrioridade() < objJsTag2.getIntPrioridade() ? -1 : (objJsTag1
+              .getIntPrioridade() > objJsTag2.getIntPrioridade() ? +1 : 0);
         }
       });
 
@@ -247,7 +243,7 @@ public class PaginaHtml extends Objeto {
     } finally {
     }
 
-    return _lstObjJavaScriptTagOrdenado;
+    return _lstObjJsTagOrdenado;
   }
 
   private JavaScriptTag getObjJavaScriptMain() {
@@ -261,7 +257,7 @@ public class PaginaHtml extends Objeto {
         _objJavaScriptMain = new JavaScriptTag(null);
         _objJavaScriptMain.setIntPrioridade(6);
 
-        this.getLstObjJavaScriptTag().add(_objJavaScriptMain);
+        this.getLstObjJsTag().add(_objJavaScriptMain);
       }
 
       // FIM AÇÕES
@@ -275,7 +271,7 @@ public class PaginaHtml extends Objeto {
     return _objJavaScriptMain;
   }
 
-  public String getStrPaginaFormatada() {
+  public String getStrPagFormatada() {
     // VARIÁVEIS
 
     StringBuilder stbResultado = new StringBuilder();
@@ -284,8 +280,8 @@ public class PaginaHtml extends Objeto {
     try {
       // AÇÕES
 
-      this.acrescentarJsAoCabecalho();
       this.montarLayout();
+      this.acrescentarJsAoCabecalho();
 
       stbResultado = new StringBuilder();
       stbResultado.append(this.getTagDocType().toString());
@@ -552,7 +548,7 @@ public class PaginaHtml extends Objeto {
 
   @Override
   public String toString() {
-    return this.getStrPaginaFormatada();
+    return this.getStrPagFormatada();
   }
 
 }

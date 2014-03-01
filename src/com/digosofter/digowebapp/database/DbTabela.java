@@ -348,7 +348,7 @@ public abstract class DbTabela extends Objeto {
 
   /**
    * Retorna um "List<String>" com os nomes das colunas.
-   * 
+   *
    * @param "booPreenchida": Indica se o retorno só contém nome de colunas com
    *        valores diferente de "null".
    */
@@ -386,7 +386,7 @@ public abstract class DbTabela extends Objeto {
   /**
    * Retorna um "List<String>" com os nomes das colunas e seus valores na
    * síntese "tblNome.clnNome='clnValorFormatado'";.
-   * 
+   *
    * @param "booPreenchida": Indica se o retorno só contém nome de colunas com
    *        valores diferente de "null".
    */
@@ -666,6 +666,7 @@ public abstract class DbTabela extends Objeto {
     return objResultSetResultado;
   }
 
+  //TODO: Revisar o mátodo "inicializarColunas" do site da Relatar.
   protected abstract void inicializarColunas();
 
   /**
@@ -699,9 +700,8 @@ public abstract class DbTabela extends Objeto {
   public void salvar() {
     // VARIÁVEIS
 
-    ResultSet objResultSet;
-
-    String sql;
+//    ResultSet objResultSet;
+//    String sql;
 
     // FIM VARIÁVEIS
     try {

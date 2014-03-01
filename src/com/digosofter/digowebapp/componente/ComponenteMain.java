@@ -1,17 +1,22 @@
 package com.digosofter.digowebapp.componente;
 
+import com.digosofter.digowebapp.Objeto;
 import com.digosofter.digowebapp.erro.Erro;
 import com.digosofter.digowebapp.html.CssTag;
 import com.digosofter.digowebapp.html.Painel;
 import com.digosofter.digowebapp.html.Tag;
 
-public abstract class ComponenteMain extends Tag {
+public abstract class ComponenteMain extends Objeto {
 
   private Painel _pnlComando;
 
   private Painel _pnlContainer;
 
   private Painel _pnlTitulo;
+
+  private String _strId;
+
+  private Tag _tagPai;
 
   public Painel getPnlComando() {
     // VARIÁVEIS
@@ -104,9 +109,53 @@ public abstract class ComponenteMain extends Tag {
     return strResultado;
   }
 
+  protected String getStrId() {
+    return _strId;
+  }
+
+  public Tag getTagPai() {
+    return _tagPai;
+  }
+
   /**
    * Prepara o layout final do componente.
    */
   public abstract void montarLayout();
+
+  protected void setStrId(String strId) {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      _strId = strId;
+      this.getPnlContainer().setStrId(_strId);
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+  }
+
+  public void setTagPai(Tag tagPai) {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      _tagPai = tagPai;
+      this.getPnlContainer().setTagPai(_tagPai);
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+  }
 
 }

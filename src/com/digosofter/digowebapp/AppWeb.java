@@ -38,7 +38,7 @@ public abstract class AppWeb extends Objeto {
 
   private Usuario _objUsuarioAtual;
 
-  private String _strPaginaSolicitada;
+  private String _strPagSolicitada;
 
   public AppWeb(String strAppNome) {
     // VARIÁVEIS
@@ -58,7 +58,7 @@ public abstract class AppWeb extends Objeto {
     }
   }
 
-  public void escreverStrHtmlResposta(String strHtml) {
+  public void addStrHtmlResposta(String strHtml) {
     // VARIÁVEIS
     // FIM VARIÁVEIS
     try {
@@ -270,8 +270,8 @@ public abstract class AppWeb extends Objeto {
     }
   }
 
-  public String getStrPaginaSolicitada() {
-    return _strPaginaSolicitada;
+  public String getStrPagSolicitada() {
+    return _strPagSolicitada;
   }
 
   public String getStrPostParametro(String strParametroNome) {
@@ -338,7 +338,7 @@ public abstract class AppWeb extends Objeto {
       // AÇÕES
 
       _objHttpServletRequest = objHttpServletRequest;
-      this.setStrPaginaSolicitada(_objHttpServletRequest.getRequestURI().replace(
+      this.setStrPagSolicitada(_objHttpServletRequest.getRequestURI().replace(
           _objHttpServletRequest.getContextPath() + "/app/", Utils.STRING_VAZIA));
       this.setObjHttpSession(_objHttpServletRequest.getSession());
 
@@ -403,8 +403,8 @@ public abstract class AppWeb extends Objeto {
     _objPrintWriter = objPrintWriter;
   }
 
-  private void setStrPaginaSolicitada(String strPaginaSolicitada) {
-    _strPaginaSolicitada = strPaginaSolicitada;
+  private void setStrPagSolicitada(String strPagSolicitada) {
+    _strPagSolicitada = strPagSolicitada;
   }
 
 }

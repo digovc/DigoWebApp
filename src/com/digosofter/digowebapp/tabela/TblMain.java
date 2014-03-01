@@ -17,6 +17,10 @@ public abstract class TblMain extends DbTabela {
 
   private DbColuna _clnIntId;
 
+  private DbColuna _clnIntUsuarioAlteracaoId;
+
+  private DbColuna _clnIntUsuarioCadastroId;
+
   public TblMain(String strNome, DataBase objDataBase) {
 
     super(strNome, objDataBase);
@@ -49,7 +53,7 @@ public abstract class TblMain extends DbTabela {
       // AÇÕES
 
       if (_clnBooAtivo == null) {
-        _clnBooAtivo = new DbColuna("booAtivo", this, DbColuna.EnmClnTipo.BOOLEAN);
+        _clnBooAtivo = new DbColuna("boo_ativo", this, DbColuna.EnmClnTipo.BOOLEAN);
         _clnBooAtivo.setBooVisivelCadastro(false);
         _clnBooAtivo.setBooVisivelConsulta(false);
         _clnBooAtivo.setIntFrmLinha(2);
@@ -74,7 +78,7 @@ public abstract class TblMain extends DbTabela {
       // AÇÕES
 
       if (_clnDttAlteracao == null) {
-        _clnDttAlteracao = new DbColuna("dttAlteracao", this,
+        _clnDttAlteracao = new DbColuna("dtt_alteracao", this,
             DbColuna.EnmClnTipo.TIMESTAMP_WITHOUT_TIME_ZONE);
         _clnDttAlteracao.setBooVisivelCadastro(false);
         _clnDttAlteracao.setBooVisivelConsulta(false);
@@ -98,7 +102,7 @@ public abstract class TblMain extends DbTabela {
       // AÇÕES
 
       if (_clnDttCadastro == null) {
-        _clnDttCadastro = new DbColuna("dttCadastro", this,
+        _clnDttCadastro = new DbColuna("dtt_cadastro", this,
             DbColuna.EnmClnTipo.TIMESTAMP_WITHOUT_TIME_ZONE);
         _clnDttCadastro.setBooVisivelCadastro(false);
         _clnDttCadastro.setBooVisivelConsulta(false);
@@ -122,7 +126,7 @@ public abstract class TblMain extends DbTabela {
       // AÇÕES
 
       if (_clnDttExclusao == null) {
-        _clnDttExclusao = new DbColuna("dttExclusao", this,
+        _clnDttExclusao = new DbColuna("dtt_exclusao", this,
             DbColuna.EnmClnTipo.TIMESTAMP_WITHOUT_TIME_ZONE);
         _clnDttExclusao.setBooVisivelCadastro(false);
         _clnDttExclusao.setBooVisivelConsulta(false);
@@ -147,7 +151,7 @@ public abstract class TblMain extends DbTabela {
 
       if (_clnIntId == null) {
 
-        _clnIntId = new DbColuna("intId", this, DbColuna.EnmClnTipo.BIGSERIAL);
+        _clnIntId = new DbColuna("int_id", this, DbColuna.EnmClnTipo.BIGSERIAL);
         _clnIntId.setBooChavePrimaria(true);
         _clnIntId.setBooVisivelCadastro(false);
         _clnIntId.setBooVisivelConsulta(false);
@@ -162,6 +166,79 @@ public abstract class TblMain extends DbTabela {
     }
 
     return _clnIntId;
+  }
+
+  public DbColuna getClnIntUsuarioAlteracaoId() {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      if (_clnIntUsuarioAlteracaoId == null) {
+
+        _clnIntUsuarioAlteracaoId = new DbColuna("int_usuario_alteracao_id", this,
+            DbColuna.EnmClnTipo.BIGINT);
+      }
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+
+    return _clnIntUsuarioAlteracaoId;
+  }
+
+  public DbColuna getClnIntUsuarioCadastroId() {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      if (_clnIntUsuarioCadastroId == null) {
+        _clnIntUsuarioCadastroId = new DbColuna("int_usuario_cadastro_id", this,
+            DbColuna.EnmClnTipo.BIGINT);
+      }
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+
+    return _clnIntUsuarioCadastroId;
+  }
+
+  @Override
+  protected void inicializarColunas() {
+    // VARIÁVEIS
+
+    int intOrdem;
+
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      intOrdem=0;
+      this.getClnBooAtivo().setIntOrdem(++intOrdem);
+      this.getClnDttAlteracao().setIntOrdem(++intOrdem);
+      this.getClnDttCadastro().setIntOrdem(++intOrdem);
+      this.getClnDttExclusao().setIntOrdem(++intOrdem);
+      this.getClnIntId().setIntOrdem(++intOrdem);
+      this.getClnIntUsuarioAlteracaoId().setIntOrdem(++intOrdem);
+      this.getClnIntUsuarioCadastroId().setIntOrdem(++intOrdem);
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
   }
 
 }

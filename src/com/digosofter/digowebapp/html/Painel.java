@@ -14,7 +14,7 @@ public class Painel extends Tag {
       this.setBooForcarTagDupla(true);
       this.addCss(CssTag.getCssMainInst().setTextAlign("center"));
 
-      PaginaHtml.getI().getLstObjJavaScriptTag()
+      PaginaHtml.getI().getLstObjJsTag()
           .add(new JavaScriptTag("res/js/lib/JDigo/html/Painel.js"));
 
       // FIM AÇÕES

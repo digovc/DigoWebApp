@@ -13,7 +13,7 @@ public class Imagem extends Tag {
       this.setStrTagNome("img");
       this.setBooForcarTagDupla(true);
 
-      PaginaHtml.getI().getLstObjJavaScriptTag()
+      PaginaHtml.getI().getLstObjJsTag()
           .add(new JavaScriptTag("res/js/lib/JDigo/html/Imagem.js"));
 
       // FIM AÇÕES

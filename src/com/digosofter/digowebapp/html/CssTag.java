@@ -67,6 +67,23 @@ public class CssTag extends Tag {
   public static final String CSS_TEXT_DECORATION_NONE = "none";
 
   public static CssTag getCssMainInst() {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      if (_cssMainInst == null) {
+        _cssMainInst = new CssTag();
+      }
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+
     return _cssMainInst;
   }
 

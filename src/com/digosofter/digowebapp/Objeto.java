@@ -20,7 +20,7 @@ public abstract class Objeto {
 
   private String _strNomeExibicao;
 
-  public Objeto() {
+   public Objeto() {
     // VARIÁVEIS
     // FIM VARIÁVEIS
     try {
@@ -47,12 +47,28 @@ public abstract class Objeto {
   }
 
   public String getStrNomeExibicao() {
-    if (_strNomeExibicao == null) {
-      if (this.getStrNome() != null) {
-        _strNomeExibicao = Character.toString(this.getStrNome().charAt(0)).toUpperCase()
-            + this.getStrNome().substring(1);
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      if (Utils.getBooStrVazia(_strNomeExibicao)) {
+
+        if (!Utils.getBooStrVazia(this.getStrNome())) {
+
+          _strNomeExibicao = Character.toString(this.getStrNome().charAt(0)).toUpperCase()
+              + this.getStrNome().substring(1);
+        }
       }
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
     }
+
     return _strNomeExibicao;
   }
 
