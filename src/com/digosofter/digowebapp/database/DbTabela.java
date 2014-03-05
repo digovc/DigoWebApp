@@ -141,7 +141,7 @@ public abstract class DbTabela extends Objeto {
     }
   }
 
-  private DbColuna getClnChavePrimaria() {
+  protected DbColuna getClnChavePrimaria() {
     // VARIÁVEIS
     // FIM VARIÁVEIS
     try {
