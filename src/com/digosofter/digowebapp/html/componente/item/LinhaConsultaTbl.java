@@ -1,4 +1,4 @@
-package com.digosofter.digowebapp.componente.item;
+package com.digosofter.digowebapp.html.componente.item;
 
 public abstract class LinhaConsultaTbl extends ItemMain {
 

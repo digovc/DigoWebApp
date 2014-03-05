@@ -6,15 +6,22 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import sun.org.mozilla.javascript.internal.ast.SwitchStatement;
+
 import com.digosofter.digowebapp.Objeto;
-import com.digosofter.digowebapp.componente.item.CampoFrmTbl;
+import com.digosofter.digowebapp.Utils;
 import com.digosofter.digowebapp.erro.Erro;
 import com.digosofter.digowebapp.html.CampoComboBox;
+import com.digosofter.digowebapp.html.componente.item.CampoFrmTbl;
 
 public class DbColuna extends Objeto {
 
-  public static enum EnmClnTipo {
+  public static enum EnmTipo {
     BIGINT, BIGSERIAL, BOOLEAN, CHAR, DATE, DECIMAL, DOUBLE, INTEGER, INTERVAL, MONEY, NUMERIC, REAL, SERIAL, SMALLINT, TEXT, TIME_WITH_TIME_ZONE, TIME_WITHOUT_TIME_ZONE, TIMESTAMP_WITH_TIME_ZONE, TIMESTAMP_WITHOUT_TIME_ZONE, VARCHAR
+  }
+
+  public static enum EnmTipoGrupo {
+    ALPHANUMERICO, NUMERICO, TEMPORAL
   }
 
   private boolean _booChavePrimaria = false;
@@ -29,7 +36,9 @@ public class DbColuna extends Objeto {
 
   private DbColuna _clnReferencia;
 
-  private EnmClnTipo _enmClnTipo = EnmClnTipo.INTEGER;
+  private EnmTipo _enmTipo = EnmTipo.INTEGER;
+
+  private EnmTipoGrupo _enmTipoGrupo;
 
   private int _intFrmLinha = 1;
 
@@ -45,9 +54,11 @@ public class DbColuna extends Objeto {
 
   private String _strValor;
 
+  private String _strValorSql;
+
   private DbTabela _tbl;
 
-  public DbColuna(String strNome, DbTabela tbl, EnmClnTipo enmClnTipo) {
+  public DbColuna(String strNome, DbTabela tbl, EnmTipo enmClnTipo) {
     // VARIÁVEIS
     // FIM VARIÁVEIS
     try {
@@ -167,8 +178,34 @@ public class DbColuna extends Objeto {
     return dttResultado;
   }
 
-  public EnmClnTipo getEnmClnTipo() {
-    return _enmClnTipo;
+  public EnmTipo getEnmTipo() {
+    return _enmTipo;
+  }
+
+  private EnmTipoGrupo getEnmTipoGrupo() {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      switch (this.getEnmTipo()) {
+        case BIGINT:
+          _enmTipoGrupo = EnmTipoGrupo.NUMERICO;
+          break;
+        default:
+          _enmTipoGrupo = EnmTipoGrupo.ALPHANUMERICO;
+          break;
+      }
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+
+    return _enmTipoGrupo;
   }
 
   public int getIntFrmLinha() {
@@ -220,16 +257,87 @@ public class DbColuna extends Objeto {
     return _strValor;
   }
 
+  public String getStrValorSql() {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      _strValorSql = Utils.STRING_VAZIA;
+
+      switch (this.getEnmTipoGrupo()) {
+        case ALPHANUMERICO:
+          _strValorSql += "'";
+          _strValorSql += this.getStrValor();
+          _strValorSql += "'";
+          break;
+        case NUMERICO:
+          _strValorSql += "'";
+          _strValorSql += this.getStrValor().replace(".", "").replace(",", ".");
+          _strValorSql += "'";
+          break;
+        default:
+          _strValorSql += "'";
+          _strValorSql += this.getStrValor();
+          _strValorSql += "'";
+          break;
+      }
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+
+    return _strValorSql;
+  }
+
   public DbTabela getTbl() {
     return _tbl;
   }
 
   public void setBooChavePrimaria(boolean booChavePrimaria) {
-    _booChavePrimaria = booChavePrimaria;
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      _booChavePrimaria = booChavePrimaria;
+
+      if (_booChavePrimaria) {
+        this.getTbl().setClnChavePrimaria(null);
+      }
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
   }
 
   public void setBooClnNome(boolean booClnNome) {
-    _booClnNome = booClnNome;
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      _booClnNome = booClnNome;
+
+      if (_booClnNome) {
+        this.getTbl().setClnNome(null);
+      }
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
   }
 
   public void setBooSenha(boolean booSenha) {
@@ -248,8 +356,8 @@ public class DbColuna extends Objeto {
     _clnReferencia = clnReferencia;
   }
 
-  public void setEnmClnTipo(EnmClnTipo enmClnTipo) {
-    _enmClnTipo = enmClnTipo;
+  public void setEnmClnTipo(EnmTipo enmClnTipo) {
+    _enmTipo = enmClnTipo;
   }
 
   public void setIntFrmLinha(int intFrmLinha) {

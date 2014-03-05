@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Properties;
 
 import com.digosofter.digowebapp.Objeto;
+import com.digosofter.digowebapp.Utils;
 import com.digosofter.digowebapp.erro.Erro;
 
 public abstract class DataBase extends Objeto {
@@ -68,27 +69,48 @@ public abstract class DataBase extends Objeto {
     }
   }
 
-  public List<Integer> execSqlRetornaLstInt(String sql) {
+  public int execSqlGetInt(String sql) {
     // VARIÁVEIS
 
-    ResultSet objResultSet;
-    List<Integer> lstIntResultado = null;
+    int intResultado = 0;
 
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      objResultSet = this.execSqlRetornaResultSet(sql);
+      intResultado = Integer.valueOf(this.execSqlGetStr(sql));
 
-      if (objResultSet != null && objResultSet.first()) {
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+
+    return intResultado;
+  }
+
+  public List<Integer> execSqlGetLstInt(String sql) {
+    // VARIÁVEIS
+
+    List<Integer> lstIntResultado = null;
+    List<String> lstStr;
+
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      lstStr = this.execSqlGetLstStr(sql);
+
+      if (lstStr != null && !lstStr.isEmpty()) {
 
         lstIntResultado = new ArrayList<Integer>();
 
-        do {
+        for (String str : lstStr) {
 
-          lstIntResultado.add(objResultSet.getInt(1));
-
-        } while (objResultSet.next());
+          lstIntResultado.add(Integer.valueOf(str));
+        }
       }
 
       // FIM AÇÕES
@@ -102,7 +124,41 @@ public abstract class DataBase extends Objeto {
     return lstIntResultado;
   }
 
-  public ResultSet execSqlRetornaResultSet(String sql) {
+  public List<String> execSqlGetLstStr(String sql) {
+    // VARIÁVEIS
+
+    ResultSet objResultSet;
+    List<String> lstStrResultado = null;
+
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      objResultSet = this.execSqlGetResultSet(sql);
+
+      if (objResultSet != null && objResultSet.first()) {
+
+        lstStrResultado = new ArrayList<String>();
+
+        do {
+
+          lstStrResultado.add(objResultSet.getString(1));
+
+        } while (objResultSet.next());
+      }
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+
+    return lstStrResultado;
+  }
+
+  public ResultSet execSqlGetResultSet(String sql) {
     // VARIÁVEIS
 
     ResultSet objResultSetResultado = null;
@@ -127,6 +183,28 @@ public abstract class DataBase extends Objeto {
     return objResultSetResultado;
   }
 
+  public String execSqlGetStr(String sql) {
+    // VARIÁVEIS
+
+    String strResultado = Utils.STRING_VAZIA;
+
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      strResultado = this.execSqlGetLstStr(sql).get(0);
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+
+    return strResultado;
+  }
+
   public ResultSet execView(String strViewNome) {
     // VARIÁVEIS
 
@@ -142,7 +220,7 @@ public abstract class DataBase extends Objeto {
       strBuilder.append(strViewNome);
       strBuilder.append(";");
 
-      objResultSetResultado = this.execSqlRetornaResultSet(strBuilder.toString());
+      objResultSetResultado = this.execSqlGetResultSet(strBuilder.toString());
 
       // FIM AÇÕES
     } catch (Exception ex) {

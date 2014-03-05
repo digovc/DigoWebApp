@@ -5,13 +5,13 @@
 // CLASSE
 
 /**
- * 
+ *
  */
 function PaginaHtml() {
 	// HERANÇA
-	
+
 	Objeto.apply(this);
-	
+
 	// FIM HERANÇA
 
 	// ATRIBUTO

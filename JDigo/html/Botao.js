@@ -3,7 +3,8 @@
 // CLASSE
 function Botao() {
 	// HERANÇA
-	Tag.apply(this);
+
+  Tag.apply(this);
 	Objeto.apply(this);
 
 	// ATRIBUTO

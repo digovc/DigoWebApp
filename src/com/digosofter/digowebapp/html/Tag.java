@@ -3,6 +3,7 @@ package com.digosofter.digowebapp.html;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.digosofter.digowebapp.AppWeb;
 import com.digosofter.digowebapp.Objeto;
 import com.digosofter.digowebapp.Utils;
 import com.digosofter.digowebapp.erro.Erro;
@@ -39,6 +40,23 @@ public class Tag extends Objeto {
 
   private Tag _tagPai;
 
+  public Tag() {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      this.addJsArquivo(PaginaHtml.getI().getLstObjJsTag());
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+  }
+
   public void addAtr(String strNome, String strValor) {
     // VARIÁVEIS
     // FIM VARIÁVEIS
@@ -64,6 +82,44 @@ public class Tag extends Objeto {
 
       this.getAtrClass().getLstStrValor().add(strClassCss);
 
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+  }
+
+  /**
+   * Adiciona o arquivo "JavaScript" correspondente a esta classe à página do
+   * cliente.
+   */
+  protected void addJsArquivo(List<JavaScriptTag> lstObjJsTag) {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      lstObjJsTag.add(new JavaScriptTag(AppWeb.JS_TAG));
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+  }
+
+  /**
+   * Adiciona código à tag de "JavaScript" da página.
+   */
+  protected void addJsCodigo(JavaScriptTag tagJs) {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
       // FIM AÇÕES
     } catch (Exception ex) {
 
@@ -252,6 +308,8 @@ public class Tag extends Objeto {
     try {
       // AÇÕES
 
+      this.montarLayout();
+
       if (!Utils.getBooStrVazia(this.getStrConteudo()) || !this.getLstTag().isEmpty()
           || this.getBooForcarTagDupla()) {
 
@@ -317,6 +375,23 @@ public class Tag extends Objeto {
 
     return stbTagFormatada.toString();
   }
+
+  protected void montarLayout() {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      this.addJsCodigo(PaginaHtml.getI().getTagJsMain());
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+  };
 
   protected String getStrTagNome() {
     return _strTagNome;

@@ -117,29 +117,31 @@ public class CssTag extends Tag {
   public String addCss(String strCssNome, String strValor) {
     // VARIÁVEIS
 
-    AtributoCss atrCssNovo;
-    boolean booExiste = false;
-    String strClassAssociadaResultado = Utils.STRING_VAZIA;
+    AtributoCss objAtributoCssNovo;
+    boolean booExiste;
+    String strResultado = Utils.STRING_VAZIA;
 
     // FIM VARIÁVEIS
     try {
       // AÇÕES
+
+      booExiste = false;
 
       for (AtributoCss atrCss : this.getLstAtrCss()) {
 
         if (atrCss.getStrNome().equals(strCssNome) && atrCss.getStrValor().equals(strValor)) {
 
           booExiste = true;
-          strClassAssociadaResultado = atrCss.getStrClassAssociada();
+          strResultado = atrCss.getStrClassAssociada();
         }
       }
 
       if (!booExiste) {
 
-        atrCssNovo = new AtributoCss(strCssNome, strValor);
-        strClassAssociadaResultado = "c" + String.valueOf(this.getLstAtrCss().size());
-        atrCssNovo.setStrClassAssociada(strClassAssociadaResultado);
-        this.getLstAtrCss().add(atrCssNovo);
+        objAtributoCssNovo = new AtributoCss(strCssNome, strValor);
+        strResultado = "c" + String.valueOf(this.getLstAtrCss().size());
+        objAtributoCssNovo.setStrClassAssociada(strResultado);
+        this.getLstAtrCss().add(objAtributoCssNovo);
       }
 
       // FIM AÇÕES
@@ -150,7 +152,7 @@ public class CssTag extends Tag {
     } finally {
     }
 
-    return strClassAssociadaResultado;
+    return strResultado;
   }
 
   public List<AtributoCss> getLstAtrCss() {
@@ -161,32 +163,32 @@ public class CssTag extends Tag {
   public String getStrConteudo() {
     // VARIÁVEIS
 
-    StringBuilder strBuilder;
+    StringBuilder stb;
 
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      strBuilder = new StringBuilder();
-      strBuilder.append(Utils.STRING_VAZIA);
+      stb = new StringBuilder();
+      stb.append(Utils.STRING_VAZIA);
 
       for (AtributoCss atrCss : this.getLstAtrCss()) {
 
-        strBuilder.append(".");
-        strBuilder.append(atrCss.getStrClassAssociada());
-        strBuilder.append("{");
-        strBuilder.append(atrCss.getStrNome());
-        strBuilder.append(":");
+        stb.append(".");
+        stb.append(atrCss.getStrClassAssociada());
+        stb.append("{");
+        stb.append(atrCss.getStrNome());
+        stb.append(":");
 
         for (String strValor : atrCss.getLstStrValor()) {
-          strBuilder.append(strValor);
-          strBuilder.append(";");
+          stb.append(strValor);
+          stb.append(";");
         }
 
-        strBuilder.append("}");
+        stb.append("}");
       }
 
-      _strConteudo = strBuilder.toString();
+      _strConteudo = stb.toString();
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -202,13 +204,13 @@ public class CssTag extends Tag {
   public String setBackgroundColor(String hexColor) {
     // VARIÁVEIS
 
-    String strClassAssociada = Utils.STRING_VAZIA;
+    String strResultado = Utils.STRING_VAZIA;
 
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      strClassAssociada = this.addCss("background-color", hexColor);
+      strResultado = this.addCss("background-color", hexColor);
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -218,25 +220,25 @@ public class CssTag extends Tag {
     } finally {
     }
 
-    return strClassAssociada;
+    return strResultado;
   }
 
   public String setBackgroundImage(String strSrcImagem) {
     // VARIÁVEIS
 
-    String strClassAssociada = Utils.STRING_VAZIA;
-    StringBuilder strBulderValorEstrutura;
+    String strResultado = Utils.STRING_VAZIA;
+    StringBuilder stb;
 
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      strBulderValorEstrutura = new StringBuilder();
-      strBulderValorEstrutura.append("url('");
-      strBulderValorEstrutura.append(strSrcImagem);
-      strBulderValorEstrutura.append("')");
+      stb = new StringBuilder();
+      stb.append("url('");
+      stb.append(strSrcImagem);
+      stb.append("')");
 
-      strClassAssociada = this.addCss("background-image", strBulderValorEstrutura.toString());
+      strResultado = this.addCss("background-image", stb.toString());
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -246,23 +248,23 @@ public class CssTag extends Tag {
     } finally {
     }
 
-    return strClassAssociada;
+    return strResultado;
   }
 
   public String setBackgroundRepeat(String strRepeat) {
     // VARIÁVEIS
 
-    String strClassAssociada = Utils.STRING_VAZIA;
-    StringBuilder strBulderValorEstrutura;
+    String strResultado = Utils.STRING_VAZIA;
+    StringBuilder stb;
 
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      strBulderValorEstrutura = new StringBuilder();
-      strBulderValorEstrutura.append(strRepeat);
+      stb = new StringBuilder();
+      stb.append(strRepeat);
 
-      strClassAssociada = this.addCss("background-repeat", strBulderValorEstrutura.toString());
+      strResultado = this.addCss("background-repeat", stb.toString());
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -271,23 +273,23 @@ public class CssTag extends Tag {
 
     } finally {
     }
-    return strClassAssociada;
+    return strResultado;
   }
 
   public String setBackgroundSize(String strSize) {
     // VARIÁVEIS
 
-    String strClassAssociada = Utils.STRING_VAZIA;
-    StringBuilder strBulderValorEstrutura;
+    String strResultado = Utils.STRING_VAZIA;
+    StringBuilder stb;
 
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      strBulderValorEstrutura = new StringBuilder();
-      strBulderValorEstrutura.append(strSize);
+      stb = new StringBuilder();
+      stb.append(strSize);
 
-      strClassAssociada = this.addCss("background-size", strBulderValorEstrutura.toString());
+      strResultado = this.addCss("background-size", stb.toString());
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -297,23 +299,23 @@ public class CssTag extends Tag {
     } finally {
     }
 
-    return strClassAssociada;
+    return strResultado;
   }
 
   public String setBooCenter() {
     // VARIÁVEIS
 
-    String strClassAssociada = Utils.STRING_VAZIA;
-    StringBuilder strBulderValorEstrutura;
+    String strResultado = Utils.STRING_VAZIA;
+    StringBuilder stb;
 
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      strBulderValorEstrutura = new StringBuilder();
-      strBulderValorEstrutura.append("0 auto");
+      stb = new StringBuilder();
+      stb.append("0 auto");
 
-      strClassAssociada = this.addCss("margin", strBulderValorEstrutura.toString());
+      strResultado = this.addCss("margin", stb.toString());
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -323,27 +325,27 @@ public class CssTag extends Tag {
     } finally {
     }
 
-    return strClassAssociada;
+    return strResultado;
   }
 
   public String setBorder(int intBorderPx, String strTipo, String hexColor) {
     // VARIÁVEIS
 
-    String strClassAssociada = Utils.STRING_VAZIA;
-    StringBuilder strBulderValorEstrutura;
+    String strResultado = Utils.STRING_VAZIA;
+    StringBuilder stb;
 
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      strBulderValorEstrutura = new StringBuilder();
-      strBulderValorEstrutura.append(intBorderPx);
-      strBulderValorEstrutura.append("px ");
-      strBulderValorEstrutura.append(strTipo);
-      strBulderValorEstrutura.append(" ");
-      strBulderValorEstrutura.append(hexColor);
+      stb = new StringBuilder();
+      stb.append(intBorderPx);
+      stb.append("px ");
+      stb.append(strTipo);
+      stb.append(" ");
+      stb.append(hexColor);
 
-      strClassAssociada = this.addCss("border", strBulderValorEstrutura.toString());
+      strResultado = this.addCss("border", stb.toString());
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -353,25 +355,25 @@ public class CssTag extends Tag {
     } finally {
     }
 
-    return strClassAssociada;
+    return strResultado;
   }
 
   public String setBorderBottom(int intBorderBottomPx, String hexColor) {
     // VARIÁVEIS
 
-    String strClassAssociada = Utils.STRING_VAZIA;
-    StringBuilder strBulderValorEstrutura;
+    String strResultado = Utils.STRING_VAZIA;
+    StringBuilder stb;
 
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      strBulderValorEstrutura = new StringBuilder();
-      strBulderValorEstrutura.append(intBorderBottomPx);
-      strBulderValorEstrutura.append("px solid ");
-      strBulderValorEstrutura.append(hexColor);
+      stb = new StringBuilder();
+      stb.append(intBorderBottomPx);
+      stb.append("px solid ");
+      stb.append(hexColor);
 
-      strClassAssociada = this.addCss("border-bottom", strBulderValorEstrutura.toString());
+      strResultado = this.addCss("border-bottom", stb.toString());
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -381,25 +383,25 @@ public class CssTag extends Tag {
     } finally {
     }
 
-    return strClassAssociada;
+    return strResultado;
   }
 
   public String setBorderLeft(int intBorderLeftPx, String hexColor) {
     // VARIÁVEIS
 
-    String strClassAssociada = Utils.STRING_VAZIA;
-    StringBuilder strBulderValorEstrutura;
+    String strResultado = Utils.STRING_VAZIA;
+    StringBuilder stb;
 
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      strBulderValorEstrutura = new StringBuilder();
-      strBulderValorEstrutura.append(intBorderLeftPx);
-      strBulderValorEstrutura.append("px solid ");
-      strBulderValorEstrutura.append(hexColor);
+      stb = new StringBuilder();
+      stb.append(intBorderLeftPx);
+      stb.append("px solid ");
+      stb.append(hexColor);
 
-      strClassAssociada = this.addCss("border-left", strBulderValorEstrutura.toString());
+      strResultado = this.addCss("border-left", stb.toString());
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -408,31 +410,31 @@ public class CssTag extends Tag {
 
     } finally {
     }
-    return strClassAssociada;
+    return strResultado;
   }
 
   public String setBorderRadius(int intTopLeftPx, int intTopRightPx, int intBottomLeftPx,
       int intBottomRightPx) {
     // VARIÁVEIS
 
-    String strClassAssociada = Utils.STRING_VAZIA;
-    StringBuilder strBulderValorEstrutura;
+    String strResultado = Utils.STRING_VAZIA;
+    StringBuilder stb;
 
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      strBulderValorEstrutura = new StringBuilder();
-      strBulderValorEstrutura.append(intTopLeftPx);
-      strBulderValorEstrutura.append("px ");
-      strBulderValorEstrutura.append(intTopRightPx);
-      strBulderValorEstrutura.append("px ");
-      strBulderValorEstrutura.append(intBottomRightPx);
-      strBulderValorEstrutura.append("px ");
-      strBulderValorEstrutura.append(intBottomLeftPx);
-      strBulderValorEstrutura.append("px");
+      stb = new StringBuilder();
+      stb.append(intTopLeftPx);
+      stb.append("px ");
+      stb.append(intTopRightPx);
+      stb.append("px ");
+      stb.append(intBottomRightPx);
+      stb.append("px ");
+      stb.append(intBottomLeftPx);
+      stb.append("px");
 
-      strClassAssociada = this.addCss("border-radius", strBulderValorEstrutura.toString());
+      strResultado = this.addCss("border-radius", stb.toString());
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -442,25 +444,25 @@ public class CssTag extends Tag {
     } finally {
     }
 
-    return strClassAssociada;
+    return strResultado;
   }
 
   public String setBorderRight(int intBorderRightPx, String hexColor) {
     // VARIÁVEIS
 
-    String strClassAssociada = Utils.STRING_VAZIA;
-    StringBuilder strBulderValorEstrutura;
+    String strResultado = Utils.STRING_VAZIA;
+    StringBuilder stb;
 
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      strBulderValorEstrutura = new StringBuilder();
-      strBulderValorEstrutura.append(intBorderRightPx);
-      strBulderValorEstrutura.append("px solid ");
-      strBulderValorEstrutura.append(hexColor);
+      stb = new StringBuilder();
+      stb.append(intBorderRightPx);
+      stb.append("px solid ");
+      stb.append(hexColor);
 
-      strClassAssociada = this.addCss("border-right", strBulderValorEstrutura.toString());
+      strResultado = this.addCss("border-right", stb.toString());
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -470,25 +472,25 @@ public class CssTag extends Tag {
     } finally {
     }
 
-    return strClassAssociada;
+    return strResultado;
   }
 
   public String setBorderTop(int intBorderTopPx, String hexColor) {
     // VARIÁVEIS
 
-    String strClassAssociada = Utils.STRING_VAZIA;
-    StringBuilder strBulderValorEstrutura;
+    String strResultado = Utils.STRING_VAZIA;
+    StringBuilder stb;
 
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      strBulderValorEstrutura = new StringBuilder();
-      strBulderValorEstrutura.append(intBorderTopPx);
-      strBulderValorEstrutura.append("px solid ");
-      strBulderValorEstrutura.append(hexColor);
+      stb = new StringBuilder();
+      stb.append(intBorderTopPx);
+      stb.append("px solid ");
+      stb.append(hexColor);
 
-      strClassAssociada = this.addCss("border-top", strBulderValorEstrutura.toString());
+      strResultado = this.addCss("border-top", stb.toString());
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -498,24 +500,24 @@ public class CssTag extends Tag {
     } finally {
     }
 
-    return strClassAssociada;
+    return strResultado;
   }
 
   public String setBottom(int intBottom) {
     // VARIÁVEIS
 
-    String strClassAssociada = Utils.STRING_VAZIA;
-    StringBuilder strBulderValorEstrutura;
+    String strResultado = Utils.STRING_VAZIA;
+    StringBuilder stb;
 
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      strBulderValorEstrutura = new StringBuilder();
-      strBulderValorEstrutura.append(intBottom);
-      strBulderValorEstrutura.append("px");
+      stb = new StringBuilder();
+      stb.append(intBottom);
+      stb.append("px");
 
-      strClassAssociada = this.addCss("bottom", strBulderValorEstrutura.toString());
+      strResultado = this.addCss("bottom", stb.toString());
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -525,32 +527,32 @@ public class CssTag extends Tag {
     } finally {
     }
 
-    return strClassAssociada;
+    return strResultado;
   }
 
   public String setBoxShadow(int intHorizontal, int intVertical, int intBlur, int intSpread,
       String hexColor) {
     // VARIÁVEIS
 
-    String strClassAssociada = Utils.STRING_VAZIA;
-    StringBuilder strBulderValorEstrutura;
+    String strResultado = Utils.STRING_VAZIA;
+    StringBuilder stb;
 
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      strBulderValorEstrutura = new StringBuilder();
-      strBulderValorEstrutura.append(intHorizontal);
-      strBulderValorEstrutura.append("px ");
-      strBulderValorEstrutura.append(intVertical);
-      strBulderValorEstrutura.append("px ");
-      strBulderValorEstrutura.append(intBlur);
-      strBulderValorEstrutura.append("px ");
-      strBulderValorEstrutura.append(intSpread);
-      strBulderValorEstrutura.append("px ");
-      strBulderValorEstrutura.append(hexColor);
+      stb = new StringBuilder();
+      stb.append(intHorizontal);
+      stb.append("px ");
+      stb.append(intVertical);
+      stb.append("px ");
+      stb.append(intBlur);
+      stb.append("px ");
+      stb.append(intSpread);
+      stb.append("px ");
+      stb.append(hexColor);
 
-      strClassAssociada = this.addCss("box-shadow", strBulderValorEstrutura.toString());
+      strResultado = this.addCss("box-shadow", stb.toString());
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -560,19 +562,19 @@ public class CssTag extends Tag {
     } finally {
     }
 
-    return strClassAssociada;
+    return strResultado;
   }
 
   public String setClearBoth() {
     // VARIÁVEIS
 
-    String strClassAssociada = Utils.STRING_VAZIA;
+    String strResultado = Utils.STRING_VAZIA;
 
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      strClassAssociada = this.addCss("clear", "both");
+      strResultado = this.addCss("clear", "both");
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -582,19 +584,19 @@ public class CssTag extends Tag {
     } finally {
     }
 
-    return strClassAssociada;
+    return strResultado;
   }
 
   public String setColor(String hexColor) {
     // VARIÁVEIS
 
-    String strClassAssociada = Utils.STRING_VAZIA;
+    String strResultado = Utils.STRING_VAZIA;
 
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      strClassAssociada = this.addCss("color", hexColor);
+      strResultado = this.addCss("color", hexColor);
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -604,19 +606,19 @@ public class CssTag extends Tag {
     } finally {
     }
 
-    return strClassAssociada;
+    return strResultado;
   }
 
   public String setCursor(String strCursor) {
     // VARIÁVEIS
 
-    String strClassAssociada = Utils.STRING_VAZIA;
+    String strResultado = Utils.STRING_VAZIA;
 
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      strClassAssociada = this.addCss("cursor", strCursor);
+      strResultado = this.addCss("cursor", strCursor);
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -626,23 +628,23 @@ public class CssTag extends Tag {
     } finally {
     }
 
-    return strClassAssociada;
+    return strResultado;
   }
 
   public String setDisplay(String strDisplay) {
     // VARIÁVEIS
 
-    String strClassAssociada = Utils.STRING_VAZIA;
-    StringBuilder strBulderValorEstrutura;
+    String strResultado = Utils.STRING_VAZIA;
+    StringBuilder stb;
 
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      strBulderValorEstrutura = new StringBuilder();
-      strBulderValorEstrutura.append(strDisplay);
+      stb = new StringBuilder();
+      stb.append(strDisplay);
 
-      strClassAssociada = this.addCss("display", strBulderValorEstrutura.toString());
+      strResultado = this.addCss("display", stb.toString());
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -652,23 +654,23 @@ public class CssTag extends Tag {
     } finally {
     }
 
-    return strClassAssociada;
+    return strResultado;
   }
 
   public String setFloat(String strFloat) {
     // VARIÁVEIS
 
-    String strClassAssociada = Utils.STRING_VAZIA;
-    StringBuilder strBulderValorEstrutura;
+    String strResultado = Utils.STRING_VAZIA;
+    StringBuilder stb;
 
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      strBulderValorEstrutura = new StringBuilder();
-      strBulderValorEstrutura.append(strFloat);
+      stb = new StringBuilder();
+      stb.append(strFloat);
 
-      strClassAssociada = this.addCss("float", strBulderValorEstrutura.toString());
+      strResultado = this.addCss("float", stb.toString());
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -678,23 +680,23 @@ public class CssTag extends Tag {
     } finally {
     }
 
-    return strClassAssociada;
+    return strResultado;
   }
 
   public String setFontFamily(String strFontFamily) {
     // VARIÁVEIS
 
-    String strClassAssociada = Utils.STRING_VAZIA;
-    StringBuilder strBulderValorEstrutura;
+    String strResultado = Utils.STRING_VAZIA;
+    StringBuilder stb;
 
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      strBulderValorEstrutura = new StringBuilder();
-      strBulderValorEstrutura.append(strFontFamily);
+      stb = new StringBuilder();
+      stb.append(strFontFamily);
 
-      strClassAssociada = this.addCss("font-family", strBulderValorEstrutura.toString());
+      strResultado = this.addCss("font-family", stb.toString());
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -704,19 +706,19 @@ public class CssTag extends Tag {
     } finally {
     }
 
-    return strClassAssociada;
+    return strResultado;
   }
 
   public String setFontNegrito() {
     // VARIÁVEIS
 
-    String strClassAssociada = Utils.STRING_VAZIA;
+    String strResultado = Utils.STRING_VAZIA;
 
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      strClassAssociada = this.addCss("font-Weight", "bold");
+      strResultado = this.addCss("font-Weight", "bold");
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -726,24 +728,24 @@ public class CssTag extends Tag {
     } finally {
     }
 
-    return strClassAssociada;
+    return strResultado;
   }
 
   public String setFontSize(int intFontSize, String strGrandeza) {
     // VARIÁVEIS
 
-    String strClassAssociada = Utils.STRING_VAZIA;
-    StringBuilder strBulderValorEstrutura;
+    String strResultado = Utils.STRING_VAZIA;
+    StringBuilder stb;
 
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      strBulderValorEstrutura = new StringBuilder();
-      strBulderValorEstrutura.append(intFontSize);
-      strBulderValorEstrutura.append(strGrandeza);
+      stb = new StringBuilder();
+      stb.append(intFontSize);
+      stb.append(strGrandeza);
 
-      strClassAssociada = this.addCss("font-size", strBulderValorEstrutura.toString());
+      strResultado = this.addCss("font-size", stb.toString());
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -753,24 +755,50 @@ public class CssTag extends Tag {
     } finally {
     }
 
-    return strClassAssociada;
+    return strResultado;
+  }
+
+  public String setFontStyle(String strFontStyle) {
+    // VARIÁVEIS
+
+    String strResultado = Utils.STRING_VAZIA;
+    StringBuilder stb;
+
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      stb = new StringBuilder();
+      stb.append(strFontStyle);
+
+      strResultado = this.addCss("font-style", stb.toString());
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+
+    return strResultado;
   }
 
   public String setHeight(double dblHeight, String strGrandeza) {
     // VARIÁVEIS
 
-    String strClassAssociada = Utils.STRING_VAZIA;
-    StringBuilder strBulderValorEstrutura;
+    String strResultado = Utils.STRING_VAZIA;
+    StringBuilder stb;
 
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      strBulderValorEstrutura = new StringBuilder();
-      strBulderValorEstrutura.append(dblHeight);
-      strBulderValorEstrutura.append(strGrandeza);
+      stb = new StringBuilder();
+      stb.append(dblHeight);
+      stb.append(strGrandeza);
 
-      strClassAssociada = this.addCss("height", strBulderValorEstrutura.toString());
+      strResultado = this.addCss("height", stb.toString());
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -780,24 +808,24 @@ public class CssTag extends Tag {
     } finally {
     }
 
-    return strClassAssociada;
+    return strResultado;
   }
 
   public String setLeft(int intLeft) {
     // VARIÁVEIS
 
-    String strClassAssociada = Utils.STRING_VAZIA;
-    StringBuilder strBulderValorEstrutura;
+    String strResultado = Utils.STRING_VAZIA;
+    StringBuilder stb;
 
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      strBulderValorEstrutura = new StringBuilder();
-      strBulderValorEstrutura.append(intLeft);
-      strBulderValorEstrutura.append("px");
+      stb = new StringBuilder();
+      stb.append(intLeft);
+      stb.append("px");
 
-      strClassAssociada = this.addCss("left", strBulderValorEstrutura.toString());
+      strResultado = this.addCss("left", stb.toString());
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -807,28 +835,28 @@ public class CssTag extends Tag {
     } finally {
     }
 
-    return strClassAssociada;
+    return strResultado;
   }
 
-  private void setLstAtrCss(List<AtributoCss> lstAtrCss) {
+  protected void setLstAtrCss(List<AtributoCss> lstAtrCss) {
     _lstAtrCss = lstAtrCss;
   }
 
   public String setMargin(int intMarginPx, String strGrandeza) {
     // VARIÁVEIS
 
-    String strClassAssociada = Utils.STRING_VAZIA;
-    StringBuilder strBulderValorEstrutura;
+    String strResultado = Utils.STRING_VAZIA;
+    StringBuilder stb;
 
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      strBulderValorEstrutura = new StringBuilder();
-      strBulderValorEstrutura.append(intMarginPx);
-      strBulderValorEstrutura.append(strGrandeza);
+      stb = new StringBuilder();
+      stb.append(intMarginPx);
+      stb.append(strGrandeza);
 
-      strClassAssociada = this.addCss("margin", strBulderValorEstrutura.toString());
+      strResultado = this.addCss("margin", stb.toString());
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -838,24 +866,24 @@ public class CssTag extends Tag {
     } finally {
     }
 
-    return strClassAssociada;
+    return strResultado;
   }
 
   public String setMarginBottom(int intMarginBottomPx) {
     // VARIÁVEIS
 
-    String strClassAssociada = Utils.STRING_VAZIA;
-    StringBuilder strBulderValorEstrutura;
+    String strResultado = Utils.STRING_VAZIA;
+    StringBuilder stb;
 
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      strBulderValorEstrutura = new StringBuilder();
-      strBulderValorEstrutura.append(intMarginBottomPx);
-      strBulderValorEstrutura.append("px");
+      stb = new StringBuilder();
+      stb.append(intMarginBottomPx);
+      stb.append("px");
 
-      strClassAssociada = this.addCss("margin-bottom", strBulderValorEstrutura.toString());
+      strResultado = this.addCss("margin-bottom", stb.toString());
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -865,24 +893,24 @@ public class CssTag extends Tag {
     } finally {
     }
 
-    return strClassAssociada;
+    return strResultado;
   }
 
   public String setMarginLeft(int intMarginLeftPx) {
     // VARIÁVEIS
 
-    String strClassAssociada = Utils.STRING_VAZIA;
-    StringBuilder strBulderValorEstrutura;
+    String strResultado = Utils.STRING_VAZIA;
+    StringBuilder stb;
 
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      strBulderValorEstrutura = new StringBuilder();
-      strBulderValorEstrutura.append(intMarginLeftPx);
-      strBulderValorEstrutura.append("px");
+      stb = new StringBuilder();
+      stb.append(intMarginLeftPx);
+      stb.append("px");
 
-      strClassAssociada = this.addCss("margin-left", strBulderValorEstrutura.toString());
+      strResultado = this.addCss("margin-left", stb.toString());
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -892,24 +920,24 @@ public class CssTag extends Tag {
     } finally {
     }
 
-    return strClassAssociada;
+    return strResultado;
   }
 
   public String setMarginRight(int intMarginRightPx) {
     // VARIÁVEIS
 
-    String strClassAssociada = Utils.STRING_VAZIA;
-    StringBuilder strBulderValorEstrutura;
+    String strResultado = Utils.STRING_VAZIA;
+    StringBuilder stb;
 
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      strBulderValorEstrutura = new StringBuilder();
-      strBulderValorEstrutura.append(intMarginRightPx);
-      strBulderValorEstrutura.append("px");
+      stb = new StringBuilder();
+      stb.append(intMarginRightPx);
+      stb.append("px");
 
-      strClassAssociada = this.addCss("margin-right", strBulderValorEstrutura.toString());
+      strResultado = this.addCss("margin-right", stb.toString());
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -919,24 +947,24 @@ public class CssTag extends Tag {
     } finally {
     }
 
-    return strClassAssociada;
+    return strResultado;
   }
 
   public String setMarginTop(int intMarginTopPx) {
     // VARIÁVEIS
 
-    String strClassAssociada = Utils.STRING_VAZIA;
-    StringBuilder strBulderValorEstrutura;
+    String strResultado = Utils.STRING_VAZIA;
+    StringBuilder stb;
 
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      strBulderValorEstrutura = new StringBuilder();
-      strBulderValorEstrutura.append(intMarginTopPx);
-      strBulderValorEstrutura.append("px");
+      stb = new StringBuilder();
+      stb.append(intMarginTopPx);
+      stb.append("px");
 
-      strClassAssociada = this.addCss("margin-top", strBulderValorEstrutura.toString());
+      strResultado = this.addCss("margin-top", stb.toString());
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -946,23 +974,23 @@ public class CssTag extends Tag {
     } finally {
     }
 
-    return strClassAssociada;
+    return strResultado;
   }
 
   public String setOpacity(double dblOpacity) {
     // VARIÁVEIS
 
-    String strClassAssociada = Utils.STRING_VAZIA;
-    StringBuilder strBulderValorEstrutura;
+    String strResultado = Utils.STRING_VAZIA;
+    StringBuilder stb;
 
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      strBulderValorEstrutura = new StringBuilder();
-      strBulderValorEstrutura.append(dblOpacity);
+      stb = new StringBuilder();
+      stb.append(dblOpacity);
 
-      strClassAssociada = this.addCss("opacity", strBulderValorEstrutura.toString());
+      strResultado = this.addCss("opacity", stb.toString());
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -972,23 +1000,23 @@ public class CssTag extends Tag {
     } finally {
     }
 
-    return strClassAssociada;
+    return strResultado;
   }
 
   public String setOverflow(String strOverflowPx) {
     // VARIÁVEIS
 
-    String strClassAssociada = Utils.STRING_VAZIA;
-    StringBuilder strBulderValorEstrutura;
+    String strResultado = Utils.STRING_VAZIA;
+    StringBuilder stb;
 
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      strBulderValorEstrutura = new StringBuilder();
-      strBulderValorEstrutura.append(strOverflowPx);
+      stb = new StringBuilder();
+      stb.append(strOverflowPx);
 
-      strClassAssociada = this.addCss("overflow", strBulderValorEstrutura.toString());
+      strResultado = this.addCss("overflow", stb.toString());
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -998,24 +1026,76 @@ public class CssTag extends Tag {
     } finally {
     }
 
-    return strClassAssociada;
+    return strResultado;
+  }
+
+  public String setOverflowX(String strOverflowPx) {
+    // VARIÁVEIS
+
+    String strResultado = Utils.STRING_VAZIA;
+    StringBuilder stb;
+
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      stb = new StringBuilder();
+      stb.append(strOverflowPx);
+
+      strResultado = this.addCss("overflow-x", stb.toString());
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+
+    return strResultado;
+  }
+
+  public String setOverflowY(String strOverflowPx) {
+    // VARIÁVEIS
+
+    String strResultado = Utils.STRING_VAZIA;
+    StringBuilder stb;
+
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      stb = new StringBuilder();
+      stb.append(strOverflowPx);
+
+      strResultado = this.addCss("overflow-y", stb.toString());
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+
+    return strResultado;
   }
 
   public String setPadding(int intPaddingPx, String strGrandeza) {
     // VARIÁVEIS
 
-    String strClassAssociada = Utils.STRING_VAZIA;
-    StringBuilder strBulderValorEstrutura;
+    String strResultado = Utils.STRING_VAZIA;
+    StringBuilder stb;
 
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      strBulderValorEstrutura = new StringBuilder();
-      strBulderValorEstrutura.append(intPaddingPx);
-      strBulderValorEstrutura.append(strGrandeza);
+      stb = new StringBuilder();
+      stb.append(intPaddingPx);
+      stb.append(strGrandeza);
 
-      strClassAssociada = this.addCss("padding", strBulderValorEstrutura.toString());
+      strResultado = this.addCss("padding", stb.toString());
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -1025,24 +1105,24 @@ public class CssTag extends Tag {
     } finally {
     }
 
-    return strClassAssociada;
+    return strResultado;
   }
 
   public String setPaddingBottom(int intPaddingBottomPx) {
     // VARIÁVEIS
 
-    String strClassAssociada = Utils.STRING_VAZIA;
-    StringBuilder strBulderValorEstrutura;
+    String strResultado = Utils.STRING_VAZIA;
+    StringBuilder stb;
 
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      strBulderValorEstrutura = new StringBuilder();
-      strBulderValorEstrutura.append(intPaddingBottomPx);
-      strBulderValorEstrutura.append("px");
+      stb = new StringBuilder();
+      stb.append(intPaddingBottomPx);
+      stb.append("px");
 
-      strClassAssociada = this.addCss("padding-bottom", strBulderValorEstrutura.toString());
+      strResultado = this.addCss("padding-bottom", stb.toString());
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -1052,24 +1132,24 @@ public class CssTag extends Tag {
     } finally {
     }
 
-    return strClassAssociada;
+    return strResultado;
   }
 
   public String setPaddingLeft(int intPaddingLeftPx) {
     // VARIÁVEIS
 
-    String strClassAssociada = Utils.STRING_VAZIA;
-    StringBuilder strBulderValorEstrutura;
+    String strResultado = Utils.STRING_VAZIA;
+    StringBuilder stb;
 
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      strBulderValorEstrutura = new StringBuilder();
-      strBulderValorEstrutura.append(intPaddingLeftPx);
-      strBulderValorEstrutura.append("px");
+      stb = new StringBuilder();
+      stb.append(intPaddingLeftPx);
+      stb.append("px");
 
-      strClassAssociada = this.addCss("padding-left", strBulderValorEstrutura.toString());
+      strResultado = this.addCss("padding-left", stb.toString());
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -1079,24 +1159,24 @@ public class CssTag extends Tag {
     } finally {
     }
 
-    return strClassAssociada;
+    return strResultado;
   }
 
   public String setPaddingRight(int intPaddingRightPx) {
     // VARIÁVEIS
 
-    String strClassAssociada = Utils.STRING_VAZIA;
-    StringBuilder strBulderValorEstrutura;
+    String strResultado = Utils.STRING_VAZIA;
+    StringBuilder stb;
 
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      strBulderValorEstrutura = new StringBuilder();
-      strBulderValorEstrutura.append(intPaddingRightPx);
-      strBulderValorEstrutura.append("px");
+      stb = new StringBuilder();
+      stb.append(intPaddingRightPx);
+      stb.append("px");
 
-      strClassAssociada = this.addCss("padding-right", strBulderValorEstrutura.toString());
+      strResultado = this.addCss("padding-right", stb.toString());
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -1106,24 +1186,24 @@ public class CssTag extends Tag {
     } finally {
     }
 
-    return strClassAssociada;
+    return strResultado;
   }
 
   public String setPaddingTop(int intPaddingTopPx) {
     // VARIÁVEIS
 
-    String strClassAssociada = Utils.STRING_VAZIA;
-    StringBuilder strBulderValorEstrutura;
+    String strResultado = Utils.STRING_VAZIA;
+    StringBuilder stb;
 
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      strBulderValorEstrutura = new StringBuilder();
-      strBulderValorEstrutura.append(intPaddingTopPx);
-      strBulderValorEstrutura.append("px");
+      stb = new StringBuilder();
+      stb.append(intPaddingTopPx);
+      stb.append("px");
 
-      strClassAssociada = this.addCss("padding-top", strBulderValorEstrutura.toString());
+      strResultado = this.addCss("padding-top", stb.toString());
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -1133,23 +1213,23 @@ public class CssTag extends Tag {
     } finally {
     }
 
-    return strClassAssociada;
+    return strResultado;
   }
 
   public String setPosition(String strPosition) {
     // VARIÁVEIS
 
-    String strClassAssociada = Utils.STRING_VAZIA;
-    StringBuilder strBulderValorEstrutura;
+    String strResultado = Utils.STRING_VAZIA;
+    StringBuilder stb;
 
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      strBulderValorEstrutura = new StringBuilder();
-      strBulderValorEstrutura.append(strPosition);
+      stb = new StringBuilder();
+      stb.append(strPosition);
 
-      strClassAssociada = this.addCss("position", strBulderValorEstrutura.toString());
+      strResultado = this.addCss("position", stb.toString());
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -1159,24 +1239,24 @@ public class CssTag extends Tag {
     } finally {
     }
 
-    return strClassAssociada;
+    return strResultado;
   }
 
   public String setRight(int intRight) {
     // VARIÁVEIS
 
-    String strClassAssociada = Utils.STRING_VAZIA;
-    StringBuilder strBulderValorEstrutura;
+    String strResultado = Utils.STRING_VAZIA;
+    StringBuilder stb;
 
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      strBulderValorEstrutura = new StringBuilder();
-      strBulderValorEstrutura.append(intRight);
-      strBulderValorEstrutura.append("px");
+      stb = new StringBuilder();
+      stb.append(intRight);
+      stb.append("px");
 
-      strClassAssociada = this.addCss("right", strBulderValorEstrutura.toString());
+      strResultado = this.addCss("right", stb.toString());
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -1186,22 +1266,22 @@ public class CssTag extends Tag {
     } finally {
     }
 
-    return strClassAssociada;
+    return strResultado;
   }
 
   public String setTextAlign(String strTextAlign) {
     // VARIÁVEIS
 
-    String strClassAssociada = Utils.STRING_VAZIA;
-    StringBuilder strBulderValorEstrutura;
+    String strResultado = Utils.STRING_VAZIA;
+    StringBuilder stb;
 
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      strBulderValorEstrutura = new StringBuilder();
-      strBulderValorEstrutura.append(strTextAlign);
-      strClassAssociada = this.addCss("text-align", strBulderValorEstrutura.toString());
+      stb = new StringBuilder();
+      stb.append(strTextAlign);
+      strResultado = this.addCss("text-align", stb.toString());
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -1211,23 +1291,23 @@ public class CssTag extends Tag {
     } finally {
     }
 
-    return strClassAssociada;
+    return strResultado;
   }
 
   public String setTextDecoration(String strTextDecoration) {
     // VARIÁVEIS
 
-    String strClassAssociada = Utils.STRING_VAZIA;
-    StringBuilder strBulderValorEstrutura;
+    String strResultado = Utils.STRING_VAZIA;
+    StringBuilder stb;
 
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      strBulderValorEstrutura = new StringBuilder();
-      strBulderValorEstrutura.append(strTextDecoration);
+      stb = new StringBuilder();
+      stb.append(strTextDecoration);
 
-      strClassAssociada = this.addCss("text-decoration", strBulderValorEstrutura.toString());
+      strResultado = this.addCss("text-decoration", stb.toString());
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -1237,29 +1317,29 @@ public class CssTag extends Tag {
     } finally {
     }
 
-    return strClassAssociada;
+    return strResultado;
   }
 
   public String setTextShadow(int intX, int intY, int intBlur, String strColor) {
     // VARIÁVEIS
 
-    String strClassAssociada = Utils.STRING_VAZIA;
-    StringBuilder strBulderValorEstrutura;
+    String strResultado = Utils.STRING_VAZIA;
+    StringBuilder stb;
 
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      strBulderValorEstrutura = new StringBuilder();
-      strBulderValorEstrutura.append(intX);
-      strBulderValorEstrutura.append("px ");
-      strBulderValorEstrutura.append(intY);
-      strBulderValorEstrutura.append("px ");
-      strBulderValorEstrutura.append(intBlur);
-      strBulderValorEstrutura.append("px ");
-      strBulderValorEstrutura.append(strColor);
+      stb = new StringBuilder();
+      stb.append(intX);
+      stb.append("px ");
+      stb.append(intY);
+      stb.append("px ");
+      stb.append(intBlur);
+      stb.append("px ");
+      stb.append(strColor);
 
-      strClassAssociada = this.addCss("text-shadow", strBulderValorEstrutura.toString());
+      strResultado = this.addCss("text-shadow", stb.toString());
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -1269,24 +1349,24 @@ public class CssTag extends Tag {
     } finally {
     }
 
-    return strClassAssociada;
+    return strResultado;
   }
 
   public String setTop(int intTop) {
     // VARIÁVEIS
 
-    String strClassAssociada = Utils.STRING_VAZIA;
-    StringBuilder strBulderValorEstrutura;
+    String strResultado = Utils.STRING_VAZIA;
+    StringBuilder stb;
 
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      strBulderValorEstrutura = new StringBuilder();
-      strBulderValorEstrutura.append(intTop);
-      strBulderValorEstrutura.append("px");
+      stb = new StringBuilder();
+      stb.append(intTop);
+      stb.append("px");
 
-      strClassAssociada = this.addCss("top", strBulderValorEstrutura.toString());
+      strResultado = this.addCss("top", stb.toString());
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -1296,24 +1376,24 @@ public class CssTag extends Tag {
     } finally {
     }
 
-    return strClassAssociada;
+    return strResultado;
   }
 
   public String setWidth(double dblWidth, String strGrandeza) {
     // VARIÁVEIS
 
-    String strClassAssociada = Utils.STRING_VAZIA;
-    StringBuilder strBulderValorEstrutura;
+    String strResultado = Utils.STRING_VAZIA;
+    StringBuilder stb;
 
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      strBulderValorEstrutura = new StringBuilder();
-      strBulderValorEstrutura.append(dblWidth);
-      strBulderValorEstrutura.append(strGrandeza);
+      stb = new StringBuilder();
+      stb.append(dblWidth);
+      stb.append(strGrandeza);
 
-      strClassAssociada = this.addCss("width", strBulderValorEstrutura.toString());
+      strResultado = this.addCss("width", stb.toString());
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -1323,22 +1403,22 @@ public class CssTag extends Tag {
     } finally {
     }
 
-    return strClassAssociada;
+    return strResultado;
   }
 
   public String setZ(int intZ) {
     // VARIÁVEIS
 
-    String strClassAssociada = Utils.STRING_VAZIA;
-    StringBuilder strBulderValorEstrutura;
+    String strResultado = Utils.STRING_VAZIA;
+    StringBuilder stb;
 
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      strBulderValorEstrutura = new StringBuilder();
-      strBulderValorEstrutura.append(intZ);
-      strClassAssociada = this.addCss("z-index", strBulderValorEstrutura.toString());
+      stb = new StringBuilder();
+      stb.append(intZ);
+      strResultado = this.addCss("z-index", stb.toString());
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -1348,7 +1428,7 @@ public class CssTag extends Tag {
     } finally {
     }
 
-    return strClassAssociada;
+    return strResultado;
   }
 
 }

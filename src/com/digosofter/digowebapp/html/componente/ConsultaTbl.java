@@ -1,4 +1,4 @@
-package com.digosofter.digowebapp.componente;
+package com.digosofter.digowebapp.html.componente;
 
 import java.sql.ResultSet;
 
@@ -13,8 +13,6 @@ public class ConsultaTbl extends ComponenteMain {
 
   private Botao _btnNovo;
 
-  private Painel _pnlContainer;
-
   private Painel _pnlLista;
 
   private LimiteFloat _tagLimiteFloat;
@@ -28,6 +26,9 @@ public class ConsultaTbl extends ComponenteMain {
       // AÇÕES
 
       this.setTbl(tbl);
+
+      this.addCss(CssTag.getCssMainInst().setPadding(5, "px"));
+      this.addCss(CssTag.getCssMainInst().setBorder(1, "solid", "black"));
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -59,31 +60,6 @@ public class ConsultaTbl extends ComponenteMain {
     }
 
     return _btnNovo;
-  }
-
-  @Override
-  public Painel getPnlContainer() {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
-    try {
-      // AÇÕES
-
-      if (_pnlContainer == null) {
-
-        _pnlContainer = super.getPnlContainer();
-        _pnlContainer.addCss(CssTag.getCssMainInst().setPadding(5, "px"));
-        _pnlContainer.addCss(CssTag.getCssMainInst().setBorder(1, "solid", "black"));
-      }
-
-      // FIM AÇÕES
-    } catch (Exception ex) {
-
-      new Erro("Erro inesperado.\n", ex);
-
-    } finally {
-    }
-
-    return _pnlContainer;
   }
 
   private Painel getPnlLista() {
@@ -133,16 +109,19 @@ public class ConsultaTbl extends ComponenteMain {
   }
 
   @Override
-  public void montarLayout() {
+  protected void montarLayout() {
+
+    super.montarLayout();
+
     // VARIÁVEIS
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      this.getPnlTitulo().setTagPai(this.getPnlContainer());
-      this.getPnlLista().setTagPai(this.getPnlContainer());
+      this.getPnlTitulo().setTagPai(this);
+      this.getPnlLista().setTagPai(this);
       this.montarLayoutLista();
-      this.getPnlComando().setTagPai(this.getPnlContainer());
+      this.getPnlComando().setTagPai(this);
       this.getBtnNovo().setTagPai(this.getPnlComando());
       this.getTagLimiteFloat().setTagPai(this.getPnlComando());
 

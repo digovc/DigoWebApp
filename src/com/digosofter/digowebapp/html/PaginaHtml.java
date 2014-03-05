@@ -7,6 +7,8 @@ import java.util.List;
 
 import com.digosofter.digowebapp.AppWeb;
 import com.digosofter.digowebapp.Objeto;
+import com.digosofter.digowebapp.Usuario;
+import com.digosofter.digowebapp.Utils;
 import com.digosofter.digowebapp.erro.Erro;
 
 public class PaginaHtml extends Objeto {
@@ -42,7 +44,7 @@ public class PaginaHtml extends Objeto {
 
   private List<JavaScriptTag> _lstObjJsTagOrdenado;
 
-  private JavaScriptTag _objJavaScriptMain;
+  private JavaScriptTag _tagJsMain;
 
   private String _strTitulo;
 
@@ -65,8 +67,7 @@ public class PaginaHtml extends Objeto {
       // AÇÕES
 
       this.setI(this);
-      this.adicionarJs();
-      this.adicionarJsCodigo();
+      this.addJsArquivo(this.getLstObjJsTag());
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -80,7 +81,7 @@ public class PaginaHtml extends Objeto {
   /**
    * Acrescenta os arquivos de "JavaScript" para a "tagHead" na ordem correta.
    */
-  private void acrescentarJsAoCabecalho() {
+  private void addJsAoCabecalho() {
     // VARIÁVEIS
     // FIM VARIÁVEIS
     try {
@@ -100,25 +101,30 @@ public class PaginaHtml extends Objeto {
     }
   }
 
-  protected void adicionarJs() {
+  /**
+   * Adiciona os arquivos "JavaScript" que fazem a página funcionar no
+   * navegador.
+   */
+  protected void addJsArquivo(List<JavaScriptTag> lstObjJsTag) {
     // VARIÁVEIS
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      this.getLstObjJsTag().add(new JavaScriptTag("res/js/lib/JDigo/lib/jquery-2.0.3.js"));
-      this.getLstObjJsTag().add(new JavaScriptTag("res/js/lib/JDigo/lib/md5.js"));
-      this.getLstObjJsTag().add(new JavaScriptTag("res/js/lib/JDigo/lista/LstStrErro.js"));
-      this.getLstObjJsTag().add(new JavaScriptTag("res/js/lib/JDigo/erro/Erro.js"));
-      this.getLstObjJsTag().add(new JavaScriptTag("res/js/lib/JDigo/Utils.js"));
-      this.getLstObjJsTag().add(new JavaScriptTag("res/js/lib/JDigo/Objeto.js"));
-      this.getLstObjJsTag().add(new JavaScriptTag("res/js/lib/JDigo/AppWeb.js"));
-      this.getLstObjJsTag().add(new JavaScriptTag("res/js/lib/JDigo/websocket/WebSocketMain.js"));
-      this.getLstObjJsTag().add(
-          new JavaScriptTag("res/js/lib/JDigo/websocket/wsobjetos/WsObjetoMain.js"));
-      this.getLstObjJsTag().add(new JavaScriptTag("res/js/lib/JDigo/Usuario.js"));
-      this.getLstObjJsTag().add(new JavaScriptTag("res/js/lib/JDigo/html/Tag.js"));
-      this.getLstObjJsTag().add(new JavaScriptTag("res/js/lib/JDigo/html/PaginaHtml.js"));
+      // TODO: Colocar a localização dos arquivos dentro de constantes na classe
+      // "AppWeb".
+
+      lstObjJsTag.add(new JavaScriptTag("res/js/lib/JDigo/lib/jquery-2.0.3.js"));
+      lstObjJsTag.add(new JavaScriptTag("res/js/lib/JDigo/lib/md5.js"));
+      lstObjJsTag.add(new JavaScriptTag("res/js/lib/JDigo/lista/LstStrErro.js"));
+      lstObjJsTag.add(new JavaScriptTag("res/js/lib/JDigo/erro/Erro.js"));
+      lstObjJsTag.add(new JavaScriptTag("res/js/lib/JDigo/Utils.js"));
+      lstObjJsTag.add(new JavaScriptTag("res/js/lib/JDigo/Objeto.js"));
+      lstObjJsTag.add(new JavaScriptTag("res/js/lib/JDigo/AppWeb.js"));
+      lstObjJsTag.add(new JavaScriptTag("res/js/lib/JDigo/websocket/WebSocketMain.js"));
+      lstObjJsTag.add(new JavaScriptTag("res/js/lib/JDigo/websocket/ObjWsInterlocutor.js"));
+      lstObjJsTag.add(new JavaScriptTag("res/js/lib/JDigo/Usuario.js"));
+      lstObjJsTag.add(new JavaScriptTag("res/js/lib/JDigo/html/PaginaHtml.js"));
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -132,14 +138,25 @@ public class PaginaHtml extends Objeto {
   /**
    * Adiciona códigos "JavaScript" indispensáveis para cada página.
    */
-  private void adicionarJsCodigo() {
+  protected void addJsCodigo(JavaScriptTag tagJs) {
     // VARIÁVEIS
+
+    String strJs;
+    Usuario objUsuario;
+
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      this.getObjJavaScriptMain().adicionarJsCodigo(
-          "appWeb.setStrSessionId('" + AppWeb.getI().getObjUsuarioAtual().getStrSessaoId() + "');");
+      objUsuario = AppWeb.getI().getObjUsuarioAtual();
+
+      strJs = "";
+      strJs += "appWeb.setStrSessionId('" + objUsuario.getStrSessaoId() + "');";
+      strJs += "objUsuario.setBooLogado(" + objUsuario.getBooLogado() + ");";
+      strJs += "objUsuario.setIntUsuarioId(" + objUsuario.getIntUsuarioId() + ");";
+      strJs += "objUsuario.setStrNome('" + objUsuario.getStrNome() + "');";
+
+      tagJs.addJsCodigo(strJs);
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -156,7 +173,7 @@ public class PaginaHtml extends Objeto {
     try {
       // AÇÕES
 
-      this.getObjJavaScriptMain().adicionarJsCodigo(strJsCodigo);
+      this.getTagJsMain().addJsCodigo(strJsCodigo);
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -219,11 +236,35 @@ public class PaginaHtml extends Objeto {
 
   private List<JavaScriptTag> getLstObjJsTagOrdenado() {
     // VARIÁVEIS
+
+    boolean booJsAdicionado;
+
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      _lstObjJsTagOrdenado = this.getLstObjJsTag();
+      if (_lstObjJsTagOrdenado != null) {
+        return _lstObjJsTagOrdenado;
+      }
+
+      _lstObjJsTagOrdenado = new ArrayList<JavaScriptTag>();
+
+      for (JavaScriptTag tagJs : this.getLstObjJsTag()) {
+
+        booJsAdicionado = false;
+
+        for (JavaScriptTag tagJsAdicionada : _lstObjJsTagOrdenado) {
+
+          if (tagJsAdicionada.getStrSrc() == tagJs.getStrSrc()) {
+            booJsAdicionado = true;
+            break;
+          }
+        }
+
+        if (!booJsAdicionado) {
+          _lstObjJsTagOrdenado.add(tagJs);
+        }
+      }
 
       Collections.sort(_lstObjJsTagOrdenado, new Comparator<JavaScriptTag>() {
 
@@ -246,18 +287,18 @@ public class PaginaHtml extends Objeto {
     return _lstObjJsTagOrdenado;
   }
 
-  private JavaScriptTag getObjJavaScriptMain() {
+  public JavaScriptTag getTagJsMain() {
     // VARIÁVEIS
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      if (_objJavaScriptMain == null) {
+      if (_tagJsMain == null) {
 
-        _objJavaScriptMain = new JavaScriptTag(null);
-        _objJavaScriptMain.setIntPrioridade(6);
+        _tagJsMain = new JavaScriptTag(null);
+        _tagJsMain.setIntPrioridade(6);
 
-        this.getLstObjJsTag().add(_objJavaScriptMain);
+        this.getLstObjJsTag().add(_tagJsMain);
       }
 
       // FIM AÇÕES
@@ -268,24 +309,33 @@ public class PaginaHtml extends Objeto {
     } finally {
     }
 
-    return _objJavaScriptMain;
+    return _tagJsMain;
   }
 
   public String getStrPagFormatada() {
     // VARIÁVEIS
 
-    StringBuilder stbResultado = new StringBuilder();
+    String strResultado = Utils.STRING_VAZIA;
+    String strTagBodyConteudo = Utils.STRING_VAZIA;
+    StringBuilder stbHtml;
 
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
       this.montarLayout();
-      this.acrescentarJsAoCabecalho();
+      this.addJsCodigo(this.getTagJsMain());
 
-      stbResultado = new StringBuilder();
-      stbResultado.append(this.getTagDocType().toString());
-      stbResultado.append(this.getTagHtml().toString());
+      strTagBodyConteudo += this.getTagBody().toString();
+      strTagBodyConteudo += "</html>";
+
+      this.addJsAoCabecalho();
+
+      stbHtml = new StringBuilder();
+      stbHtml.append(this.getTagDocType().toString());
+      stbHtml.append(this.getTagHtml().toString());
+
+      strResultado = stbHtml.toString().replace("</html>", strTagBodyConteudo);
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -295,7 +345,7 @@ public class PaginaHtml extends Objeto {
     } finally {
     }
 
-    return stbResultado.toString();
+    return strResultado;
   }
 
   public String getStrTitulo() {
@@ -464,7 +514,6 @@ public class PaginaHtml extends Objeto {
       this.getTagTitle().setTagPai(this.getTagHead());
       this.getCssMain().setTagPai(this.getTagHead());
       this.getCssImp().setTagPai(this.getTagHead());
-      this.getTagBody().setTagPai(this.getTagHtml());
 
       // FIM AÇÕES
     } catch (Exception ex) {

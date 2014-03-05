@@ -10,6 +10,8 @@ public class PaletaCor extends Objeto {
 
   private boolean _booSelecionado;
 
+  private String _strCorBorda;
+
   private String _strCorControleClicado;
 
   private String _strCorControleMouse;
@@ -18,7 +20,7 @@ public class PaletaCor extends Objeto {
 
   private String _strCorFundo;
 
-  private String _strObjetoJavaScriptNome = "";
+  private String _strObjJavaScriptNome = "";
 
   public PaletaCor(String strNome) {
     // VARIÁVEIS
@@ -27,8 +29,8 @@ public class PaletaCor extends Objeto {
       // AÇÕES
 
       this.setStrNome(strNome);
-      this.addJs("var " + this.getStrObjetoJavaScriptNome() + "= new PaletaCor('"
-          + this.getStrNome() + "');");
+      this.addJs("var " + this.getStrObjJavaScriptNome() + "= new PaletaCor('" + this.getStrNome()
+          + "');");
 
       PaginaHtml.getI().getLstObjJsTag()
           .add(new JavaScriptTag("res/js/lib/JDigo/design/PaletaCor.js"));
@@ -65,6 +67,10 @@ public class PaletaCor extends Objeto {
     return _booSelecionado;
   }
 
+  public String getStrCorBorda() {
+    return _strCorBorda;
+  }
+
   public String getStrCorControleClicado() {
     return _strCorControleClicado;
   }
@@ -81,14 +87,14 @@ public class PaletaCor extends Objeto {
     return _strCorFundo;
   }
 
-  private String getStrObjetoJavaScriptNome() {
+  private String getStrObjJavaScriptNome() {
     // VARIÁVEIS
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      if (_strObjetoJavaScriptNome == "") {
-        _strObjetoJavaScriptNome = "objPaletaCor" + this.getStrNome();
+      if (_strObjJavaScriptNome == "") {
+        _strObjJavaScriptNome = "objPaletaCor" + this.getStrNome();
       }
 
       // FIM AÇÕES
@@ -99,7 +105,7 @@ public class PaletaCor extends Objeto {
     } finally {
     }
 
-    return _strObjetoJavaScriptNome;
+    return _strObjJavaScriptNome;
   }
 
   public void setBooSelecionado(boolean booSelecionado) {
@@ -123,6 +129,31 @@ public class PaletaCor extends Objeto {
     }
   }
 
+  public void setStrCorBorda(String strCorBorda) {
+    // VARIÁVEIS
+
+    String strJs;
+
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      _strCorBorda = strCorBorda;
+      strJs = this.getStrObjJavaScriptNome() + ".setStrCorControleClicado('"
+          + _strCorControleClicado + "');";
+      this.addJs(strJs);
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+
+    _strCorBorda = strCorBorda;
+  }
+
   public void setStrCorControleClicado(String strCorControleClicado) {
     // VARIÁVEIS
 
@@ -133,7 +164,7 @@ public class PaletaCor extends Objeto {
       // AÇÕES
 
       _strCorControleClicado = strCorControleClicado;
-      strJs = this.getStrObjetoJavaScriptNome() + ".setStrCorControleClicado('"
+      strJs = this.getStrObjJavaScriptNome() + ".setStrCorControleClicado('"
           + _strCorControleClicado + "');";
       this.addJs(strJs);
 
@@ -156,8 +187,8 @@ public class PaletaCor extends Objeto {
       // AÇÕES
 
       _strCorControleMouse = strCorControleMouse;
-      strJs = this.getStrObjetoJavaScriptNome() + ".setStrCorControleMouse('"
-          + _strCorControleMouse + "');";
+      strJs = this.getStrObjJavaScriptNome() + ".setStrCorControleMouse('" + _strCorControleMouse
+          + "');";
       this.addJs(strJs);
 
       // FIM AÇÕES
@@ -179,8 +210,8 @@ public class PaletaCor extends Objeto {
       // AÇÕES
 
       _strCorControleNormal = strCorControleNormal;
-      strJs = this.getStrObjetoJavaScriptNome() + ".setStrCorControleNormal('"
-          + _strCorControleNormal + "');";
+      strJs = this.getStrObjJavaScriptNome() + ".setStrCorControleNormal('" + _strCorControleNormal
+          + "');";
       this.addJs(strJs);
 
       // FIM AÇÕES
@@ -202,7 +233,7 @@ public class PaletaCor extends Objeto {
       // AÇÕES
 
       _strCorFundo = strCorFundo;
-      strJs = this.getStrObjetoJavaScriptNome() + ".setStrCorFundo('" + _strCorFundo + "');";
+      strJs = this.getStrObjJavaScriptNome() + ".setStrCorFundo('" + _strCorFundo + "');";
       this.addJs(strJs);
 
       // FIM AÇÕES

@@ -1,14 +1,13 @@
-package com.digosofter.digowebapp.componente.item;
+package com.digosofter.digowebapp.html.componente.item;
 
-import com.digosofter.digowebapp.componente.ComponenteMain;
 import com.digosofter.digowebapp.database.DbColuna;
-import com.digosofter.digowebapp.database.DbColuna.EnmClnTipo;
+import com.digosofter.digowebapp.database.DbColuna.EnmTipo;
 import com.digosofter.digowebapp.erro.Erro;
 import com.digosofter.digowebapp.html.Campo;
-import com.digosofter.digowebapp.html.Campo.EnmTipo;
 import com.digosofter.digowebapp.html.CampoComboBox;
 import com.digosofter.digowebapp.html.CssTag;
 import com.digosofter.digowebapp.html.Painel;
+import com.digosofter.digowebapp.html.componente.ComponenteMain;
 
 public class CampoFrmTbl extends ComponenteMain {
 
@@ -17,8 +16,6 @@ public class CampoFrmTbl extends ComponenteMain {
   private Campo _objCampo;
 
   private Painel _pnlCampo;
-
-  private Painel _pnlContainer;
 
   private Painel _pnlTitulo;
 
@@ -29,6 +26,8 @@ public class CampoFrmTbl extends ComponenteMain {
       // AÇÕES
 
       this.setCln(cln);
+      this.addCss(CssTag.getCssMainInst().setFloat("left"));
+      this.addCss(CssTag.getCssMainInst().setWidth(this.getDblCampoWidth(), "%"));
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -56,7 +55,7 @@ public class CampoFrmTbl extends ComponenteMain {
       }
 
       // CheckBox
-      if (this.getCln().getEnmClnTipo() == EnmClnTipo.BOOLEAN) {
+      if (this.getCln().getEnmTipo() == EnmTipo.BOOLEAN) {
         this.definirTipoCampoCheckBox();
         return;
       }
@@ -65,7 +64,7 @@ public class CampoFrmTbl extends ComponenteMain {
       this.setObjCampo(new Campo());
 
       if (this.getCln().getIntTamanhoCampo() >= 120) {
-        this.getObjCampo().setEnmTipo(EnmTipo.TEXT_AREA);
+        this.getObjCampo().setEnmTipo(Campo.EnmTipo.TEXT_AREA);
       }
 
       // FIM AÇÕES
@@ -90,7 +89,7 @@ public class CampoFrmTbl extends ComponenteMain {
       // AÇÕES
 
       objCampo = new Campo();
-      objCampo.setEnmTipo(EnmTipo.CHECKBOX);
+      objCampo.setEnmTipo(Campo.EnmTipo.CHECKBOX);
 
       this.setObjCampo(objCampo);
 
@@ -246,30 +245,6 @@ public class CampoFrmTbl extends ComponenteMain {
   }
 
   @Override
-  public Painel getPnlContainer() {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
-    try {
-      // AÇÕES
-
-      if (_pnlContainer == null) {
-        _pnlContainer = super.getPnlContainer();
-        _pnlContainer.addCss(CssTag.getCssMainInst().setFloat("left"));
-        _pnlContainer.addCss(CssTag.getCssMainInst().setWidth(this.getDblCampoWidth(), "%"));
-      }
-
-      // FIM AÇÕES
-    } catch (Exception ex) {
-
-      new Erro("Erro inesperado.\n", ex);
-
-    } finally {
-    }
-
-    return _pnlContainer;
-  }
-
-  @Override
   protected Painel getPnlTitulo() {
     // VARIÁVEIS
     // FIM VARIÁVEIS
@@ -296,16 +271,16 @@ public class CampoFrmTbl extends ComponenteMain {
   }
 
   @Override
-  public void montarLayout() {
+  protected void montarLayout() {
     // VARIÁVEIS
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      this.getPnlTitulo().setTagPai(this.getPnlContainer());
-      this.getPnlCampo().setTagPai(this.getPnlContainer());
+      this.getPnlTitulo().setTagPai(this);
+      this.getPnlCampo().setTagPai(this);
       this.getObjCampo().setTagPai(this.getPnlCampo());
-      this.getPnlContainer().setTagPai(this.getCln().getTbl().getFrmTbl().getPnlCampos());
+      this.setTagPai(this.getCln().getTbl().getFrmTbl().getPnlCampos());
 
       // FIM AÇÕES
     } catch (Exception ex) {

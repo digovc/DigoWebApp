@@ -1,16 +1,27 @@
-package com.digosofter.digowebapp.componente;
+package com.digosofter.digowebapp.html.componente;
 
 import com.digosofter.digowebapp.AppWeb;
-import com.digosofter.digowebapp.componente.item.CampoFrmTbl;
 import com.digosofter.digowebapp.database.DbColuna;
 import com.digosofter.digowebapp.database.DbTabela;
 import com.digosofter.digowebapp.erro.Erro;
 import com.digosofter.digowebapp.html.Botao;
+import com.digosofter.digowebapp.html.CssTag;
 import com.digosofter.digowebapp.html.Formulario;
 import com.digosofter.digowebapp.html.LimiteFloat;
 import com.digosofter.digowebapp.html.Painel;
+import com.digosofter.digowebapp.html.componente.item.CampoFrmTbl;
 
 public class FormularioTbl extends ComponenteMain {
+
+  private boolean _booSubmit = false;
+
+  private boolean getBooSubmit() {
+    return _booSubmit;
+  }
+
+  public void setBooSubmit(boolean booSubmit) {
+    _booSubmit = booSubmit;
+  }
 
   private Botao _btnSalvar;
 
@@ -32,6 +43,7 @@ public class FormularioTbl extends ComponenteMain {
       // AÇÕES
 
       this.setTbl(tbl);
+      this.addCss(CssTag.getCssMainInst().setPadding(15, "px"));
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -52,6 +64,7 @@ public class FormularioTbl extends ComponenteMain {
 
         _btnSalvar = new Botao();
         _btnSalvar.setStrConteudo("Salvar");
+        _btnSalvar.setStrId("btnSalvar");
       }
 
       // FIM AÇÕES
@@ -82,6 +95,10 @@ public class FormularioTbl extends ComponenteMain {
         // strAction += "=salvar";
 
         _frm = new Formulario(strAction, Formulario.EnmMetodo.POST);
+
+        if (!this.getBooSubmit()) {
+          _frm.addAtr("onsubmit", "return false;");
+        }
       }
 
       // FIM AÇÕES
@@ -172,7 +189,10 @@ public class FormularioTbl extends ComponenteMain {
   }
 
   @Override
-  public void montarLayout() {
+  protected void montarLayout() {
+
+    super.montarLayout();
+
     // VARIÁVEIS
 
     String strParam;
@@ -202,7 +222,7 @@ public class FormularioTbl extends ComponenteMain {
     }
   }
 
-  public void montarLayoutCadastro() {
+  private void montarLayoutCadastro() {
     // VARIÁVEIS
 
     int intQtdLinha;
@@ -211,8 +231,8 @@ public class FormularioTbl extends ComponenteMain {
     try {
       // AÇÕES
 
-      this.getPnlTitulo().setTagPai(this.getPnlContainer());
-      this.getFrm().setTagPai(this.getPnlContainer());
+      this.getPnlTitulo().setTagPai(this);
+      this.getFrm().setTagPai(this);
       this.getPnlCampos().setTagPai(this.getFrm());
       this.getPnlComando().setTagPai(this.getFrm());
       this.getBtnSalvar().setTagPai(this.getPnlComando());
@@ -226,12 +246,13 @@ public class FormularioTbl extends ComponenteMain {
           if (cln.getIntFrmLinha() == intIndex) {
 
             cln.setObjCampoFrmTbl(new CampoFrmTbl(cln));
-            cln.getObjCampoFrmTbl().montarLayout();
+            cln.getObjCampoFrmTbl().setTagPai(this.getPnlCampos());
+            ;
           }
         }
       }
 
-      this.getObjLimiteFloat().setTagPai(this.getPnlContainer());
+      this.getObjLimiteFloat().setTagPai(this.getPnlComando());
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -248,7 +269,7 @@ public class FormularioTbl extends ComponenteMain {
     try {
       // AÇÕES
 
-      this.getPnlContainer().setStrConteudo("Salvo com sucesso!");
+      this.setStrConteudo("Salvo com sucesso!");
 
       // FIM AÇÕES
     } catch (Exception ex) {

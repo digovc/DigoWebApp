@@ -2,31 +2,47 @@
 // ATRIBUTOS GLOBAIS
 // CLASSE
 function Usuario() {
-	// HERANÇA
-	Objeto.apply(this);
+  // HERANÇA
 
-	// ATRIBUTO
+  Objeto.apply(this);
 
-	var _booLogado = false;
-	this.getBooLogado = function() {
-		return _booLogado;
-	}
-	this.setBooLogado = function(booLogado) {
-		_booLogado = booLogado;
-	}
+  // ATRIBUTO
 
-	// MÉTODO
+  var _booLogado = false;
 
-	/* Construtor */
-	{
-		// VARIÁVEL
-		// AÇÃO
-	}
+  this.getBooLogado = function() {
+    return _booLogado;
+  }
+
+  this.setBooLogado = function(booLogado) {
+    _booLogado = booLogado;
+  }
+
+  var _intUsuarioId = null;
+
+  this.getIntUsuarioId = function() {
+    return _intUsuarioId;
+  }
+
+  this.setIntUsuarioId = function(intUsuarioId) {
+    _intUsuarioId = intUsuarioId;
+  }
+
+  // MÉTODO
+
+  /* Construtor */
+  {
+    // VARIÁVEL
+    // AÇÃO
+  }
 
 }
 
 // INICIALIZAÇÃO
 var objUsuario;
+
 $(document).ready(function() {
-	objUsuario = new Usuario();
+
+  objUsuario = new Usuario();
+
 });

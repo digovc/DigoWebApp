@@ -7,10 +7,11 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.websocket.server.ServerEndpointConfig;
 
 import com.digosofter.digowebapp.design.PaletaCor;
 import com.digosofter.digowebapp.erro.Erro;
-import com.digosofter.digowebapp.websocket.WsConexaoMain;
+import com.digosofter.digowebapp.websocket.WebSocketMain;
 
 public abstract class AppWeb extends Objeto {
 
@@ -18,13 +19,20 @@ public abstract class AppWeb extends Objeto {
 
   private static AppWeb i;
 
+  public static final String JS_BOTAO = "res/js/lib/JDigo/html/Botao.js";
+  public static final String JS_CAMPO = "res/js/lib/JDigo/html/Campo.js";
+  public static final String JS_COMPONENTE_MAIN = "res/js/lib/JDigo/html/componente/ComponenteMain.js";
+  public static final String JS_FORMULARIO = "res/js/lib/JDigo/html/Formulario.js";
+  public static final String JS_IMAGEM = "res/js/lib/JDigo/html/Imagem.js";
+  public static final String JS_ITEM_MAIN = "res/js/lib/JDigo/html/componente/item/ItemMain.js";
+  public static final String JS_PAINEL = "res/js/lib/JDigo/html/Painel.js";
+  public static final String JS_TAG = "res/js/lib/JDigo/html/Tag.js";
+
   public static AppWeb getI() {
     return i;
   }
 
   private List<Usuario> _lstObjUsuarioSessao;
-
-  private List<WsConexaoMain> _lstObjWsConexaoMain;
 
   private HttpServletRequest _objHttpServletRequest;
 
@@ -32,7 +40,7 @@ public abstract class AppWeb extends Objeto {
 
   private HttpSession _objHttpSession;
 
-  private PaletaCor _objPaletaCorSelecionada;
+  private PaletaCor _objPaletaCor;
 
   private PrintWriter _objPrintWriter;
 
@@ -102,6 +110,27 @@ public abstract class AppWeb extends Objeto {
     return booResultado;
   }
 
+  public int getIntPostParam(String strParamNome) {
+    // VARIÁVEIS
+
+    int intResultado = -1;
+
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      intResultado = Integer.valueOf(this.getObjHttpServletRequest().getParameter(strParamNome));
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      intResultado = -1;
+
+    } finally {
+    }
+    return intResultado;
+  }
+
   public List<PaletaCor> getLstObjPaletaCor() {
     // VARIÁVEIS
     // FIM VARIÁVEIS
@@ -144,27 +173,6 @@ public abstract class AppWeb extends Objeto {
     return _lstObjUsuarioSessao;
   }
 
-  public List<WsConexaoMain> getLstObjWsConexaoMain() {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
-    try {
-      // AÇÕES
-
-      if (_lstObjWsConexaoMain == null) {
-        _lstObjWsConexaoMain = new ArrayList<WsConexaoMain>();
-      }
-
-      // FIM AÇÕES
-    } catch (Exception ex) {
-
-      new Erro("Erro inesperado.\n", ex);
-
-    } finally {
-    }
-
-    return _lstObjWsConexaoMain;
-  }
-
   public HttpServletRequest getObjHttpServletRequest() {
     return _objHttpServletRequest;
   }
@@ -177,14 +185,24 @@ public abstract class AppWeb extends Objeto {
     return _objHttpSession;
   }
 
-  public PaletaCor getObjPaletaCorSelecionada() {
+  public PaletaCor getObjPaletaCor() {
     // VARIÁVEIS
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      if (_objPaletaCorSelecionada == null) {
-        this.getLstObjPaletaCor();
+      if (_objPaletaCor != null) {
+        return _objPaletaCor;
+      }
+
+      for (PaletaCor objPaletaCor : this.getLstObjPaletaCor()) {
+
+        if (objPaletaCor.getBooSelecionado()) {
+
+          _objPaletaCor = objPaletaCor;
+          return _objPaletaCor;
+        }
+
       }
 
       // FIM AÇÕES
@@ -195,7 +213,7 @@ public abstract class AppWeb extends Objeto {
     } finally {
     }
 
-    return _objPaletaCorSelecionada;
+    return _objPaletaCor;
   }
 
   private PrintWriter getObjPrintWriter() {
@@ -224,6 +242,36 @@ public abstract class AppWeb extends Objeto {
     }
 
     return _objUsuarioAtual;
+  }
+
+  public Usuario getObjUsuarioPorSessaoId(String strSessaoId) {
+    // VARIÁVEIS
+
+    Usuario objUsuarioResultado = null;
+
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      for (Usuario objUsuario : this.getLstObjUsuarioSessao()) {
+
+        if (objUsuario.getStrSessaoId().equals(strSessaoId)) {
+
+          objUsuarioResultado = objUsuario;
+          break;
+
+        }
+      }
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+
+    return objUsuarioResultado;
   }
 
   /**
@@ -274,16 +322,16 @@ public abstract class AppWeb extends Objeto {
     return _strPagSolicitada;
   }
 
-  public String getStrPostParametro(String strParametroNome) {
+  public String getStrPostParam(String strParamNome) {
     // VARIÁVEIS
 
-    String strParametroValorResultado = Utils.STRING_VAZIA;
+    String strResultado = Utils.STRING_VAZIA;
 
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      strParametroValorResultado = this.getObjHttpServletRequest().getParameter(strParametroNome);
+      strResultado = this.getObjHttpServletRequest().getParameter(strParamNome);
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -292,7 +340,7 @@ public abstract class AppWeb extends Objeto {
 
     } finally {
     }
-    return strParametroValorResultado;
+    return strResultado;
   }
 
   public void reencaminhar(String strUrl) {
@@ -396,7 +444,7 @@ public abstract class AppWeb extends Objeto {
   }
 
   public void setObjPaletaCorSelecionada(PaletaCor objPaletaCorSelecionada) {
-    _objPaletaCorSelecionada = objPaletaCorSelecionada;
+    _objPaletaCor = objPaletaCorSelecionada;
   }
 
   public void setObjPrintWriter(PrintWriter objPrintWriter) {

@@ -36,7 +36,7 @@ public class JavaScriptTag extends Tag {
     }
   }
 
-  public void adicionarJsCodigo(String strJsCodigo) {
+  public void addJsCodigo(String strJsCodigo) {
     // VARIÁVEIS
     // FIM VARIÁVEIS
     try {
@@ -83,7 +83,7 @@ public class JavaScriptTag extends Tag {
     return _lstStrMetodos;
   }
 
-  private String getStrSrc() {
+  public String getStrSrc() {
     return _strSrc;
   }
 
@@ -142,4 +142,7 @@ public class JavaScriptTag extends Tag {
     }
   }
 
+  @Override
+  protected void addJsArquivo(List<JavaScriptTag> lstObjJsTag) {
+  }
 }

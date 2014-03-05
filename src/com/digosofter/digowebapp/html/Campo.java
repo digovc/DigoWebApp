@@ -1,5 +1,8 @@
 package com.digosofter.digowebapp.html;
 
+import java.util.List;
+
+import com.digosofter.digowebapp.AppWeb;
 import com.digosofter.digowebapp.erro.Erro;
 
 public class Campo extends Tag {
@@ -23,8 +26,27 @@ public class Campo extends Tag {
 
       this.setStrTagNome("input");
       this.addCss(CssTag.getCssMainInst().addCss("box-sizing", "border-box"));
-      PaginaHtml.getI().getLstObjJsTag()
-          .add(new JavaScriptTag("res/js/lib/JDigo/html/Campo.js"));
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+  }
+
+  @Override
+  protected void addJsArquivo(List<JavaScriptTag> lstObjJsTag) {
+
+    super.addJsArquivo(lstObjJsTag);
+
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      lstObjJsTag.add(new JavaScriptTag(AppWeb.JS_CAMPO));
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -118,7 +140,7 @@ public class Campo extends Tag {
         case TEXT_AREA:
           this.setStrTagNome("textarea");
           this.setBooForcarTagDupla(true);
-          this.addAtr("rows", "10");
+          this.addAtr("rows", "5");
           break;
         case TIME:
           this.getAtrType().setStrValor("time");

@@ -1,6 +1,7 @@
 package com.digosofter.digowebapp;
 
 import com.digosofter.digowebapp.erro.Erro;
+import com.digosofter.digowebapp.html.PaginaHtml;
 
 public class Usuario extends Objeto {
 

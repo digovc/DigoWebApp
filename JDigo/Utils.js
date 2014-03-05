@@ -5,7 +5,7 @@
 // CLASSE
 
 /**
- * 
+ *
  */
 function _Utils() {
 	// HERANÇA
@@ -18,25 +18,25 @@ function _Utils() {
 
 	this.carregarImagem = function(strSrc, evtOnLoad) {
 		// VARIÁVEIS
-		
+
 		var img;
-		
+
 		// FIM VARIÁVEIS
 		try {
 			// AÇÕES
-			
+
 			img = new Image;
 			img.src = strSrc;
 			img.onload = evtOnLoad;
-			
+
 			// FIM AÇÕES
 		} catch (e) {
 			new Erro("Erro inesperado.", e);
 		}
-		
+
 		return img;
 	}
-	
+
 	this.getBooVazia = function(str) {
 		// VARIÁVEIS
 
@@ -116,7 +116,7 @@ function _Utils() {
 
 			strMensagemFormatada = "Informação:";
 			strMensagemFormatada += "\n\n\n";
-			
+
 			if (lstStrMensagem != null && lstStrMensagem.length > 0) {
 
 				for (var intIndex in lstStrMensagem) {

@@ -3,7 +3,8 @@
 // CLASSE
 function Erro(strMensagem, e) {
 	// HERANÇA
-	Objeto.apply(this);
+
+  Objeto.apply(this);
 
 	// ATRIBUTO
 	var _strMensagem = "Erro inesperado.";

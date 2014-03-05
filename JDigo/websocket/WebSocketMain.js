@@ -6,83 +6,119 @@
 
 // CLASSE
 function WebSocketMain(strUrl) {
-	// HERANÇA
+  // HERANÇA
+  // FIM HERANÇA
 
-	Objeto.apply(this);
+  // ATRIBUTO
 
-	// FIM HERANÇA
+  var _fncOnMessage = null;
 
-	// ATRIBUTO
+  /**
+   * Método que deve ser implementado pela classe de instância para receber e
+   * processar as mensagens vindas do servidor.
+   */
+  this.getFncOnMessage = function() {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-	var _fncOnMessage;
-	this.getFncOnMessage = function() {
-		return _fncOnMessage;
-	}
-	this.setFncOnMessage = function(fncOnMessage) {
-		_fncOnMessage = fncOnMessage;
-	}
+      if (_fncOnMessage == null) {
 
-	var _objWebSocket;
-	this.getObjWebSocket = function() {
-		if (!"WebSocket" in window) {
-			new Erro(STR_MENSAGEM_00001, null);
-		}
+        _fncOnMessage = function(evt)
+        {
+          // VARIÁVEIS
+          // FIM VARIÁVEIS
+          try {
+            // AÇÕES
+            // FIM AÇÕES
+          } catch (e) {
+            new Erro("Erro inesperado.", e);
+          }
+        }
 
-		if (_objWebSocket == null) {
-			_objWebSocket = new WebSocket(this.getStrUrl());
+      }
 
-			_objWebSocket.onmessage = this.getFncOnMessage();
-		}
+      // FIM AÇÕES
+    } catch (e) {
+      new Erro("Erro inesperado.", e);
+    }
 
-		return _objWebSocket;
-	}
+    return _fncOnMessage;
+  }
 
-	var _strUrl = "";
-	this.getStrUrl = function() {
-		return _strUrl + "?" + appWeb.getStrSessionId();
-	}
-	this.setStrUrl = function(strUrl) {
-		_strUrl = strUrl;
-	}
+  var _objWebSocket;
 
-	// FIM ATRIBUTO
+  this.getObjWebSocket = function() {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-	// MÉTODO
+      if (!"WebSocket" in window) {
+        new Erro(STR_MENSAGEM_00001, null);
+      }
 
-	this.abrirConexao = function() {
-		// VARIÁVEIS
-		try {
-			// AÇÕES
-			this.getObjWebSocket();
+      if (_objWebSocket == null) {
+        _objWebSocket = new WebSocket(this.getStrUrl());
 
-		} catch (e) {
-			new Erro("Erro inesperado.", e);
-		}
-	}
+        _objWebSocket.onmessage = this.getFncOnMessage();
+      }
 
-	this.enviar = function(objWsObjetoMain) {
-		// VARIÁVEIS
-		try {
-			// AÇÕES
+      // FIM AÇÕES
+    } catch (e) {
+      new Erro("Erro inesperado.", e);
+    }
 
-			this.getObjWebSocket().send(JSON.stringify(objWsObjetoMain));
+    return _objWebSocket;
+  }
 
-		} catch (e) {
-			new Erro("Erro inesperado.", e);
-		}
-	}
+  var _strUrl = "";
 
-	// FIM MÉTODO
+  this.getStrUrl = function() {
+    return _strUrl;
+  }
 
-	/* Construtor */
-	{
-		// VARIÁVEL
-		// AÇÃO
+  this.setStrUrl = function(strUrl) {
+    _strUrl = strUrl;
+  }
 
-		this.setStrUrl(strUrl);
-	}
+  // FIM ATRIBUTO
+
+  // MÉTODO
+
+  this.abrirConexao = function() {
+    // VARIÁVEIS
+    try {
+      // AÇÕES
+
+      this.getObjWebSocket();
+
+    } catch (e) {
+      new Erro("Erro inesperado.", e);
+    }
+  }
+
+  this.enviar = function(objWsInterlocutor) {
+    // VARIÁVEIS
+    try {
+      // AÇÕES
+
+      this.getObjWebSocket().send(JSON.stringify(objWsInterlocutor));
+
+    } catch (e) {
+      new Erro("Erro inesperado.", e);
+    }
+  }
+
+  // FIM MÉTODO
+
+  /* Construtor */
+  {
+    // VARIÁVEL
+    // AÇÃO
+
+    this.setStrUrl(strUrl);
+  }
 
 }
-
-// INICIALIZAÇÃO
-// FIM INICIALIZAÇÃO

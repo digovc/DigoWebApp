@@ -20,7 +20,7 @@ public abstract class Objeto {
 
   private String _strNomeExibicao;
 
-   public Objeto() {
+  public Objeto() {
     // VARIÁVEIS
     // FIM VARIÁVEIS
     try {

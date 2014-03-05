@@ -1,5 +1,8 @@
 package com.digosofter.digowebapp.html;
 
+import java.util.List;
+
+import com.digosofter.digowebapp.AppWeb;
 import com.digosofter.digowebapp.erro.Erro;
 
 public class Painel extends Tag {
@@ -14,8 +17,26 @@ public class Painel extends Tag {
       this.setBooForcarTagDupla(true);
       this.addCss(CssTag.getCssMainInst().setTextAlign("center"));
 
-      PaginaHtml.getI().getLstObjJsTag()
-          .add(new JavaScriptTag("res/js/lib/JDigo/html/Painel.js"));
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+  }
+
+  @Override
+  protected void addJsArquivo(List<JavaScriptTag> lstObjJsTag) {
+
+    super.addJsArquivo(lstObjJsTag);
+
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      lstObjJsTag.add(new JavaScriptTag(AppWeb.JS_PAINEL));
 
       // FIM AÇÕES
     } catch (Exception ex) {

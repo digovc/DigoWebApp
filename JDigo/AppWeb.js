@@ -6,57 +6,74 @@
 
 // CLASSE
 function AppWeb() {
-	// HERANÇA
+  // HERANÇA
 
-	Objeto.apply(this);
+  Objeto.apply(this);
 
-	// FIM HERANÇA
+  // FIM HERANÇA
 
-	// ATRIBUTO
+  // ATRIBUTO
 
-	var _arrObjPaletaCor = null;
-	this.getArrObjPaletaCor = function() {
-		if (_arrObjPaletaCor == null) {
-			_arrObjPaletaCor = new Array();
-		}
-		return _arrObjPaletaCor;
-	}
+  var _arrObjPaletaCor = null;
 
-	var _intPaletaCorSelecionada = 0;
-	this.getIntPaletaCorSelecionada = function() {
-		return _intPaletaCorSelecionada;
-	}
-	this.setIntPaletaCorSelecionada = function(intPaletaCorSelecionada) {
-		_intPaletaCorSelecionada = intPaletaCorSelecionada;
-	}
+  this.getArrObjPaletaCor = function() {
 
-	var _strSessionId;
-	this.getStrSessionId = function() {
-		return _strSessionId;
-	}
+    if (_arrObjPaletaCor == null) {
+      _arrObjPaletaCor = new Array();
+    }
 
-	this.setStrSessionId = function(strSessionId) {
-		_strSessionId = strSessionId;
-	}
+    return _arrObjPaletaCor;
+  }
 
-	// FIM ATRIBUTO
+  var _intPaletaCorSelecionada = 0;
 
-	// MÉTODO
-	// FIM MÉTODO
+  this.getIntPaletaCorSelecionada = function() {
 
-	/* Construtor */
-	{
-		// VARIÁVEL
-		// AÇÃO
-	}
+    return _intPaletaCorSelecionada;
+
+  }
+
+  this.setIntPaletaCorSelecionada = function(intPaletaCorSelecionada) {
+
+    _intPaletaCorSelecionada = intPaletaCorSelecionada;
+
+  }
+
+  var _strSessionId;
+
+  this.getStrSessionId = function() {
+
+    return _strSessionId;
+
+  }
+
+  this.setStrSessionId = function(strSessionId) {
+
+    _strSessionId = strSessionId;
+
+  }
+
+  // FIM ATRIBUTO
+
+  // MÉTODO
+  // FIM MÉTODO
+
+  /* Construtor */
+  {
+    // VARIÁVEL
+    // AÇÃO
+  }
 
 }
 
 // INICIALIZAÇÃO
 
 var appWeb;
+
 $(document).ready(function() {
-	appWeb = new AppWeb();
+
+  appWeb = new AppWeb();
+
 });
 
 // FIM INICIALIZAÇÃO

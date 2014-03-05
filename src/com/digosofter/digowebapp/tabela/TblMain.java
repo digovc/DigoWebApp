@@ -38,14 +38,6 @@ public abstract class TblMain extends DbTabela {
     }
   }
 
-  public void buscarRegistroPeloId(int intId) {
-    this.buscarRegistroPorCln(this.getClnIntId(), String.valueOf(intId));
-  }
-
-  public void buscarRegistroPeloId(String strId) {
-    this.buscarRegistroPeloId(Integer.valueOf(strId));
-  }
-
   public DbColuna getClnBooAtivo() {
     // VARIÁVEIS
     // FIM VARIÁVEIS
@@ -53,7 +45,7 @@ public abstract class TblMain extends DbTabela {
       // AÇÕES
 
       if (_clnBooAtivo == null) {
-        _clnBooAtivo = new DbColuna("boo_ativo", this, DbColuna.EnmClnTipo.BOOLEAN);
+        _clnBooAtivo = new DbColuna("boo_ativo", this, DbColuna.EnmTipo.BOOLEAN);
         _clnBooAtivo.setBooVisivelCadastro(false);
         _clnBooAtivo.setBooVisivelConsulta(false);
         _clnBooAtivo.setIntFrmLinha(2);
@@ -79,7 +71,7 @@ public abstract class TblMain extends DbTabela {
 
       if (_clnDttAlteracao == null) {
         _clnDttAlteracao = new DbColuna("dtt_alteracao", this,
-            DbColuna.EnmClnTipo.TIMESTAMP_WITHOUT_TIME_ZONE);
+            DbColuna.EnmTipo.TIMESTAMP_WITHOUT_TIME_ZONE);
         _clnDttAlteracao.setBooVisivelCadastro(false);
         _clnDttAlteracao.setBooVisivelConsulta(false);
       }
@@ -103,7 +95,7 @@ public abstract class TblMain extends DbTabela {
 
       if (_clnDttCadastro == null) {
         _clnDttCadastro = new DbColuna("dtt_cadastro", this,
-            DbColuna.EnmClnTipo.TIMESTAMP_WITHOUT_TIME_ZONE);
+            DbColuna.EnmTipo.TIMESTAMP_WITHOUT_TIME_ZONE);
         _clnDttCadastro.setBooVisivelCadastro(false);
         _clnDttCadastro.setBooVisivelConsulta(false);
       }
@@ -127,7 +119,7 @@ public abstract class TblMain extends DbTabela {
 
       if (_clnDttExclusao == null) {
         _clnDttExclusao = new DbColuna("dtt_exclusao", this,
-            DbColuna.EnmClnTipo.TIMESTAMP_WITHOUT_TIME_ZONE);
+            DbColuna.EnmTipo.TIMESTAMP_WITHOUT_TIME_ZONE);
         _clnDttExclusao.setBooVisivelCadastro(false);
         _clnDttExclusao.setBooVisivelConsulta(false);
       }
@@ -151,7 +143,7 @@ public abstract class TblMain extends DbTabela {
 
       if (_clnIntId == null) {
 
-        _clnIntId = new DbColuna("int_id", this, DbColuna.EnmClnTipo.BIGSERIAL);
+        _clnIntId = new DbColuna("int_id", this, DbColuna.EnmTipo.BIGSERIAL);
         _clnIntId.setBooChavePrimaria(true);
         _clnIntId.setBooVisivelCadastro(false);
         _clnIntId.setBooVisivelConsulta(false);
@@ -177,7 +169,8 @@ public abstract class TblMain extends DbTabela {
       if (_clnIntUsuarioAlteracaoId == null) {
 
         _clnIntUsuarioAlteracaoId = new DbColuna("int_usuario_alteracao_id", this,
-            DbColuna.EnmClnTipo.BIGINT);
+            DbColuna.EnmTipo.BIGINT);
+        _clnIntUsuarioAlteracaoId.setBooVisivelCadastro(false);
       }
 
       // FIM AÇÕES
@@ -198,8 +191,10 @@ public abstract class TblMain extends DbTabela {
       // AÇÕES
 
       if (_clnIntUsuarioCadastroId == null) {
+
         _clnIntUsuarioCadastroId = new DbColuna("int_usuario_cadastro_id", this,
-            DbColuna.EnmClnTipo.BIGINT);
+            DbColuna.EnmTipo.BIGINT);
+        _clnIntUsuarioCadastroId.setBooVisivelCadastro(false);
       }
 
       // FIM AÇÕES
@@ -223,7 +218,7 @@ public abstract class TblMain extends DbTabela {
     try {
       // AÇÕES
 
-      intOrdem=0;
+      intOrdem = 0;
       this.getClnBooAtivo().setIntOrdem(++intOrdem);
       this.getClnDttAlteracao().setIntOrdem(++intOrdem);
       this.getClnDttCadastro().setIntOrdem(++intOrdem);

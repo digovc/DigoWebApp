@@ -1,5 +1,8 @@
 package com.digosofter.digowebapp.html;
 
+import java.util.List;
+
+import com.digosofter.digowebapp.AppWeb;
 import com.digosofter.digowebapp.erro.Erro;
 
 public class Formulario extends Tag {
@@ -22,8 +25,26 @@ public class Formulario extends Tag {
       this.setStrAction(strAction);
       this.setEnmMetodo(enmMetodo);
 
-      PaginaHtml.getI().getLstObjJsTag()
-          .add(new JavaScriptTag("res/js/lib/JDigo/html/Formulario.js"));
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+  }
+
+  @Override
+  protected void addJsArquivo(List<JavaScriptTag> lstObjJsTag) {
+
+    super.addJsArquivo(lstObjJsTag);
+
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      lstObjJsTag.add(new JavaScriptTag(AppWeb.JS_FORMULARIO));
 
       // FIM AÇÕES
     } catch (Exception ex) {
