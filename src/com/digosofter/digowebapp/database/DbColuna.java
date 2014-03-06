@@ -6,8 +6,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import sun.org.mozilla.javascript.internal.ast.SwitchStatement;
-
 import com.digosofter.digowebapp.Objeto;
 import com.digosofter.digowebapp.Utils;
 import com.digosofter.digowebapp.erro.Erro;
@@ -20,7 +18,7 @@ public class DbColuna extends Objeto {
     BIGINT, BIGSERIAL, BOOLEAN, CHAR, DATE, DECIMAL, DOUBLE, INTEGER, INTERVAL, MONEY, NUMERIC, REAL, SERIAL, SMALLINT, TEXT, TIME_WITH_TIME_ZONE, TIME_WITHOUT_TIME_ZONE, TIMESTAMP_WITH_TIME_ZONE, TIMESTAMP_WITHOUT_TIME_ZONE, VARCHAR
   }
 
-  public static enum EnmTipoGrupo {
+  private  static enum EnmTipoGrupo {
     ALPHANUMERICO, NUMERICO, TEMPORAL
   }
 
@@ -49,8 +47,6 @@ public class DbColuna extends Objeto {
   private int _intTamanhoCampo = 50;
 
   private List<String> _lstStrOpcao;
-
-  private CampoFrmTbl _objCampoFrmTbl;
 
   private String _strValor;
 
@@ -249,10 +245,6 @@ public class DbColuna extends Objeto {
     return _lstStrOpcao;
   }
 
-  public CampoFrmTbl getObjCampoFrmTbl() {
-    return _objCampoFrmTbl;
-  }
-
   public String getStrValor() {
     return _strValor;
   }
@@ -382,10 +374,6 @@ public class DbColuna extends Objeto {
 
   protected void setLstStrOpcao(List<String> lstStrOpcao) {
     _lstStrOpcao = lstStrOpcao;
-  }
-
-  public void setObjCampoFrmTbl(CampoFrmTbl objCampoFrmTbl) {
-    _objCampoFrmTbl = objCampoFrmTbl;
   }
 
   public void setStrValor(String strValor) {

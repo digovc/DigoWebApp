@@ -1,10 +1,10 @@
 // CONSTANTE
 // ATRIBUTOS GLOBAIS
 // CLASSE
-function Botao() {
+function Botao(strId) {
 	// HERANÇA
 
-  Tag.apply(this);
+	Tag.apply(this);
 	Objeto.apply(this);
 
 	// ATRIBUTO
@@ -12,8 +12,19 @@ function Botao() {
 
 	/* Construtor */
 	{
-		// VARIÁVEL
-		// AÇÃO
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			if (!Utils.getBooStrVazia(strId)) {
+				this.setStrId(strId);
+			}
+
+			// FIM AÇÕES
+		} catch (e) {
+			new Erro("Erro inesperado.", e);
+		}
 	}
 
 }

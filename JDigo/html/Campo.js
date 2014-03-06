@@ -7,7 +7,7 @@
 /**
  *
  */
-function Campo() {
+function Campo(strId) {
 	// HERANÇA
 
 	Tag.apply(this);
@@ -56,16 +56,19 @@ function Campo() {
 
 	/* Construtor */
 	{
-		// VARIÁVEL
-		// AÇÃO
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			if (!Utils.getBooStrVazia(strId)) {
+				this.setStrId(strId);
+			}
+
+			// FIM AÇÕES
+		} catch (e) {
+			new Erro("Erro inesperado.", e);
+		}
 	}
 
 }
-// INICIALIZAÇÃO
-
-// var objCampo;
-// $(document).ready(function() {
-// objCampo = new Campo();
-// });
-
-// FIM INICIALIZAÇÃO

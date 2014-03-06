@@ -224,9 +224,6 @@ public class FormularioTbl extends ComponenteMain {
 
   private void montarLayoutCadastro() {
     // VARIÁVEIS
-
-    int intQtdLinha;
-
     // FIM VARIÁVEIS
     try {
       // AÇÕES
@@ -237,22 +234,39 @@ public class FormularioTbl extends ComponenteMain {
       this.getPnlComando().setTagPai(this.getFrm());
       this.getBtnSalvar().setTagPai(this.getPnlComando());
 
-      intQtdLinha = this.getIntQtdLinha();
+      this.montarLayoutCampos();
 
-      for (int intIndex = 1; intIndex <= intQtdLinha; intIndex++) {
+      this.getObjLimiteFloat().setTagPai(this.getPnlComando());
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+  }
+
+  private void montarLayoutCampos() {
+    // VARIÁVEIS
+
+    CampoFrmTbl objCampoFrmTbl;
+
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      for (int intIndex = 1; intIndex <= this.getIntQtdLinha(); intIndex++) {
 
         for (DbColuna cln : this.getTbl().getLstClnVisivelCadastro()) {
 
           if (cln.getIntFrmLinha() == intIndex) {
 
-            cln.setObjCampoFrmTbl(new CampoFrmTbl(cln));
-            cln.getObjCampoFrmTbl().setTagPai(this.getPnlCampos());
-            ;
+            objCampoFrmTbl = new CampoFrmTbl(cln);
+            objCampoFrmTbl.setTagPai(this.getPnlCampos());
           }
         }
       }
-
-      this.getObjLimiteFloat().setTagPai(this.getPnlComando());
 
       // FIM AÇÕES
     } catch (Exception ex) {

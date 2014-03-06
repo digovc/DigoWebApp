@@ -7,7 +7,7 @@
 /**
  *
  */
-function Formulario() {
+function Formulario(strId) {
 	// HERANÇA
 
 	Tag.apply(this);
@@ -36,9 +36,21 @@ function Formulario() {
 
 	// FIM MÉTODO
 
-	/* Construtor */{
-		// VARIÁVEL
-		// AÇÃO
+	/* Construtor */
+	{
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			if (!Utils.getBooStrVazia(strId)) {
+				this.setStrId(strId);
+			}
+
+			// FIM AÇÕES
+		} catch (e) {
+			new Erro("Erro inesperado.", e);
+		}
 	}
 
 }
@@ -46,7 +58,7 @@ function Formulario() {
 
 // var objFormulario;
 // $(document).ready(function() {
-//	objFormulario = new Formulario();
+// objFormulario = new Formulario();
 // });
 
 // FIM INICIALIZAÇÃO

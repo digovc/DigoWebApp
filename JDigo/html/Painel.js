@@ -1,7 +1,7 @@
 // CONSTANTE
 // ATRIBUTOS GLOBAIS
 // CLASSE
-function Painel() {
+function Painel(strId) {
 	// HERANÇA
 
   Tag.apply(this);
@@ -12,8 +12,19 @@ function Painel() {
 
 	/* Construtor */
 	{
-		// VARIÁVEL
-		// AÇÃO
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			if (!Utils.getBooStrVazia(strId)) {
+				this.setStrId(strId);
+			}
+
+			// FIM AÇÕES
+		} catch (e) {
+			new Erro("Erro inesperado.", e);
+		}
 	}
 
 }

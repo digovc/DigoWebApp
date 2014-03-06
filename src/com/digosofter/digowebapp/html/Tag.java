@@ -376,6 +376,38 @@ public class Tag extends Objeto {
     return stbTagFormatada.toString();
   }
 
+  protected String getStrTagNome() {
+    return _strTagNome;
+  }
+
+  private String getStrTitle() {
+    return _strTitle;
+  };
+
+  public Tag getTagPai() {
+    return _tagPai;
+  }
+
+  /**
+   * Limpa todas as "classes" já adicionadas à tag.
+   */
+  public void limparClass() {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      this.getAtrClass().getLstStrValor().clear();
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+  }
+
   protected void montarLayout() {
     // VARIÁVEIS
     // FIM VARIÁVEIS
@@ -391,18 +423,6 @@ public class Tag extends Objeto {
 
     } finally {
     }
-  };
-
-  protected String getStrTagNome() {
-    return _strTagNome;
-  }
-
-  private String getStrTitle() {
-    return _strTitle;
-  }
-
-  public Tag getTagPai() {
-    return _tagPai;
   }
 
   private void setAtrClass(Atributo atrClass) {

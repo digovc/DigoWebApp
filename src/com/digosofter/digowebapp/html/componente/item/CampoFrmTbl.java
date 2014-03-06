@@ -207,7 +207,6 @@ public class CampoFrmTbl extends ComponenteMain {
         _objCampo.setStrNome(this.getCln().getStrNomeSimplificado());
         _objCampo.addCss(CssTag.getCssMainInst().setPadding(5, "px"));
         _objCampo.addCss(CssTag.getCssMainInst().setWidth(100, "%"));
-
       }
 
       // FIM A합ES
@@ -228,6 +227,7 @@ public class CampoFrmTbl extends ComponenteMain {
       // A합ES
 
       if (_pnlCampo == null) {
+
         _pnlCampo = new Painel();
         _pnlCampo.addCss(CssTag.getCssMainInst().setPaddingLeft(10));
         _pnlCampo.addCss(CssTag.getCssMainInst().setPaddingRight(10));
@@ -252,6 +252,7 @@ public class CampoFrmTbl extends ComponenteMain {
       // A합ES
 
       if (_pnlTitulo == null) {
+
         _pnlTitulo = super.getPnlTitulo();
         _pnlTitulo.setStrConteudo(this.getCln().getStrNomeExibicao());
         _pnlTitulo.addCss(CssTag.getCssMainInst().setPaddingLeft(10));
@@ -280,7 +281,6 @@ public class CampoFrmTbl extends ComponenteMain {
       this.getPnlTitulo().setTagPai(this);
       this.getPnlCampo().setTagPai(this);
       this.getObjCampo().setTagPai(this.getPnlCampo());
-      this.setTagPai(this.getCln().getTbl().getFrmTbl().getPnlCampos());
 
       // FIM A합ES
     } catch (Exception ex) {

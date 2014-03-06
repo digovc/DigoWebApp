@@ -1,7 +1,7 @@
 /**
  *
  */
-function Imagem() {
+function Imagem(strId) {
 	// HERANÇA
 
 	Tag.apply(this);
@@ -31,16 +31,19 @@ function Imagem() {
 	// FIM MÉTODO
 
 	/* Construtor */{
-		// VARIÁVEL
-		// AÇÃO
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			if (!Utils.getBooStrVazia(strId)) {
+				this.setStrId(strId);
+			}
+
+			// FIM AÇÕES
+		} catch (e) {
+			new Erro("Erro inesperado.", e);
+		}
 	}
 
 }
-// INICIALIZAÇÃO
-
-// var objImagem;
-// $(document).ready(function() {
-//	objImagem = new Imagem();
-// });
-
-// FIM INICIALIZAÇÃO

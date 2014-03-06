@@ -37,7 +37,7 @@ function _Utils() {
 		return img;
 	}
 
-	this.getBooVazia = function(str) {
+	this.getBooStrVazia = function(str) {
 		// VARIÁVEIS
 
 		var booResultado = false;
@@ -70,7 +70,8 @@ function _Utils() {
 		try {
 			// AÇÕES
 
-			objRe = new RegExp(/^[A-Za-z0-9_\-\.]+@[A-Za-z0-9_\-\.]{2,}\.[A-Za-z0-9]{2,}(\.[A-Za-z0-9])?/);
+			objRe = new RegExp(
+					/^[A-Za-z0-9_\-\.]+@[A-Za-z0-9_\-\.]{2,}\.[A-Za-z0-9]{2,}(\.[A-Za-z0-9])?/);
 
 			if (Utils.getBooVazia(strEmail)) {
 				booResultado = true;
@@ -84,6 +85,34 @@ function _Utils() {
 		}
 
 		return booResultado;
+	}
+
+	this.mostrarLstMensagemInformacao = function(lstStrMensagem) {
+		// VARIÁVEIS
+
+		var strMensagemFormatada = "";
+
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			strMensagemFormatada = "Informação:";
+			strMensagemFormatada += "\n\n\n";
+
+			if (lstStrMensagem != null && lstStrMensagem.length > 0) {
+
+				for ( var intIndex in lstStrMensagem) {
+					strMensagemFormatada += "\n";
+					strMensagemFormatada += lstStrMensagem[intIndex];
+				}
+			}
+
+			Utils.mostrarMensagemInformacao(strMensagemFormatada)
+
+			// FIM AÇÕES
+		} catch (e) {
+			new Erro("Erro inesperado.", e);
+		}
 	}
 
 	this.mostrarMensagemInformacao = function(strMensagem) {
@@ -105,48 +134,30 @@ function _Utils() {
 		}
 	}
 
-	this.mostrarMensagemInformacao = function(lstStrMensagem) {
+	// FIM MÉTODO
+
+	/* Construtor */
+	{
 		// VARIÁVEIS
-
-		var strMensagemFormatada = "";
-
 		// FIM VARIÁVEIS
 		try {
 			// AÇÕES
-
-			strMensagemFormatada = "Informação:";
-			strMensagemFormatada += "\n\n\n";
-
-			if (lstStrMensagem != null && lstStrMensagem.length > 0) {
-
-				for (var intIndex in lstStrMensagem) {
-					strMensagemFormatada += "\n";
-					strMensagemFormatada += lstStrMensagem[intIndex];
-				}
-			}
-
-			alert(strMensagemFormatada);
-
 			// FIM AÇÕES
 		} catch (e) {
 			new Erro("Erro inesperado.", e);
 		}
 	}
 
-	// FIM MÉTODO
-
-	/* Construtor */
-	{
-		// VARIÁVEL
-		// AÇÃO
-	}
-
 }
+
 // INICIALIZAÇÃO
 
 var Utils;
+
 $(document).ready(function() {
+
 	Utils = new _Utils();
+
 });
 
 // FIM INICIALIZAÇÃO

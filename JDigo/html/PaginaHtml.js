@@ -21,8 +21,14 @@ function PaginaHtml() {
 	// FIM MÉTODO
 
 	/* Construtor */{
-		// VARIÁVEL
-		// AÇÃO
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+			// FIM AÇÕES
+		} catch (e) {
+			new Erro("Erro inesperado.", e);
+		}
 	}
 
 }

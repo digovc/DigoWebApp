@@ -73,11 +73,8 @@ public abstract class Utils {
     // VARIÁVEIS
 
     boolean booStrIncluida = false;
-
     List<String> lstStrIncluida = new ArrayList<String>();
-
     StringBuilder strBuilder = new StringBuilder();
-
     String strConcatenadaResultado = Utils.STRING_VAZIA;
     String strDelimitador2 = Utils.STRING_VAZIA;
 
