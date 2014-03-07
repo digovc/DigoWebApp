@@ -8,11 +8,4 @@ public abstract class DbView extends DbTabela {
 
   }
 
-
-  @Override
-  protected void inicializarColunas() {
-    // TODO Auto-generated method stub
-
-  }
-
 }

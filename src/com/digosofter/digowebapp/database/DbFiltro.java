@@ -50,6 +50,24 @@ public class DbFiltro extends Objeto {
     }
   }
 
+  public DbFiltro(DbColuna cln, int intValor) {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      this.setStrNome(cln.getStrNomeSimplificado());
+      this.setStrValor(String.valueOf(intValor));
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+  }
+
   private boolean getBooAndOr() {
     return _booAndOr;
   }

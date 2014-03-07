@@ -209,16 +209,15 @@ public abstract class TblMain extends DbTabela {
   }
 
   @Override
-  protected void inicializarColunas() {
+  protected int inicializarColunas() {
     // VARIÁVEIS
 
-    int intOrdem;
+    int intOrdem = 0;
 
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      intOrdem = 0;
       this.getClnBooAtivo().setIntOrdem(++intOrdem);
       this.getClnDttAlteracao().setIntOrdem(++intOrdem);
       this.getClnDttCadastro().setIntOrdem(++intOrdem);
@@ -234,6 +233,8 @@ public abstract class TblMain extends DbTabela {
 
     } finally {
     }
+
+    return intOrdem;
   }
 
 }

@@ -392,6 +392,40 @@ public abstract class DbTabela extends Objeto {
     return lstIntResultado;
   }
 
+  public List<Integer> getLstIntClnValor(DbColuna cln, List<DbFiltro> lstObjDbFiltro) {
+    // VARIÁVEIS
+
+    List<Integer> lstIntResultado = null;
+    ResultSet objResultSet;
+
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      objResultSet = this.getObjResultSet(cln, lstObjDbFiltro);
+
+      if (objResultSet != null && objResultSet.first()) {
+
+        lstIntResultado = new ArrayList<Integer>();
+
+        do {
+
+          lstIntResultado.add(objResultSet.getInt(1));
+
+        } while (objResultSet.next());
+      }
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+
+    return lstIntResultado;
+  }
+
   /**
    * Retorna um "List<String>" com os nomes das colunas.
    *
@@ -560,6 +594,28 @@ public abstract class DbTabela extends Objeto {
 
   public DataBase getObjDataBase() {
     return _objDataBase;
+  }
+
+  public ResultSet getObjResultSet(DbColuna cln, List<DbFiltro> lstObjDbFiltro) {
+    // VARIÁVEIS
+
+    ResultSet objResultSet = null;
+
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      objResultSet = this.getObjResultSet(cln, lstObjDbFiltro, this.getClnNome());
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+
+    return objResultSet;
   }
 
   public ResultSet getObjResultSet(DbColuna cln, List<DbFiltro> lstObjDbFiltro, DbColuna clnOrdem) {
@@ -782,7 +838,7 @@ public abstract class DbTabela extends Objeto {
   }
 
   // TODO: Revisar o mátodo "inicializarColunas" do site da Relatar.
-  protected abstract void inicializarColunas();
+  protected abstract int inicializarColunas();
 
   /**
    * Limpa os valores de todas as colunas da tabela.
