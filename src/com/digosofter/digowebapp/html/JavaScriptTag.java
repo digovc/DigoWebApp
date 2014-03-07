@@ -42,7 +42,11 @@ public class JavaScriptTag extends Tag {
     try {
       // AÇÕES
 
-      getLstStrMetodos().add(strJsCodigo);
+      if (Utils.getBooStrVazia(strJsCodigo)) {
+        return;
+      }
+
+      this.getLstStrMetodos().add(strJsCodigo);
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -101,7 +105,8 @@ public class JavaScriptTag extends Tag {
 
         strBuilder = new StringBuilder();
         strBuilder.append("$(document).ready(function(){");
-        strBuilder.append(Utils.getStrConcatenarLst(this.getLstStrMetodos(), null, true));
+        strBuilder.append(Utils.getStrConcatenarLst(this.getLstStrMetodos(), Utils.STRING_VAZIA,
+            true));
         strBuilder.append("});");
 
         this.setStrConteudo(strBuilder.toString());

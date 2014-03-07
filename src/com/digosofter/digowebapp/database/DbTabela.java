@@ -430,43 +430,6 @@ public abstract class DbTabela extends Objeto {
   }
 
   /**
-   * Retorna um "List<String>" com os valores "sql" das colunas.
-   *
-   * @param "booPreenchida": Indica se o retorno só contém nome de colunas com
-   *        valores diferente de "null".
-   */
-  protected List<String> getLstStrClnValor(boolean booPreenchida) {
-    // VARIÁVEIS
-
-    List<String> lstStrRetorno = null;
-
-    // FIM VARIÁVEIS
-    try {
-      // AÇÕES
-
-      lstStrRetorno = new ArrayList<String>();
-
-      for (DbColuna cln : this.getLstCln()) {
-
-        if (booPreenchida && Utils.getBooStrVazia(cln.getStrValor())) {
-          continue;
-        }
-
-        lstStrRetorno.add(cln.getStrValorSql());
-      }
-
-      // FIM AÇÕES
-    } catch (Exception ex) {
-
-      new Erro("Erro inesperado.\n", ex);
-
-    } finally {
-    }
-
-    return lstStrRetorno;
-  }
-
-  /**
    * Retorna um "List<String>" com os nomes das colunas e seus valores na
    * síntese "tblNome.clnNome='clnValorFormatado'";.
    *
@@ -497,6 +460,43 @@ public abstract class DbTabela extends Objeto {
         strEstrutura += cln.getStrValorSql();
 
         lstStrRetorno.add(strEstrutura);
+      }
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+
+    return lstStrRetorno;
+  }
+
+  /**
+   * Retorna um "List<String>" com os valores "sql" das colunas.
+   *
+   * @param "booPreenchida": Indica se o retorno só contém nome de colunas com
+   *        valores diferente de "null".
+   */
+  protected List<String> getLstStrClnValor(boolean booPreenchida) {
+    // VARIÁVEIS
+
+    List<String> lstStrRetorno = null;
+
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      lstStrRetorno = new ArrayList<String>();
+
+      for (DbColuna cln : this.getLstCln()) {
+
+        if (booPreenchida && Utils.getBooStrVazia(cln.getStrValor())) {
+          continue;
+        }
+
+        lstStrRetorno.add(cln.getStrValorSql());
       }
 
       // FIM AÇÕES
@@ -560,6 +560,32 @@ public abstract class DbTabela extends Objeto {
 
   public DataBase getObjDataBase() {
     return _objDataBase;
+  }
+
+  public ResultSet getObjResultSet(DbColuna cln, List<DbFiltro> lstObjDbFiltro, DbColuna clnOrdem) {
+    // VARIÁVEIS
+
+    List<DbColuna> lstClnOrdem;
+    ResultSet objResultSetResultado = null;
+
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      lstClnOrdem = new ArrayList<DbColuna>();
+      lstClnOrdem.add(clnOrdem);
+
+      objResultSetResultado = this.getObjResultSet(cln, lstObjDbFiltro, lstClnOrdem);
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+
+    return objResultSetResultado;
   }
 
   public ResultSet getObjResultSet(DbColuna cln, List<DbFiltro> lstObjDbFiltro,

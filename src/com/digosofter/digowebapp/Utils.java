@@ -73,18 +73,24 @@ public abstract class Utils {
     // VARIÁVEIS
 
     boolean booStrIncluida = false;
-    List<String> lstStrIncluida = new ArrayList<String>();
-    StringBuilder strBuilder = new StringBuilder();
-    String strConcatenadaResultado = Utils.STRING_VAZIA;
+    List<String> lstStrIncluida;
+    StringBuilder stb;
+    String strResultado = Utils.STRING_VAZIA;
     String strDelimitador2 = Utils.STRING_VAZIA;
 
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
+      lstStrIncluida = new ArrayList<String>();
+      stb = new StringBuilder();
+
       for (String str : lstStr) {
+
         if (booEliminarDuplicata) {
+
           for (String strInserida : lstStrIncluida) {
+
             if (strInserida == str) {
               booStrIncluida = true;
             }
@@ -92,15 +98,18 @@ public abstract class Utils {
         }
 
         if (!booStrIncluida) {
-          if (strDelimitador2 != null && strDelimitador2 != "") {
-            strBuilder.append(strDelimitador2);
-          }
-          strBuilder.append(str);
-          lstStrIncluida.add(str);
+
+          stb.append(strDelimitador2);
+          stb.append(str);
+
           strDelimitador2 = strDelimitador;
+
+          lstStrIncluida.add(str);
         }
       }
-      strConcatenadaResultado = strBuilder.toString();
+
+      strResultado = stb.toString();
+
       // FIM AÇÕES
     } catch (Exception ex) {
 
@@ -108,7 +117,8 @@ public abstract class Utils {
 
     } finally {
     }
-    return strConcatenadaResultado;
+
+    return strResultado;
   }
 
   public static String getStrConcatenarLst(String[] arrStr, String strDelimitador,

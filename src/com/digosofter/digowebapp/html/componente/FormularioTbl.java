@@ -1,5 +1,7 @@
 package com.digosofter.digowebapp.html.componente;
 
+import java.util.List;
+
 import com.digosofter.digowebapp.AppWeb;
 import com.digosofter.digowebapp.database.DbColuna;
 import com.digosofter.digowebapp.database.DbTabela;
@@ -7,11 +9,33 @@ import com.digosofter.digowebapp.erro.Erro;
 import com.digosofter.digowebapp.html.Botao;
 import com.digosofter.digowebapp.html.CssTag;
 import com.digosofter.digowebapp.html.Formulario;
+import com.digosofter.digowebapp.html.JavaScriptTag;
 import com.digosofter.digowebapp.html.LimiteFloat;
 import com.digosofter.digowebapp.html.Painel;
 import com.digosofter.digowebapp.html.componente.item.CampoFrmTbl;
 
 public class FormularioTbl extends ComponenteMain {
+
+  @Override
+  protected void addJsArquivo(List<JavaScriptTag> lstObjJsTag) {
+
+    super.addJsArquivo(lstObjJsTag);
+
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      lstObjJsTag.add(new JavaScriptTag(AppWeb.JS_FORMULARIO_TBL));
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+  }
 
   private boolean _booSubmit = false;
 
@@ -43,6 +67,7 @@ public class FormularioTbl extends ComponenteMain {
       // AÇÕES
 
       this.setTbl(tbl);
+      this.setStrId("div_frm_" + this.getTbl().getStrNomeSimplificado());
       this.addCss(CssTag.getCssMainInst().setPadding(15, "px"));
 
       // FIM AÇÕES
@@ -95,6 +120,7 @@ public class FormularioTbl extends ComponenteMain {
         // strAction += "=salvar";
 
         _frm = new Formulario(strAction, Formulario.EnmMetodo.POST);
+        _frm.setStrId("frm_" + this.getTbl().getStrNomeSimplificado());
 
         if (!this.getBooSubmit()) {
           _frm.addAtr("onsubmit", "return false;");

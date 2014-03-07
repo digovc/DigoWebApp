@@ -23,6 +23,7 @@ public abstract class AppWeb extends Objeto {
   public static final String JS_CAMPO = "res/js/lib/JDigo/html/Campo.js";
   public static final String JS_COMPONENTE_MAIN = "res/js/lib/JDigo/html/componente/ComponenteMain.js";
   public static final String JS_FORMULARIO = "res/js/lib/JDigo/html/Formulario.js";
+  public static final String JS_FORMULARIO_TBL = "res/js/lib/JDigo/html/componente/FormularioTbl.js";
   public static final String JS_IMAGEM = "res/js/lib/JDigo/html/Imagem.js";
   public static final String JS_ITEM_MAIN = "res/js/lib/JDigo/html/componente/item/ItemMain.js";
   public static final String JS_PAINEL = "res/js/lib/JDigo/html/Painel.js";
