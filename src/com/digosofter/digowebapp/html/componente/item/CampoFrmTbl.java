@@ -4,7 +4,7 @@ import com.digosofter.digowebapp.database.DbColuna;
 import com.digosofter.digowebapp.database.DbColuna.EnmTipo;
 import com.digosofter.digowebapp.erro.Erro;
 import com.digosofter.digowebapp.html.Campo;
-import com.digosofter.digowebapp.html.CampoComboBox;
+import com.digosofter.digowebapp.html.ComboBox;
 import com.digosofter.digowebapp.html.CssTag;
 import com.digosofter.digowebapp.html.Painel;
 import com.digosofter.digowebapp.html.componente.ComponenteMain;
@@ -109,13 +109,13 @@ public class CampoFrmTbl extends ComponenteMain {
   private void definirTipoCampoComboBox() {
     // VARIÁVEIS
 
-    CampoComboBox objCampoComboBox;
+    ComboBox objCampoComboBox;
 
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      objCampoComboBox = new CampoComboBox();
+      objCampoComboBox = new ComboBox();
       this.getCln().carregarComboBox(objCampoComboBox);
       this.setObjCampo(objCampoComboBox);
 

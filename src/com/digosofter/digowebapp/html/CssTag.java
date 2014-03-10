@@ -48,6 +48,8 @@ public class CssTag extends Tag {
   public static final String CSS_OVERFLOW_INHERIT = "inherit";
   public static final String CSS_OVERFLOW_SCROLL = "scroll";
 
+  public static final String CSS_WHITE_SPACE_NOWRAP = "nowrap";
+
   public static final String CSS_OVERFLOW_VISIBLE = "visible";
   public static final String CSS_POSITION_ABSOLUTE = "absolute";
   public static final String CSS_POSITION_FIXED = "fixed";
@@ -1394,6 +1396,28 @@ public class CssTag extends Tag {
       stb.append(strGrandeza);
 
       strResultado = this.addCss("width", stb.toString());
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+
+    return strResultado;
+  }
+
+  public String setWhiteSpace(String strWhiteSpace) {
+    // VARIÁVEIS
+
+    String strResultado = Utils.STRING_VAZIA;
+
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      strResultado = this.addCss("white-space", strWhiteSpace);
 
       // FIM AÇÕES
     } catch (Exception ex) {

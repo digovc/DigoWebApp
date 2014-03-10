@@ -134,6 +134,24 @@ function _Utils() {
 		}
 	}
 
+	this.replaceAll = function (str, strAntigo, strNovo) {
+		// VARIÁVEIS
+		// FIM VARIÁVEIS
+		try {
+			// AÇÕES
+
+			while (str.indexOf(strAntigo) != -1) {
+				str = str.replace(strAntigo, strNovo);
+			}
+
+			// FIM AÇÕES
+		} catch (e) {
+			new Erro("Erro inesperado.", e);
+		}
+
+		return str;
+	}
+
 	// FIM MÉTODO
 
 	/* Construtor */

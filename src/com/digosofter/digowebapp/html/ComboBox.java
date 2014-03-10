@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.digosofter.digowebapp.erro.Erro;
 
-public class CampoComboBox extends Campo {
+public class ComboBox extends Campo {
 
   private List<String> _lstStrNome;
 
@@ -13,7 +13,7 @@ public class CampoComboBox extends Campo {
 
   private String _strValorSelecionado;
 
-  public CampoComboBox() {
+  public ComboBox() {
     // VARIÁVEIS
     // FIM VARIÁVEIS
     try {

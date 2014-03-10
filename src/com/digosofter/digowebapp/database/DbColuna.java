@@ -9,7 +9,7 @@ import java.util.List;
 import com.digosofter.digowebapp.Objeto;
 import com.digosofter.digowebapp.Utils;
 import com.digosofter.digowebapp.erro.Erro;
-import com.digosofter.digowebapp.html.CampoComboBox;
+import com.digosofter.digowebapp.html.ComboBox;
 import com.digosofter.digowebapp.html.componente.item.CampoFrmTbl;
 
 public class DbColuna extends Objeto {
@@ -77,7 +77,7 @@ public class DbColuna extends Objeto {
    * Carrega "comboBox" com os devidos valores de acordo com a tabela
    * referenciada ou as opções default da coluna.
    */
-  public void carregarComboBox(CampoComboBox objCampoComboBox) {
+  public void carregarComboBox(ComboBox objCampoComboBox) {
     // VARIÁVEIS
 
     int intIndex;
@@ -109,7 +109,7 @@ public class DbColuna extends Objeto {
 
         for (String strOpcao : this.getLstStrOpcao()) {
 
-          objCampoComboBox.addNomeValor(strOpcao, String.valueOf(++intIndex));
+          objCampoComboBox.addNomeValor(strOpcao, String.valueOf(intIndex++));
         }
 
         return;
