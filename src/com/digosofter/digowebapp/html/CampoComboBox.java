@@ -30,7 +30,28 @@ public class CampoComboBox extends Campo {
     }
   }
 
-  public List<String> getLstStrNome() {
+  /**
+   * Adiciona uma opção à lista do "comboBox".
+   */
+  public void addNomeValor(String strNome, String strValor) {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      this.getLstStrValor().add(strValor);
+      this.getLstStrNome().add(strNome);
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+  }
+
+  private List<String> getLstStrNome() {
     // VARIÁVEIS
     // FIM VARIÁVEIS
     try {
@@ -51,7 +72,7 @@ public class CampoComboBox extends Campo {
     return _lstStrNome;
   }
 
-  public List<String> getLstStrValor() {
+  private List<String> getLstStrValor() {
     // VARIÁVEIS
     // FIM VARIÁVEIS
     try {
@@ -89,15 +110,15 @@ public class CampoComboBox extends Campo {
         this.getLstStrNome().add("");
       }
 
-      for (int intIndex = 0; intIndex < this.getLstStrValor().size(); intIndex++) {
+      for (int i = 0; i < this.getLstStrValor().size(); i++) {
 
-        strTagNome = this.getStrValorSelecionado() == this.getLstStrValor().get(intIndex) ? "option selected"
+        strTagNome = this.getStrValorSelecionado() == this.getLstStrValor().get(i) ? "option selected"
             : "option";
 
         tag = new Tag();
         tag.setStrTagNome(strTagNome);
-        tag.addAtr("value", this.getLstStrValor().get(intIndex));
-        tag.setStrConteudo(this.getLstStrNome().get(intIndex));
+        tag.addAtr("value", this.getLstStrValor().get(i));
+        tag.setStrConteudo(this.getLstStrNome().get(i));
         tag.setTagPai(this);
       }
 

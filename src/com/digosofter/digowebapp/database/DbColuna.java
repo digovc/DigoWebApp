@@ -18,7 +18,7 @@ public class DbColuna extends Objeto {
     BIGINT, BIGSERIAL, BOOLEAN, CHAR, DATE, DECIMAL, DOUBLE, INTEGER, INTERVAL, MONEY, NUMERIC, REAL, SERIAL, SMALLINT, TEXT, TIME_WITH_TIME_ZONE, TIME_WITHOUT_TIME_ZONE, TIMESTAMP_WITH_TIME_ZONE, TIMESTAMP_WITHOUT_TIME_ZONE, VARCHAR
   }
 
-  private  static enum EnmTipoGrupo {
+  private static enum EnmTipoGrupo {
     ALPHANUMERICO, NUMERICO, TEMPORAL
   }
 
@@ -95,8 +95,7 @@ public class DbColuna extends Objeto {
 
           do {
 
-            objCampoComboBox.getLstStrValor().add(objResultSet.getString(1));
-            objCampoComboBox.getLstStrNome().add(objResultSet.getString(2));
+            objCampoComboBox.addNomeValor(objResultSet.getString(2), objResultSet.getString(1));
 
           } while (objResultSet.next());
 
@@ -110,8 +109,7 @@ public class DbColuna extends Objeto {
 
         for (String strOpcao : this.getLstStrOpcao()) {
 
-          objCampoComboBox.getLstStrValor().add(String.valueOf(++intIndex));
-          objCampoComboBox.getLstStrNome().add(strOpcao);
+          objCampoComboBox.addNomeValor(strOpcao, String.valueOf(++intIndex));
         }
 
         return;

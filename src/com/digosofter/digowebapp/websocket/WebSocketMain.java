@@ -87,7 +87,7 @@ public class WebSocketMain {
   }
 
   @OnMessage
-  public String onMessage(Session objSession,String strMensagem) {
+  public void onMessage(Session objSession,String strMensagem) {
     // VARIÁVEIS
     // FIM VARIÁVEIS
     try {
@@ -102,8 +102,6 @@ public class WebSocketMain {
 
     } finally {
     }
-
-    return strMensagem;
   }
 
   /**

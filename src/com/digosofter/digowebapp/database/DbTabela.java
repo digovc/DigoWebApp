@@ -881,14 +881,14 @@ public abstract class DbTabela extends Objeto {
 
       if (Utils.getBooStrVazia(this.getClnChavePrimaria().getStrValor())) {
 
-        sql = "INSERT INTO _tbl_nome (_cln_nome) VALUES(_cln_valor);";
+        sql = "INSERT INTO _tbl_nome (_cln_nome) VALUES(_cln_valor) RETURNING _cln_chave_primaria_nome;";
         sql = sql.replace("_tbl_nome", this.getStrNomeSimplificado());
         sql = sql.replace("_cln_nome",
             Utils.getStrConcatenarLst(this.getLstStrClnNome(true), ",", true));
+        sql = sql.replace("_cln_chave_primaria_nome", this.getClnChavePrimaria()
+            .getStrNomeSimplificado());
         sql = sql.replace("_cln_valor",
             Utils.getStrConcatenarLst(this.getLstStrClnValor(true), ",", true));
-
-        intResultado = this.getIntMaxId() + 1;
 
       } else {
 
@@ -905,8 +905,8 @@ public abstract class DbTabela extends Objeto {
         intResultado = this.getClnChavePrimaria().getIntId();
       }
 
-      this.getObjDataBase().execSql(sql);
-      this.buscarRegistroPeloId(this.getIntMaxId());
+      intResultado = this.getObjDataBase().execSqlGetInt(sql);
+      this.buscarRegistroPeloId(intResultado);
 
       // FIM AÇÕES
     } catch (Exception ex) {
