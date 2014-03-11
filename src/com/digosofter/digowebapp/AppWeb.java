@@ -49,6 +49,8 @@ public abstract class AppWeb extends Objeto {
 
   private String _strPagSolicitada;
 
+  private String _strVersao;
+
   public AppWeb(String strAppNome) {
     // VARIÁVEIS
     // FIM VARIÁVEIS
@@ -344,6 +346,10 @@ public abstract class AppWeb extends Objeto {
     return strResultado;
   }
 
+  public String getStrVersao() {
+    return _strVersao;
+  }
+
   public void reencaminhar(String strUrl) {
     // VARIÁVEIS
     // FIM VARIÁVEIS
@@ -454,6 +460,10 @@ public abstract class AppWeb extends Objeto {
 
   private void setStrPagSolicitada(String strPagSolicitada) {
     _strPagSolicitada = strPagSolicitada;
+  }
+
+  protected void setStrVersao(String strVersao) {
+    _strVersao = strVersao;
   }
 
 }

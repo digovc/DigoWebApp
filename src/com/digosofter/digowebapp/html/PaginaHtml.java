@@ -44,7 +44,7 @@ public class PaginaHtml extends Objeto {
 
   private List<JavaScriptTag> _lstObjJsTagOrdenado;
 
-  private JavaScriptTag _tagJsMain;
+  private String _strSrcIcon = "res/media/favicon.ico";
 
   private String _strTitulo;
 
@@ -55,6 +55,10 @@ public class PaginaHtml extends Objeto {
   private Tag _tagHead;
 
   private Tag _tagHtml;
+
+  private Tag _tagIcon;
+
+  private JavaScriptTag _tagJsMain;
 
   private Tag _tagMeta;
 
@@ -287,31 +291,6 @@ public class PaginaHtml extends Objeto {
     return _lstObjJsTagOrdenado;
   }
 
-  public JavaScriptTag getTagJsMain() {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
-    try {
-      // AÇÕES
-
-      if (_tagJsMain == null) {
-
-        _tagJsMain = new JavaScriptTag(null);
-        _tagJsMain.setIntPrioridade(6);
-
-        this.getLstObjJsTag().add(_tagJsMain);
-      }
-
-      // FIM AÇÕES
-    } catch (Exception ex) {
-
-      new Erro("Erro inesperado.\n", ex);
-
-    } finally {
-    }
-
-    return _tagJsMain;
-  }
-
   public String getStrPagFormatada() {
     // VARIÁVEIS
 
@@ -346,6 +325,10 @@ public class PaginaHtml extends Objeto {
     }
 
     return strResultado;
+  }
+
+  private String getStrSrcIcon() {
+    return _strSrcIcon;
   }
 
   public String getStrTitulo() {
@@ -447,6 +430,57 @@ public class PaginaHtml extends Objeto {
     return _tagHtml;
   }
 
+  private Tag getTagIcon() {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      if (_tagIcon == null) {
+
+        _tagIcon = new Tag();
+        _tagIcon.setStrTagNome("link");
+        _tagIcon.addAtr("rel", "shortcut icon");
+        _tagIcon.addAtr("href", this.getStrSrcIcon());
+        _tagIcon.addAtr("type", "image/x-icon");
+      }
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+
+    return _tagIcon;
+  }
+
+  public JavaScriptTag getTagJsMain() {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      if (_tagJsMain == null) {
+
+        _tagJsMain = new JavaScriptTag(null);
+        _tagJsMain.setIntPrioridade(6);
+
+        this.getLstObjJsTag().add(_tagJsMain);
+      }
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+
+    return _tagJsMain;
+  }
+
   private Tag getTagMeta() {
     // VARIÁVEIS
     // FIM VARIÁVEIS
@@ -511,6 +545,7 @@ public class PaginaHtml extends Objeto {
 
       this.getTagHead().setTagPai(this.getTagHtml());
       this.getTagMeta().setTagPai(this.getTagHead());
+      this.getTagIcon().setTagPai(this.getTagHead());
       this.getTagTitle().setTagPai(this.getTagHead());
       this.getCssMain().setTagPai(this.getTagHead());
       this.getCssImp().setTagPai(this.getTagHead());
@@ -573,6 +608,10 @@ public class PaginaHtml extends Objeto {
 
     } finally {
     }
+  }
+
+  public void setStrSrcIcon(String strSrcIcon) {
+    _strSrcIcon = strSrcIcon;
   }
 
   public void setStrTitulo(String strTitulo) {

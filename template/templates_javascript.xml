@@ -45,7 +45,7 @@ try{&#13;
 // FIM AÇÕES&#13;
 }catch(e){&#13;
 	new Erro("Erro inesperado.", e);&#13;
-};</template><template autoinsert="true" context="javaScript" deleted="false" description="" enabled="true" name="novoAtributo">var _${nome} = ${valorDefault};&#13;
+}</template><template autoinsert="true" context="javaScript" deleted="false" description="" enabled="true" name="novoAtributo">var _${nome} = ${valorDefault};&#13;
 &#13;
 this.get${nome} = function(){&#13;
 	return _${nome};&#13;

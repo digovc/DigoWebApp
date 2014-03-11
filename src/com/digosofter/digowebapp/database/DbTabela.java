@@ -906,7 +906,7 @@ public abstract class DbTabela extends Objeto {
         sql = sql.replace("_cln_valor",
             Utils.getStrConcatenarLst(this.getLstStrClnValor(true), ",", true));
 
-        intResultado = this.getClnChavePrimaria().getIntId();
+        intResultado = this.getClnChavePrimaria().getIntValor();
         this.getObjDataBase().execSql(sql);
       }
 
