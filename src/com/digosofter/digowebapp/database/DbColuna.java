@@ -334,6 +334,10 @@ public class DbColuna extends Objeto {
     _booSenha = booSenha;
   }
 
+  public void setBooValor(boolean booValor) {
+    this.setStrValor(String.valueOf(booValor));
+  }
+
   public void setBooVisivelCadastro(boolean booVisivelCadastro) {
     _booVisivelCadastro = booVisivelCadastro;
   }

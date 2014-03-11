@@ -890,6 +890,8 @@ public abstract class DbTabela extends Objeto {
         sql = sql.replace("_cln_valor",
             Utils.getStrConcatenarLst(this.getLstStrClnValor(true), ",", true));
 
+        intResultado = this.getObjDataBase().execSqlGetInt(sql);
+
       } else {
 
         sql = "UPDATE _tbl_nome SET _cln_nome_valor WHERE _cln_chave_primaria='_cln_chave_primaria_valor'; INSERT INTO _tbl_nome (_cln_nome) SELECT _cln_valor WHERE NOT EXISTS (SELECT 1 FROM _tbl_nome WHERE _cln_chave_primaria='_cln_chave_primaria_valor');";
@@ -901,11 +903,13 @@ public abstract class DbTabela extends Objeto {
             Utils.getStrConcatenarLst(this.getLstStrClnNomeValor(true), ",", true));
         sql = sql.replace("_cln_nome",
             Utils.getStrConcatenarLst(this.getLstStrClnNome(true), ",", true));
+        sql = sql.replace("_cln_valor",
+            Utils.getStrConcatenarLst(this.getLstStrClnValor(true), ",", true));
 
         intResultado = this.getClnChavePrimaria().getIntId();
+        this.getObjDataBase().execSql(sql);
       }
 
-      intResultado = this.getObjDataBase().execSqlGetInt(sql);
       this.buscarRegistroPeloId(intResultado);
 
       // FIM AÇÕES
