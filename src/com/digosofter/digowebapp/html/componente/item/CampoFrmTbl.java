@@ -207,6 +207,11 @@ public class CampoFrmTbl extends ComponenteMain {
         _objCampo.setStrNome(this.getCln().getStrNomeSimplificado());
         _objCampo.addCss(CssTag.getCssMainInst().setPadding(5, "px"));
         _objCampo.addCss(CssTag.getCssMainInst().setWidth(100, "%"));
+
+        if (this.getCln().getIntTamanhoCampo() > 0) {
+
+          _objCampo.addAtr("maxlength", this.getCln().getIntTamanhoCampo());
+        }
       }
 
       // FIM AÇÕES

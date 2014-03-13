@@ -74,6 +74,23 @@ public class Tag extends Objeto {
     }
   }
 
+  public void addAtr(String strNome, int intValor) {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      this.getLstAtr().add(new Atributo(strNome, String.valueOf(intValor)));
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+  }
+
   public void addCss(String strClassCss) {
     // VARIÁVEIS
     // FIM VARIÁVEIS

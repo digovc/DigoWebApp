@@ -10,7 +10,6 @@ import com.digosofter.digowebapp.Objeto;
 import com.digosofter.digowebapp.Utils;
 import com.digosofter.digowebapp.erro.Erro;
 import com.digosofter.digowebapp.html.ComboBox;
-import com.digosofter.digowebapp.html.componente.item.CampoFrmTbl;
 
 public class DbColuna extends Objeto {
 
@@ -25,6 +24,8 @@ public class DbColuna extends Objeto {
   private boolean _booChavePrimaria = false;
 
   private boolean _booClnNome = false;
+
+  private boolean _booNotNull = false;
 
   private boolean _booSenha = false;
 
@@ -91,6 +92,8 @@ public class DbColuna extends Objeto {
 
         objResultSet = this.getClnReferencia().getTbl().getObjResultSetNomeValor();
 
+        objCampoComboBox.setBooOpcaoVazia(!this.getClnReferencia().getBooNotNull());
+
         if (objResultSet != null && objResultSet.first()) {
 
           do {
@@ -130,6 +133,10 @@ public class DbColuna extends Objeto {
 
   public boolean getBooClnNome() {
     return _booClnNome;
+  }
+
+  private boolean getBooNotNull() {
+    return _booNotNull;
   }
 
   public boolean getBooSenha() {
@@ -328,6 +335,10 @@ public class DbColuna extends Objeto {
 
     } finally {
     }
+  }
+
+  public void setBooNotNull(boolean booNotNull) {
+    _booNotNull = booNotNull;
   }
 
   public void setBooSenha(boolean booSenha) {

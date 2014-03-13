@@ -7,6 +7,8 @@ import com.digosofter.digowebapp.erro.Erro;
 
 public class ComboBox extends Campo {
 
+  private boolean _booOpcaoVazia = false;
+
   private List<String> _lstStrNome;
 
   private List<String> _lstStrValor;
@@ -49,6 +51,10 @@ public class ComboBox extends Campo {
 
     } finally {
     }
+  }
+
+  private boolean getBooOpcaoVazia() {
+    return _booOpcaoVazia;
   }
 
   private List<String> getLstStrNome() {
@@ -104,10 +110,10 @@ public class ComboBox extends Campo {
     try {
       // AÇÕES
 
-      if (this.getLstStrValor().size() == 0) {
+      if (this.getLstStrValor().size() == 0 || this.getBooOpcaoVazia()) {
 
-        this.getLstStrValor().add("-1");
-        this.getLstStrNome().add("");
+        this.getLstStrValor().add(0, "-1");
+        this.getLstStrNome().add(0, "");
       }
 
       for (int i = 0; i < this.getLstStrValor().size(); i++) {
@@ -135,6 +141,10 @@ public class ComboBox extends Campo {
 
   private String getStrValorSelecionado() {
     return _strValorSelecionado;
+  }
+
+  public void setBooOpcaoVazia(boolean booOpcaoVazia) {
+    _booOpcaoVazia = booOpcaoVazia;
   }
 
   public void setLstStrNome(List<String> lstStrNome) {
