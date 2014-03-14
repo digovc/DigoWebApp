@@ -48,25 +48,25 @@ public class CssTag extends Tag {
   public static final String CSS_OVERFLOW_INHERIT = "inherit";
   public static final String CSS_OVERFLOW_SCROLL = "scroll";
 
-  public static final String CSS_WHITE_SPACE_NOWRAP = "nowrap";
-
   public static final String CSS_OVERFLOW_VISIBLE = "visible";
+
   public static final String CSS_POSITION_ABSOLUTE = "absolute";
   public static final String CSS_POSITION_FIXED = "fixed";
-
   public static final String CSS_POSITION_RELATIVE = "relative";
+
   public static final String CSS_REPEAT = "repeat";
   public static final String CSS_REPEAT_INHERIT = "inherit";
   public static final String CSS_REPEAT_NO_REPEAT = "no-repeat";
   public static final String CSS_REPEAT_X = "repeat-x";
-
   public static final String CSS_REPEAT_Y = "repeat-y";
+
   public static final String CSS_TEXT_ALIGN_CENTRO = "center";
   public static final String CSS_TEXT_ALIGN_DIREITA = "right";
-
   public static final String CSS_TEXT_ALIGN_ESQUERDA = "left";
 
   public static final String CSS_TEXT_DECORATION_NONE = "none";
+
+  public static final String CSS_WHITE_SPACE_NOWRAP = "nowrap";
 
   public static CssTag getCssMainInst() {
     // VARIÁVEIS
@@ -979,6 +979,33 @@ public class CssTag extends Tag {
     return strResultado;
   }
 
+  public String setMinHeight(double dblMinHeight) {
+    // VARIÁVEIS
+
+    String strResultado = Utils.STRING_VAZIA;
+    StringBuilder stb;
+
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      stb = new StringBuilder();
+      stb.append(dblMinHeight);
+      stb.append("px");
+
+      strResultado = this.addCss("min-height", stb.toString());
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+
+    return strResultado;
+  }
+
   public String setOpacity(double dblOpacity) {
     // VARIÁVEIS
 
@@ -1381,6 +1408,28 @@ public class CssTag extends Tag {
     return strResultado;
   }
 
+  public String setWhiteSpace(String strWhiteSpace) {
+    // VARIÁVEIS
+
+    String strResultado = Utils.STRING_VAZIA;
+
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      strResultado = this.addCss("white-space", strWhiteSpace);
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+
+    return strResultado;
+  }
+
   public String setWidth(double dblWidth, String strGrandeza) {
     // VARIÁVEIS
 
@@ -1396,28 +1445,6 @@ public class CssTag extends Tag {
       stb.append(strGrandeza);
 
       strResultado = this.addCss("width", stb.toString());
-
-      // FIM AÇÕES
-    } catch (Exception ex) {
-
-      new Erro("Erro inesperado.\n", ex);
-
-    } finally {
-    }
-
-    return strResultado;
-  }
-
-  public String setWhiteSpace(String strWhiteSpace) {
-    // VARIÁVEIS
-
-    String strResultado = Utils.STRING_VAZIA;
-
-    // FIM VARIÁVEIS
-    try {
-      // AÇÕES
-
-      strResultado = this.addCss("white-space", strWhiteSpace);
 
       // FIM AÇÕES
     } catch (Exception ex) {
