@@ -32,7 +32,7 @@ public class PaletaCor extends Objeto {
       this.addJs("var " + this.getStrObjJavaScriptNome() + "= new PaletaCor('" + this.getStrNome()
           + "');");
 
-      PaginaHtml.getI().getLstObjJsTag()
+      PaginaHtml.getI().getLstTagJs()
           .add(new JavaScriptTag("res/js/lib/JDigo/design/PaletaCor.js"));
 
       AppWeb.getI().getLstObjPaletaCor().add(this);

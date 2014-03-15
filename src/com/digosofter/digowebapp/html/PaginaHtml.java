@@ -40,9 +40,9 @@ public class PaginaHtml extends Objeto {
 
   private CssTag _cssImp;
 
-  private List<JavaScriptTag> _lstObjJsTag = new ArrayList<JavaScriptTag>();
+  private List<JavaScriptTag> _lstTagJs = new ArrayList<JavaScriptTag>();
 
-  private List<JavaScriptTag> _lstObjJsTagOrdenado;
+  private List<JavaScriptTag> _lstTagJsOrdenado;
 
   private String _strSrcIcon = "res/media/favicon.ico";
 
@@ -71,7 +71,7 @@ public class PaginaHtml extends Objeto {
       // A합ES
 
       this.setI(this);
-      this.addJsArquivo(this.getLstObjJsTag());
+      this.addJsArquivo(this.getLstTagJs());
 
       // FIM A합ES
     } catch (Exception ex) {
@@ -91,7 +91,7 @@ public class PaginaHtml extends Objeto {
     try {
       // A합ES
 
-      for (JavaScriptTag objJavaScriptTag : this.getLstObjJsTagOrdenado()) {
+      for (JavaScriptTag objJavaScriptTag : this.getLstTagJsOrdenado()) {
 
         objJavaScriptTag.setTagPai(this.getTagHead());
       }
@@ -234,11 +234,11 @@ public class PaginaHtml extends Objeto {
     return _cssMain;
   }
 
-  public List<JavaScriptTag> getLstObjJsTag() {
-    return _lstObjJsTag;
+  public List<JavaScriptTag> getLstTagJs() {
+    return _lstTagJs;
   }
 
-  private List<JavaScriptTag> getLstObjJsTagOrdenado() {
+  private List<JavaScriptTag> getLstTagJsOrdenado() {
     // VARI햂EIS
 
     boolean booJsAdicionado;
@@ -247,17 +247,17 @@ public class PaginaHtml extends Objeto {
     try {
       // A합ES
 
-      if (_lstObjJsTagOrdenado != null) {
-        return _lstObjJsTagOrdenado;
+      if (_lstTagJsOrdenado != null) {
+        return _lstTagJsOrdenado;
       }
 
-      _lstObjJsTagOrdenado = new ArrayList<JavaScriptTag>();
+      _lstTagJsOrdenado = new ArrayList<JavaScriptTag>();
 
-      for (JavaScriptTag tagJs : this.getLstObjJsTag()) {
+      for (JavaScriptTag tagJs : this.getLstTagJs()) {
 
         booJsAdicionado = false;
 
-        for (JavaScriptTag tagJsAdicionada : _lstObjJsTagOrdenado) {
+        for (JavaScriptTag tagJsAdicionada : _lstTagJsOrdenado) {
 
           if (tagJsAdicionada.getStrSrc() == tagJs.getStrSrc()) {
             booJsAdicionado = true;
@@ -266,11 +266,11 @@ public class PaginaHtml extends Objeto {
         }
 
         if (!booJsAdicionado) {
-          _lstObjJsTagOrdenado.add(tagJs);
+          _lstTagJsOrdenado.add(tagJs);
         }
       }
 
-      Collections.sort(_lstObjJsTagOrdenado, new Comparator<JavaScriptTag>() {
+      Collections.sort(_lstTagJsOrdenado, new Comparator<JavaScriptTag>() {
 
         @Override
         public int compare(final JavaScriptTag objJsTag1, final JavaScriptTag objJsTag2) {
@@ -288,7 +288,7 @@ public class PaginaHtml extends Objeto {
     } finally {
     }
 
-    return _lstObjJsTagOrdenado;
+    return _lstTagJsOrdenado;
   }
 
   public String getStrPagFormatada() {
@@ -467,7 +467,7 @@ public class PaginaHtml extends Objeto {
         _tagJsMain = new JavaScriptTag(null);
         _tagJsMain.setIntPrioridade(6);
 
-        this.getLstObjJsTag().add(_tagJsMain);
+        this.getLstTagJs().add(_tagJsMain);
       }
 
       // FIM A합ES

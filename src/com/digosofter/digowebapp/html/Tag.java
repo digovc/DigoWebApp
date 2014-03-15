@@ -46,7 +46,7 @@ public class Tag extends Objeto {
     try {
       // AÇÕES
 
-      this.addJsArquivo(PaginaHtml.getI().getLstObjJsTag());
+      this.addJsArquivo(PaginaHtml.getI().getLstTagJs());
 
       // FIM AÇÕES
     } catch (Exception ex) {
