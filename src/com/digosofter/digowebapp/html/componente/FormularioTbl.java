@@ -68,7 +68,7 @@ public class FormularioTbl extends ComponenteMain {
 
       this.setTbl(tbl);
       this.setStrId("div_frm_" + this.getTbl().getStrNomeSimplificado());
-      this.addCss(CssTag.getCssMainInst().setPadding(15, "px"));
+      this.addCss(CssTag.getCssMainInst().setPadding(10, "px"));
 
       // FIM AÇÕES
     } catch (Exception ex) {
