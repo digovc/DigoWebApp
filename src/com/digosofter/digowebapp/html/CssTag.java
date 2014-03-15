@@ -733,7 +733,7 @@ public class CssTag extends Tag {
     return strResultado;
   }
 
-  public String setFontSize(int intFontSize, String strGrandeza) {
+  public String setFontSize(double dblFontSize, String strGrandeza) {
     // VARIÁVEIS
 
     String strResultado = Utils.STRING_VAZIA;
@@ -744,7 +744,7 @@ public class CssTag extends Tag {
       // AÇÕES
 
       stb = new StringBuilder();
-      stb.append(intFontSize);
+      stb.append(dblFontSize);
       stb.append(strGrandeza);
 
       strResultado = this.addCss("font-size", stb.toString());
