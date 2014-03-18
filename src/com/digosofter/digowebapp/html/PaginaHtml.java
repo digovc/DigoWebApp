@@ -634,6 +634,10 @@ public class PaginaHtml extends Objeto {
     }
   };
 
+  public String toHtml() {
+    return this.getStrPagFormatada();
+  }
+
   @Override
   public String toString() {
     return this.getStrPagFormatada();
