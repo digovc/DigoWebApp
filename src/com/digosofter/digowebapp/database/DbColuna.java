@@ -411,4 +411,43 @@ public class DbColuna extends Objeto {
     }
   }
 
+  public String getStrValorFormatado(String strValor) {
+    // VARIÁVEIS
+
+    String strResultado = "";
+
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      switch (this.getEnmTipoGrupo()) {
+
+        case ALPHANUMERICO:
+          strResultado = strValor;
+          break;
+
+        case NUMERICO:
+          strResultado = strValor;
+          break;
+
+        case TEMPORAL:
+          strResultado = strValor;
+          break;
+
+        default:
+          strResultado = strValor;
+          break;
+      }
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+
+    return strResultado;
+  }
+
 }

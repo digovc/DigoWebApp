@@ -57,6 +57,24 @@ public class Tag extends Objeto {
     }
   }
 
+  public Tag(String strTagName) {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      this.setStrTagNome(strTagName);
+      this.addJsArquivo(PaginaHtml.getI().getLstObjJsTag());
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+  }
+
   public void addAtr(String strNome, String strValor) {
     // VARIÁVEIS
     // FIM VARIÁVEIS
