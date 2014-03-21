@@ -135,6 +135,8 @@ public class Tabela extends Tag {
         tagTd = new Tag("td");
         tagTd.setTagPai(tagTr);
         tagTd.setStrConteudo(strValorFormatado);
+
+        tagTd.addCss(cln.getStrCss());
       }
 
       // FIM AÇÕES

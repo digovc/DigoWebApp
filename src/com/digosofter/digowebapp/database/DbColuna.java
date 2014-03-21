@@ -10,6 +10,8 @@ import com.digosofter.digowebapp.Objeto;
 import com.digosofter.digowebapp.Utils;
 import com.digosofter.digowebapp.erro.Erro;
 import com.digosofter.digowebapp.html.ComboBox;
+import com.digosofter.digowebapp.html.CssTag;
+import com.digosofter.digowebapp.html.Tag;
 
 public class DbColuna extends Objeto {
 
@@ -448,6 +450,32 @@ public class DbColuna extends Objeto {
     }
 
     return strResultado;
+  }
+
+  public String getStrCss() {
+    // VARIÁVEIS
+
+    String strCss = "";
+
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      switch (this.getEnmTipoGrupo()) {
+        case ALPHANUMERICO:
+          strCss += CssTag.getCssMainInst().setTextAlign("left");
+          break;
+      }
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+
+    return strCss;
   }
 
 }
