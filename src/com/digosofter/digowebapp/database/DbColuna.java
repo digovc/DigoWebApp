@@ -258,26 +258,38 @@ public class DbColuna extends Objeto {
 
   public String getStrValorSql() {
     // VARIÁVEIS
+
+    String strValorSemScape;
+
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
       _strValorSql = Utils.STRING_VAZIA;
 
+      strValorSemScape = this.getStrValor();
+      strValorSemScape = strValorSemScape.replace("'", "''");
+
       switch (this.getEnmTipoGrupo()) {
+
         case ALPHANUMERICO:
+
           _strValorSql += "'";
-          _strValorSql += this.getStrValor();
+          _strValorSql += strValorSemScape;
           _strValorSql += "'";
           break;
+
         case NUMERICO:
+
           _strValorSql += "'";
-          _strValorSql += this.getStrValor().replace(".", "").replace(",", ".");
+          _strValorSql += strValorSemScape.replace(".", "").replace(",", ".");
           _strValorSql += "'";
           break;
+
         default:
+
           _strValorSql += "'";
-          _strValorSql += this.getStrValor();
+          _strValorSql += strValorSemScape;
           _strValorSql += "'";
           break;
       }
