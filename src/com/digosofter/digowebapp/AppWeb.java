@@ -7,11 +7,9 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.websocket.server.ServerEndpointConfig;
 
 import com.digosofter.digowebapp.design.PaletaCor;
 import com.digosofter.digowebapp.erro.Erro;
-import com.digosofter.digowebapp.websocket.WebSocketMain;
 
 public abstract class AppWeb extends Objeto {
 
