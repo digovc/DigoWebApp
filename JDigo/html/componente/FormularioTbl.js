@@ -14,7 +14,6 @@ function FormularioTbl(strId) {
   Tag.apply(this);
   Objeto.apply(this);
 
-
 	// FIM HERANÇA
 
 	// ATRIBUTO
@@ -30,7 +29,8 @@ function FormularioTbl(strId) {
 			// AÇÕES
 
 			if (!Utils.getBooStrVazia(strId)) {
-				this.setStrId(strId);
+
+			  this.setStrId(strId);
 			}
 
 			// FIM AÇÕES

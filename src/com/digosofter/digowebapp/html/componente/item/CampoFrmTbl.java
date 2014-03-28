@@ -26,6 +26,7 @@ public class CampoFrmTbl extends ComponenteMain {
       // A합ES
 
       this.setCln(cln);
+      this.addCss(CssTag.getCssMainInst().setWidth(this.getDblCampoWidth(), "%"));
 
       // FIM A합ES
     } catch (Exception ex) {
@@ -309,7 +310,6 @@ public class CampoFrmTbl extends ComponenteMain {
       // A합ES
 
       this.addCss(tagCss.setFloat("left"));
-      this.addCss(tagCss.setWidth(this.getDblCampoWidth(), "%"));
 
       // FIM A합ES
     } catch (Exception ex) {
