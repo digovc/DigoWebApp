@@ -844,7 +844,7 @@ public class CssTag extends Tag {
     _lstAtrCss = lstAtrCss;
   }
 
-  public String setMargin(int intMarginPx, String strGrandeza) {
+  public String setMargin(int intMargin, String strGrandeza) {
     // VARIÁVEIS
 
     String strResultado = Utils.STRING_VAZIA;
@@ -855,7 +855,7 @@ public class CssTag extends Tag {
       // AÇÕES
 
       stb = new StringBuilder();
-      stb.append(intMarginPx);
+      stb.append(intMargin);
       stb.append(strGrandeza);
 
       strResultado = this.addCss("margin", stb.toString());
@@ -1110,7 +1110,7 @@ public class CssTag extends Tag {
     return strResultado;
   }
 
-  public String setPadding(int intPaddingPx, String strGrandeza) {
+  public String setPadding(int intPadding, String strGrandeza) {
     // VARIÁVEIS
 
     String strResultado = Utils.STRING_VAZIA;
@@ -1121,7 +1121,7 @@ public class CssTag extends Tag {
       // AÇÕES
 
       stb = new StringBuilder();
-      stb.append(intPaddingPx);
+      stb.append(intPadding);
       stb.append(strGrandeza);
 
       strResultado = this.addCss("padding", stb.toString());
