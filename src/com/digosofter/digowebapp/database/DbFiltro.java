@@ -14,6 +14,24 @@ public class DbFiltro extends Objeto {
 
   private String _strValor;
 
+  public DbFiltro(DbColuna cln, int intValor) {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      this.setStrNome(cln.getStrNomeSimplificado());
+      this.setStrValor(String.valueOf(intValor));
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+  }
+
   public DbFiltro(DbColuna cln, String strValor) {
     // VARIÁVEIS
     // FIM VARIÁVEIS
@@ -40,24 +58,6 @@ public class DbFiltro extends Objeto {
 
       this.setStrNome(strNome);
       this.setStrValor(strValor);
-
-      // FIM AÇÕES
-    } catch (Exception ex) {
-
-      new Erro("Erro inesperado.\n", ex);
-
-    } finally {
-    }
-  }
-
-  public DbFiltro(DbColuna cln, int intValor) {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
-    try {
-      // AÇÕES
-
-      this.setStrNome(cln.getStrNomeSimplificado());
-      this.setStrValor(String.valueOf(intValor));
 
       // FIM AÇÕES
     } catch (Exception ex) {

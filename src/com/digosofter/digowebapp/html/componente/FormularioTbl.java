@@ -16,36 +16,7 @@ import com.digosofter.digowebapp.html.componente.item.CampoFrmTbl;
 
 public class FormularioTbl extends ComponenteMain {
 
-  @Override
-  protected void addJsArquivo(List<JavaScriptTag> lstObjJsTag) {
-
-    super.addJsArquivo(lstObjJsTag);
-
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
-    try {
-      // AÇÕES
-
-      lstObjJsTag.add(new JavaScriptTag(AppWeb.JS_FORMULARIO_TBL));
-
-      // FIM AÇÕES
-    } catch (Exception ex) {
-
-      new Erro("Erro inesperado.\n", ex);
-
-    } finally {
-    }
-  }
-
   private boolean _booSubmit = false;
-
-  private boolean getBooSubmit() {
-    return _booSubmit;
-  }
-
-  public void setBooSubmit(boolean booSubmit) {
-    _booSubmit = booSubmit;
-  }
 
   private Botao _btnSalvar;
 
@@ -68,7 +39,6 @@ public class FormularioTbl extends ComponenteMain {
 
       this.setTbl(tbl);
       this.setStrId("div_frm_" + this.getTbl().getStrNomeSimplificado());
-      this.addCss(CssTag.getCssMainInst().setPadding(10, "px"));
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -77,6 +47,31 @@ public class FormularioTbl extends ComponenteMain {
 
     } finally {
     }
+  }
+
+  @Override
+  protected void addJsArquivo(List<JavaScriptTag> lstObjJsTag) {
+
+    super.addJsArquivo(lstObjJsTag);
+
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      lstObjJsTag.add(new JavaScriptTag(AppWeb.JS_FORMULARIO_TBL));
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+  }
+
+  private boolean getBooSubmit() {
+    return _booSubmit;
   }
 
   private Botao getBtnSalvar() {
@@ -330,6 +325,31 @@ public class FormularioTbl extends ComponenteMain {
       // AÇÕES
 
       this.getTbl().salvarRegistroPost();
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+  }
+
+  public void setBooSubmit(boolean booSubmit) {
+    _booSubmit = booSubmit;
+  }
+
+  @Override
+  protected void setCss(CssTag tagCss) {
+
+    super.setCss(tagCss);
+
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      this.addCss(tagCss.setPadding(10, "px"));
 
       // FIM AÇÕES
     } catch (Exception ex) {

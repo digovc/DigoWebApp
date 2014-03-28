@@ -12,7 +12,27 @@ public class LimiteFloat extends Tag {
 
       this.setStrTagNome("div");
       this.setBooForcarTagDupla(true);
-      this.addCss(CssTag.getCssMainInst().setClearBoth());
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+  }
+
+  @Override
+  protected void setCss(CssTag tagCss) {
+
+    super.setCss(tagCss);
+
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      this.addCss(tagCss.setClearBoth());
 
       // FIM AÇÕES
     } catch (Exception ex) {

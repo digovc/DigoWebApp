@@ -15,7 +15,6 @@ public class Painel extends Tag {
 
       this.setStrTagNome("div");
       this.setBooForcarTagDupla(true);
-      this.addCss(CssTag.getCssMainInst().setTextAlign("center"));
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -37,6 +36,27 @@ public class Painel extends Tag {
       // AÇÕES
 
       lstObjJsTag.add(new JavaScriptTag(AppWeb.JS_PAINEL));
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+  }
+
+  @Override
+  protected void setCss(CssTag tagCss) {
+
+    super.setCss(tagCss);
+
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      this.addCss(tagCss.setTextAlign("center"));
 
       // FIM AÇÕES
     } catch (Exception ex) {

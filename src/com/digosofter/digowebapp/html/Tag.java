@@ -47,6 +47,7 @@ public class Tag extends Objeto {
       // AÇÕES
 
       this.addJsArquivo(PaginaHtml.getI().getLstTagJs());
+      this.setCss(CssTag.getCssMainInst());
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -65,23 +66,7 @@ public class Tag extends Objeto {
 
       this.setStrTagNome(strTagName);
       this.addJsArquivo(PaginaHtml.getI().getLstTagJs());
-
-      // FIM AÇÕES
-    } catch (Exception ex) {
-
-      new Erro("Erro inesperado.\n", ex);
-
-    } finally {
-    }
-  }
-
-  public void addAtr(String strNome, String strValor) {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
-    try {
-      // AÇÕES
-
-      this.getLstAtr().add(new Atributo(strNome, strValor));
+      this.setCss(CssTag.getCssMainInst());
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -99,6 +84,23 @@ public class Tag extends Objeto {
       // AÇÕES
 
       this.getLstAtr().add(new Atributo(strNome, String.valueOf(intValor)));
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+  }
+
+  public void addAtr(String strNome, String strValor) {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      this.getLstAtr().add(new Atributo(strNome, strValor));
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -474,6 +476,23 @@ public class Tag extends Objeto {
 
   public void setBooForcarTagDupla(boolean booForcarTagDupla) {
     _booForcarTagDupla = booForcarTagDupla;
+  }
+
+  /**
+   * Método responsável por carregar o "layout" da tag através de "css".
+   */
+  protected void setCss(CssTag tagCss) {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
   }
 
   private void setLstAtr(List<Atributo> lstAtr) {

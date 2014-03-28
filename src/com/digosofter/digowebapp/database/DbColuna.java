@@ -252,8 +252,73 @@ public class DbColuna extends Objeto {
     return _lstStrOpcao;
   }
 
+  public String getStrCss() {
+    // VARIÁVEIS
+
+    String strCss = "";
+
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      switch (this.getEnmTipoGrupo()) {
+        case ALPHANUMERICO:
+          strCss += CssTag.getCssMainInst().setTextAlign("left");
+          break;
+      }
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+
+    return strCss;
+  }
+
   public String getStrValor() {
     return _strValor;
+  }
+
+  public String getStrValorFormatado(String strValor) {
+    // VARIÁVEIS
+
+    String strResultado = "";
+
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      switch (this.getEnmTipoGrupo()) {
+
+        case ALPHANUMERICO:
+          strResultado = strValor;
+          break;
+
+        case NUMERICO:
+          strResultado = strValor;
+          break;
+
+        case TEMPORAL:
+          strResultado = strValor;
+          break;
+
+        default:
+          strResultado = strValor;
+          break;
+      }
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+
+    return strResultado;
   }
 
   public String getStrValorSql() {
@@ -423,71 +488,6 @@ public class DbColuna extends Objeto {
 
     } finally {
     }
-  }
-
-  public String getStrValorFormatado(String strValor) {
-    // VARIÁVEIS
-
-    String strResultado = "";
-
-    // FIM VARIÁVEIS
-    try {
-      // AÇÕES
-
-      switch (this.getEnmTipoGrupo()) {
-
-        case ALPHANUMERICO:
-          strResultado = strValor;
-          break;
-
-        case NUMERICO:
-          strResultado = strValor;
-          break;
-
-        case TEMPORAL:
-          strResultado = strValor;
-          break;
-
-        default:
-          strResultado = strValor;
-          break;
-      }
-
-      // FIM AÇÕES
-    } catch (Exception ex) {
-
-      new Erro("Erro inesperado.\n", ex);
-
-    } finally {
-    }
-
-    return strResultado;
-  }
-
-  public String getStrCss() {
-    // VARIÁVEIS
-
-    String strCss = "";
-
-    // FIM VARIÁVEIS
-    try {
-      // AÇÕES
-
-      switch (this.getEnmTipoGrupo()) {
-        case ALPHANUMERICO:
-          strCss += CssTag.getCssMainInst().setTextAlign("left");
-          break;
-      }
-
-      // FIM AÇÕES
-    } catch (Exception ex) {
-
-      new Erro("Erro inesperado.\n", ex);
-
-    } finally {
-    }
-
-    return strCss;
   }
 
 }

@@ -36,6 +36,10 @@ public class JavaScriptTag extends Tag {
     }
   }
 
+  @Override
+  protected void addJsArquivo(List<JavaScriptTag> lstObjJsTag) {
+  }
+
   public void addJsCodigo(String strJsCodigo) {
     // VARIÁVEIS
     // FIM VARIÁVEIS
@@ -145,9 +149,5 @@ public class JavaScriptTag extends Tag {
 
     } finally {
     }
-  }
-
-  @Override
-  protected void addJsArquivo(List<JavaScriptTag> lstObjJsTag) {
   }
 }

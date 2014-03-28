@@ -19,6 +19,31 @@ import com.google.gson.Gson;
 public class WebSocketMain {
 
   /**
+   * Envia o "ObjWsInterlocutor" para o cliente associado a sessão indicada no
+   * objeto "Session" passado como parâmetro.
+   */
+  protected void enviar(Session objSession, ObjWsInterlocutor objWsInterlocutor) {
+    // VARIÁVEIS
+
+    Gson objGson;
+
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      objGson = new Gson();
+      objSession.getBasicRemote().sendText(objGson.toJson(objWsInterlocutor));
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+  }
+
+  /**
    * Retorna o usuário referente a sessão passada como parâmetro.
    */
   protected Usuario getObjUsuarioPorSession(Session objSession) {
@@ -43,32 +68,6 @@ public class WebSocketMain {
     }
 
     return objUsuarioResultado;
-  }
-
-  /**
-   * Processa a mensagem vinda do cliente.
-   */
-  private void processarMensagem(Session objSession,String strMensagem) {
-    // VARIÁVEIS
-
-    Gson objGson;
-    ObjWsInterlocutor objWsInterlocutor;
-
-    // FIM VARIÁVEIS
-    try {
-      // AÇÕES
-
-      objGson = new Gson();
-      objWsInterlocutor = objGson.fromJson(strMensagem, ObjWsInterlocutor.class);
-      this.onObjWsMainRecebido(objSession, objWsInterlocutor);
-
-      // FIM AÇÕES
-    } catch (Exception ex) {
-
-      new Erro("Erro inesperado.\n", ex);
-
-    } finally {
-    }
   }
 
   @OnClose
@@ -105,31 +104,6 @@ public class WebSocketMain {
   }
 
   /**
-   * Envia o "ObjWsInterlocutor" para o cliente associado a sessão indicada no
-   * objeto "Session" passado como parâmetro.
-   */
-  protected void enviar(Session objSession, ObjWsInterlocutor objWsInterlocutor) {
-    // VARIÁVEIS
-
-    Gson objGson;
-
-    // FIM VARIÁVEIS
-    try {
-      // AÇÕES
-
-      objGson = new Gson();
-      objSession.getBasicRemote().sendText(objGson.toJson(objWsInterlocutor));
-
-      // FIM AÇÕES
-    } catch (Exception ex) {
-
-      new Erro("Erro inesperado.\n", ex);
-
-    } finally {
-    }
-  }
-
-  /**
    * Método disparado a cada solicitação vinda do cliente contendo um
    * "ObjWsMain".
    */
@@ -154,6 +128,32 @@ public class WebSocketMain {
     // FIM VARIÁVEIS
     try {
       // AÇÕES
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+  }
+
+  /**
+   * Processa a mensagem vinda do cliente.
+   */
+  private void processarMensagem(Session objSession,String strMensagem) {
+    // VARIÁVEIS
+
+    Gson objGson;
+    ObjWsInterlocutor objWsInterlocutor;
+
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      objGson = new Gson();
+      objWsInterlocutor = objGson.fromJson(strMensagem, ObjWsInterlocutor.class);
+      this.onObjWsMainRecebido(objSession, objWsInterlocutor);
+
       // FIM AÇÕES
     } catch (Exception ex) {
 

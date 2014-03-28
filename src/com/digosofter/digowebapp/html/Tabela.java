@@ -21,10 +21,6 @@ public class Tabela extends Tag {
       this.setStrTagNome("table");
       this.setTbl(tbl);
       this.addAtr("border", "1px");
-      this.addCss(CssTag.getCssMainInst().setHeight(450, "px"));
-      this.addCss(CssTag.getCssMainInst().setDisplay("block"));
-      this.addCss(CssTag.getCssMainInst().setOverflowY("scroll"));
-      this.addCss(CssTag.getCssMainInst().addCss("border-collapse", "collapse"));
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -177,6 +173,30 @@ public class Tabela extends Tag {
 
         } while (objResultSet.next());
       }
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+  }
+
+  @Override
+  protected void setCss(CssTag tagCss) {
+
+    super.setCss(tagCss);
+
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      this.addCss(tagCss.setHeight(450, "px"));
+      this.addCss(tagCss.setDisplay("block"));
+      this.addCss(tagCss.setOverflowY("scroll"));
+      this.addCss(tagCss.addCss("border-collapse", "collapse"));
 
       // FIM AÇÕES
     } catch (Exception ex) {

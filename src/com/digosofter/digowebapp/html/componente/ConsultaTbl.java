@@ -27,9 +27,6 @@ public class ConsultaTbl extends ComponenteMain {
 
       this.setTbl(tbl);
 
-      this.addCss(CssTag.getCssMainInst().setPadding(5, "px"));
-      this.addCss(CssTag.getCssMainInst().setBorder(1, "solid", "black"));
-
       // FIM AÇÕES
     } catch (Exception ex) {
 
@@ -198,6 +195,28 @@ public class ConsultaTbl extends ComponenteMain {
 
         } while (objResultSet.next());
       }
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+  }
+
+  @Override
+  protected void setCss(CssTag tagCss) {
+
+    super.setCss(tagCss);
+
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      this.addCss(tagCss.setPadding(5, "px"));
+      this.addCss(tagCss.setBorder(1, "solid", "black"));
 
       // FIM AÇÕES
     } catch (Exception ex) {
