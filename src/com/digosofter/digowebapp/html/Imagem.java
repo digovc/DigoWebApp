@@ -8,12 +8,14 @@ import com.digosofter.digowebapp.erro.Erro;
 public class Imagem extends Tag {
 
   public Imagem() {
+
+    super("img");
+
     // VARIÁVEIS
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      this.setStrTagNome("img");
       this.setBooForcarTagDupla(true);
 
       // FIM AÇÕES

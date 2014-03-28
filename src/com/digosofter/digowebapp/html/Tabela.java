@@ -13,12 +13,14 @@ public class Tabela extends Tag {
   private DbTabela _tbl;
 
   public Tabela(DbTabela tbl) {
+
+    super("table");
+
     // VARIÁVEIS
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      this.setStrTagNome("table");
       this.setTbl(tbl);
       this.addAtr("border", "1px");
 

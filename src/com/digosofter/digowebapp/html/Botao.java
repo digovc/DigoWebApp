@@ -8,12 +8,14 @@ import com.digosofter.digowebapp.erro.Erro;
 public class Botao extends Tag {
 
   public Botao() {
+
+    super("button");
+
     // VARIÁVEIS
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      this.setStrTagNome("button");
       this.setStrConteudo("Botão");
 
       // FIM AÇÕES

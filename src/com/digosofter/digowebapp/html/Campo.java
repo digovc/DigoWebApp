@@ -19,13 +19,13 @@ public class Campo extends Tag {
   private String _strPlaceHolder;
 
   public Campo() {
+
+    super("input");
+
     // VARIÁVEIS
     // FIM VARIÁVEIS
     try {
       // AÇÕES
-
-      this.setStrTagNome("input");
-
       // FIM AÇÕES
     } catch (Exception ex) {
 

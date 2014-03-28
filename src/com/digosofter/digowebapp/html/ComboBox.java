@@ -121,8 +121,7 @@ public class ComboBox extends Campo {
         strTagNome = this.getStrValorSelecionado() == this.getLstStrValor().get(i) ? "option selected"
             : "option";
 
-        tag = new Tag();
-        tag.setStrTagNome(strTagNome);
+        tag = new Tag(strTagNome);
         tag.addAtr("value", this.getLstStrValor().get(i));
         tag.setStrConteudo(this.getLstStrNome().get(i));
         tag.setTagPai(this);

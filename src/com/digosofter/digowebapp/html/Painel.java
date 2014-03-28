@@ -8,12 +8,14 @@ import com.digosofter.digowebapp.erro.Erro;
 public class Painel extends Tag {
 
   public Painel() {
+
+    super("div");
+
     // VARIÁVEIS
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      this.setStrTagNome("div");
       this.setBooForcarTagDupla(true);
 
       // FIM AÇÕES

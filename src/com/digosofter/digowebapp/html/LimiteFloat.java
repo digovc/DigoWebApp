@@ -5,12 +5,14 @@ import com.digosofter.digowebapp.erro.Erro;
 public class LimiteFloat extends Tag {
 
   public LimiteFloat() {
+
+    super("div");
+
     // VARIÁVEIS
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      this.setStrTagNome("div");
       this.setBooForcarTagDupla(true);
 
       // FIM AÇÕES

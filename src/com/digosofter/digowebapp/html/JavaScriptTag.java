@@ -17,12 +17,14 @@ public class JavaScriptTag extends Tag {
   private String _strSrc;
 
   public JavaScriptTag(String strSrc) {
+
+    super("script");
+
     // VARIÁVEIS
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      this.setStrTagNome("script");
       this.setBooForcarTagDupla(true);
       this.getLstAtr().add(new Atributo("type", "text/javascript"));
       this.setStrSrc(strSrc);

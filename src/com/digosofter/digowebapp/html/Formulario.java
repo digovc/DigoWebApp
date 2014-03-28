@@ -16,12 +16,14 @@ public class Formulario extends Tag {
   private String _strAction;
 
   public Formulario(String strAction, EnmMetodo enmMetodo) {
+
+    super("form");
+
     // VARIÁVEIS
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      this.setStrTagNome("form");
       this.setStrAction(strAction);
       this.setEnmMetodo(enmMetodo);
 
