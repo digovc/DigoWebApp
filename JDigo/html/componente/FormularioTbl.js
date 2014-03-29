@@ -17,6 +17,9 @@ function FormularioTbl(strId) {
 	// FIM HERANÇA
 
 	// ATRIBUTO
+
+  var _this = this;
+
 	// FIM ATRIBUTO
 
 	// MÉTODO

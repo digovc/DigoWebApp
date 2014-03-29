@@ -17,6 +17,8 @@ function Campo(strId) {
 
 	// ATRIBUTO
 
+  var _this = this;
+
 	var _strValor = null;
 	this.getStrValor = function() {
 		// VARIÁVEIS

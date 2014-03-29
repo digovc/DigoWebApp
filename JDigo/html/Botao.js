@@ -8,6 +8,9 @@ function Botao(strId) {
 	Objeto.apply(this);
 
 	// ATRIBUTO
+
+  var _this = this;
+
 	// MÉTODO
 
 	/* Construtor */
@@ -18,7 +21,8 @@ function Botao(strId) {
 			// AÇÕES
 
 			if (!Utils.getBooStrVazia(strId)) {
-				this.setStrId(strId);
+
+			  this.setStrId(strId);
 			}
 
 			// FIM AÇÕES

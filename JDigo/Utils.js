@@ -12,6 +12,9 @@ function _Utils() {
 	// FIM HERANÇA
 
 	// ATRIBUTO
+
+  var _this = this;
+
 	// FIM ATRIBUTO
 
 	// MÉTODO
@@ -74,9 +77,12 @@ function _Utils() {
 					/^[A-Za-z0-9_\-\.]+@[A-Za-z0-9_\-\.]{2,}\.[A-Za-z0-9]{2,}(\.[A-Za-z0-9])?/);
 
 			if (Utils.getBooVazia(strEmail)) {
-				booResultado = true;
+
+			  booResultado = true;
+
 			} else if (objRe.test(strEmail)) {
-				booResultado = true;
+
+			  booResultado = true;
 			}
 
 			// FIM AÇÕES

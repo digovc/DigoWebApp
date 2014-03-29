@@ -14,6 +14,8 @@ function ObjWsInterlocutor() {
 
   // ATRIBUTO
 
+  var _this = this;
+
   this._intFncId = 0;
 
   this.getIntFncId = function() {
@@ -41,8 +43,14 @@ function ObjWsInterlocutor() {
 
   /* Construtor */
   {
-    // VARIÁVEL
-    // AÇÃO
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+      // FIM AÇÕES
+    } catch (e) {
+      new Erro("Erro inesperado.", e);
+    }
   }
 
 }

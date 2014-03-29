@@ -10,6 +10,9 @@ function Imagem(strId) {
 	// FIM HERANÇA
 
 	// ATRIBUTO
+
+  var _this = this;
+
 	// FIM ATRIBUTO
 
 	// MÉTODO
@@ -37,7 +40,8 @@ function Imagem(strId) {
 			// AÇÕES
 
 			if (!Utils.getBooStrVazia(strId)) {
-				this.setStrId(strId);
+
+			  this.setStrId(strId);
 			}
 
 			// FIM AÇÕES

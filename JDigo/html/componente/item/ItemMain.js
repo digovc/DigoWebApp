@@ -18,6 +18,8 @@ function ItemMain() {
 
   // ATRIBUTO
 
+  var _this = this;
+
   var _booSelecionado = false;
 
   this.getBooSelecionado = function() {

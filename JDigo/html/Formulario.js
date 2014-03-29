@@ -16,6 +16,9 @@ function Formulario(strId) {
 	// FIM HERANÇA
 
 	// ATRIBUTO
+
+  var _this = this;
+
 	// FIM ATRIBUTO
 
 	// MÉTODO
@@ -44,7 +47,8 @@ function Formulario(strId) {
 			// AÇÕES
 
 			if (!Utils.getBooStrVazia(strId)) {
-				this.setStrId(strId);
+
+			  this.setStrId(strId);
 			}
 
 			// FIM AÇÕES
@@ -54,11 +58,3 @@ function Formulario(strId) {
 	}
 
 }
-// INICIALIZAÇÃO
-
-// var objFormulario;
-// $(document).ready(function() {
-// objFormulario = new Formulario();
-// });
-
-// FIM INICIALIZAÇÃO

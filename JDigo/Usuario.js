@@ -8,6 +8,8 @@ function Usuario() {
 
   // ATRIBUTO
 
+  var _this = this;
+
   var _booLogado = false;
 
   this.getBooLogado = function() {

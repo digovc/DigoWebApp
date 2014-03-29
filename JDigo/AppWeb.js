@@ -14,12 +14,24 @@ function AppWeb() {
 
   // ATRIBUTO
 
+  var _this = this;
+
   var _arrObjPaletaCor = null;
 
   this.getArrObjPaletaCor = function() {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-    if (_arrObjPaletaCor == null) {
-      _arrObjPaletaCor = new Array();
+      if (_arrObjPaletaCor == null) {
+
+        _arrObjPaletaCor = new Array();
+      }
+
+      // FIM AÇÕES
+    } catch (e) {
+      new Erro("Erro inesperado.", e);
     }
 
     return _arrObjPaletaCor;
@@ -60,8 +72,14 @@ function AppWeb() {
 
   /* Construtor */
   {
-    // VARIÁVEL
-    // AÇÃO
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+      // FIM AÇÕES
+    } catch (e) {
+      new Erro("Erro inesperado.", e);
+    }
   }
 
 }

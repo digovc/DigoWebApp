@@ -18,6 +18,8 @@ function Popup(strId) {
 
   // ATRIBUTO
 
+  var _this = this;
+
   var _arrPpiAcao = null;
 
   this.getArrPpiAcao = function() {
@@ -59,7 +61,7 @@ function Popup(strId) {
           try {
             // AÇÕES
 
-            $("#" + evt.currentTarget.id).remove();
+            _this.getJq().remove();
 
             // FIM AÇÕES
           } catch (e) {
@@ -80,6 +82,17 @@ function Popup(strId) {
 
   // MÉTODO
 
+  this.acaoClick = function(ppi) {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+      // FIM AÇÕES
+    } catch (e) {
+      new Erro("Erro inesperado.", e);
+    }
+  };
+
   this.mostrarPopup = function(intX, intY) {
     // VARIÁVEIS
     // FIM VARIÁVEIS
@@ -95,8 +108,8 @@ function Popup(strId) {
       this.getJq().css("top", intY);
       this.getJq().slideDown("fast");
 
-      this.setEventos();
       this.setItens();
+      this.setEventos();
 
       // FIM AÇÕES
     } catch (e) {

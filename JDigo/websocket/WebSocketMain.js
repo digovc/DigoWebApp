@@ -11,6 +11,8 @@ function WebSocketMain(strUrl) {
 
   // ATRIBUTO
 
+  var _this = this;
+
   var _fncOnMessage = null;
 
   /**
@@ -25,8 +27,7 @@ function WebSocketMain(strUrl) {
 
       if (_fncOnMessage == null) {
 
-        _fncOnMessage = function(evt)
-        {
+        _fncOnMessage = function(evt) {
           // VARIÁVEIS
           // FIM VARIÁVEIS
           try {
@@ -60,8 +61,8 @@ function WebSocketMain(strUrl) {
       }
 
       if (_objWebSocket == null) {
-        _objWebSocket = new WebSocket(this.getStrUrl());
 
+        _objWebSocket = new WebSocket(this.getStrUrl());
         _objWebSocket.onmessage = this.getFncOnMessage();
       }
 
@@ -115,10 +116,17 @@ function WebSocketMain(strUrl) {
 
   /* Construtor */
   {
-    // VARIÁVEL
-    // AÇÃO
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-    this.setStrUrl(strUrl);
+      this.setStrUrl(strUrl);
+
+      // FIM AÇÕES
+    } catch (e) {
+      new Erro("Erro inesperado.", e);
+    }
   }
 
 }

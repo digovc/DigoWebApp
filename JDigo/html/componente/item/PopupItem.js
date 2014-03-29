@@ -19,18 +19,17 @@ function PopupItem(strId, ppp) {
 
   // ATRIBUTO
 
+  var _this = this;
+
   var _fncClick = null;
 
   this.getFncClick = function() {
     // VARIÁVEIS
 
-    var _this;
-
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      _this = this;
       if (_fncClick == null) {
 
         _fncClick = function(evt) {
@@ -39,8 +38,7 @@ function PopupItem(strId, ppp) {
           try {
             // AÇÕES
 
-            alert("clique na ação " + evt.currentTarget.id);
-            alert(_this);
+            _this.click();
 
             // FIM AÇÕES
           } catch (e) {
@@ -136,6 +134,20 @@ function PopupItem(strId, ppp) {
   // FIM ATRIBUTO
 
   // MÉTODO
+
+  this.click = function() {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      this.getPpp().acaoClick(this);
+
+      // FIM AÇÕES
+    } catch (e) {
+      new Erro("Erro inesperado.", e);
+    }
+  };
 
   this.setEventos = function() {
     // VARIÁVEIS
