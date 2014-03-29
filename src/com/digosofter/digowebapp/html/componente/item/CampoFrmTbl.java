@@ -26,7 +26,6 @@ public class CampoFrmTbl extends ComponenteMain {
       // AÇÕES
 
       this.setCln(cln);
-      this.addCss(CssTag.getCssMainInst().setFloat("left"));
       this.addCss(CssTag.getCssMainInst().setWidth(this.getDblCampoWidth(), "%"));
 
       // FIM AÇÕES
@@ -298,6 +297,27 @@ public class CampoFrmTbl extends ComponenteMain {
 
   private void setCln(DbColuna cln) {
     _cln = cln;
+  }
+
+  @Override
+  protected void setCss(CssTag tagCss) {
+
+    super.setCss(tagCss);
+
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      this.addCss(tagCss.setFloat("left"));
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
   }
 
   private void setObjCampo(Campo objCampo) {

@@ -11,6 +11,23 @@ import com.digosofter.digowebapp.html.Tag;
 
 public abstract class ComponenteMain extends Tag {
 
+  public ComponenteMain() {
+
+    super("div");
+
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+  }
+
   private Painel _pnlComando;
 
   private Painel _pnlTitulo;

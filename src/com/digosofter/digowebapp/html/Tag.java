@@ -10,6 +10,8 @@ import com.digosofter.digowebapp.erro.Erro;
 
 public class Tag extends Objeto {
 
+  private static List<String> _lstStrTagNomeSemCss;
+
   private Atributo _atrClass;
 
   private Atributo _atrType;
@@ -40,23 +42,6 @@ public class Tag extends Objeto {
 
   private Tag _tagPai;
 
-  public Tag() {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
-    try {
-      // AÇÕES
-
-      this.addJsArquivo(PaginaHtml.getI().getLstTagJs());
-
-      // FIM AÇÕES
-    } catch (Exception ex) {
-
-      new Erro("Erro inesperado.\n", ex);
-
-    } finally {
-    }
-  }
-
   public Tag(String strTagName) {
     // VARIÁVEIS
     // FIM VARIÁVEIS
@@ -66,22 +51,10 @@ public class Tag extends Objeto {
       this.setStrTagNome(strTagName);
       this.addJsArquivo(PaginaHtml.getI().getLstTagJs());
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+      if (!this.getLstStrTagNomeSemCss().contains(this.getStrTagNome())) {
 
-      new Erro("Erro inesperado.\n", ex);
-
-    } finally {
-    }
-  }
-
-  public void addAtr(String strNome, String strValor) {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
-    try {
-      // AÇÕES
-
-      this.getLstAtr().add(new Atributo(strNome, strValor));
+        this.setCss(CssTag.getCssMainInst());
+      }
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -99,6 +72,23 @@ public class Tag extends Objeto {
       // AÇÕES
 
       this.getLstAtr().add(new Atributo(strNome, String.valueOf(intValor)));
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+  }
+
+  public void addAtr(String strNome, String strValor) {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      this.getLstAtr().add(new Atributo(strNome, strValor));
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -237,6 +227,35 @@ public class Tag extends Objeto {
     }
 
     return _lstAtr;
+  }
+
+  private List<String> getLstStrTagNomeSemCss() {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      if (_lstStrTagNomeSemCss == null) {
+
+        _lstStrTagNomeSemCss = new ArrayList<String>();
+        _lstStrTagNomeSemCss.add("head");
+        _lstStrTagNomeSemCss.add("html");
+        _lstStrTagNomeSemCss.add("link");
+        _lstStrTagNomeSemCss.add("meta");
+        _lstStrTagNomeSemCss.add("script");
+        _lstStrTagNomeSemCss.add("style");
+        _lstStrTagNomeSemCss.add("title");
+      }
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+
+    return _lstStrTagNomeSemCss;
   }
 
   public List<Tag> getLstTag() {
@@ -474,6 +493,23 @@ public class Tag extends Objeto {
 
   public void setBooForcarTagDupla(boolean booForcarTagDupla) {
     _booForcarTagDupla = booForcarTagDupla;
+  }
+
+  /**
+   * Método responsável por carregar o "layout" da tag através de "css".
+   */
+  protected void setCss(CssTag tagCss) {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
   }
 
   private void setLstAtr(List<Atributo> lstAtr) {

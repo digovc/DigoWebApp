@@ -17,12 +17,14 @@ public class JavaScriptTag extends Tag {
   private String _strSrc;
 
   public JavaScriptTag(String strSrc) {
+
+    super("script");
+
     // VARIÁVEIS
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      this.setStrTagNome("script");
       this.setBooForcarTagDupla(true);
       this.getLstAtr().add(new Atributo("type", "text/javascript"));
       this.setStrSrc(strSrc);
@@ -34,6 +36,10 @@ public class JavaScriptTag extends Tag {
 
     } finally {
     }
+  }
+
+  @Override
+  protected void addJsArquivo(List<JavaScriptTag> lstObjJsTag) {
   }
 
   public void addJsCodigo(String strJsCodigo) {
@@ -145,9 +151,5 @@ public class JavaScriptTag extends Tag {
 
     } finally {
     }
-  }
-
-  @Override
-  protected void addJsArquivo(List<JavaScriptTag> lstObjJsTag) {
   }
 }

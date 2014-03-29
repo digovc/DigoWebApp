@@ -98,12 +98,14 @@ public class CssTag extends Tag {
   private String _strConteudo;
 
   public CssTag() {
+
+    super("style");
+
     // VARIÁVEIS
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      this.setStrTagNome("style");
       this.setBooForcarTagDupla(true);
       this.getLstAtr().add(new Atributo("type", "text/css"));
 
@@ -114,6 +116,14 @@ public class CssTag extends Tag {
 
     } finally {
     }
+  }
+
+  /**
+   * Este método tem de ser sob-escrito da classe pai para que não haja um loop
+   * infinito. E também porque esta tag não precisa de layout.
+   */
+  @Override
+  protected void setCss(CssTag tagCss) {
   }
 
   public String addCss(String strCssNome, String strValor) {

@@ -343,8 +343,7 @@ public class PaginaHtml extends Objeto {
 
       if (_tagBody == null) {
 
-        _tagBody = new Tag();
-        _tagBody.setStrTagNome("body");
+        _tagBody = new Tag("body");
       }
 
       // FIM AÇÕES
@@ -366,9 +365,8 @@ public class PaginaHtml extends Objeto {
 
       if (_tagDocType == null) {
 
-        _tagDocType = new Tag();
+        _tagDocType = new Tag("!DOCTYPE html");
         _tagDocType.setBooBarraNoFinal(false);
-        _tagDocType.setStrTagNome("!DOCTYPE html");
       }
 
       // FIM AÇÕES
@@ -390,8 +388,7 @@ public class PaginaHtml extends Objeto {
 
       if (_tagHead == null) {
 
-        _tagHead = new Tag();
-        _tagHead.setStrTagNome("head");
+        _tagHead = new Tag("head");
       }
 
       // FIM AÇÕES
@@ -413,8 +410,7 @@ public class PaginaHtml extends Objeto {
 
       if (_tagHtml == null) {
 
-        _tagHtml = new Tag();
-        _tagHtml.setStrTagNome("html");
+        _tagHtml = new Tag("html");
         _tagHtml.getLstAtr().add(new Atributo("xmlns", "http://www.w3.org/1999/xhtml"));
         _tagHtml.getLstAtr().add(new Atributo("lang", "pt-br"));
       }
@@ -438,8 +434,7 @@ public class PaginaHtml extends Objeto {
 
       if (_tagIcon == null) {
 
-        _tagIcon = new Tag();
-        _tagIcon.setStrTagNome("link");
+        _tagIcon = new Tag("link");
         _tagIcon.addAtr("rel", "shortcut icon");
         _tagIcon.addAtr("href", this.getStrSrcIcon());
         _tagIcon.addAtr("type", "image/x-icon");
@@ -489,8 +484,7 @@ public class PaginaHtml extends Objeto {
 
       if (_tagMeta == null) {
 
-        _tagMeta = new Tag();
-        _tagMeta.setStrTagNome("meta");
+        _tagMeta = new Tag("meta");
         _tagMeta.getLstAtr().add(new Atributo("http-equiv", "Content-Type"));
         _tagMeta.getLstAtr().add(new Atributo("content"));
         _tagMeta.getLstAtr().get(1).setStrDelimitador(";");
@@ -517,9 +511,7 @@ public class PaginaHtml extends Objeto {
 
       if (_tagTitle == null) {
 
-        _tagTitle = new Tag();
-        _tagTitle.setStrTagNome("title");
-
+        _tagTitle = new Tag("title");
         this.setStrTitulo("Página sem título");
       }
 

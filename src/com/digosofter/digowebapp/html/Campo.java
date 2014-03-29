@@ -19,14 +19,13 @@ public class Campo extends Tag {
   private String _strPlaceHolder;
 
   public Campo() {
+
+    super("input");
+
     // VARIÁVEIS
     // FIM VARIÁVEIS
     try {
       // AÇÕES
-
-      this.setStrTagNome("input");
-      this.addCss(CssTag.getCssMainInst().addCss("box-sizing", "border-box"));
-
       // FIM AÇÕES
     } catch (Exception ex) {
 
@@ -63,6 +62,27 @@ public class Campo extends Tag {
 
   private String getStrPlaceHolder() {
     return _strPlaceHolder;
+  }
+
+  @Override
+  protected void setCss(CssTag tagCss) {
+
+    super.setCss(tagCss);
+
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      this.addCss(CssTag.getCssMainInst().addCss("box-sizing", "border-box"));
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
   }
 
   public void setEnmTipo(EnmTipo enmTipo) {

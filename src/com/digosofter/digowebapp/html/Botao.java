@@ -8,20 +8,15 @@ import com.digosofter.digowebapp.erro.Erro;
 public class Botao extends Tag {
 
   public Botao() {
+
+    super("button");
+
     // VARIÁVEIS
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      this.setStrTagNome("button");
       this.setStrConteudo("Botão");
-      this.addCss(CssTag.getCssMainInst().setColor("#333"));
-      this.addCss(CssTag.getCssMainInst().setFloat("right"));
-      this.addCss(CssTag.getCssMainInst().setPaddingBottom(7));
-      this.addCss(CssTag.getCssMainInst().setPaddingLeft(25));
-      this.addCss(CssTag.getCssMainInst().setPaddingRight(25));
-      this.addCss(CssTag.getCssMainInst().setPaddingTop(7));
-      this.addCss(CssTag.getCssMainInst().setFontNegrito());
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -43,6 +38,33 @@ public class Botao extends Tag {
       // AÇÕES
 
       lstObjJsTag.add(new JavaScriptTag(AppWeb.JS_BOTAO));
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+  }
+
+  @Override
+  protected void setCss(CssTag tagCss) {
+
+    super.setCss(tagCss);
+
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      this.addCss(tagCss.setColor("#333"));
+      this.addCss(tagCss.setFloat("right"));
+      this.addCss(tagCss.setFontNegrito());
+      this.addCss(tagCss.setPaddingBottom(7));
+      this.addCss(tagCss.setPaddingLeft(25));
+      this.addCss(tagCss.setPaddingRight(25));
+      this.addCss(tagCss.setPaddingTop(7));
 
       // FIM AÇÕES
     } catch (Exception ex) {
