@@ -1,11 +1,16 @@
 package com.digosofter.digowebapp.html.componente.item;
 
+import java.util.List;
+
 import com.digosofter.digowebapp.AppWeb;
 import com.digosofter.digowebapp.erro.Erro;
 import com.digosofter.digowebapp.html.CssTag;
+import com.digosofter.digowebapp.html.JavaScriptTag;
 import com.digosofter.digowebapp.html.Painel;
 
 public class PopupItem extends ItemMain {
+
+  private int _intOrdem;
 
   private Painel _pnlTitulo;
 
@@ -27,6 +32,31 @@ public class PopupItem extends ItemMain {
 
     } finally {
     }
+  }
+
+  @Override
+  protected void addJsArquivo(List<JavaScriptTag> lstObjJsTag) {
+
+    super.addJsArquivo(lstObjJsTag);
+
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      lstObjJsTag.add(new JavaScriptTag(AppWeb.JS_POPUP_ITEM));
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+  }
+
+  private int getIntOrdem() {
+    return _intOrdem;
   }
 
   public Painel getPnlTitulo() {
@@ -63,10 +93,16 @@ public class PopupItem extends ItemMain {
     super.montarLayout();
 
     // VARIÁVEIS
+
+    String strId;
+
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
+      strId = "ppiAcao" + this.getIntOrdem();
+
+      this.setStrId(strId);
       this.getPnlTitulo().setTagPai(this);
 
       // FIM AÇÕES
@@ -89,6 +125,7 @@ public class PopupItem extends ItemMain {
       // AÇÕES
 
       this.addCss(tagCss.setBorderBottom(1, AppWeb.getI().getObjPaletaCor().getStrCorBorda()));
+      this.addCss(tagCss.setCursor("pointer"));
       this.addCss(tagCss.setPadding(10, "px"));
 
       // FIM AÇÕES
@@ -98,6 +135,10 @@ public class PopupItem extends ItemMain {
 
     } finally {
     }
+  }
+
+  public void setIntOrdem(int intOrdem) {
+    _intOrdem = intOrdem;
   }
 
   private void setStrSrcIcon(String strSrcIcon) {

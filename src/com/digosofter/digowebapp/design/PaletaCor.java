@@ -10,7 +10,9 @@ public class PaletaCor extends Objeto {
 
   private boolean _booSelecionado;
 
-  private String _strCorBorda;
+  private String _strCorBorda = "#e1e1e1";
+
+  private String _strCorBorda2 = "#777777";
 
   private String _strCorControleClicado;
 
@@ -69,6 +71,10 @@ public class PaletaCor extends Objeto {
 
   public String getStrCorBorda() {
     return _strCorBorda;
+  }
+
+  public String getStrCorBorda2() {
+    return _strCorBorda2;
   }
 
   public String getStrCorControleClicado() {
@@ -152,6 +158,25 @@ public class PaletaCor extends Objeto {
     }
 
     _strCorBorda = strCorBorda;
+  }
+
+  public void setStrCorBorda2(String strCorBorda2) {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      _strCorBorda2 = strCorBorda2;
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+
+    _strCorBorda2 = strCorBorda2;
   }
 
   public void setStrCorControleClicado(String strCorControleClicado) {

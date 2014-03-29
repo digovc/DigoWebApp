@@ -25,6 +25,8 @@ public abstract class AppWeb extends Objeto {
   public static final String JS_IMAGEM = "res/js/lib/JDigo/html/Imagem.js";
   public static final String JS_ITEM_MAIN = "res/js/lib/JDigo/html/componente/item/ItemMain.js";
   public static final String JS_PAINEL = "res/js/lib/JDigo/html/Painel.js";
+  public static final String JS_POPUP = "res/js/lib/JDigo/html/componente/Popup.js";
+  public static final String JS_POPUP_ITEM = "res/js/lib/JDigo/html/componente/item/PopupItem.js";
   public static final String JS_TAG = "res/js/lib/JDigo/html/Tag.js";
 
   public static AppWeb getI() {
