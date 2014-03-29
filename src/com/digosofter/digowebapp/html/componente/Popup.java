@@ -3,9 +3,7 @@ package com.digosofter.digowebapp.html.componente;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.digosofter.digowebapp.AppWeb;
 import com.digosofter.digowebapp.erro.Erro;
-import com.digosofter.digowebapp.html.CssTag;
 import com.digosofter.digowebapp.html.Painel;
 import com.digosofter.digowebapp.html.componente.item.PopupItem;
 
@@ -20,6 +18,28 @@ public class Popup extends ComponenteMain {
     // FIM VARIÁVEIS
     try {
       // AÇÕES
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+  }
+
+  public void addItem(PopupItem ppi) {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      if (ppi == null) {
+
+        return;
+      }
+
+      this.getLstObjPopupItem().add(ppi);
+
       // FIM AÇÕES
     } catch (Exception ex) {
 
@@ -115,25 +135,5 @@ public class Popup extends ComponenteMain {
     }
   }
 
-  @Override
-  protected void setCss(CssTag tagCss) {
 
-    super.setCss(tagCss);
-
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
-    try {
-      // AÇÕES
-
-      this.addCss(tagCss.setBorder(1, "solid", AppWeb.getI().getObjPaletaCor().getStrCorBorda()));
-      this.addCss(tagCss.setWidth(125, "px"));
-
-      // FIM AÇÕES
-    } catch (Exception ex) {
-
-      new Erro("Erro inesperado.\n", ex);
-
-    } finally {
-    }
-  }
 }

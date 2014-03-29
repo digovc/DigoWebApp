@@ -140,7 +140,8 @@ public class PaginaHtml extends Objeto {
   }
 
   /**
-   * Adiciona códigos "JavaScript" indispensáveis para cada página.
+   * Adiciona códigos "JavaScript" indispensáveis para cada página. Este método
+   * é chamado durante o método "montarLayout".
    */
   protected void addJsCodigo(JavaScriptTag tagJs) {
     // VARIÁVEIS
@@ -171,7 +172,11 @@ public class PaginaHtml extends Objeto {
     }
   }
 
-  public void adicionarJsCodigo(String strJsCodigo) {
+  /**
+   * Adiciona código "JavaScript" para ser executado no cliente após o processo
+   * de carregamento ser concluído.
+   */
+  public void addJsCodigo(String strJsCodigo) {
     // VARIÁVEIS
     // FIM VARIÁVEIS
     try {
@@ -566,7 +571,7 @@ public class PaginaHtml extends Objeto {
 
       strJsCodigo = "alert('" + strMensagemFormatada + "');";
 
-      this.adicionarJsCodigo(strJsCodigo);
+      this.addJsCodigo(strJsCodigo);
 
       // FIM AÇÕES
     } catch (Exception ex) {

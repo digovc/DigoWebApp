@@ -52,7 +52,7 @@ public class PaletaCor extends Objeto {
     try {
       // AÇÕES
 
-      PaginaHtml.getI().adicionarJsCodigo(strJs);
+      PaginaHtml.getI().addJsCodigo(strJs);
 
       // FIM AÇÕES
     } catch (Exception ex) {

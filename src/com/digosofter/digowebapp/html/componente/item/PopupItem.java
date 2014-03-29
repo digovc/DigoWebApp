@@ -11,23 +11,6 @@ public class PopupItem extends ItemMain {
 
   private String _strSrcIcon;
 
-  public PopupItem(String strNomeExibicao) {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
-    try {
-      // AÇÕES
-
-      this.setStrNomeExibicao(strNomeExibicao);
-
-      // FIM AÇÕES
-    } catch (Exception ex) {
-
-      new Erro("Erro inesperado.\n", ex);
-
-    } finally {
-    }
-  }
-
   public PopupItem(String strNomeExibicao, String strSrcIcon) {
     // VARIÁVEIS
     // FIM VARIÁVEIS
