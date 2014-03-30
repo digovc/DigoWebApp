@@ -15,9 +15,6 @@ public class Imagem extends Tag {
     // FIM VARIÁVEIS
     try {
       // AÇÕES
-
-      this.setBooForcarTagDupla(true);
-
       // FIM AÇÕES
     } catch (Exception ex) {
 
