@@ -39,6 +39,7 @@ function PopupItem(strId, ppp) {
             // AÇÕES
 
             _this.click();
+            _this.getPpp().getJq().remove();
 
             // FIM AÇÕES
           } catch (e) {
@@ -119,6 +120,26 @@ function PopupItem(strId, ppp) {
     }
 
     return _fncMouseLeave;
+  };
+
+  var _intOrdem = null;
+
+  this.getIntOrdem = function() {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      _intOrdem = this.getStrId();
+      _intOrdem = _intOrdem.replace("ppiAcao", "");
+      _intOrdem = window.parseInt(_intOrdem);
+
+      // FIM AÇÕES
+    } catch (e) {
+      new Erro("Erro inesperado.", e);
+    }
+
+    return _intOrdem;
   };
 
   var _ppp = null;

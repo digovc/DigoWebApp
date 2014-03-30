@@ -196,7 +196,11 @@ public class Campo extends Tag {
       // AÇÕES
 
       _strId = this.getStrId();
-      this.getLstAtr().add(new Atributo("name", _strId));
+
+      if (this.getEnmTipo() != EnmTipo.RADIO) {
+
+        this.getLstAtr().add(new Atributo("name", _strId));
+      }
 
       // FIM AÇÕES
     } catch (Exception ex) {

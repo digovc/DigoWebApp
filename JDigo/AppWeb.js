@@ -68,6 +68,27 @@ function AppWeb() {
   // FIM ATRIBUTO
 
   // MÉTODO
+
+  this.imprimir = function(pag) {
+    // VARIÁVEIS
+
+    var objWindow;
+
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      objWindow = window.open('', 'my div', 'height=400,width=600');
+      objWindow.document.write(pag);
+      objWindow.print();
+      objWindow.close();
+
+      // FIM AÇÕES
+    } catch (e) {
+      new Erro("Erro inesperado.", e);
+    }
+  };
+
   // FIM MÉTODO
 
   /* Construtor */

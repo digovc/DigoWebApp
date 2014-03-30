@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.mail.DefaultAuthenticator;
+import org.apache.commons.mail.Email;
+import org.apache.commons.mail.HtmlEmail;
 import org.apache.commons.mail.SimpleEmail;
 
 import com.digosofter.digowebapp.erro.Erro;
 
-public class Email extends Objeto {
+public class EmailAppWeb extends Objeto {
 
   private boolean _booSsl = true;
 
@@ -42,7 +44,7 @@ public class Email extends Objeto {
 
   private String _strSmtp = "smtp.gmail.com";
 
-  private void addBcc(SimpleEmail objSimpleEmail) {
+  private void addBcc(Email objEmail) {
     // VARIÁVEIS
 
     String strEmail;
@@ -57,7 +59,7 @@ public class Email extends Objeto {
         strEmail = this.getLstStrBccEmail().get(i);
         strNome = this.getLstStrBccNome().get(i);
 
-        objSimpleEmail.addBcc(strEmail, strNome);
+        objEmail.addBcc(strEmail, strNome);
       }
 
       // FIM AÇÕES
@@ -69,7 +71,7 @@ public class Email extends Objeto {
     }
   }
 
-  private void addCc(SimpleEmail objSimpleEmail) {
+  private void addCc(Email objEmail) {
     // VARIÁVEIS
 
     String strEmail;
@@ -84,7 +86,7 @@ public class Email extends Objeto {
         strEmail = this.getLstStrCcEmail().get(i);
         strNome = this.getLstStrCcNome().get(i);
 
-        objSimpleEmail.addCc(strEmail, strNome);
+        objEmail.addCc(strEmail, strNome);
       }
 
       // FIM AÇÕES
@@ -96,7 +98,7 @@ public class Email extends Objeto {
     }
   }
 
-  private void addTo(SimpleEmail objSimpleEmail) {
+  private void addTo(Email objEmail) {
     // VARIÁVEIS
 
     String strEmail;
@@ -111,8 +113,71 @@ public class Email extends Objeto {
         strEmail = this.getLstStrToEmail().get(i);
         strNome = this.getLstStrToNome().get(i);
 
-        objSimpleEmail.addTo(strEmail, strNome);
+        objEmail.addTo(strEmail, strNome);
       }
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+  }
+
+  /**
+   * Adiciona um email que receberá este email com cópia oculta.
+   */
+  public void addBcc(String strEmail, String strNome) {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      this.getLstStrBccEmail().add(strEmail);
+      this.getLstStrBccNome().add(strNome);
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+  }
+
+  /**
+   * Adiciona um email que receberá este email com cópia.
+   */
+  public void addCc(String strEmail, String strNome) {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      this.getLstStrCcEmail().add(strEmail);
+      this.getLstStrCcNome().add(strNome);
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+  }
+
+  /**
+   * Adiciona um email que receberá este email.
+   */
+  public void addTo(String strEmail, String strNome) {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      this.getLstStrToEmail().add(strEmail);
+      this.getLstStrToNome().add(strNome);
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -126,27 +191,27 @@ public class Email extends Objeto {
   public void enviar() {
     // VARIÁVEIS
 
-    SimpleEmail objSimpleEmail;
+    HtmlEmail objHtmlEmail;
 
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      objSimpleEmail = new SimpleEmail();
-      objSimpleEmail.addReplyTo(this.getStrReplyToEmail(), this.getStrReplyToNome());
-      objSimpleEmail.setAuthenticator(this.getObjDefaultAuthenticator());
-      objSimpleEmail.setFrom(this.getStrFromEmail(), this.getStrFromNome());
-      objSimpleEmail.setHostName(this.getStrSmtp());
-      objSimpleEmail.setMsg(this.getStrMensagem());
-      objSimpleEmail.setSSLOnConnect(this.getBooSsl());
-      objSimpleEmail.setSmtpPort(this.getIntSmtpPort());
-      objSimpleEmail.setSubject(this.getStrAssunto());
+      objHtmlEmail = new HtmlEmail();
+      objHtmlEmail.addReplyTo(this.getStrReplyToEmail(), this.getStrReplyToNome());
+      objHtmlEmail.setAuthenticator(this.getObjDefaultAuthenticator());
+      objHtmlEmail.setFrom(this.getStrFromEmail(), this.getStrFromNome());
+      objHtmlEmail.setHostName(this.getStrSmtp());
+      objHtmlEmail.setMsg(this.getStrMensagem());
+      objHtmlEmail.setSSLOnConnect(this.getBooSsl());
+      objHtmlEmail.setSmtpPort(this.getIntSmtpPort());
+      objHtmlEmail.setSubject(this.getStrAssunto());
 
-      this.addBcc(objSimpleEmail);
-      this.addCc(objSimpleEmail);
-      this.addTo(objSimpleEmail);
+      this.addBcc(objHtmlEmail);
+      this.addCc(objHtmlEmail);
+      this.addTo(objHtmlEmail);
 
-      objSimpleEmail.send();
+      objHtmlEmail.send();
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -329,67 +394,43 @@ public class Email extends Objeto {
     return _strSmtp;
   }
 
-  private void setBooSsl(boolean booSsl) {
+  protected void setBooSsl(boolean booSsl) {
     _booSsl = booSsl;
   }
 
-  private void setIntSmtpPort(int intSmtpPort) {
+  protected void setIntSmtpPort(int intSmtpPort) {
     _intSmtpPort = intSmtpPort;
   }
 
-  private void setLstStrBccEmail(List<String> lstStrBccEmail) {
-    _lstStrBccEmail = lstStrBccEmail;
-  }
-
-  private void setLstStrBccNome(List<String> lstStrBccNome) {
-    _lstStrBccNome = lstStrBccNome;
-  }
-
-  private void setLstStrCcEmail(List<String> lstStrCcEmail) {
-    _lstStrCcEmail = lstStrCcEmail;
-  }
-
-  private void setLstStrCcNome(List<String> lstStrCcNome) {
-    _lstStrCcNome = lstStrCcNome;
-  }
-
-  private void setLstStrToEmail(List<String> lstStrToEmail) {
-    _lstStrToEmail = lstStrToEmail;
-  }
-
-  private void setLstStrToNome(List<String> lstStrToNome) {
-    _lstStrToNome = lstStrToNome;
-  }
-
-  private void setObjDefaultAuthenticator(DefaultAuthenticator objDefaultAuthenticator) {
+  protected void setObjDefaultAuthenticator(DefaultAuthenticator objDefaultAuthenticator) {
     _objDefaultAuthenticator = objDefaultAuthenticator;
   }
 
-  private void setStrAssunto(String strAssunto) {
+  public void setStrAssunto(String strAssunto) {
     _strAssunto = strAssunto;
   }
 
-  private void setStrFromEmail(String strEmailFrom) {
+  protected void setStrFromEmail(String strEmailFrom) {
     _strFromEmail = strEmailFrom;
   }
 
-  private void setStrFromNome(String strFromNome) {
+  protected void setStrFromNome(String strFromNome) {
     _strFromNome = strFromNome;
   }
 
-  private void setStrMensagem(String strMensagem) {
+  public void setStrMensagem(String strMensagem) {
     _strMensagem = strMensagem;
   }
 
-  private void setStrReplyToEmail(String strReplyToEmail) {
+  public void setStrReplyToEmail(String strReplyToEmail) {
     _strReplyToEmail = strReplyToEmail;
   }
 
-  private void setStrReplyToNome(String strReplyToNome) {
+  public void setStrReplyToNome(String strReplyToNome) {
     _strReplyToNome = strReplyToNome;
   }
 
-  private void setStrSmtp(String strSmtp) {
+  protected void setStrSmtp(String strSmtp) {
     _strSmtp = strSmtp;
   }
 
