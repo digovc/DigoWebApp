@@ -45,13 +45,13 @@ public class Imagem extends Tag {
     }
   }
 
-  public void setStrSrc(String strImagemSrc) {
+  public void setSrc(String srcImagem) {
     // VARIÁVEIS
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      this.getLstAtr().add(new Atributo("src", strImagemSrc));
+      this.getLstAtr().add(new Atributo("src", srcImagem));
 
       // FIM AÇÕES
     } catch (Exception ex) {

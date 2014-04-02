@@ -10,6 +10,7 @@ import com.digosofter.digowebapp.Objeto;
 import com.digosofter.digowebapp.Usuario;
 import com.digosofter.digowebapp.Utils;
 import com.digosofter.digowebapp.erro.Erro;
+import com.digosofter.digowebapp.html.componente.Mensagem;
 
 public class PaginaHtml extends Objeto {
 
@@ -119,6 +120,7 @@ public class PaginaHtml extends Objeto {
       // "AppWeb".
 
       lstObjJsTag.add(new JavaScriptTag("res/js/lib/JDigo/lib/jquery-2.0.3.js"));
+      lstObjJsTag.add(new JavaScriptTag("res/js/lib/JDigo/lib/jquery-ui.min.js"));
       lstObjJsTag.add(new JavaScriptTag("res/js/lib/JDigo/lib/md5.js"));
       lstObjJsTag.add(new JavaScriptTag("res/js/lib/JDigo/lista/LstStrErro.js"));
       lstObjJsTag.add(new JavaScriptTag("res/js/lib/JDigo/erro/Erro.js"));
@@ -129,6 +131,7 @@ public class PaginaHtml extends Objeto {
       lstObjJsTag.add(new JavaScriptTag("res/js/lib/JDigo/websocket/ObjWsInterlocutor.js"));
       lstObjJsTag.add(new JavaScriptTag("res/js/lib/JDigo/Usuario.js"));
       lstObjJsTag.add(new JavaScriptTag("res/js/lib/JDigo/html/PaginaHtml.js"));
+      lstObjJsTag.add(new JavaScriptTag("res/js/lib/JDigo/html/componente/Mensagem.js"));
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -160,6 +163,48 @@ public class PaginaHtml extends Objeto {
       strJs += "objUsuario.setBooLogado(" + objUsuario.getBooLogado() + ");";
       strJs += "objUsuario.setIntUsuarioId(" + objUsuario.getIntUsuarioId() + ");";
       strJs += "objUsuario.setStrNome('" + objUsuario.getStrNome() + "');";
+
+      this.addJsCodigoMensagem(tagJs);
+      tagJs.addJsCodigo(strJs);
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+  }
+
+  /**
+   * Adiciona as estrutura das mensagens para as suas respectivas variáveis
+   * "JavaScript".
+   */
+  private void addJsCodigoMensagem(JavaScriptTag tagJs) {
+    // VARIÁVEIS
+
+    String strJs;
+    Mensagem msgAlerta;
+    Mensagem msgNegativa;
+    Mensagem msgPositiva;
+
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      msgAlerta = new Mensagem();
+      msgAlerta.setEnmTipo(Mensagem.EnmTipo.ALERTA);
+
+      msgNegativa = new Mensagem();
+      msgNegativa.setEnmTipo(Mensagem.EnmTipo.NEGATIVA);
+
+      msgPositiva = new Mensagem();
+      msgPositiva.setEnmTipo(Mensagem.EnmTipo.POSITIVA);
+
+      strJs = "";
+      strJs += "Mensagem_ESTRUTURA_INFO_ALERTA = '" + msgAlerta.toString() + "';";
+      strJs += "Mensagem_ESTRUTURA_INFO_NEGATIVA = '" + msgNegativa.toString() + "';";
+      strJs += "Mensagem_ESTRUTURA_INFO_POSITIVA = '" + msgPositiva.toString() + "';";
 
       tagJs.addJsCodigo(strJs);
 
