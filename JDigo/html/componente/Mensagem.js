@@ -1,5 +1,6 @@
 // CONSTANTE
 
+var Mensagem_BOO_MENSAGEM_VISIVEL = false;
 var Mensagem_ESTRUTURA_INFO_ALERTA = "";
 var Mensagem_ESTRUTURA_INFO_NEGATIVA = "";
 var Mensagem_ESTRUTURA_INFO_POSITIVA = "";
@@ -111,9 +112,19 @@ function Mensagem(strTitulo, strMsg, intTipo) {
     try {
       // AÇÕES
 
+      if (Mensagem_BOO_MENSAGEM_VISIVEL) {
+
+        window.setTimeout(function() {
+          _this.mostrar();
+        }, 250);
+
+        return false;
+      }
+
       tag = this.toHtml();
       intTempo = this.getStrMsg().length * 75;
       $("body").append(tag);
+      Mensagem_BOO_MENSAGEM_VISIVEL = true;
 
       window.setTimeout(function() {
 
@@ -122,8 +133,9 @@ function Mensagem(strTitulo, strMsg, intTipo) {
         window.setTimeout(function() {
 
           $(document).find("#msg").remove();
+          Mensagem_BOO_MENSAGEM_VISIVEL = false;
 
-        }, intTempo);
+        }, 250);
       }, intTempo);
 
       // FIM AÇÕES
