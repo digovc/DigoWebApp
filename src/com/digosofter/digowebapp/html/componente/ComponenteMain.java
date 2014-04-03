@@ -6,10 +6,17 @@ import com.digosofter.digowebapp.AppWeb;
 import com.digosofter.digowebapp.erro.Erro;
 import com.digosofter.digowebapp.html.CssTag;
 import com.digosofter.digowebapp.html.JavaScriptTag;
+import com.digosofter.digowebapp.html.LimiteFloat;
 import com.digosofter.digowebapp.html.Painel;
 import com.digosofter.digowebapp.html.Tag;
 
 public abstract class ComponenteMain extends Tag {
+
+  private Painel _pnlComando;
+
+  private Painel _pnlTitulo;
+
+  private LimiteFloat _tagLimiteFloat;
 
   public ComponenteMain() {
 
@@ -27,10 +34,6 @@ public abstract class ComponenteMain extends Tag {
     } finally {
     }
   }
-
-  private Painel _pnlComando;
-
-  private Painel _pnlTitulo;
 
   @Override
   protected void addJsArquivo(List<JavaScriptTag> lstObjJsTag) {
@@ -96,6 +99,28 @@ public abstract class ComponenteMain extends Tag {
     }
 
     return _pnlTitulo;
+  }
+
+  protected LimiteFloat getTagLimiteFloat() {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      if (_tagLimiteFloat == null) {
+
+        _tagLimiteFloat = new LimiteFloat();
+      }
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+
+    return _tagLimiteFloat;
   }
 
 }

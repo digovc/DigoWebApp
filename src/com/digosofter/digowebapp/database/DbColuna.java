@@ -92,7 +92,7 @@ public class DbColuna extends Objeto {
 
       if (this.getClnReferencia() != null) {
 
-        objResultSet = this.getClnReferencia().getTbl().getObjResultSetNomeValor();
+        objResultSet = this.getClnReferencia().getTbl().getRstNomeValor();
 
         objCampoComboBox.setBooOpcaoVazia(!this.getClnReferencia().getBooNotNull());
 

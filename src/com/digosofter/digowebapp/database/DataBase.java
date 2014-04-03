@@ -134,7 +134,7 @@ public abstract class DataBase extends Objeto {
     try {
       // AÇÕES
 
-      objResultSet = this.execSqlGetResultSet(sql);
+      objResultSet = this.execSqlGetRst(sql);
 
       if (objResultSet != null && objResultSet.first()) {
 
@@ -158,10 +158,10 @@ public abstract class DataBase extends Objeto {
     return lstStrResultado;
   }
 
-  public ResultSet execSqlGetResultSet(String sql) {
+  public ResultSet execSqlGetRst(String sql) {
     // VARIÁVEIS
 
-    ResultSet objResultSetResultado = null;
+    ResultSet rstResultado = null;
     Statement objStatement;
 
     // FIM VARIÁVEIS
@@ -170,7 +170,7 @@ public abstract class DataBase extends Objeto {
 
       objStatement = this.getObjConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
           ResultSet.CONCUR_READ_ONLY);
-      objResultSetResultado = objStatement.executeQuery(sql);
+      rstResultado = objStatement.executeQuery(sql);
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -180,7 +180,7 @@ public abstract class DataBase extends Objeto {
     } finally {
     }
 
-    return objResultSetResultado;
+    return rstResultado;
   }
 
   public String execSqlGetStr(String sql) {
@@ -220,7 +220,7 @@ public abstract class DataBase extends Objeto {
       strBuilder.append(strViewNome);
       strBuilder.append(";");
 
-      objResultSetResultado = this.execSqlGetResultSet(strBuilder.toString());
+      objResultSetResultado = this.execSqlGetRst(strBuilder.toString());
 
       // FIM AÇÕES
     } catch (Exception ex) {

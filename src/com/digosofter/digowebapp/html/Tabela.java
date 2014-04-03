@@ -165,7 +165,7 @@ public class Tabela extends Tag {
     try {
       // AÇÕES
 
-      objResultSet = this.getTbl().getObjResultSetConsulta();
+      objResultSet = this.getTbl().getRstConsulta();
 
       if (objResultSet != null && objResultSet.first()) {
 

@@ -24,6 +24,8 @@ public class PaletaCor extends Objeto {
 
   private String _strObjJavaScriptNome = "";
 
+  private String _strSombra = "#e1e1e1";
+
   public PaletaCor(String strNome) {
     // VARIÁVEIS
     // FIM VARIÁVEIS
@@ -112,6 +114,10 @@ public class PaletaCor extends Objeto {
     }
 
     return _strObjJavaScriptNome;
+  }
+
+  public String getStrSombra() {
+    return _strSombra;
   }
 
   public void setBooSelecionado(boolean booSelecionado) {
@@ -268,6 +274,10 @@ public class PaletaCor extends Objeto {
 
     } finally {
     }
+  }
+
+  public void setStrSombra(String strSombra) {
+    _strSombra = strSombra;
   }
 
 }

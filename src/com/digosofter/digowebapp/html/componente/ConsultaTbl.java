@@ -15,8 +15,6 @@ public class ConsultaTbl extends ComponenteMain {
 
   private Painel _pnlLista;
 
-  private LimiteFloat _tagLimiteFloat;
-
   private DbTabela _tbl;
 
   public ConsultaTbl(DbTabela tbl) {
@@ -78,27 +76,6 @@ public class ConsultaTbl extends ComponenteMain {
     }
 
     return _pnlLista;
-  }
-
-  private LimiteFloat getTagLimiteFloat() {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
-    try {
-      // AÇÕES
-
-      if (_tagLimiteFloat == null) {
-        _tagLimiteFloat = new LimiteFloat();
-      }
-
-      // FIM AÇÕES
-    } catch (Exception ex) {
-
-      new Erro("Erro inesperado.\n", ex);
-
-    } finally {
-    }
-
-    return _tagLimiteFloat;
   }
 
   private DbTabela getTbl() {
@@ -185,7 +162,7 @@ public class ConsultaTbl extends ComponenteMain {
     try {
       // AÇÕES
 
-      objResultSet = this.getTbl().getObjResultSetConsulta();
+      objResultSet = this.getTbl().getRstConsulta();
 
       if (objResultSet != null && objResultSet.first()) {
 

@@ -122,7 +122,7 @@ public abstract class DbTabela extends Objeto {
       // AÇÕES
 
       this.limparColunas();
-      objResultSet = this.getObjResultSet(cln, strFiltroValor);
+      objResultSet = this.getRst(cln, strFiltroValor);
 
       if (objResultSet != null && objResultSet.first()) {
 
@@ -402,7 +402,7 @@ public abstract class DbTabela extends Objeto {
     try {
       // AÇÕES
 
-      objResultSet = this.getObjResultSet(cln, lstObjDbFiltro);
+      objResultSet = this.getRst(cln, lstObjDbFiltro);
 
       if (objResultSet != null && objResultSet.first()) {
 
@@ -562,7 +562,7 @@ public abstract class DbTabela extends Objeto {
       sql = "select " + cln.getStrNomeSimplificado() + " from " + this.getStrNomeSimplificado()
           + ";";
 
-      objResultSet = this.getObjDataBase().execSqlGetResultSet(sql);
+      objResultSet = this.getObjDataBase().execSqlGetRst(sql);
 
       if (objResultSet != null) {
         if (objResultSet.first()) {
@@ -596,16 +596,16 @@ public abstract class DbTabela extends Objeto {
     return _objDataBase;
   }
 
-  public ResultSet getObjResultSet(DbColuna cln, List<DbFiltro> lstObjDbFiltro) {
+  public ResultSet getRst(DbColuna cln, List<DbFiltro> lstObjDbFiltro) {
     // VARIÁVEIS
 
-    ResultSet objResultSet = null;
+    ResultSet rstResultado = null;
 
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      objResultSet = this.getObjResultSet(cln, lstObjDbFiltro, this.getClnNome());
+      rstResultado = this.getRst(cln, lstObjDbFiltro, this.getClnNome());
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -615,14 +615,14 @@ public abstract class DbTabela extends Objeto {
     } finally {
     }
 
-    return objResultSet;
+    return rstResultado;
   }
 
-  public ResultSet getObjResultSet(DbColuna cln, List<DbFiltro> lstObjDbFiltro, DbColuna clnOrdem) {
+  public ResultSet getRst(DbColuna cln, List<DbFiltro> lstObjDbFiltro, DbColuna clnOrdem) {
     // VARIÁVEIS
 
     List<DbColuna> lstClnOrdem;
-    ResultSet objResultSetResultado = null;
+    ResultSet rstResultado = null;
 
     // FIM VARIÁVEIS
     try {
@@ -631,7 +631,7 @@ public abstract class DbTabela extends Objeto {
       lstClnOrdem = new ArrayList<DbColuna>();
       lstClnOrdem.add(clnOrdem);
 
-      objResultSetResultado = this.getObjResultSet(cln, lstObjDbFiltro, lstClnOrdem);
+      rstResultado = this.getRst(cln, lstObjDbFiltro, lstClnOrdem);
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -641,15 +641,14 @@ public abstract class DbTabela extends Objeto {
     } finally {
     }
 
-    return objResultSetResultado;
+    return rstResultado;
   }
 
-  public ResultSet getObjResultSet(DbColuna cln, List<DbFiltro> lstObjDbFiltro,
-      List<DbColuna> lstClnOrdem) {
+  public ResultSet getRst(DbColuna cln, List<DbFiltro> lstObjDbFiltro, List<DbColuna> lstClnOrdem) {
     // VARIÁVEIS
 
     List<DbColuna> lstCln;
-    ResultSet objResultSetResultado = null;
+    ResultSet rstResultado = null;
 
     // FIM VARIÁVEIS
     try {
@@ -658,7 +657,7 @@ public abstract class DbTabela extends Objeto {
       lstCln = new ArrayList<DbColuna>();
       lstCln.add(cln);
 
-      objResultSetResultado = this.getObjResultSet(lstCln, lstObjDbFiltro, lstClnOrdem);
+      rstResultado = this.getRst(lstCln, lstObjDbFiltro, lstClnOrdem);
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -668,14 +667,14 @@ public abstract class DbTabela extends Objeto {
     } finally {
     }
 
-    return objResultSetResultado;
+    return rstResultado;
   }
 
-  public ResultSet getObjResultSet(DbColuna clnFiltro, String strFiltro) {
+  public ResultSet getRst(DbColuna clnFiltro, String strFiltro) {
     // VARIÁVEIS
 
     List<DbFiltro> lstObjDbFiltro;
-    ResultSet objResultSetResultado = null;
+    ResultSet rstResultado = null;
 
     // FIM VARIÁVEIS
     try {
@@ -684,7 +683,7 @@ public abstract class DbTabela extends Objeto {
       lstObjDbFiltro = new ArrayList<DbFiltro>();
       lstObjDbFiltro.add(new DbFiltro(clnFiltro.getStrNomeSimplificado(), strFiltro));
 
-      objResultSetResultado = this.getObjResultSet(this.getLstCln(), lstObjDbFiltro, null);
+      rstResultado = this.getRst(this.getLstCln(), lstObjDbFiltro, null);
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -693,14 +692,14 @@ public abstract class DbTabela extends Objeto {
 
     } finally {
     }
-    return objResultSetResultado;
+    return rstResultado;
   }
 
-  public ResultSet getObjResultSet(List<DbColuna> lstCln, List<DbFiltro> lstObjDbFiltro,
+  public ResultSet getRst(List<DbColuna> lstCln, List<DbFiltro> lstObjDbFiltro,
       List<DbColuna> lstClnOrdem) {
     // VARIÁVEIS
 
-    ResultSet objResultSetResultado = null;
+    ResultSet rstResultado = null;
 
     String sql;
     String strClnNomes = Utils.STRING_VAZIA;
@@ -762,7 +761,7 @@ public abstract class DbTabela extends Objeto {
 
       strBuilder.append(";");
       sql = strBuilder.toString();
-      objResultSetResultado = this.getObjDataBase().execSqlGetResultSet(sql);
+      rstResultado = this.getObjDataBase().execSqlGetRst(sql);
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -772,14 +771,14 @@ public abstract class DbTabela extends Objeto {
     } finally {
     }
 
-    return objResultSetResultado;
+    return rstResultado;
   }
 
   /**
    * Retorna um "ResultSet" com os valores que devem ser apresentados na tela de
    * consulta desta tabela.
    */
-  public ResultSet getObjResultSetConsulta() {
+  public ResultSet getRstConsulta() {
     // VARIÁVEIS
 
     ResultSet objResultSetResultado = null;
@@ -788,7 +787,7 @@ public abstract class DbTabela extends Objeto {
     try {
       // AÇÕES
 
-      objResultSetResultado = this.getObjResultSet(this.getLstClnVisivelConsulta(), null, null);
+      objResultSetResultado = this.getRst(this.getLstClnVisivelConsulta(), null, null);
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -805,7 +804,7 @@ public abstract class DbTabela extends Objeto {
    * Retorna um objeto "ResultSet" com as colunas da chave-primária e a coluna
    * que representa o "nome" do registro.
    */
-  public ResultSet getObjResultSetNomeValor() {
+  public ResultSet getRstNomeValor() {
     // VARIÁVEIS
 
     List<DbColuna> lstCln;
@@ -824,7 +823,7 @@ public abstract class DbTabela extends Objeto {
       lstClnOrdem = new ArrayList<DbColuna>();
       lstClnOrdem.add(this.getClnNome());
 
-      objResultSetResultado = this.getObjResultSet(lstCln, null, lstClnOrdem);
+      objResultSetResultado = this.getRst(lstCln, null, lstClnOrdem);
 
       // FIM AÇÕES
     } catch (Exception ex) {
