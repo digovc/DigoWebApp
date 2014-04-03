@@ -18,6 +18,8 @@ public class FormularioTbl extends ComponenteMain {
 
   private boolean _booSubmit = false;
 
+  private Botao _btnCancelar;
+
   private Botao _btnSalvar;
 
   private Formulario _frm;
@@ -72,6 +74,30 @@ public class FormularioTbl extends ComponenteMain {
 
   private boolean getBooSubmit() {
     return _booSubmit;
+  }
+
+  private Botao getBtnCancelar() {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      if (_btnCancelar == null) {
+
+        _btnCancelar = new Botao();
+        _btnCancelar.setStrId("btnCancelar");
+        _btnCancelar.setStrConteudo("Cancelar");
+      }
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+
+    return _btnCancelar;
   }
 
   private Botao getBtnSalvar() {
@@ -253,6 +279,7 @@ public class FormularioTbl extends ComponenteMain {
       this.getFrm().setTagPai(this);
       this.getPnlCampos().setTagPai(this.getFrm());
       this.getPnlComando().setTagPai(this.getFrm());
+      this.getBtnCancelar().setTagPai(this.getPnlComando());
       this.getBtnSalvar().setTagPai(this.getPnlComando());
 
       this.montarLayoutCampos();
