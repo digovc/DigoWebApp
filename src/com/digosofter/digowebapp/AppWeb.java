@@ -24,10 +24,12 @@ public abstract class AppWeb extends Objeto {
   public static final String JS_FORMULARIO_TBL = "res/js/lib/JDigo/html/componente/FormularioTbl.js";
   public static final String JS_IMAGEM = "res/js/lib/JDigo/html/Imagem.js";
   public static final String JS_ITEM_MAIN = "res/js/lib/JDigo/html/componente/item/ItemMain.js";
+  public static final String JS_MOOTOOLS = "res/js/lib/JDigo/lib/mootools-core-1.4.5.js";
   public static final String JS_PAINEL = "res/js/lib/JDigo/html/Painel.js";
   public static final String JS_POPUP = "res/js/lib/JDigo/html/componente/Popup.js";
   public static final String JS_POPUP_ITEM = "res/js/lib/JDigo/html/componente/item/PopupItem.js";
   public static final String JS_TAG = "res/js/lib/JDigo/html/Tag.js";
+  public static final String JS_WEBSOCKET_FILE_TRANSFER = "res/js/lib/JDigo/lib/WebSocketFileTransfer.js";
 
   public static AppWeb getI() {
     return i;

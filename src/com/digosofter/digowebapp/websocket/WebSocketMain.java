@@ -86,13 +86,13 @@ public class WebSocketMain {
   }
 
   @OnMessage
-  public void onMessage(Session objSession,String strMensagem) {
+  public void onMessage(Session objSession, String strMensagem) {
     // VARIÁVEIS
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      this.processarMensagem(objSession,strMensagem);
+      this.processarMensagem(objSession, strMensagem);
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -107,7 +107,7 @@ public class WebSocketMain {
    * Método disparado a cada solicitação vinda do cliente contendo um
    * "ObjWsMain".
    */
-  protected void onObjWsMainRecebido(Session objSession,ObjWsInterlocutor objWsMain) {
+  protected void onObjWsMainRecebido(Session objSession, ObjWsInterlocutor objWsMain) {
     // VARIÁVEIS
     // FIM VARIÁVEIS
     try {
@@ -140,7 +140,7 @@ public class WebSocketMain {
   /**
    * Processa a mensagem vinda do cliente.
    */
-  private void processarMensagem(Session objSession,String strMensagem) {
+  private void processarMensagem(Session objSession, String strMensagem) {
     // VARIÁVEIS
 
     Gson objGson;
@@ -161,6 +161,34 @@ public class WebSocketMain {
 
     } finally {
     }
+  }
+
+  /**
+   * Verifica se o usuário atrelado ao objeto "Session" está "logado" no sistema.
+   */
+  protected boolean verificarUsuarioLogado(Session objSession) {
+    // VARIÁVEIS
+
+    boolean booResultado = false;
+    Usuario objUsuario;
+
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      objUsuario = this.getObjUsuarioPorSession(objSession);
+
+      booResultado = objUsuario.getBooLogado();
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+
+    return booResultado;
   }
 
 }
