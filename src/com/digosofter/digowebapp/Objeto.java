@@ -56,8 +56,7 @@ public abstract class Objeto {
 
         if (!Utils.getBooStrVazia(this.getStrNome())) {
 
-          _strNomeExibicao = Character.toString(this.getStrNome().charAt(0)).toUpperCase()
-              + this.getStrNome().substring(1);
+          _strNomeExibicao = Utils.getStrPrimeiraMaiuscula(this.getStrNome());
         }
       }
 
@@ -85,7 +84,21 @@ public abstract class Objeto {
   }
 
   public void setStrNomeExibicao(String strNomeExibicao) {
-    _strNomeExibicao = strNomeExibicao;
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      _strNomeExibicao = strNomeExibicao;
+      _strNomeExibicao = Utils.getStrPrimeiraMaiuscula(_strNomeExibicao);
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
   }
 
 }

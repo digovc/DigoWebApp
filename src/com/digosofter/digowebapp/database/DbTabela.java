@@ -26,6 +26,8 @@ public abstract class DbTabela extends Objeto {
 
   private List<DbColuna> _lstClnVisivelConsulta;
 
+  private List<DbView> _lstObjDbView;
+
   private ConsultaTbl _objConsultaTbl;
 
   private DataBase _objDataBase;
@@ -38,7 +40,7 @@ public abstract class DbTabela extends Objeto {
 
       this.setStrNome(strNome);
       this.setObjDataBase(objDataBase);
-      this.inicializarColunas();
+      this.inicializarColunas(-1);
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -424,6 +426,28 @@ public abstract class DbTabela extends Objeto {
     }
 
     return lstIntResultado;
+  }
+
+  public List<DbView> getLstObjDbView() {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      if (_lstObjDbView == null) {
+
+        _lstObjDbView = new ArrayList<DbView>();
+      }
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+
+    return _lstObjDbView;
   }
 
   /**
@@ -836,8 +860,21 @@ public abstract class DbTabela extends Objeto {
     return objResultSetResultado;
   }
 
-  // TODO: Revisar o mátodo "inicializarColunas" do site da Relatar.
-  protected abstract int inicializarColunas();
+  protected int inicializarColunas(int intOrdem) {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+
+    return intOrdem;
+  };
 
   /**
    * Limpa os valores de todas as colunas da tabela.

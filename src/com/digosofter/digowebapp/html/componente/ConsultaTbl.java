@@ -6,7 +6,6 @@ import com.digosofter.digowebapp.database.DbTabela;
 import com.digosofter.digowebapp.erro.Erro;
 import com.digosofter.digowebapp.html.Botao;
 import com.digosofter.digowebapp.html.CssTag;
-import com.digosofter.digowebapp.html.LimiteFloat;
 import com.digosofter.digowebapp.html.Painel;
 
 public class ConsultaTbl extends ComponenteMain {

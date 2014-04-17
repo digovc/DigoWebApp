@@ -222,6 +222,35 @@ public abstract class Utils {
     return strLinkHtmlResultado;
   }
 
+  public static String getStrPrimeiraMaiuscula(String str) {
+    // VARIÁVEIS
+
+    String strResultado = "";
+
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      if (Utils.getBooStrVazia(str)) {
+
+        return "";
+      }
+
+      strResultado = "";
+      strResultado += str.substring(0, 1).toUpperCase();
+      strResultado += str.substring(1);
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+
+    return strResultado;
+  }
+
   public static String getStrRemoverUltimaLetra(String str) {
     // VARIÁVEIS
 
