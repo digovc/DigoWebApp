@@ -1,8 +1,11 @@
 package com.digosofter.digowebapp.tabela;
 
+import java.util.List;
+
 import com.digosofter.digowebapp.database.DataBase;
 import com.digosofter.digowebapp.database.DbColuna;
 import com.digosofter.digowebapp.database.DbTabela;
+import com.digosofter.digowebapp.database.DbView;
 import com.digosofter.digowebapp.erro.Erro;
 
 public abstract class TblMain extends DbTabela {
@@ -29,6 +32,9 @@ public abstract class TblMain extends DbTabela {
     // FIM VARIÁVEIS
     try {
       // AÇÕES
+
+      this.inicializarViews(this.getLstObjDbView());
+
       // FIM AÇÕES
     } catch (Exception ex) {
 
@@ -209,15 +215,13 @@ public abstract class TblMain extends DbTabela {
   }
 
   @Override
-  protected int inicializarColunas() {
+  protected int inicializarColunas(int intOrdem) {
     // VARIÁVEIS
-
-    int intOrdem = 0;
-
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
+      intOrdem = super.inicializarColunas(intOrdem);
       this.getClnBooAtivo().setIntOrdem(++intOrdem);
       this.getClnDttAlteracao().setIntOrdem(++intOrdem);
       this.getClnDttCadastro().setIntOrdem(++intOrdem);
@@ -236,5 +240,13 @@ public abstract class TblMain extends DbTabela {
 
     return intOrdem;
   }
+
+  /**
+   * Método que inicializa a lista de views que a tabela possui. Este método é
+   * chamado na construção da classe.
+   */
+  protected void inicializarViews(List<DbView> lstObjDbView){
+
+  };
 
 }

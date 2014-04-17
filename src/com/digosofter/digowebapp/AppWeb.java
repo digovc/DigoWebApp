@@ -28,6 +28,9 @@ public abstract class AppWeb extends Objeto {
   public static final String JS_PAINEL = "res/js/lib/JDigo/html/Painel.js";
   public static final String JS_POPUP = "res/js/lib/JDigo/html/componente/Popup.js";
   public static final String JS_POPUP_ITEM = "res/js/lib/JDigo/html/componente/item/PopupItem.js";
+  public static final String JS_QUICKSEARCH = "res/js/lib/JDigo/lib/jquery.quicksearch.min.js";
+  public static final String JS_TABELA = "res/js/lib/JDigo/html/componente/Tabela.js";
+  public static final String JS_TABLESORTER= "res/js/lib/JDigo/lib/jquery.tablesorter.min.js";
   public static final String JS_TAG = "res/js/lib/JDigo/html/Tag.js";
   public static final String JS_WEBSOCKET_FILE_TRANSFER = "res/js/lib/JDigo/lib/WebSocketFileTransfer.js";
 
