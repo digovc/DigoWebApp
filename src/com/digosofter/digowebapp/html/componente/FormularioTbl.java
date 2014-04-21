@@ -279,8 +279,8 @@ public class FormularioTbl extends ComponenteMain {
       this.getFrm().setTagPai(this);
       this.getPnlCampos().setTagPai(this.getFrm());
       this.getPnlComando().setTagPai(this.getFrm());
-      this.getBtnCancelar().setTagPai(this.getPnlComando());
       this.getBtnSalvar().setTagPai(this.getPnlComando());
+      this.getBtnCancelar().setTagPai(this.getPnlComando());
 
       this.montarLayoutCampos();
 
