@@ -117,20 +117,20 @@ public abstract class DbTabela extends Objeto {
   public void buscarRegistroPorCln(DbColuna cln, String strFiltroValor) {
     // VARIÁVEIS
 
-    ResultSet objResultSet;
+    ResultSet rst;
 
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
       this.limparColunas();
-      objResultSet = this.getRst(cln, strFiltroValor);
+      rst = this.getRst(cln, strFiltroValor);
 
-      if (objResultSet != null && objResultSet.first()) {
+      if (rst != null && rst.first()) {
 
         for (DbColuna cln2 : this.getLstCln()) {
 
-          cln2.setStrValor(objResultSet.getString(cln2.getStrNomeSimplificado()));
+          cln2.setStrValor(rst.getString(cln2.getStrNomeSimplificado()));
         }
       }
 
@@ -247,7 +247,7 @@ public abstract class DbTabela extends Objeto {
   /**
    * Retorna a quantidade de campos que existe na linha indicada por parâmetro.
    */
-  public int getIntQtdCampoPorLinha(int intLinha) {
+  public int getIntQtdCampo(int intLinha) {
     // VARIÁVEIS
 
     int intResultado = 0;
@@ -719,6 +719,28 @@ public abstract class DbTabela extends Objeto {
     return rstResultado;
   }
 
+  public ResultSet getRst(DbColuna clnFiltro, int intFiltro) {
+    // VARIÁVEIS
+
+    ResultSet rstResultado = null;
+
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      rstResultado = this.getRst(clnFiltro, String.valueOf(intFiltro));
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+
+    return rstResultado;
+  }
+
   public ResultSet getRst(List<DbColuna> lstCln, List<DbFiltro> lstObjDbFiltro,
       List<DbColuna> lstClnOrdem) {
     // VARIÁVEIS
@@ -805,13 +827,13 @@ public abstract class DbTabela extends Objeto {
   public ResultSet getRstConsulta() {
     // VARIÁVEIS
 
-    ResultSet objResultSetResultado = null;
+    ResultSet rstResultado = null;
 
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      objResultSetResultado = this.getRst(this.getLstClnVisivelConsulta(), null, null);
+      rstResultado = this.getRst(this.getLstClnVisivelConsulta(), null, null);
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -821,7 +843,7 @@ public abstract class DbTabela extends Objeto {
     } finally {
     }
 
-    return objResultSetResultado;
+    return rstResultado;
   }
 
   /**

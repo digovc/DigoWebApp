@@ -8,169 +8,209 @@
  *
  */
 function _Utils() {
-	// HERANÇA
-	// FIM HERANÇA
+  // HERANÇA
+  // FIM HERANÇA
 
-	// ATRIBUTO
+  // ATRIBUTO
 
   var _this = this;
 
-	// FIM ATRIBUTO
+  // FIM ATRIBUTO
 
-	// MÉTODO
+  // MÉTODO
 
-	this.carregarImagem = function(strSrc, evtOnLoad) {
-		// VARIÁVEIS
+  this.carregarImagem = function(strSrc, evtOnLoad) {
+    // VARIÁVEIS
 
-		var img;
+    var img;
 
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-			img = new Image;
-			img.src = strSrc;
-			img.onload = evtOnLoad;
+      img = new Image;
+      img.src = strSrc;
+      img.onload = evtOnLoad;
 
-			// FIM AÇÕES
-		} catch (e) {
-			new Erro("Erro inesperado.", e);
-		}
+      // FIM AÇÕES
+    } catch (e) {
+      new Erro("Erro inesperado.", e);
+    }
 
-		return img;
-	}
+    return img;
+  }
 
-	this.getBooStrVazia = function(str) {
-		// VARIÁVEIS
+  this.getBooStrVazia = function(str) {
+    // VARIÁVEIS
 
-		var booResultado = false;
+    var booResultado = false;
 
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-			if (str == null) {
-				booResultado = true;
-			} else if (str == "") {
-				booResultado = true;
-			}
+      if (str == null) {
+        booResultado = true;
+      } else if (str == "") {
+        booResultado = true;
+      }
 
-			// FIM AÇÕES
-		} catch (e) {
-			new Erro("Erro inesperado.", e);
-		}
+      // FIM AÇÕES
+    } catch (e) {
+      new Erro("Erro inesperado.", e);
+    }
 
-		return booResultado;
-	}
+    return booResultado;
+  }
 
-	this.getBooValidarEmail = function(strEmail) {
-		// VARIÁVEIS
+  this.getBooValidarEmail = function(strEmail) {
+    // VARIÁVEIS
 
-		var booResultado = false;
-		var objRe;
+    var booResultado = false;
+    var objRe;
 
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-			objRe = new RegExp(
-					/^[A-Za-z0-9_\-\.]+@[A-Za-z0-9_\-\.]{2,}\.[A-Za-z0-9]{2,}(\.[A-Za-z0-9])?/);
+      objRe = new RegExp(/^[A-Za-z0-9_\-\.]+@[A-Za-z0-9_\-\.]{2,}\.[A-Za-z0-9]{2,}(\.[A-Za-z0-9])?/);
 
-			if (Utils.getBooVazia(strEmail)) {
+      if (Utils.getBooVazia(strEmail)) {
 
-			  booResultado = true;
+        booResultado = true;
 
-			} else if (objRe.test(strEmail)) {
+      } else if (objRe.test(strEmail)) {
 
-			  booResultado = true;
-			}
+        booResultado = true;
+      }
 
-			// FIM AÇÕES
-		} catch (e) {
-			new Erro("Erro inesperado.", e);
-		}
+      // FIM AÇÕES
+    } catch (e) {
+      new Erro("Erro inesperado.", e);
+    }
 
-		return booResultado;
-	}
+    return booResultado;
+  }
 
-	this.mostrarLstMensagemInformacao = function(lstStrMensagem) {
-		// VARIÁVEIS
+  this.getStrTamanhoFixo = function(str, intTamanho, chrComplemento, booDireita) {
+    // VARIÁVEIS
 
-		var strMensagemFormatada = "";
+    var intDif;
 
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-			strMensagemFormatada = "Informação:";
-			strMensagemFormatada += "\n\n\n";
+      str = String(str);
 
-			if (lstStrMensagem != null && lstStrMensagem.length > 0) {
+      if (str.length > intTamanho) {
+        str = str.substring(intTamanho, 0);
+        return str;
+      }
 
-				for ( var intIndex in lstStrMensagem) {
-					strMensagemFormatada += "\n";
-					strMensagemFormatada += lstStrMensagem[intIndex];
-				}
-			}
+      if (str.length < intTamanho) {
+        intDif = intTamanho - str.length;
 
-			Utils.mostrarMensagemInformacao(strMensagemFormatada)
+        while (true) {
 
-			// FIM AÇÕES
-		} catch (e) {
-			new Erro("Erro inesperado.", e);
-		}
-	}
+          if (booDireita) {
+            str = str + chrComplemento.substring(1, 0);
+          } else {
+            str = chrComplemento.substring(1, 0) + str;
+          }
 
-	this.mostrarMensagemInformacao = function(strMensagem) {
-		// VARIÁVEIS
+          if (str.length == intTamanho) {
+            return str;
+          }
+        }
+      }
 
-		var strMensagemFormatada;
+      // FIM AÇÕES
+    } catch (e) {
+      new Erro("Erro inesperado.", e);
+    }
 
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+    return str;
+  };
 
-			strMensagemFormatada += strMensagem;
+  this.mostrarLstMensagemInformacao = function(lstStrMensagem) {
+    // VARIÁVEIS
 
-			alert(strMensagemFormatada);
+    var strMensagemFormatada = "";
 
-			// FIM AÇÕES
-		} catch (e) {
-			new Erro("Erro inesperado.", e);
-		}
-	}
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
 
-	this.replaceAll = function (str, strAntigo, strNovo) {
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
+      strMensagemFormatada = "Informação:";
+      strMensagemFormatada += "\n\n\n";
 
-			while (str.indexOf(strAntigo) != -1) {
-				str = str.replace(strAntigo, strNovo);
-			}
+      if (lstStrMensagem != null && lstStrMensagem.length > 0) {
 
-			// FIM AÇÕES
-		} catch (e) {
-			new Erro("Erro inesperado.", e);
-		}
+        for ( var intIndex in lstStrMensagem) {
+          strMensagemFormatada += "\n";
+          strMensagemFormatada += lstStrMensagem[intIndex];
+        }
+      }
 
-		return str;
-	}
+      Utils.mostrarMensagemInformacao(strMensagemFormatada)
 
-	// FIM MÉTODO
+      // FIM AÇÕES
+    } catch (e) {
+      new Erro("Erro inesperado.", e);
+    }
+  }
 
-	/* Construtor */
-	{
-		// VARIÁVEIS
-		// FIM VARIÁVEIS
-		try {
-			// AÇÕES
-			// FIM AÇÕES
-		} catch (e) {
-			new Erro("Erro inesperado.", e);
-		}
-	}
+  this.mostrarMensagemInformacao = function(strMensagem) {
+    // VARIÁVEIS
+
+    var strMensagemFormatada;
+
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      strMensagemFormatada += strMensagem;
+
+      alert(strMensagemFormatada);
+
+      // FIM AÇÕES
+    } catch (e) {
+      new Erro("Erro inesperado.", e);
+    }
+  }
+
+  this.replaceAll = function(str, strAntigo, strNovo) {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      while (str.indexOf(strAntigo) != -1) {
+        str = str.replace(strAntigo, strNovo);
+      }
+
+      // FIM AÇÕES
+    } catch (e) {
+      new Erro("Erro inesperado.", e);
+    }
+
+    return str;
+  }
+
+  // FIM MÉTODO
+
+  /* Construtor */
+  {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+      // FIM AÇÕES
+    } catch (e) {
+      new Erro("Erro inesperado.", e);
+    }
+  }
 
 }
 
@@ -180,7 +220,7 @@ var Utils;
 
 $(document).ready(function() {
 
-	Utils = new _Utils();
+  Utils = new _Utils();
 
 });
 

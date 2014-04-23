@@ -16,7 +16,10 @@ import com.digosofter.digowebapp.erro.Erro;
 import com.google.gson.Gson;
 
 @ServerEndpoint("/ws/ws_main")
-public class WebSocketMain {
+public abstract class WebSocketMain {
+
+  public static final int FNC_MSG_ERRO = 70000;
+  public static final int FNC_MSG_POSITIVA = 701000;
 
   /**
    * Envia o "ObjWsInterlocutor" para o cliente associado a sessão indicada no
@@ -189,6 +192,54 @@ public class WebSocketMain {
     }
 
     return booResultado;
+  }
+
+  protected void enviarMsgErro(Session objSession, String strMsg) {
+    // VARIÁVEIS
+
+    ObjWsInterlocutor objWsInterlocutor;
+
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      objWsInterlocutor = new ObjWsInterlocutor();
+      objWsInterlocutor.setIntFuncId(FNC_MSG_ERRO);
+      objWsInterlocutor.setStrJson(strMsg);
+
+      this.enviar(objSession, objWsInterlocutor);
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+  }
+
+  protected void enviarMsgPositiva(Session objSession, String strMsg) {
+    // VARIÁVEIS
+
+    ObjWsInterlocutor objWsInterlocutor;
+
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      objWsInterlocutor = new ObjWsInterlocutor();
+      objWsInterlocutor.setIntFuncId(FNC_MSG_POSITIVA);
+      objWsInterlocutor.setStrJson(strMsg);
+
+      this.enviar(objSession, objWsInterlocutor);
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
   }
 
 }

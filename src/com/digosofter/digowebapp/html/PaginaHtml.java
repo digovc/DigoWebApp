@@ -122,6 +122,7 @@ public class PaginaHtml extends Objeto {
       lstObjJsTag.add(new JavaScriptTag("res/js/lib/JDigo/lib/jquery-2.0.3.js"));
       lstObjJsTag.add(new JavaScriptTag("res/js/lib/JDigo/lib/jquery-ui.min.js"));
       lstObjJsTag.add(new JavaScriptTag("res/js/lib/JDigo/lib/md5.js"));
+      lstObjJsTag.add(new JavaScriptTag("res/js/lib/JDigo/lib/date.js"));
       lstObjJsTag.add(new JavaScriptTag("res/js/lib/JDigo/lista/LstStrErro.js"));
       lstObjJsTag.add(new JavaScriptTag("res/js/lib/JDigo/erro/Erro.js"));
       lstObjJsTag.add(new JavaScriptTag("res/js/lib/JDigo/Utils.js"));

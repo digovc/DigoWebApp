@@ -15,6 +15,8 @@ import com.digosofter.digowebapp.html.Tag;
 
 public class Tabela extends ComponenteMain {
 
+  private boolean _booPesquisa = true;
+
   private Painel _pnlPesquisa;
 
   private Tag _tagTable;
@@ -34,7 +36,7 @@ public class Tabela extends ComponenteMain {
       // AÇÕES
 
       this.setTbl(tbl);
-      this.setStrId("div_" + this.getTbl().getStrNomeSimplificado());
+      this.setStrId("div_" + this.getTbl().getStrNome());
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -57,7 +59,10 @@ public class Tabela extends ComponenteMain {
 
       lstObjJsTag.add(new JavaScriptTag(AppWeb.JS_TABELA));
       lstObjJsTag.add(new JavaScriptTag(AppWeb.JS_TABLESORTER));
-      lstObjJsTag.add(new JavaScriptTag(AppWeb.JS_QUICKSEARCH));
+
+      if (this.getBooPesquisa()) {
+        lstObjJsTag.add(new JavaScriptTag(AppWeb.JS_QUICKSEARCH));
+      }
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -84,7 +89,7 @@ public class Tabela extends ComponenteMain {
       strJsCodigo = "";
 
       strJsCodigo += "var tbl_";
-      strJsCodigo += this.getTbl().getStrNomeSimplificado();
+      strJsCodigo += this.getTbl().getStrNome();
       strJsCodigo += " = new Tabela('";
       strJsCodigo += this.getStrId();
       strJsCodigo += "');";
@@ -98,6 +103,10 @@ public class Tabela extends ComponenteMain {
 
     } finally {
     }
+  }
+
+  private boolean getBooPesquisa() {
+    return _booPesquisa;
   }
 
   private Painel getPnlPesquisa() {
@@ -233,8 +242,11 @@ public class Tabela extends ComponenteMain {
     try {
       // AÇÕES
 
-      this.getPnlPesquisa().setTagPai(this);
-      this.getTxtPesquisa().setTagPai(this.getPnlPesquisa());
+      if (this.getBooPesquisa()) {
+        this.getPnlPesquisa().setTagPai(this);
+        this.getTxtPesquisa().setTagPai(this.getPnlPesquisa());
+      }
+
       this.getTagTable().setTagPai(this);
       this.getTagThead().setTagPai(this.getTagTable());
       this.getTagTbody().setTagPai(this.getTagTable());
@@ -326,21 +338,21 @@ public class Tabela extends ComponenteMain {
   private void montarLayoutLinhas() {
     // VARIÁVEIS
 
-    ResultSet objResultSet;
+    ResultSet rst;
 
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      objResultSet = this.getTbl().getRstConsulta();
+      rst = this.getTbl().getRstConsulta();
 
-      if (objResultSet != null && objResultSet.first()) {
+      if (rst != null && rst.first()) {
 
         do {
 
-          this.montarLayoutLinha(objResultSet);
+          this.montarLayoutLinha(rst);
 
-        } while (objResultSet.next());
+        } while (rst.next());
       }
 
       // FIM AÇÕES
@@ -350,6 +362,10 @@ public class Tabela extends ComponenteMain {
 
     } finally {
     }
+  }
+
+  public void setBooPesquisa(boolean booPesquisa) {
+    _booPesquisa = booPesquisa;
   }
 
   private void setTbl(DbTabela tbl) {

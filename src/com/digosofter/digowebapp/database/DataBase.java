@@ -73,12 +73,17 @@ public abstract class DataBase extends Objeto {
     // VARIÁVEIS
 
     int intResultado = 0;
+    String str;
 
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      intResultado = Integer.valueOf(this.execSqlGetStr(sql));
+      str = this.execSqlGetStr(sql);
+
+      if (!Utils.getBooStrVazia(str)) {
+        intResultado = Integer.valueOf(str);
+      }
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -127,24 +132,24 @@ public abstract class DataBase extends Objeto {
   public List<String> execSqlGetLstStr(String sql) {
     // VARIÁVEIS
 
-    ResultSet objResultSet;
+    ResultSet rst;
     List<String> lstStrResultado = null;
 
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      objResultSet = this.execSqlGetRst(sql);
+      rst = this.execSqlGetRst(sql);
 
-      if (objResultSet != null && objResultSet.first()) {
+      if (rst != null && rst.first()) {
 
         lstStrResultado = new ArrayList<String>();
 
         do {
 
-          lstStrResultado.add(objResultSet.getString(1));
+          lstStrResultado.add(rst.getString(1));
 
-        } while (objResultSet.next());
+        } while (rst.next());
       }
 
       // FIM AÇÕES
@@ -187,12 +192,17 @@ public abstract class DataBase extends Objeto {
     // VARIÁVEIS
 
     String strResultado = Utils.STRING_VAZIA;
+    List<String> lstStr;
 
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      strResultado = this.execSqlGetLstStr(sql).get(0);
+      lstStr = this.execSqlGetLstStr(sql);
+
+      if (lstStr != null && lstStr.size() > 0) {
+        strResultado = lstStr.get(0);
+      }
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -307,6 +317,41 @@ public abstract class DataBase extends Objeto {
 
   private void setStrUser(String strUser) {
     _strUser = strUser;
+  }
+
+  public boolean execSqlGetBoolean(String sql) {
+    // VARIÁVEIS
+
+    boolean booResultado = false;
+    String str;
+
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      str = this.execSqlGetStr(sql).toLowerCase();
+
+      switch (str) {
+        case "t":
+        case "true":
+          return true;
+        case "f":
+        case "false":
+        case "":
+          return false;
+        default:
+          return false;
+      }
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+
+    return booResultado;
   }
 
 }

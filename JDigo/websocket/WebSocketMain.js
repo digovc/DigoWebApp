@@ -1,4 +1,8 @@
 // CONSTANTE
+
+var WebSocketMain_FNC_MSG_ERRO = 70000;
+var WebSocketMain_FNC_MSG_POSITIVA = 701000;
+
 // FIM CONSTANTE
 
 // ATRIBUTOS GLOBAIS
@@ -29,14 +33,21 @@ function WebSocketMain(strUrl) {
 
         _fncOnMessage = function(evt) {
           // VARIÁVEIS
+
+          var objWsInterlocutor;
+
           // FIM VARIÁVEIS
           try {
             // AÇÕES
+
+            objWsInterlocutor = JSON.parse(evt.data);
+            _this.processarObjWsInterlocutor(objWsInterlocutor);
+
             // FIM AÇÕES
           } catch (e) {
             new Erro("Erro inesperado.", e);
           }
-        }
+        };
 
       }
 
@@ -46,9 +57,9 @@ function WebSocketMain(strUrl) {
     }
 
     return _fncOnMessage;
-  }
+  };
 
-  var _objWebSocket;
+  var _objWebSocket = null;
 
   this.getObjWebSocket = function() {
     // VARIÁVEIS
@@ -72,17 +83,17 @@ function WebSocketMain(strUrl) {
     }
 
     return _objWebSocket;
-  }
+  };
 
   var _strUrl = "";
 
   this.getStrUrl = function() {
     return _strUrl;
-  }
+  };
 
   this.setStrUrl = function(strUrl) {
     _strUrl = strUrl;
-  }
+  };
 
   // FIM ATRIBUTO
 
@@ -98,7 +109,7 @@ function WebSocketMain(strUrl) {
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
-  }
+  };
 
   this.enviar = function(objWsInterlocutor) {
     // VARIÁVEIS
@@ -110,7 +121,64 @@ function WebSocketMain(strUrl) {
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
-  }
+  };
+
+  this.processarMsgErro = function(strMsgErro) {
+    // VARIÁVEIS
+
+    var msg;
+
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      if (Utils.getBooStrVazia(strMsgErro)) {
+
+        return false;
+      }
+
+      msg = new Mensagem("Erro", strMsgErro, 1);
+      msg.mostrar();
+
+      // FIM AÇÕES
+    } catch (e) {
+      new Erro("Erro inesperado.", e);
+    }
+  };
+
+  this.processarMsgPositiva = function(strMsgPositiva) {
+    // VARIÁVEIS
+
+    var msg;
+
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      if (Utils.getBooStrVazia(strMsgPositiva)) {
+
+        return false;
+      }
+
+      msg = new Mensagem("Ok " + objUsuario.getStrNome(), strMsgPositiva, 2);
+      msg.mostrar();
+
+      // FIM AÇÕES
+    } catch (e) {
+      new Erro("Erro inesperado.", e);
+    }
+  };
+
+  this.processarObjWsInterlocutor = function(objWsInterlocutor) {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+      // FIM AÇÕES
+    } catch (e) {
+      new Erro("Erro inesperado.", e);
+    }
+  };
 
   // FIM MÉTODO
 

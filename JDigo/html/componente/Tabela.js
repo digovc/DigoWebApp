@@ -41,7 +41,9 @@ function Tabela(strId) {
     try {
       // AÇÕES
 
-      this.getJq().find("input").quicksearch('#' + this.getStrId()+ ' table tbody tr');
+      if ('quicksearch' in $('document')) {
+        this.getJq().find("input").quicksearch('#' + this.getStrId() + ' table tbody tr');
+      }
 
       // FIM AÇÕES
     } catch (e) {
