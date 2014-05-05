@@ -277,6 +277,9 @@ public class CampoFrmTbl extends ComponenteMain {
 
   @Override
   protected void montarLayout() {
+
+    super.montarLayout();
+
     // VARIÁVEIS
     // FIM VARIÁVEIS
     try {
