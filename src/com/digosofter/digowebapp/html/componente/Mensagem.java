@@ -101,15 +101,15 @@ public class Mensagem extends ComponenteMain {
       if (_pnlConteudo == null) {
 
         _pnlConteudo = new Painel();
-        _pnlConteudo.addCss(CssTag.getCssMainInst().setBorder(1, "outset",
+        _pnlConteudo.addCss(CssTag.getIMain().setBorder(1, "outset",
             AppWeb.getI().getObjPaletaCor().getStrCorBorda()));
-        _pnlConteudo.addCss(CssTag.getCssMainInst().setBorderRadius(5, 5, 5, 5));
-        _pnlConteudo.addCss(CssTag.getCssMainInst().setBoxShadow(0, 2, 2, 2,
+        _pnlConteudo.addCss(CssTag.getIMain().setBorderRadius(5, 5, 5, 5));
+        _pnlConteudo.addCss(CssTag.getIMain().setBoxShadow(0, 2, 2, 2,
             AppWeb.getI().getObjPaletaCor().getStrCorBorda()));
-        _pnlConteudo.addCss(CssTag.getCssMainInst().setDisplay("table"));
-        _pnlConteudo.addCss(CssTag.getCssMainInst().setPadding(5, "px"));
-        _pnlConteudo.addCss(CssTag.getCssMainInst().setBackgroundColor("white"));
-        _pnlConteudo.addCss(CssTag.getCssMainInst().addCss("margin", "auto"));
+        _pnlConteudo.addCss(CssTag.getIMain().setDisplay("table"));
+        _pnlConteudo.addCss(CssTag.getIMain().setPadding(5, "px"));
+        _pnlConteudo.addCss(CssTag.getIMain().setBackgroundColor("white"));
+        _pnlConteudo.addCss(CssTag.getIMain().addCss("margin", "auto"));
       }
 
       // FIM AÇÕES
@@ -156,10 +156,10 @@ public class Mensagem extends ComponenteMain {
 
         _pnlTitulo = super.getPnlTitulo();
         _pnlTitulo.setStrConteudo(this.getStrTitulo());
-        _pnlTitulo.addCss(CssTag.getCssMainInst().setFontNegrito());
-        _pnlTitulo.addCss(CssTag.getCssMainInst().setMarginBottom(5));
-        _pnlTitulo.addCss(CssTag.getCssMainInst().setPaddingTop(5));
-        _pnlTitulo.addCss(CssTag.getCssMainInst().setBorderTop(1,
+        _pnlTitulo.addCss(CssTag.getIMain().setFontNegrito());
+        _pnlTitulo.addCss(CssTag.getIMain().setMarginBottom(5));
+        _pnlTitulo.addCss(CssTag.getIMain().setPaddingTop(5));
+        _pnlTitulo.addCss(CssTag.getIMain().setBorderTop(1,
             AppWeb.getI().getObjPaletaCor().getStrCorBorda()));
       }
 

@@ -8,7 +8,7 @@ import com.digosofter.digowebapp.erro.Erro;
 
 public class CssTag extends Tag {
 
-  private static CssTag _cssMainInst;
+  private static CssTag _iMain;
 
   public static final String CSS_BORDER_TIPO_SOLID = "solid";
   public static final String CSS_COR_AMARELO = "#FFFF00";
@@ -68,14 +68,14 @@ public class CssTag extends Tag {
 
   public static final String CSS_WHITE_SPACE_NOWRAP = "nowrap";
 
-  public static CssTag getCssMainInst() {
+  public static CssTag getIMain() {
     // VARIÁVEIS
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      if (_cssMainInst == null) {
-        _cssMainInst = new CssTag();
+      if (_iMain == null) {
+        _iMain = new CssTag();
       }
 
       // FIM AÇÕES
@@ -86,11 +86,11 @@ public class CssTag extends Tag {
     } finally {
     }
 
-    return _cssMainInst;
+    return _iMain;
   }
 
   public static void setCssMainInst(CssTag cssMainInst) {
-    _cssMainInst = cssMainInst;
+    _iMain = cssMainInst;
   }
 
   private List<AtributoCss> _lstAtrCss = new ArrayList<AtributoCss>();
@@ -116,14 +116,6 @@ public class CssTag extends Tag {
 
     } finally {
     }
-  }
-
-  /**
-   * Este método tem de ser sob-escrito da classe pai para que não haja um loop
-   * infinito. E também porque esta tag não precisa de layout.
-   */
-  @Override
-  protected void setCss(CssTag tagCss) {
   }
 
   public String addCss(String strCssNome, String strValor) {
@@ -619,6 +611,14 @@ public class CssTag extends Tag {
     }
 
     return strResultado;
+  }
+
+  /**
+   * Este método tem de ser sob-escrito da classe pai para que não haja um loop
+   * infinito. E também porque esta tag não precisa de layout.
+   */
+  @Override
+  protected void setCss(CssTag tagCss) {
   }
 
   public String setCursor(String strCursor) {

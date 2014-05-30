@@ -8,7 +8,30 @@ import com.digosofter.digowebapp.erro.Erro;
 public class Campo extends Tag {
 
   public enum EnmTipo {
-    BUTTON, CHECKBOX, COLOR, DATE, DATETIME, DATETIME_LOCAL, EMAIL, FILE, HIDDEN, IMAGE, MONTH, NUMBER, PASSWORD, RADIO, RANGE, RESET, SEARCH, SUBMIT, TEL, TEXT, TEXT_AREA, TIME, URL, WEEK
+    BUTTON,
+    CHECKBOX,
+    COLOR,
+    DATE,
+    DATETIME,
+    DATETIME_LOCAL,
+    EMAIL,
+    FILE,
+    HIDDEN,
+    IMAGE,
+    MONTH,
+    NUMBER,
+    PASSWORD,
+    RADIO,
+    RANGE,
+    RESET,
+    SEARCH,
+    SUBMIT,
+    TEL,
+    TEXT,
+    TEXT_AREA,
+    TIME,
+    URL,
+    WEEK
 
   }
 
@@ -17,6 +40,8 @@ public class Campo extends Tag {
   private String _strId;
 
   private String _strPlaceHolder;
+
+  private String _strValor;
 
   public Campo() {
 
@@ -60,8 +85,12 @@ public class Campo extends Tag {
     return _enmTipo;
   }
 
-  private String getStrPlaceHolder() {
+  protected String getStrPlaceHolder() {
     return _strPlaceHolder;
+  }
+
+  protected String getStrValor() {
+    return _strValor;
   }
 
   @Override
@@ -74,7 +103,7 @@ public class Campo extends Tag {
     try {
       // AÇÕES
 
-      this.addCss(CssTag.getCssMainInst().addCss("box-sizing", "border-box"));
+      this.addCss(CssTag.getIMain().addCss("box-sizing", "border-box"));
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -219,6 +248,24 @@ public class Campo extends Tag {
 
       _strPlaceHolder = strPlaceHolder;
       this.getLstAtr().add(new Atributo("placeholder", _strPlaceHolder));
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+  }
+
+  public void setStrValor(String strValor) {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      _strValor = strValor;
+      this.addAtr("value", _strValor);
 
       // FIM AÇÕES
     } catch (Exception ex) {

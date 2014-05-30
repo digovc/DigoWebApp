@@ -65,8 +65,8 @@ public abstract class ComponenteMain extends Tag {
       if (_pnlComando == null) {
 
         _pnlComando = new Painel();
-        _pnlComando.addCss(CssTag.getCssMainInst().setPaddingLeft(10));
-        _pnlComando.addCss(CssTag.getCssMainInst().setPaddingRight(10));
+        _pnlComando.addCss(CssTag.getIMain().setPaddingLeft(10));
+        _pnlComando.addCss(CssTag.getIMain().setPaddingRight(10));
       }
 
       // FIM AÇÕES

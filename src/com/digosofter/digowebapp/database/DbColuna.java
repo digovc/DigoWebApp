@@ -263,7 +263,7 @@ public class DbColuna extends Objeto {
 
       switch (this.getEnmTipoGrupo()) {
         case ALPHANUMERICO:
-          strCss += CssTag.getCssMainInst().setTextAlign("left");
+          strCss += CssTag.getIMain().setTextAlign("left");
           break;
       }
 

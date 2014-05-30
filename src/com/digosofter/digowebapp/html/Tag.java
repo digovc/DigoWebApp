@@ -433,7 +433,7 @@ public class Tag extends Objeto {
 
       this.addJsArquivo(PaginaHtml.getI().getLstTagJs());
       this.addJsCodigo(PaginaHtml.getI().getTagJsMain());
-      this.setCss(CssTag.getCssMainInst());
+      this.setCss(CssTag.getIMain());
 
       // FIM AÇÕES
     } catch (Exception ex) {

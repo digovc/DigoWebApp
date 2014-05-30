@@ -1,5 +1,7 @@
 package com.digosofter.digowebapp;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -222,6 +224,32 @@ public abstract class Utils {
     return strLinkHtmlResultado;
   }
 
+  public static String getStrMd5(String str) {
+    // VARIÁVEIS
+
+    BigInteger objBigInteger;
+    MessageDigest objMessageDigest;
+    String strMd5Resultado = Utils.STRING_VAZIA;
+
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      objMessageDigest = MessageDigest.getInstance("MD5");
+      objBigInteger = new BigInteger(1, objMessageDigest.digest(str.getBytes()));
+      strMd5Resultado = String.format("%0" + (objMessageDigest.digest(str.getBytes()).length << 1) + "X", objBigInteger);
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+
+    return strMd5Resultado;
+  }
+
   public static String getStrPrimeiraMaiuscula(String str) {
     // VARIÁVEIS
 
@@ -298,6 +326,42 @@ public abstract class Utils {
     } finally {
     }
     return strComplexa;
+  }
+
+  public static String getStrToken(List<String> lstStrTermo) {
+    return Utils.getStrToken(lstStrTermo, 5);
+  }
+
+  public static String getStrToken(List<String> lstStrTermo, int intTamanho) {
+    // VARIÁVEIS
+
+    String strTermoMd5 = Utils.STRING_VAZIA;
+    String strTokenResultado = Utils.STRING_VAZIA;
+
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      for (String strTermo : lstStrTermo) {
+
+        if (Utils.getBooStrVazia(strTermo)) {
+          continue;
+        }
+
+        strTermoMd5 = Utils.getStrMd5(strTermo);
+        strTokenResultado = Utils.getStrMd5(strTokenResultado + strTermoMd5);
+      }
+
+      strTokenResultado = strTokenResultado.substring(0, intTamanho);
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+    return strTokenResultado;
   }
 
 }

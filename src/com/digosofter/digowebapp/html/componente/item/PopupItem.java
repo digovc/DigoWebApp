@@ -69,7 +69,7 @@ public class PopupItem extends ItemMain {
 
         _pnlTitulo = super.getPnlTitulo();
         _pnlTitulo.setStrConteudo(this.getStrNomeExibicao());
-        _pnlTitulo.addCss(CssTag.getCssMainInst().setTextAlign("left"));
+        _pnlTitulo.addCss(CssTag.getIMain().setTextAlign("left"));
       }
 
       // FIM AÇÕES

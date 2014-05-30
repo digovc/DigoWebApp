@@ -270,7 +270,7 @@ public class PaginaHtml extends Objeto {
 
       if (_cssMain == null) {
 
-        _cssMain = CssTag.getCssMainInst();
+        _cssMain = CssTag.getIMain();
         _cssMain.setStrId("cssMain");
       }
 

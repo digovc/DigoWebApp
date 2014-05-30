@@ -1,5 +1,6 @@
 package com.digosofter.digowebapp.html.componente.item;
 
+import com.digosofter.digowebapp.Utils;
 import com.digosofter.digowebapp.database.DbColuna;
 import com.digosofter.digowebapp.database.DbColuna.EnmTipo;
 import com.digosofter.digowebapp.erro.Erro;
@@ -26,7 +27,24 @@ public class CampoFrmTbl extends ComponenteMain {
       // AÇÕES
 
       this.setCln(cln);
-      this.addCss(CssTag.getCssMainInst().setWidth(this.getDblCampoWidth(), "%"));
+      this.addCss(CssTag.getIMain().setWidth(this.getDblCampoWidth(), "%"));
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+  }
+
+  private void carregarValorRegistro() {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      this.getObjCampo().setStrValor(this.getCln().getStrValor());
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -204,12 +222,16 @@ public class CampoFrmTbl extends ComponenteMain {
         this.definirTipoCampo();
 
         _objCampo.setStrNome(this.getCln().getStrNomeSimplificado());
-        _objCampo.addCss(CssTag.getCssMainInst().setPadding(5, "px"));
-        _objCampo.addCss(CssTag.getCssMainInst().setWidth(100, "%"));
+        _objCampo.addCss(CssTag.getIMain().setPadding(5, "px"));
+        _objCampo.addCss(CssTag.getIMain().setWidth(100, "%"));
 
         if (this.getCln().getIntTamanhoCampo() > 0) {
 
           _objCampo.addAtr("maxlength", this.getCln().getIntTamanhoCampo());
+        }
+
+        if (!Utils.getBooStrVazia(this.getCln().getStrValor())) {
+          this.carregarValorRegistro();
         }
       }
 
@@ -233,8 +255,8 @@ public class CampoFrmTbl extends ComponenteMain {
       if (_pnlCampo == null) {
 
         _pnlCampo = new Painel();
-        _pnlCampo.addCss(CssTag.getCssMainInst().setPaddingLeft(10));
-        _pnlCampo.addCss(CssTag.getCssMainInst().setPaddingRight(10));
+        _pnlCampo.addCss(CssTag.getIMain().setPaddingLeft(10));
+        _pnlCampo.addCss(CssTag.getIMain().setPaddingRight(10));
       }
 
       // FIM AÇÕES
@@ -259,9 +281,9 @@ public class CampoFrmTbl extends ComponenteMain {
 
         _pnlTitulo = super.getPnlTitulo();
         _pnlTitulo.setStrConteudo(this.getCln().getStrNomeExibicao());
-        _pnlTitulo.addCss(CssTag.getCssMainInst().setPaddingLeft(10));
-        _pnlTitulo.addCss(CssTag.getCssMainInst().setPaddingRight(10));
-        _pnlTitulo.addCss(CssTag.getCssMainInst().setTextAlign("left"));
+        _pnlTitulo.addCss(CssTag.getIMain().setPaddingLeft(10));
+        _pnlTitulo.addCss(CssTag.getIMain().setPaddingRight(10));
+        _pnlTitulo.addCss(CssTag.getIMain().setTextAlign("left"));
       }
 
       // FIM AÇÕES

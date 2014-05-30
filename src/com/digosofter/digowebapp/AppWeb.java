@@ -30,7 +30,7 @@ public abstract class AppWeb extends Objeto {
   public static final String JS_POPUP_ITEM = "res/js/lib/JDigo/html/componente/item/PopupItem.js";
   public static final String JS_QUICKSEARCH = "res/js/lib/JDigo/lib/jquery.quicksearch.min.js";
   public static final String JS_TABELA = "res/js/lib/JDigo/html/componente/Tabela.js";
-  public static final String JS_TABLESORTER= "res/js/lib/JDigo/lib/jquery.tablesorter.min.js";
+  public static final String JS_TABLESORTER = "res/js/lib/JDigo/lib/jquery.tablesorter.min.js";
   public static final String JS_TAG = "res/js/lib/JDigo/html/Tag.js";
   public static final String JS_WEBSOCKET_FILE_TRANSFER = "res/js/lib/JDigo/lib/WebSocketFileTransfer.js";
 
@@ -64,6 +64,23 @@ public abstract class AppWeb extends Objeto {
 
       this.setI(this);
       this.setStrNome(strAppNome);
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+  }
+
+  public void addStrHtmlResposta(int intHtml) {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      this.getObjPrintWriter().print(intHtml);
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -116,6 +133,36 @@ public abstract class AppWeb extends Objeto {
     }
 
     return booResultado;
+  }
+
+  /**
+   * Retorna o valor do parâmetro "GET" ou "POST" vindo do cliente indicado pelo
+   * nome contido em "strParamNome". Caso não exista retorna "-1".
+   */
+  public int getIntParam(String strParamNome) {
+    // VARIÁVEIS
+
+    int intResultado = -1;
+    String strParam;
+
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      strParam = this.getObjHttpServletRequest().getParameter(strParamNome);
+      strParam = !Utils.getBooStrVazia(strParam) ? strParam : "-1";
+
+      intResultado = Integer.valueOf(strParam);
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+
+    return intResultado;
   }
 
   public int getIntPostParam(String strParamNome) {
@@ -282,32 +329,6 @@ public abstract class AppWeb extends Objeto {
     return objUsuarioResultado;
   }
 
-  /**
-   * Retorna o valor do parâmetro get ou post vindo do cliente indicado pelo
-   * nome contido em "strParamNome". Caso não exista retorna "null".
-   */
-  public String getParametro(String strParamNome) {
-    // VARIÁVEIS
-
-    String strResultado = null;
-
-    // FIM VARIÁVEIS
-    try {
-      // AÇÕES
-
-      strResultado = this.getObjHttpServletRequest().getParameter(strParamNome);
-
-      // FIM AÇÕES
-    } catch (Exception ex) {
-
-      new Erro("Erro inesperado.\n", ex);
-
-    } finally {
-    }
-
-    return strResultado;
-  }
-
   public void getResposta(HttpServletRequest objRequest, HttpServletResponse objResponse) {
     // VARIÁVEIS
     // FIM VARIÁVEIS
@@ -330,10 +351,14 @@ public abstract class AppWeb extends Objeto {
     return _strPagSolicitada;
   }
 
-  public String getStrPostParam(String strParamNome) {
+  /**
+   * Retorna o valor do parâmetro "GET" ou "POST" vindo do cliente indicado pelo
+   * nome contido em "strParamNome". Caso não exista retorna "null".
+   */
+  public String getStrParam(String strParamNome) {
     // VARIÁVEIS
 
-    String strResultado = Utils.STRING_VAZIA;
+    String strResultado = null;
 
     // FIM VARIÁVEIS
     try {
@@ -348,6 +373,7 @@ public abstract class AppWeb extends Objeto {
 
     } finally {
     }
+
     return strResultado;
   }
 

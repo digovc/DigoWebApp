@@ -3,6 +3,7 @@ package com.digosofter.digowebapp.html.componente;
 import java.util.List;
 
 import com.digosofter.digowebapp.AppWeb;
+import com.digosofter.digowebapp.Utils;
 import com.digosofter.digowebapp.database.DbColuna;
 import com.digosofter.digowebapp.database.DbTabela;
 import com.digosofter.digowebapp.erro.Erro;
@@ -11,10 +12,13 @@ import com.digosofter.digowebapp.html.CssTag;
 import com.digosofter.digowebapp.html.Formulario;
 import com.digosofter.digowebapp.html.JavaScriptTag;
 import com.digosofter.digowebapp.html.LimiteFloat;
+import com.digosofter.digowebapp.html.PaginaHtml;
 import com.digosofter.digowebapp.html.Painel;
 import com.digosofter.digowebapp.html.componente.item.CampoFrmTbl;
 
 public class FormularioTbl extends ComponenteMain {
+
+  private boolean _booBtnCancelarVisivel = true;
 
   private boolean _booSubmit = false;
 
@@ -23,6 +27,8 @@ public class FormularioTbl extends ComponenteMain {
   private Botao _btnSalvar;
 
   private Formulario _frm;
+
+  private int _intRegistroId;
 
   private LimiteFloat _objLimiteFloat;
 
@@ -70,6 +76,10 @@ public class FormularioTbl extends ComponenteMain {
 
     } finally {
     }
+  }
+
+  private boolean getBooBtnCancelarVisivel() {
+    return _booBtnCancelarVisivel;
   }
 
   private boolean getBooSubmit() {
@@ -188,6 +198,10 @@ public class FormularioTbl extends ComponenteMain {
     return intResultado;
   }
 
+  private int getIntRegistroId() {
+    return _intRegistroId;
+  }
+
   private LimiteFloat getObjLimiteFloat() {
     // VARIÁVEIS
     // FIM VARIÁVEIS
@@ -248,17 +262,13 @@ public class FormularioTbl extends ComponenteMain {
     try {
       // AÇÕES
 
-      strParam = AppWeb.getI().getParametro(this.getTbl().getStrNomeSimplificado());
+      strParam = AppWeb.getI().getStrParam(this.getTbl().getStrNomeSimplificado());
 
-      if (strParam == null) {
-
-        this.montarLayoutCadastro();
-
-      } else {
-
+      if (!Utils.getBooStrVazia(strParam)) {
         this.salvarRegistro();
-        this.montarLayoutSalvo();
       }
+
+      this.montarLayoutCadastro();
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -280,7 +290,10 @@ public class FormularioTbl extends ComponenteMain {
       this.getPnlCampos().setTagPai(this.getFrm());
       this.getPnlComando().setTagPai(this.getFrm());
       this.getBtnSalvar().setTagPai(this.getPnlComando());
-      this.getBtnCancelar().setTagPai(this.getPnlComando());
+
+      if (this.getBooBtnCancelarVisivel()) {
+        this.getBtnCancelar().setTagPai(this.getPnlComando());
+      }
 
       this.montarLayoutCampos();
 
@@ -303,6 +316,12 @@ public class FormularioTbl extends ComponenteMain {
     // FIM VARIÁVEIS
     try {
       // AÇÕES
+
+      if (this.getIntRegistroId() > 0) {
+        this.getTbl().buscarRegistroPeloId(this.getIntRegistroId());
+      }else{
+        this.getTbl().zerarColunas();;
+      }
 
       for (int intIndex = 1; intIndex <= this.getIntQtdLinha(); intIndex++) {
 
@@ -351,6 +370,7 @@ public class FormularioTbl extends ComponenteMain {
     try {
       // AÇÕES
 
+      PaginaHtml.getI().mostrarMsgInfoCliente("Salvo com sucesso!");
       this.getTbl().salvarRegistroPost();
 
       // FIM AÇÕES
@@ -360,6 +380,10 @@ public class FormularioTbl extends ComponenteMain {
 
     } finally {
     }
+  }
+
+  public void setBooBtnCancelarVisivel(boolean booBtnCancelarVisivel) {
+    _booBtnCancelarVisivel = booBtnCancelarVisivel;
   }
 
   public void setBooSubmit(boolean booSubmit) {
@@ -385,6 +409,10 @@ public class FormularioTbl extends ComponenteMain {
 
     } finally {
     }
+  }
+
+  public void setIntRegistroId(int intRegistroId) {
+    _intRegistroId = intRegistroId;
   }
 
   private void setTbl(DbTabela tbl) {

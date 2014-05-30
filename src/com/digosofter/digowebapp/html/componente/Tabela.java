@@ -118,7 +118,7 @@ public class Tabela extends ComponenteMain {
       if (_pnlPesquisa == null) {
 
         _pnlPesquisa = new Painel();
-        _pnlPesquisa.addCss(CssTag.getCssMainInst().setPadding(10, "px"));
+        _pnlPesquisa.addCss(CssTag.getIMain().setPadding(10, "px"));
       }
 
       // FIM AÇÕES
@@ -142,11 +142,11 @@ public class Tabela extends ComponenteMain {
 
         _tagTable = new Tag("table");
         _tagTable.addAtr("border", "1px");
-        _tagTable.addCss(CssTag.getCssMainInst().addCss("border-collapse", "collapse"));
-        _tagTable.addCss(CssTag.getCssMainInst().setCursor("pointer"));
-        _tagTable.addCss(CssTag.getCssMainInst().setDisplay("block"));
-        _tagTable.addCss(CssTag.getCssMainInst().setHeight(650, "px"));
-        _tagTable.addCss(CssTag.getCssMainInst().setOverflowY("scroll"));
+        _tagTable.addCss(CssTag.getIMain().addCss("border-collapse", "collapse"));
+        _tagTable.addCss(CssTag.getIMain().setCursor("pointer"));
+        _tagTable.addCss(CssTag.getIMain().setDisplay("block"));
+        _tagTable.addCss(CssTag.getIMain().setHeight(650, "px"));
+        _tagTable.addCss(CssTag.getIMain().setOverflowY("scroll"));
       }
 
       // FIM AÇÕES
@@ -274,7 +274,7 @@ public class Tabela extends ComponenteMain {
 
       tagTr = new Tag("tr");
       tagTr.setTagPai(this.getTagThead());
-      tagTr.addCss(CssTag.getCssMainInst().setBorderBottom(1, "#999"));
+      tagTr.addCss(CssTag.getIMain().setBorderBottom(1, "#999"));
 
       for (DbColuna cln : this.getTbl().getLstClnVisivelConsulta()) {
 
@@ -309,7 +309,7 @@ public class Tabela extends ComponenteMain {
 
       if (objResultSet.getRow() % 2 == 0) {
 
-        tagTr.addCss(CssTag.getCssMainInst().setBackgroundColor("#F6F4F0"));
+        tagTr.addCss(CssTag.getIMain().setBackgroundColor("#F6F4F0"));
       }
 
       for (DbColuna cln : this.getTbl().getLstClnVisivelConsulta()) {
@@ -320,9 +320,9 @@ public class Tabela extends ComponenteMain {
         tagTd = new Tag("td");
         tagTd.setTagPai(tagTr);
         tagTd.setStrConteudo(strValorFormatado);
-        tagTd.addCss(CssTag.getCssMainInst().setOverflow("hidden"));
-        tagTd.addCss(CssTag.getCssMainInst().setWhiteSpace("nowrap"));
-        tagTd.addCss(CssTag.getCssMainInst().addCss("text-overflow", "ellipsis"));
+        tagTd.addCss(CssTag.getIMain().setOverflow("hidden"));
+        tagTd.addCss(CssTag.getIMain().setWhiteSpace("nowrap"));
+        tagTd.addCss(CssTag.getIMain().addCss("text-overflow", "ellipsis"));
         tagTd.addCss(cln.getStrCss());
       }
 

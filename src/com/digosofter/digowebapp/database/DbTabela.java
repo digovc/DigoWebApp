@@ -26,6 +26,8 @@ public abstract class DbTabela extends Objeto {
 
   private List<DbColuna> _lstClnVisivelConsulta;
 
+  private List<DbFiltro> _lstObjDbFiltroConsulta;
+
   private List<DbView> _lstObjDbView;
 
   private ConsultaTbl _objConsultaTbl;
@@ -428,6 +430,28 @@ public abstract class DbTabela extends Objeto {
     return lstIntResultado;
   }
 
+  private List<DbFiltro> getLstObjDbFiltroConsulta() {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      if (_lstObjDbFiltroConsulta == null) {
+
+        _lstObjDbFiltroConsulta = new ArrayList<>();
+      }
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+
+    return _lstObjDbFiltroConsulta;
+  }
+
   public List<DbView> getLstObjDbView() {
     // VARIÁVEIS
     // FIM VARIÁVEIS
@@ -620,6 +644,28 @@ public abstract class DbTabela extends Objeto {
     return _objDataBase;
   }
 
+  public ResultSet getRst(DbColuna clnFiltro, int intFiltro) {
+    // VARIÁVEIS
+
+    ResultSet rstResultado = null;
+
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      rstResultado = this.getRst(clnFiltro, String.valueOf(intFiltro));
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+
+    return rstResultado;
+  }
+
   public ResultSet getRst(DbColuna cln, List<DbFiltro> lstObjDbFiltro) {
     // VARIÁVEIS
 
@@ -719,28 +765,6 @@ public abstract class DbTabela extends Objeto {
     return rstResultado;
   }
 
-  public ResultSet getRst(DbColuna clnFiltro, int intFiltro) {
-    // VARIÁVEIS
-
-    ResultSet rstResultado = null;
-
-    // FIM VARIÁVEIS
-    try {
-      // AÇÕES
-
-      rstResultado = this.getRst(clnFiltro, String.valueOf(intFiltro));
-
-      // FIM AÇÕES
-    } catch (Exception ex) {
-
-      new Erro("Erro inesperado.\n", ex);
-
-    } finally {
-    }
-
-    return rstResultado;
-  }
-
   public ResultSet getRst(List<DbColuna> lstCln, List<DbFiltro> lstObjDbFiltro,
       List<DbColuna> lstClnOrdem) {
     // VARIÁVEIS
@@ -833,7 +857,13 @@ public abstract class DbTabela extends Objeto {
     try {
       // AÇÕES
 
-      rstResultado = this.getRst(this.getLstClnVisivelConsulta(), null, null);
+      if (this.getLstObjDbFiltroConsulta().size() > 0) {
+        rstResultado = this.getRst(this.getLstClnVisivelConsulta(), this.getLstObjDbFiltroConsulta(), null);
+      }else{
+        rstResultado = this.getRst(this.getLstClnVisivelConsulta(), null, null);
+      }
+
+      this.getLstObjDbFiltroConsulta().clear();
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -896,7 +926,7 @@ public abstract class DbTabela extends Objeto {
     }
 
     return intOrdem;
-  };
+  }
 
   /**
    * Limpa os valores de todas as colunas da tabela.
@@ -918,7 +948,7 @@ public abstract class DbTabela extends Objeto {
 
     } finally {
     }
-  }
+  };
 
   /**
    * Persiste os valores atuais das colunas no banco de dados. Caso o valor da
@@ -932,12 +962,17 @@ public abstract class DbTabela extends Objeto {
 
     int intResultado = 0;
     String sql;
+    String strId;
 
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      if (Utils.getBooStrVazia(this.getClnChavePrimaria().getStrValor())) {
+      strId = this.getClnChavePrimaria().getStrValor();
+
+      if (Utils.getBooStrVazia(strId) || "0".equals(strId)) {
+
+        this.getClnChavePrimaria().setStrValor(null);
 
         sql = "INSERT INTO _tbl_nome (_cln_nome) VALUES(_cln_valor) RETURNING _cln_chave_primaria_nome;";
         sql = sql.replace("_tbl_nome", this.getStrNomeSimplificado());
@@ -997,7 +1032,7 @@ public abstract class DbTabela extends Objeto {
 
       for (DbColuna cln : this.getLstClnVisivelCadastro()) {
 
-        strPostValor = AppWeb.getI().getParametro(cln.getStrNomeSimplificado());
+        strPostValor = AppWeb.getI().getStrParam(cln.getStrNomeSimplificado());
         cln.setStrValor(strPostValor);
       }
 
@@ -1022,6 +1057,10 @@ public abstract class DbTabela extends Objeto {
 
   private void setFrmTbl(FormularioTbl frmTbl) {
     _frmTbl = frmTbl;
+  }
+
+  public void setLstObjDbFiltroConsulta(List<DbFiltro> lstObjDbFiltroConsulta) {
+    _lstObjDbFiltroConsulta = lstObjDbFiltroConsulta;
   }
 
   private void setObjConsultaTbl(ConsultaTbl objConsultaTbl) {

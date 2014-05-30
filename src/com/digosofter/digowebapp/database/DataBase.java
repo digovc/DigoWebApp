@@ -69,6 +69,12 @@ public abstract class DataBase extends Objeto {
     }
   }
 
+  /**
+   * Executa um "SQL" e retorna o valor da primeira coluna que tem de ser um
+   * inteiro.
+   * <p>
+   * Caso o valor não exista no bando de dados retorna -1.
+   */
   public int execSqlGetInt(String sql) {
     // VARIÁVEIS
 
