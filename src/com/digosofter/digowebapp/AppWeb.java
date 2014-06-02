@@ -10,6 +10,9 @@ import javax.servlet.http.HttpSession;
 
 import com.digosofter.digowebapp.design.PaletaCor;
 import com.digosofter.digowebapp.erro.Erro;
+import com.digosofter.digowebapp.html.JavaScriptTag;
+import com.digosofter.digowebapp.html.PaginaHtml;
+import com.digosofter.digowebapp.html.componente.Mensagem;
 
 public abstract class AppWeb extends Objeto {
 

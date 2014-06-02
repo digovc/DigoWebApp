@@ -43,7 +43,7 @@ public class Mensagem extends ComponenteMain {
     }
   }
 
-  private EnmTipo getEnmTipo() {
+  public EnmTipo getEnmTipo() {
     return _enmTipo;
   }
 
@@ -174,11 +174,11 @@ public class Mensagem extends ComponenteMain {
     return _pnlTitulo;
   }
 
-  private String getStrMensagem() {
+  public String getStrMensagem() {
     return _strMensagem;
   }
 
-  private String getStrTitulo() {
+  public String getStrTitulo() {
     return _strTitulo;
   }
 

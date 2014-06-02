@@ -1019,10 +1019,12 @@ public abstract class DbTabela extends Objeto {
   /**
    * Persiste os dados vindos do cliente pelo método "POST" no banco de dados.
    */
-  public void salvarRegistroPost() {
+  public int salvarRegistroPost() {
     // VARIÁVEIS
 
+    int intResultado = -1;
     String strPostValor;
+    String strId;
 
     // FIM VARIÁVEIS
     try {
@@ -1030,13 +1032,19 @@ public abstract class DbTabela extends Objeto {
 
       this.limparColunas();
 
+      strId = AppWeb.getI().getStrParam("id");
+
+      if (!Utils.getBooStrVazia(strId)) {
+        this.getClnChavePrimaria().setStrValor(strId);
+      }
+
       for (DbColuna cln : this.getLstClnVisivelCadastro()) {
 
         strPostValor = AppWeb.getI().getStrParam(cln.getStrNomeSimplificado());
         cln.setStrValor(strPostValor);
       }
 
-      this.salvar();
+      intResultado = this.salvar();
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -1045,6 +1053,8 @@ public abstract class DbTabela extends Objeto {
 
     } finally {
     }
+
+    return intResultado;
   }
 
   public void setClnChavePrimaria(DbColuna clnChavePrimaria) {

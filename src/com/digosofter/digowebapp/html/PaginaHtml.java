@@ -602,22 +602,28 @@ public class PaginaHtml extends Objeto {
     }
   }
 
-  public void mostrarMsgInfoCliente(String strMensagem) {
+  /**
+   * Mostra uma mensagem usando de informação ao cliente.
+   */
+  public void mostrarMsgCliente(Mensagem msg) {
     // VARIÁVEIS
 
-    String strJsCodigo, strMensagemFormatada;
+    String strJs;
 
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      strMensagemFormatada = "Informação:";
-      strMensagemFormatada += "\\n\\n\\n";
-      strMensagemFormatada += strMensagem;
+      strJs = "var ";
+      strJs += "msg" + msg.getIntId();
+      strJs += "= new Mensagem(";
+      strJs += "'" + msg.getStrTitulo() + "',";
+      strJs += "'" + msg.getStrMensagem() + "',";
+      strJs += msg.getEnmTipo().ordinal();
+      strJs += ");";
+      strJs += "msg" + msg.getIntId() + ".mostrar();";
 
-      strJsCodigo = "alert('" + strMensagemFormatada + "');";
-
-      this.addJsCodigo(strJsCodigo);
+      this.addJsCodigo(strJs);
 
       // FIM AÇÕES
     } catch (Exception ex) {

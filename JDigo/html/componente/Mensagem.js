@@ -5,6 +5,10 @@ var Mensagem_ESTRUTURA_INFO_ALERTA = "";
 var Mensagem_ESTRUTURA_INFO_NEGATIVA = "";
 var Mensagem_ESTRUTURA_INFO_POSITIVA = "";
 
+var Mensagem_TIPO_ALERTA = 0;
+var Mensagem_TIPO_NEGATIVA = 1;
+var Mensagem_TIPO_POSITIVA = 2;
+
 // FIM CONSTANTE
 // ATRIBUTOS GLOBAIS
 // FIM ATRIBUTOS GLOBAIS
@@ -26,15 +30,15 @@ function Mensagem(strTitulo, strMsg, intTipo) {
 
   var _this = this;
 
-  /**
-   * 0 = alerta; 1 = negativa; 2 = positiva.
-   */
-  var _intTipo = 2;
+  var _intTipo = Mensagem_TIPO_POSITIVA;
 
   this.getIntTipo = function() {
     return _intTipo;
   };
 
+  /**
+   * 0 = alerta; 1 = negativa; 2 = positiva.
+   */
   this.setIntTipo = function(intTipo) {
     _intTipo = intTipo;
   };
@@ -161,5 +165,4 @@ function Mensagem(strTitulo, strMsg, intTipo) {
       new Erro("Erro inesperado.", e);
     }
   }
-
 }

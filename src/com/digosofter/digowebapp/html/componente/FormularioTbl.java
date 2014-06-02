@@ -20,6 +20,8 @@ public class FormularioTbl extends ComponenteMain {
 
   private boolean _booBtnCancelarVisivel = true;
 
+  private boolean _booSalvar;
+
   private boolean _booSubmit = false;
 
   private Botao _btnCancelar;
@@ -33,6 +35,8 @@ public class FormularioTbl extends ComponenteMain {
   private LimiteFloat _objLimiteFloat;
 
   private Painel _pnlCampos;
+
+  private String _strAction;
 
   private DbTabela _tbl;
 
@@ -80,6 +84,25 @@ public class FormularioTbl extends ComponenteMain {
 
   private boolean getBooBtnCancelarVisivel() {
     return _booBtnCancelarVisivel;
+  }
+
+  private boolean getBooSalvar() {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      _booSalvar = this.getTbl().getStrNomeSimplificado().equals(AppWeb.getI().getStrParam("save"));
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+
+    return _booSalvar;
   }
 
   private boolean getBooSubmit() {
@@ -136,21 +159,12 @@ public class FormularioTbl extends ComponenteMain {
 
   private Formulario getFrm() {
     // VARIÁVEIS
-
-    String strAction;
-
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
       if (_frm == null) {
-
-        strAction = AppWeb.getI().getStrPagSolicitada();
-        strAction += "?";
-        strAction += this.getTbl().getStrNomeSimplificado();
-        // strAction += "=salvar";
-
-        _frm = new Formulario(strAction, Formulario.EnmMetodo.POST);
+        _frm = new Formulario(this.getStrAction(), Formulario.EnmMetodo.POST);
         _frm.setStrId("frm_" + this.getTbl().getStrNomeSimplificado());
 
         if (!this.getBooSubmit()) {
@@ -198,7 +212,24 @@ public class FormularioTbl extends ComponenteMain {
     return intResultado;
   }
 
-  private int getIntRegistroId() {
+  public int getIntRegistroId() {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      if (_intRegistroId == 0) {
+        _intRegistroId = AppWeb.getI().getIntParam("id");
+      }
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+
     return _intRegistroId;
   }
 
@@ -223,7 +254,7 @@ public class FormularioTbl extends ComponenteMain {
     return _objLimiteFloat;
   }
 
-  public Painel getPnlCampos() {
+   public Painel getPnlCampos() {
     // VARIÁVEIS
     // FIM VARIÁVEIS
     try {
@@ -245,6 +276,34 @@ public class FormularioTbl extends ComponenteMain {
     return _pnlCampos;
   }
 
+  private String getStrAction() {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      if (Utils.getBooStrVazia(_strAction)) {
+        _strAction = AppWeb.getI().getStrPagSolicitada();
+        _strAction += "?save=";
+        _strAction += this.getTbl().getStrNomeSimplificado();
+
+        if (this.getIntRegistroId() > 0) {
+          _strAction += "&id=";
+          _strAction += this.getIntRegistroId();
+        }
+      }
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+
+    return _strAction;
+  }
+
   private DbTabela getTbl() {
     return _tbl;
   }
@@ -255,19 +314,11 @@ public class FormularioTbl extends ComponenteMain {
     super.montarLayout();
 
     // VARIÁVEIS
-
-    String strParam;
-
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      strParam = AppWeb.getI().getStrParam(this.getTbl().getStrNomeSimplificado());
-
-      if (!Utils.getBooStrVazia(strParam)) {
-        this.salvarRegistro();
-      }
-
+      this.salvarRegistro();
       this.montarLayoutCadastro();
 
       // FIM AÇÕES
@@ -319,8 +370,8 @@ public class FormularioTbl extends ComponenteMain {
 
       if (this.getIntRegistroId() > 0) {
         this.getTbl().buscarRegistroPeloId(this.getIntRegistroId());
-      }else{
-        this.getTbl().zerarColunas();;
+      } else {
+        this.getTbl().zerarColunas();
       }
 
       for (int intIndex = 1; intIndex <= this.getIntQtdLinha(); intIndex++) {
@@ -344,13 +395,21 @@ public class FormularioTbl extends ComponenteMain {
     }
   }
 
-  private void montarLayoutSalvo() {
+  private void mostrarMsgSalvo() {
     // VARIÁVEIS
+
+    Mensagem msg;
+
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      this.setStrConteudo("Salvo com sucesso!");
+      // TODO: Implementar mensagens de erro
+      msg = new Mensagem();
+      msg.setStrTitulo("Ok");
+      msg.setStrMensagem("Salvo com sucesso!");
+      msg.setEnmTipo(Mensagem.EnmTipo.POSITIVA);
+      PaginaHtml.getI().mostrarMsgCliente(msg);
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -366,12 +425,20 @@ public class FormularioTbl extends ComponenteMain {
    */
   private void salvarRegistro() {
     // VARIÁVEIS
+
+    int intId;
+
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      PaginaHtml.getI().mostrarMsgInfoCliente("Salvo com sucesso!");
-      this.getTbl().salvarRegistroPost();
+      if (!this.getBooSalvar()) {
+        return;
+      }
+
+      this.mostrarMsgSalvo();
+      intId = this.getTbl().salvarRegistroPost();
+      this.setIntRegistroId(intId);
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -411,7 +478,7 @@ public class FormularioTbl extends ComponenteMain {
     }
   }
 
-  public void setIntRegistroId(int intRegistroId) {
+  private void setIntRegistroId(int intRegistroId){
     _intRegistroId = intRegistroId;
   }
 

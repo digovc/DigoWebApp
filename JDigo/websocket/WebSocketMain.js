@@ -133,11 +133,10 @@ function WebSocketMain(strUrl) {
       // A합ES
 
       if (Utils.getBooStrVazia(strMsgErro)) {
-
         return false;
       }
 
-      msg = new Mensagem("Erro", strMsgErro, 1);
+      msg = new Mensagem("Erro", strMsgErro, Mensagem_TIPO_NEGATIVA);
       msg.mostrar();
 
       // FIM A합ES
@@ -156,11 +155,10 @@ function WebSocketMain(strUrl) {
       // A합ES
 
       if (Utils.getBooStrVazia(strMsgPositiva)) {
-
         return false;
       }
 
-      msg = new Mensagem("Ok " + objUsuario.getStrNome(), strMsgPositiva, 2);
+      msg = new Mensagem("Ok " + objUsuario.getStrNome(), strMsgPositiva, Mensagem_TIPO_POSITIVA);
       msg.mostrar();
 
       // FIM A합ES

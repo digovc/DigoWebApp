@@ -89,6 +89,60 @@ function AppWeb() {
     }
   };
 
+  this.mostrarMsgAlerta = function(strTitulo, strMensagem) {
+    // VARIÁVEIS
+
+    var msg;
+
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      msg = new Mensagem(strTitulo, strMensagem, Mensagem_TIPO_ALERTA);
+      msg.mostrar();
+
+      // FIM AÇÕES
+    } catch (e) {
+      new Erro("Erro inesperado.", e);
+    }
+  };
+
+  this.mostrarMsgNegativa = function(strTitulo, strMensagem) {
+    // VARIÁVEIS
+
+    var msg;
+
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      msg = new Mensagem(strTitulo, strMensagem, Mensagem_TIPO_NEGATIVA);
+      msg.mostrar();
+
+      // FIM AÇÕES
+    } catch (e) {
+      new Erro("Erro inesperado.", e);
+    }
+  };
+
+  this.mostrarMsgPositiva = function(strTitulo, strMensagem) {
+    // VARIÁVEIS
+
+    var msg;
+
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      msg = new Mensagem(strTitulo, strMensagem, Mensagem_TIPO_POSITIVA);
+      msg.mostrar();
+
+      // FIM AÇÕES
+    } catch (e) {
+      new Erro("Erro inesperado.", e);
+    }
+  };
+
   // FIM MÉTODO
 
   /* Construtor */
