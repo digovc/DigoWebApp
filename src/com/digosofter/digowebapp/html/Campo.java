@@ -116,9 +116,6 @@ public class Campo extends Tag {
 
   public void setEnmTipo(EnmTipo enmTipo) {
     // VARIÁVEIS
-
-    String strTipo;
-
     // FIM VARIÁVEIS
     try {
       // AÇÕES
@@ -265,7 +262,15 @@ public class Campo extends Tag {
       // AÇÕES
 
       _strValor = strValor;
-      this.addAtr("value", _strValor);
+
+      switch (this.getEnmTipo()) {
+        case TEXT_AREA:
+          this.setStrConteudo(_strValor);
+          break;
+        default:
+          this.addAtr("value", _strValor);
+          break;
+      }
 
       // FIM AÇÕES
     } catch (Exception ex) {

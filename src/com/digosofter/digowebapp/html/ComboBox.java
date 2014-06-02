@@ -99,12 +99,11 @@ public class ComboBox extends Campo {
   }
 
   @Override
-  public String getStrTagFormatada() {
+  protected void montarLayout() {
+
+    super.montarLayout();
+
     // VARIÁVEIS
-
-    String strTagNome;
-    Tag tag;
-
     // FIM VARIÁVEIS
     try {
       // AÇÕES
@@ -115,19 +114,29 @@ public class ComboBox extends Campo {
         this.getLstStrNome().add(0, "");
       }
 
+      this.montarLayoutItens();
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+  }
+
+  private void montarLayoutItens() {
+    // VARIÁVEIS
+
+    Tag tagOption;
+
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
       for (int i = 0; i < this.getLstStrValor().size(); i++) {
-
-        if (!Utils.getBooStrVazia(this.getStrValor())
-            && this.getStrValor().equals(this.getLstStrValor().get(i))) {
-          strTagNome = "option selected";
-        } else {
-          strTagNome = "option";
-        }
-
-        tag = new Tag(strTagNome);
-        tag.addAtr("value", this.getLstStrValor().get(i));
-        tag.setStrConteudo(this.getLstStrNome().get(i));
-        tag.setTagPai(this);
+        tagOption = this.getNewTagOption(i);
+        tagOption.setTagPai(this);
       }
 
       // FIM AÇÕES
@@ -137,8 +146,36 @@ public class ComboBox extends Campo {
 
     } finally {
     }
+  }
 
-    return super.getStrTagFormatada();
+  private Tag getNewTagOption(int intOrdem) {
+    // VARIÁVEIS
+
+    Tag tagResultado = null;
+
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      if (!Utils.getBooStrVazia(this.getStrValor())
+          && this.getStrValor().equals(this.getLstStrValor().get(intOrdem))) {
+        tagResultado = new Tag("option selected");
+      } else {
+        tagResultado = new Tag("option");
+      }
+
+      tagResultado.addAtr("value", this.getLstStrValor().get(intOrdem));
+      tagResultado.setStrConteudo(this.getLstStrNome().get(intOrdem));
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+
+    return tagResultado;
   }
 
   public void setBooOpcaoVazia(boolean booOpcaoVazia) {
