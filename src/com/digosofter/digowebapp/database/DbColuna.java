@@ -47,7 +47,7 @@ public class DbColuna extends Objeto {
 
   private int _intOrdem;
 
-  private int _intTamanhoCampo = 50;
+  private int _intTamanhoCampo = 100;
 
   private List<String> _lstStrOpcao;
 
