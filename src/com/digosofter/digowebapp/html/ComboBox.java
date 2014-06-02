@@ -3,6 +3,7 @@ package com.digosofter.digowebapp.html;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.digosofter.digowebapp.Utils;
 import com.digosofter.digowebapp.erro.Erro;
 
 public class ComboBox extends Campo {
@@ -12,8 +13,6 @@ public class ComboBox extends Campo {
   private List<String> _lstStrNome;
 
   private List<String> _lstStrValor;
-
-  private String _strValorSelecionado;
 
   public ComboBox() {
     // VARIÁVEIS
@@ -118,8 +117,12 @@ public class ComboBox extends Campo {
 
       for (int i = 0; i < this.getLstStrValor().size(); i++) {
 
-        strTagNome = this.getStrValorSelecionado() == this.getLstStrValor().get(i) ? "option selected"
-            : "option";
+        if (!Utils.getBooStrVazia(this.getStrValor())
+            && this.getStrValor().equals(this.getLstStrValor().get(i))) {
+          strTagNome = "option selected";
+        } else {
+          strTagNome = "option";
+        }
 
         tag = new Tag(strTagNome);
         tag.addAtr("value", this.getLstStrValor().get(i));
@@ -138,10 +141,6 @@ public class ComboBox extends Campo {
     return super.getStrTagFormatada();
   }
 
-  private String getStrValorSelecionado() {
-    return _strValorSelecionado;
-  }
-
   public void setBooOpcaoVazia(boolean booOpcaoVazia) {
     _booOpcaoVazia = booOpcaoVazia;
   }
@@ -153,9 +152,4 @@ public class ComboBox extends Campo {
   public void setLstStrValor(List<String> lstStrValor) {
     _lstStrValor = lstStrValor;
   }
-
-  public void setStrValorSelecionado(String strValorSelecionado) {
-    _strValorSelecionado = strValorSelecionado;
-  }
-
 }
