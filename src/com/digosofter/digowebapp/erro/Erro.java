@@ -1,6 +1,9 @@
 package com.digosofter.digowebapp.erro;
 
+import java.io.Console;
+
 import com.digosofter.digowebapp.Objeto;
+import com.digosofter.digowebapp.Utils;
 
 public class Erro extends Objeto {
 
@@ -14,8 +17,13 @@ public class Erro extends Objeto {
     try {
       // AÇÕES
 
-      Exception objException = new Exception(ex.toString());
-      objException.printStackTrace();
+      if (ex != null) {
+        ex.printStackTrace();
+      }
+
+      if (!Utils.getBooStrVazia(strMensagem)) {
+        System.out.println(strMensagem);
+      }
 
       // FIM AÇÕES
     } catch (Exception ex2) {
