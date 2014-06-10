@@ -1,7 +1,5 @@
 package com.digosofter.digowebapp.erro;
 
-import java.io.Console;
-
 import com.digosofter.digowebapp.Objeto;
 import com.digosofter.digowebapp.Utils;
 
