@@ -573,7 +573,7 @@ public class PaginaHtml extends Objeto {
       if (_tagTitle == null) {
 
         _tagTitle = new Tag("title");
-        this.setStrTitulo("Página sem título");
+        // _tagTitle.setStrTitulo("Página sem título");
       }
 
       // FIM AÇÕES
@@ -596,12 +596,32 @@ public class PaginaHtml extends Objeto {
     try {
       // AÇÕES
 
+      this.montarLayoutTitulo();
       this.getTagHead().setTagPai(this.getTagHtml());
       this.getTagMeta().setTagPai(this.getTagHead());
       this.getTagIcon().setTagPai(this.getTagHead());
       this.getTagTitle().setTagPai(this.getTagHead());
       this.getCssMain().setTagPai(this.getTagHead());
       this.getCssImp().setTagPai(this.getTagHead());
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+  }
+
+  private void montarLayoutTitulo() {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      if (Utils.getBooStrVazia(this.getStrTitulo())) {
+        this.setStrTitulo("Página sem título");
+      }
 
       // FIM AÇÕES
     } catch (Exception ex) {

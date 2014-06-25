@@ -235,7 +235,7 @@ public abstract class AppWeb extends Objeto {
     return _objHttpServletRequest;
   }
 
-  private HttpServletResponse getObjHttpServletResponse() {
+  protected HttpServletResponse getObjHttpServletResponse() {
     return _objHttpServletResponse;
   }
 
@@ -261,6 +261,10 @@ public abstract class AppWeb extends Objeto {
           return _objPaletaCor;
         }
 
+      }
+
+      if (_objPaletaCor == null) {
+        _objPaletaCor = new PaletaCor("default");
       }
 
       // FIM AÇÕES
