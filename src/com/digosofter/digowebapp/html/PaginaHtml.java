@@ -15,8 +15,21 @@ import com.digosofter.digowebapp.html.componente.Mensagem;
 public class PaginaHtml extends Objeto {
 
   private static CssTag _cssMain;
-
   private static PaginaHtml i;
+  public static final String JS_APP_WEB = "res/js/lib/JDigo/AppWeb.js";
+  public static final String JS_ERRO = "res/js/lib/JDigo/erro/Erro.js";
+  public static final String JS_LIB_DATE = "res/js/lib/JDigo/lib/date.js";
+  public static final String JS_LIB_JQUERY = "res/js/lib/JDigo/lib/jquery-2.0.3.js";
+  public static final String JS_LIB_JQUERY_UI = "res/js/lib/JDigo/lib/jquery-ui.min.js";
+  public static final String JS_LIB_MD5 = "res/js/lib/JDigo/lib/md5.js";
+  public static final String JS_LST_ERRO = "res/js/lib/JDigo/lista/LstStrErro.js";
+  public static final String JS_MENSAGEM = "res/js/lib/JDigo/html/componente/Mensagem.js";
+  public static final String JS_OBJ_WS_INTERLOCUTOR = "res/js/lib/JDigo/websocket/ObjWsInterlocutor.js";
+  public static final String JS_OBJETO = "res/js/lib/JDigo/Objeto.js";
+  public static final String JS_PAG_HTML = "res/js/lib/JDigo/html/PaginaHtml.js";
+  public static final String JS_USUARIO = "res/js/lib/JDigo/Usuario.js";
+  public static final String JS_UTILS = "res/js/lib/JDigo/Utils.js";
+  public static final String JS_WEB_SOCKET = "res/js/lib/JDigo/websocket/WebSocketMain.js";
 
   public static PaginaHtml getI() {
     // VARIÁVEIS
@@ -116,23 +129,20 @@ public class PaginaHtml extends Objeto {
     try {
       // AÇÕES
 
-      // TODO: Colocar a localização dos arquivos dentro de constantes na classe
-      // "AppWeb".
-
-      lstObjJsTag.add(new JavaScriptTag("res/js/lib/JDigo/lib/jquery-2.0.3.js"));
-      lstObjJsTag.add(new JavaScriptTag("res/js/lib/JDigo/lib/jquery-ui.min.js"));
-      lstObjJsTag.add(new JavaScriptTag("res/js/lib/JDigo/lib/md5.js"));
-      lstObjJsTag.add(new JavaScriptTag("res/js/lib/JDigo/lib/date.js"));
-      lstObjJsTag.add(new JavaScriptTag("res/js/lib/JDigo/lista/LstStrErro.js"));
-      lstObjJsTag.add(new JavaScriptTag("res/js/lib/JDigo/erro/Erro.js"));
-      lstObjJsTag.add(new JavaScriptTag("res/js/lib/JDigo/Utils.js"));
-      lstObjJsTag.add(new JavaScriptTag("res/js/lib/JDigo/Objeto.js"));
-      lstObjJsTag.add(new JavaScriptTag("res/js/lib/JDigo/AppWeb.js"));
-      lstObjJsTag.add(new JavaScriptTag("res/js/lib/JDigo/websocket/WebSocketMain.js"));
-      lstObjJsTag.add(new JavaScriptTag("res/js/lib/JDigo/websocket/ObjWsInterlocutor.js"));
-      lstObjJsTag.add(new JavaScriptTag("res/js/lib/JDigo/Usuario.js"));
-      lstObjJsTag.add(new JavaScriptTag("res/js/lib/JDigo/html/PaginaHtml.js"));
-      lstObjJsTag.add(new JavaScriptTag("res/js/lib/JDigo/html/componente/Mensagem.js"));
+      lstObjJsTag.add(new JavaScriptTag(JS_LIB_JQUERY));
+      lstObjJsTag.add(new JavaScriptTag(JS_LIB_JQUERY_UI));
+      lstObjJsTag.add(new JavaScriptTag(JS_LIB_MD5));
+      lstObjJsTag.add(new JavaScriptTag(JS_LIB_DATE));
+      lstObjJsTag.add(new JavaScriptTag(JS_LST_ERRO));
+      lstObjJsTag.add(new JavaScriptTag(JS_OBJETO));
+      lstObjJsTag.add(new JavaScriptTag(JS_ERRO));
+      lstObjJsTag.add(new JavaScriptTag(JS_UTILS));
+      lstObjJsTag.add(new JavaScriptTag(JS_APP_WEB));
+      lstObjJsTag.add(new JavaScriptTag(JS_WEB_SOCKET));
+      lstObjJsTag.add(new JavaScriptTag(JS_OBJ_WS_INTERLOCUTOR));
+      lstObjJsTag.add(new JavaScriptTag(JS_USUARIO));
+      lstObjJsTag.add(new JavaScriptTag(JS_PAG_HTML));
+      lstObjJsTag.add(new JavaScriptTag(JS_MENSAGEM));
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -178,6 +188,27 @@ public class PaginaHtml extends Objeto {
   }
 
   /**
+   * Adiciona código "JavaScript" para ser executado no cliente após o processo
+   * de carregamento ser concluído.
+   */
+  public void addJsCodigo(String strJsCodigo) {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      this.getTagJsMain().addJsCodigo(strJsCodigo);
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+  }
+
+  /**
    * Adiciona as estrutura das mensagens para as suas respectivas variáveis
    * "JavaScript".
    */
@@ -208,27 +239,6 @@ public class PaginaHtml extends Objeto {
       strJs += "Mensagem_ESTRUTURA_INFO_POSITIVA = '" + msgPositiva.toString() + "';";
 
       tagJs.addJsCodigo(strJs);
-
-      // FIM AÇÕES
-    } catch (Exception ex) {
-
-      new Erro("Erro inesperado.\n", ex);
-
-    } finally {
-    }
-  }
-
-  /**
-   * Adiciona código "JavaScript" para ser executado no cliente após o processo
-   * de carregamento ser concluído.
-   */
-  public void addJsCodigo(String strJsCodigo) {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
-    try {
-      // AÇÕES
-
-      this.getTagJsMain().addJsCodigo(strJsCodigo);
 
       // FIM AÇÕES
     } catch (Exception ex) {
