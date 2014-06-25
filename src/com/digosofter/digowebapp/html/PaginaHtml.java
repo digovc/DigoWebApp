@@ -15,8 +15,11 @@ import com.digosofter.digowebapp.html.componente.Mensagem;
 public class PaginaHtml extends Objeto {
 
   private static CssTag _cssMain;
+
   private static PaginaHtml i;
+
   public static final String JS_APP_WEB = "res/js/lib/JDigo/AppWeb.js";
+
   public static final String JS_ERRO = "res/js/lib/JDigo/erro/Erro.js";
   public static final String JS_LIB_DATE = "res/js/lib/JDigo/lib/date.js";
   public static final String JS_LIB_JQUERY = "res/js/lib/JDigo/lib/jquery-2.0.3.js";
@@ -52,6 +55,7 @@ public class PaginaHtml extends Objeto {
     return i;
   }
 
+  private boolean _booPagSimples;
   private CssTag _cssImp;
 
   private List<JavaScriptTag> _lstTagJs = new ArrayList<JavaScriptTag>();
@@ -96,6 +100,24 @@ public class PaginaHtml extends Objeto {
     }
   }
 
+  public PaginaHtml(boolean booPagSimples) {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      this.setI(this);
+      this.setBooPagSimples(true);
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+  }
+
   /**
    * Acrescenta os arquivos de "JavaScript" para a "tagHead" na ordem correta.
    */
@@ -104,6 +126,10 @@ public class PaginaHtml extends Objeto {
     // FIM VARIÁVEIS
     try {
       // AÇÕES
+
+      if (this.getBooPagSimples()) {
+        return;
+      }
 
       for (JavaScriptTag objJavaScriptTag : this.getLstTagJsOrdenado()) {
 
@@ -247,6 +273,10 @@ public class PaginaHtml extends Objeto {
 
     } finally {
     }
+  }
+
+  private boolean getBooPagSimples() {
+    return _booPagSimples;
   }
 
   private CssTag getCssImp() {
@@ -662,6 +692,10 @@ public class PaginaHtml extends Objeto {
 
     } finally {
     }
+  }
+
+  private void setBooPagSimples(boolean booPagSimples) {
+    _booPagSimples = booPagSimples;
   }
 
   private void setI(PaginaHtml _i) {
