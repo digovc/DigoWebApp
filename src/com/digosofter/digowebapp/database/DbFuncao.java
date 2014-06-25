@@ -1,5 +1,6 @@
 package com.digosofter.digowebapp.database;
 
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,6 +61,37 @@ public abstract class DbFuncao extends DbTabela {
 
   public DbFuncao(String strNome, DataBase objDataBase) {
     super(strNome, objDataBase);
+  }
+
+  /**
+   * Retorna um objeto "ResultSet" contendo o resultado da consulta feita no
+   * banco de dados. Esta consulta faz uso do valores contidos na propriedade
+   * "lstStrParamIn" desta função.
+   */
+  public ResultSet getRst() {
+    // VARIÁVEIS
+
+    ResultSet rstResultado = null;
+    String sql;
+
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      sql = "select * from _fnc_nome;";
+      sql = sql.replace("_fnc_nome", this.getStrNomeSimplificado());
+
+      rstResultado = this.getObjDataBase().execSqlGetRst(sql);
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+
+    return rstResultado;
   }
 
 }
