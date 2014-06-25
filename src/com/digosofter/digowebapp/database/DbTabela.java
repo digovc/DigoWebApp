@@ -536,7 +536,7 @@ public abstract class DbTabela extends Objeto {
           continue;
         }
 
-        strEstrutura = "";
+        strEstrutura = Utils.STRING_VAZIA;
         strEstrutura += cln.getStrNomeSimplificado();
         strEstrutura += "=";
         strEstrutura += cln.getStrValorSql();
@@ -751,7 +751,7 @@ public abstract class DbTabela extends Objeto {
       // AÇÕES
 
       lstObjDbFiltro = new ArrayList<DbFiltro>();
-      lstObjDbFiltro.add(new DbFiltro(clnFiltro.getStrNomeSimplificado(), strFiltro));
+      lstObjDbFiltro.add(new DbFiltro(clnFiltro, strFiltro));
 
       rstResultado = this.getRst(this.getLstCln(), lstObjDbFiltro, null);
 
@@ -770,67 +770,20 @@ public abstract class DbTabela extends Objeto {
     // VARIÁVEIS
 
     ResultSet rstResultado = null;
-
     String sql;
-    String strClnNomes = Utils.STRING_VAZIA;
-    String strWhere = Utils.STRING_VAZIA;
-    String strOrderBy = Utils.STRING_VAZIA;
-
-    StringBuilder strBuilder;
 
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      strBuilder = new StringBuilder();
-      strBuilder.append("select ");
+      sql = "select _lst_cln_nome from _from where _where order by _order;";
+      sql = sql.replace("_lst_cln_nome", this.getSqlParteLstClnNome(lstCln));
+      sql = sql.replace("_from", this.getStrNomeSimplificado());
+      sql = sql.replace("_where", this.getSqlParteWhere(lstObjDbFiltro));
+      sql = sql.replace("_order", this.getSqlParteOrderBy(lstClnOrdem));
 
-      if (lstCln == null) {
-        strBuilder.append("*");
-      } else {
-        for (DbColuna cln : lstCln) {
-          strClnNomes += "tbl" + this.getIntId() + ".";
-          strClnNomes += cln.getStrNomeSimplificado() + ",";
-        }
-        strClnNomes = Utils.getStrRemoverUltimaLetra(strClnNomes);
-        strBuilder.append(strClnNomes);
-      }
+      sql = sql.replace("where <null>", "");
 
-      strBuilder.append(" from ");
-      strBuilder.append(this.getStrNomeSimplificado());
-      strBuilder.append(" ");
-      strBuilder.append("tbl" + this.getIntId());
-
-      if (lstObjDbFiltro != null) {
-        strBuilder.append(" where ");
-        for (DbFiltro objDbFiltro : lstObjDbFiltro) {
-          strWhere += objDbFiltro.toString();
-        }
-
-        strWhere = strWhere.substring(4);
-        strWhere = Utils.getStrRemoverUltimaLetra(strWhere);
-
-        strBuilder.append(strWhere);
-      }
-
-      if (lstClnOrdem != null) {
-
-        strBuilder.append(" order by ");
-
-        for (DbColuna clnOrdem : lstClnOrdem) {
-
-          strOrderBy += "tbl" + this.getIntId() + ".";
-          strOrderBy += clnOrdem.getStrNomeSimplificado();
-          strOrderBy += " ";
-
-        }
-
-        strOrderBy = Utils.getStrRemoverUltimaLetra(strOrderBy);
-        strBuilder.append(strOrderBy);
-      }
-
-      strBuilder.append(";");
-      sql = strBuilder.toString();
       rstResultado = this.getObjDataBase().execSqlGetRst(sql);
 
       // FIM AÇÕES
@@ -842,6 +795,109 @@ public abstract class DbTabela extends Objeto {
     }
 
     return rstResultado;
+  }
+
+  private String getSqlParteOrderBy(List<DbColuna> lstClnOrdem) {
+    // VARIÁVEIS
+
+    String strResultado = Utils.STRING_VAZIA;
+
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      if (lstClnOrdem == null || lstClnOrdem.size() == 0) {
+        strResultado = "_tbl_nome._cln_nome";
+        strResultado = strResultado.replace("_tbl_nome", this.getStrNomeSimplificado());
+        strResultado = strResultado.replace("_cln_nome", this.getClnChavePrimaria()
+            .getStrNomeSimplificado());
+        return strResultado;
+      }
+
+      for (DbColuna cln : lstClnOrdem) {
+        strResultado += strResultado.replace("_tbl_nome", cln.getTbl().getStrNomeSimplificado());
+        strResultado += ".";
+        strResultado += strResultado.replace("_cln_nome", cln.getStrNomeSimplificado());
+        strResultado += ", ";
+      }
+
+      strResultado = Utils.getStrRemoverUltimaLetra(strResultado);
+      strResultado = Utils.getStrRemoverUltimaLetra(strResultado);
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+
+    return strResultado;
+  }
+
+  private String getSqlParteWhere(List<DbFiltro> lstObjDbFiltro) {
+    // VARIÁVEIS
+
+    String strResultado = Utils.STRING_VAZIA;
+
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      if (lstObjDbFiltro == null || lstObjDbFiltro.size() == 0) {
+        return "<null>";
+      }
+
+      for (DbFiltro objDbFiltro : lstObjDbFiltro) {
+        strResultado += objDbFiltro.toString();
+        strResultado += " ";
+      }
+
+      strResultado = strResultado.substring(4);
+      strResultado = Utils.getStrRemoverUltimaLetra(strResultado);
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+
+    return strResultado;
+  }
+
+  private String getSqlParteLstClnNome(List<DbColuna> lstCln) {
+    // VARIÁVEIS
+
+    String strResultado = Utils.STRING_VAZIA;
+
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      if (lstCln == null || lstCln.size() == 0) {
+        return "*";
+      }
+
+      for (DbColuna cln : lstCln) {
+        strResultado += cln.getTbl().getStrNomeSimplificado();
+        strResultado += ".";
+        strResultado += cln.getStrNomeSimplificado();
+        strResultado += ",";
+      }
+
+      strResultado = Utils.getStrRemoverUltimaLetra(strResultado);
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+
+    return strResultado;
   }
 
   /**
@@ -858,8 +914,9 @@ public abstract class DbTabela extends Objeto {
       // AÇÕES
 
       if (this.getLstObjDbFiltroConsulta().size() > 0) {
-        rstResultado = this.getRst(this.getLstClnVisivelConsulta(), this.getLstObjDbFiltroConsulta(), null);
-      }else{
+        rstResultado = this.getRst(this.getLstClnVisivelConsulta(),
+            this.getLstObjDbFiltroConsulta(), null);
+      } else {
         rstResultado = this.getRst(this.getLstClnVisivelConsulta(), null, null);
       }
 

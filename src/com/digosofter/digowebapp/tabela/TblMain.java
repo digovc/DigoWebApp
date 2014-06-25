@@ -247,6 +247,6 @@ public abstract class TblMain extends DbTabela {
    */
   protected void inicializarViews(List<DbView> lstObjDbView){
 
-  };
+  }
 
 }

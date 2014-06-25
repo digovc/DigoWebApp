@@ -10,6 +10,8 @@ public class DbFiltro extends Objeto {
 
   private boolean _booSelect = false;
 
+  private DbColuna _cln;
+
   private String _strOperador = "=";
 
   private String _strValor;
@@ -20,7 +22,7 @@ public class DbFiltro extends Objeto {
     try {
       // AÇÕES
 
-      this.setStrNome(cln.getStrNomeSimplificado());
+      this.setCln(cln);
       this.setStrValor(String.valueOf(intValor));
 
       // FIM AÇÕES
@@ -38,7 +40,7 @@ public class DbFiltro extends Objeto {
     try {
       // AÇÕES
 
-      this.setStrNome(cln.getStrNomeSimplificado());
+      this.setCln(cln);
       this.setStrValor(strValor);
 
       // FIM AÇÕES
@@ -50,14 +52,14 @@ public class DbFiltro extends Objeto {
     }
   }
 
-  public DbFiltro(String strNome, String strValor) {
+  public DbFiltro(String strSelect) {
     // VARIÁVEIS
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
-      this.setStrNome(strNome);
-      this.setStrValor(strValor);
+      this.setStrValor(strSelect);
+      this.setBooSelect(true);
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -76,6 +78,10 @@ public class DbFiltro extends Objeto {
     return _booSelect;
   }
 
+  private DbColuna getCln() {
+    return _cln;
+  }
+
   private String getStrOperador() {
     return _strOperador;
   }
@@ -88,8 +94,12 @@ public class DbFiltro extends Objeto {
     _booAndOr = booAndOr;
   }
 
-  public void setBooSelect(boolean booSelect) {
+  private void setBooSelect(boolean booSelect) {
     _booSelect = booSelect;
+  }
+
+  private void setCln(DbColuna cln) {
+    _cln = cln;
   }
 
   public void setStrOperador(String strOperador) {
@@ -104,35 +114,22 @@ public class DbFiltro extends Objeto {
   public String toString() {
     // VARIÁVEIS
 
-    String strDbFiltroResultado = Utils.STRING_VAZIA;
-    StringBuilder strBuilder;
+    String strResultado = Utils.STRING_VAZIA;
 
     // FIM VARIÁVEIS
     try {
       // AÇÕES
 
       if (this.getBooSelect()) {
-
-        strDbFiltroResultado = this.getStrValor();
-
-      } else {
-
-        strBuilder = new StringBuilder();
-
-        if (this.getBooAndOr()) {
-          strBuilder.append("and ");
-        } else {
-          strBuilder.append("or ");
-        }
-
-        strBuilder.append(this.getStrNomeSimplificado());
-        strBuilder.append(this.getStrOperador());
-        strBuilder.append("'");
-        strBuilder.append(this.getStrValor());
-        strBuilder.append("' ");
-
-        strDbFiltroResultado = strBuilder.toString();
+        return this.getStrValor();
       }
+
+      strResultado = "_condicao _tbl_nome._cln_nome _operador '_filtro_valor'";
+      strResultado = strResultado.replace("_condicao", this.getBooAndOr() ? "and" : "or");
+      strResultado = strResultado.replace("_tbl_nome", this.getCln().getTbl().getStrNomeSimplificado());
+      strResultado = strResultado.replace("_cln_nome", this.getCln().getStrNomeSimplificado());
+      strResultado = strResultado.replace("_operador", this.getStrOperador());
+      strResultado = strResultado.replace("_filtro_valor", this.getStrValor());
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -142,7 +139,7 @@ public class DbFiltro extends Objeto {
     } finally {
     }
 
-    return strDbFiltroResultado;
+    return strResultado;
   }
 
 }
