@@ -11,7 +11,6 @@ import com.digosofter.digowebapp.Utils;
 import com.digosofter.digowebapp.erro.Erro;
 import com.digosofter.digowebapp.html.ComboBox;
 import com.digosofter.digowebapp.html.CssTag;
-import com.digosofter.digowebapp.html.Tag;
 
 public class DbColuna extends Objeto {
 

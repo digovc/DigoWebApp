@@ -197,6 +197,7 @@ public class ObjWsFileTransfer extends ObjMain {
     return _strJsonStor;
   }
 
+  @Override
   public String getStrNome() {
     // VARIÁVEIS
     // FIM VARIÁVEIS

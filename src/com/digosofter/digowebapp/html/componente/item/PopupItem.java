@@ -59,6 +59,7 @@ public class PopupItem extends ItemMain {
     return _intOrdem;
   }
 
+  @Override
   public Painel getPnlTitulo() {
     // VARIÁVEIS
     // FIM VARIÁVEIS

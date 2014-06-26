@@ -146,6 +146,7 @@ public class Mensagem extends ComponenteMain {
     return _pnlMsg;
   }
 
+  @Override
   protected Painel getPnlTitulo() {
     // VARIÁVEIS
     // FIM VARIÁVEIS
@@ -238,6 +239,7 @@ public class Mensagem extends ComponenteMain {
     _strMensagem = strMensagem;
   }
 
+  @Override
   public void setStrTitulo(String strTitulo) {
 
     super.setStrTitulo(strTitulo);

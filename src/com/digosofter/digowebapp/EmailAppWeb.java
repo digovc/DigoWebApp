@@ -6,8 +6,6 @@ import java.util.List;
 import org.apache.commons.mail.DefaultAuthenticator;
 import org.apache.commons.mail.Email;
 import org.apache.commons.mail.HtmlEmail;
-import org.apache.commons.mail.SimpleEmail;
-
 import com.digosofter.digowebapp.erro.Erro;
 
 public class EmailAppWeb extends Objeto {
