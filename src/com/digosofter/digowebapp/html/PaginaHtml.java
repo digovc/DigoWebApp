@@ -56,6 +56,7 @@ public class PaginaHtml extends Objeto {
   }
 
   private boolean _booPagSimples;
+
   private CssTag _cssImp;
 
   private List<JavaScriptTag> _lstTagJs = new ArrayList<JavaScriptTag>();
