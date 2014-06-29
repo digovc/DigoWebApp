@@ -1,8 +1,8 @@
-// CONSTANTE
+Ôªø// CONSTANTE
 // ATRIBUTOS GLOBAIS
 // CLASSE
 function Erro(strMensagem, e) {
-  // HERAN«A
+  // HERAN√áA
 
   Objeto.apply(this);
 
@@ -23,9 +23,9 @@ function Erro(strMensagem, e) {
   var _strMensagemFormatada;
 
   this.getStrMensagemFormatada = function() {
-    // VARI¡VEIS
+    // VARI√ÅVEIS
     try {
-      // A«’ES
+      // A√á√ïES
 
       _strMensagemFormatada = "";
       _strMensagemFormatada += this.getStrMensagem();
@@ -55,14 +55,14 @@ function Erro(strMensagem, e) {
     _strMensagemTecnica = strMensagemTecnica;
   }
 
-  // M…TODO
+  // M√âTODO
 
   /* Construtor */
   {
-    // VARI¡VEIS
-    // FIM VARI¡VEIS
+    // VARI√ÅVEIS
+    // FIM VARI√ÅVEIS
     try {
-      // A«’ES
+      // A√á√ïES
 
       this.setStrMensagem(strMensagem);
 
@@ -72,7 +72,7 @@ function Erro(strMensagem, e) {
 
       alert(this.getStrMensagemFormatada());
 
-      // FIM A«’ES
+      // FIM A√á√ïES
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }

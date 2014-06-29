@@ -1,11 +1,11 @@
-// CONSTANTE
+Ôªø// CONSTANTE
 
 // ATRIBUTOS GLOBAIS
 var Objeto_intId = 0;
 
 // CLASSE
 function Objeto() {
-  // HERAN«A
+  // HERAN√áA
 
   // ATRIBUTO
 
@@ -34,17 +34,17 @@ function Objeto() {
   var _strNomeExibicao = "";
 
   this.getStrNomeExibicao = function() {
-    // VARI¡VEIS
-    // FIM VARI¡VEIS
+    // VARI√ÅVEIS
+    // FIM VARI√ÅVEIS
     try {
-      // A«’ES
+      // A√á√ïES
 
       if (_strNomeExibicao == "") {
 
         _strNomeExibicao = this.getStrNome();
       }
 
-      // FIM A«’ES
+      // FIM A√á√ïES
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
@@ -56,19 +56,19 @@ function Objeto() {
     _strNomeExibicao = strNomeExibicao;
   }
 
-  // M…TODO
+  // M√âTODO
 
   /* Construtor */
   {
-    // VARI¡VEIS
-    // FIM VARI¡VEIS
+    // VARI√ÅVEIS
+    // FIM VARI√ÅVEIS
     try {
-      // A«’ES
+      // A√á√ïES
 
       Objeto_intId++;
       this.setIntId(Objeto_intId);
 
-      // FIM A«’ES
+      // FIM A√á√ïES
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }

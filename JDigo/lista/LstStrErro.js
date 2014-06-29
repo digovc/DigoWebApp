@@ -1,1 +1,1 @@
-STR_MENSAGEM_00001 = "Este navegador n„o d· suporte a WebSockets.\nAlgumas funcionalidades n„o v„o funcionar.";
+ÔªøSTR_MENSAGEM_00001 = "Este navegador n√£o d√° suporte a WebSockets.\nAlgumas funcionalidades n√£o v√£o funcionar.";

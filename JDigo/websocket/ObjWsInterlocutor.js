@@ -1,4 +1,4 @@
-// CONSTANTE
+Ôªø// CONSTANTE
 // FIM CONSTANTE
 
 // ATRIBUTOS GLOBAIS
@@ -6,11 +6,11 @@
 
 // CLASSE
 function ObjWsInterlocutor() {
-  // HERAN«A
+  // HERAN√áA
 
   Objeto.apply(this);
 
-  // FIM HERAN«A
+  // FIM HERAN√áA
 
   // ATRIBUTO
 
@@ -38,16 +38,16 @@ function ObjWsInterlocutor() {
 
   // FIM ATRIBUTO
 
-  // M…TODO
-  // FIM M…TODO
+  // M√âTODO
+  // FIM M√âTODO
 
   /* Construtor */
   {
-    // VARI¡VEIS
-    // FIM VARI¡VEIS
+    // VARI√ÅVEIS
+    // FIM VARI√ÅVEIS
     try {
-      // A«’ES
-      // FIM A«’ES
+      // A√á√ïES
+      // FIM A√á√ïES
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }

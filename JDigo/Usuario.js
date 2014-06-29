@@ -1,8 +1,8 @@
-// CONSTANTE
+Ôªø// CONSTANTE
 // ATRIBUTOS GLOBAIS
 // CLASSE
 function Usuario() {
-  // HERAN«A
+  // HERAN√áA
 
   Objeto.apply(this);
 
@@ -30,17 +30,17 @@ function Usuario() {
     _intUsuarioId = intUsuarioId;
   }
 
-  // M…TODO
+  // M√âTODO
 
   /* Construtor */
   {
-    // VARI¡VEL
-    // A«√O
+    // VARI√ÅVEL
+    // A√á√ÉO
   }
 
 }
 
-// INICIALIZA«√O
+// INICIALIZA√á√ÉO
 var objUsuario;
 
 $(document).ready(function() {

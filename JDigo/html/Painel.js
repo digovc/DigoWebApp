@@ -1,31 +1,31 @@
-// CONSTANTE
+Ôªø// CONSTANTE
 // ATRIBUTOS GLOBAIS
 // CLASSE
 function Painel(strId) {
-	// HERAN«A
+	// HERAN√áA
 
   Tag.apply(this);
 	Objeto.apply(this);
 
 	// ATRIBUTO
-	// M…TODO
+	// M√âTODO
 
 	/* Construtor */
 	{
-		// VARI¡VEIS
+		// VARI√ÅVEIS
 
 	  var _this = this;
 
-		// FIM VARI¡VEIS
+		// FIM VARI√ÅVEIS
 		try {
-			// A«’ES
+			// A√á√ïES
 
 			if (!Utils.getBooStrVazia(strId)) {
 
 			  this.setStrId(strId);
 			}
 
-			// FIM A«’ES
+			// FIM A√á√ïES
 		} catch (e) {
 			new Erro("Erro inesperado.", e);
 		}

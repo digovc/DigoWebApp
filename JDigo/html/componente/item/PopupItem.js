@@ -1,4 +1,4 @@
-// CONSTANTE
+Ôªø// CONSTANTE
 // FIM CONSTANTE
 // ATRIBUTOS GLOBAIS
 // FIM ATRIBUTOS GLOBAIS
@@ -8,14 +8,14 @@
  *
  */
 function PopupItem(strId, ppp) {
-  // HERAN«A
+  // HERAN√áA
 
   ItemMain.apply(this);
   ComponenteMain.apply(this);
   Tag.apply(this);
   Objeto.apply(this);
 
-  // FIM HERAN«A
+  // FIM HERAN√áA
 
   // ATRIBUTO
 
@@ -24,31 +24,31 @@ function PopupItem(strId, ppp) {
   var _fncClick = null;
 
   this.getFncClick = function() {
-    // VARI¡VEIS
+    // VARI√ÅVEIS
 
-    // FIM VARI¡VEIS
+    // FIM VARI√ÅVEIS
     try {
-      // A«’ES
+      // A√á√ïES
 
       if (_fncClick == null) {
 
         _fncClick = function(evt) {
-          // VARI¡VEIS
-          // FIM VARI¡VEIS
+          // VARI√ÅVEIS
+          // FIM VARI√ÅVEIS
           try {
-            // A«’ES
+            // A√á√ïES
 
             _this.click();
             _this.getPpp().getJq().remove();
 
-            // FIM A«’ES
+            // FIM A√á√ïES
           } catch (e) {
             new Erro("Erro inesperado.", e);
           }
         }
       }
 
-      // FIM A«’ES
+      // FIM A√á√ïES
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
@@ -59,29 +59,29 @@ function PopupItem(strId, ppp) {
   var _fncMouseEnter = null;
 
   this.getFncMouseEnter = function() {
-    // VARI¡VEIS
-    // FIM VARI¡VEIS
+    // VARI√ÅVEIS
+    // FIM VARI√ÅVEIS
     try {
-      // A«’ES
+      // A√á√ïES
 
       if (_fncMouseEnter == null) {
 
         _fncMouseEnter = function(evt) {
-          // VARI¡VEIS
-          // FIM VARI¡VEIS
+          // VARI√ÅVEIS
+          // FIM VARI√ÅVEIS
           try {
-            // A«’ES
+            // A√á√ïES
 
             $("#" + evt.target.id).css("background-color", "#e1e1e1");
 
-            // FIM A«’ES
+            // FIM A√á√ïES
           } catch (e) {
             new Erro("Erro inesperado.", e);
           }
         }
       }
 
-      // FIM A«’ES
+      // FIM A√á√ïES
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
@@ -92,29 +92,29 @@ function PopupItem(strId, ppp) {
   var _fncMouseLeave = null;
 
   this.getFncMouseLeave = function() {
-    // VARI¡VEIS
-    // FIM VARI¡VEIS
+    // VARI√ÅVEIS
+    // FIM VARI√ÅVEIS
     try {
-      // A«’ES
+      // A√á√ïES
 
       if (_fncMouseLeave == null) {
 
         _fncMouseLeave = function(evt) {
-          // VARI¡VEIS
-          // FIM VARI¡VEIS
+          // VARI√ÅVEIS
+          // FIM VARI√ÅVEIS
           try {
-            // A«’ES
+            // A√á√ïES
 
             $("#" + evt.target.id).css("background-color", "");
 
-            // FIM A«’ES
+            // FIM A√á√ïES
           } catch (e) {
             new Erro("Erro inesperado.", e);
           }
         }
       }
 
-      // FIM A«’ES
+      // FIM A√á√ïES
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
@@ -125,16 +125,16 @@ function PopupItem(strId, ppp) {
   var _intOrdem = null;
 
   this.getIntOrdem = function() {
-    // VARI¡VEIS
-    // FIM VARI¡VEIS
+    // VARI√ÅVEIS
+    // FIM VARI√ÅVEIS
     try {
-      // A«’ES
+      // A√á√ïES
 
       _intOrdem = this.getStrId();
       _intOrdem = _intOrdem.replace("ppiAcao", "");
       _intOrdem = window.parseInt(_intOrdem);
 
-      // FIM A«’ES
+      // FIM A√á√ïES
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
@@ -154,45 +154,45 @@ function PopupItem(strId, ppp) {
 
   // FIM ATRIBUTO
 
-  // M…TODO
+  // M√âTODO
 
   this.click = function() {
-    // VARI¡VEIS
-    // FIM VARI¡VEIS
+    // VARI√ÅVEIS
+    // FIM VARI√ÅVEIS
     try {
-      // A«’ES
+      // A√á√ïES
 
       this.getPpp().acaoClick(this);
 
-      // FIM A«’ES
+      // FIM A√á√ïES
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
   };
 
   this.setEventos = function() {
-    // VARI¡VEIS
-    // FIM VARI¡VEIS
+    // VARI√ÅVEIS
+    // FIM VARI√ÅVEIS
     try {
-      // A«’ES
+      // A√á√ïES
 
       this.getJq().click(this.getFncClick());
       this.getJq().mouseenter(this.getFncMouseEnter());
       this.getJq().mouseleave(this.getFncMouseLeave());
 
-      // FIM A«’ES
+      // FIM A√á√ïES
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
   };
 
-  // FIM M…TODO
+  // FIM M√âTODO
 
   /* Construtor */{
-    // VARI¡VEIS
-    // FIM VARI¡VEIS
+    // VARI√ÅVEIS
+    // FIM VARI√ÅVEIS
     try {
-      // A«’ES
+      // A√á√ïES
 
       if (!Utils.getBooStrVazia(strId)) {
 
@@ -203,7 +203,7 @@ function PopupItem(strId, ppp) {
         this.setPpp(ppp);
       }
 
-      // FIM A«’ES
+      // FIM A√á√ïES
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }

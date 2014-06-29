@@ -1,4 +1,4 @@
-// CONSTANTE
+Ôªø// CONSTANTE
 
 var WebSocketMain_FNC_MSG_ERRO = 70000;
 var WebSocketMain_FNC_MSG_POSITIVA = 701000;
@@ -10,8 +10,8 @@ var WebSocketMain_FNC_MSG_POSITIVA = 701000;
 
 // CLASSE
 function WebSocketMain(strUrl) {
-  // HERAN«A
-  // FIM HERAN«A
+  // HERAN√áA
+  // FIM HERAN√áA
 
   // ATRIBUTO
 
@@ -20,30 +20,30 @@ function WebSocketMain(strUrl) {
   var _fncOnMessage = null;
 
   /**
-   * MÈtodo que deve ser implementado pela classe de inst‚ncia para receber e
+   * M√©todo que deve ser implementado pela classe de inst√¢ncia para receber e
    * processar as mensagens vindas do servidor.
    */
   this.getFncOnMessage = function() {
-    // VARI¡VEIS
-    // FIM VARI¡VEIS
+    // VARI√ÅVEIS
+    // FIM VARI√ÅVEIS
     try {
-      // A«’ES
+      // A√á√ïES
 
       if (_fncOnMessage == null) {
 
         _fncOnMessage = function(evt) {
-          // VARI¡VEIS
+          // VARI√ÅVEIS
 
           var objWsInterlocutor;
 
-          // FIM VARI¡VEIS
+          // FIM VARI√ÅVEIS
           try {
-            // A«’ES
+            // A√á√ïES
 
             objWsInterlocutor = JSON.parse(evt.data);
             _this.processarObjWsInterlocutor(objWsInterlocutor);
 
-            // FIM A«’ES
+            // FIM A√á√ïES
           } catch (e) {
             new Erro("Erro inesperado.", e);
           }
@@ -51,7 +51,7 @@ function WebSocketMain(strUrl) {
 
       }
 
-      // FIM A«’ES
+      // FIM A√á√ïES
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
@@ -62,10 +62,10 @@ function WebSocketMain(strUrl) {
   var _objWebSocket = null;
 
   this.getObjWebSocket = function() {
-    // VARI¡VEIS
-    // FIM VARI¡VEIS
+    // VARI√ÅVEIS
+    // FIM VARI√ÅVEIS
     try {
-      // A«’ES
+      // A√á√ïES
 
       if (!"WebSocket" in window) {
         new Erro(STR_MENSAGEM_00001, null);
@@ -77,7 +77,7 @@ function WebSocketMain(strUrl) {
         _objWebSocket.onmessage = this.getFncOnMessage();
       }
 
-      // FIM A«’ES
+      // FIM A√á√ïES
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
@@ -97,12 +97,12 @@ function WebSocketMain(strUrl) {
 
   // FIM ATRIBUTO
 
-  // M…TODO
+  // M√âTODO
 
   this.abrirConexao = function() {
-    // VARI¡VEIS
+    // VARI√ÅVEIS
     try {
-      // A«’ES
+      // A√á√ïES
 
       this.getObjWebSocket();
 
@@ -112,9 +112,9 @@ function WebSocketMain(strUrl) {
   };
 
   this.enviar = function(objWsInterlocutor) {
-    // VARI¡VEIS
+    // VARI√ÅVEIS
     try {
-      // A«’ES
+      // A√á√ïES
 
       this.getObjWebSocket().send(JSON.stringify(objWsInterlocutor));
 
@@ -124,13 +124,13 @@ function WebSocketMain(strUrl) {
   };
 
   this.processarMsgErro = function(strMsgErro) {
-    // VARI¡VEIS
+    // VARI√ÅVEIS
 
     var msg;
 
-    // FIM VARI¡VEIS
+    // FIM VARI√ÅVEIS
     try {
-      // A«’ES
+      // A√á√ïES
 
       if (Utils.getBooStrVazia(strMsgErro)) {
         return false;
@@ -139,20 +139,20 @@ function WebSocketMain(strUrl) {
       msg = new Mensagem("Erro", strMsgErro, Mensagem_TIPO_NEGATIVA);
       msg.mostrar();
 
-      // FIM A«’ES
+      // FIM A√á√ïES
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
   };
 
   this.processarMsgPositiva = function(strMsgPositiva) {
-    // VARI¡VEIS
+    // VARI√ÅVEIS
 
     var msg;
 
-    // FIM VARI¡VEIS
+    // FIM VARI√ÅVEIS
     try {
-      // A«’ES
+      // A√á√ïES
 
       if (Utils.getBooStrVazia(strMsgPositiva)) {
         return false;
@@ -161,35 +161,35 @@ function WebSocketMain(strUrl) {
       msg = new Mensagem("Ok " + objUsuario.getStrNome(), strMsgPositiva, Mensagem_TIPO_POSITIVA);
       msg.mostrar();
 
-      // FIM A«’ES
+      // FIM A√á√ïES
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
   };
 
   this.processarObjWsInterlocutor = function(objWsInterlocutor) {
-    // VARI¡VEIS
-    // FIM VARI¡VEIS
+    // VARI√ÅVEIS
+    // FIM VARI√ÅVEIS
     try {
-      // A«’ES
-      // FIM A«’ES
+      // A√á√ïES
+      // FIM A√á√ïES
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
   };
 
-  // FIM M…TODO
+  // FIM M√âTODO
 
   /* Construtor */
   {
-    // VARI¡VEIS
-    // FIM VARI¡VEIS
+    // VARI√ÅVEIS
+    // FIM VARI√ÅVEIS
     try {
-      // A«’ES
+      // A√á√ïES
 
       this.setStrUrl(strUrl);
 
-      // FIM A«’ES
+      // FIM A√á√ïES
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }

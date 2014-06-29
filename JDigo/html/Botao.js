@@ -1,8 +1,8 @@
-// CONSTANTE
+Ôªø// CONSTANTE
 // ATRIBUTOS GLOBAIS
 // CLASSE
 function Botao(strId) {
-	// HERAN«A
+	// HERAN√áA
 
 	Tag.apply(this);
 	Objeto.apply(this);
@@ -11,21 +11,21 @@ function Botao(strId) {
 
   var _this = this;
 
-	// M…TODO
+	// M√âTODO
 
 	/* Construtor */
 	{
-		// VARI¡VEIS
-		// FIM VARI¡VEIS
+		// VARI√ÅVEIS
+		// FIM VARI√ÅVEIS
 		try {
-			// A«’ES
+			// A√á√ïES
 
 			if (!Utils.getBooStrVazia(strId)) {
 
 			  this.setStrId(strId);
 			}
 
-			// FIM A«’ES
+			// FIM A√á√ïES
 		} catch (e) {
 			new Erro("Erro inesperado.", e);
 		}

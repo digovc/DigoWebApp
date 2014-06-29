@@ -1,4 +1,4 @@
-// CONSTANTE
+Ôªø// CONSTANTE
 // FIM CONSTANTE
 // ATRIBUTOS GLOBAIS
 // FIM ATRIBUTOS GLOBAIS
@@ -8,12 +8,12 @@
  *
  */
 function Campo(strId) {
-	// HERAN«A
+	// HERAN√áA
 
 	Tag.apply(this);
 	Objeto.apply(this);
 
-	// FIM HERAN«A
+	// FIM HERAN√áA
 
 	// ATRIBUTO
 
@@ -21,14 +21,14 @@ function Campo(strId) {
 
 	var _strValor = null;
 	this.getStrValor = function() {
-		// VARI¡VEIS
-		// FIM VARI¡VEIS
+		// VARI√ÅVEIS
+		// FIM VARI√ÅVEIS
 		try {
-			// A«’ES
+			// A√á√ïES
 
 			_strValor = this.getJq().val();
 
-			// FIM A«’ES
+			// FIM A√á√ïES
 		} catch (e) {
 			new Erro("Erro inesperado.", e);
 		}
@@ -37,15 +37,15 @@ function Campo(strId) {
 	}
 
 	this.setStrValor = function(strValor) {
-		// VARI¡VEIS
-		// FIM VARI¡VEIS
+		// VARI√ÅVEIS
+		// FIM VARI√ÅVEIS
 		try {
-			// A«’ES
+			// A√á√ïES
 
 			_strValor = strValor;
 			this.getJq().val(_strValor);
 
-			// FIM A«’ES
+			// FIM A√á√ïES
 		} catch (e) {
 			new Erro("Erro inesperado.", e);
 		}
@@ -53,21 +53,21 @@ function Campo(strId) {
 
 	// FIM ATRIBUTO
 
-	// M…TODO
-	// FIM M…TODO
+	// M√âTODO
+	// FIM M√âTODO
 
 	/* Construtor */
 	{
-		// VARI¡VEIS
-		// FIM VARI¡VEIS
+		// VARI√ÅVEIS
+		// FIM VARI√ÅVEIS
 		try {
-			// A«’ES
+			// A√á√ïES
 
 			if (!Utils.getBooStrVazia(strId)) {
 				this.setStrId(strId);
 			}
 
-			// FIM A«’ES
+			// FIM A√á√ïES
 		} catch (e) {
 			new Erro("Erro inesperado.", e);
 		}

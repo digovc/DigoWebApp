@@ -1,4 +1,4 @@
-// CONSTANTE
+Ôªø// CONSTANTE
 // FIM CONSTANTE
 
 // ATRIBUTOS GLOBAIS
@@ -6,11 +6,11 @@
 
 // CLASSE
 function AppWeb() {
-  // HERAN«A
+  // HERAN√áA
 
   Objeto.apply(this);
 
-  // FIM HERAN«A
+  // FIM HERAN√áA
 
   // ATRIBUTO
 
@@ -19,17 +19,17 @@ function AppWeb() {
   var _arrObjPaletaCor = null;
 
   this.getArrObjPaletaCor = function() {
-    // VARI¡VEIS
-    // FIM VARI¡VEIS
+    // VARI√ÅVEIS
+    // FIM VARI√ÅVEIS
     try {
-      // A«’ES
+      // A√á√ïES
 
       if (_arrObjPaletaCor == null) {
 
         _arrObjPaletaCor = new Array();
       }
 
-      // FIM A«’ES
+      // FIM A√á√ïES
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
@@ -67,91 +67,91 @@ function AppWeb() {
 
   // FIM ATRIBUTO
 
-  // M…TODO
+  // MÔøΩTODO
 
   this.imprimir = function(pag) {
-    // VARI¡VEIS
+    // VARI√ÅVEIS
 
     var objWindow;
 
-    // FIM VARI¡VEIS
+    // FIM VARI√ÅVEIS
     try {
-      // A«’ES
+      // A√á√ïES
 
       objWindow = window.open('', 'my div', 'height=400,width=600');
       objWindow.document.write(pag);
       objWindow.print();
       objWindow.close();
 
-      // FIM A«’ES
+      // FIM A√á√ïES
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
   };
 
   this.mostrarMsgAlerta = function(strTitulo, strMensagem) {
-    // VARI¡VEIS
+    // VARI√ÅVEIS
 
     var msg;
 
-    // FIM VARI¡VEIS
+    // FIM VARI√ÅVEIS
     try {
-      // A«’ES
+      // A√á√ïES
 
       msg = new Mensagem(strTitulo, strMensagem, Mensagem_TIPO_ALERTA);
       msg.mostrar();
 
-      // FIM A«’ES
+      // FIM A√á√ïES
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
   };
 
   this.mostrarMsgNegativa = function(strTitulo, strMensagem) {
-    // VARI¡VEIS
+    // VARI√ÅVEIS
 
     var msg;
 
-    // FIM VARI¡VEIS
+    // FIM VARI√ÅVEIS
     try {
-      // A«’ES
+      // A√á√ïES
 
       msg = new Mensagem(strTitulo, strMensagem, Mensagem_TIPO_NEGATIVA);
       msg.mostrar();
 
-      // FIM A«’ES
+      // FIM A√á√ïES
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
   };
 
   this.mostrarMsgPositiva = function(strTitulo, strMensagem) {
-    // VARI¡VEIS
+    // VARI√ÅVEIS
 
     var msg;
 
-    // FIM VARI¡VEIS
+    // FIM VARI√ÅVEIS
     try {
-      // A«’ES
+      // A√á√ïES
 
       msg = new Mensagem(strTitulo, strMensagem, Mensagem_TIPO_POSITIVA);
       msg.mostrar();
 
-      // FIM A«’ES
+      // FIM A√á√ïES
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
   };
 
-  // FIM M…TODO
+  // FIM MÔøΩTODO
 
   /* Construtor */
   {
-    // VARI¡VEIS
-    // FIM VARI¡VEIS
+    // VARI√ÅVEIS
+    // FIM VARI√ÅVEIS
     try {
-      // A«’ES
-      // FIM A«’ES
+      // A√á√ïES
+      // FIM A√á√ïES
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
@@ -159,7 +159,7 @@ function AppWeb() {
 
 }
 
-// INICIALIZA«√O
+// INICIALIZA√á√ÉO
 
 var appWeb;
 
@@ -169,4 +169,4 @@ $(document).ready(function() {
 
 });
 
-// FIM INICIALIZA«√O
+// FIM INICIALIZA√á√ÉO

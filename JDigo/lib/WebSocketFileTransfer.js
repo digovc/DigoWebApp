@@ -1,4 +1,4 @@
-/**
+﻿/**
  * WebSocketFileTransfer
  * This is a small library
  * @name WebSocketFileTransfer.js

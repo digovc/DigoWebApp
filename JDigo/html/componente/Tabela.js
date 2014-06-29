@@ -1,17 +1,17 @@
-// CONSTANTE
+Ôªø// CONSTANTE
 // FIM CONSTANTE
 // ATRIBUTOS GLOBAIS
 // FIM ATRIBUTOS GLOBAIS
 // CLASSE
 
 function Tabela(strId) {
-  // HERAN«A
+  // HERAN√áA
 
   ComponenteMain.apply(this);
   Tag.apply(this);
   Objeto.apply(this);
 
-  // FIM HERAN«A
+  // FIM HERAN√áA
 
   // ATRIBUTO
 
@@ -19,51 +19,51 @@ function Tabela(strId) {
 
   // FIM ATRIBUTO
 
-  // M…TODO
+  // M√âTODO
 
   this.setOrdenacao = function() {
-    // VARI¡VEIS
-    // FIM VARI¡VEIS
+    // VARI√ÅVEIS
+    // FIM VARI√ÅVEIS
     try {
-      // A«’ES
+      // A√á√ïES
 
       this.getJq().find('table').tablesorter();
 
-      // FIM A«’ES
+      // FIM A√á√ïES
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
   };
 
   this.setPesquisa = function() {
-    // VARI¡VEIS
-    // FIM VARI¡VEIS
+    // VARI√ÅVEIS
+    // FIM VARI√ÅVEIS
     try {
-      // A«’ES
+      // A√á√ïES
 
       if ('quicksearch' in $('document')) {
         this.getJq().find("input").quicksearch('#' + this.getStrId() + ' table tbody tr');
       }
 
-      // FIM A«’ES
+      // FIM A√á√ïES
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
   };
 
-  // FIM M…TODO
+  // FIM M√âTODO
 
   /* Construtor */{
-    // VARI¡VEIS
-    // FIM VARI¡VEIS
+    // VARI√ÅVEIS
+    // FIM VARI√ÅVEIS
     try {
-      // A«’ES
+      // A√á√ïES
 
       _this.setStrId(strId);
       _this.setPesquisa();
       _this.setOrdenacao();
 
-      // FIM A«’ES
+      // FIM A√á√ïES
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }

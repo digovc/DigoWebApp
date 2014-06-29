@@ -1,4 +1,4 @@
-// CONSTANTE
+Ôªø// CONSTANTE
 // FIM CONSTANTE
 // ATRIBUTOS GLOBAIS
 // FIM ATRIBUTOS GLOBAIS
@@ -8,12 +8,12 @@
  *
  */
 function Formulario(strId) {
-	// HERAN«A
+	// HERAN√áA
 
 	Tag.apply(this);
 	Objeto.apply(this);
 
-	// FIM HERAN«A
+	// FIM HERAN√áA
 
 	// ATRIBUTO
 
@@ -21,37 +21,37 @@ function Formulario(strId) {
 
 	// FIM ATRIBUTO
 
-	// M…TODO
+	// M√âTODO
 
 	this.enviar = function() {
-		// VARI¡VEIS
-		// FIM VARI¡VEIS
+		// VARI√ÅVEIS
+		// FIM VARI√ÅVEIS
 		try {
-			// A«’ES
+			// A√á√ïES
 
 			this.getJq().submit();
 
-			// FIM A«’ES
+			// FIM A√á√ïES
 		} catch (e) {
 			new Erro("Erro inesperado.", e);
 		}
 	}
 
-	// FIM M…TODO
+	// FIM M√âTODO
 
 	/* Construtor */
 	{
-		// VARI¡VEIS
-		// FIM VARI¡VEIS
+		// VARI√ÅVEIS
+		// FIM VARI√ÅVEIS
 		try {
-			// A«’ES
+			// A√á√ïES
 
 			if (!Utils.getBooStrVazia(strId)) {
 
 			  this.setStrId(strId);
 			}
 
-			// FIM A«’ES
+			// FIM A√á√ïES
 		} catch (e) {
 			new Erro("Erro inesperado.", e);
 		}

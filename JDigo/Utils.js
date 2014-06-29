@@ -1,4 +1,4 @@
-// CONSTANTE
+Ôªø// CONSTANTE
 // FIM CONSTANTE
 // ATRIBUTOS GLOBAIS
 // FIM ATRIBUTOS GLOBAIS
@@ -8,8 +8,8 @@
  *
  */
 function _Utils() {
-  // HERAN«A
-  // FIM HERAN«A
+  // HERAN√áA
+  // FIM HERAN√áA
 
   // ATRIBUTO
 
@@ -17,22 +17,22 @@ function _Utils() {
 
   // FIM ATRIBUTO
 
-  // M…TODO
+  // M√âTODO
 
   this.carregarImagem = function(strSrc, evtOnLoad) {
-    // VARI¡VEIS
+    // VARI√ÅVEIS
 
     var img;
 
-    // FIM VARI¡VEIS
+    // FIM VARI√ÅVEIS
     try {
-      // A«’ES
+      // A√á√ïES
 
       img = new Image;
       img.src = strSrc;
       img.onload = evtOnLoad;
 
-      // FIM A«’ES
+      // FIM A√á√ïES
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
@@ -41,13 +41,13 @@ function _Utils() {
   }
 
   this.getBooStrVazia = function(str) {
-    // VARI¡VEIS
+    // VARI√ÅVEIS
 
     var booResultado = false;
 
-    // FIM VARI¡VEIS
+    // FIM VARI√ÅVEIS
     try {
-      // A«’ES
+      // A√á√ïES
 
       if (str == null) {
         booResultado = true;
@@ -55,7 +55,7 @@ function _Utils() {
         booResultado = true;
       }
 
-      // FIM A«’ES
+      // FIM A√á√ïES
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
@@ -64,14 +64,14 @@ function _Utils() {
   }
 
   this.getBooValidarEmail = function(strEmail) {
-    // VARI¡VEIS
+    // VARI√ÅVEIS
 
     var booResultado = false;
     var objRe;
 
-    // FIM VARI¡VEIS
+    // FIM VARI√ÅVEIS
     try {
-      // A«’ES
+      // A√á√ïES
 
       objRe = new RegExp(/^[A-Za-z0-9_\-\.]+@[A-Za-z0-9_\-\.]{2,}\.[A-Za-z0-9]{2,}(\.[A-Za-z0-9])?/);
 
@@ -84,7 +84,7 @@ function _Utils() {
         booResultado = true;
       }
 
-      // FIM A«’ES
+      // FIM A√á√ïES
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
@@ -93,13 +93,13 @@ function _Utils() {
   }
 
   this.getStrTamanhoFixo = function(str, intTamanho, chrComplemento, booDireita) {
-    // VARI¡VEIS
+    // VARI√ÅVEIS
 
     var intDif;
 
-    // FIM VARI¡VEIS
+    // FIM VARI√ÅVEIS
     try {
-      // A«’ES
+      // A√á√ïES
 
       str = String(str);
 
@@ -125,7 +125,7 @@ function _Utils() {
         }
       }
 
-      // FIM A«’ES
+      // FIM A√á√ïES
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
@@ -134,15 +134,15 @@ function _Utils() {
   };
 
   this.mostrarLstMensagemInformacao = function(lstStrMensagem) {
-    // VARI¡VEIS
+    // VARI√ÅVEIS
 
     var strMensagemFormatada = "";
 
-    // FIM VARI¡VEIS
+    // FIM VARI√ÅVEIS
     try {
-      // A«’ES
+      // A√á√ïES
 
-      strMensagemFormatada = "InformaÁ„o:";
+      strMensagemFormatada = "Informa√ß√£o:";
       strMensagemFormatada += "\n\n\n";
 
       if (lstStrMensagem != null && lstStrMensagem.length > 0) {
@@ -155,42 +155,42 @@ function _Utils() {
 
       Utils.mostrarMensagemInformacao(strMensagemFormatada)
 
-      // FIM A«’ES
+      // FIM A√á√ïES
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
   }
 
   this.mostrarMensagemInformacao = function(strMensagem) {
-    // VARI¡VEIS
+    // VARI√ÅVEIS
 
     var strMensagemFormatada;
 
-    // FIM VARI¡VEIS
+    // FIM VARI√ÅVEIS
     try {
-      // A«’ES
+      // A√á√ïES
 
       strMensagemFormatada += strMensagem;
 
       alert(strMensagemFormatada);
 
-      // FIM A«’ES
+      // FIM A√á√ïES
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
   }
 
   this.replaceAll = function(str, strAntigo, strNovo) {
-    // VARI¡VEIS
-    // FIM VARI¡VEIS
+    // VARI√ÅVEIS
+    // FIM VARI√ÅVEIS
     try {
-      // A«’ES
+      // A√á√ïES
 
       while (str.indexOf(strAntigo) != -1) {
         str = str.replace(strAntigo, strNovo);
       }
 
-      // FIM A«’ES
+      // FIM A√á√ïES
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
@@ -198,15 +198,15 @@ function _Utils() {
     return str;
   }
 
-  // FIM M…TODO
+  // FIM M√âTODO
 
   /* Construtor */
   {
-    // VARI¡VEIS
-    // FIM VARI¡VEIS
+    // VARI√ÅVEIS
+    // FIM VARI√ÅVEIS
     try {
-      // A«’ES
-      // FIM A«’ES
+      // A√á√ïES
+      // FIM A√á√ïES
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
@@ -214,7 +214,7 @@ function _Utils() {
 
 }
 
-// INICIALIZA«√O
+// INICIALIZA√á√ÉO
 
 var Utils;
 
@@ -224,4 +224,4 @@ $(document).ready(function() {
 
 });
 
-// FIM INICIALIZA«√O
+// FIM INICIALIZA√á√ÉO

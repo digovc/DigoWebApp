@@ -1,4 +1,4 @@
-// CONSTANTE
+Ôªø// CONSTANTE
 // FIM CONSTANTE
 // ATRIBUTOS GLOBAIS
 // FIM ATRIBUTOS GLOBAIS
@@ -8,11 +8,11 @@
  *
  */
 function PaginaHtml() {
-	// HERAN«A
+	// HERAN√áA
 
 	Objeto.apply(this);
 
-	// FIM HERAN«A
+	// FIM HERAN√áA
 
 	// ATRIBUTO
 
@@ -20,26 +20,26 @@ function PaginaHtml() {
 
 	// FIM ATRIBUTO
 
-	// M…TODO
-	// FIM M…TODO
+	// M√âTODO
+	// FIM M√âTODO
 
 	/* Construtor */{
-		// VARI¡VEIS
-		// FIM VARI¡VEIS
+		// VARI√ÅVEIS
+		// FIM VARI√ÅVEIS
 		try {
-			// A«’ES
-			// FIM A«’ES
+			// A√á√ïES
+			// FIM A√á√ïES
 		} catch (e) {
 			new Erro("Erro inesperado.", e);
 		}
 	}
 
 }
-// INICIALIZA«√O
+// INICIALIZA√á√ÉO
 
 // var objPaginaHtml;
 // $(document).ready(function() {
 //	objPaginaHtml = new PaginaHtml();
 // });
 
-// FIM INICIALIZA«√O
+// FIM INICIALIZA√á√ÉO

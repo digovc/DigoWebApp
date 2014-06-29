@@ -1,14 +1,14 @@
-// CONSTANTE
+Ôªø// CONSTANTE
 // FIM CONSTANTE
 // ATRIBUTOS GLOBAIS
 // FIM ATRIBUTOS GLOBAIS
 // CLASSE
 function PaletaCor(strNome) {
-  // HERAN«A
+  // HERAN√áA
 
   Objeto.apply(this);
 
-  // FIM HERAN«A
+  // FIM HERAN√áA
 
   // ATRIBUTO
 
@@ -56,25 +56,25 @@ function PaletaCor(strNome) {
 
   // FIM ATRIBUTO
 
-  // M…TODO
-  // FIM M…TODO
+  // M√âTODO
+  // FIM M√âTODO
 
   /* Construtor */
   {
-    // VARI¡VEIS
-    // FIM VARI¡VEIS
+    // VARI√ÅVEIS
+    // FIM VARI√ÅVEIS
     try {
-      // A«’ES
+      // A√á√ïES
 
       this.setStrNome(strNome);
       appWeb.getArrObjPaletaCor()[appWeb.getArrObjPaletaCor().length] = this;
 
-      // FIM A«’ES
+      // FIM A√á√ïES
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
   }
 
 }
-// INICIALIZA«√O
-// FIM INICIALIZA«√O
+// INICIALIZA√á√ÉO
+// FIM INICIALIZA√á√ÉO
