@@ -1,6 +1,9 @@
 package com.digosofter.digowebapp;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.math.BigInteger;
+import java.net.URL;
 import java.security.MessageDigest;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -14,7 +17,14 @@ import com.digosofter.digowebapp.erro.Erro;
 public abstract class Utils {
 
   public enum EnmDataFormato {
-    DD_MM, DD_MM_YYYY, DD_MM_YYYY_HH_MM, DD_MM_YYYY_HH_MM_SS, HH_MM, HH_MM_DD_MM_YYYY, HH_MM_SS_DD_MM_YYYY, YYYY_MM_DD_HH_MM_SS
+    DD_MM,
+    DD_MM_YYYY,
+    DD_MM_YYYY_HH_MM,
+    DD_MM_YYYY_HH_MM_SS,
+    HH_MM,
+    HH_MM_DD_MM_YYYY,
+    HH_MM_SS_DD_MM_YYYY,
+    YYYY_MM_DD_HH_MM_SS
   }
 
   public static final Locale LOCAL_BRASIL = new Locale("pt", "BR");
@@ -200,6 +210,35 @@ public abstract class Utils {
     return objSimpleDateFormat.format(objDate);
   }
 
+  /**
+   * Retorna o número "IP" externo da máquina.
+   */
+  public static String getStrIpExterno() {
+    // VARIÁVEIS
+
+    String strResultado = Utils.STRING_VAZIA;
+    URL url;
+    BufferedReader bfr;
+
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      url = new URL("http://checkip.amazonaws.com");
+      bfr = new BufferedReader(new InputStreamReader(url.openStream()));
+      strResultado = bfr.readLine();
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+
+    return strResultado;
+  }
+
   public static String getStrLinkHtml(String strTexto, String strLink) {
     // VARIÁVEIS
 
@@ -237,7 +276,8 @@ public abstract class Utils {
 
       objMessageDigest = MessageDigest.getInstance("MD5");
       objBigInteger = new BigInteger(1, objMessageDigest.digest(str.getBytes()));
-      strMd5Resultado = String.format("%0" + (objMessageDigest.digest(str.getBytes()).length << 1) + "X", objBigInteger);
+      strMd5Resultado = String.format("%0" + (objMessageDigest.digest(str.getBytes()).length << 1)
+          + "X", objBigInteger);
 
       // FIM AÇÕES
     } catch (Exception ex) {
