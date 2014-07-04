@@ -45,8 +45,35 @@ public abstract class DbFuncao extends DbTabela {
       strResultado = "";
       strResultado += super.getStrNomeSimplificado();
       strResultado += "(";
-      strResultado += Utils.getStrConcatenarLst(this.getLstStrParamIn(), ",", false);
+      strResultado += this.getStrParamInFormatado();
       strResultado += ")";
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+
+    return strResultado;
+  }
+
+  private String getStrParamInFormatado() {
+    // VARIÁVEIS
+
+    String strResultado = Utils.STRING_VAZIA;
+
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      for (String str : this.getLstStrParamIn()) {
+        str = "'" + str + "',";
+        strResultado += str;
+      }
+
+      strResultado = Utils.getStrRemoverUltimaLetra(strResultado);
 
       // FIM AÇÕES
     } catch (Exception ex) {

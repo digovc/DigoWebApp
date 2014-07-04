@@ -7,10 +7,9 @@ public class DbFirebird extends DataBase {
   private static final String STR_DRIVE_NAME = "firebirdsql";
   private static final String STR_PACKEGE_CLASS_NAME = "org.firebirdsql.jdbc.FBDriver";
 
-  public DbFirebird(String strHost, int intPort, String strDbName, String strUser,
-      String strPassword) {
+  public DbFirebird(String strHost, int intPort, String strDbName) {
 
-    super(strHost, intPort, strDbName, strUser, strPassword);
+    super(strHost, intPort, strDbName, "sysdba", "masterkey");
 
     // VARIÁVEIS
     // FIM VARIÁVEIS
