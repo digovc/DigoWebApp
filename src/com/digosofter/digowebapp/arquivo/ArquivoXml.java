@@ -9,7 +9,7 @@ import org.w3c.dom.Document;
 
 import com.digosofter.digowebapp.erro.Erro;
 
-public class ArqXml extends Arquivo {
+public class ArquivoXml extends Arquivo {
 
   private File _objFile;
 
@@ -46,7 +46,6 @@ public class ArqXml extends Arquivo {
     try {
       // AÇÕES
 
-      // TODO: Parei aqui.
       DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
       DocumentBuilder db = dbf.newDocumentBuilder();
       Document doc = db.parse(this.getObjFile());
