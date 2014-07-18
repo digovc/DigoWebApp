@@ -10,6 +10,8 @@ import javax.servlet.http.HttpSession;
 
 import com.digosofter.digowebapp.design.PaletaCor;
 import com.digosofter.digowebapp.erro.Erro;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 public abstract class AppWeb extends Objeto {
 
@@ -39,21 +41,14 @@ public abstract class AppWeb extends Objeto {
   }
 
   private List<Usuario> _lstObjUsuarioSessao;
-
+  private Gson _objGson;
   private HttpServletRequest _objHttpServletRequest;
-
   private HttpServletResponse _objHttpServletResponse;
-
   private HttpSession _objHttpSession;
-
   private PaletaCor _objPaletaCor;
-
   private PrintWriter _objPrintWriter;
-
   private Usuario _objUsuarioAtual;
-
   private String _strPagSolicitada;
-
   private String _strVersao;
 
   public AppWeb(String strAppNome) {
@@ -226,6 +221,29 @@ public abstract class AppWeb extends Objeto {
     }
 
     return _lstObjUsuarioSessao;
+  }
+
+  public Gson getObjGson() {
+    // VARIÁVEIS
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      if (_objGson != null) {
+        return _objGson;
+      }
+
+      _objGson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").create();
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+
+    return _objGson;
   }
 
   public HttpServletRequest getObjHttpServletRequest() {
