@@ -28,7 +28,6 @@ public abstract class Utils {
   }
 
   public static final Locale LOCAL_BRASIL = new Locale("pt", "BR");
-
   public static final String STRING_VAZIA = "";
 
   public static boolean getBooStrVazia(String str) {
@@ -40,12 +39,13 @@ public abstract class Utils {
     try {
       // AÇÕES
 
-      if (str == null)
+      if (str == null) {
         booStrVaziaResultado = true;
-      else if (str.equals(Utils.STRING_VAZIA))
+      } else if (str.equals(Utils.STRING_VAZIA)) {
         booStrVaziaResultado = true;
-      else
+      } else {
         booStrVaziaResultado = false;
+      }
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -55,6 +55,27 @@ public abstract class Utils {
     } finally {
     }
     return booStrVaziaResultado;
+  }
+
+  public static Date getDttAgora() {
+    // VARIÁVEIS
+
+    Date dttResultado = null;
+
+    // FIM VARIÁVEIS
+    try {
+      // AÇÕES
+
+      dttResultado = new Date();
+
+      // FIM AÇÕES
+    } catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    } finally {
+    }
+    return dttResultado;
   }
 
   public static int getIntNumeroAleatorio(int intMaximo) {
@@ -356,8 +377,8 @@ public abstract class Utils {
       }
       String[] arrChrCaracteresEspeciais = { "\\.", ",", "-", ":", "\\(", "\\)", "ª", "\\|",
           "\\\\", "°", "^\\s+", "\\s+$", "\\s+", ".", "(", ")" };
-      for (int intTemp = 0; intTemp < arrChrCaracteresEspeciais.length; intTemp++) {
-        strComplexa = strComplexa.replace(arrChrCaracteresEspeciais[intTemp], "");
+      for (String arrChrCaracteresEspeciai : arrChrCaracteresEspeciais) {
+        strComplexa = strComplexa.replace(arrChrCaracteresEspeciai, "");
       }
       strComplexa = strComplexa.replace(" ", "");
 
