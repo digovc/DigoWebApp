@@ -386,8 +386,8 @@ public class PaginaHtml extends Objeto {
   public String getStrPagFormatada() {
     // VARIÁVEIS
 
-    String strResultado = Utils.STRING_VAZIA;
-    String strTagBodyConteudo = Utils.STRING_VAZIA;
+    String strResultado = Utils.STR_VAZIA;
+    String strTagBodyConteudo = Utils.STR_VAZIA;
     StringBuilder stbHtml;
 
     // FIM VARIÁVEIS

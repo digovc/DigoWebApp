@@ -197,7 +197,7 @@ public abstract class DataBase extends Objeto {
   public String execSqlGetStr(String sql) {
     // VARIÁVEIS
 
-    String strResultado = Utils.STRING_VAZIA;
+    String strResultado = Utils.STR_VAZIA;
     List<String> lstStr;
 
     // FIM VARIÁVEIS

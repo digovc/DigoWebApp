@@ -62,7 +62,7 @@ public abstract class DbFuncao extends DbTabela {
   private String getStrParamInFormatado() {
     // VARIÁVEIS
 
-    String strResultado = Utils.STRING_VAZIA;
+    String strResultado = Utils.STR_VAZIA;
 
     // FIM VARIÁVEIS
     try {

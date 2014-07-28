@@ -15,23 +15,14 @@ import com.digosofter.digowebapp.html.componente.FormularioTbl;
 public abstract class DbTabela extends Objeto {
 
   private DbColuna _clnChavePrimaria;
-
   private DbColuna _clnNome;
-
   private FormularioTbl _frmTbl;
-
   private List<DbColuna> _lstCln;
-
   private List<DbColuna> _lstClnVisivelCadastro;
-
   private List<DbColuna> _lstClnVisivelConsulta;
-
   private List<DbFiltro> _lstObjDbFiltroConsulta;
-
   private List<DbView> _lstObjDbView;
-
   private ConsultaTbl _objConsultaTbl;
-
   private DataBase _objDataBase;
 
   public DbTabela(String strNome, DataBase objDataBase) {
@@ -96,27 +87,27 @@ public abstract class DbTabela extends Objeto {
     }
   }
 
-  public void buscarRegistroPeloId(int intId) {
-    this.buscarRegistroPeloId(String.valueOf(intId));
+  public void buscarRegistro(int intId) {
+    this.buscarRegistro(String.valueOf(intId));
   }
 
-  public void buscarRegistroPeloId(String strId) {
-    this.buscarRegistroPorCln(this.getClnChavePrimaria(), strId);
+  public void buscarRegistro(String strId) {
+    this.buscarRegistro(this.getClnChavePrimaria(), strId);
   }
 
   /**
    * Apelido para o método
    * "buscarRegistroPorCln(DbColuna cln, String strFiltroValor)".
    */
-  public void buscarRegistroPorCln(DbColuna cln, int intValor) {
-    this.buscarRegistroPorCln(cln, String.valueOf(intValor));
+  public void buscarRegistro(DbColuna cln, int intValor) {
+    this.buscarRegistro(cln, String.valueOf(intValor));
   }
 
   /**
    * Atualizar os valores das colunas da tabela com o registro que satisfaz o
    * filtro passado nos parâmetros "cln" e "strFiltroValor".
    */
-  public void buscarRegistroPorCln(DbColuna cln, String strFiltroValor) {
+  public void buscarRegistro(DbColuna cln, String strFiltroValor) {
     // VARIÁVEIS
 
     ResultSet rst;
@@ -128,12 +119,13 @@ public abstract class DbTabela extends Objeto {
       this.limparColunas();
       rst = this.getRst(cln, strFiltroValor);
 
-      if (rst != null && rst.first()) {
+      if (rst == null || !rst.first()) {
+        return;
+      }
 
-        for (DbColuna cln2 : this.getLstCln()) {
+      for (DbColuna cln2 : this.getLstCln()) {
 
-          cln2.setStrValor(rst.getString(cln2.getStrNomeSimplificado()));
-        }
+        cln2.setStrValor(rst.getString(cln2.getStrNomeSimplificado()));
       }
 
       // FIM AÇÕES
@@ -536,7 +528,7 @@ public abstract class DbTabela extends Objeto {
           continue;
         }
 
-        strEstrutura = Utils.STRING_VAZIA;
+        strEstrutura = Utils.STR_VAZIA;
         strEstrutura += cln.getStrNomeSimplificado();
         strEstrutura += "=";
         strEstrutura += cln.getStrValorSql();
@@ -675,7 +667,7 @@ public abstract class DbTabela extends Objeto {
     try {
       // AÇÕES
 
-      rstResultado = this.getRst(cln, lstObjDbFiltro, this.getClnNome());
+      rstResultado = this.getRst(cln, lstObjDbFiltro, this.getClnChavePrimaria());
 
       // FIM AÇÕES
     } catch (Exception ex) {
@@ -776,6 +768,11 @@ public abstract class DbTabela extends Objeto {
     try {
       // AÇÕES
 
+      if (lstClnOrdem == null || lstClnOrdem.size() == 0) {
+        lstClnOrdem = new ArrayList<DbColuna>();
+        lstClnOrdem.add(this.getClnChavePrimaria());
+      }
+
       sql = "select _lst_cln_nome from _from where _where order by _order;";
       sql = sql.replace("_lst_cln_nome", this.getSqlParteLstClnNome(lstCln));
       sql = sql.replace("_from", this.getStrNomeSimplificado());
@@ -800,7 +797,7 @@ public abstract class DbTabela extends Objeto {
   private String getSqlParteOrderBy(List<DbColuna> lstClnOrdem) {
     // VARIÁVEIS
 
-    String strResultado = Utils.STRING_VAZIA;
+    String strResultado = Utils.STR_VAZIA;
 
     // FIM VARIÁVEIS
     try {
@@ -815,9 +812,9 @@ public abstract class DbTabela extends Objeto {
       }
 
       for (DbColuna cln : lstClnOrdem) {
-        strResultado += strResultado.replace("_tbl_nome", cln.getTbl().getStrNomeSimplificado());
+        strResultado += cln.getTbl().getStrNomeSimplificado();
         strResultado += ".";
-        strResultado += strResultado.replace("_cln_nome", cln.getStrNomeSimplificado());
+        strResultado += cln.getStrNomeSimplificado();
         strResultado += ", ";
       }
 
@@ -838,7 +835,7 @@ public abstract class DbTabela extends Objeto {
   private String getSqlParteWhere(List<DbFiltro> lstObjDbFiltro) {
     // VARIÁVEIS
 
-    String strResultado = Utils.STRING_VAZIA;
+    String strResultado = Utils.STR_VAZIA;
 
     // FIM VARIÁVEIS
     try {
@@ -870,7 +867,7 @@ public abstract class DbTabela extends Objeto {
   private String getSqlParteLstClnNome(List<DbColuna> lstCln) {
     // VARIÁVEIS
 
-    String strResultado = Utils.STRING_VAZIA;
+    String strResultado = Utils.STR_VAZIA;
 
     // FIM VARIÁVEIS
     try {
@@ -1060,7 +1057,7 @@ public abstract class DbTabela extends Objeto {
         this.getObjDataBase().execSql(sql);
       }
 
-      this.buscarRegistroPeloId(intResultado);
+      this.buscarRegistro(intResultado);
 
       // FIM AÇÕES
     } catch (Exception ex) {

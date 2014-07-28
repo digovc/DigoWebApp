@@ -123,7 +123,7 @@ public class CssTag extends Tag {
 
     AtributoCss objAtributoCssNovo;
     boolean booExiste;
-    String strResultado = Utils.STRING_VAZIA;
+    String strResultado = Utils.STR_VAZIA;
 
     // FIM VARIÁVEIS
     try {
@@ -174,7 +174,7 @@ public class CssTag extends Tag {
       // AÇÕES
 
       stb = new StringBuilder();
-      stb.append(Utils.STRING_VAZIA);
+      stb.append(Utils.STR_VAZIA);
 
       for (AtributoCss atrCss : this.getLstAtrCss()) {
 
@@ -208,7 +208,7 @@ public class CssTag extends Tag {
   public String setBackgroundColor(String hexColor) {
     // VARIÁVEIS
 
-    String strResultado = Utils.STRING_VAZIA;
+    String strResultado = Utils.STR_VAZIA;
 
     // FIM VARIÁVEIS
     try {
@@ -230,7 +230,7 @@ public class CssTag extends Tag {
   public String setBackgroundImage(String strSrcImagem) {
     // VARIÁVEIS
 
-    String strResultado = Utils.STRING_VAZIA;
+    String strResultado = Utils.STR_VAZIA;
     StringBuilder stb;
 
     // FIM VARIÁVEIS
@@ -258,7 +258,7 @@ public class CssTag extends Tag {
   public String setBackgroundRepeat(String strRepeat) {
     // VARIÁVEIS
 
-    String strResultado = Utils.STRING_VAZIA;
+    String strResultado = Utils.STR_VAZIA;
     StringBuilder stb;
 
     // FIM VARIÁVEIS
@@ -283,7 +283,7 @@ public class CssTag extends Tag {
   public String setBackgroundSize(String strSize) {
     // VARIÁVEIS
 
-    String strResultado = Utils.STRING_VAZIA;
+    String strResultado = Utils.STR_VAZIA;
     StringBuilder stb;
 
     // FIM VARIÁVEIS
@@ -309,7 +309,7 @@ public class CssTag extends Tag {
   public String setBooCenter() {
     // VARIÁVEIS
 
-    String strResultado = Utils.STRING_VAZIA;
+    String strResultado = Utils.STR_VAZIA;
     StringBuilder stb;
 
     // FIM VARIÁVEIS
@@ -335,7 +335,7 @@ public class CssTag extends Tag {
   public String setBorder(int intBorderPx, String strTipo, String hexColor) {
     // VARIÁVEIS
 
-    String strResultado = Utils.STRING_VAZIA;
+    String strResultado = Utils.STR_VAZIA;
     StringBuilder stb;
 
     // FIM VARIÁVEIS
@@ -365,7 +365,7 @@ public class CssTag extends Tag {
   public String setBorderBottom(int intBorderBottomPx, String hexColor) {
     // VARIÁVEIS
 
-    String strResultado = Utils.STRING_VAZIA;
+    String strResultado = Utils.STR_VAZIA;
     StringBuilder stb;
 
     // FIM VARIÁVEIS
@@ -393,7 +393,7 @@ public class CssTag extends Tag {
   public String setBorderLeft(int intBorderLeftPx, String hexColor) {
     // VARIÁVEIS
 
-    String strResultado = Utils.STRING_VAZIA;
+    String strResultado = Utils.STR_VAZIA;
     StringBuilder stb;
 
     // FIM VARIÁVEIS
@@ -421,7 +421,7 @@ public class CssTag extends Tag {
       int intBottomRightPx) {
     // VARIÁVEIS
 
-    String strResultado = Utils.STRING_VAZIA;
+    String strResultado = Utils.STR_VAZIA;
     StringBuilder stb;
 
     // FIM VARIÁVEIS
@@ -454,7 +454,7 @@ public class CssTag extends Tag {
   public String setBorderRight(int intBorderRightPx, String hexColor) {
     // VARIÁVEIS
 
-    String strResultado = Utils.STRING_VAZIA;
+    String strResultado = Utils.STR_VAZIA;
     StringBuilder stb;
 
     // FIM VARIÁVEIS
@@ -482,7 +482,7 @@ public class CssTag extends Tag {
   public String setBorderTop(int intBorderTopPx, String hexColor) {
     // VARIÁVEIS
 
-    String strResultado = Utils.STRING_VAZIA;
+    String strResultado = Utils.STR_VAZIA;
     StringBuilder stb;
 
     // FIM VARIÁVEIS
@@ -510,7 +510,7 @@ public class CssTag extends Tag {
   public String setBottom(int intBottom) {
     // VARIÁVEIS
 
-    String strResultado = Utils.STRING_VAZIA;
+    String strResultado = Utils.STR_VAZIA;
     StringBuilder stb;
 
     // FIM VARIÁVEIS
@@ -538,7 +538,7 @@ public class CssTag extends Tag {
       String hexColor) {
     // VARIÁVEIS
 
-    String strResultado = Utils.STRING_VAZIA;
+    String strResultado = Utils.STR_VAZIA;
     StringBuilder stb;
 
     // FIM VARIÁVEIS
@@ -572,7 +572,7 @@ public class CssTag extends Tag {
   public String setClearBoth() {
     // VARIÁVEIS
 
-    String strResultado = Utils.STRING_VAZIA;
+    String strResultado = Utils.STR_VAZIA;
 
     // FIM VARIÁVEIS
     try {
@@ -594,7 +594,7 @@ public class CssTag extends Tag {
   public String setColor(String hexColor) {
     // VARIÁVEIS
 
-    String strResultado = Utils.STRING_VAZIA;
+    String strResultado = Utils.STR_VAZIA;
 
     // FIM VARIÁVEIS
     try {
@@ -624,7 +624,7 @@ public class CssTag extends Tag {
   public String setCursor(String strCursor) {
     // VARIÁVEIS
 
-    String strResultado = Utils.STRING_VAZIA;
+    String strResultado = Utils.STR_VAZIA;
 
     // FIM VARIÁVEIS
     try {
@@ -646,7 +646,7 @@ public class CssTag extends Tag {
   public String setDisplay(String strDisplay) {
     // VARIÁVEIS
 
-    String strResultado = Utils.STRING_VAZIA;
+    String strResultado = Utils.STR_VAZIA;
     StringBuilder stb;
 
     // FIM VARIÁVEIS
@@ -672,7 +672,7 @@ public class CssTag extends Tag {
   public String setFloat(String strFloat) {
     // VARIÁVEIS
 
-    String strResultado = Utils.STRING_VAZIA;
+    String strResultado = Utils.STR_VAZIA;
     StringBuilder stb;
 
     // FIM VARIÁVEIS
@@ -698,7 +698,7 @@ public class CssTag extends Tag {
   public String setFontFamily(String strFontFamily) {
     // VARIÁVEIS
 
-    String strResultado = Utils.STRING_VAZIA;
+    String strResultado = Utils.STR_VAZIA;
     StringBuilder stb;
 
     // FIM VARIÁVEIS
@@ -724,7 +724,7 @@ public class CssTag extends Tag {
   public String setFontNegrito() {
     // VARIÁVEIS
 
-    String strResultado = Utils.STRING_VAZIA;
+    String strResultado = Utils.STR_VAZIA;
 
     // FIM VARIÁVEIS
     try {
@@ -746,7 +746,7 @@ public class CssTag extends Tag {
   public String setFontSize(double dblFontSize, String strGrandeza) {
     // VARIÁVEIS
 
-    String strResultado = Utils.STRING_VAZIA;
+    String strResultado = Utils.STR_VAZIA;
     StringBuilder stb;
 
     // FIM VARIÁVEIS
@@ -773,7 +773,7 @@ public class CssTag extends Tag {
   public String setFontStyle(String strFontStyle) {
     // VARIÁVEIS
 
-    String strResultado = Utils.STRING_VAZIA;
+    String strResultado = Utils.STR_VAZIA;
     StringBuilder stb;
 
     // FIM VARIÁVEIS
@@ -799,7 +799,7 @@ public class CssTag extends Tag {
   public String setHeight(double dblHeight, String strGrandeza) {
     // VARIÁVEIS
 
-    String strResultado = Utils.STRING_VAZIA;
+    String strResultado = Utils.STR_VAZIA;
     StringBuilder stb;
 
     // FIM VARIÁVEIS
@@ -826,7 +826,7 @@ public class CssTag extends Tag {
   public String setLeft(int intLeft) {
     // VARIÁVEIS
 
-    String strResultado = Utils.STRING_VAZIA;
+    String strResultado = Utils.STR_VAZIA;
     StringBuilder stb;
 
     // FIM VARIÁVEIS
@@ -857,7 +857,7 @@ public class CssTag extends Tag {
   public String setMargin(int intMargin, String strGrandeza) {
     // VARIÁVEIS
 
-    String strResultado = Utils.STRING_VAZIA;
+    String strResultado = Utils.STR_VAZIA;
     StringBuilder stb;
 
     // FIM VARIÁVEIS
@@ -884,7 +884,7 @@ public class CssTag extends Tag {
   public String setMarginBottom(int intMarginBottomPx) {
     // VARIÁVEIS
 
-    String strResultado = Utils.STRING_VAZIA;
+    String strResultado = Utils.STR_VAZIA;
     StringBuilder stb;
 
     // FIM VARIÁVEIS
@@ -911,7 +911,7 @@ public class CssTag extends Tag {
   public String setMarginLeft(int intMarginLeftPx) {
     // VARIÁVEIS
 
-    String strResultado = Utils.STRING_VAZIA;
+    String strResultado = Utils.STR_VAZIA;
     StringBuilder stb;
 
     // FIM VARIÁVEIS
@@ -938,7 +938,7 @@ public class CssTag extends Tag {
   public String setMarginRight(int intMarginRightPx) {
     // VARIÁVEIS
 
-    String strResultado = Utils.STRING_VAZIA;
+    String strResultado = Utils.STR_VAZIA;
     StringBuilder stb;
 
     // FIM VARIÁVEIS
@@ -965,7 +965,7 @@ public class CssTag extends Tag {
   public String setMarginTop(int intMarginTopPx) {
     // VARIÁVEIS
 
-    String strResultado = Utils.STRING_VAZIA;
+    String strResultado = Utils.STR_VAZIA;
     StringBuilder stb;
 
     // FIM VARIÁVEIS
@@ -992,7 +992,7 @@ public class CssTag extends Tag {
   public String setMinHeight(double dblMinHeight) {
     // VARIÁVEIS
 
-    String strResultado = Utils.STRING_VAZIA;
+    String strResultado = Utils.STR_VAZIA;
     StringBuilder stb;
 
     // FIM VARIÁVEIS
@@ -1019,7 +1019,7 @@ public class CssTag extends Tag {
   public String setOpacity(double dblOpacity) {
     // VARIÁVEIS
 
-    String strResultado = Utils.STRING_VAZIA;
+    String strResultado = Utils.STR_VAZIA;
     StringBuilder stb;
 
     // FIM VARIÁVEIS
@@ -1045,7 +1045,7 @@ public class CssTag extends Tag {
   public String setOverflow(String strOverflowPx) {
     // VARIÁVEIS
 
-    String strResultado = Utils.STRING_VAZIA;
+    String strResultado = Utils.STR_VAZIA;
     StringBuilder stb;
 
     // FIM VARIÁVEIS
@@ -1071,7 +1071,7 @@ public class CssTag extends Tag {
   public String setOverflowX(String strOverflowPx) {
     // VARIÁVEIS
 
-    String strResultado = Utils.STRING_VAZIA;
+    String strResultado = Utils.STR_VAZIA;
     StringBuilder stb;
 
     // FIM VARIÁVEIS
@@ -1097,7 +1097,7 @@ public class CssTag extends Tag {
   public String setOverflowY(String strOverflowPx) {
     // VARIÁVEIS
 
-    String strResultado = Utils.STRING_VAZIA;
+    String strResultado = Utils.STR_VAZIA;
     StringBuilder stb;
 
     // FIM VARIÁVEIS
@@ -1123,7 +1123,7 @@ public class CssTag extends Tag {
   public String setPadding(int intPadding, String strGrandeza) {
     // VARIÁVEIS
 
-    String strResultado = Utils.STRING_VAZIA;
+    String strResultado = Utils.STR_VAZIA;
     StringBuilder stb;
 
     // FIM VARIÁVEIS
@@ -1150,7 +1150,7 @@ public class CssTag extends Tag {
   public String setPaddingBottom(int intPaddingBottomPx) {
     // VARIÁVEIS
 
-    String strResultado = Utils.STRING_VAZIA;
+    String strResultado = Utils.STR_VAZIA;
     StringBuilder stb;
 
     // FIM VARIÁVEIS
@@ -1177,7 +1177,7 @@ public class CssTag extends Tag {
   public String setPaddingLeft(int intPaddingLeftPx) {
     // VARIÁVEIS
 
-    String strResultado = Utils.STRING_VAZIA;
+    String strResultado = Utils.STR_VAZIA;
     StringBuilder stb;
 
     // FIM VARIÁVEIS
@@ -1204,7 +1204,7 @@ public class CssTag extends Tag {
   public String setPaddingRight(int intPaddingRightPx) {
     // VARIÁVEIS
 
-    String strResultado = Utils.STRING_VAZIA;
+    String strResultado = Utils.STR_VAZIA;
     StringBuilder stb;
 
     // FIM VARIÁVEIS
@@ -1231,7 +1231,7 @@ public class CssTag extends Tag {
   public String setPaddingTop(int intPaddingTopPx) {
     // VARIÁVEIS
 
-    String strResultado = Utils.STRING_VAZIA;
+    String strResultado = Utils.STR_VAZIA;
     StringBuilder stb;
 
     // FIM VARIÁVEIS
@@ -1258,7 +1258,7 @@ public class CssTag extends Tag {
   public String setPosition(String strPosition) {
     // VARIÁVEIS
 
-    String strResultado = Utils.STRING_VAZIA;
+    String strResultado = Utils.STR_VAZIA;
     StringBuilder stb;
 
     // FIM VARIÁVEIS
@@ -1284,7 +1284,7 @@ public class CssTag extends Tag {
   public String setRight(int intRight) {
     // VARIÁVEIS
 
-    String strResultado = Utils.STRING_VAZIA;
+    String strResultado = Utils.STR_VAZIA;
     StringBuilder stb;
 
     // FIM VARIÁVEIS
@@ -1311,7 +1311,7 @@ public class CssTag extends Tag {
   public String setTextAlign(String strTextAlign) {
     // VARIÁVEIS
 
-    String strResultado = Utils.STRING_VAZIA;
+    String strResultado = Utils.STR_VAZIA;
     StringBuilder stb;
 
     // FIM VARIÁVEIS
@@ -1336,7 +1336,7 @@ public class CssTag extends Tag {
   public String setTextDecoration(String strTextDecoration) {
     // VARIÁVEIS
 
-    String strResultado = Utils.STRING_VAZIA;
+    String strResultado = Utils.STR_VAZIA;
     StringBuilder stb;
 
     // FIM VARIÁVEIS
@@ -1362,7 +1362,7 @@ public class CssTag extends Tag {
   public String setTextShadow(int intX, int intY, int intBlur, String strColor) {
     // VARIÁVEIS
 
-    String strResultado = Utils.STRING_VAZIA;
+    String strResultado = Utils.STR_VAZIA;
     StringBuilder stb;
 
     // FIM VARIÁVEIS
@@ -1394,7 +1394,7 @@ public class CssTag extends Tag {
   public String setTop(int intTop) {
     // VARIÁVEIS
 
-    String strResultado = Utils.STRING_VAZIA;
+    String strResultado = Utils.STR_VAZIA;
     StringBuilder stb;
 
     // FIM VARIÁVEIS
@@ -1421,7 +1421,7 @@ public class CssTag extends Tag {
   public String setWhiteSpace(String strWhiteSpace) {
     // VARIÁVEIS
 
-    String strResultado = Utils.STRING_VAZIA;
+    String strResultado = Utils.STR_VAZIA;
 
     // FIM VARIÁVEIS
     try {
@@ -1443,7 +1443,7 @@ public class CssTag extends Tag {
   public String setWidth(double dblWidth, String strGrandeza) {
     // VARIÁVEIS
 
-    String strResultado = Utils.STRING_VAZIA;
+    String strResultado = Utils.STR_VAZIA;
     StringBuilder stb;
 
     // FIM VARIÁVEIS
@@ -1470,7 +1470,7 @@ public class CssTag extends Tag {
   public String setZ(int intZ) {
     // VARIÁVEIS
 
-    String strResultado = Utils.STRING_VAZIA;
+    String strResultado = Utils.STR_VAZIA;
     StringBuilder stb;
 
     // FIM VARIÁVEIS

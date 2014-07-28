@@ -369,7 +369,7 @@ public class FormularioTbl extends ComponenteMain {
       // AÇÕES
 
       if (this.getIntRegistroId() > 0) {
-        this.getTbl().buscarRegistroPeloId(this.getIntRegistroId());
+        this.getTbl().buscarRegistro(this.getIntRegistroId());
       } else {
         this.getTbl().zerarColunas();
       }

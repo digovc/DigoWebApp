@@ -15,11 +15,33 @@ import com.digosofter.digowebapp.html.CssTag;
 public class DbColuna extends Objeto {
 
   public static enum EnmTipo {
-    BIGINT, BIGSERIAL, BOOLEAN, CHAR, DATE, DECIMAL, DOUBLE, INTEGER, INTERVAL, MONEY, NUMERIC, REAL, SERIAL, SMALLINT, TEXT, TIME_WITH_TIME_ZONE, TIME_WITHOUT_TIME_ZONE, TIMESTAMP_WITH_TIME_ZONE, TIMESTAMP_WITHOUT_TIME_ZONE, VARCHAR
+    BIGINT,
+    BIGSERIAL,
+    BOOLEAN,
+    CHAR,
+    DATE,
+    DECIMAL,
+    DOUBLE,
+    INTEGER,
+    INTERVAL,
+    MONEY,
+    NUMERIC,
+    REAL,
+    SERIAL,
+    SMALLINT,
+    TEXT,
+    TIME_WITH_TIME_ZONE,
+    TIME_WITHOUT_TIME_ZONE,
+    TIMESTAMP_WITH_TIME_ZONE,
+    TIMESTAMP_WITHOUT_TIME_ZONE,
+    VARCHAR,
+    XML
   }
 
   private static enum EnmTipoGrupo {
-    ALPHANUMERICO, NUMERICO, TEMPORAL
+    ALPHANUMERICO,
+    NUMERICO,
+    TEMPORAL
   }
 
   private boolean _booChavePrimaria = false;
@@ -329,7 +351,7 @@ public class DbColuna extends Objeto {
     try {
       // AÇÕES
 
-      _strValorSql = Utils.STRING_VAZIA;
+      _strValorSql = Utils.STR_VAZIA;
 
       strValorSemScape = this.getStrValor();
       strValorSemScape = strValorSemScape.replace("'", "''");

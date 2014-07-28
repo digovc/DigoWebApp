@@ -114,7 +114,7 @@ public class DbFiltro extends Objeto {
   public String toString() {
     // VARIÁVEIS
 
-    String strResultado = Utils.STRING_VAZIA;
+    String strResultado = Utils.STR_VAZIA;
 
     // FIM VARIÁVEIS
     try {

@@ -28,7 +28,7 @@ public abstract class Utils {
   }
 
   public static final Locale LOCAL_BRASIL = new Locale("pt", "BR");
-  public static final String STRING_VAZIA = "";
+  public static final String STR_VAZIA = "";
 
   public static boolean getBooStrVazia(String str) {
     // VARIÁVEIS
@@ -41,7 +41,7 @@ public abstract class Utils {
 
       if (str == null) {
         booStrVaziaResultado = true;
-      } else if (str.equals(Utils.STRING_VAZIA)) {
+      } else if (str.equals(Utils.STR_VAZIA)) {
         booStrVaziaResultado = true;
       } else {
         booStrVaziaResultado = false;
@@ -108,8 +108,8 @@ public abstract class Utils {
     boolean booStrIncluida = false;
     List<String> lstStrIncluida;
     StringBuilder stb;
-    String strResultado = Utils.STRING_VAZIA;
-    String strDelimitador2 = Utils.STRING_VAZIA;
+    String strResultado = Utils.STR_VAZIA;
+    String strDelimitador2 = Utils.STR_VAZIA;
 
     // FIM VARIÁVEIS
     try {
@@ -182,7 +182,7 @@ public abstract class Utils {
 
   public static String getStrDataFormatada(Date objDate, EnmDataFormato enmDataFormato) {
     // VARIÁVEIS
-    String strDataFormato = Utils.STRING_VAZIA;
+    String strDataFormato = Utils.STR_VAZIA;
     SimpleDateFormat objSimpleDateFormat = null;
 
     // FIM VARIÁVEIS
@@ -237,7 +237,7 @@ public abstract class Utils {
   public static String getStrIpExterno() {
     // VARIÁVEIS
 
-    String strResultado = Utils.STRING_VAZIA;
+    String strResultado = Utils.STR_VAZIA;
     URL url;
     BufferedReader bfr;
 
@@ -263,7 +263,7 @@ public abstract class Utils {
   public static String getStrLinkHtml(String strTexto, String strLink) {
     // VARIÁVEIS
 
-    String strLinkHtmlResultado = Utils.STRING_VAZIA;
+    String strLinkHtmlResultado = Utils.STR_VAZIA;
 
     StringBuilder strBuilder = new StringBuilder();
 
@@ -289,7 +289,7 @@ public abstract class Utils {
 
     BigInteger objBigInteger;
     MessageDigest objMessageDigest;
-    String strMd5Resultado = Utils.STRING_VAZIA;
+    String strMd5Resultado = Utils.STR_VAZIA;
 
     // FIM VARIÁVEIS
     try {
@@ -343,7 +343,7 @@ public abstract class Utils {
   public static String getStrRemoverUltimaLetra(String str) {
     // VARIÁVEIS
 
-    String strResultado = Utils.STRING_VAZIA;
+    String strResultado = Utils.STR_VAZIA;
 
     // FIM VARIÁVEIS
     try {
@@ -396,8 +396,8 @@ public abstract class Utils {
   public static String getStrToken(List<String> lstStrTermo, int intTamanho) {
     // VARIÁVEIS
 
-    String strTermoMd5 = Utils.STRING_VAZIA;
-    String strTokenResultado = Utils.STRING_VAZIA;
+    String strTermoMd5 = Utils.STR_VAZIA;
+    String strTokenResultado = Utils.STR_VAZIA;
 
     // FIM VARIÁVEIS
     try {

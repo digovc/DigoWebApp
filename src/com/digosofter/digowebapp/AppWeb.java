@@ -447,7 +447,7 @@ public abstract class AppWeb extends Objeto {
 
       _objHttpServletRequest = objHttpServletRequest;
       this.setStrPagSolicitada(_objHttpServletRequest.getRequestURI().replace(
-          _objHttpServletRequest.getContextPath() + "/app/", Utils.STRING_VAZIA));
+          _objHttpServletRequest.getContextPath() + "/app/", Utils.STR_VAZIA));
       this.setObjHttpSession(_objHttpServletRequest.getSession());
 
       // FIM AÇÕES

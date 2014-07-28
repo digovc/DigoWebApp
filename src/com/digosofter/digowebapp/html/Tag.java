@@ -24,11 +24,11 @@ public class Tag extends Objeto {
 
   private String _strAbertura = "<";
 
-  private String _strConteudo = Utils.STRING_VAZIA;
+  private String _strConteudo = Utils.STR_VAZIA;
 
   private String _strFechamento = ">";
 
-  private String _strId = Utils.STRING_VAZIA;
+  private String _strId = Utils.STR_VAZIA;
 
   private String _strLink;
 
@@ -249,7 +249,7 @@ public class Tag extends Objeto {
   protected String getStrAtributoFormatado() {
     // VARIÁVEIS
 
-    String strAtributoIncluido = Utils.STRING_VAZIA;
+    String strAtributoIncluido = Utils.STR_VAZIA;
     StringBuilder stbAtrFormatado = new StringBuilder();
 
     // FIM VARIÁVEIS

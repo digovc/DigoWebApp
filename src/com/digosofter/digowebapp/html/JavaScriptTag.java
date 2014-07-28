@@ -111,7 +111,7 @@ public class JavaScriptTag extends Tag {
 
         strBuilder = new StringBuilder();
         strBuilder.append("$(document).ready(function(){");
-        strBuilder.append(Utils.getStrConcatenarLst(this.getLstStrMetodos(), Utils.STRING_VAZIA,
+        strBuilder.append(Utils.getStrConcatenarLst(this.getLstStrMetodos(), Utils.STR_VAZIA,
             true));
         strBuilder.append("});");
 
@@ -140,7 +140,7 @@ public class JavaScriptTag extends Tag {
 
       _strSrc = strSrc;
 
-      if (_strSrc != null && !_strSrc.equals(Utils.STRING_VAZIA)) {
+      if (_strSrc != null && !_strSrc.equals(Utils.STR_VAZIA)) {
         this.getAtrSrc().setStrValor(strSrc);
       }
 
