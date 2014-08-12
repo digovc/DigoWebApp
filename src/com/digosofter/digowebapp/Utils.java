@@ -13,6 +13,7 @@ import java.util.Locale;
 import java.util.Random;
 
 import com.digosofter.digowebapp.erro.Erro;
+import com.sun.corba.se.impl.javax.rmi.CORBA.Util;
 
 public abstract class Utils {
 
@@ -289,7 +290,7 @@ public abstract class Utils {
 
     BigInteger objBigInteger;
     MessageDigest objMessageDigest;
-    String strMd5Resultado = Utils.STR_VAZIA;
+    String strMd5Resultado = null;
 
     // FIM VARIÁVEIS
     try {
@@ -396,7 +397,7 @@ public abstract class Utils {
   public static String getStrToken(List<String> lstStrTermo, int intTamanho) {
     // VARIÁVEIS
 
-    String strTermoMd5 = Utils.STR_VAZIA;
+    String strTermoMd5;
     String strTokenResultado = Utils.STR_VAZIA;
 
     // FIM VARIÁVEIS
