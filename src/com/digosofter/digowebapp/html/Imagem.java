@@ -42,20 +42,4 @@ public class Imagem extends Tag {
     }
   }
 
-  public void setSrc(String srcImagem) {
-
-    try {
-
-      this.getLstAtr().add(new Atributo("src", srcImagem));
-
-    }
-    catch (Exception ex) {
-
-      new Erro("Erro inesperado.\n", ex);
-
-    }
-    finally {
-    }
-  }
-
 }
