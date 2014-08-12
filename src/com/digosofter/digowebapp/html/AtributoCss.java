@@ -4,6 +4,18 @@ import com.digosofter.digowebapp.erro.Erro;
 
 public class AtributoCss extends Atributo {
 
+  private String _strValor;
+
+  private String getstrValor() {
+
+    return _strValor;
+  }
+
+  private void setstrValor(String strValor) {
+
+    _strValor = strValor;
+  }
+
   private String _strClassAssociada;
 
   public AtributoCss(String strNome, String strValor) {

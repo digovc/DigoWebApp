@@ -9,10 +9,8 @@ import com.digosofter.digowebapp.erro.Erro;
 
 public class Atributo extends Objeto {
 
-  private List<String> _lstStrValor = new ArrayList<String>();
-
-  private String _strDelimitador = " ";
-
+  private List<String> _lstStrValor;
+  private String _strDelimitador;
   private String _strValor;
 
   public Atributo(String strNome) {
@@ -58,22 +56,74 @@ public class Atributo extends Objeto {
 
   public List<String> getLstStrValor() {
 
+    try {
+
+      if (_lstStrValor != null) {
+        return _lstStrValor;
+      }
+
+      _lstStrValor = new ArrayList<String>();
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    }
+    finally {
+    }
+
     return _lstStrValor;
   }
 
   public String getStrDelimitador() {
 
+    try {
+
+      if (!Utils.getBooStrVazia(_strDelimitador)) {
+        return _strDelimitador;
+      }
+
+      _strDelimitador = " ";
+
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    }
+    finally {
+    }
     return _strDelimitador;
   }
 
   public String getStrValor() {
 
+    try {
+
+      if (!Utils.getBooStrVazia(_strValor)) {
+        return _strValor;
+      }
+
+      _strValor = Utils.STR_VAZIA;
+
+      for (String strValor : this.getLstStrValor()) {
+        if (Utils.getBooStrVazia(strValor)) {
+          continue;
+        }
+        _strValor += strValor;
+        _strValor += this.getStrDelimitador();
+      }
+
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    }
+    finally {
+    }
+
     return _strValor;
-  }
-
-  private void setLstStrValor(List<String> lstStrValor) {
-
-    _lstStrValor = lstStrValor;
   }
 
   public void setStrDelimitador(String strDelimitador) {
@@ -87,9 +137,12 @@ public class Atributo extends Objeto {
 
       _strValor = strValor;
 
+      if (Utils.getBooStrVazia(_strValor)) {
+        return;
+      }
+
       this.getLstStrValor().clear();
       this.getLstStrValor().add(_strValor);
-
     }
     catch (Exception ex) {
 

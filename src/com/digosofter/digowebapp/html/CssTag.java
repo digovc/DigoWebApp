@@ -72,10 +72,12 @@ public class CssTag extends Tag {
 
     try {
 
-      if (_iMain == null) {
-        _iMain = new CssTag();
+      if (_iMain != null) {
+        return _iMain;
       }
 
+      _iMain = new CssTag();
+      _iMain.addCssPuro("a{color:#428bca;text-decoration:none}");
     }
     catch (Exception ex) {
 
@@ -93,8 +95,8 @@ public class CssTag extends Tag {
     _iMain = cssMainInst;
   }
 
-  private List<AtributoCss> _lstAtrCss = new ArrayList<AtributoCss>();
-
+  private String _cssPuro;
+  private List<AtributoCss> _lstAtrCss;
   private String _strConteudo;
 
   public CssTag() {
@@ -155,39 +157,94 @@ public class CssTag extends Tag {
     return strResultado;
   }
 
+  private void addCssPuro(String css) {
+
+    try {
+
+      if (Utils.getBooStrVazia(css)) {
+        return;
+      }
+
+      this.setCssPuro(this.getCssPuro().concat(css));
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    }
+    finally {
+    }
+
+  }
+
+  private String getCssPuro() {
+
+    try {
+
+      if (!Utils.getBooStrVazia(_cssPuro)) {
+        return _cssPuro;
+      }
+
+      _cssPuro = Utils.STR_VAZIA;
+
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    }
+    finally {
+    }
+    return _cssPuro;
+  }
+
   public List<AtributoCss> getLstAtrCss() {
 
+    try {
+
+      this.setStrConteudo(Utils.STR_VAZIA);
+
+      if (_lstAtrCss != null) {
+        return _lstAtrCss;
+      }
+
+      _lstAtrCss = new ArrayList<AtributoCss>();
+
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    }
+    finally {
+    }
     return _lstAtrCss;
   }
 
   @Override
   public String getStrConteudo() {
 
-    StringBuilder stb;
+    String strAttCss;
 
     try {
 
-      stb = new StringBuilder();
-      stb.append(Utils.STR_VAZIA);
+      if (!Utils.getBooStrVazia(_strConteudo)) {
+        return _strConteudo;
+      }
+
+      _strConteudo = Utils.STR_VAZIA;
 
       for (AtributoCss atrCss : this.getLstAtrCss()) {
 
-        stb.append(".");
-        stb.append(atrCss.getStrClassAssociada());
-        stb.append("{");
-        stb.append(atrCss.getStrNome());
-        stb.append(":");
+        strAttCss = "._class_nome{_att_nome:_att_valor}";
+        strAttCss = strAttCss.replace("_class_nome", atrCss.getStrClassAssociada());
+        strAttCss = strAttCss.replace("_att_nome", atrCss.getStrNome());
+        strAttCss = strAttCss.replace("_att_valor", atrCss.getStrValor());
 
-        for (String strValor : atrCss.getLstStrValor()) {
-          stb.append(strValor);
-          stb.append(";");
-        }
-
-        stb.append("}");
+        _strConteudo += strAttCss;
       }
 
-      _strConteudo = stb.toString();
-
+      _strConteudo += this.getCssPuro();
     }
     catch (Exception ex) {
 
@@ -198,6 +255,12 @@ public class CssTag extends Tag {
     }
 
     return _strConteudo;
+  }
+
+  @Override
+  public void setStrConteudo(String strConteudo) {
+
+    _strConteudo = strConteudo;
   }
 
   public String setBackgroundColor(String hexColor) {
@@ -584,6 +647,12 @@ public class CssTag extends Tag {
    */
   @Override
   protected void setCss(CssTag tagCss) {
+
+  }
+
+  private void setCssPuro(String cssPuro) {
+
+    _cssPuro = cssPuro;
 
   }
 
