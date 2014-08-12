@@ -15,11 +15,9 @@ import com.digosofter.digowebapp.html.componente.Mensagem;
 public class PaginaHtml extends Objeto {
 
   private static CssTag _cssMain;
-
   private static PaginaHtml i;
 
   public static final String JS_APP_WEB = "res/js/lib/JDigo/AppWeb.js";
-
   public static final String JS_ERRO = "res/js/lib/JDigo/erro/Erro.js";
   public static final String JS_LIB_DATE = "res/js/lib/JDigo/lib/date.js";
   public static final String JS_LIB_JQUERY = "res/js/lib/JDigo/lib/jquery-2.0.3.js";
@@ -55,31 +53,20 @@ public class PaginaHtml extends Objeto {
   }
 
   private boolean _booPagSimples;
-
   private CssTag _cssImp;
-
-  private List<JavaScriptTag> _lstTagJs = new ArrayList<JavaScriptTag>();
-
+  private List<CssTag> _lstTagCss;
+  private List<CssTag> _lstTagCssOrdenado;
+  private List<JavaScriptTag> _lstTagJs;
   private List<JavaScriptTag> _lstTagJsOrdenado;
-
-  private String _strSrcIcon = "res/media/favicon.ico";
-
+  private String _strSrcIcon;
   private String _strTitulo;
-
   private Tag _tagBody;
-
   private Tag _tagDocType;
-
   private Tag _tagHead;
-
   private Tag _tagHtml;
-
   private Tag _tagIcon;
-
   private JavaScriptTag _tagJsMain;
-
   private Tag _tagMeta;
-
   private Tag _tagTitle;
 
   public PaginaHtml() {
@@ -87,7 +74,30 @@ public class PaginaHtml extends Objeto {
     try {
 
       this.setI(this);
+      this.addCssArquivo(this.getLstTagCss());
       this.addJsArquivo(this.getLstTagJs());
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    }
+    finally {
+    }
+  }
+
+  private void addCssAoCabecalho() {
+
+    try {
+
+      if (this.getBooPagSimples()) {
+        return;
+      }
+
+      for (CssTag cssTag : this.getLstTagCssOrdenado()) {
+
+        cssTag.setTagPai(this.getTagHead());
+      }
 
     }
     catch (Exception ex) {
@@ -99,12 +109,9 @@ public class PaginaHtml extends Objeto {
     }
   }
 
-  public PaginaHtml(boolean booPagSimples) {
+  protected void addCssArquivo(List<CssTag> lstTagCss) {
 
     try {
-
-      this.setI(this);
-      this.setBooPagSimples(true);
 
     }
     catch (Exception ex) {
@@ -315,9 +322,86 @@ public class PaginaHtml extends Objeto {
     return _cssMain;
   }
 
+  private List<CssTag> getLstTagCss() {
+
+    try {
+
+      if (_lstTagCss != null) {
+        return _lstTagCss;
+      }
+
+      _lstTagCss = new ArrayList<CssTag>();
+
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    }
+    finally {
+    }
+    return _lstTagCss;
+  }
+
   public List<JavaScriptTag> getLstTagJs() {
 
+    try {
+      if (_lstTagJs != null) {
+        return _lstTagJs;
+      }
+
+      _lstTagJs = new ArrayList<JavaScriptTag>();
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    }
+    finally {
+    }
+
     return _lstTagJs;
+  }
+
+  private List<CssTag> getLstTagCssOrdenado() {
+
+    boolean booCssAdicionado;
+
+    try {
+
+      if (_lstTagCssOrdenado != null) {
+        return _lstTagCssOrdenado;
+      }
+
+      _lstTagCssOrdenado = new ArrayList<CssTag>();
+
+      for (CssTag cssTag : this.getLstTagCss()) {
+
+        booCssAdicionado = false;
+
+        for (CssTag tagJsAdicionada : _lstTagCssOrdenado) {
+
+          if (tagJsAdicionada.getSrc().equals(cssTag.getSrc())) {
+            booCssAdicionado = true;
+            break;
+          }
+        }
+
+        if (!booCssAdicionado) {
+          _lstTagCssOrdenado.add(cssTag);
+        }
+      }
+
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    }
+    finally {
+    }
+
+    return _lstTagCssOrdenado;
   }
 
   private List<JavaScriptTag> getLstTagJsOrdenado() {
@@ -338,7 +422,7 @@ public class PaginaHtml extends Objeto {
 
         for (JavaScriptTag tagJsAdicionada : _lstTagJsOrdenado) {
 
-          if (tagJsAdicionada.getStrSrc() == tagJs.getStrSrc()) {
+          if (tagJsAdicionada.getSrc() == tagJs.getSrc()) {
             booJsAdicionado = true;
             break;
           }
@@ -385,6 +469,7 @@ public class PaginaHtml extends Objeto {
       strTagBodyConteudo += this.getTagBody().toString();
       strTagBodyConteudo += "</html>";
 
+      this.addCssAoCabecalho();
       this.addJsAoCabecalho();
 
       stbHtml = new StringBuilder();
@@ -407,6 +492,21 @@ public class PaginaHtml extends Objeto {
 
   private String getStrSrcIcon() {
 
+    try {
+
+      if (!Utils.getBooStrVazia(_strSrcIcon)) {
+        return _strSrcIcon;
+      }
+
+      _strSrcIcon = "res/media/favicon.ico";
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    }
+    finally {
+    }
     return _strSrcIcon;
   }
 
@@ -671,7 +771,7 @@ public class PaginaHtml extends Objeto {
     }
   }
 
-  private void setBooPagSimples(boolean booPagSimples) {
+  public void setBooPagSimples(boolean booPagSimples) {
 
     _booPagSimples = booPagSimples;
   }

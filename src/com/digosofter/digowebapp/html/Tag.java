@@ -11,33 +11,21 @@ import com.digosofter.digowebapp.erro.Erro;
 public class Tag extends Objeto {
 
   private Atributo _atrClass;
-
+  private Atributo _atrSrc;
   private Atributo _atrType;
-
   private boolean _booBarraNoFinal = true;
-
   private boolean _booForcarTagDupla;
-
   private List<Atributo> _lstAtr;
-
   private List<Tag> _lstTag;
-
-  private String _strAbertura = "<";
-
-  private String _strConteudo = Utils.STR_VAZIA;
-
-  private String _strFechamento = ">";
-
-  private String _strId = Utils.STR_VAZIA;
-
+  private String _strAbertura;
+  private String _strConteudo;
+  private String _strFechamento;
+  private String _strId;
   private String _strLink;
-
   private String _strNome;
-
-  private String _strTagNome = "div";
-
+  private String _strSrc;
+  private String _strTagNome;
   private String _strTitle;
-
   private Tag _tagPai;
 
   public Tag(String strTagName) {
@@ -45,7 +33,7 @@ public class Tag extends Objeto {
     try {
 
       this.setStrTagNome(strTagName);
-
+      this.setStrConteudo(Utils.STR_VAZIA);
     }
     catch (Exception ex) {
 
@@ -163,6 +151,28 @@ public class Tag extends Objeto {
     return _atrClass;
   }
 
+  private Atributo getAtrSrc() {
+
+    try {
+
+      if (_atrSrc != null) {
+        return _atrSrc;
+      }
+
+      _atrSrc = new Atributo("src");
+      this.getLstAtr().add(_atrSrc);
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    }
+    finally {
+    }
+
+    return _atrSrc;
+  }
+
   public Atributo getAtrType() {
 
     try {
@@ -237,6 +247,21 @@ public class Tag extends Objeto {
 
   protected String getStrAbertura() {
 
+    try {
+
+      if (!Utils.getBooStrVazia(_strAbertura)) {
+        return _strAbertura;
+      }
+
+      _strAbertura = "<";
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    }
+    finally {
+    }
     return _strAbertura;
   }
 
@@ -280,6 +305,21 @@ public class Tag extends Objeto {
 
   protected String getStrFechamento() {
 
+    try {
+
+      if (!Utils.getBooStrVazia(_strFechamento)) {
+        return _strFechamento;
+      }
+
+      _strFechamento = ">";
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    }
+    finally {
+    }
     return _strFechamento;
   }
 
@@ -308,6 +348,11 @@ public class Tag extends Objeto {
   private String getStrLink() {
 
     return _strLink;
+  }
+
+  public String getSrc() {
+
+    return _strSrc;
   }
 
   public String getStrTagFormatada() {
@@ -388,18 +433,33 @@ public class Tag extends Objeto {
 
   protected String getStrTagNome() {
 
+    try {
+
+      if (!Utils.getBooStrVazia(_strTagNome)) {
+        return _strTagNome;
+      }
+
+      _strTagNome = "div";
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    }
+    finally {
+    }
     return _strTagNome;
   }
 
   private String getStrTitle() {
 
     return _strTitle;
-  };
+  }
 
   public Tag getTagPai() {
 
     return _tagPai;
-  }
+  };
 
   /**
    * Limpa todas as "classes" já adicionadas à tag.
@@ -542,6 +602,27 @@ public class Tag extends Objeto {
       _strNome = strNome;
       this.addAtr("name", _strNome);
 
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    }
+    finally {
+    }
+  }
+
+  public void setSrc(String strSrc) {
+
+    try {
+
+      _strSrc = strSrc;
+
+      if (Utils.getBooStrVazia(_strSrc)) {
+        return;
+      }
+
+      this.getAtrSrc().setStrValor(strSrc);
     }
     catch (Exception ex) {
 
