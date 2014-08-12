@@ -9,7 +9,9 @@ import com.digosofter.digowebapp.html.Painel;
 public class Mensagem extends ComponenteMain {
 
   public enum EnmTipo {
-    ALERTA, NEGATIVA, POSITIVA
+    ALERTA,
+    NEGATIVA,
+    POSITIVA
   }
 
   private EnmTipo _enmTipo = EnmTipo.POSITIVA;
@@ -27,34 +29,31 @@ public class Mensagem extends ComponenteMain {
   private String _strTitulo = "_titulo";
 
   public Mensagem() {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       this.setStrId("msg");
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
   public EnmTipo getEnmTipo() {
+
     return _enmTipo;
   }
 
   private Imagem getImgIcon() {
-    // VARIÁVEIS
 
     String src;
 
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       if (_imgIcon == null) {
 
@@ -81,22 +80,21 @@ public class Mensagem extends ComponenteMain {
         _imgIcon.setSrc(src);
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return _imgIcon;
   }
 
   private Painel getPnlConteudo() {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       if (_pnlConteudo == null) {
 
@@ -112,22 +110,21 @@ public class Mensagem extends ComponenteMain {
         _pnlConteudo.addCss(CssTag.getIMain().addCss("margin", "auto"));
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return _pnlConteudo;
   }
 
   private Painel getPnlMsg() {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       if (_pnlMsg == null) {
 
@@ -135,12 +132,13 @@ public class Mensagem extends ComponenteMain {
         _pnlMsg.setStrConteudo(this.getStrMensagem());
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return _pnlMsg;
@@ -148,10 +146,8 @@ public class Mensagem extends ComponenteMain {
 
   @Override
   protected Painel getPnlTitulo() {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       if (_pnlTitulo == null) {
 
@@ -164,22 +160,25 @@ public class Mensagem extends ComponenteMain {
             AppWeb.getI().getObjPaletaCor().getStrCorBorda()));
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return _pnlTitulo;
   }
 
   public String getStrMensagem() {
+
     return _strMensagem;
   }
 
   public String getStrTitulo() {
+
     return _strTitulo;
   }
 
@@ -188,22 +187,20 @@ public class Mensagem extends ComponenteMain {
 
     super.montarLayout();
 
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       this.getPnlConteudo().setTagPai(this);
       this.getImgIcon().setTagPai(this.getPnlConteudo());
       this.getPnlTitulo().setTagPai(this.getPnlConteudo());
       this.getPnlMsg().setTagPai(this.getPnlConteudo());
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
@@ -212,30 +209,30 @@ public class Mensagem extends ComponenteMain {
 
     super.setCss(tagCss);
 
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       this.addCss(tagCss.setPosition("fixed"));
       this.addCss(tagCss.setWidth(100, "%"));
       this.addCss(tagCss.setTop(15));
       this.addCss(tagCss.setZ(100));
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
   public void setEnmTipo(EnmTipo enmTipo) {
+
     _enmTipo = enmTipo;
   }
 
   public void setStrMensagem(String strMensagem) {
+
     _strMensagem = strMensagem;
   }
 
@@ -244,19 +241,17 @@ public class Mensagem extends ComponenteMain {
 
     super.setStrTitulo(strTitulo);
 
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       _strTitulo = strTitulo;
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 

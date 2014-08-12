@@ -9,18 +9,22 @@ public final class ObjWsInterlocutor extends ObjMain {
   private String _strJson;
 
   public int getIntFuncId() {
+
     return _intFncId;
   }
 
   public String getStrJson() {
+
     return _strJson;
   }
 
   public void setIntFuncId(int intFuncId) {
+
     _intFncId = intFuncId;
   }
 
   public void setStrJson(String strJson) {
+
     _strJson = strJson;
   }
 

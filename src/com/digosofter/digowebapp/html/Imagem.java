@@ -11,16 +11,15 @@ public class Imagem extends Tag {
 
     super("img");
 
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
-      // FIM AÇÕES
-    } catch (Exception ex) {
+
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
@@ -29,36 +28,33 @@ public class Imagem extends Tag {
 
     super.addJsArquivo(lstObjJsTag);
 
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       lstObjJsTag.add(new JavaScriptTag(AppWeb.JS_IMAGEM));
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
   public void setSrc(String srcImagem) {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       this.getLstAtr().add(new Atributo("src", srcImagem));
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 

@@ -10,10 +10,8 @@ public class Erro extends Objeto {
   private String _strMensagemDetalhada;
 
   public Erro(String strMensagem, Exception ex) {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       if (ex != null) {
         ex.printStackTrace();
@@ -23,25 +21,30 @@ public class Erro extends Objeto {
         System.out.println(strMensagem);
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex2) {
-    } finally {
+    }
+    catch (Exception ex2) {
+    }
+    finally {
     }
   }
 
   protected String getStrMensagem() {
+
     return _strMensagem;
   }
 
   protected String getStrMensagemDetalhada() {
+
     return _strMensagemDetalhada;
   }
 
   protected void setStrMensagem(String strMensagem) {
+
     _strMensagem = strMensagem;
   }
 
   protected void setStrMensagemDetalhada(String strMensagemDetalhada) {
+
     _strMensagemDetalhada = strMensagemDetalhada;
   }
 

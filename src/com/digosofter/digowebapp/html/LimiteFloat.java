@@ -8,19 +8,17 @@ public class LimiteFloat extends Tag {
 
     super("div");
 
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       this.setBooForcarTagDupla(true);
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
@@ -29,19 +27,17 @@ public class LimiteFloat extends Tag {
 
     super.setCss(tagCss);
 
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       this.addCss(tagCss.setClearBoth());
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 

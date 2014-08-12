@@ -15,19 +15,18 @@ public class ComboBox extends Campo {
   private List<String> _lstStrValor;
 
   public ComboBox() {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       this.setStrTagNome("select");
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
@@ -35,67 +34,94 @@ public class ComboBox extends Campo {
    * Adiciona uma opção à lista do "comboBox".
    */
   public void addNomeValor(String strNome, String strValor) {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       this.getLstStrValor().add(strValor);
       this.getLstStrNome().add(strNome);
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
   private boolean getBooOpcaoVazia() {
+
     return _booOpcaoVazia;
   }
 
   private List<String> getLstStrNome() {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       if (_lstStrNome == null) {
         _lstStrNome = new ArrayList<String>();
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return _lstStrNome;
   }
 
   private List<String> getLstStrValor() {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       if (_lstStrValor == null) {
         _lstStrValor = new ArrayList<String>();
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return _lstStrValor;
+  }
+
+  private Tag getNewTagOption(int intOrdem) {
+
+    Tag tagResultado = null;
+
+    try {
+
+      if (!Utils.getBooStrVazia(this.getStrValor())
+          && this.getStrValor().equals(this.getLstStrValor().get(intOrdem))) {
+        tagResultado = new Tag("option selected");
+      }
+      else {
+        tagResultado = new Tag("option");
+      }
+
+      tagResultado.addAtr("value", this.getLstStrValor().get(intOrdem));
+      tagResultado.setStrConteudo(this.getLstStrNome().get(intOrdem));
+
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    }
+    finally {
+    }
+
+    return tagResultado;
   }
 
   @Override
@@ -103,10 +129,7 @@ public class ComboBox extends Campo {
 
     super.montarLayout();
 
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       if (this.getLstStrValor().size() == 0 || this.getBooOpcaoVazia()) {
 
@@ -116,77 +139,49 @@ public class ComboBox extends Campo {
 
       this.montarLayoutItens();
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
   private void montarLayoutItens() {
-    // VARIÁVEIS
 
     Tag tagOption;
 
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       for (int i = 0; i < this.getLstStrValor().size(); i++) {
         tagOption = this.getNewTagOption(i);
         tagOption.setTagPai(this);
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
     }
-  }
-
-  private Tag getNewTagOption(int intOrdem) {
-    // VARIÁVEIS
-
-    Tag tagResultado = null;
-
-    // FIM VARIÁVEIS
-    try {
-      // AÇÕES
-
-      if (!Utils.getBooStrVazia(this.getStrValor())
-          && this.getStrValor().equals(this.getLstStrValor().get(intOrdem))) {
-        tagResultado = new Tag("option selected");
-      } else {
-        tagResultado = new Tag("option");
-      }
-
-      tagResultado.addAtr("value", this.getLstStrValor().get(intOrdem));
-      tagResultado.setStrConteudo(this.getLstStrNome().get(intOrdem));
-
-      // FIM AÇÕES
-    } catch (Exception ex) {
-
-      new Erro("Erro inesperado.\n", ex);
-
-    } finally {
+    finally {
     }
-
-    return tagResultado;
   }
 
   public void setBooOpcaoVazia(boolean booOpcaoVazia) {
+
     _booOpcaoVazia = booOpcaoVazia;
   }
 
   public void setLstStrNome(List<String> lstStrNome) {
+
     _lstStrNome = lstStrNome;
   }
 
   public void setLstStrValor(List<String> lstStrValor) {
+
     _lstStrValor = lstStrValor;
   }
 }

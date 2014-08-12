@@ -19,22 +19,21 @@ public class WebSocketFileTransfer extends WebSocketMain {
   private List<ObjWsFileTransfer> _lstObjWsFileTransfer;
 
   private List<ObjWsFileTransfer> getLstObjWsFileTransfer() {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       if (_lstObjWsFileTransfer == null) {
 
         _lstObjWsFileTransfer = new ArrayList<ObjWsFileTransfer>();
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return _lstObjWsFileTransfer;
@@ -45,13 +44,10 @@ public class WebSocketFileTransfer extends WebSocketMain {
    * parâmetro.
    */
   private ObjWsFileTransfer getObjWsFileTransfer(Session objSession) {
-    // VARIÁVEIS
 
     ObjWsFileTransfer wftResultado = null;
 
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       for (ObjWsFileTransfer wft : this.getLstObjWsFileTransfer()) {
 
@@ -65,12 +61,13 @@ public class WebSocketFileTransfer extends WebSocketMain {
       wftResultado = new ObjWsFileTransfer(objSession);
       this.getLstObjWsFileTransfer().add(wftResultado);
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return wftResultado;
@@ -79,33 +76,29 @@ public class WebSocketFileTransfer extends WebSocketMain {
   @OnClose
   @Override
   public void onClose(Session objSession, CloseReason objCloseReason) {
-    // VARIÁVEIS
 
     ObjWsFileTransfer wft;
 
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       wft = this.getObjWsFileTransfer(objSession);
       wft.salvar();
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
   @OnMessage
   @Override
   public void onMessage(Session objSession, String strMensagem) {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       // if (!this.verificarUsuarioLogado(objSession)) {
       //
@@ -116,20 +109,23 @@ public class WebSocketFileTransfer extends WebSocketMain {
 
         this.processarMsgAuth(objSession);
 
-      } else if (strMensagem.contains("STOR")) {
+      }
+      else if (strMensagem.contains("STOR")) {
 
         this.processarMsgStor(objSession, strMensagem);
-      } else{
+      }
+      else {
 
         this.processarData(objSession, strMensagem);
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
@@ -142,55 +138,49 @@ public class WebSocketFileTransfer extends WebSocketMain {
   }
 
   private void processarData(Session objSession, String strMensagem) {
-    // VARIÁVEIS
 
     ObjWsFileTransfer wft;
     int intTamanho;
 
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       wft = this.getObjWsFileTransfer(objSession);
       intTamanho = wft.addBytes(strMensagem);
       objSession.getBasicRemote().sendText(
           "{ 'type': 'DATA', 'code': 200, 'bytesRead': " + intTamanho + " }");
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
   private void processarMsgAuth(Session objSession) {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       objSession.getBasicRemote().sendText(
           "{ 'type': 'AUTH', 'message': 'Authentification success', 'code': 200 }");
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
   private void processarMsgStor(Session objSession, String strMensagem) {
-    // VARIÁVEIS
 
     ObjWsFileTransfer wft;
 
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       wft = this.getObjWsFileTransfer(objSession);
       wft.setStrJsonStor(strMensagem);
@@ -198,12 +188,13 @@ public class WebSocketFileTransfer extends WebSocketMain {
       objSession.getBasicRemote().sendText(
           "{ 'type': 'STOR', 'message': 'Upload initialized. Wait for data', 'code': 200 }");
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 

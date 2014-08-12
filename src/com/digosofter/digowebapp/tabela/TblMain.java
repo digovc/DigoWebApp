@@ -28,27 +28,23 @@ public abstract class TblMain extends DbTabela {
 
     super(strNome, objDataBase);
 
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       this.inicializarViews(this.getLstObjDbView());
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
   public DbColuna getClnBooAtivo() {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       if (_clnBooAtivo == null) {
         _clnBooAtivo = new DbColuna("boo_ativo", this, DbColuna.EnmTipo.BOOLEAN);
@@ -58,22 +54,21 @@ public abstract class TblMain extends DbTabela {
         _clnBooAtivo.setIntFrmLinhaPeso(2);
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return _clnBooAtivo;
   }
 
   public DbColuna getClnDttAlteracao() {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       if (_clnDttAlteracao == null) {
         _clnDttAlteracao = new DbColuna("dtt_alteracao", this,
@@ -82,22 +77,21 @@ public abstract class TblMain extends DbTabela {
         _clnDttAlteracao.setBooVisivelConsulta(false);
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return _clnDttAlteracao;
   }
 
   public DbColuna getClnDttCadastro() {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       if (_clnDttCadastro == null) {
         _clnDttCadastro = new DbColuna("dtt_cadastro", this,
@@ -106,22 +100,21 @@ public abstract class TblMain extends DbTabela {
         _clnDttCadastro.setBooVisivelConsulta(false);
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return _clnDttCadastro;
   }
 
   public DbColuna getClnDttExclusao() {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       if (_clnDttExclusao == null) {
         _clnDttExclusao = new DbColuna("dtt_exclusao", this,
@@ -130,22 +123,21 @@ public abstract class TblMain extends DbTabela {
         _clnDttExclusao.setBooVisivelConsulta(false);
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return _clnDttExclusao;
   }
 
   public DbColuna getClnIntId() {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       if (_clnIntId == null) {
 
@@ -155,22 +147,21 @@ public abstract class TblMain extends DbTabela {
         _clnIntId.setBooVisivelConsulta(false);
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return _clnIntId;
   }
 
   public DbColuna getClnIntUsuarioAlteracaoId() {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       if (_clnIntUsuarioAlteracaoId == null) {
 
@@ -179,22 +170,21 @@ public abstract class TblMain extends DbTabela {
         _clnIntUsuarioAlteracaoId.setBooVisivelCadastro(false);
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return _clnIntUsuarioAlteracaoId;
   }
 
   public DbColuna getClnIntUsuarioCadastroId() {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       if (_clnIntUsuarioCadastroId == null) {
 
@@ -203,12 +193,13 @@ public abstract class TblMain extends DbTabela {
         _clnIntUsuarioCadastroId.setBooVisivelCadastro(false);
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return _clnIntUsuarioCadastroId;
@@ -216,10 +207,8 @@ public abstract class TblMain extends DbTabela {
 
   @Override
   protected int inicializarColunas(int intOrdem) {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       intOrdem = super.inicializarColunas(intOrdem);
       this.getClnBooAtivo().setIntOrdem(++intOrdem);
@@ -230,12 +219,13 @@ public abstract class TblMain extends DbTabela {
       this.getClnIntUsuarioAlteracaoId().setIntOrdem(++intOrdem);
       this.getClnIntUsuarioCadastroId().setIntOrdem(++intOrdem);
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return intOrdem;
@@ -245,7 +235,7 @@ public abstract class TblMain extends DbTabela {
    * Método que inicializa a lista de views que a tabela possui. Este método é
    * chamado na construção da classe.
    */
-  protected void inicializarViews(List<DbView> lstObjDbView){
+  protected void inicializarViews(List<DbView> lstObjDbView) {
 
   }
 

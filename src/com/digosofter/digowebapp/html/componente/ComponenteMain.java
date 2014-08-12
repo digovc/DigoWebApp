@@ -22,16 +22,15 @@ public abstract class ComponenteMain extends Tag {
 
     super("div");
 
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
-      // FIM AÇÕES
-    } catch (Exception ex) {
+
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
@@ -40,27 +39,23 @@ public abstract class ComponenteMain extends Tag {
 
     super.addJsArquivo(lstObjJsTag);
 
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       lstObjJsTag.add(new JavaScriptTag(AppWeb.JS_COMPONENTE_MAIN));
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
   public Painel getPnlComando() {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       if (_pnlComando == null) {
 
@@ -69,55 +64,54 @@ public abstract class ComponenteMain extends Tag {
         _pnlComando.addCss(CssTag.getIMain().setPaddingRight(10));
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return _pnlComando;
   }
 
   protected Painel getPnlTitulo() {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       if (_pnlTitulo == null) {
         _pnlTitulo = new Painel();
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return _pnlTitulo;
   }
 
   protected LimiteFloat getTagLimiteFloat() {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       if (_tagLimiteFloat == null) {
 
         _tagLimiteFloat = new LimiteFloat();
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return _tagLimiteFloat;

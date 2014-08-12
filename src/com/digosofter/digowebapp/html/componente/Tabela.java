@@ -30,20 +30,19 @@ public class Tabela extends ComponenteMain {
   private Campo _txtPesquisa;
 
   public Tabela(DbTabela tbl) {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       this.setTbl(tbl);
       this.setStrId("div_" + this.getTbl().getStrNome());
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
@@ -52,10 +51,7 @@ public class Tabela extends ComponenteMain {
 
     super.addJsArquivo(lstObjJsTag);
 
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       lstObjJsTag.add(new JavaScriptTag(AppWeb.JS_TABELA));
       lstObjJsTag.add(new JavaScriptTag(AppWeb.JS_TABLESORTER));
@@ -64,12 +60,13 @@ public class Tabela extends ComponenteMain {
         lstObjJsTag.add(new JavaScriptTag(AppWeb.JS_QUICKSEARCH));
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
@@ -78,13 +75,9 @@ public class Tabela extends ComponenteMain {
 
     super.addJsCodigo(tagJs);
 
-    // VARIÁVEIS
-
     String strJsCodigo;
 
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       strJsCodigo = "";
 
@@ -96,24 +89,24 @@ public class Tabela extends ComponenteMain {
 
       tagJs.addJsCodigo(strJsCodigo);
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
   private boolean getBooPesquisa() {
+
     return _booPesquisa;
   }
 
   private Painel getPnlPesquisa() {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       if (_pnlPesquisa == null) {
 
@@ -121,22 +114,21 @@ public class Tabela extends ComponenteMain {
         _pnlPesquisa.addCss(CssTag.getIMain().setPadding(10, "px"));
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return _pnlPesquisa;
   }
 
   private Tag getTagTable() {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       if (_tagTable == null) {
 
@@ -149,70 +141,68 @@ public class Tabela extends ComponenteMain {
         _tagTable.addCss(CssTag.getIMain().setOverflowY("scroll"));
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return _tagTable;
   }
 
   private Tag getTagTbody() {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       if (_tagTbody == null) {
 
         _tagTbody = new Tag("tbody");
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return _tagTbody;
   }
 
   private Tag getTagThead() {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       if (_tagThead == null) {
 
         _tagThead = new Tag("thead");
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return _tagThead;
   }
 
   private DbTabela getTbl() {
+
     return _tbl;
   }
 
   private Campo getTxtPesquisa() {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       if (_txtPesquisa == null) {
 
@@ -221,12 +211,13 @@ public class Tabela extends ComponenteMain {
         _txtPesquisa.setStrPlaceHolder("Pesquisa");
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return _txtPesquisa;
@@ -237,10 +228,7 @@ public class Tabela extends ComponenteMain {
 
     super.montarLayout();
 
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       if (this.getBooPesquisa()) {
         this.getPnlPesquisa().setTagPai(this);
@@ -253,24 +241,22 @@ public class Tabela extends ComponenteMain {
       this.montarLayoutCabecalho();
       this.montarLayoutLinhas();
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
   private void montarLayoutCabecalho() {
-    // VARIÁVEIS
 
     Tag tagTh;
     Tag tagTr;
 
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       tagTr = new Tag("tr");
       tagTr.setTagPai(this.getTagThead());
@@ -283,26 +269,24 @@ public class Tabela extends ComponenteMain {
         tagTh.setTagPai(tagTr);
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
   private void montarLayoutLinha(ResultSet objResultSet) {
-    // VARIÁVEIS
 
     String strValor;
     String strValorFormatado;
     Tag tagTd;
     Tag tagTr;
 
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       tagTr = new Tag("tr");
       tagTr.setTagPai(this.getTagTbody());
@@ -326,23 +310,21 @@ public class Tabela extends ComponenteMain {
         tagTd.addCss(cln.getStrCss());
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
   private void montarLayoutLinhas() {
-    // VARIÁVEIS
 
     ResultSet rst;
 
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       rst = this.getTbl().getRstConsulta();
 
@@ -352,23 +334,27 @@ public class Tabela extends ComponenteMain {
 
           this.montarLayoutLinha(rst);
 
-        } while (rst.next());
+        }
+        while (rst.next());
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
   public void setBooPesquisa(boolean booPesquisa) {
+
     _booPesquisa = booPesquisa;
   }
 
   private void setTbl(DbTabela tbl) {
+
     _tbl = tbl;
   }
 }

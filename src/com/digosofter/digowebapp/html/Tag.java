@@ -16,7 +16,7 @@ public class Tag extends Objeto {
 
   private boolean _booBarraNoFinal = true;
 
-  private boolean _booForcarTagDupla = false;
+  private boolean _booForcarTagDupla;
 
   private List<Atributo> _lstAtr;
 
@@ -41,70 +41,66 @@ public class Tag extends Objeto {
   private Tag _tagPai;
 
   public Tag(String strTagName) {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       this.setStrTagNome(strTagName);
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
   public void addAtr(String strNome, int intValor) {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       this.getLstAtr().add(new Atributo(strNome, String.valueOf(intValor)));
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
   public void addAtr(String strNome, String strValor) {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       this.getLstAtr().add(new Atributo(strNome, strValor));
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
   public void addCss(String strClassCss) {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       this.getAtrClass().getLstStrValor().add(strClassCss);
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
@@ -113,19 +109,18 @@ public class Tag extends Objeto {
    * cliente.
    */
   protected void addJsArquivo(List<JavaScriptTag> lstObjJsTag) {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       lstObjJsTag.add(new JavaScriptTag(AppWeb.JS_TAG));
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
@@ -133,24 +128,22 @@ public class Tag extends Objeto {
    * Adiciona código à tag de "JavaScript" da página.
    */
   protected void addJsCodigo(JavaScriptTag tagJs) {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
-      // FIM AÇÕES
-    } catch (Exception ex) {
+
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
   public Atributo getAtrClass() {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       if (_atrClass == null) {
 
@@ -158,22 +151,21 @@ public class Tag extends Objeto {
         this.getLstAtr().add(_atrClass);
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return _atrClass;
   }
 
   public Atributo getAtrType() {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       if (_atrType == null) {
 
@@ -181,80 +173,79 @@ public class Tag extends Objeto {
         this.getLstAtr().add(_atrType);
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return _atrType;
   }
 
   private boolean getBooBarraNoFinal() {
+
     return _booBarraNoFinal;
   }
 
   protected boolean getBooForcarTagDupla() {
+
     return _booForcarTagDupla;
   }
 
   public List<Atributo> getLstAtr() {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       if (_lstAtr == null) {
         _lstAtr = new ArrayList<Atributo>();
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return _lstAtr;
   }
 
   public List<Tag> getLstTag() {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       if (_lstTag == null) {
         _lstTag = new ArrayList<Tag>();
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return _lstTag;
   }
 
   protected String getStrAbertura() {
+
     return _strAbertura;
   }
 
   protected String getStrAtributoFormatado() {
-    // VARIÁVEIS
 
     String strAtributoIncluido = Utils.STR_VAZIA;
     StringBuilder stbAtrFormatado = new StringBuilder();
 
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       for (Atributo atr : this.getLstAtr()) {
 
@@ -270,30 +261,31 @@ public class Tag extends Objeto {
         }
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return stbAtrFormatado.toString();
   }
 
   public String getStrConteudo() {
+
     return _strConteudo;
   }
 
   protected String getStrFechamento() {
+
     return _strFechamento;
   }
 
   public String getStrId() {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       if (Utils.getBooStrVazia(_strId)) {
 
@@ -301,29 +293,28 @@ public class Tag extends Objeto {
         this.getLstAtr().add(new Atributo("id", _strId));
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return _strId;
   }
 
   private String getStrLink() {
+
     return _strLink;
   }
 
   public String getStrTagFormatada() {
-    // VARIÁVEIS
 
     StringBuilder stbTagFormatada = new StringBuilder();
 
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       this.montarLayout();
 
@@ -359,7 +350,8 @@ public class Tag extends Objeto {
           stbTagFormatada.append("</a>");
         }
 
-      } else {
+      }
+      else {
 
         if (!Utils.getBooStrVazia(this.getStrLink())) {
           stbTagFormatada.append("<a href=\"");
@@ -382,26 +374,30 @@ public class Tag extends Objeto {
         }
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return stbTagFormatada.toString();
   }
 
   protected String getStrTagNome() {
+
     return _strTagNome;
   }
 
   private String getStrTitle() {
+
     return _strTitle;
   };
 
   public Tag getTagPai() {
+
     return _tagPai;
   }
 
@@ -409,54 +405,56 @@ public class Tag extends Objeto {
    * Limpa todas as "classes" já adicionadas à tag.
    */
   public void limparClass() {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       this.getAtrClass().getLstStrValor().clear();
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
   protected void montarLayout() {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       this.addJsArquivo(PaginaHtml.getI().getLstTagJs());
       this.addJsCodigo(PaginaHtml.getI().getTagJsMain());
       this.setCss(CssTag.getIMain());
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
   private void setAtrClass(Atributo atrClass) {
+
     _atrClass = atrClass;
   }
 
   private void setAtrType(Atributo atrType) {
+
     _atrType = atrType;
   }
 
   public void setBooBarraNoFinal(boolean booBarraNoFinal) {
+
     _booBarraNoFinal = booBarraNoFinal;
   }
 
   public void setBooForcarTagDupla(boolean booForcarTagDupla) {
+
     _booForcarTagDupla = booForcarTagDupla;
   }
 
@@ -464,66 +462,73 @@ public class Tag extends Objeto {
    * Método responsável por carregar o "layout" da tag através de "css".
    */
   protected void setCss(CssTag tagCss) {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
-      // FIM AÇÕES
-    } catch (Exception ex) {
+
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
   private void setLstAtr(List<Atributo> lstAtr) {
+
     _lstAtr = lstAtr;
   }
 
   private void setLstTag(List<Tag> lstTag) {
+
     _lstTag = lstTag;
   }
 
   private void setStrAbertura(String strAbertura) {
+
     _strAbertura = strAbertura;
   }
 
   public void setStrConteudo(String strConteudo) {
+
     _strConteudo = strConteudo;
   }
 
   public void setStrConteudo(StringBuilder stbConteudo) {
+
     this.setStrConteudo(stbConteudo.toString());
   }
 
   private void setStrFechamento(String strFechamento) {
+
     _strFechamento = strFechamento;
   }
 
   public void setStrId(String strId) {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       _strId = strId;
       this.getLstAtr().add(new Atributo("id", _strId));
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
   public void setStrLink(String strLink) {
+
     _strLink = strLink;
   }
 
   public void setStrLinkNovaJanela(String strLink) {
+
     _strLink = strLink + "\"target=\"_blank\"";
   }
 
@@ -532,73 +537,73 @@ public class Tag extends Objeto {
 
     super.setStrNome(strNome);
 
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       _strNome = strNome;
       this.addAtr("name", _strNome);
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
   protected void setStrTagNome(String strTagNome) {
+
     _strTagNome = strTagNome;
   }
 
   public void setStrTitle(String strTitle) {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       _strTitle = strTitle;
       this.getLstAtr().add(new Atributo("title", _strTitle));
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
   public void setStrTitulo(String strTitulo) {
+
     this.setStrTitle(strTitulo);
   }
 
   public void setTagPai(Tag tagPai) {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       _tagPai = tagPai;
       _tagPai.getLstTag().add(this);
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
   public String toHtml() {
+
     return this.getStrTagFormatada();
   }
 
   @Override
   public String toString() {
+
     return this.getStrTagFormatada();
   }
 

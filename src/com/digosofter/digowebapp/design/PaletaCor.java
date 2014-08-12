@@ -27,104 +27,107 @@ public class PaletaCor extends Objeto {
   private String _strSombra = "#e1e1e1";
 
   public PaletaCor(String strNome) {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       this.setStrNome(strNome);
       this.addJs("var " + this.getStrObjJavaScriptNome() + "= new PaletaCor('" + this.getStrNome()
           + "');");
 
       PaginaHtml.getI().getLstTagJs()
-          .add(new JavaScriptTag("res/js/lib/JDigo/design/PaletaCor.js"));
+      .add(new JavaScriptTag("res/js/lib/JDigo/design/PaletaCor.js"));
 
       AppWeb.getI().getLstObjPaletaCor().add(this);
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
   private void addJs(String strJs) {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       PaginaHtml.getI().addJsCodigo(strJs);
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
   public boolean getBooSelecionado() {
+
     return _booSelecionado;
   }
 
   public String getStrCorBorda() {
+
     return _strCorBorda;
   }
 
   public String getStrCorBorda2() {
+
     return _strCorBorda2;
   }
 
   public String getStrCorControleClicado() {
+
     return _strCorControleClicado;
   }
 
   public String getStrCorControleMouse() {
+
     return _strCorControleMouse;
   }
 
   public String getStrCorControleNormal() {
+
     return _strCorControleNormal;
   }
 
   public String getStrCorFundo() {
+
     return _strCorFundo;
   }
 
   private String getStrObjJavaScriptNome() {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       if (_strObjJavaScriptNome == "") {
         _strObjJavaScriptNome = "objPaletaCor" + this.getStrNome();
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return _strObjJavaScriptNome;
   }
 
   public String getStrSombra() {
+
     return _strSombra;
   }
 
   public void setBooSelecionado(boolean booSelecionado) {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       _booSelecionado = booSelecionado;
 
@@ -132,151 +135,142 @@ public class PaletaCor extends Objeto {
         AppWeb.getI().setObjPaletaCorSelecionada(this);
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
   public void setStrCorBorda(String strCorBorda) {
-    // VARIÁVEIS
 
     String strJs;
 
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       _strCorBorda = strCorBorda;
       strJs = this.getStrObjJavaScriptNome() + ".setStrCorControleClicado('"
           + _strCorControleClicado + "');";
       this.addJs(strJs);
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     _strCorBorda = strCorBorda;
   }
 
   public void setStrCorBorda2(String strCorBorda2) {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       _strCorBorda2 = strCorBorda2;
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     _strCorBorda2 = strCorBorda2;
   }
 
   public void setStrCorControleClicado(String strCorControleClicado) {
-    // VARIÁVEIS
 
     String strJs;
 
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       _strCorControleClicado = strCorControleClicado;
       strJs = this.getStrObjJavaScriptNome() + ".setStrCorControleClicado('"
           + _strCorControleClicado + "');";
       this.addJs(strJs);
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
   public void setStrCorControleMouse(String strCorControleMouse) {
-    // VARIÁVEIS
 
     String strJs;
 
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       _strCorControleMouse = strCorControleMouse;
       strJs = this.getStrObjJavaScriptNome() + ".setStrCorControleMouse('" + _strCorControleMouse
           + "');";
       this.addJs(strJs);
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
   public void setStrCorControleNormal(String strCorControleNormal) {
-    // VARIÁVEIS
 
     String strJs;
 
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       _strCorControleNormal = strCorControleNormal;
       strJs = this.getStrObjJavaScriptNome() + ".setStrCorControleNormal('" + _strCorControleNormal
           + "');";
       this.addJs(strJs);
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
   public void setStrCorFundo(String strCorFundo) {
-    // VARIÁVEIS
 
     String strJs;
 
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       _strCorFundo = strCorFundo;
       strJs = this.getStrObjJavaScriptNome() + ".setStrCorFundo('" + _strCorFundo + "');";
       this.addJs(strJs);
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
   public void setStrSombra(String strSombra) {
+
     _strSombra = strSombra;
   }
 

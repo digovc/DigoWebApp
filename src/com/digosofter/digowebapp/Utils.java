@@ -13,7 +13,6 @@ import java.util.Locale;
 import java.util.Random;
 
 import com.digosofter.digowebapp.erro.Erro;
-import com.sun.corba.se.impl.javax.rmi.CORBA.Util;
 
 public abstract class Utils {
 
@@ -32,71 +31,67 @@ public abstract class Utils {
   public static final String STR_VAZIA = "";
 
   public static boolean getBooStrVazia(String str) {
-    // VARIÁVEIS
 
     boolean booStrVaziaResultado = true;
 
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       if (str == null) {
         booStrVaziaResultado = true;
-      } else if (str.equals(Utils.STR_VAZIA)) {
+      }
+      else if (str.equals(Utils.STR_VAZIA)) {
         booStrVaziaResultado = true;
-      } else {
+      }
+      else {
         booStrVaziaResultado = false;
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       return booStrVaziaResultado;
 
-    } finally {
+    }
+    finally {
     }
     return booStrVaziaResultado;
   }
 
   public static Date getDttAgora() {
-    // VARIÁVEIS
 
     Date dttResultado = null;
 
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       dttResultado = new Date();
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
     return dttResultado;
   }
 
   public static int getIntNumeroAleatorio(int intMaximo) {
-    // VARIÁVEIS
 
     int intResultado = 0;
     Random objRandom = new Random();
 
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       intResultado = objRandom.nextInt(intMaximo);
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro ao gerar cor aleatória.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return intResultado;
@@ -104,7 +99,6 @@ public abstract class Utils {
 
   public static String getStrConcatenarLst(List<String> lstStr, String strDelimitador,
       boolean booEliminarDuplicata) {
-    // VARIÁVEIS
 
     boolean booStrIncluida = false;
     List<String> lstStrIncluida;
@@ -112,9 +106,7 @@ public abstract class Utils {
     String strResultado = Utils.STR_VAZIA;
     String strDelimitador2 = Utils.STR_VAZIA;
 
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       lstStrIncluida = new ArrayList<String>();
       stb = new StringBuilder();
@@ -144,12 +136,13 @@ public abstract class Utils {
 
       strResultado = stb.toString();
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return strResultado;
@@ -157,38 +150,35 @@ public abstract class Utils {
 
   public static String getStrConcatenarLst(String[] arrStr, String strDelimitador,
       boolean booEliminarDuplicata) {
-    // VARIÁVEIS
 
     List<String> lstStr = null;
 
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       lstStr = new ArrayList<String>();
 
       for (String str : arrStr) {
         lstStr.add(str);
       }
-      // FIM AÇÕES
-    } catch (Exception ex) {
+
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return Utils.getStrConcatenarLst(lstStr, strDelimitador, booEliminarDuplicata);
   }
 
   public static String getStrDataFormatada(Date objDate, EnmDataFormato enmDataFormato) {
-    // VARIÁVEIS
+
     String strDataFormato = Utils.STR_VAZIA;
     SimpleDateFormat objSimpleDateFormat = null;
 
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       switch (enmDataFormato) {
         case DD_MM:
@@ -222,9 +212,10 @@ public abstract class Utils {
 
       objSimpleDateFormat = new SimpleDateFormat(strDataFormato, LOCAL_BRASIL);
 
-      // FIM AÇÕES
-    } catch (Exception e) {
-    } finally {
+    }
+    catch (Exception e) {
+    }
+    finally {
       // LIMPAR VARIÁVEIS
       // FIM LIMPAR VARIÁVEIS
     }
@@ -236,90 +227,81 @@ public abstract class Utils {
    * Retorna o número "IP" externo da máquina.
    */
   public static String getStrIpExterno() {
-    // VARIÁVEIS
 
     String strResultado = Utils.STR_VAZIA;
     URL url;
     BufferedReader bfr;
 
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       url = new URL("http://checkip.amazonaws.com");
       bfr = new BufferedReader(new InputStreamReader(url.openStream()));
       strResultado = bfr.readLine();
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return strResultado;
   }
 
   public static String getStrLinkHtml(String strTexto, String strLink) {
-    // VARIÁVEIS
 
     String strLinkHtmlResultado = Utils.STR_VAZIA;
 
     StringBuilder strBuilder = new StringBuilder();
 
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       strBuilder.append("<a href=\"" + strLink + "\">" + strTexto + "</a>");
       strLinkHtmlResultado = strBuilder.toString();
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
     return strLinkHtmlResultado;
   }
 
   public static String getStrMd5(String str) {
-    // VARIÁVEIS
 
     BigInteger objBigInteger;
     MessageDigest objMessageDigest;
     String strMd5Resultado = null;
 
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       objMessageDigest = MessageDigest.getInstance("MD5");
       objBigInteger = new BigInteger(1, objMessageDigest.digest(str.getBytes()));
       strMd5Resultado = String.format("%0" + (objMessageDigest.digest(str.getBytes()).length << 1)
           + "X", objBigInteger);
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return strMd5Resultado;
   }
 
   public static String getStrPrimeiraMaiuscula(String str) {
-    // VARIÁVEIS
 
     String strResultado = "";
 
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       if (Utils.getBooStrVazia(str)) {
 
@@ -330,43 +312,40 @@ public abstract class Utils {
       strResultado += str.substring(0, 1).toUpperCase();
       strResultado += str.substring(1);
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return strResultado;
   }
 
   public static String getStrRemoverUltimaLetra(String str) {
-    // VARIÁVEIS
 
     String strResultado = Utils.STR_VAZIA;
 
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       strResultado = str.substring(0, str.length() - 1);
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
     return strResultado;
   }
 
   public static String getStrSimplificada(String strComplexa) {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       strComplexa = strComplexa.toLowerCase(Utils.LOCAL_BRASIL);
       String[] arrChrAcentos = new String[] { "ç", "á", "é", "í", "ó", "ú", "ý", "à", "è", "ì",
@@ -383,26 +362,25 @@ public abstract class Utils {
       }
       strComplexa = strComplexa.replace(" ", "");
 
-      // FIM AÇÕES
-    } catch (Exception e) {
-    } finally {
+    }
+    catch (Exception e) {
+    }
+    finally {
     }
     return strComplexa;
   }
 
   public static String getStrToken(List<String> lstStrTermo) {
+
     return Utils.getStrToken(lstStrTermo, 5);
   }
 
   public static String getStrToken(List<String> lstStrTermo, int intTamanho) {
-    // VARIÁVEIS
 
     String strTermoMd5;
     String strTokenResultado = Utils.STR_VAZIA;
 
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       for (String strTermo : lstStrTermo) {
 
@@ -416,12 +394,13 @@ public abstract class Utils {
 
       strTokenResultado = strTokenResultado.substring(0, intTamanho);
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
     return strTokenResultado;
   }

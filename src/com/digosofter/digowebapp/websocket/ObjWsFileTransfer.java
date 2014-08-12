@@ -15,18 +15,9 @@ import com.sun.org.apache.xml.internal.security.utils.Base64;
 
 public class ObjWsFileTransfer extends ObjMain {
 
-  private int _intTamanhoEscrito;
-
-  public int getIntTamanhoEscrito() {
-    return _intTamanhoEscrito;
-  }
-
-  private void setIntTamanhoEscrito(int intTamanhoEscrito) {
-    _intTamanhoEscrito = intTamanhoEscrito;
-  }
-
   public enum EnmTipo {
-    BASE64_BINARY, BINARY,
+    BASE64_BINARY,
+    BINARY,
   }
 
   private BufferedOutputStream _bos;
@@ -34,6 +25,8 @@ public class ObjWsFileTransfer extends ObjMain {
   private EnmTipo _enmTipo = EnmTipo.BASE64_BINARY;
 
   private int _intTamanho;
+
+  private int _intTamanhoEscrito;
 
   private JsonElement _jse;
 
@@ -44,40 +37,38 @@ public class ObjWsFileTransfer extends ObjMain {
   private String _strNome;
 
   public ObjWsFileTransfer(Session objSession) {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       this.setObjSession(objSession);
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
   /**
-   * Adiciona "bytes" ao arquivo. Retorna a quantidade de "bytes" escritos no "Buffer".
+   * Adiciona "bytes" ao arquivo. Retorna a quantidade de "bytes" escritos no
+   * "Buffer".
    */
   public int addBytes(String strMensagem) {
-    // VARIÁVEIS
 
     byte[] arrBte;
     int intResultado = 0;
 
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       if (this.getEnmTipo() == EnmTipo.BASE64_BINARY) {
 
         arrBte = Base64.decode(strMensagem);
 
-      }else{
+      }
+      else {
 
         arrBte = strMensagem.getBytes();
       }
@@ -86,26 +77,24 @@ public class ObjWsFileTransfer extends ObjMain {
       intResultado = arrBte.length;
       this.setIntTamanhoEscrito(this.getIntTamanhoEscrito() + intResultado);
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return intResultado;
   }
 
   private BufferedOutputStream getBos() {
-    // VARIÁVEIS
 
     File objFile;
     FileOutputStream fos;
 
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       if (_bos == null) {
 
@@ -114,135 +103,145 @@ public class ObjWsFileTransfer extends ObjMain {
         _bos = new BufferedOutputStream(fos);
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return _bos;
   }
 
   private EnmTipo getEnmTipo() {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       _enmTipo = this.getJse().getAsJsonObject().get("type").getAsString().equals("binary") ? EnmTipo.BINARY
           : EnmTipo.BASE64_BINARY;
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return _enmTipo;
   }
 
   private int getIntTamanho() {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       if (_intTamanho == 0) {
 
         _intTamanho = this.getJse().getAsJsonObject().get("size").getAsInt();
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return _intTamanho;
   }
 
+  public int getIntTamanhoEscrito() {
+
+    return _intTamanhoEscrito;
+  }
+
   private JsonElement getJse() {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       if (_jse == null) {
 
         _jse = new JsonParser().parse(this.getStrJsonStor().replace("STOR: ", ""));
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return _jse;
   }
 
   public Session getObjSession() {
+
     return _objSession;
   }
 
   private String getStrJsonStor() {
+
     return _strJsonStor;
   }
 
   @Override
   public String getStrNome() {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       if (Utils.getBooStrVazia(_strNome)) {
 
         _strNome = this.getJse().getAsJsonObject().get("filename").getAsString();
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return _strNome;
   }
 
   public void salvar() {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       this.getBos().flush();
       this.getBos().close();
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
+  private void setIntTamanhoEscrito(int intTamanhoEscrito) {
+
+    _intTamanhoEscrito = intTamanhoEscrito;
+  }
+
   private void setObjSession(Session objSession) {
+
     _objSession = objSession;
   }
 
   public void setStrJsonStor(String strJsonStor) {
+
     _strJsonStor = strJsonStor;
   }
 

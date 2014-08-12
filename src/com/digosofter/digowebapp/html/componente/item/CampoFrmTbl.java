@@ -21,37 +21,35 @@ public class CampoFrmTbl extends ComponenteMain {
   private Painel _pnlTitulo;
 
   public CampoFrmTbl(DbColuna cln) {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       this.setCln(cln);
       this.addCss(CssTag.getIMain().setWidth(this.getDblCampoWidth(), "%"));
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
   private void carregarValorRegistro() {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       this.getObjCampo().setStrValor(this.getCln().getStrValor());
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
@@ -60,10 +58,8 @@ public class CampoFrmTbl extends ComponenteMain {
    * dado que é esperado para o mesmo.
    */
   private void definirTipoCampo() {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       // ComboBox
       if (this.getCln().getClnReferencia() != null || this.getCln().getLstStrOpcao().size() > 0) {
@@ -84,12 +80,13 @@ public class CampoFrmTbl extends ComponenteMain {
         this.getObjCampo().setEnmTipo(Campo.EnmTipo.TEXT_AREA);
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
@@ -97,25 +94,23 @@ public class CampoFrmTbl extends ComponenteMain {
    * Define o campo como um "checkBox" para seleção de valores sim ou não.
    */
   private void definirTipoCampoCheckBox() {
-    // VARIÁVEIS
 
     Campo objCampo;
 
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       objCampo = new Campo();
       objCampo.setEnmTipo(Campo.EnmTipo.CHECKBOX);
 
       this.setObjCampo(objCampo);
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
@@ -124,28 +119,27 @@ public class CampoFrmTbl extends ComponenteMain {
    * pré-definidos.
    */
   private void definirTipoCampoComboBox() {
-    // VARIÁVEIS
 
     ComboBox objCampoComboBox;
 
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       objCampoComboBox = new ComboBox();
       this.getCln().carregarComboBox(objCampoComboBox);
       this.setObjCampo(objCampoComboBox);
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
   private DbColuna getCln() {
+
     return _cln;
   }
 
@@ -153,26 +147,24 @@ public class CampoFrmTbl extends ComponenteMain {
    * Retorna o tamanho horizontal do campo.
    */
   private double getDblCampoWidth() {
-    // VARIÁVEIS
 
     double dblResultado = 100;
     int intPesoSoma;
     int intPeso;
 
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       intPeso = this.getCln().getIntFrmLinhaPeso();
       intPesoSoma = this.getIntPesoSoma();
       dblResultado = 100 / (double) intPesoSoma * intPeso;
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return dblResultado;
@@ -182,13 +174,10 @@ public class CampoFrmTbl extends ComponenteMain {
    * Retorna a soma dos pesos dos campos da linha deste campo.
    */
   private int getIntPesoSoma() {
-    // VARIÁVEIS
 
     int intResultado = 0;
 
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       for (DbColuna cln : this.getCln().getTbl().getLstClnVisivelCadastro()) {
         if (cln.getIntFrmLinha() == this.getCln().getIntFrmLinha()) {
@@ -200,22 +189,21 @@ public class CampoFrmTbl extends ComponenteMain {
         intResultado = 1;
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return intResultado;
   }
 
   private Campo getObjCampo() {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       if (_objCampo == null) {
 
@@ -235,22 +223,21 @@ public class CampoFrmTbl extends ComponenteMain {
         }
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return _objCampo;
   }
 
   private Painel getPnlCampo() {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       if (_pnlCampo == null) {
 
@@ -259,12 +246,13 @@ public class CampoFrmTbl extends ComponenteMain {
         _pnlCampo.addCss(CssTag.getIMain().setPaddingRight(10));
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return _pnlCampo;
@@ -272,10 +260,8 @@ public class CampoFrmTbl extends ComponenteMain {
 
   @Override
   protected Painel getPnlTitulo() {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       if (_pnlTitulo == null) {
 
@@ -286,12 +272,13 @@ public class CampoFrmTbl extends ComponenteMain {
         _pnlTitulo.addCss(CssTag.getIMain().setTextAlign("left"));
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return _pnlTitulo;
@@ -302,25 +289,24 @@ public class CampoFrmTbl extends ComponenteMain {
 
     super.montarLayout();
 
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       this.getPnlTitulo().setTagPai(this);
       this.getPnlCampo().setTagPai(this);
       this.getObjCampo().setTagPai(this.getPnlCampo());
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
   private void setCln(DbColuna cln) {
+
     _cln = cln;
   }
 
@@ -329,23 +315,22 @@ public class CampoFrmTbl extends ComponenteMain {
 
     super.setCss(tagCss);
 
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       this.addCss(tagCss.setFloat("left"));
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
   private void setObjCampo(Campo objCampo) {
+
     _objCampo = objCampo;
   }
 

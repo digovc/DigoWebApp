@@ -14,21 +14,20 @@ public class ArquivoXml extends Arquivo {
   private File _objFile;
 
   private File getObjFile() {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       if (_objFile == null) {
         _objFile = new File(this.getDirCompleto());
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return _objFile;
@@ -38,25 +37,23 @@ public class ArquivoXml extends Arquivo {
    * Retorna o valor de um elemento do "XML".
    */
   public String getStrElemento(String strElemento) {
-    // VARIÁVEIS
 
     String strResultado = null;
 
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
       DocumentBuilder db = dbf.newDocumentBuilder();
       Document doc = db.parse(this.getObjFile());
       doc.getDocumentElement().normalize();
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return strResultado;

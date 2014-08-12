@@ -26,23 +26,65 @@ public abstract class WebSocketMain {
    * objeto "Session" passado como parâmetro.
    */
   protected void enviar(Session objSession, ObjWsInterlocutor objWsInterlocutor) {
-    // VARIÁVEIS
 
     Gson objGson;
 
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       objGson = new Gson();
       objSession.getBasicRemote().sendText(objGson.toJson(objWsInterlocutor));
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
+    }
+  }
+
+  protected void enviarMsgErro(Session objSession, String strMsg) {
+
+    ObjWsInterlocutor objWsInterlocutor;
+
+    try {
+
+      objWsInterlocutor = new ObjWsInterlocutor();
+      objWsInterlocutor.setIntFuncId(FNC_MSG_ERRO);
+      objWsInterlocutor.setStrJson(strMsg);
+
+      this.enviar(objSession, objWsInterlocutor);
+
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    }
+    finally {
+    }
+  }
+
+  protected void enviarMsgPositiva(Session objSession, String strMsg) {
+
+    ObjWsInterlocutor objWsInterlocutor;
+
+    try {
+
+      objWsInterlocutor = new ObjWsInterlocutor();
+      objWsInterlocutor.setIntFuncId(FNC_MSG_POSITIVA);
+      objWsInterlocutor.setStrJson(strMsg);
+
+      this.enviar(objSession, objWsInterlocutor);
+
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    }
+    finally {
     }
   }
 
@@ -50,24 +92,22 @@ public abstract class WebSocketMain {
    * Retorna o usuário referente a sessão passada como parâmetro.
    */
   protected Usuario getObjUsuarioPorSession(Session objSession) {
-    // VARIÁVEIS
 
     Usuario objUsuarioResultado = null;
     String strSessaoId;
 
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       strSessaoId = ((WsSession) objSession).getHttpSessionId();
       objUsuarioResultado = AppWeb.getI().getObjUsuarioPorSessaoId(strSessaoId);
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return objUsuarioResultado;
@@ -75,34 +115,33 @@ public abstract class WebSocketMain {
 
   @OnClose
   public void onClose(Session session, CloseReason closeReason) {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
-      // FIM AÇÕES
-    } catch (Exception ex) {
+
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
   @OnMessage
   public void onMessage(Session objSession, String strMensagem) {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       this.processarMensagem(objSession, strMensagem);
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
@@ -111,32 +150,31 @@ public abstract class WebSocketMain {
    * "ObjWsMain".
    */
   protected void onObjWsMainRecebido(Session objSession, ObjWsInterlocutor objWsMain) {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
-    try {
-      // AÇÕES
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    try {
+
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
   @OnOpen
   public void onOpen(Session objSession, EndpointConfig objEndpointConfig) {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
-      // FIM AÇÕES
-    } catch (Exception ex) {
+
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
@@ -144,102 +182,51 @@ public abstract class WebSocketMain {
    * Processa a mensagem vinda do cliente.
    */
   private void processarMensagem(Session objSession, String strMensagem) {
-    // VARIÁVEIS
 
     Gson objGson;
     ObjWsInterlocutor objWsInterlocutor;
 
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       objGson = new Gson();
       objWsInterlocutor = objGson.fromJson(strMensagem, ObjWsInterlocutor.class);
       this.onObjWsMainRecebido(objSession, objWsInterlocutor);
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
   /**
-   * Verifica se o usuário atrelado ao objeto "Session" está "logado" no sistema.
+   * Verifica se o usuário atrelado ao objeto "Session" está "logado" no
+   * sistema.
    */
   protected boolean verificarUsuarioLogado(Session objSession) {
-    // VARIÁVEIS
 
     boolean booResultado = false;
     Usuario objUsuario;
 
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       objUsuario = this.getObjUsuarioPorSession(objSession);
 
       booResultado = objUsuario.getBooLogado();
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return booResultado;
-  }
-
-  protected void enviarMsgErro(Session objSession, String strMsg) {
-    // VARIÁVEIS
-
-    ObjWsInterlocutor objWsInterlocutor;
-
-    // FIM VARIÁVEIS
-    try {
-      // AÇÕES
-
-      objWsInterlocutor = new ObjWsInterlocutor();
-      objWsInterlocutor.setIntFuncId(FNC_MSG_ERRO);
-      objWsInterlocutor.setStrJson(strMsg);
-
-      this.enviar(objSession, objWsInterlocutor);
-
-      // FIM AÇÕES
-    } catch (Exception ex) {
-
-      new Erro("Erro inesperado.\n", ex);
-
-    } finally {
-    }
-  }
-
-  protected void enviarMsgPositiva(Session objSession, String strMsg) {
-    // VARIÁVEIS
-
-    ObjWsInterlocutor objWsInterlocutor;
-
-    // FIM VARIÁVEIS
-    try {
-      // AÇÕES
-
-      objWsInterlocutor = new ObjWsInterlocutor();
-      objWsInterlocutor.setIntFuncId(FNC_MSG_POSITIVA);
-      objWsInterlocutor.setStrJson(strMsg);
-
-      this.enviar(objSession, objWsInterlocutor);
-
-      // FIM AÇÕES
-    } catch (Exception ex) {
-
-      new Erro("Erro inesperado.\n", ex);
-
-    } finally {
-    }
   }
 
 }

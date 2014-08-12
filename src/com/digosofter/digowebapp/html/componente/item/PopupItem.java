@@ -17,20 +17,19 @@ public class PopupItem extends ItemMain {
   private String _strSrcIcon;
 
   public PopupItem(String strNomeExibicao, String strSrcIcon) {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       this.setStrNomeExibicao(strNomeExibicao);
       this.setStrSrcIcon(strSrcIcon);
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
@@ -39,32 +38,29 @@ public class PopupItem extends ItemMain {
 
     super.addJsArquivo(lstObjJsTag);
 
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       lstObjJsTag.add(new JavaScriptTag(AppWeb.JS_POPUP_ITEM));
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
   private int getIntOrdem() {
+
     return _intOrdem;
   }
 
   @Override
   public Painel getPnlTitulo() {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       if (_pnlTitulo == null) {
 
@@ -73,18 +69,20 @@ public class PopupItem extends ItemMain {
         _pnlTitulo.addCss(CssTag.getIMain().setTextAlign("left"));
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return _pnlTitulo;
   }
 
   private String getStrSrcIcon() {
+
     return _strSrcIcon;
   }
 
@@ -93,25 +91,22 @@ public class PopupItem extends ItemMain {
 
     super.montarLayout();
 
-    // VARIÁVEIS
-
     String strId;
 
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       strId = "ppiAcao" + this.getIntOrdem();
 
       this.setStrId(strId);
       this.getPnlTitulo().setTagPai(this);
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
@@ -120,29 +115,29 @@ public class PopupItem extends ItemMain {
 
     super.setCss(tagCss);
 
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       this.addCss(tagCss.setBorderBottom(1, AppWeb.getI().getObjPaletaCor().getStrCorBorda()));
       this.addCss(tagCss.setCursor("pointer"));
       this.addCss(tagCss.setPadding(10, "px"));
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
   public void setIntOrdem(int intOrdem) {
+
     _intOrdem = intOrdem;
   }
 
   private void setStrSrcIcon(String strSrcIcon) {
+
     _strSrcIcon = strSrcIcon;
   }
 

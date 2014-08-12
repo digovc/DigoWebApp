@@ -8,7 +8,8 @@ import com.digosofter.digowebapp.erro.Erro;
 public class Formulario extends Tag {
 
   public enum EnmMetodo {
-    GET, POST
+    GET,
+    POST
   }
 
   private EnmMetodo _enmMetodo = EnmMetodo.POST;
@@ -19,20 +20,18 @@ public class Formulario extends Tag {
 
     super("form");
 
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       this.setStrAction(strAction);
       this.setEnmMetodo(enmMetodo);
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
@@ -41,38 +40,35 @@ public class Formulario extends Tag {
 
     super.addJsArquivo(lstObjJsTag);
 
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       lstObjJsTag.add(new JavaScriptTag(AppWeb.JS_FORMULARIO));
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
   private EnmMetodo getEnmMetodo() {
+
     return _enmMetodo;
   }
 
   private String getStrAction() {
+
     return _strAction;
   }
 
   private void setEnmMetodo(EnmMetodo enmMetodo) {
-    // VARIÁVEIS
 
     String strMetodo;
 
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       _enmMetodo = enmMetodo;
       switch (_enmMetodo) {
@@ -89,30 +85,30 @@ public class Formulario extends Tag {
 
       this.getLstAtr().add(new Atributo("method", strMetodo));
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
   private void setStrAction(String strAction) {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       _strAction = strAction;
       this.getLstAtr().add(new Atributo("action", _strAction));
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 

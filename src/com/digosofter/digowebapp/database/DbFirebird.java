@@ -11,26 +11,27 @@ public class DbFirebird extends DataBase {
 
     super(strHost, intPort, strDbName, "sysdba", "masterkey");
 
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
-      // FIM AÇÕES
-    } catch (Exception ex) {
+
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
   @Override
   protected String getStrDriveName() {
+
     return STR_DRIVE_NAME;
   }
 
   @Override
   protected String getStrPackegeClassName() {
+
     return STR_PACKEGE_CLASS_NAME;
   }
 

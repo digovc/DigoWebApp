@@ -79,21 +79,20 @@ public class DbColuna extends Objeto {
   private DbTabela _tbl;
 
   public DbColuna(String strNome, DbTabela tbl, EnmTipo enmClnTipo) {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       this.setStrNome(strNome);
       this.setTbl(tbl);
       this.setEnmClnTipo(enmClnTipo);
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
@@ -102,14 +101,11 @@ public class DbColuna extends Objeto {
    * referenciada ou as opções default da coluna.
    */
   public void carregarComboBox(ComboBox objCampoComboBox) {
-    // VARIÁVEIS
 
     int intIndex;
     ResultSet objResultSet;
 
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       if (this.getClnReferencia() != null) {
 
@@ -123,7 +119,8 @@ public class DbColuna extends Objeto {
 
             objCampoComboBox.addNomeValor(objResultSet.getString(2), objResultSet.getString(1));
 
-          } while (objResultSet.next());
+          }
+          while (objResultSet.next());
 
           return;
         }
@@ -141,76 +138,81 @@ public class DbColuna extends Objeto {
         return;
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
   public boolean getBooChavePrimaria() {
+
     return _booChavePrimaria;
   }
 
   public boolean getBooClnNome() {
+
     return _booClnNome;
   }
 
   private boolean getBooNotNull() {
+
     return _booNotNull;
   }
 
   public boolean getBooSenha() {
+
     return _booSenha;
   }
 
   public boolean getBooVisivelCadastro() {
+
     return _booVisivelCadastro;
   }
 
   public boolean getBooVisivelConsulta() {
+
     return _booVisivelConsulta;
   }
 
   public DbColuna getClnReferencia() {
+
     return _clnReferencia;
   }
 
   public Date getDttValor() {
-    // VARIÁVEIS
 
     SimpleDateFormat objSimpleDateFormat;
     Date dttResultado = null;
 
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       objSimpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
       dttResultado = new Date(objSimpleDateFormat.parse(this.getStrValor()).getTime());
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return dttResultado;
   }
 
   public EnmTipo getEnmTipo() {
+
     return _enmTipo;
   }
 
   private EnmTipoGrupo getEnmTipoGrupo() {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       switch (this.getEnmTipo()) {
         case BIGINT:
@@ -221,66 +223,68 @@ public class DbColuna extends Objeto {
           break;
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return _enmTipoGrupo;
   }
 
   public int getIntFrmLinha() {
+
     return _intFrmLinha;
   }
 
   public int getIntFrmLinhaPeso() {
+
     return _intFrmLinhaPeso;
   }
 
   protected int getIntOrdem() {
+
     return _intOrdem;
   }
 
   public int getIntTamanhoCampo() {
+
     return _intTamanhoCampo;
   }
 
   public int getIntValor() {
+
     return Integer.valueOf(this.getStrValor());
   }
 
   public List<String> getLstStrOpcao() {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       if (_lstStrOpcao == null) {
         _lstStrOpcao = new ArrayList<String>();
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return _lstStrOpcao;
   }
 
   public String getStrCss() {
-    // VARIÁVEIS
 
     String strCss = "";
 
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       switch (this.getEnmTipoGrupo()) {
         case ALPHANUMERICO:
@@ -288,29 +292,28 @@ public class DbColuna extends Objeto {
           break;
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return strCss;
   }
 
   public String getStrValor() {
+
     return _strValor;
   }
 
   public String getStrValorFormatado(String strValor) {
-    // VARIÁVEIS
 
     String strResultado = "";
 
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       switch (this.getEnmTipoGrupo()) {
 
@@ -331,25 +334,23 @@ public class DbColuna extends Objeto {
           break;
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return strResultado;
   }
 
   public String getStrValorSql() {
-    // VARIÁVEIS
 
     String strValorSemScape;
 
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       _strValorSql = Utils.STR_VAZIA;
 
@@ -380,26 +381,26 @@ public class DbColuna extends Objeto {
           break;
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return _strValorSql;
   }
 
   public DbTabela getTbl() {
+
     return _tbl;
   }
 
   public void setBooChavePrimaria(boolean booChavePrimaria) {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       _booChavePrimaria = booChavePrimaria;
 
@@ -407,20 +408,19 @@ public class DbColuna extends Objeto {
         this.getTbl().setClnChavePrimaria(null);
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
   public void setBooClnNome(boolean booClnNome) {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       _booClnNome = booClnNome;
 
@@ -428,86 +428,100 @@ public class DbColuna extends Objeto {
         this.getTbl().setClnNome(null);
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
   public void setBooNotNull(boolean booNotNull) {
+
     _booNotNull = booNotNull;
   }
 
   public void setBooSenha(boolean booSenha) {
+
     _booSenha = booSenha;
   }
 
   public void setBooValor(boolean booValor) {
+
     this.setStrValor(String.valueOf(booValor));
   }
 
   public void setBooVisivelCadastro(boolean booVisivelCadastro) {
+
     _booVisivelCadastro = booVisivelCadastro;
   }
 
   public void setBooVisivelConsulta(boolean booVisivelConsulta) {
+
     _booVisivelConsulta = booVisivelConsulta;
   }
 
   public void setClnReferencia(DbColuna clnReferencia) {
+
     _clnReferencia = clnReferencia;
   }
 
   public void setEnmClnTipo(EnmTipo enmClnTipo) {
+
     _enmTipo = enmClnTipo;
   }
 
   public void setIntFrmLinha(int intFrmLinha) {
+
     _intFrmLinha = intFrmLinha;
   }
 
   public void setIntFrmLinhaPeso(int intFrmLinhaPeso) {
+
     _intFrmLinhaPeso = intFrmLinhaPeso;
   }
 
   public void setIntOrdem(int intOrdem) {
+
     _intOrdem = intOrdem;
   }
 
   public void setIntTamanhoCampo(int intTamanhoCampo) {
+
     _intTamanhoCampo = intTamanhoCampo;
   }
 
   public void setIntValor(int intValor) {
+
     this.setStrValor(String.valueOf(intValor));
   }
 
   protected void setLstStrOpcao(List<String> lstStrOpcao) {
+
     _lstStrOpcao = lstStrOpcao;
   }
 
   public void setStrValor(String strValor) {
+
     _strValor = strValor;
   }
 
   private void setTbl(DbTabela tbl) {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       _tbl = tbl;
       _tbl.getLstCln().add(this);
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 

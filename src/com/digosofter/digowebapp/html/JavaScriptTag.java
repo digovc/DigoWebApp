@@ -20,33 +20,30 @@ public class JavaScriptTag extends Tag {
 
     super("script");
 
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       this.setBooForcarTagDupla(true);
       this.getLstAtr().add(new Atributo("type", "text/javascript"));
       this.setStrSrc(strSrc);
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
   @Override
   protected void addJsArquivo(List<JavaScriptTag> lstObjJsTag) {
+
   }
 
   public void addJsCodigo(String strJsCodigo) {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       if (Utils.getBooStrVazia(strJsCodigo)) {
         return;
@@ -54,89 +51,89 @@ public class JavaScriptTag extends Tag {
 
       this.getLstStrMetodos().add(strJsCodigo);
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
   private Atributo getAtrSrc() {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       if (_atrSrc == null) {
         _atrSrc = new Atributo("src");
         this.getLstAtr().add(_atrSrc);
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return _atrSrc;
   }
 
   public int getIntPrioridade() {
+
     return _intPrioridade;
   }
 
   public List<String> getLstStrMetodos() {
+
     return _lstStrMetodos;
   }
 
   public String getStrSrc() {
+
     return _strSrc;
   }
 
   @Override
   public String getStrTagFormatada() {
-    // VARIÁVEIS
 
     StringBuilder strBuilder;
 
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       if (!this.getLstStrMetodos().isEmpty()) {
 
         strBuilder = new StringBuilder();
         strBuilder.append("$(document).ready(function(){");
-        strBuilder.append(Utils.getStrConcatenarLst(this.getLstStrMetodos(), Utils.STR_VAZIA,
-            true));
+        strBuilder
+            .append(Utils.getStrConcatenarLst(this.getLstStrMetodos(), Utils.STR_VAZIA, true));
         strBuilder.append("});");
 
         this.setStrConteudo(strBuilder.toString());
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
     return super.getStrTagFormatada();
   }
 
   public void setIntPrioridade(int intPrioridade) {
+
     _intPrioridade = intPrioridade;
   }
 
   public void setStrSrc(String strSrc) {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       _strSrc = strSrc;
 
@@ -144,12 +141,13 @@ public class JavaScriptTag extends Tag {
         this.getAtrSrc().setStrValor(strSrc);
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 }

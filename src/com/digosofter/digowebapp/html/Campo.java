@@ -47,16 +47,15 @@ public class Campo extends Tag {
 
     super("input");
 
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
-      // FIM AÇÕES
-    } catch (Exception ex) {
+
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
@@ -65,31 +64,32 @@ public class Campo extends Tag {
 
     super.addJsArquivo(lstObjJsTag);
 
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       lstObjJsTag.add(new JavaScriptTag(AppWeb.JS_CAMPO));
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
   private EnmTipo getEnmTipo() {
+
     return _enmTipo;
   }
 
   protected String getStrPlaceHolder() {
+
     return _strPlaceHolder;
   }
 
   protected String getStrValor() {
+
     return _strValor;
   }
 
@@ -98,27 +98,23 @@ public class Campo extends Tag {
 
     super.setCss(tagCss);
 
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       this.addCss(CssTag.getIMain().addCss("box-sizing", "border-box"));
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
   public void setEnmTipo(EnmTipo enmTipo) {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       _enmTipo = enmTipo;
 
@@ -202,12 +198,13 @@ public class Campo extends Tag {
           break;
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
@@ -216,10 +213,7 @@ public class Campo extends Tag {
 
     super.setStrId(strId);
 
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       _strId = this.getStrId();
 
@@ -228,38 +222,36 @@ public class Campo extends Tag {
         this.getLstAtr().add(new Atributo("name", _strId));
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
   public void setStrPlaceHolder(String strPlaceHolder) {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       _strPlaceHolder = strPlaceHolder;
       this.getLstAtr().add(new Atributo("placeholder", _strPlaceHolder));
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
   public void setStrValor(String strValor) {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       _strValor = strValor;
 
@@ -272,12 +264,13 @@ public class Campo extends Tag {
           break;
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 

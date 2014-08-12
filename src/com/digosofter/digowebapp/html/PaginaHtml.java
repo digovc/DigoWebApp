@@ -35,21 +35,20 @@ public class PaginaHtml extends Objeto {
   public static final String JS_WEB_SOCKET = "res/js/lib/JDigo/websocket/WebSocketMain.js";
 
   public static PaginaHtml getI() {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       if (i == null) {
         i = new PaginaHtml();
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro ao instanciar objeto do tipo 'PaginaHtml'.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return i;
@@ -84,38 +83,36 @@ public class PaginaHtml extends Objeto {
   private Tag _tagTitle;
 
   public PaginaHtml() {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       this.setI(this);
       this.addJsArquivo(this.getLstTagJs());
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
   public PaginaHtml(boolean booPagSimples) {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       this.setI(this);
       this.setBooPagSimples(true);
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
@@ -123,10 +120,8 @@ public class PaginaHtml extends Objeto {
    * Acrescenta os arquivos de "JavaScript" para a "tagHead" na ordem correta.
    */
   private void addJsAoCabecalho() {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       if (this.getBooPagSimples()) {
         return;
@@ -137,12 +132,13 @@ public class PaginaHtml extends Objeto {
         objJavaScriptTag.setTagPai(this.getTagHead());
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
@@ -151,10 +147,8 @@ public class PaginaHtml extends Objeto {
    * navegador.
    */
   protected void addJsArquivo(List<JavaScriptTag> lstObjJsTag) {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       lstObjJsTag.add(new JavaScriptTag(JS_LIB_JQUERY));
       lstObjJsTag.add(new JavaScriptTag(JS_LIB_JQUERY_UI));
@@ -171,12 +165,13 @@ public class PaginaHtml extends Objeto {
       lstObjJsTag.add(new JavaScriptTag(JS_PAG_HTML));
       lstObjJsTag.add(new JavaScriptTag(JS_MENSAGEM));
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
@@ -185,14 +180,11 @@ public class PaginaHtml extends Objeto {
    * é chamado durante o método "montarLayout".
    */
   protected void addJsCodigo(JavaScriptTag tagJs) {
-    // VARIÁVEIS
 
     String strJs;
     Usuario objUsuario;
 
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       objUsuario = AppWeb.getI().getObjUsuarioAtual();
 
@@ -205,12 +197,13 @@ public class PaginaHtml extends Objeto {
       this.addJsCodigoMensagem(tagJs);
       tagJs.addJsCodigo(strJs);
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
@@ -219,19 +212,18 @@ public class PaginaHtml extends Objeto {
    * de carregamento ser concluído.
    */
   public void addJsCodigo(String strJsCodigo) {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       this.getTagJsMain().addJsCodigo(strJsCodigo);
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
@@ -240,16 +232,13 @@ public class PaginaHtml extends Objeto {
    * "JavaScript".
    */
   private void addJsCodigoMensagem(JavaScriptTag tagJs) {
-    // VARIÁVEIS
 
     String strJs;
     Mensagem msgAlerta;
     Mensagem msgNegativa;
     Mensagem msgPositiva;
 
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       msgAlerta = new Mensagem();
       msgAlerta.setEnmTipo(Mensagem.EnmTipo.ALERTA);
@@ -267,24 +256,24 @@ public class PaginaHtml extends Objeto {
 
       tagJs.addJsCodigo(strJs);
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
   private boolean getBooPagSimples() {
+
     return _booPagSimples;
   }
 
   private CssTag getCssImp() {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       if (_cssImp == null) {
 
@@ -292,22 +281,21 @@ public class PaginaHtml extends Objeto {
         _cssImp.setStrId("cssImp");
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return _cssImp;
   }
 
   public CssTag getCssMain() {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       if (_cssMain == null) {
 
@@ -315,29 +303,28 @@ public class PaginaHtml extends Objeto {
         _cssMain.setStrId("cssMain");
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return _cssMain;
   }
 
   public List<JavaScriptTag> getLstTagJs() {
+
     return _lstTagJs;
   }
 
   private List<JavaScriptTag> getLstTagJsOrdenado() {
-    // VARIÁVEIS
 
     boolean booJsAdicionado;
 
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       if (_lstTagJsOrdenado != null) {
         return _lstTagJsOrdenado;
@@ -367,32 +354,30 @@ public class PaginaHtml extends Objeto {
         @Override
         public int compare(final JavaScriptTag objJsTag1, final JavaScriptTag objJsTag2) {
 
-          return objJsTag1.getIntPrioridade() < objJsTag2.getIntPrioridade() ? -1 : (objJsTag1
-              .getIntPrioridade() > objJsTag2.getIntPrioridade() ? +1 : 0);
+          return objJsTag1.getIntPrioridade() < objJsTag2.getIntPrioridade() ? -1 : objJsTag1
+              .getIntPrioridade() > objJsTag2.getIntPrioridade() ? +1 : 0;
         }
       });
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return _lstTagJsOrdenado;
   }
 
   public String getStrPagFormatada() {
-    // VARIÁVEIS
 
     String strResultado = Utils.STR_VAZIA;
     String strTagBodyConteudo = Utils.STR_VAZIA;
     StringBuilder stbHtml;
 
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       this.montarLayout();
       this.addJsCodigo(this.getTagJsMain());
@@ -408,52 +393,52 @@ public class PaginaHtml extends Objeto {
 
       strResultado = stbHtml.toString().replace("</html>", strTagBodyConteudo);
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return strResultado;
   }
 
   private String getStrSrcIcon() {
+
     return _strSrcIcon;
   }
 
   public String getStrTitulo() {
+
     return _strTitulo;
   }
 
   public Tag getTagBody() {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       if (_tagBody == null) {
 
         _tagBody = new Tag("body");
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return _tagBody;
   }
 
   private Tag getTagDocType() {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       if (_tagDocType == null) {
 
@@ -461,44 +446,42 @@ public class PaginaHtml extends Objeto {
         _tagDocType.setBooBarraNoFinal(false);
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return _tagDocType;
   }
 
   private Tag getTagHead() {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       if (_tagHead == null) {
 
         _tagHead = new Tag("head");
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return _tagHead;
   }
 
   private Tag getTagHtml() {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       if (_tagHtml == null) {
 
@@ -507,22 +490,21 @@ public class PaginaHtml extends Objeto {
         _tagHtml.getLstAtr().add(new Atributo("lang", "pt-br"));
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return _tagHtml;
   }
 
   private Tag getTagIcon() {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       if (_tagIcon == null) {
 
@@ -532,22 +514,21 @@ public class PaginaHtml extends Objeto {
         _tagIcon.addAtr("type", "image/x-icon");
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return _tagIcon;
   }
 
   public JavaScriptTag getTagJsMain() {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       if (_tagJsMain == null) {
 
@@ -557,22 +538,21 @@ public class PaginaHtml extends Objeto {
         this.getLstTagJs().add(_tagJsMain);
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return _tagJsMain;
   }
 
   private Tag getTagMeta() {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       if (_tagMeta == null) {
 
@@ -584,22 +564,21 @@ public class PaginaHtml extends Objeto {
         _tagMeta.getLstAtr().get(1).getLstStrValor().add(" charset=ISO-8859-1");
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return _tagMeta;
   }
 
   public Tag getTagTitle() {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       if (_tagTitle == null) {
 
@@ -607,12 +586,13 @@ public class PaginaHtml extends Objeto {
         // _tagTitle.setStrTitulo("Página sem título");
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
 
     return _tagTitle;
@@ -622,10 +602,8 @@ public class PaginaHtml extends Objeto {
    * Método que monta o layout antes de gerar o html da página.
    */
   protected void montarLayout() {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       this.montarLayoutTitulo();
       this.getTagHead().setTagPai(this.getTagHtml());
@@ -635,31 +613,31 @@ public class PaginaHtml extends Objeto {
       this.getCssMain().setTagPai(this.getTagHead());
       this.getCssImp().setTagPai(this.getTagHead());
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
   private void montarLayoutTitulo() {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       if (Utils.getBooStrVazia(this.getStrTitulo())) {
         this.setStrTitulo("Página sem título");
       }
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
@@ -667,13 +645,10 @@ public class PaginaHtml extends Objeto {
    * Mostra uma mensagem usando de informação ao cliente.
    */
   public void mostrarMsgCliente(Mensagem msg) {
-    // VARIÁVEIS
 
     String strJs;
 
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       strJs = "var ";
       strJs += "msg" + msg.getIntId();
@@ -686,20 +661,23 @@ public class PaginaHtml extends Objeto {
 
       this.addJsCodigo(strJs);
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
   private void setBooPagSimples(boolean booPagSimples) {
+
     _booPagSimples = booPagSimples;
   }
 
   private void setI(PaginaHtml _i) {
+
     i = _i;
   }
 
@@ -708,52 +686,52 @@ public class PaginaHtml extends Objeto {
 
     super.setStrNome(strNome);
 
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
     try {
-      // AÇÕES
 
       this.setStrTitulo(strNome);
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
   public void setStrSrcIcon(String strSrcIcon) {
+
     _strSrcIcon = strSrcIcon;
   }
 
   public void setStrTitulo(String strTitulo) {
-    // VARIÁVEIS
-    // FIM VARIÁVEIS
+
     try {
-      // AÇÕES
 
       _strTitulo = strTitulo;
       _strTitulo += " - " + AppWeb.getI().getStrNome();
 
       this.getTagTitle().setStrConteudo(_strTitulo);
 
-      // FIM AÇÕES
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
 
-    } finally {
+    }
+    finally {
     }
   }
 
   public String toHtml() {
+
     return this.getStrPagFormatada();
   }
 
   @Override
   public String toString() {
+
     return this.getStrPagFormatada();
   }
 
