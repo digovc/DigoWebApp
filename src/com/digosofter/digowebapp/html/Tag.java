@@ -327,12 +327,15 @@ public class Tag extends Objeto {
 
     try {
 
-      if (Utils.getBooStrVazia(_strId)) {
+      if (!Utils.getBooStrVazia(_strId)) {
 
-        _strId = "id" + String.valueOf(this.getIntId());
-        this.getLstAtr().add(new Atributo("id", _strId));
+        return _strId;
       }
 
+      _strId = "id_int_id";
+      _strId = _strId.replace("_int_id", String.valueOf(this.getIntId()));
+
+      this.getLstAtr().add(new Atributo("id", _strId));
     }
     catch (Exception ex) {
 
@@ -484,9 +487,24 @@ public class Tag extends Objeto {
 
     try {
 
+      this.addCssArquivo(PaginaHtml.getI().getLstTagCss());
       this.addJsArquivo(PaginaHtml.getI().getLstTagJs());
       this.addJsCodigo(PaginaHtml.getI().getTagJsMain());
       this.setCss(CssTag.getIMain());
+
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    }
+    finally {
+    }
+  }
+
+  protected void addCssArquivo(List<CssTag> lstTagCss) {
+
+    try {
 
     }
     catch (Exception ex) {

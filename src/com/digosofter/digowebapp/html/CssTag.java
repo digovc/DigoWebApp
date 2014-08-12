@@ -222,6 +222,47 @@ public class CssTag extends Tag {
   }
 
   @Override
+  public String getStrTagFormatada() {
+
+    try {
+      this.verificarCssExterna();
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    }
+    finally {
+    }
+
+    return super.getStrTagFormatada();
+  }
+
+  private void verificarCssExterna() {
+
+    try {
+
+      if ("cssMain".equals(this.getStrId())) {
+        return;
+      }
+
+      if ("cssImp".equals(this.getStrId())) {
+        return;
+      }
+
+      this.setStrTagNome("link");
+      this.setBooForcarTagDupla(false);
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    }
+    finally {
+    }
+  }
+
+  @Override
   public String getStrConteudo() {
 
     String strAttCss;

@@ -322,7 +322,7 @@ public class PaginaHtml extends Objeto {
     return _cssMain;
   }
 
-  private List<CssTag> getLstTagCss() {
+  public List<CssTag> getLstTagCss() {
 
     try {
 
@@ -381,7 +381,7 @@ public class PaginaHtml extends Objeto {
 
         for (CssTag tagJsAdicionada : _lstTagCssOrdenado) {
 
-          if (tagJsAdicionada.getSrc().equals(cssTag.getSrc())) {
+          if (tagJsAdicionada.getStrAtributoFormatado().equals(cssTag.getStrAtributoFormatado())) {
             booCssAdicionado = true;
             break;
           }
