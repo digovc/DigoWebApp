@@ -34,7 +34,7 @@ function Objeto() {
   var _strNomeExibicao = "";
 
   this.getStrNomeExibicao = function() {
-    // VARIÁVEIS
+    
     
     try {
       
@@ -44,7 +44,7 @@ function Objeto() {
         _strNomeExibicao = this.getStrNome();
       }
 
-      // FIM AÇÕES
+      
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
@@ -60,7 +60,7 @@ function Objeto() {
 
   /* Construtor */
   {
-    // VARIÁVEIS
+    
     
     try {
       
@@ -68,7 +68,7 @@ function Objeto() {
       Objeto_intId++;
       this.setIntId(Objeto_intId);
 
-      // FIM AÇÕES
+      
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }

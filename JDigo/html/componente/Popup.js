@@ -23,7 +23,7 @@ function Popup(strId) {
   var _arrPpiAcao = null;
 
   this.getArrPpiAcao = function() {
-    // VARIÁVEIS
+    
     
     try {
       
@@ -33,7 +33,7 @@ function Popup(strId) {
         _arrPpiAcao = new Array();
       }
 
-      // FIM AÇÕES
+      
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
@@ -48,7 +48,7 @@ function Popup(strId) {
   var _fncMouseLeave = null;
 
   this.getFncMouseLeave = function() {
-    // VARIÁVEIS
+    
     
     try {
       
@@ -56,21 +56,21 @@ function Popup(strId) {
       if (_fncMouseLeave == null) {
 
         _fncMouseLeave = function(evt) {
-          // VARIÁVEIS
+          
           
           try {
             
 
             _this.getJq().remove();
 
-            // FIM AÇÕES
+            
           } catch (e) {
             new Erro("Erro inesperado.", e);
           }
         };
       }
 
-      // FIM AÇÕES
+      
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
@@ -83,18 +83,18 @@ function Popup(strId) {
   // MÉTODO
 
   this.acaoClick = function(ppi) {
-    // VARIÁVEIS
+    
     
     try {
       
-      // FIM AÇÕES
+      
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
   };
 
   this.mostrarPopup = function(intX, intY) {
-    // VARIÁVEIS
+    
     
     try {
       
@@ -111,14 +111,14 @@ function Popup(strId) {
       this.setItens();
       this.setEventos();
 
-      // FIM AÇÕES
+      
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
   };
 
   this.setEventos = function() {
-    // VARIÁVEIS
+    
     
     try {
       
@@ -126,14 +126,14 @@ function Popup(strId) {
       this.getJq().mouseleave(this.getFncMouseLeave());
       this.setEventosItens();
 
-      // FIM AÇÕES
+      
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
   };
 
   this.setItens = function() {
-    // VARIÁVEIS
+    
 
     var arrTag;
     var ppiAcao;
@@ -153,14 +153,14 @@ function Popup(strId) {
         this.getArrPpiAcao().push(ppiAcao);
       }
 
-      // FIM AÇÕES
+      
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
   };
 
   this.setEventosItens = function() {
-    // VARIÁVEIS
+    
     
     try {
       
@@ -171,7 +171,7 @@ function Popup(strId) {
         ppiAcao.setEventos();
       }
 
-      // FIM AÇÕES
+      
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
@@ -180,7 +180,7 @@ function Popup(strId) {
   // FIM MÉTODO
 
   /* Construtor */{
-    // VARIÁVEIS
+    
     
     try {
       
@@ -190,7 +190,7 @@ function Popup(strId) {
         this.setStrId(strId);
       }
 
-      // FIM AÇÕES
+      
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }

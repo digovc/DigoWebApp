@@ -26,7 +26,7 @@ function FormularioTbl(strId) {
 	// FIM MÉTODO
 
 	/* Construtor */{
-		// VARIÁVEIS
+		
 		
 		try {
 			
@@ -36,7 +36,7 @@ function FormularioTbl(strId) {
 			  this.setStrId(strId);
 			}
 
-			// FIM AÇÕES
+			
 		} catch (e) {
 			new Erro("Erro inesperado.", e);
 		}

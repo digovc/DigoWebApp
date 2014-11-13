@@ -61,7 +61,7 @@ function PaletaCor(strNome) {
 
   /* Construtor */
   {
-    // VARIÁVEIS
+    
     
     try {
       
@@ -69,7 +69,7 @@ function PaletaCor(strNome) {
       this.setStrNome(strNome);
       appWeb.getArrObjPaletaCor()[appWeb.getArrObjPaletaCor().length] = this;
 
-      // FIM AÇÕES
+      
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }

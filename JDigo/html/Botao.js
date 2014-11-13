@@ -15,7 +15,7 @@ function Botao(strId) {
 
 	/* Construtor */
 	{
-		// VARIÁVEIS
+		
 		
 		try {
 			
@@ -25,7 +25,7 @@ function Botao(strId) {
 			  this.setStrId(strId);
 			}
 
-			// FIM AÇÕES
+			
 		} catch (e) {
 			new Erro("Erro inesperado.", e);
 		}

@@ -12,7 +12,7 @@ function Painel(strId) {
 
 	/* Construtor */
 	{
-		// VARIÁVEIS
+		
 
 	  var _this = this;
 
@@ -25,7 +25,7 @@ function Painel(strId) {
 			  this.setStrId(strId);
 			}
 
-			// FIM AÇÕES
+			
 		} catch (e) {
 			new Erro("Erro inesperado.", e);
 		}

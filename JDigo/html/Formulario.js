@@ -24,14 +24,14 @@ function Formulario(strId) {
 	// MÉTODO
 
 	this.enviar = function() {
-		// VARIÁVEIS
+		
 		
 		try {
 			
 
 			this.getJq().submit();
 
-			// FIM AÇÕES
+			
 		} catch (e) {
 			new Erro("Erro inesperado.", e);
 		}
@@ -41,7 +41,7 @@ function Formulario(strId) {
 
 	/* Construtor */
 	{
-		// VARIÁVEIS
+		
 		
 		try {
 			
@@ -51,7 +51,7 @@ function Formulario(strId) {
 			  this.setStrId(strId);
 			}
 
-			// FIM AÇÕES
+			
 		} catch (e) {
 			new Erro("Erro inesperado.", e);
 		}

@@ -21,14 +21,14 @@ function Campo(strId) {
 
 	var _strValor = null;
 	this.getStrValor = function() {
-		// VARIÁVEIS
+		
 		
 		try {
 			
 
 			_strValor = this.getJq().val();
 
-			// FIM AÇÕES
+			
 		} catch (e) {
 			new Erro("Erro inesperado.", e);
 		}
@@ -37,7 +37,7 @@ function Campo(strId) {
 	}
 
 	this.setStrValor = function(strValor) {
-		// VARIÁVEIS
+		
 		
 		try {
 			
@@ -45,7 +45,7 @@ function Campo(strId) {
 			_strValor = strValor;
 			this.getJq().val(_strValor);
 
-			// FIM AÇÕES
+			
 		} catch (e) {
 			new Erro("Erro inesperado.", e);
 		}
@@ -58,7 +58,7 @@ function Campo(strId) {
 
 	/* Construtor */
 	{
-		// VARIÁVEIS
+		
 		
 		try {
 			
@@ -67,7 +67,7 @@ function Campo(strId) {
 				this.setStrId(strId);
 			}
 
-			// FIM AÇÕES
+			
 		} catch (e) {
 			new Erro("Erro inesperado.", e);
 		}

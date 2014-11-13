@@ -22,21 +22,21 @@ function Tabela(strId) {
   // MÉTODO
 
   this.setOrdenacao = function() {
-    // VARIÁVEIS
+    
     
     try {
       
 
       this.getJq().find('table').tablesorter();
 
-      // FIM AÇÕES
+      
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
   };
 
   this.setPesquisa = function() {
-    // VARIÁVEIS
+    
     
     try {
       
@@ -45,7 +45,7 @@ function Tabela(strId) {
         this.getJq().find("input").quicksearch('#' + this.getStrId() + ' table tbody tr');
       }
 
-      // FIM AÇÕES
+      
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
@@ -54,7 +54,7 @@ function Tabela(strId) {
   // FIM MÉTODO
 
   /* Construtor */{
-    // VARIÁVEIS
+    
     
     try {
       
@@ -63,7 +63,7 @@ function Tabela(strId) {
       _this.setPesquisa();
       _this.setOrdenacao();
 
-      // FIM AÇÕES
+      
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }

@@ -20,7 +20,7 @@ function _Utils() {
   // MÉTODO
 
   this.carregarImagem = function(strSrc, evtOnLoad) {
-    // VARIÁVEIS
+    
 
     var img;
 
@@ -32,7 +32,7 @@ function _Utils() {
       img.src = strSrc;
       img.onload = evtOnLoad;
 
-      // FIM AÇÕES
+      
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
@@ -41,7 +41,7 @@ function _Utils() {
   }
 
   this.getBooStrVazia = function(str) {
-    // VARIÁVEIS
+    
 
     var booResultado = false;
 
@@ -55,7 +55,7 @@ function _Utils() {
         booResultado = true;
       }
 
-      // FIM AÇÕES
+      
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
@@ -64,7 +64,7 @@ function _Utils() {
   }
 
   this.getBooValidarEmail = function(strEmail) {
-    // VARIÁVEIS
+    
 
     var booResultado = false;
     var objRe;
@@ -84,7 +84,7 @@ function _Utils() {
         booResultado = true;
       }
 
-      // FIM AÇÕES
+      
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
@@ -93,7 +93,7 @@ function _Utils() {
   }
 
   this.getStrTamanhoFixo = function(str, intTamanho, chrComplemento, booDireita) {
-    // VARIÁVEIS
+    
 
     var intDif;
 
@@ -125,7 +125,7 @@ function _Utils() {
         }
       }
 
-      // FIM AÇÕES
+      
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
@@ -134,7 +134,7 @@ function _Utils() {
   };
 
   this.mostrarLstMensagemInformacao = function(lstStrMensagem) {
-    // VARIÁVEIS
+    
 
     var strMensagemFormatada = "";
 
@@ -155,14 +155,14 @@ function _Utils() {
 
       Utils.mostrarMensagemInformacao(strMensagemFormatada)
 
-      // FIM AÇÕES
+      
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
   }
 
   this.mostrarMensagemInformacao = function(strMensagem) {
-    // VARIÁVEIS
+    
 
     var strMensagemFormatada;
 
@@ -174,14 +174,14 @@ function _Utils() {
 
       alert(strMensagemFormatada);
 
-      // FIM AÇÕES
+      
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
   }
 
   this.replaceAll = function(str, strAntigo, strNovo) {
-    // VARIÁVEIS
+    
     
     try {
       
@@ -190,7 +190,7 @@ function _Utils() {
         str = str.replace(strAntigo, strNovo);
       }
 
-      // FIM AÇÕES
+      
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
@@ -202,11 +202,11 @@ function _Utils() {
 
   /* Construtor */
   {
-    // VARIÁVEIS
+    
     
     try {
       
-      // FIM AÇÕES
+      
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }

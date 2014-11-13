@@ -18,14 +18,14 @@ function Imagem(strId) {
 	// MÉTODO
 
 	this.setObjImage = function(objImage) {
-		// VARIÁVEIS
+		
 		
 		try {
 			
 
 			this.getJq().attr("src", objImage.src)
 
-			// FIM AÇÕES
+			
 		} catch (e) {
 			new Erro("Erro inesperado.", e);
 		}
@@ -34,7 +34,7 @@ function Imagem(strId) {
 	// FIM MÉTODO
 
 	/* Construtor */{
-		// VARIÁVEIS
+		
 		
 		try {
 			
@@ -44,7 +44,7 @@ function Imagem(strId) {
 			  this.setStrId(strId);
 			}
 
-			// FIM AÇÕES
+			
 		} catch (e) {
 			new Erro("Erro inesperado.", e);
 		}

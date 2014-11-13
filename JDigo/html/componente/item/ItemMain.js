@@ -36,11 +36,11 @@ function ItemMain() {
   // FIM MÉTODO
 
   /* Construtor */{
-    // VARIÁVEIS
+    
     
     try {
       
-      // FIM AÇÕES
+      
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }

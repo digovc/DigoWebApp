@@ -68,7 +68,7 @@ function Mensagem(strTitulo, strMsg, intTipo) {
   // MÉTODO
 
   this.montarLayout = function() {
-    // VARIÁVEIS
+    
 
     var tag;
 
@@ -100,14 +100,14 @@ function Mensagem(strTitulo, strMsg, intTipo) {
 
       this.setStrEstrutura(tag);
 
-      // FIM AÇÕES
+      
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
   };
 
   this.mostrar = function() {
-    // VARIÁVEIS
+    
 
     var intTempo;
     var tag;
@@ -142,7 +142,7 @@ function Mensagem(strTitulo, strMsg, intTipo) {
         }, 250);
       }, intTempo);
 
-      // FIM AÇÕES
+      
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
@@ -151,7 +151,7 @@ function Mensagem(strTitulo, strMsg, intTipo) {
   // FIM MÉTODO
 
   /* Construtor */{
-    // VARIÁVEIS
+    
     
     try {
       
@@ -160,7 +160,7 @@ function Mensagem(strTitulo, strMsg, intTipo) {
       this.setStrTitulo(strTitulo);
       this.setStrMsg(strMsg);
 
-      // FIM AÇÕES
+      
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }

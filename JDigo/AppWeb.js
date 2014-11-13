@@ -19,7 +19,7 @@ function AppWeb() {
   var _arrObjPaletaCor = null;
 
   this.getArrObjPaletaCor = function() {
-    // VARIÁVEIS
+    
     
     try {
       
@@ -29,7 +29,7 @@ function AppWeb() {
         _arrObjPaletaCor = new Array();
       }
 
-      // FIM AÇÕES
+      
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
@@ -70,7 +70,7 @@ function AppWeb() {
   // M�TODO
 
   this.imprimir = function(pag) {
-    // VARIÁVEIS
+    
 
     var objWindow;
 
@@ -83,14 +83,14 @@ function AppWeb() {
       objWindow.print();
       objWindow.close();
 
-      // FIM AÇÕES
+      
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
   };
 
   this.mostrarMsgAlerta = function(strTitulo, strMensagem) {
-    // VARIÁVEIS
+    
 
     var msg;
 
@@ -101,14 +101,14 @@ function AppWeb() {
       msg = new Mensagem(strTitulo, strMensagem, Mensagem_TIPO_ALERTA);
       msg.mostrar();
 
-      // FIM AÇÕES
+      
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
   };
 
   this.mostrarMsgNegativa = function(strTitulo, strMensagem) {
-    // VARIÁVEIS
+    
 
     var msg;
 
@@ -119,14 +119,14 @@ function AppWeb() {
       msg = new Mensagem(strTitulo, strMensagem, Mensagem_TIPO_NEGATIVA);
       msg.mostrar();
 
-      // FIM AÇÕES
+      
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
   };
 
   this.mostrarMsgPositiva = function(strTitulo, strMensagem) {
-    // VARIÁVEIS
+    
 
     var msg;
 
@@ -137,7 +137,7 @@ function AppWeb() {
       msg = new Mensagem(strTitulo, strMensagem, Mensagem_TIPO_POSITIVA);
       msg.mostrar();
 
-      // FIM AÇÕES
+      
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
@@ -147,11 +147,11 @@ function AppWeb() {
 
   /* Construtor */
   {
-    // VARIÁVEIS
+    
     
     try {
       
-      // FIM AÇÕES
+      
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }

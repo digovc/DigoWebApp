@@ -24,7 +24,7 @@ function WebSocketMain(strUrl) {
    * processar as mensagens vindas do servidor.
    */
   this.getFncOnMessage = function() {
-    // VARIÁVEIS
+    
     
     try {
       
@@ -32,7 +32,7 @@ function WebSocketMain(strUrl) {
       if (_fncOnMessage == null) {
 
         _fncOnMessage = function(evt) {
-          // VARIÁVEIS
+          
 
           var objWsInterlocutor;
 
@@ -43,7 +43,7 @@ function WebSocketMain(strUrl) {
             objWsInterlocutor = JSON.parse(evt.data);
             _this.processarObjWsInterlocutor(objWsInterlocutor);
 
-            // FIM AÇÕES
+            
           } catch (e) {
             new Erro("Erro inesperado.", e);
           }
@@ -51,7 +51,7 @@ function WebSocketMain(strUrl) {
 
       }
 
-      // FIM AÇÕES
+      
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
@@ -62,7 +62,7 @@ function WebSocketMain(strUrl) {
   var _objWebSocket = null;
 
   this.getObjWebSocket = function() {
-    // VARIÁVEIS
+    
     
     try {
       
@@ -77,7 +77,7 @@ function WebSocketMain(strUrl) {
         _objWebSocket.onmessage = this.getFncOnMessage();
       }
 
-      // FIM AÇÕES
+      
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
@@ -100,7 +100,7 @@ function WebSocketMain(strUrl) {
   // MÉTODO
 
   this.abrirConexao = function() {
-    // VARIÁVEIS
+    
     try {
       
 
@@ -112,7 +112,7 @@ function WebSocketMain(strUrl) {
   };
 
   this.enviar = function(objWsInterlocutor) {
-    // VARIÁVEIS
+    
     try {
       
 
@@ -124,7 +124,7 @@ function WebSocketMain(strUrl) {
   };
 
   this.processarMsgErro = function(strMsgErro) {
-    // VARIÁVEIS
+    
 
     var msg;
 
@@ -139,14 +139,14 @@ function WebSocketMain(strUrl) {
       msg = new Mensagem("Erro", strMsgErro, Mensagem_TIPO_NEGATIVA);
       msg.mostrar();
 
-      // FIM AÇÕES
+      
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
   };
 
   this.processarMsgPositiva = function(strMsgPositiva) {
-    // VARIÁVEIS
+    
 
     var msg;
 
@@ -161,18 +161,18 @@ function WebSocketMain(strUrl) {
       msg = new Mensagem("Ok " + objUsuario.getStrNome(), strMsgPositiva, Mensagem_TIPO_POSITIVA);
       msg.mostrar();
 
-      // FIM AÇÕES
+      
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
   };
 
   this.processarObjWsInterlocutor = function(objWsInterlocutor) {
-    // VARIÁVEIS
+    
     
     try {
       
-      // FIM AÇÕES
+      
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
@@ -182,14 +182,14 @@ function WebSocketMain(strUrl) {
 
   /* Construtor */
   {
-    // VARIÁVEIS
+    
     
     try {
       
 
       this.setStrUrl(strUrl);
 
-      // FIM AÇÕES
+      
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }

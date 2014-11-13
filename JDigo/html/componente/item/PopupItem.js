@@ -24,7 +24,7 @@ function PopupItem(strId, ppp) {
   var _fncClick = null;
 
   this.getFncClick = function() {
-    // VARIÁVEIS
+    
 
     
     try {
@@ -33,7 +33,7 @@ function PopupItem(strId, ppp) {
       if (_fncClick == null) {
 
         _fncClick = function(evt) {
-          // VARIÁVEIS
+          
           
           try {
             
@@ -41,14 +41,14 @@ function PopupItem(strId, ppp) {
             _this.click();
             _this.getPpp().getJq().remove();
 
-            // FIM AÇÕES
+            
           } catch (e) {
             new Erro("Erro inesperado.", e);
           }
         }
       }
 
-      // FIM AÇÕES
+      
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
@@ -59,7 +59,7 @@ function PopupItem(strId, ppp) {
   var _fncMouseEnter = null;
 
   this.getFncMouseEnter = function() {
-    // VARIÁVEIS
+    
     
     try {
       
@@ -67,21 +67,21 @@ function PopupItem(strId, ppp) {
       if (_fncMouseEnter == null) {
 
         _fncMouseEnter = function(evt) {
-          // VARIÁVEIS
+          
           
           try {
             
 
             $("#" + evt.target.id).css("background-color", "#e1e1e1");
 
-            // FIM AÇÕES
+            
           } catch (e) {
             new Erro("Erro inesperado.", e);
           }
         }
       }
 
-      // FIM AÇÕES
+      
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
@@ -92,7 +92,7 @@ function PopupItem(strId, ppp) {
   var _fncMouseLeave = null;
 
   this.getFncMouseLeave = function() {
-    // VARIÁVEIS
+    
     
     try {
       
@@ -100,21 +100,21 @@ function PopupItem(strId, ppp) {
       if (_fncMouseLeave == null) {
 
         _fncMouseLeave = function(evt) {
-          // VARIÁVEIS
+          
           
           try {
             
 
             $("#" + evt.target.id).css("background-color", "");
 
-            // FIM AÇÕES
+            
           } catch (e) {
             new Erro("Erro inesperado.", e);
           }
         }
       }
 
-      // FIM AÇÕES
+      
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
@@ -125,7 +125,7 @@ function PopupItem(strId, ppp) {
   var _intOrdem = null;
 
   this.getIntOrdem = function() {
-    // VARIÁVEIS
+    
     
     try {
       
@@ -134,7 +134,7 @@ function PopupItem(strId, ppp) {
       _intOrdem = _intOrdem.replace("ppiAcao", "");
       _intOrdem = window.parseInt(_intOrdem);
 
-      // FIM AÇÕES
+      
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
@@ -157,21 +157,21 @@ function PopupItem(strId, ppp) {
   // MÉTODO
 
   this.click = function() {
-    // VARIÁVEIS
+    
     
     try {
       
 
       this.getPpp().acaoClick(this);
 
-      // FIM AÇÕES
+      
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
   };
 
   this.setEventos = function() {
-    // VARIÁVEIS
+    
     
     try {
       
@@ -180,7 +180,7 @@ function PopupItem(strId, ppp) {
       this.getJq().mouseenter(this.getFncMouseEnter());
       this.getJq().mouseleave(this.getFncMouseLeave());
 
-      // FIM AÇÕES
+      
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
@@ -189,7 +189,7 @@ function PopupItem(strId, ppp) {
   // FIM MÉTODO
 
   /* Construtor */{
-    // VARIÁVEIS
+    
     
     try {
       
@@ -203,7 +203,7 @@ function PopupItem(strId, ppp) {
         this.setPpp(ppp);
       }
 
-      // FIM AÇÕES
+      
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
