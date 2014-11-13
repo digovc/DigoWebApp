@@ -13,10 +13,29 @@ public class Painel extends Tag {
 
     super.addCssArquivo(lstTagCss);
 
+    try {
+
+      this.addCssArquivoMarkdown(lstTagCss);
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    }
+    finally {
+    }
+  }
+
+  private void addCssArquivoMarkdown(List<CssTag> lstTagCss) {
+
     CssTag cssMarkdown;
     CssTag cssMarkdownMonoBlue;
 
     try {
+
+      if (!this.getBooMarkdown()) {
+        return;
+      }
 
       cssMarkdown = new CssTag();
       cssMarkdown.addAtr("href", "res/css/markdown.css");
@@ -29,7 +48,6 @@ public class Painel extends Tag {
       cssMarkdownMonoBlue.addAtr("rel", "stylesheet");
 
       lstTagCss.add(cssMarkdownMonoBlue);
-
     }
     catch (Exception ex) {
 
@@ -38,6 +56,7 @@ public class Painel extends Tag {
     }
     finally {
     }
+
   }
 
   private boolean _booMarkdown;
