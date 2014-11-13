@@ -24,9 +24,9 @@ function _Utils() {
 
     var img;
 
-    // FIM VARIÁVEIS
+    
     try {
-      // AÇÕES
+      
 
       img = new Image;
       img.src = strSrc;
@@ -45,9 +45,9 @@ function _Utils() {
 
     var booResultado = false;
 
-    // FIM VARIÁVEIS
+    
     try {
-      // AÇÕES
+      
 
       if (str == null) {
         booResultado = true;
@@ -69,9 +69,9 @@ function _Utils() {
     var booResultado = false;
     var objRe;
 
-    // FIM VARIÁVEIS
+    
     try {
-      // AÇÕES
+      
 
       objRe = new RegExp(/^[A-Za-z0-9_\-\.]+@[A-Za-z0-9_\-\.]{2,}\.[A-Za-z0-9]{2,}(\.[A-Za-z0-9])?/);
 
@@ -97,9 +97,9 @@ function _Utils() {
 
     var intDif;
 
-    // FIM VARIÁVEIS
+    
     try {
-      // AÇÕES
+      
 
       str = String(str);
 
@@ -138,9 +138,9 @@ function _Utils() {
 
     var strMensagemFormatada = "";
 
-    // FIM VARIÁVEIS
+    
     try {
-      // AÇÕES
+      
 
       strMensagemFormatada = "Informação:";
       strMensagemFormatada += "\n\n\n";
@@ -166,9 +166,9 @@ function _Utils() {
 
     var strMensagemFormatada;
 
-    // FIM VARIÁVEIS
+    
     try {
-      // AÇÕES
+      
 
       strMensagemFormatada += strMensagem;
 
@@ -182,9 +182,9 @@ function _Utils() {
 
   this.replaceAll = function(str, strAntigo, strNovo) {
     // VARIÁVEIS
-    // FIM VARIÁVEIS
+    
     try {
-      // AÇÕES
+      
 
       while (str.indexOf(strAntigo) != -1) {
         str = str.replace(strAntigo, strNovo);
@@ -203,9 +203,9 @@ function _Utils() {
   /* Construtor */
   {
     // VARIÁVEIS
-    // FIM VARIÁVEIS
+    
     try {
-      // AÇÕES
+      
       // FIM AÇÕES
     } catch (e) {
       new Erro("Erro inesperado.", e);

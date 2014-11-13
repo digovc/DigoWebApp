@@ -26,17 +26,17 @@ function PopupItem(strId, ppp) {
   this.getFncClick = function() {
     // VARIÁVEIS
 
-    // FIM VARIÁVEIS
+    
     try {
-      // AÇÕES
+      
 
       if (_fncClick == null) {
 
         _fncClick = function(evt) {
           // VARIÁVEIS
-          // FIM VARIÁVEIS
+          
           try {
-            // AÇÕES
+            
 
             _this.click();
             _this.getPpp().getJq().remove();
@@ -60,17 +60,17 @@ function PopupItem(strId, ppp) {
 
   this.getFncMouseEnter = function() {
     // VARIÁVEIS
-    // FIM VARIÁVEIS
+    
     try {
-      // AÇÕES
+      
 
       if (_fncMouseEnter == null) {
 
         _fncMouseEnter = function(evt) {
           // VARIÁVEIS
-          // FIM VARIÁVEIS
+          
           try {
-            // AÇÕES
+            
 
             $("#" + evt.target.id).css("background-color", "#e1e1e1");
 
@@ -93,17 +93,17 @@ function PopupItem(strId, ppp) {
 
   this.getFncMouseLeave = function() {
     // VARIÁVEIS
-    // FIM VARIÁVEIS
+    
     try {
-      // AÇÕES
+      
 
       if (_fncMouseLeave == null) {
 
         _fncMouseLeave = function(evt) {
           // VARIÁVEIS
-          // FIM VARIÁVEIS
+          
           try {
-            // AÇÕES
+            
 
             $("#" + evt.target.id).css("background-color", "");
 
@@ -126,9 +126,9 @@ function PopupItem(strId, ppp) {
 
   this.getIntOrdem = function() {
     // VARIÁVEIS
-    // FIM VARIÁVEIS
+    
     try {
-      // AÇÕES
+      
 
       _intOrdem = this.getStrId();
       _intOrdem = _intOrdem.replace("ppiAcao", "");
@@ -158,9 +158,9 @@ function PopupItem(strId, ppp) {
 
   this.click = function() {
     // VARIÁVEIS
-    // FIM VARIÁVEIS
+    
     try {
-      // AÇÕES
+      
 
       this.getPpp().acaoClick(this);
 
@@ -172,9 +172,9 @@ function PopupItem(strId, ppp) {
 
   this.setEventos = function() {
     // VARIÁVEIS
-    // FIM VARIÁVEIS
+    
     try {
-      // AÇÕES
+      
 
       this.getJq().click(this.getFncClick());
       this.getJq().mouseenter(this.getFncMouseEnter());
@@ -190,9 +190,9 @@ function PopupItem(strId, ppp) {
 
   /* Construtor */{
     // VARIÁVEIS
-    // FIM VARIÁVEIS
+    
     try {
-      // AÇÕES
+      
 
       if (!Utils.getBooStrVazia(strId)) {
 

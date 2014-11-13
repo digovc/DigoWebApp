@@ -25,7 +25,7 @@ function Erro(strMensagem, e) {
   this.getStrMensagemFormatada = function() {
     // VARIÁVEIS
     try {
-      // AÇÕES
+      
 
       _strMensagemFormatada = "";
       _strMensagemFormatada += this.getStrMensagem();
@@ -60,9 +60,9 @@ function Erro(strMensagem, e) {
   /* Construtor */
   {
     // VARIÁVEIS
-    // FIM VARIÁVEIS
+    
     try {
-      // AÇÕES
+      
 
       this.setStrMensagem(strMensagem);
 

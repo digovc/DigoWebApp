@@ -25,9 +25,9 @@ function Formulario(strId) {
 
 	this.enviar = function() {
 		// VARIÁVEIS
-		// FIM VARIÁVEIS
+		
 		try {
-			// AÇÕES
+			
 
 			this.getJq().submit();
 
@@ -42,9 +42,9 @@ function Formulario(strId) {
 	/* Construtor */
 	{
 		// VARIÁVEIS
-		// FIM VARIÁVEIS
+		
 		try {
-			// AÇÕES
+			
 
 			if (!Utils.getBooStrVazia(strId)) {
 

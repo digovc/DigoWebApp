@@ -23,9 +23,9 @@ function Tabela(strId) {
 
   this.setOrdenacao = function() {
     // VARIÁVEIS
-    // FIM VARIÁVEIS
+    
     try {
-      // AÇÕES
+      
 
       this.getJq().find('table').tablesorter();
 
@@ -37,9 +37,9 @@ function Tabela(strId) {
 
   this.setPesquisa = function() {
     // VARIÁVEIS
-    // FIM VARIÁVEIS
+    
     try {
-      // AÇÕES
+      
 
       if ('quicksearch' in $('document')) {
         this.getJq().find("input").quicksearch('#' + this.getStrId() + ' table tbody tr');
@@ -55,9 +55,9 @@ function Tabela(strId) {
 
   /* Construtor */{
     // VARIÁVEIS
-    // FIM VARIÁVEIS
+    
     try {
-      // AÇÕES
+      
 
       _this.setStrId(strId);
       _this.setPesquisa();

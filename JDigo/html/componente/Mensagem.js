@@ -72,9 +72,9 @@ function Mensagem(strTitulo, strMsg, intTipo) {
 
     var tag;
 
-    // FIM VARIÁVEIS
+    
     try {
-      // AÇÕES
+      
 
       switch (this.getIntTipo()) {
 
@@ -112,9 +112,9 @@ function Mensagem(strTitulo, strMsg, intTipo) {
     var intTempo;
     var tag;
 
-    // FIM VARIÁVEIS
+    
     try {
-      // AÇÕES
+      
 
       if (Mensagem_BOO_MENSAGEM_VISIVEL) {
 
@@ -152,9 +152,9 @@ function Mensagem(strTitulo, strMsg, intTipo) {
 
   /* Construtor */{
     // VARIÁVEIS
-    // FIM VARIÁVEIS
+    
     try {
-      // AÇÕES
+      
 
       this.setIntTipo(intTipo);
       this.setStrTitulo(strTitulo);

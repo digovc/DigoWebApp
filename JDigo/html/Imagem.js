@@ -19,9 +19,9 @@ function Imagem(strId) {
 
 	this.setObjImage = function(objImage) {
 		// VARIÁVEIS
-		// FIM VARIÁVEIS
+		
 		try {
-			// AÇÕES
+			
 
 			this.getJq().attr("src", objImage.src)
 
@@ -35,9 +35,9 @@ function Imagem(strId) {
 
 	/* Construtor */{
 		// VARIÁVEIS
-		// FIM VARIÁVEIS
+		
 		try {
-			// AÇÕES
+			
 
 			if (!Utils.getBooStrVazia(strId)) {
 

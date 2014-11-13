@@ -25,9 +25,9 @@ function WebSocketMain(strUrl) {
    */
   this.getFncOnMessage = function() {
     // VARIÁVEIS
-    // FIM VARIÁVEIS
+    
     try {
-      // AÇÕES
+      
 
       if (_fncOnMessage == null) {
 
@@ -36,9 +36,9 @@ function WebSocketMain(strUrl) {
 
           var objWsInterlocutor;
 
-          // FIM VARIÁVEIS
+          
           try {
-            // AÇÕES
+            
 
             objWsInterlocutor = JSON.parse(evt.data);
             _this.processarObjWsInterlocutor(objWsInterlocutor);
@@ -63,9 +63,9 @@ function WebSocketMain(strUrl) {
 
   this.getObjWebSocket = function() {
     // VARIÁVEIS
-    // FIM VARIÁVEIS
+    
     try {
-      // AÇÕES
+      
 
       if (!"WebSocket" in window) {
         new Erro(STR_MENSAGEM_00001, null);
@@ -102,7 +102,7 @@ function WebSocketMain(strUrl) {
   this.abrirConexao = function() {
     // VARIÁVEIS
     try {
-      // AÇÕES
+      
 
       this.getObjWebSocket();
 
@@ -114,7 +114,7 @@ function WebSocketMain(strUrl) {
   this.enviar = function(objWsInterlocutor) {
     // VARIÁVEIS
     try {
-      // AÇÕES
+      
 
       this.getObjWebSocket().send(JSON.stringify(objWsInterlocutor));
 
@@ -128,9 +128,9 @@ function WebSocketMain(strUrl) {
 
     var msg;
 
-    // FIM VARIÁVEIS
+    
     try {
-      // AÇÕES
+      
 
       if (Utils.getBooStrVazia(strMsgErro)) {
         return false;
@@ -150,9 +150,9 @@ function WebSocketMain(strUrl) {
 
     var msg;
 
-    // FIM VARIÁVEIS
+    
     try {
-      // AÇÕES
+      
 
       if (Utils.getBooStrVazia(strMsgPositiva)) {
         return false;
@@ -169,9 +169,9 @@ function WebSocketMain(strUrl) {
 
   this.processarObjWsInterlocutor = function(objWsInterlocutor) {
     // VARIÁVEIS
-    // FIM VARIÁVEIS
+    
     try {
-      // AÇÕES
+      
       // FIM AÇÕES
     } catch (e) {
       new Erro("Erro inesperado.", e);
@@ -183,9 +183,9 @@ function WebSocketMain(strUrl) {
   /* Construtor */
   {
     // VARIÁVEIS
-    // FIM VARIÁVEIS
+    
     try {
-      // AÇÕES
+      
 
       this.setStrUrl(strUrl);
 

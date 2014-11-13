@@ -35,9 +35,9 @@ function Objeto() {
 
   this.getStrNomeExibicao = function() {
     // VARIÁVEIS
-    // FIM VARIÁVEIS
+    
     try {
-      // AÇÕES
+      
 
       if (_strNomeExibicao == "") {
 
@@ -61,9 +61,9 @@ function Objeto() {
   /* Construtor */
   {
     // VARIÁVEIS
-    // FIM VARIÁVEIS
+    
     try {
-      // AÇÕES
+      
 
       Objeto_intId++;
       this.setIntId(Objeto_intId);

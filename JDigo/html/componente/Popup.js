@@ -24,9 +24,9 @@ function Popup(strId) {
 
   this.getArrPpiAcao = function() {
     // VARIÁVEIS
-    // FIM VARIÁVEIS
+    
     try {
-      // AÇÕES
+      
 
       if (_arrPpiAcao == null) {
 
@@ -49,17 +49,17 @@ function Popup(strId) {
 
   this.getFncMouseLeave = function() {
     // VARIÁVEIS
-    // FIM VARIÁVEIS
+    
     try {
-      // AÇÕES
+      
 
       if (_fncMouseLeave == null) {
 
         _fncMouseLeave = function(evt) {
           // VARIÁVEIS
-          // FIM VARIÁVEIS
+          
           try {
-            // AÇÕES
+            
 
             _this.getJq().remove();
 
@@ -84,9 +84,9 @@ function Popup(strId) {
 
   this.acaoClick = function(ppi) {
     // VARIÁVEIS
-    // FIM VARIÁVEIS
+    
     try {
-      // AÇÕES
+      
       // FIM AÇÕES
     } catch (e) {
       new Erro("Erro inesperado.", e);
@@ -95,9 +95,9 @@ function Popup(strId) {
 
   this.mostrarPopup = function(intX, intY) {
     // VARIÁVEIS
-    // FIM VARIÁVEIS
+    
     try {
-      // AÇÕES
+      
 
       this.setBooVisivel(true);
       this.getJq().remove();
@@ -119,9 +119,9 @@ function Popup(strId) {
 
   this.setEventos = function() {
     // VARIÁVEIS
-    // FIM VARIÁVEIS
+    
     try {
-      // AÇÕES
+      
 
       this.getJq().mouseleave(this.getFncMouseLeave());
       this.setEventosItens();
@@ -138,9 +138,9 @@ function Popup(strId) {
     var arrTag;
     var ppiAcao;
 
-    // FIM VARIÁVEIS
+    
     try {
-      // AÇÕES
+      
 
       this.setArrPpiAcao(null);
 
@@ -161,9 +161,9 @@ function Popup(strId) {
 
   this.setEventosItens = function() {
     // VARIÁVEIS
-    // FIM VARIÁVEIS
+    
     try {
-      // AÇÕES
+      
 
       for (var i = 0; i < this.getArrPpiAcao().length; i++) {
         var ppiAcao = this.getArrPpiAcao()[i];
@@ -181,9 +181,9 @@ function Popup(strId) {
 
   /* Construtor */{
     // VARIÁVEIS
-    // FIM VARIÁVEIS
+    
     try {
-      // AÇÕES
+      
 
       if (!Utils.getBooStrVazia(strId)) {
 

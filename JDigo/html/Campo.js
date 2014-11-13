@@ -22,9 +22,9 @@ function Campo(strId) {
 	var _strValor = null;
 	this.getStrValor = function() {
 		// VARIÁVEIS
-		// FIM VARIÁVEIS
+		
 		try {
-			// AÇÕES
+			
 
 			_strValor = this.getJq().val();
 
@@ -38,9 +38,9 @@ function Campo(strId) {
 
 	this.setStrValor = function(strValor) {
 		// VARIÁVEIS
-		// FIM VARIÁVEIS
+		
 		try {
-			// AÇÕES
+			
 
 			_strValor = strValor;
 			this.getJq().val(_strValor);
@@ -59,9 +59,9 @@ function Campo(strId) {
 	/* Construtor */
 	{
 		// VARIÁVEIS
-		// FIM VARIÁVEIS
+		
 		try {
-			// AÇÕES
+			
 
 			if (!Utils.getBooStrVazia(strId)) {
 				this.setStrId(strId);

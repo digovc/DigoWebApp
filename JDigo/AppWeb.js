@@ -20,9 +20,9 @@ function AppWeb() {
 
   this.getArrObjPaletaCor = function() {
     // VARIÁVEIS
-    // FIM VARIÁVEIS
+    
     try {
-      // AÇÕES
+      
 
       if (_arrObjPaletaCor == null) {
 
@@ -74,9 +74,9 @@ function AppWeb() {
 
     var objWindow;
 
-    // FIM VARIÁVEIS
+    
     try {
-      // AÇÕES
+      
 
       objWindow = window.open('', 'my div', 'height=400,width=600');
       objWindow.document.write(pag);
@@ -94,9 +94,9 @@ function AppWeb() {
 
     var msg;
 
-    // FIM VARIÁVEIS
+    
     try {
-      // AÇÕES
+      
 
       msg = new Mensagem(strTitulo, strMensagem, Mensagem_TIPO_ALERTA);
       msg.mostrar();
@@ -112,9 +112,9 @@ function AppWeb() {
 
     var msg;
 
-    // FIM VARIÁVEIS
+    
     try {
-      // AÇÕES
+      
 
       msg = new Mensagem(strTitulo, strMensagem, Mensagem_TIPO_NEGATIVA);
       msg.mostrar();
@@ -130,9 +130,9 @@ function AppWeb() {
 
     var msg;
 
-    // FIM VARIÁVEIS
+    
     try {
-      // AÇÕES
+      
 
       msg = new Mensagem(strTitulo, strMensagem, Mensagem_TIPO_POSITIVA);
       msg.mostrar();
@@ -148,9 +148,9 @@ function AppWeb() {
   /* Construtor */
   {
     // VARIÁVEIS
-    // FIM VARIÁVEIS
+    
     try {
-      // AÇÕES
+      
       // FIM AÇÕES
     } catch (e) {
       new Erro("Erro inesperado.", e);

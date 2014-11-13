@@ -44,9 +44,9 @@ function ObjWsInterlocutor() {
   /* Construtor */
   {
     // VARIÁVEIS
-    // FIM VARIÁVEIS
+    
     try {
-      // AÇÕES
+      
       // FIM AÇÕES
     } catch (e) {
       new Erro("Erro inesperado.", e);

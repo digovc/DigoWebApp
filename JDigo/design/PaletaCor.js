@@ -62,9 +62,9 @@ function PaletaCor(strNome) {
   /* Construtor */
   {
     // VARIÁVEIS
-    // FIM VARIÁVEIS
+    
     try {
-      // AÇÕES
+      
 
       this.setStrNome(strNome);
       appWeb.getArrObjPaletaCor()[appWeb.getArrObjPaletaCor().length] = this;

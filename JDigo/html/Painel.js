@@ -16,9 +16,9 @@ function Painel(strId) {
 
 	  var _this = this;
 
-		// FIM VARIÁVEIS
+		
 		try {
-			// AÇÕES
+			
 
 			if (!Utils.getBooStrVazia(strId)) {
 

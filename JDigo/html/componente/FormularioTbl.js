@@ -27,9 +27,9 @@ function FormularioTbl(strId) {
 
 	/* Construtor */{
 		// VARIÁVEIS
-		// FIM VARIÁVEIS
+		
 		try {
-			// AÇÕES
+			
 
 			if (!Utils.getBooStrVazia(strId)) {
 
