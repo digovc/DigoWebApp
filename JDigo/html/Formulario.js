@@ -8,53 +8,58 @@
  *
  */
 function Formulario(strId) {
-	// HERANÇA
+  // HERANÇA
 
-	Tag.apply(this);
-	Objeto.apply(this);
+  Tag.apply(this);
+  Objeto.apply(this);
 
-	// FIM HERANÇA
+  // FIM HERANÇA
 
-	// ATRIBUTO
+  // ATRIBUTO
 
   var _this = this;
 
-	// FIM ATRIBUTO
+  // FIM ATRIBUTO
 
-	// MÉTODO
+  // MÉTODO
 
-	this.enviar = function() {
-		
-		
-		try {
-			
+  this.enviar = function() {
 
-			this.getJq().submit();
+    try {
 
-			
-		} catch (e) {
-			new Erro("Erro inesperado.", e);
-		}
-	}
+      this.getJq().submit();
 
-	// FIM MÉTODO
+    } catch (e) {
+      new Erro("Erro inesperado.", e);
+    }
+  }
 
-	/* Construtor */
-	{
-		
-		
-		try {
-			
+  this.submit = function() {
 
-			if (!Utils.getBooStrVazia(strId)) {
+    try {
 
-			  this.setStrId(strId);
-			}
+      _this.enviar();
 
-			
-		} catch (e) {
-			new Erro("Erro inesperado.", e);
-		}
-	}
+    } catch (e) {
+      new Erro("Erro inesperado.", e);
+    }
+  };
+
+  // FIM MÉTODO
+
+  /* Construtor */
+  {
+
+    try {
+
+      if (!Utils.getBooStrVazia(strId)) {
+
+        this.setStrId(strId);
+      }
+
+    } catch (e) {
+      new Erro("Erro inesperado.", e);
+    }
+  }
 
 }
