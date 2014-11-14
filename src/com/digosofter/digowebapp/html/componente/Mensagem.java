@@ -1,7 +1,5 @@
 package com.digosofter.digowebapp.html.componente;
 
-import org.w3c.dom.css.CSSMediaRule;
-
 import com.digosofter.digowebapp.AppWeb;
 import com.digosofter.digowebapp.erro.Erro;
 import com.digosofter.digowebapp.html.CssTag;
@@ -20,7 +18,7 @@ public class Mensagem extends ComponenteMain {
   private EnmTipo _enmTipo = EnmTipo.POSITIVA;
   private Imagem _imgIcon;
   private Painel _pnlConteudo;
-  private Painel _pnlMsg;
+  private Painel _pnlMensagem;
   private Painel _pnlTitulo;
   private String _strMensagem = "_msg";
   private String _strTitulo = "_titulo";
@@ -138,14 +136,14 @@ public class Mensagem extends ComponenteMain {
     return _pnlConteudo;
   }
 
-  private Painel getPnlMsg() {
+  private Painel getPnlMensagem() {
 
     try {
 
-      if (_pnlMsg == null) {
+      if (_pnlMensagem == null) {
 
-        _pnlMsg = new Painel();
-        _pnlMsg.setStrConteudo(this.getStrMensagem());
+        _pnlMensagem = new Painel();
+        _pnlMensagem.setStrConteudo(this.getStrMensagem());
       }
 
     }
@@ -157,7 +155,7 @@ public class Mensagem extends ComponenteMain {
     finally {
     }
 
-    return _pnlMsg;
+    return _pnlMensagem;
   }
 
   @Override
@@ -207,7 +205,7 @@ public class Mensagem extends ComponenteMain {
       this.getPnlConteudo().setTagPai(this);
       this.getImgIcon().setTagPai(this.getPnlConteudo());
       this.getPnlTitulo().setTagPai(this.getPnlConteudo());
-      this.getPnlMsg().setTagPai(this.getPnlConteudo());
+      this.getPnlMensagem().setTagPai(this.getPnlConteudo());
 
     }
     catch (Exception ex) {
@@ -227,8 +225,8 @@ public class Mensagem extends ComponenteMain {
     try {
 
       this.addCss(tagCss.setPosition("fixed"));
+      this.addCss(tagCss.setPaddingTop(50));
       this.addCss(tagCss.setWidth(100, "%"));
-      this.addCss(tagCss.setTop(15));
       this.addCss(tagCss.setZ(100));
 
     }

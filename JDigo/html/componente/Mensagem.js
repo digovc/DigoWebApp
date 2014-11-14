@@ -32,6 +32,16 @@ function Mensagem(strTitulo, strMsg, intTipo) {
 
   var _this = this;
 
+  var _booBloquearTela = true;
+
+  this.getBooBloquearTela = function() {
+    return _booBloquearTela;
+  };
+
+  this.setBooBloquearTela = function(booBloquearTela) {
+    _booBloquearTela = booBloquearTela;
+  };
+
   var _intTipo = Mensagem_TIPO_POSITIVA;
 
   this.getIntTipo = function() {
@@ -120,6 +130,27 @@ function Mensagem(strTitulo, strMsg, intTipo) {
       tag = tag.replace("_msg", _this.getStrMsg());
 
       _this.setStrEstrutura(tag);
+      _this.montarLayoutBloquearTela(tag)
+
+    } catch (e) {
+      new Erro("Erro inesperado.", e);
+    }
+  };
+
+  this.montarLayoutBloquearTela = function(tag) {
+
+    try {
+
+      if (!_this.getBooBloquearTela()) {
+
+        return false;
+      }
+
+      tag = $(tag).css("background", "rgba(0, 0, 0, 0.15)");
+      tag = $(tag).css("bottom", "0px");
+      tag = $(tag).css("top", "0px");
+
+      _this.setStrEstrutura(tag[0]);
 
     } catch (e) {
       new Erro("Erro inesperado.", e);
@@ -129,7 +160,6 @@ function Mensagem(strTitulo, strMsg, intTipo) {
   this.mostrar = function() {
 
     var intTempo;
-    var tag;
 
     try {
 
@@ -142,9 +172,8 @@ function Mensagem(strTitulo, strMsg, intTipo) {
         return false;
       }
 
-      tag = _this.toHtml();
       intTempo = _this.getStrMsg().length * 75;
-      $("body").append(tag);
+      $("body").append(_this.toHtml());
       Mensagem_BOO_MENSAGEM_VISIVEL = true;
 
       if (_this.getIntTipo() == 1) {
