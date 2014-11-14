@@ -10,22 +10,17 @@ public class Mensagem extends ComponenteMain {
 
   public enum EnmTipo {
     ALERTA,
+    LOAD,
     NEGATIVA,
-    POSITIVA
+    POSITIVA,
   }
 
   private EnmTipo _enmTipo = EnmTipo.POSITIVA;
-
   private Imagem _imgIcon;
-
   private Painel _pnlConteudo;
-
   private Painel _pnlMsg;
-
   private Painel _pnlTitulo;
-
   private String _strMensagem = "_msg";
-
   private String _strTitulo = "_titulo";
 
   public Mensagem() {
@@ -61,6 +56,10 @@ public class Mensagem extends ComponenteMain {
 
           case ALERTA:
             src = "res/media/info_alerta.png";
+            break;
+
+          case LOAD:
+            src = "res/media/load.gif";
             break;
 
           case NEGATIVA:
@@ -99,11 +98,9 @@ public class Mensagem extends ComponenteMain {
       if (_pnlConteudo == null) {
 
         _pnlConteudo = new Painel();
-        _pnlConteudo.addCss(CssTag.getIMain().setBorder(1, "outset",
-            AppWeb.getI().getObjPaletaCor().getStrCorBorda()));
+        _pnlConteudo.addCss(CssTag.getIMain().setBorder(1, "outset", AppWeb.getI().getObjPaletaCor().getStrCorBorda()));
         _pnlConteudo.addCss(CssTag.getIMain().setBorderRadius(5, 5, 5, 5));
-        _pnlConteudo.addCss(CssTag.getIMain().setBoxShadow(0, 2, 2, 2,
-            AppWeb.getI().getObjPaletaCor().getStrCorBorda()));
+        _pnlConteudo.addCss(CssTag.getIMain().setBoxShadow(0, 2, 2, 2, AppWeb.getI().getObjPaletaCor().getStrCorBorda()));
         _pnlConteudo.addCss(CssTag.getIMain().setDisplay("table"));
         _pnlConteudo.addCss(CssTag.getIMain().setPadding(5, "px"));
         _pnlConteudo.addCss(CssTag.getIMain().setBackgroundColor("white"));
@@ -156,8 +153,7 @@ public class Mensagem extends ComponenteMain {
         _pnlTitulo.addCss(CssTag.getIMain().setFontNegrito());
         _pnlTitulo.addCss(CssTag.getIMain().setMarginBottom(5));
         _pnlTitulo.addCss(CssTag.getIMain().setPaddingTop(5));
-        _pnlTitulo.addCss(CssTag.getIMain().setBorderTop(1,
-            AppWeb.getI().getObjPaletaCor().getStrCorBorda()));
+        _pnlTitulo.addCss(CssTag.getIMain().setBorderTop(1, AppWeb.getI().getObjPaletaCor().getStrCorBorda()));
       }
 
     }

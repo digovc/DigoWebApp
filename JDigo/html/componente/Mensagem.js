@@ -2,12 +2,14 @@
 
 var Mensagem_BOO_MENSAGEM_VISIVEL = false;
 var Mensagem_ESTRUTURA_INFO_ALERTA = "";
+var Mensagem_ESTRUTURA_INFO_LOAD = "";
 var Mensagem_ESTRUTURA_INFO_NEGATIVA = "";
 var Mensagem_ESTRUTURA_INFO_POSITIVA = "";
 
 var Mensagem_TIPO_ALERTA = 0;
-var Mensagem_TIPO_NEGATIVA = 1;
-var Mensagem_TIPO_POSITIVA = 2;
+var Mensagem_TIPO_LOAD = 1;
+var Mensagem_TIPO_NEGATIVA = 2;
+var Mensagem_TIPO_POSITIVA = 3;
 
 // FIM CONSTANTE
 // ATRIBUTOS GLOBAIS
@@ -37,7 +39,7 @@ function Mensagem(strTitulo, strMsg, intTipo) {
   };
 
   /**
-   * 0 = alerta; 1 = negativa; 2 = positiva.
+   * 0 = alerta; 1 = load; 2 = negativa; 3 = positiva.
    */
   this.setIntTipo = function(intTipo) {
     _intTipo = intTipo;
@@ -67,26 +69,45 @@ function Mensagem(strTitulo, strMsg, intTipo) {
 
   // MÉTODO
 
+  this.esconder = function() {
+
+    try {
+
+      $(document).find("#msg").fadeOut("slow");
+
+      window.setTimeout(function() {
+
+        $(document).find("#msg").remove();
+        Mensagem_BOO_MENSAGEM_VISIVEL = false;
+
+      }, 250);
+
+    } catch (e) {
+      new Erro("Erro inesperado.", e);
+    }
+  };
+
   this.montarLayout = function() {
-    
 
     var tag;
 
-    
     try {
-      
 
-      switch (this.getIntTipo()) {
+      switch (_this.getIntTipo()) {
 
       case 0: // Alerta
         tag = Mensagem_ESTRUTURA_INFO_ALERTA;
         break;
 
-      case 1: // Negativa
+      case 1: // Load
+        tag = Mensagem_ESTRUTURA_INFO_LOAD;
+        break;
+
+      case 2: // Negativa
         tag = Mensagem_ESTRUTURA_INFO_NEGATIVA;
         break;
 
-      case 2: // Positiva
+      case 3: // Positiva
         tag = Mensagem_ESTRUTURA_INFO_POSITIVA;
         break;
 
@@ -95,26 +116,22 @@ function Mensagem(strTitulo, strMsg, intTipo) {
         break;
       }
 
-      tag = tag.replace("_titulo", this.getStrTitulo());
-      tag = tag.replace("_msg", this.getStrMsg());
+      tag = tag.replace("_titulo", _this.getStrTitulo());
+      tag = tag.replace("_msg", _this.getStrMsg());
 
-      this.setStrEstrutura(tag);
+      _this.setStrEstrutura(tag);
 
-      
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
   };
 
   this.mostrar = function() {
-    
 
     var intTempo;
     var tag;
 
-    
     try {
-      
 
       if (Mensagem_BOO_MENSAGEM_VISIVEL) {
 
@@ -125,10 +142,15 @@ function Mensagem(strTitulo, strMsg, intTipo) {
         return false;
       }
 
-      tag = this.toHtml();
-      intTempo = this.getStrMsg().length * 75;
+      tag = _this.toHtml();
+      intTempo = _this.getStrMsg().length * 75;
       $("body").append(tag);
       Mensagem_BOO_MENSAGEM_VISIVEL = true;
+
+      if (_this.getIntTipo() == 1) {
+
+        return;
+      }
 
       window.setTimeout(function() {
 
@@ -142,7 +164,6 @@ function Mensagem(strTitulo, strMsg, intTipo) {
         }, 250);
       }, intTempo);
 
-      
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
@@ -151,16 +172,13 @@ function Mensagem(strTitulo, strMsg, intTipo) {
   // FIM MÉTODO
 
   /* Construtor */{
-    
-    
+
     try {
-      
 
-      this.setIntTipo(intTipo);
-      this.setStrTitulo(strTitulo);
-      this.setStrMsg(strMsg);
+      _this.setIntTipo(intTipo);
+      _this.setStrTitulo(strTitulo);
+      _this.setStrMsg(strMsg);
 
-      
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }

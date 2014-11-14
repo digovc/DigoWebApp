@@ -242,6 +242,7 @@ public class PaginaHtml extends Objeto {
 
     String strJs;
     Mensagem msgAlerta;
+    Mensagem msgLoad;
     Mensagem msgNegativa;
     Mensagem msgPositiva;
 
@@ -249,6 +250,9 @@ public class PaginaHtml extends Objeto {
 
       msgAlerta = new Mensagem();
       msgAlerta.setEnmTipo(Mensagem.EnmTipo.ALERTA);
+
+      msgLoad = new Mensagem();
+      msgLoad.setEnmTipo(Mensagem.EnmTipo.LOAD);
 
       msgNegativa = new Mensagem();
       msgNegativa.setEnmTipo(Mensagem.EnmTipo.NEGATIVA);
@@ -258,6 +262,7 @@ public class PaginaHtml extends Objeto {
 
       strJs = "";
       strJs += "Mensagem_ESTRUTURA_INFO_ALERTA = '" + msgAlerta.toString() + "';";
+      strJs += "Mensagem_ESTRUTURA_INFO_LOAD = '" + msgLoad.toString() + "';";
       strJs += "Mensagem_ESTRUTURA_INFO_NEGATIVA = '" + msgNegativa.toString() + "';";
       strJs += "Mensagem_ESTRUTURA_INFO_POSITIVA = '" + msgPositiva.toString() + "';";
 
@@ -438,8 +443,7 @@ public class PaginaHtml extends Objeto {
         @Override
         public int compare(final JavaScriptTag objJsTag1, final JavaScriptTag objJsTag2) {
 
-          return objJsTag1.getIntPrioridade() < objJsTag2.getIntPrioridade() ? -1 : objJsTag1
-              .getIntPrioridade() > objJsTag2.getIntPrioridade() ? +1 : 0;
+          return objJsTag1.getIntPrioridade() < objJsTag2.getIntPrioridade() ? -1 : objJsTag1.getIntPrioridade() > objJsTag2.getIntPrioridade() ? +1 : 0;
         }
       });
 
