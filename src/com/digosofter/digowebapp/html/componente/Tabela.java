@@ -240,7 +240,6 @@ public class Tabela extends ComponenteMain {
       this.getTagTbody().setTagPai(this.getTagTable());
       this.montarLayoutCabecalho();
       this.montarLayoutLinhas();
-
     }
     catch (Exception ex) {
 

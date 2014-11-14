@@ -12,35 +12,20 @@ import com.digosofter.digowebapp.erro.Erro;
 public class EmailAppWeb extends Objeto {
 
   private boolean _booSsl = true;
-
   private int _intSmtpPort = 465;
-
   private List<String> _lstStrBccEmail;
-
   private List<String> _lstStrBccNome;
-
   private List<String> _lstStrCcEmail;
-
   private List<String> _lstStrCcNome;
-
   private List<String> _lstStrToEmail;
-
   private List<String> _lstStrToNome;
-
   private DefaultAuthenticator _objDefaultAuthenticator;
-
   private String _strAssunto;
-
   private String _strFromEmail;
-
   private String _strFromNome;
-
   private String _strMensagem;
-
   private String _strReplyToEmail;
-
   private String _strReplyToNome;
-
   private String _strSmtp = "smtp.gmail.com";
 
   private void addBcc(Email objEmail) {
@@ -57,7 +42,6 @@ public class EmailAppWeb extends Objeto {
 
         objEmail.addBcc(strEmail, strNome);
       }
-
     }
     catch (Exception ex) {
 
@@ -77,7 +61,6 @@ public class EmailAppWeb extends Objeto {
 
       this.getLstStrBccEmail().add(strEmail);
       this.getLstStrBccNome().add(strNome);
-
     }
     catch (Exception ex) {
 
@@ -102,7 +85,6 @@ public class EmailAppWeb extends Objeto {
 
         objEmail.addCc(strEmail, strNome);
       }
-
     }
     catch (Exception ex) {
 
@@ -122,12 +104,10 @@ public class EmailAppWeb extends Objeto {
 
       this.getLstStrCcEmail().add(strEmail);
       this.getLstStrCcNome().add(strNome);
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -147,7 +127,6 @@ public class EmailAppWeb extends Objeto {
 
         objEmail.addTo(strEmail, strNome);
       }
-
     }
     catch (Exception ex) {
 
