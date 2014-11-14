@@ -1,5 +1,7 @@
 package com.digosofter.digowebapp.html.componente;
 
+import org.w3c.dom.css.CSSMediaRule;
+
 import com.digosofter.digowebapp.AppWeb;
 import com.digosofter.digowebapp.erro.Erro;
 import com.digosofter.digowebapp.html.CssTag;
@@ -46,39 +48,17 @@ public class Mensagem extends ComponenteMain {
 
   private Imagem getImgIcon() {
 
-    String src;
-
     try {
 
-      if (_imgIcon == null) {
+      if (_imgIcon != null) {
 
-        switch (this.getEnmTipo()) {
-
-          case ALERTA:
-            src = "res/media/info_alerta.png";
-            break;
-
-          case LOAD:
-            src = "res/media/load.gif";
-            break;
-
-          case NEGATIVA:
-            src = "res/media/info_negativa.png";
-            break;
-
-          case POSITIVA:
-            src = "res/media/info_positiva.png";
-            break;
-
-          default:
-            src = "res/media/info_alerta.png";
-            break;
-        }
-
-        _imgIcon = new Imagem();
-        _imgIcon.setSrc(src);
+        return _imgIcon;
       }
 
+      _imgIcon = new Imagem();
+      _imgIcon.setSrc(this.definirSrc());
+      _imgIcon.addCss(CssTag.getIMain().setHeight(50, "px"));
+      _imgIcon.addCss(CssTag.getIMain().setWidth(50, "px"));
     }
     catch (Exception ex) {
 
@@ -89,6 +69,45 @@ public class Mensagem extends ComponenteMain {
     }
 
     return _imgIcon;
+  }
+
+  private String definirSrc() {
+
+    String strResultado = null;
+
+    try {
+
+      switch (this.getEnmTipo()) {
+
+        case ALERTA:
+          strResultado = "res/media/info_alerta.png";
+          break;
+
+        case LOAD:
+          strResultado = "res/media/load.gif";
+          break;
+
+        case NEGATIVA:
+          strResultado = "res/media/info_negativa.png";
+          break;
+
+        case POSITIVA:
+          strResultado = "res/media/info_positiva.png";
+          break;
+
+        default:
+          strResultado = "res/media/info_alerta.png";
+          break;
+      }
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    }
+    finally {
+    }
+    return strResultado;
   }
 
   private Painel getPnlConteudo() {
