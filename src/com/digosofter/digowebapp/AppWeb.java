@@ -1,9 +1,11 @@
 package com.digosofter.digowebapp;
 
+import java.io.File;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -41,6 +43,7 @@ public abstract class AppWeb extends Objeto {
     return i;
   }
 
+  private String _dirLocal;
   private List<Usuario> _lstObjUsuarioSessao;
   private Gson _objGson;
   private HttpServletRequest _objHttpServletRequest;
@@ -48,6 +51,7 @@ public abstract class AppWeb extends Objeto {
   private HttpSession _objHttpSession;
   private PaletaCor _objPaletaCor;
   private PrintWriter _objPrintWriter;
+  private ServletContext _objServletContext;
   private Usuario _objUsuarioAtual;
   private String _strPagSolicitada;
   private String _strVersao;
@@ -124,6 +128,28 @@ public abstract class AppWeb extends Objeto {
     }
 
     return booResultado;
+  }
+
+  public String getDirLocal() {
+
+    try {
+
+      if (!Utils.getBooStrVazia(_dirLocal)) {
+
+        return _dirLocal;
+      }
+
+      _dirLocal = this.getObjServletContext().getRealPath(File.separator);
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    }
+    finally {
+    }
+
+    return _dirLocal;
   }
 
   /**
@@ -289,6 +315,23 @@ public abstract class AppWeb extends Objeto {
     return _objPrintWriter;
   }
 
+  protected ServletContext getObjServletContext() {
+
+    try {
+
+      _objServletContext = this.getObjHttpServletRequest().getServletContext();
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    }
+    finally {
+    }
+
+    return _objServletContext;
+  }
+
   public Usuario getObjUsuarioAtual() {
 
     try {
@@ -430,8 +473,7 @@ public abstract class AppWeb extends Objeto {
     try {
 
       _objHttpServletRequest = objHttpServletRequest;
-      this.setStrPagSolicitada(_objHttpServletRequest.getRequestURI().replace(
-          _objHttpServletRequest.getContextPath() + "/app/", Utils.STR_VAZIA));
+      this.setStrPagSolicitada(_objHttpServletRequest.getRequestURI().replace(_objHttpServletRequest.getContextPath() + "/app/", Utils.STR_VAZIA));
       this.setObjHttpSession(_objHttpServletRequest.getSession());
 
     }
