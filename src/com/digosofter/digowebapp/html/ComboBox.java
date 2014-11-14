@@ -33,7 +33,7 @@ public class ComboBox extends Campo {
   /**
    * Adiciona uma opção à lista do "comboBox".
    */
-  public void addNomeValor(String strNome, String strValor) {
+  public void addNomeValor(String strValor, String strNome) {
 
     try {
 

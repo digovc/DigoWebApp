@@ -44,38 +44,23 @@ public class DbColuna extends Objeto {
     TEMPORAL
   }
 
-  private boolean _booChavePrimaria = false;
-
-  private boolean _booClnNome = false;
-
-  private boolean _booNotNull = false;
-
-  private boolean _booSenha = false;
-
+  private boolean _booChavePrimaria;
+  private boolean _booClnNome;
+  private boolean _booNotNull;
+  private boolean _booSenha;
   private boolean _booVisivelCadastro = true;
-
   private boolean _booVisivelConsulta = true;
-
   private DbColuna _clnReferencia;
-
   private EnmTipo _enmTipo = EnmTipo.INTEGER;
-
   private EnmTipoGrupo _enmTipoGrupo;
-
   private int _intFrmLinha = 1;
-
   private int _intFrmLinhaPeso = 1;
-
   private int _intOrdem;
-
   private int _intTamanhoCampo = 100;
-
-  private List<String> _lstStrOpcao;
-
+  private List<Integer> _lstIntOpcaoValor;
+  private List<String> _lstStrOpcaoNome;
   private String _strValor;
-
   private String _strValorSql;
-
   private DbTabela _tbl;
 
   public DbColuna(String strNome, DbTabela tbl, EnmTipo enmClnTipo) {
@@ -102,40 +87,37 @@ public class DbColuna extends Objeto {
    */
   public void carregarComboBox(ComboBox objCampoComboBox) {
 
-    int intIndex;
-    ResultSet objResultSet;
+    ResultSet rst;
 
     try {
 
       if (this.getClnReferencia() != null) {
 
-        objResultSet = this.getClnReferencia().getTbl().getRstNomeValor();
+        rst = this.getClnReferencia().getTbl().getRstNomeValor();
 
         objCampoComboBox.setBooOpcaoVazia(!this.getClnReferencia().getBooNotNull());
 
-        if (objResultSet != null && objResultSet.first()) {
+        if (rst != null && rst.first()) {
 
           do {
 
-            objCampoComboBox.addNomeValor(objResultSet.getString(2), objResultSet.getString(1));
+            objCampoComboBox.addNomeValor(rst.getString(1), rst.getString(2));
 
           }
-          while (objResultSet.next());
+          while (rst.next());
 
           return;
         }
       }
 
-      if (this.getLstStrOpcao().size() > 0) {
-
-        intIndex = 0;
-
-        for (String strOpcao : this.getLstStrOpcao()) {
-
-          objCampoComboBox.addNomeValor(strOpcao, String.valueOf(intIndex++));
-        }
+      if (this.getLstStrOpcaoNome().size() == 0) {
 
         return;
+      }
+
+      for (int i = 0; i < this.getLstIntOpcaoValor().size(); i++) {
+
+        objCampoComboBox.addNomeValor(this.getLstIntOpcaoValor().get(i).toString(), this.getLstStrOpcaoNome().get(i));
       }
 
     }
@@ -260,14 +242,16 @@ public class DbColuna extends Objeto {
     return Integer.valueOf(this.getStrValor());
   }
 
-  public List<String> getLstStrOpcao() {
+  private List<Integer> getLstIntOpcaoValor() {
 
     try {
 
-      if (_lstStrOpcao == null) {
-        _lstStrOpcao = new ArrayList<String>();
+      if (_lstIntOpcaoValor != null) {
+
+        return _lstIntOpcaoValor;
       }
 
+      _lstIntOpcaoValor = new ArrayList<Integer>();
     }
     catch (Exception ex) {
 
@@ -277,7 +261,29 @@ public class DbColuna extends Objeto {
     finally {
     }
 
-    return _lstStrOpcao;
+    return _lstIntOpcaoValor;
+  }
+
+  public List<String> getLstStrOpcaoNome() {
+
+    try {
+
+      if (_lstStrOpcaoNome != null) {
+
+        return _lstStrOpcaoNome;
+      }
+
+      _lstStrOpcaoNome = new ArrayList<String>();
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    }
+    finally {
+    }
+
+    return _lstStrOpcaoNome;
   }
 
   public String getStrCss() {
@@ -498,11 +504,6 @@ public class DbColuna extends Objeto {
     this.setStrValor(String.valueOf(intValor));
   }
 
-  protected void setLstStrOpcao(List<String> lstStrOpcao) {
-
-    _lstStrOpcao = lstStrOpcao;
-  }
-
   public void setStrValor(String strValor) {
 
     _strValor = strValor;
@@ -515,6 +516,25 @@ public class DbColuna extends Objeto {
       _tbl = tbl;
       _tbl.getLstCln().add(this);
 
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    }
+    finally {
+    }
+  }
+
+  /**
+   * Adiciona uma opção para lista, tornando o campo selecionável por combobox.
+   */
+  public void adicionarOpcao(int intValor, String strNome) {
+
+    try {
+
+      this.getLstIntOpcaoValor().add(intValor);
+      this.getLstStrOpcaoNome().add(strNome);
     }
     catch (Exception ex) {
 

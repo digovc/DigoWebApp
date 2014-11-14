@@ -62,7 +62,7 @@ public class CampoFrmTbl extends ComponenteMain {
     try {
 
       // ComboBox
-      if (this.getCln().getClnReferencia() != null || this.getCln().getLstStrOpcao().size() > 0) {
+      if (this.getCln().getClnReferencia() != null || this.getCln().getLstStrOpcaoNome().size() > 0) {
         this.definirTipoCampoComboBox();
         return;
       }
