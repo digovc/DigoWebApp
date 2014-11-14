@@ -36,11 +36,8 @@ public class Campo extends Tag {
   }
 
   private EnmTipo _enmTipo = EnmTipo.TEXT;
-
   private String _strId;
-
   private String _strPlaceHolder;
-
   private String _strValor;
 
   public Campo() {

@@ -13,11 +13,8 @@ import com.digosofter.digowebapp.html.componente.ComponenteMain;
 public class CampoFrmTbl extends ComponenteMain {
 
   private DbColuna _cln;
-
   private Campo _objCampo;
-
   private Painel _pnlCampo;
-
   private Painel _pnlTitulo;
 
   public CampoFrmTbl(DbColuna cln) {
@@ -26,7 +23,6 @@ public class CampoFrmTbl extends ComponenteMain {
 
       this.setCln(cln);
       this.addCss(CssTag.getIMain().setWidth(this.getDblCampoWidth(), "%"));
-
     }
     catch (Exception ex) {
 
@@ -318,7 +314,8 @@ public class CampoFrmTbl extends ComponenteMain {
     try {
 
       this.addCss(tagCss.setFloat("left"));
-
+      this.addCss(tagCss.setPaddingBottom(5));
+      this.addCss(tagCss.setPaddingTop(5));
     }
     catch (Exception ex) {
 
