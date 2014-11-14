@@ -795,7 +795,7 @@ public class CssTag extends Tag {
 
     try {
 
-      strResultado = this.addCss("font-Weight", "bold");
+      strResultado = this.addCss("font-weight", "bold");
 
     }
     catch (Exception ex) {
