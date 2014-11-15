@@ -139,7 +139,7 @@ public abstract class AppWeb extends Objeto {
         return _dirLocal;
       }
 
-      _dirLocal = this.getObjServletContext().getRealPath(File.separator);
+      _dirLocal = this.getObjServletContext().getRealPath("/");
     }
     catch (Exception ex) {
 
