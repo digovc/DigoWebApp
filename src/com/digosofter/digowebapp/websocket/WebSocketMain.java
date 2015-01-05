@@ -10,9 +10,9 @@ import javax.websocket.server.ServerEndpoint;
 
 import org.apache.tomcat.websocket.WsSession;
 
+import com.digosofter.digojava.erro.Erro;
 import com.digosofter.digowebapp.AppWeb;
 import com.digosofter.digowebapp.Usuario;
-import com.digosofter.digowebapp.erro.Erro;
 import com.google.gson.Gson;
 
 @ServerEndpoint("/ws/ws_main")

@@ -1,8 +1,8 @@
 package com.digosofter.digowebapp.database;
 
-import com.digosofter.digowebapp.erro.Erro;
+import com.digosofter.digojava.erro.Erro;
 
-public class DbFirebird extends DataBase {
+public class DbFirebird extends DataBaseWeb {
 
   private static final String STR_DRIVE_NAME = "firebirdsql";
   private static final String STR_PACKEGE_CLASS_NAME = "org.firebirdsql.jdbc.FBDriver";

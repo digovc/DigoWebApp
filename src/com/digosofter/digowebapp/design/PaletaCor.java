@@ -1,29 +1,22 @@
 package com.digosofter.digowebapp.design;
 
+import com.digosofter.digojava.Objeto;
+import com.digosofter.digojava.Utils;
+import com.digosofter.digojava.erro.Erro;
 import com.digosofter.digowebapp.AppWeb;
-import com.digosofter.digowebapp.Objeto;
-import com.digosofter.digowebapp.erro.Erro;
 import com.digosofter.digowebapp.html.JavaScriptTag;
 import com.digosofter.digowebapp.html.PaginaHtml;
 
 public class PaletaCor extends Objeto {
 
   private boolean _booSelecionado;
-
   private String _strCorBorda = "#e1e1e1";
-
   private String _strCorBorda2 = "#777777";
-
   private String _strCorControleClicado;
-
   private String _strCorControleMouse;
-
   private String _strCorControleNormal;
-
   private String _strCorFundo;
-
-  private String _strObjJavaScriptNome = "";
-
+  private String _strObjJavaScriptNome = Utils.STR_VAZIA;
   private String _strSombra = "#e1e1e1";
 
   public PaletaCor(String strNome) {
@@ -31,11 +24,9 @@ public class PaletaCor extends Objeto {
     try {
 
       this.setStrNome(strNome);
-      this.addJs("var " + this.getStrObjJavaScriptNome() + "= new PaletaCor('" + this.getStrNome()
-          + "');");
+      this.addJs("var " + this.getStrObjJavaScriptNome() + "= new PaletaCor('" + this.getStrNome() + "');");
 
-      PaginaHtml.getI().getLstTagJs()
-      .add(new JavaScriptTag("res/js/lib/JDigo/design/PaletaCor.js"));
+      PaginaHtml.getI().getLstTagJs().add(new JavaScriptTag("res/js/lib/JDigo/design/PaletaCor.js"));
 
       AppWeb.getI().getLstObjPaletaCor().add(this);
 
@@ -152,8 +143,7 @@ public class PaletaCor extends Objeto {
     try {
 
       _strCorBorda = strCorBorda;
-      strJs = this.getStrObjJavaScriptNome() + ".setStrCorControleClicado('"
-          + _strCorControleClicado + "');";
+      strJs = this.getStrObjJavaScriptNome() + ".setStrCorControleClicado('" + _strCorControleClicado + "');";
       this.addJs(strJs);
 
     }
@@ -193,8 +183,7 @@ public class PaletaCor extends Objeto {
     try {
 
       _strCorControleClicado = strCorControleClicado;
-      strJs = this.getStrObjJavaScriptNome() + ".setStrCorControleClicado('"
-          + _strCorControleClicado + "');";
+      strJs = this.getStrObjJavaScriptNome() + ".setStrCorControleClicado('" + _strCorControleClicado + "');";
       this.addJs(strJs);
 
     }
@@ -214,8 +203,7 @@ public class PaletaCor extends Objeto {
     try {
 
       _strCorControleMouse = strCorControleMouse;
-      strJs = this.getStrObjJavaScriptNome() + ".setStrCorControleMouse('" + _strCorControleMouse
-          + "');";
+      strJs = this.getStrObjJavaScriptNome() + ".setStrCorControleMouse('" + _strCorControleMouse + "');";
       this.addJs(strJs);
 
     }
@@ -235,8 +223,7 @@ public class PaletaCor extends Objeto {
     try {
 
       _strCorControleNormal = strCorControleNormal;
-      strJs = this.getStrObjJavaScriptNome() + ".setStrCorControleNormal('" + _strCorControleNormal
-          + "');";
+      strJs = this.getStrObjJavaScriptNome() + ".setStrCorControleNormal('" + _strCorControleNormal + "');";
       this.addJs(strJs);
 
     }

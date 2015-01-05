@@ -1,6 +1,7 @@
 package com.digosofter.digowebapp;
 
-import com.digosofter.digowebapp.erro.Erro;
+import com.digosofter.digojava.Objeto;
+import com.digosofter.digojava.erro.Erro;
 
 public class Usuario extends Objeto {
 
@@ -29,10 +30,8 @@ public class Usuario extends Objeto {
     return objUsuarioResultado;
   }
 
-  private boolean _booLogado = false;
-
+  private boolean _booLogado;
   private int _intUsuarioId;
-
   private String _strSessaoId;
 
   public Usuario() {

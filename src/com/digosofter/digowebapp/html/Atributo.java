@@ -3,9 +3,9 @@ package com.digosofter.digowebapp.html;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.digosofter.digowebapp.Objeto;
-import com.digosofter.digowebapp.Utils;
-import com.digosofter.digowebapp.erro.Erro;
+import com.digosofter.digojava.Objeto;
+import com.digosofter.digojava.Utils;
+import com.digosofter.digojava.erro.Erro;
 
 public class Atributo extends Objeto {
 

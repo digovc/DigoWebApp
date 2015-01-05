@@ -1,22 +1,12 @@
 package com.digosofter.digowebapp.html;
 
-import com.digosofter.digowebapp.erro.Erro;
+import com.digosofter.digojava.erro.Erro;
 
 public class AtributoCss extends Atributo {
 
-  private String _strValor;
-
-  private String getstrValor() {
-
-    return _strValor;
-  }
-
-  private void setstrValor(String strValor) {
-
-    _strValor = strValor;
-  }
-
   private String _strClassAssociada;
+
+  private String _strValor;
 
   public AtributoCss(String strNome, String strValor) {
 
@@ -42,9 +32,19 @@ public class AtributoCss extends Atributo {
     return _strClassAssociada;
   }
 
+  private String getstrValor() {
+
+    return _strValor;
+  }
+
   public void setStrClassAssociada(String strClassAssociada) {
 
     _strClassAssociada = strClassAssociada;
+  }
+
+  private void setstrValor(String strValor) {
+
+    _strValor = strValor;
   }
 
 }

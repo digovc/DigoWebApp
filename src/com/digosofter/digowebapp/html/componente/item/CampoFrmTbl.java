@@ -1,9 +1,10 @@
 package com.digosofter.digowebapp.html.componente.item;
 
-import com.digosofter.digowebapp.Utils;
-import com.digosofter.digowebapp.database.DbColuna;
-import com.digosofter.digowebapp.database.DbColuna.EnmTipo;
-import com.digosofter.digowebapp.erro.Erro;
+import com.digosofter.digojava.Utils;
+import com.digosofter.digojava.database.DbColuna;
+import com.digosofter.digojava.database.DbColuna.EnmTipo;
+import com.digosofter.digojava.erro.Erro;
+import com.digosofter.digowebapp.database.DbColunaWeb;
 import com.digosofter.digowebapp.html.Campo;
 import com.digosofter.digowebapp.html.ComboBox;
 import com.digosofter.digowebapp.html.CssTag;
@@ -58,7 +59,7 @@ public class CampoFrmTbl extends ComponenteMain {
     try {
 
       // ComboBox
-      if (this.getCln().getClnReferencia() != null || this.getCln().getLstStrOpcaoNome().size() > 0) {
+      if (this.getCln().getClnRef() != null || this.getCln().getLstStrOpcao().size() > 0) {
         this.definirTipoCampoComboBox();
         return;
       }
@@ -121,7 +122,7 @@ public class CampoFrmTbl extends ComponenteMain {
     try {
 
       objCampoComboBox = new ComboBox();
-      this.getCln().carregarComboBox(objCampoComboBox);
+      ((DbColunaWeb) this.getCln()).carregarComboBox(objCampoComboBox);
       this.setObjCampo(objCampoComboBox);
 
     }
@@ -175,8 +176,10 @@ public class CampoFrmTbl extends ComponenteMain {
 
     try {
 
-      for (DbColuna cln : this.getCln().getTbl().getLstClnVisivelCadastro()) {
+      for (DbColuna cln : this.getCln().getTbl().getLstClnCadastro()) {
+
         if (cln.getIntFrmLinha() == this.getCln().getIntFrmLinha()) {
+
           intResultado = intResultado + cln.getIntFrmLinhaPeso();
         }
       }

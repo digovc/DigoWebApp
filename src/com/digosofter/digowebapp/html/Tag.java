@@ -3,10 +3,10 @@ package com.digosofter.digowebapp.html;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.digosofter.digojava.Objeto;
+import com.digosofter.digojava.Utils;
+import com.digosofter.digojava.erro.Erro;
 import com.digosofter.digowebapp.AppWeb;
-import com.digosofter.digowebapp.Objeto;
-import com.digosofter.digowebapp.Utils;
-import com.digosofter.digowebapp.erro.Erro;
 
 public class Tag extends Objeto {
 
@@ -81,6 +81,20 @@ public class Tag extends Objeto {
     try {
 
       this.getAtrClass().getLstStrValor().add(strClassCss);
+
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    }
+    finally {
+    }
+  }
+
+  protected void addCssArquivo(List<CssTag> lstTagCss) {
+
+    try {
 
     }
     catch (Exception ex) {
@@ -245,6 +259,11 @@ public class Tag extends Objeto {
     return _lstTag;
   }
 
+  public String getSrc() {
+
+    return _strSrc;
+  }
+
   protected String getStrAbertura() {
 
     try {
@@ -280,8 +299,7 @@ public class Tag extends Objeto {
           stbAtrFormatado.append(" ");
           stbAtrFormatado.append(atr.getStrNome());
           stbAtrFormatado.append("=\"");
-          stbAtrFormatado.append(Utils.getStrConcatenarLst(atr.getLstStrValor(),
-              atr.getStrDelimitador(), true));
+          stbAtrFormatado.append(Utils.getStrConcatenarLst(atr.getLstStrValor(), atr.getStrDelimitador(), true));
           stbAtrFormatado.append("\"");
         }
       }
@@ -333,7 +351,7 @@ public class Tag extends Objeto {
       }
 
       _strId = "id_int_id";
-      _strId = _strId.replace("_int_id", String.valueOf(this.getIntId()));
+      _strId = _strId.replace("_int_id", String.valueOf(this.getIntIndexObjeto()));
 
       this.getLstAtr().add(new Atributo("id", _strId));
     }
@@ -353,11 +371,6 @@ public class Tag extends Objeto {
     return _strLink;
   }
 
-  public String getSrc() {
-
-    return _strSrc;
-  }
-
   public String getStrTagFormatada() {
 
     StringBuilder stbTagFormatada = new StringBuilder();
@@ -366,8 +379,7 @@ public class Tag extends Objeto {
 
       this.montarLayout();
 
-      if (!Utils.getBooStrVazia(this.getStrConteudo()) || !this.getLstTag().isEmpty()
-          || this.getBooForcarTagDupla()) {
+      if (!Utils.getBooStrVazia(this.getStrConteudo()) || !this.getLstTag().isEmpty() || this.getBooForcarTagDupla()) {
 
         if (!Utils.getBooStrVazia(this.getStrLink())) {
           stbTagFormatada.append("<a href=\"");
@@ -457,12 +469,12 @@ public class Tag extends Objeto {
   private String getStrTitle() {
 
     return _strTitle;
-  }
+  };
 
   public Tag getTagPai() {
 
     return _tagPai;
-  };
+  }
 
   /**
    * Limpa todas as "classes" já adicionadas à tag.
@@ -491,20 +503,6 @@ public class Tag extends Objeto {
       this.addJsArquivo(PaginaHtml.getI().getLstTagJs());
       this.addJsCodigo(PaginaHtml.getI().getTagJsMain());
       this.setCss(CssTag.getIMain());
-
-    }
-    catch (Exception ex) {
-
-      new Erro("Erro inesperado.\n", ex);
-
-    }
-    finally {
-    }
-  }
-
-  protected void addCssArquivo(List<CssTag> lstTagCss) {
-
-    try {
 
     }
     catch (Exception ex) {
@@ -561,6 +559,27 @@ public class Tag extends Objeto {
   private void setLstTag(List<Tag> lstTag) {
 
     _lstTag = lstTag;
+  }
+
+  public void setSrc(String strSrc) {
+
+    try {
+
+      _strSrc = strSrc;
+
+      if (Utils.getBooStrVazia(_strSrc)) {
+        return;
+      }
+
+      this.getAtrSrc().setStrValor(strSrc);
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    }
+    finally {
+    }
   }
 
   private void setStrAbertura(String strAbertura) {
@@ -620,27 +639,6 @@ public class Tag extends Objeto {
       _strNome = strNome;
       this.addAtr("name", _strNome);
 
-    }
-    catch (Exception ex) {
-
-      new Erro("Erro inesperado.\n", ex);
-
-    }
-    finally {
-    }
-  }
-
-  public void setSrc(String strSrc) {
-
-    try {
-
-      _strSrc = strSrc;
-
-      if (Utils.getBooStrVazia(_strSrc)) {
-        return;
-      }
-
-      this.getAtrSrc().setStrValor(strSrc);
     }
     catch (Exception ex) {
 

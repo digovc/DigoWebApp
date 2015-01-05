@@ -5,11 +5,11 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import com.digosofter.digojava.Objeto;
+import com.digosofter.digojava.Utils;
+import com.digosofter.digojava.erro.Erro;
 import com.digosofter.digowebapp.AppWeb;
-import com.digosofter.digowebapp.Objeto;
 import com.digosofter.digowebapp.Usuario;
-import com.digosofter.digowebapp.Utils;
-import com.digosofter.digowebapp.erro.Erro;
 import com.digosofter.digowebapp.html.componente.Mensagem;
 
 public class PaginaHtml extends Objeto {
@@ -348,26 +348,6 @@ public class PaginaHtml extends Objeto {
     return _lstTagCss;
   }
 
-  public List<JavaScriptTag> getLstTagJs() {
-
-    try {
-      if (_lstTagJs != null) {
-        return _lstTagJs;
-      }
-
-      _lstTagJs = new ArrayList<JavaScriptTag>();
-    }
-    catch (Exception ex) {
-
-      new Erro("Erro inesperado.\n", ex);
-
-    }
-    finally {
-    }
-
-    return _lstTagJs;
-  }
-
   private List<CssTag> getLstTagCssOrdenado() {
 
     boolean booCssAdicionado;
@@ -407,6 +387,26 @@ public class PaginaHtml extends Objeto {
     }
 
     return _lstTagCssOrdenado;
+  }
+
+  public List<JavaScriptTag> getLstTagJs() {
+
+    try {
+      if (_lstTagJs != null) {
+        return _lstTagJs;
+      }
+
+      _lstTagJs = new ArrayList<JavaScriptTag>();
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    }
+    finally {
+    }
+
+    return _lstTagJs;
   }
 
   private List<JavaScriptTag> getLstTagJsOrdenado() {
@@ -755,13 +755,13 @@ public class PaginaHtml extends Objeto {
     try {
 
       strJs = "var ";
-      strJs += "msg" + msg.getIntId();
+      strJs += "msg" + msg.getIntIndexObjeto();
       strJs += "= new Mensagem(";
       strJs += "'" + msg.getStrTitulo() + "',";
       strJs += "'" + msg.getStrMensagem() + "',";
       strJs += msg.getEnmTipo().ordinal();
       strJs += ");";
-      strJs += "msg" + msg.getIntId() + ".mostrar();";
+      strJs += "msg" + msg.getIntIndexObjeto() + ".mostrar();";
 
       this.addJsCodigo(strJs);
 

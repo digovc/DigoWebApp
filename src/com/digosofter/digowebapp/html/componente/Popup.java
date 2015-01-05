@@ -3,8 +3,8 @@ package com.digosofter.digowebapp.html.componente;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.digosofter.digojava.erro.Erro;
 import com.digosofter.digowebapp.AppWeb;
-import com.digosofter.digowebapp.erro.Erro;
 import com.digosofter.digowebapp.html.CssTag;
 import com.digosofter.digowebapp.html.JavaScriptTag;
 import com.digosofter.digowebapp.html.Painel;

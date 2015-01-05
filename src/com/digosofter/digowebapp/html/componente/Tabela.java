@@ -3,10 +3,11 @@ package com.digosofter.digowebapp.html.componente;
 import java.sql.ResultSet;
 import java.util.List;
 
+import com.digosofter.digojava.database.DbColuna;
+import com.digosofter.digojava.erro.Erro;
 import com.digosofter.digowebapp.AppWeb;
-import com.digosofter.digowebapp.database.DbColuna;
-import com.digosofter.digowebapp.database.DbTabela;
-import com.digosofter.digowebapp.erro.Erro;
+import com.digosofter.digowebapp.database.DbColunaWeb;
+import com.digosofter.digowebapp.database.DbTabelaWeb;
 import com.digosofter.digowebapp.html.Campo;
 import com.digosofter.digowebapp.html.CssTag;
 import com.digosofter.digowebapp.html.JavaScriptTag;
@@ -16,20 +17,14 @@ import com.digosofter.digowebapp.html.Tag;
 public class Tabela extends ComponenteMain {
 
   private boolean _booPesquisa = true;
-
   private Painel _pnlPesquisa;
-
   private Tag _tagTable;
-
   private Tag _tagTbody;
-
   private Tag _tagThead;
-
-  private DbTabela _tbl;
-
+  private DbTabelaWeb _tbl;
   private Campo _txtPesquisa;
 
-  public Tabela(DbTabela tbl) {
+  public Tabela(DbTabelaWeb tbl) {
 
     try {
 
@@ -195,7 +190,7 @@ public class Tabela extends ComponenteMain {
     return _tagThead;
   }
 
-  private DbTabela getTbl() {
+  private DbTabelaWeb getTbl() {
 
     return _tbl;
   }
@@ -261,7 +256,7 @@ public class Tabela extends ComponenteMain {
       tagTr.setTagPai(this.getTagThead());
       tagTr.addCss(CssTag.getIMain().setBorderBottom(1, "#999"));
 
-      for (DbColuna cln : this.getTbl().getLstClnVisivelConsulta()) {
+      for (DbColuna cln : this.getTbl().getLstClnConsulta()) {
 
         tagTh = new Tag("th");
         tagTh.setStrConteudo(cln.getStrNomeExibicao());
@@ -295,7 +290,7 @@ public class Tabela extends ComponenteMain {
         tagTr.addCss(CssTag.getIMain().setBackgroundColor("#F6F4F0"));
       }
 
-      for (DbColuna cln : this.getTbl().getLstClnVisivelConsulta()) {
+      for (DbColuna cln : this.getTbl().getLstClnConsulta()) {
 
         strValor = objResultSet.getString(cln.getStrNomeSimplificado());
         strValorFormatado = cln.getStrValorFormatado(strValor);
@@ -306,7 +301,7 @@ public class Tabela extends ComponenteMain {
         tagTd.addCss(CssTag.getIMain().setOverflow("hidden"));
         tagTd.addCss(CssTag.getIMain().setWhiteSpace("nowrap"));
         tagTd.addCss(CssTag.getIMain().addCss("text-overflow", "ellipsis"));
-        tagTd.addCss(cln.getStrCss());
+        tagTd.addCss(((DbColunaWeb) cln).getStrCss());
       }
 
     }
@@ -352,7 +347,7 @@ public class Tabela extends ComponenteMain {
     _booPesquisa = booPesquisa;
   }
 
-  private void setTbl(DbTabela tbl) {
+  private void setTbl(DbTabelaWeb tbl) {
 
     _tbl = tbl;
   }

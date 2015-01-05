@@ -3,8 +3,8 @@ package com.digosofter.digowebapp.html;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.digosofter.digowebapp.Utils;
-import com.digosofter.digowebapp.erro.Erro;
+import com.digosofter.digojava.Utils;
+import com.digosofter.digojava.erro.Erro;
 
 public class CssTag extends Tag {
 
@@ -222,47 +222,6 @@ public class CssTag extends Tag {
   }
 
   @Override
-  public String getStrTagFormatada() {
-
-    try {
-      this.verificarCssExterna();
-    }
-    catch (Exception ex) {
-
-      new Erro("Erro inesperado.\n", ex);
-
-    }
-    finally {
-    }
-
-    return super.getStrTagFormatada();
-  }
-
-  private void verificarCssExterna() {
-
-    try {
-
-      if ("cssMain".equals(this.getStrId())) {
-        return;
-      }
-
-      if ("cssImp".equals(this.getStrId())) {
-        return;
-      }
-
-      this.setStrTagNome("link");
-      this.setBooForcarTagDupla(false);
-    }
-    catch (Exception ex) {
-
-      new Erro("Erro inesperado.\n", ex);
-
-    }
-    finally {
-    }
-  }
-
-  @Override
   public String getStrConteudo() {
 
     String strAttCss;
@@ -299,9 +258,20 @@ public class CssTag extends Tag {
   }
 
   @Override
-  public void setStrConteudo(String strConteudo) {
+  public String getStrTagFormatada() {
 
-    _strConteudo = strConteudo;
+    try {
+      this.verificarCssExterna();
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    }
+    finally {
+    }
+
+    return super.getStrTagFormatada();
   }
 
   public String setBackgroundColor(String hexColor) {
@@ -500,8 +470,7 @@ public class CssTag extends Tag {
     return strResultado;
   }
 
-  public String setBorderRadius(int intTopLeftPx, int intTopRightPx, int intBottomLeftPx,
-      int intBottomRightPx) {
+  public String setBorderRadius(int intTopLeftPx, int intTopRightPx, int intBottomLeftPx, int intBottomRightPx) {
 
     String strResultado = Utils.STR_VAZIA;
     StringBuilder stb;
@@ -609,8 +578,7 @@ public class CssTag extends Tag {
     return strResultado;
   }
 
-  public String setBoxShadow(int intHorizontal, int intVertical, int intBlur, int intSpread,
-      String hexColor) {
+  public String setBoxShadow(int intHorizontal, int intVertical, int intBlur, int intSpread, String hexColor) {
 
     String strResultado = Utils.STR_VAZIA;
     StringBuilder stb;
@@ -1333,6 +1301,12 @@ public class CssTag extends Tag {
     return strResultado;
   }
 
+  @Override
+  public void setStrConteudo(String strConteudo) {
+
+    _strConteudo = strConteudo;
+  }
+
   public String setTextAlign(String strTextAlign) {
 
     String strResultado = Utils.STR_VAZIA;
@@ -1501,6 +1475,30 @@ public class CssTag extends Tag {
     }
 
     return strResultado;
+  }
+
+  private void verificarCssExterna() {
+
+    try {
+
+      if ("cssMain".equals(this.getStrId())) {
+        return;
+      }
+
+      if ("cssImp".equals(this.getStrId())) {
+        return;
+      }
+
+      this.setStrTagNome("link");
+      this.setBooForcarTagDupla(false);
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    }
+    finally {
+    }
   }
 
 }

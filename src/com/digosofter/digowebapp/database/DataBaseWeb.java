@@ -8,31 +8,24 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import com.digosofter.digowebapp.Objeto;
-import com.digosofter.digowebapp.Utils;
-import com.digosofter.digowebapp.erro.Erro;
+import com.digosofter.digojava.Utils;
+import com.digosofter.digojava.database.DataBase;
+import com.digosofter.digojava.erro.Erro;
 
-public abstract class DataBase extends Objeto {
+public abstract class DataBaseWeb extends DataBase {
 
   private int _intPort = 5432;
-
   private Connection _objConnection;
-
-  private String _strDbName;
-
   private String _strHost;
-
   private String _strPassword = "postgres";
-
   private String _strUser = "postgres";
 
-  public DataBase(String strHost, int intPort, String strDbName, String strUser, String strPassword) {
+  public DataBaseWeb(String strHost, int intPort, String strName, String strUser, String strPassword) {
 
     try {
 
       this.setStrHost(strHost);
       this.setIntPort(intPort);
-      this.setStrDbName(strDbName);
       this.setStrUser(strUser);
       this.setStrPassword(strPassword);
 
@@ -52,8 +45,7 @@ public abstract class DataBase extends Objeto {
 
     try {
 
-      objStatement = this.getObjConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
-          ResultSet.CONCUR_READ_ONLY);
+      objStatement = this.getObjConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
       objStatement.execute(sql);
 
     }
@@ -105,6 +97,7 @@ public abstract class DataBase extends Objeto {
    * <p>
    * Caso o valor não exista no bando de dados retorna -1.
    */
+  @Override
   public int execSqlGetInt(String sql) {
 
     int intResultado = 0;
@@ -201,8 +194,7 @@ public abstract class DataBase extends Objeto {
 
     try {
 
-      objStatement = this.getObjConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
-          ResultSet.CONCUR_READ_ONLY);
+      objStatement = this.getObjConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
       rstResultado = objStatement.executeQuery(sql);
 
     }
@@ -217,6 +209,7 @@ public abstract class DataBase extends Objeto {
     return rstResultado;
   }
 
+  @Override
   public String execSqlGetStr(String sql) {
 
     String strResultado = Utils.STR_VAZIA;
@@ -286,8 +279,7 @@ public abstract class DataBase extends Objeto {
         objProperties.setProperty("user", this.getStrUser());
         objProperties.setProperty("password", this.getStrPassword());
 
-        url = "jdbc:" + this.getStrDriveName() + "://" + this.getStrHost() + ":"
-            + String.valueOf(this.getIntPort()) + "/" + this.getStrDbName();
+        url = "jdbc:" + this.getStrDriveName() + "://" + this.getStrHost() + ":" + String.valueOf(this.getIntPort()) + "/" + this.getStrNome();
         Class.forName(this.getStrPackegeClassName());
         _objConnection = DriverManager.getConnection(url, objProperties);
       }
@@ -301,11 +293,6 @@ public abstract class DataBase extends Objeto {
     }
 
     return _objConnection;
-  }
-
-  private String getStrDbName() {
-
-    return _strDbName;
   }
 
   protected abstract String getStrDriveName();
@@ -332,11 +319,6 @@ public abstract class DataBase extends Objeto {
     _intPort = intPort;
   }
 
-  private void setStrDbName(String strDbName) {
-
-    _strDbName = strDbName;
-  }
-
   private void setStrHost(String strHost) {
 
     _strHost = strHost;
@@ -351,5 +333,4 @@ public abstract class DataBase extends Objeto {
 
     _strUser = strUser;
   }
-
 }

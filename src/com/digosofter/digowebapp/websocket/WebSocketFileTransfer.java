@@ -11,7 +11,7 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
-import com.digosofter.digowebapp.erro.Erro;
+import com.digosofter.digojava.erro.Erro;
 
 @ServerEndpoint("/ws/ws_file_transfer")
 public class WebSocketFileTransfer extends WebSocketMain {
@@ -146,8 +146,7 @@ public class WebSocketFileTransfer extends WebSocketMain {
 
       wft = this.getObjWsFileTransfer(objSession);
       intTamanho = wft.addBytes(strMensagem);
-      objSession.getBasicRemote().sendText(
-          "{ 'type': 'DATA', 'code': 200, 'bytesRead': " + intTamanho + " }");
+      objSession.getBasicRemote().sendText("{ 'type': 'DATA', 'code': 200, 'bytesRead': " + intTamanho + " }");
 
     }
     catch (Exception ex) {
@@ -163,8 +162,7 @@ public class WebSocketFileTransfer extends WebSocketMain {
 
     try {
 
-      objSession.getBasicRemote().sendText(
-          "{ 'type': 'AUTH', 'message': 'Authentification success', 'code': 200 }");
+      objSession.getBasicRemote().sendText("{ 'type': 'AUTH', 'message': 'Authentification success', 'code': 200 }");
 
     }
     catch (Exception ex) {
@@ -185,8 +183,7 @@ public class WebSocketFileTransfer extends WebSocketMain {
       wft = this.getObjWsFileTransfer(objSession);
       wft.setStrJsonStor(strMensagem);
 
-      objSession.getBasicRemote().sendText(
-          "{ 'type': 'STOR', 'message': 'Upload initialized. Wait for data', 'code': 200 }");
+      objSession.getBasicRemote().sendText("{ 'type': 'STOR', 'message': 'Upload initialized. Wait for data', 'code': 200 }");
 
     }
     catch (Exception ex) {

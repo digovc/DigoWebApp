@@ -1,7 +1,7 @@
 package com.digosofter.digowebapp.html.componente;
 
+import com.digosofter.digojava.erro.Erro;
 import com.digosofter.digowebapp.AppWeb;
-import com.digosofter.digowebapp.erro.Erro;
 import com.digosofter.digowebapp.html.CssTag;
 import com.digosofter.digowebapp.html.Imagem;
 import com.digosofter.digowebapp.html.Painel;
@@ -37,36 +37,6 @@ public class Mensagem extends ComponenteMain {
     }
     finally {
     }
-  }
-
-  public EnmTipo getEnmTipo() {
-
-    return _enmTipo;
-  }
-
-  private Imagem getImgIcon() {
-
-    try {
-
-      if (_imgIcon != null) {
-
-        return _imgIcon;
-      }
-
-      _imgIcon = new Imagem();
-      _imgIcon.setSrc(this.definirSrc());
-      _imgIcon.addCss(CssTag.getIMain().setHeight(50, "px"));
-      _imgIcon.addCss(CssTag.getIMain().setWidth(50, "px"));
-    }
-    catch (Exception ex) {
-
-      new Erro("Erro inesperado.\n", ex);
-
-    }
-    finally {
-    }
-
-    return _imgIcon;
   }
 
   private String definirSrc() {
@@ -106,6 +76,36 @@ public class Mensagem extends ComponenteMain {
     finally {
     }
     return strResultado;
+  }
+
+  public EnmTipo getEnmTipo() {
+
+    return _enmTipo;
+  }
+
+  private Imagem getImgIcon() {
+
+    try {
+
+      if (_imgIcon != null) {
+
+        return _imgIcon;
+      }
+
+      _imgIcon = new Imagem();
+      _imgIcon.setSrc(this.definirSrc());
+      _imgIcon.addCss(CssTag.getIMain().setHeight(50, "px"));
+      _imgIcon.addCss(CssTag.getIMain().setWidth(50, "px"));
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+
+    }
+    finally {
+    }
+
+    return _imgIcon;
   }
 
   private Painel getPnlConteudo() {

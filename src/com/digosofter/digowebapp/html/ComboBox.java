@@ -3,15 +3,13 @@ package com.digosofter.digowebapp.html;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.digosofter.digowebapp.Utils;
-import com.digosofter.digowebapp.erro.Erro;
+import com.digosofter.digojava.Utils;
+import com.digosofter.digojava.erro.Erro;
 
 public class ComboBox extends Campo {
 
-  private boolean _booOpcaoVazia = false;
-
+  private boolean _booOpcaoVazia;
   private List<String> _lstStrNome;
-
   private List<String> _lstStrValor;
 
   public ComboBox() {
@@ -101,8 +99,7 @@ public class ComboBox extends Campo {
 
     try {
 
-      if (!Utils.getBooStrVazia(this.getStrValor())
-          && this.getStrValor().equals(this.getLstStrValor().get(intOrdem))) {
+      if (!Utils.getBooStrVazia(this.getStrValor()) && this.getStrValor().equals(this.getLstStrValor().get(intOrdem))) {
         tagResultado = new Tag("option selected");
       }
       else {

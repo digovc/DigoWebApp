@@ -6,8 +6,8 @@ import java.io.FileOutputStream;
 
 import javax.websocket.Session;
 
-import com.digosofter.digowebapp.Utils;
-import com.digosofter.digowebapp.erro.Erro;
+import com.digosofter.digojava.Utils;
+import com.digosofter.digojava.erro.Erro;
 import com.digosofter.digowebapp.objeto.ObjMain;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
@@ -21,19 +21,12 @@ public class ObjWsFileTransfer extends ObjMain {
   }
 
   private BufferedOutputStream _bos;
-
   private EnmTipo _enmTipo = EnmTipo.BASE64_BINARY;
-
   private int _intTamanho;
-
   private int _intTamanhoEscrito;
-
   private JsonElement _jse;
-
   private Session _objSession;
-
   private String _strJsonStor;
-
   private String _strNome;
 
   public ObjWsFileTransfer(Session objSession) {
@@ -119,8 +112,7 @@ public class ObjWsFileTransfer extends ObjMain {
 
     try {
 
-      _enmTipo = this.getJse().getAsJsonObject().get("type").getAsString().equals("binary") ? EnmTipo.BINARY
-          : EnmTipo.BASE64_BINARY;
+      _enmTipo = this.getJse().getAsJsonObject().get("type").getAsString().equals("binary") ? EnmTipo.BINARY : EnmTipo.BASE64_BINARY;
 
     }
     catch (Exception ex) {

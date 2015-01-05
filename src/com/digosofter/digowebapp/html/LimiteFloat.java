@@ -1,6 +1,6 @@
 package com.digosofter.digowebapp.html;
 
-import com.digosofter.digowebapp.erro.Erro;
+import com.digosofter.digojava.erro.Erro;
 
 public class LimiteFloat extends Tag {
 

@@ -2,8 +2,8 @@ package com.digosofter.digowebapp.html.componente;
 
 import java.sql.ResultSet;
 
-import com.digosofter.digowebapp.database.DbTabela;
-import com.digosofter.digowebapp.erro.Erro;
+import com.digosofter.digojava.erro.Erro;
+import com.digosofter.digowebapp.database.DbTabelaWeb;
 import com.digosofter.digowebapp.html.Botao;
 import com.digosofter.digowebapp.html.CssTag;
 import com.digosofter.digowebapp.html.Painel;
@@ -14,9 +14,9 @@ public class ConsultaTbl extends ComponenteMain {
 
   private Painel _pnlLista;
 
-  private DbTabela _tbl;
+  private DbTabelaWeb _tbl;
 
-  public ConsultaTbl(DbTabela tbl) {
+  public ConsultaTbl(DbTabelaWeb tbl) {
 
     try {
 
@@ -74,7 +74,7 @@ public class ConsultaTbl extends ComponenteMain {
     return _pnlLista;
   }
 
-  private DbTabela getTbl() {
+  private DbTabelaWeb getTbl() {
 
     return _tbl;
   }
@@ -194,7 +194,7 @@ public class ConsultaTbl extends ComponenteMain {
     }
   }
 
-  private void setTbl(DbTabela tbl) {
+  private void setTbl(DbTabelaWeb tbl) {
 
     _tbl = tbl;
   }

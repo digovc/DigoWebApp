@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
+	<classpathentry kind="lib" path="lib/commons-io-2.4.jar"/>
+	<classpathentry kind="lib" path="D:/Projetos/DigoWebApp/lib/mail.jar"/>
+	<classpathentry kind="lib" path="D:/Projetos/DigoWebApp/lib/commons-email-1.3.2.jar"/>
+	<classpathentry kind="lib" path="D:/Projetos/DigoWebApp/lib/gson-2.2.4.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/DigoJava"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="D:/Projetos/DigoWebApp/lib/gson-2.2.4.jar"/>
-	<classpathentry kind="lib" path="D:/Projetos/DigoWebApp/lib/commons-email-1.3.2.jar"/>
-	<classpathentry kind="lib" path="D:/Projetos/DigoWebApp/lib/mail.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v7.0">
 		<attributes>
 			<attribute name="owner.project.facets" value="jst.utility"/>
@@ -15,6 +17,5 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="lib/commons-io-2.4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

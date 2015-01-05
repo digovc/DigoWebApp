@@ -1,6 +1,6 @@
 package com.digosofter.digowebapp.objeto;
 
-import com.digosofter.digowebapp.Objeto;
+import com.digosofter.digojava.Objeto;
 
 public class ObjMain extends Objeto {
 

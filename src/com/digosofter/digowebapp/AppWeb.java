@@ -1,6 +1,5 @@
 package com.digosofter.digowebapp;
 
-import java.io.File;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,15 +9,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.digosofter.digojava.App;
+import com.digosofter.digojava.Utils;
+import com.digosofter.digojava.erro.Erro;
 import com.digosofter.digowebapp.design.PaletaCor;
-import com.digosofter.digowebapp.erro.Erro;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
-public abstract class AppWeb extends Objeto {
+public abstract class AppWeb extends App {
 
   private static List<PaletaCor> _lstObjPaletaCor;
-
   private static AppWeb i;
 
   public static final String JS_BOTAO = "res/js/lib/JDigo/html/Botao.js";
@@ -45,7 +43,6 @@ public abstract class AppWeb extends Objeto {
 
   private String _dirLocal;
   private List<Usuario> _lstObjUsuarioSessao;
-  private Gson _objGson;
   private HttpServletRequest _objHttpServletRequest;
   private HttpServletResponse _objHttpServletResponse;
   private HttpSession _objHttpSession;
@@ -54,7 +51,6 @@ public abstract class AppWeb extends Objeto {
   private ServletContext _objServletContext;
   private Usuario _objUsuarioAtual;
   private String _strPagSolicitada;
-  private String _strVersao;
 
   public AppWeb(String strAppNome) {
 
@@ -239,28 +235,6 @@ public abstract class AppWeb extends Objeto {
     return _lstObjUsuarioSessao;
   }
 
-  public Gson getObjGson() {
-
-    try {
-
-      if (_objGson != null) {
-        return _objGson;
-      }
-
-      _objGson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").create();
-
-    }
-    catch (Exception ex) {
-
-      new Erro("Erro inesperado.\n", ex);
-
-    }
-    finally {
-    }
-
-    return _objGson;
-  }
-
   public HttpServletRequest getObjHttpServletRequest() {
 
     return _objHttpServletRequest;
@@ -429,11 +403,6 @@ public abstract class AppWeb extends Objeto {
     return strResultado;
   }
 
-  public String getStrVersao() {
-
-    return _strVersao;
-  }
-
   public void reencaminhar(String strUrl) {
 
     try {
@@ -541,10 +510,4 @@ public abstract class AppWeb extends Objeto {
 
     _strPagSolicitada = strPagSolicitada;
   }
-
-  protected void setStrVersao(String strVersao) {
-
-    _strVersao = strVersao;
-  }
-
 }

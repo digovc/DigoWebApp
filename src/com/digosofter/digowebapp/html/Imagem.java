@@ -2,8 +2,8 @@ package com.digosofter.digowebapp.html;
 
 import java.util.List;
 
+import com.digosofter.digojava.erro.Erro;
 import com.digosofter.digowebapp.AppWeb;
-import com.digosofter.digowebapp.erro.Erro;
 
 public class Imagem extends Tag {
 

@@ -4,16 +4,16 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.digosofter.digowebapp.Utils;
-import com.digosofter.digowebapp.erro.Erro;
+import com.digosofter.digojava.Utils;
+import com.digosofter.digojava.erro.Erro;
 
-public abstract class DbFuncao extends DbTabela {
+public abstract class DbFuncao extends DbTabelaWeb {
 
   private List<String> _lstStrParamIn;
 
-  public DbFuncao(String strNome, DataBase objDataBase) {
+  public DbFuncao(String strNome) {
 
-    super(strNome, objDataBase);
+    super(strNome);
   }
 
   public List<String> getLstStrParamIn() {
@@ -51,8 +51,7 @@ public abstract class DbFuncao extends DbTabela {
       sql = "select * from _fnc_nome;";
       sql = sql.replace("_fnc_nome", this.getStrNomeSimplificado());
 
-      rstResultado = this.getObjDataBase().execSqlGetRst(sql);
-
+      rstResultado = ((DataBaseWeb) this.getObjDb()).execSqlGetRst(sql);
     }
     catch (Exception ex) {
 
@@ -101,7 +100,7 @@ public abstract class DbFuncao extends DbTabela {
         strResultado += str;
       }
 
-      strResultado = Utils.getStrRemoverUltimaLetra(strResultado);
+      strResultado = Utils.removerUltimaLetra(strResultado);
 
     }
     catch (Exception ex) {
@@ -114,5 +113,4 @@ public abstract class DbFuncao extends DbTabela {
 
     return strResultado;
   }
-
 }

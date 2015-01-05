@@ -2,11 +2,11 @@ package com.digosofter.digowebapp.html.componente;
 
 import java.util.List;
 
+import com.digosofter.digojava.Utils;
+import com.digosofter.digojava.database.DbColuna;
+import com.digosofter.digojava.erro.Erro;
 import com.digosofter.digowebapp.AppWeb;
-import com.digosofter.digowebapp.Utils;
-import com.digosofter.digowebapp.database.DbColuna;
-import com.digosofter.digowebapp.database.DbTabela;
-import com.digosofter.digowebapp.erro.Erro;
+import com.digosofter.digowebapp.database.DbTabelaWeb;
 import com.digosofter.digowebapp.html.Botao;
 import com.digosofter.digowebapp.html.CssTag;
 import com.digosofter.digowebapp.html.Formulario;
@@ -19,31 +19,21 @@ import com.digosofter.digowebapp.html.componente.item.CampoFrmTbl;
 public class FormularioTbl extends ComponenteMain {
 
   private boolean _booBtnCancelarVisivel = true;
-
   private boolean _booSalvar;
-
-  private boolean _booSubmit = false;
-
+  private boolean _booSubmit;
   private Botao _btnCancelar;
-
   private Botao _btnSalvar;
-
   private Formulario _frm;
-
   private int _intRegistroId;
-
   private LimiteFloat _objLimiteFloat;
-
   private Painel _pnlCampos;
-
   private String _strAction;
-
-  private DbTabela _tbl;
+  private DbTabelaWeb _tbl;
 
   /**
    * Formulário para cadastro de um registro da tabela passada como parâmetro.
    */
-  public FormularioTbl(DbTabela tbl) {
+  public FormularioTbl(DbTabelaWeb tbl) {
 
     try {
 
@@ -187,8 +177,10 @@ public class FormularioTbl extends ComponenteMain {
 
     try {
 
-      for (DbColuna cln : this.getTbl().getLstClnVisivelCadastro()) {
+      for (DbColuna cln : this.getTbl().getLstClnCadastro()) {
+
         if (intResultado < cln.getIntFrmLinha()) {
+
           intResultado = cln.getIntFrmLinha();
         }
       }
@@ -293,7 +285,7 @@ public class FormularioTbl extends ComponenteMain {
     return _strAction;
   }
 
-  private DbTabela getTbl() {
+  private DbTabelaWeb getTbl() {
 
     return _tbl;
   }
@@ -361,7 +353,7 @@ public class FormularioTbl extends ComponenteMain {
 
       for (int intIndex = 1; intIndex <= this.getIntQtdLinha(); intIndex++) {
 
-        for (DbColuna cln : this.getTbl().getLstClnVisivelCadastro()) {
+        for (DbColuna cln : this.getTbl().getLstClnCadastro()) {
 
           if (cln.getIntFrmLinha() == intIndex) {
 
@@ -465,7 +457,7 @@ public class FormularioTbl extends ComponenteMain {
     _intRegistroId = intRegistroId;
   }
 
-  private void setTbl(DbTabela tbl) {
+  private void setTbl(DbTabelaWeb tbl) {
 
     _tbl = tbl;
   }

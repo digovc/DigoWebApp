@@ -3,8 +3,8 @@ package com.digosofter.digowebapp.html;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.digosofter.digowebapp.Utils;
-import com.digosofter.digowebapp.erro.Erro;
+import com.digosofter.digojava.Utils;
+import com.digosofter.digojava.erro.Erro;
 
 public class JavaScriptTag extends Tag {
 
@@ -93,8 +93,7 @@ public class JavaScriptTag extends Tag {
 
         strBuilder = new StringBuilder();
         strBuilder.append("$(document).ready(function(){");
-        strBuilder
-            .append(Utils.getStrConcatenarLst(this.getLstStrMetodos(), Utils.STR_VAZIA, true));
+        strBuilder.append(Utils.getStrConcatenarLst(this.getLstStrMetodos(), Utils.STR_VAZIA, true));
         strBuilder.append("});");
 
         this.setStrConteudo(strBuilder.toString());
