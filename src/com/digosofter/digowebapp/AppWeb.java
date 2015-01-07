@@ -58,12 +58,10 @@ public abstract class AppWeb extends App {
 
       this.setI(this);
       this.setStrNome(strAppNome);
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -74,12 +72,10 @@ public abstract class AppWeb extends App {
     try {
 
       this.getObjPrintWriter().print(intHtml);
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -90,12 +86,10 @@ public abstract class AppWeb extends App {
     try {
 
       this.getObjPrintWriter().print(strHtml);
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -108,17 +102,17 @@ public abstract class AppWeb extends App {
     try {
 
       for (Usuario usuario : this.getLstObjUsuarioSessao()) {
+
         if (usuario.getStrSessaoId().equals(strSessaoId)) {
+
           booResultado = true;
           break;
         }
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -140,7 +134,6 @@ public abstract class AppWeb extends App {
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -163,12 +156,10 @@ public abstract class AppWeb extends App {
       strParam = !Utils.getBooStrVazia(strParam) ? strParam : "-1";
 
       intResultado = Integer.valueOf(strParam);
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -183,15 +174,14 @@ public abstract class AppWeb extends App {
     try {
 
       intResultado = Integer.valueOf(this.getObjHttpServletRequest().getParameter(strParamNome));
-
     }
     catch (Exception ex) {
 
       intResultado = -1;
-
     }
     finally {
     }
+
     return intResultado;
   }
 
@@ -200,6 +190,7 @@ public abstract class AppWeb extends App {
     try {
 
       if (_lstObjPaletaCor == null) {
+
         _lstObjPaletaCor = new ArrayList<PaletaCor>();
       }
 
@@ -207,7 +198,6 @@ public abstract class AppWeb extends App {
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -220,6 +210,7 @@ public abstract class AppWeb extends App {
     try {
 
       if (_lstObjUsuarioSessao == null) {
+
         _lstObjUsuarioSessao = new ArrayList<Usuario>();
       }
 
@@ -227,7 +218,6 @@ public abstract class AppWeb extends App {
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -255,6 +245,7 @@ public abstract class AppWeb extends App {
     try {
 
       if (_objPaletaCor != null) {
+
         return _objPaletaCor;
       }
 
@@ -269,6 +260,7 @@ public abstract class AppWeb extends App {
       }
 
       if (_objPaletaCor == null) {
+
         _objPaletaCor = new PaletaCor("default");
       }
 
@@ -276,7 +268,6 @@ public abstract class AppWeb extends App {
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -298,7 +289,6 @@ public abstract class AppWeb extends App {
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -311,17 +301,17 @@ public abstract class AppWeb extends App {
     try {
 
       for (Usuario objUsuario : this.getLstObjUsuarioSessao()) {
+
         if (objUsuario.getStrSessaoId() == this.getObjHttpSession().getId()) {
+
           _objUsuarioAtual = objUsuario;
           break;
         }
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -341,7 +331,6 @@ public abstract class AppWeb extends App {
 
           objUsuarioResultado = objUsuario;
           break;
-
         }
       }
 
@@ -349,29 +338,11 @@ public abstract class AppWeb extends App {
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
 
     return objUsuarioResultado;
-  }
-
-  public void getResposta(HttpServletRequest objRequest, HttpServletResponse objResponse) {
-
-    try {
-
-      this.setObjHttpServletRequest(objRequest);
-      this.setObjHttpServletResponse(objResponse);
-
-    }
-    catch (Exception ex) {
-
-      new Erro("Erro inesperado.\n", ex);
-
-    }
-    finally {
-    }
   }
 
   public String getStrPagSolicitada() {
@@ -390,12 +361,10 @@ public abstract class AppWeb extends App {
     try {
 
       strResultado = this.getObjHttpServletRequest().getParameter(strParamNome);
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -408,12 +377,25 @@ public abstract class AppWeb extends App {
     try {
 
       this.getObjHttpServletResponse().sendRedirect(strUrl);
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
+    }
+    finally {
+    }
+  }
 
+  public void responder(HttpServletRequest objRequest, HttpServletResponse objResponse) {
+
+    try {
+
+      this.setObjHttpServletRequest(objRequest);
+      this.setObjHttpServletResponse(objResponse);
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
     }
     finally {
     }
@@ -423,50 +405,49 @@ public abstract class AppWeb extends App {
 
     try {
 
-      if (i == null) {
-        i = _i;
+      if (i != null) {
+
+        return;
       }
 
+      i = _i;
     }
     catch (Exception ex) {
 
       new Erro("Erro ao instanciar objeto do tipo 'AppWeb'.\n", ex);
-
     }
     finally {
     }
   }
 
-  public void setObjHttpServletRequest(HttpServletRequest objHttpServletRequest) {
+  private void setObjHttpServletRequest(HttpServletRequest objHttpServletRequest) {
 
     try {
 
       _objHttpServletRequest = objHttpServletRequest;
+
       this.setStrPagSolicitada(_objHttpServletRequest.getRequestURI().replace(_objHttpServletRequest.getContextPath() + "/app/", Utils.STR_VAZIA));
       this.setObjHttpSession(_objHttpServletRequest.getSession());
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
   }
 
-  public void setObjHttpServletResponse(HttpServletResponse objHttpServletResponse) {
+  private void setObjHttpServletResponse(HttpServletResponse objHttpServletResponse) {
 
     try {
 
       _objHttpServletResponse = objHttpServletResponse;
-      this.setObjPrintWriter(_objHttpServletResponse.getWriter());
 
+      this.setObjPrintWriter(_objHttpServletResponse.getWriter());
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -480,17 +461,17 @@ public abstract class AppWeb extends App {
 
       _objHttpSession = objHttpSession;
 
-      if (!this.getBooUsuarioExiste(_objHttpSession.getId())) {
+      if (this.getBooUsuarioExiste(_objHttpSession.getId())) {
 
-        objUsuario = new Usuario();
-        objUsuario.setStrSessaoId(_objHttpSession.getId());
+        return;
       }
 
+      objUsuario = new Usuario();
+      objUsuario.setStrSessaoId(_objHttpSession.getId());
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }

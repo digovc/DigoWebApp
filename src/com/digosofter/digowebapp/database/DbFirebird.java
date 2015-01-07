@@ -1,26 +1,14 @@
 package com.digosofter.digowebapp.database;
 
-import com.digosofter.digojava.erro.Erro;
 
 public class DbFirebird extends DataBaseWeb {
 
   private static final String STR_DRIVE_NAME = "firebirdsql";
   private static final String STR_PACKEGE_CLASS_NAME = "org.firebirdsql.jdbc.FBDriver";
 
-  public DbFirebird(String strHost, int intPort, String strDbName) {
+  public DbFirebird(String strHost, int intPort, String strName) {
 
-    super(strHost, intPort, strDbName, "sysdba", "masterkey");
-
-    try {
-
-    }
-    catch (Exception ex) {
-
-      new Erro("Erro inesperado.\n", ex);
-
-    }
-    finally {
-    }
+    super(strHost, intPort, strName, "sysdba", "masterkey");
   }
 
   @Override

@@ -20,15 +20,16 @@ public abstract class DbFuncao extends DbTabelaWeb {
 
     try {
 
-      if (_lstStrParamIn == null) {
-        _lstStrParamIn = new ArrayList<>();
+      if (_lstStrParamIn != null) {
+
+        return _lstStrParamIn;
       }
 
+      _lstStrParamIn = new ArrayList<>();
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -56,7 +57,6 @@ public abstract class DbFuncao extends DbTabelaWeb {
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -67,21 +67,18 @@ public abstract class DbFuncao extends DbTabelaWeb {
   @Override
   public String getStrNomeSimplificado() {
 
-    String strResultado = "";
+    String strResultado = Utils.STR_VAZIA;
 
     try {
 
-      strResultado = "";
-      strResultado += super.getStrNomeSimplificado();
-      strResultado += "(";
-      strResultado += this.getStrParamInFormatado();
-      strResultado += ")";
+      strResultado = "_fnc_nome (_params)";
 
+      strResultado = strResultado.replace("_fnc_nome", super.getStrNomeSimplificado());
+      strResultado = strResultado.replace("_params", this.getStrParamInFormatado());
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -96,17 +93,17 @@ public abstract class DbFuncao extends DbTabelaWeb {
     try {
 
       for (String str : this.getLstStrParamIn()) {
-        str = "'" + str + "',";
+
+        str = "'" + str + "', ";
         strResultado += str;
       }
 
       strResultado = Utils.removerUltimaLetra(strResultado);
-
+      strResultado = Utils.removerUltimaLetra(strResultado);
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }

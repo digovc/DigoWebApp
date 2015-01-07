@@ -20,20 +20,19 @@ public abstract class DataBaseWeb extends DataBase {
   private String _strPassword = "postgres";
   private String _strUser = "postgres";
 
-  public DataBaseWeb(String strHost, int intPort, String strName, String strUser, String strPassword) {
+  public DataBaseWeb(String strHost, int intPort, String strNome, String strUser, String strPassword) {
 
     try {
 
-      this.setStrHost(strHost);
       this.setIntPort(intPort);
-      this.setStrUser(strUser);
+      this.setStrHost(strHost);
+      this.setStrNome(strNome);
       this.setStrPassword(strPassword);
-
+      this.setStrUser(strUser);
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -47,12 +46,10 @@ public abstract class DataBaseWeb extends DataBase {
 
       objStatement = this.getObjConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
       objStatement.execute(sql);
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -68,22 +65,23 @@ public abstract class DataBaseWeb extends DataBase {
       str = this.execSqlGetStr(sql).toLowerCase();
 
       switch (str) {
+
         case "t":
         case "true":
           return true;
+
         case "f":
         case "false":
         case "":
           return false;
+
         default:
           return false;
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -107,15 +105,16 @@ public abstract class DataBaseWeb extends DataBase {
 
       str = this.execSqlGetStr(sql);
 
-      if (!Utils.getBooStrVazia(str)) {
-        intResultado = Integer.valueOf(str);
+      if (Utils.getBooStrVazia(str)) {
+
+        return 0;
       }
 
+      intResultado = Integer.valueOf(str);
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -132,21 +131,21 @@ public abstract class DataBaseWeb extends DataBase {
 
       lstStr = this.execSqlGetLstStr(sql);
 
-      if (lstStr != null && !lstStr.isEmpty()) {
+      lstIntResultado = new ArrayList<Integer>();
 
-        lstIntResultado = new ArrayList<Integer>();
+      if (lstStr == null || lstStr.isEmpty()) {
 
-        for (String str : lstStr) {
-
-          lstIntResultado.add(Integer.valueOf(str));
-        }
+        return lstIntResultado;
       }
 
+      for (String str : lstStr) {
+
+        lstIntResultado.add(Integer.valueOf(str));
+      }
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -163,23 +162,22 @@ public abstract class DataBaseWeb extends DataBase {
 
       rst = this.execSqlGetRst(sql);
 
-      if (rst != null && rst.first()) {
+      lstStrResultado = new ArrayList<String>();
 
-        lstStrResultado = new ArrayList<String>();
+      if (rst == null || !rst.first()) {
 
-        do {
-
-          lstStrResultado.add(rst.getString(1));
-
-        }
-        while (rst.next());
+        return lstStrResultado;
       }
 
+      do {
+
+        lstStrResultado.add(rst.getString(1));
+      }
+      while (rst.next());
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -196,12 +194,10 @@ public abstract class DataBaseWeb extends DataBase {
 
       objStatement = this.getObjConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
       rstResultado = objStatement.executeQuery(sql);
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -219,15 +215,16 @@ public abstract class DataBaseWeb extends DataBase {
 
       lstStr = this.execSqlGetLstStr(sql);
 
-      if (lstStr != null && lstStr.size() > 0) {
-        strResultado = lstStr.get(0);
+      if (lstStr == null || lstStr.isEmpty()) {
+
+        return strResultado;
       }
 
+      strResultado = lstStr.get(0);
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -243,17 +240,16 @@ public abstract class DataBaseWeb extends DataBase {
     try {
 
       strBuilder = new StringBuilder();
+
       strBuilder.append("select * from ");
       strBuilder.append(strViewNome);
       strBuilder.append(";");
 
       objResultSetResultado = this.execSqlGetRst(strBuilder.toString());
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -273,21 +269,25 @@ public abstract class DataBaseWeb extends DataBase {
 
     try {
 
-      if (_objConnection == null) {
+      if (_objConnection != null) {
 
-        objProperties = new Properties();
-        objProperties.setProperty("user", this.getStrUser());
-        objProperties.setProperty("password", this.getStrPassword());
-
-        url = "jdbc:" + this.getStrDriveName() + "://" + this.getStrHost() + ":" + String.valueOf(this.getIntPort()) + "/" + this.getStrNome();
-        Class.forName(this.getStrPackegeClassName());
-        _objConnection = DriverManager.getConnection(url, objProperties);
+        return _objConnection;
       }
 
+      objProperties = new Properties();
+
+      objProperties.setProperty("user", this.getStrUser());
+      objProperties.setProperty("password", this.getStrPassword());
+
+      url = "jdbc:" + this.getStrDriveName() + "://" + this.getStrHost() + ":" + String.valueOf(this.getIntPort()) + "/" + this.getStrNome();
+
+      Class.forName(this.getStrPackegeClassName());
+
+      _objConnection = DriverManager.getConnection(url, objProperties);
     }
     catch (Exception ex) {
-      new Erro("Erro inesperado.\n", ex);
 
+      new Erro("Erro inesperado.\n", ex);
     }
     finally {
     }
