@@ -28,7 +28,6 @@ public abstract class TblMain extends DbTabelaWeb {
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -39,18 +38,18 @@ public abstract class TblMain extends DbTabelaWeb {
     try {
 
       if (_clnBooAtivo == null) {
+
         _clnBooAtivo = new DbColunaWeb("boo_ativo", this, DbColunaWeb.EnmTipo.BOOLEAN);
+
         _clnBooAtivo.setBooVisivelCadastro(false);
         _clnBooAtivo.setBooVisivelConsulta(false);
         _clnBooAtivo.setIntFrmLinha(2);
         _clnBooAtivo.setIntFrmLinhaPeso(2);
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -63,16 +62,16 @@ public abstract class TblMain extends DbTabelaWeb {
     try {
 
       if (_clnDttAlteracao == null) {
+
         _clnDttAlteracao = new DbColunaWeb("dtt_alteracao", this, DbColunaWeb.EnmTipo.TIMESTAMP_WITHOUT_TIME_ZONE);
+
         _clnDttAlteracao.setBooVisivelCadastro(false);
         _clnDttAlteracao.setBooVisivelConsulta(false);
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -85,16 +84,16 @@ public abstract class TblMain extends DbTabelaWeb {
     try {
 
       if (_clnDttCadastro == null) {
+
         _clnDttCadastro = new DbColunaWeb("dtt_cadastro", this, DbColunaWeb.EnmTipo.TIMESTAMP_WITHOUT_TIME_ZONE);
+
         _clnDttCadastro.setBooVisivelCadastro(false);
         _clnDttCadastro.setBooVisivelConsulta(false);
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -107,16 +106,16 @@ public abstract class TblMain extends DbTabelaWeb {
     try {
 
       if (_clnDttExclusao == null) {
+
         _clnDttExclusao = new DbColunaWeb("dtt_exclusao", this, DbColunaWeb.EnmTipo.TIMESTAMP_WITHOUT_TIME_ZONE);
+
         _clnDttExclusao.setBooVisivelCadastro(false);
         _clnDttExclusao.setBooVisivelConsulta(false);
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -131,16 +130,15 @@ public abstract class TblMain extends DbTabelaWeb {
       if (_clnIntId == null) {
 
         _clnIntId = new DbColunaWeb("int_id", this, DbColunaWeb.EnmTipo.BIGSERIAL);
+
         _clnIntId.setBooChavePrimaria(true);
         _clnIntId.setBooVisivelCadastro(false);
         _clnIntId.setBooVisivelConsulta(false);
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -155,14 +153,13 @@ public abstract class TblMain extends DbTabelaWeb {
       if (_clnIntUsuarioAlteracaoId == null) {
 
         _clnIntUsuarioAlteracaoId = new DbColunaWeb("int_usuario_alteracao_id", this, DbColunaWeb.EnmTipo.BIGINT);
+
         _clnIntUsuarioAlteracaoId.setBooVisivelCadastro(false);
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -177,14 +174,13 @@ public abstract class TblMain extends DbTabelaWeb {
       if (_clnIntUsuarioCadastroId == null) {
 
         _clnIntUsuarioCadastroId = new DbColunaWeb("int_usuario_cadastro_id", this, DbColunaWeb.EnmTipo.BIGINT);
+
         _clnIntUsuarioCadastroId.setBooVisivelCadastro(false);
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -198,6 +194,7 @@ public abstract class TblMain extends DbTabelaWeb {
     try {
 
       intOrdem = super.inicializarColunas(intOrdem);
+
       this.getClnBooAtivo().setIntOrdem(++intOrdem);
       this.getClnDttAlteracao().setIntOrdem(++intOrdem);
       this.getClnDttCadastro().setIntOrdem(++intOrdem);
@@ -205,12 +202,10 @@ public abstract class TblMain extends DbTabelaWeb {
       this.getClnIntId().setIntOrdem(++intOrdem);
       this.getClnIntUsuarioAlteracaoId().setIntOrdem(++intOrdem);
       this.getClnIntUsuarioCadastroId().setIntOrdem(++intOrdem);
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }

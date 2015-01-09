@@ -13,25 +13,12 @@ import com.digosofter.digowebapp.html.Tag;
 public abstract class ComponenteMain extends Tag {
 
   private Painel _pnlComando;
-
   private Painel _pnlTitulo;
-
   private LimiteFloat _tagLimiteFloat;
 
   public ComponenteMain() {
 
     super("div");
-
-    try {
-
-    }
-    catch (Exception ex) {
-
-      new Erro("Erro inesperado.\n", ex);
-
-    }
-    finally {
-    }
   }
 
   @Override
@@ -42,12 +29,10 @@ public abstract class ComponenteMain extends Tag {
     try {
 
       lstObjJsTag.add(new JavaScriptTag(AppWeb.JS_COMPONENTE_MAIN));
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -60,15 +45,14 @@ public abstract class ComponenteMain extends Tag {
       if (_pnlComando == null) {
 
         _pnlComando = new Painel();
+
         _pnlComando.addCss(CssTag.getIMain().setPaddingLeft(10));
         _pnlComando.addCss(CssTag.getIMain().setPaddingRight(10));
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -81,14 +65,13 @@ public abstract class ComponenteMain extends Tag {
     try {
 
       if (_pnlTitulo == null) {
+
         _pnlTitulo = new Painel();
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -104,17 +87,14 @@ public abstract class ComponenteMain extends Tag {
 
         _tagLimiteFloat = new LimiteFloat();
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
 
     return _tagLimiteFloat;
   }
-
 }

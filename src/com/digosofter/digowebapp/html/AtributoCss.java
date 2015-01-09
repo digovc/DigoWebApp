@@ -15,12 +15,10 @@ public class AtributoCss extends Atributo {
     try {
 
       this.setStrValor(strValor);
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -46,5 +44,4 @@ public class AtributoCss extends Atributo {
 
     _strValor = strValor;
   }
-
 }

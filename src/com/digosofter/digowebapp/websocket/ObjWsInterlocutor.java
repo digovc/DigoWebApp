@@ -5,7 +5,6 @@ import com.digosofter.digowebapp.objeto.ObjMain;
 public final class ObjWsInterlocutor extends ObjMain {
 
   private int _intFncId = -1;
-
   private String _strJson;
 
   public int getIntFuncId() {
@@ -27,5 +26,4 @@ public final class ObjWsInterlocutor extends ObjMain {
 
     _strJson = strJson;
   }
-
 }

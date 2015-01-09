@@ -17,15 +17,12 @@ public abstract class ItemMain extends ComponenteMain {
     try {
 
       lstObjJsTag.add(new JavaScriptTag(AppWeb.JS_ITEM_MAIN));
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
   }
-
 }

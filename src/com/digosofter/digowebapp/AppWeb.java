@@ -189,11 +189,12 @@ public abstract class AppWeb extends App {
 
     try {
 
-      if (_lstObjPaletaCor == null) {
+      if (_lstObjPaletaCor != null) {
 
-        _lstObjPaletaCor = new ArrayList<PaletaCor>();
+        return _lstObjPaletaCor;
       }
 
+      _lstObjPaletaCor = new ArrayList<PaletaCor>();
     }
     catch (Exception ex) {
 
@@ -209,11 +210,12 @@ public abstract class AppWeb extends App {
 
     try {
 
-      if (_lstObjUsuarioSessao == null) {
+      if (_lstObjUsuarioSessao != null) {
 
-        _lstObjUsuarioSessao = new ArrayList<Usuario>();
+        return _lstObjUsuarioSessao;
       }
 
+      _lstObjUsuarioSessao = new ArrayList<Usuario>();
     }
     catch (Exception ex) {
 
@@ -256,14 +258,12 @@ public abstract class AppWeb extends App {
           _objPaletaCor = objPaletaCor;
           return _objPaletaCor;
         }
-
       }
 
       if (_objPaletaCor == null) {
 
         _objPaletaCor = new PaletaCor("default");
       }
-
     }
     catch (Exception ex) {
 
@@ -333,7 +333,6 @@ public abstract class AppWeb extends App {
           break;
         }
       }
-
     }
     catch (Exception ex) {
 

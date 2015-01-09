@@ -73,16 +73,17 @@ public class CssTag extends Tag {
     try {
 
       if (_iMain != null) {
+
         return _iMain;
       }
 
       _iMain = new CssTag();
+
       _iMain.addCssPuro("a{color:#428bca;text-decoration:none}");
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -107,12 +108,10 @@ public class CssTag extends Tag {
 
       this.setBooForcarTagDupla(true);
       this.getLstAtr().add(new Atributo("type", "text/css"));
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -144,12 +143,10 @@ public class CssTag extends Tag {
         objAtributoCssNovo.setStrClassAssociada(strResultado);
         this.getLstAtrCss().add(objAtributoCssNovo);
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -162,6 +159,7 @@ public class CssTag extends Tag {
     try {
 
       if (Utils.getBooStrVazia(css)) {
+
         return;
       }
 
@@ -170,11 +168,9 @@ public class CssTag extends Tag {
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
-
   }
 
   private String getCssPuro() {
@@ -182,19 +178,19 @@ public class CssTag extends Tag {
     try {
 
       if (!Utils.getBooStrVazia(_cssPuro)) {
+
         return _cssPuro;
       }
 
       _cssPuro = Utils.STR_VAZIA;
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
+
     return _cssPuro;
   }
 
@@ -205,19 +201,19 @@ public class CssTag extends Tag {
       this.setStrConteudo(Utils.STR_VAZIA);
 
       if (_lstAtrCss != null) {
+
         return _lstAtrCss;
       }
 
       _lstAtrCss = new ArrayList<AtributoCss>();
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
+
     return _lstAtrCss;
   }
 
@@ -229,6 +225,7 @@ public class CssTag extends Tag {
     try {
 
       if (!Utils.getBooStrVazia(_strConteudo)) {
+
         return _strConteudo;
       }
 
@@ -249,7 +246,6 @@ public class CssTag extends Tag {
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -261,12 +257,12 @@ public class CssTag extends Tag {
   public String getStrTagFormatada() {
 
     try {
+
       this.verificarCssExterna();
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -281,12 +277,10 @@ public class CssTag extends Tag {
     try {
 
       strResultado = this.addCss("background-color", hexColor);
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -302,17 +296,16 @@ public class CssTag extends Tag {
     try {
 
       stb = new StringBuilder();
+
       stb.append("url('");
       stb.append(strSrcImagem);
       stb.append("')");
 
       strResultado = this.addCss("background-image", stb.toString());
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -328,18 +321,18 @@ public class CssTag extends Tag {
     try {
 
       stb = new StringBuilder();
+
       stb.append(strRepeat);
 
       strResultado = this.addCss("background-repeat", stb.toString());
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
+
     return strResultado;
   }
 
@@ -351,15 +344,14 @@ public class CssTag extends Tag {
     try {
 
       stb = new StringBuilder();
+
       stb.append(strSize);
 
       strResultado = this.addCss("background-size", stb.toString());
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -375,15 +367,14 @@ public class CssTag extends Tag {
     try {
 
       stb = new StringBuilder();
+
       stb.append("0 auto");
 
       strResultado = this.addCss("margin", stb.toString());
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -399,6 +390,7 @@ public class CssTag extends Tag {
     try {
 
       stb = new StringBuilder();
+
       stb.append(intBorderPx);
       stb.append("px ");
       stb.append(strTipo);
@@ -406,12 +398,10 @@ public class CssTag extends Tag {
       stb.append(hexColor);
 
       strResultado = this.addCss("border", stb.toString());
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -427,17 +417,16 @@ public class CssTag extends Tag {
     try {
 
       stb = new StringBuilder();
+
       stb.append(intBorderBottomPx);
       stb.append("px solid ");
       stb.append(hexColor);
 
       strResultado = this.addCss("border-bottom", stb.toString());
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -453,20 +442,20 @@ public class CssTag extends Tag {
     try {
 
       stb = new StringBuilder();
+
       stb.append(intBorderLeftPx);
       stb.append("px solid ");
       stb.append(hexColor);
 
       strResultado = this.addCss("border-left", stb.toString());
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
+
     return strResultado;
   }
 
@@ -478,6 +467,7 @@ public class CssTag extends Tag {
     try {
 
       stb = new StringBuilder();
+
       stb.append(intTopLeftPx);
       stb.append("px ");
       stb.append(intTopRightPx);
@@ -488,12 +478,10 @@ public class CssTag extends Tag {
       stb.append("px");
 
       strResultado = this.addCss("border-radius", stb.toString());
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -509,17 +497,16 @@ public class CssTag extends Tag {
     try {
 
       stb = new StringBuilder();
+
       stb.append(intBorderRightPx);
       stb.append("px solid ");
       stb.append(hexColor);
 
       strResultado = this.addCss("border-right", stb.toString());
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -535,17 +522,16 @@ public class CssTag extends Tag {
     try {
 
       stb = new StringBuilder();
+
       stb.append(intBorderTopPx);
       stb.append("px solid ");
       stb.append(hexColor);
 
       strResultado = this.addCss("border-top", stb.toString());
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -561,16 +547,15 @@ public class CssTag extends Tag {
     try {
 
       stb = new StringBuilder();
+
       stb.append(intBottom);
       stb.append("px");
 
       strResultado = this.addCss("bottom", stb.toString());
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -586,6 +571,7 @@ public class CssTag extends Tag {
     try {
 
       stb = new StringBuilder();
+
       stb.append(intHorizontal);
       stb.append("px ");
       stb.append(intVertical);
@@ -597,12 +583,10 @@ public class CssTag extends Tag {
       stb.append(hexColor);
 
       strResultado = this.addCss("box-shadow", stb.toString());
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -617,12 +601,10 @@ public class CssTag extends Tag {
     try {
 
       strResultado = this.addCss("clear", "both");
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -637,12 +619,10 @@ public class CssTag extends Tag {
     try {
 
       strResultado = this.addCss("color", hexColor);
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -651,8 +631,8 @@ public class CssTag extends Tag {
   }
 
   /**
-   * Este método tem de ser sob-escrito da classe pai para que não haja um loop
-   * infinito. E também porque esta tag não precisa de layout.
+   * Não remover! Este método tem de ser sob-escrito da classe pai para que não
+   * haja um loop infinito. E também porque esta tag não precisa de layout.
    */
   @Override
   protected void setCss(CssTag tagCss) {
@@ -662,7 +642,6 @@ public class CssTag extends Tag {
   private void setCssPuro(String cssPuro) {
 
     _cssPuro = cssPuro;
-
   }
 
   public String setCursor(String strCursor) {
@@ -672,12 +651,10 @@ public class CssTag extends Tag {
     try {
 
       strResultado = this.addCss("cursor", strCursor);
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -693,15 +670,14 @@ public class CssTag extends Tag {
     try {
 
       stb = new StringBuilder();
+
       stb.append(strDisplay);
 
       strResultado = this.addCss("display", stb.toString());
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -717,15 +693,14 @@ public class CssTag extends Tag {
     try {
 
       stb = new StringBuilder();
+
       stb.append(strFloat);
 
       strResultado = this.addCss("float", stb.toString());
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -741,6 +716,7 @@ public class CssTag extends Tag {
     try {
 
       stb = new StringBuilder();
+
       stb.append(strFontFamily);
 
       strResultado = this.addCss("font-family", stb.toString());
@@ -749,7 +725,6 @@ public class CssTag extends Tag {
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -764,12 +739,10 @@ public class CssTag extends Tag {
     try {
 
       strResultado = this.addCss("font-weight", "bold");
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -785,16 +758,15 @@ public class CssTag extends Tag {
     try {
 
       stb = new StringBuilder();
+
       stb.append(dblFontSize);
       stb.append(strGrandeza);
 
       strResultado = this.addCss("font-size", stb.toString());
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -810,15 +782,14 @@ public class CssTag extends Tag {
     try {
 
       stb = new StringBuilder();
+
       stb.append(strFontStyle);
 
       strResultado = this.addCss("font-style", stb.toString());
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -834,16 +805,15 @@ public class CssTag extends Tag {
     try {
 
       stb = new StringBuilder();
+
       stb.append(dblHeight);
       stb.append(strGrandeza);
 
       strResultado = this.addCss("height", stb.toString());
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -859,16 +829,15 @@ public class CssTag extends Tag {
     try {
 
       stb = new StringBuilder();
+
       stb.append(intLeft);
       stb.append("px");
 
       strResultado = this.addCss("left", stb.toString());
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -889,16 +858,15 @@ public class CssTag extends Tag {
     try {
 
       stb = new StringBuilder();
+
       stb.append(intMargin);
       stb.append(strGrandeza);
 
       strResultado = this.addCss("margin", stb.toString());
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -914,16 +882,15 @@ public class CssTag extends Tag {
     try {
 
       stb = new StringBuilder();
+
       stb.append(intMarginBottomPx);
       stb.append("px");
 
       strResultado = this.addCss("margin-bottom", stb.toString());
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -939,16 +906,15 @@ public class CssTag extends Tag {
     try {
 
       stb = new StringBuilder();
+
       stb.append(intMarginLeftPx);
       stb.append("px");
 
       strResultado = this.addCss("margin-left", stb.toString());
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -964,16 +930,15 @@ public class CssTag extends Tag {
     try {
 
       stb = new StringBuilder();
+
       stb.append(intMarginRightPx);
       stb.append("px");
 
       strResultado = this.addCss("margin-right", stb.toString());
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -989,16 +954,15 @@ public class CssTag extends Tag {
     try {
 
       stb = new StringBuilder();
+
       stb.append(intMarginTopPx);
       stb.append("px");
 
       strResultado = this.addCss("margin-top", stb.toString());
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -1014,16 +978,15 @@ public class CssTag extends Tag {
     try {
 
       stb = new StringBuilder();
+
       stb.append(dblMinHeight);
       stb.append("px");
 
       strResultado = this.addCss("min-height", stb.toString());
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -1039,15 +1002,14 @@ public class CssTag extends Tag {
     try {
 
       stb = new StringBuilder();
+
       stb.append(dblOpacity);
 
       strResultado = this.addCss("opacity", stb.toString());
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -1063,15 +1025,14 @@ public class CssTag extends Tag {
     try {
 
       stb = new StringBuilder();
+
       stb.append(strOverflowPx);
 
       strResultado = this.addCss("overflow", stb.toString());
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -1087,15 +1048,14 @@ public class CssTag extends Tag {
     try {
 
       stb = new StringBuilder();
+
       stb.append(strOverflowPx);
 
       strResultado = this.addCss("overflow-x", stb.toString());
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -1111,15 +1071,14 @@ public class CssTag extends Tag {
     try {
 
       stb = new StringBuilder();
+
       stb.append(strOverflowPx);
 
       strResultado = this.addCss("overflow-y", stb.toString());
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -1135,16 +1094,15 @@ public class CssTag extends Tag {
     try {
 
       stb = new StringBuilder();
+
       stb.append(intPadding);
       stb.append(strGrandeza);
 
       strResultado = this.addCss("padding", stb.toString());
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -1160,16 +1118,15 @@ public class CssTag extends Tag {
     try {
 
       stb = new StringBuilder();
+
       stb.append(intPaddingBottomPx);
       stb.append("px");
 
       strResultado = this.addCss("padding-bottom", stb.toString());
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -1185,16 +1142,15 @@ public class CssTag extends Tag {
     try {
 
       stb = new StringBuilder();
+
       stb.append(intPaddingLeftPx);
       stb.append("px");
 
       strResultado = this.addCss("padding-left", stb.toString());
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -1210,16 +1166,15 @@ public class CssTag extends Tag {
     try {
 
       stb = new StringBuilder();
+
       stb.append(intPaddingRightPx);
       stb.append("px");
 
       strResultado = this.addCss("padding-right", stb.toString());
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -1235,16 +1190,15 @@ public class CssTag extends Tag {
     try {
 
       stb = new StringBuilder();
+
       stb.append(intPaddingTopPx);
       stb.append("px");
 
       strResultado = this.addCss("padding-top", stb.toString());
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -1260,15 +1214,14 @@ public class CssTag extends Tag {
     try {
 
       stb = new StringBuilder();
+
       stb.append(strPosition);
 
       strResultado = this.addCss("position", stb.toString());
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -1284,16 +1237,15 @@ public class CssTag extends Tag {
     try {
 
       stb = new StringBuilder();
+
       stb.append(intRight);
       stb.append("px");
 
       strResultado = this.addCss("right", stb.toString());
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -1315,14 +1267,13 @@ public class CssTag extends Tag {
     try {
 
       stb = new StringBuilder();
+
       stb.append(strTextAlign);
       strResultado = this.addCss("text-align", stb.toString());
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -1338,15 +1289,14 @@ public class CssTag extends Tag {
     try {
 
       stb = new StringBuilder();
+
       stb.append(strTextDecoration);
 
       strResultado = this.addCss("text-decoration", stb.toString());
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -1362,6 +1312,7 @@ public class CssTag extends Tag {
     try {
 
       stb = new StringBuilder();
+
       stb.append(intX);
       stb.append("px ");
       stb.append(intY);
@@ -1371,12 +1322,10 @@ public class CssTag extends Tag {
       stb.append(strColor);
 
       strResultado = this.addCss("text-shadow", stb.toString());
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -1392,16 +1341,15 @@ public class CssTag extends Tag {
     try {
 
       stb = new StringBuilder();
+
       stb.append(intTop);
       stb.append("px");
 
       strResultado = this.addCss("top", stb.toString());
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -1416,12 +1364,10 @@ public class CssTag extends Tag {
     try {
 
       strResultado = this.addCss("white-space", strWhiteSpace);
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -1437,16 +1383,15 @@ public class CssTag extends Tag {
     try {
 
       stb = new StringBuilder();
+
       stb.append(dblWidth);
       stb.append(strGrandeza);
 
       strResultado = this.addCss("width", stb.toString());
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -1462,14 +1407,13 @@ public class CssTag extends Tag {
     try {
 
       stb = new StringBuilder();
+
       stb.append(intZ);
       strResultado = this.addCss("z-index", stb.toString());
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -1482,10 +1426,12 @@ public class CssTag extends Tag {
     try {
 
       if ("cssMain".equals(this.getStrId())) {
+
         return;
       }
 
       if ("cssImp".equals(this.getStrId())) {
+
         return;
       }
 
@@ -1495,10 +1441,8 @@ public class CssTag extends Tag {
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
   }
-
 }

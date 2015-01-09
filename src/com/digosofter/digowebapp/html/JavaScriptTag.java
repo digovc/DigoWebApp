@@ -20,12 +20,10 @@ public class JavaScriptTag extends Tag {
       this.setBooForcarTagDupla(true);
       this.getLstAtr().add(new Atributo("type", "text/javascript"));
       this.setSrc(strSrc);
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -41,16 +39,15 @@ public class JavaScriptTag extends Tag {
     try {
 
       if (Utils.getBooStrVazia(strJsCodigo)) {
+
         return;
       }
 
       this.getLstStrMetodos().add(strJsCodigo);
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -66,6 +63,7 @@ public class JavaScriptTag extends Tag {
     try {
 
       if (_lstStrMetodos != null) {
+
         return _lstStrMetodos;
       }
 
@@ -74,7 +72,6 @@ public class JavaScriptTag extends Tag {
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -92,18 +89,17 @@ public class JavaScriptTag extends Tag {
       if (!this.getLstStrMetodos().isEmpty()) {
 
         strBuilder = new StringBuilder();
+
         strBuilder.append("$(document).ready(function(){");
         strBuilder.append(Utils.getStrConcatenarLst(this.getLstStrMetodos(), Utils.STR_VAZIA, true));
         strBuilder.append("});");
 
         this.setStrConteudo(strBuilder.toString());
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }

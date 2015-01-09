@@ -11,9 +11,7 @@ import com.digosofter.digowebapp.html.Painel;
 public class PopupItem extends ItemMain {
 
   private int _intOrdem;
-
   private Painel _pnlTitulo;
-
   private String _strSrcIcon;
 
   public PopupItem(String strNomeExibicao, String strSrcIcon) {
@@ -22,12 +20,10 @@ public class PopupItem extends ItemMain {
 
       this.setStrNomeExibicao(strNomeExibicao);
       this.setStrSrcIcon(strSrcIcon);
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -41,12 +37,10 @@ public class PopupItem extends ItemMain {
     try {
 
       lstObjJsTag.add(new JavaScriptTag(AppWeb.JS_POPUP_ITEM));
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -65,15 +59,14 @@ public class PopupItem extends ItemMain {
       if (_pnlTitulo == null) {
 
         _pnlTitulo = super.getPnlTitulo();
+
         _pnlTitulo.setStrConteudo(this.getStrNomeExibicao());
         _pnlTitulo.addCss(CssTag.getIMain().setTextAlign("left"));
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -99,12 +92,10 @@ public class PopupItem extends ItemMain {
 
       this.setStrId(strId);
       this.getPnlTitulo().setTagPai(this);
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -120,12 +111,10 @@ public class PopupItem extends ItemMain {
       this.addCss(tagCss.setBorderBottom(1, AppWeb.getI().getObjPaletaCor().getStrCorBorda()));
       this.addCss(tagCss.setCursor("pointer"));
       this.addCss(tagCss.setPadding(10, "px"));
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -140,5 +129,4 @@ public class PopupItem extends ItemMain {
 
     _strSrcIcon = strSrcIcon;
   }
-
 }

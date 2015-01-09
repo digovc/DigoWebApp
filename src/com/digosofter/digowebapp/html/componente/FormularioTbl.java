@@ -39,12 +39,10 @@ public class FormularioTbl extends ComponenteMain {
 
       this.setTbl(tbl);
       this.setStrId("div_frm_" + this.getTbl().getStrNomeSimplificado());
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -58,12 +56,10 @@ public class FormularioTbl extends ComponenteMain {
     try {
 
       lstObjJsTag.add(new JavaScriptTag(AppWeb.JS_FORMULARIO_TBL));
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -79,12 +75,10 @@ public class FormularioTbl extends ComponenteMain {
     try {
 
       _booSalvar = this.getTbl().getStrNomeSimplificado().equals(AppWeb.getI().getStrParam("save"));
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -104,15 +98,14 @@ public class FormularioTbl extends ComponenteMain {
       if (_btnCancelar == null) {
 
         _btnCancelar = new Botao();
+
         _btnCancelar.setStrId("btnCancelar");
         _btnCancelar.setStrConteudo("Cancelar");
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -127,15 +120,14 @@ public class FormularioTbl extends ComponenteMain {
       if (_btnSalvar == null) {
 
         _btnSalvar = new Botao();
+
         _btnSalvar.setStrConteudo("Salvar");
         _btnSalvar.setStrId("btnSalvar");
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -148,19 +140,20 @@ public class FormularioTbl extends ComponenteMain {
     try {
 
       if (_frm == null) {
+
         _frm = new Formulario(this.getStrAction(), Formulario.EnmMetodo.POST);
+
         _frm.setStrId("frm_" + this.getTbl().getStrNomeSimplificado());
 
         if (!this.getBooSubmit()) {
+
           _frm.addAtr("onsubmit", "return false;");
         }
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -184,12 +177,10 @@ public class FormularioTbl extends ComponenteMain {
           intResultado = cln.getIntFrmLinha();
         }
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -202,14 +193,13 @@ public class FormularioTbl extends ComponenteMain {
     try {
 
       if (_intRegistroId == 0) {
+
         _intRegistroId = AppWeb.getI().getIntParam("id");
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -222,14 +212,13 @@ public class FormularioTbl extends ComponenteMain {
     try {
 
       if (_objLimiteFloat == null) {
+
         _objLimiteFloat = new LimiteFloat();
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -245,12 +234,10 @@ public class FormularioTbl extends ComponenteMain {
 
         _pnlCampos = new Painel();
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -263,21 +250,22 @@ public class FormularioTbl extends ComponenteMain {
     try {
 
       if (Utils.getBooStrVazia(_strAction)) {
+
         _strAction = AppWeb.getI().getStrPagSolicitada();
+
         _strAction += "?save=";
         _strAction += this.getTbl().getStrNomeSimplificado();
 
         if (this.getIntRegistroId() > 0) {
+
           _strAction += "&id=";
           _strAction += this.getIntRegistroId();
         }
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -299,12 +287,10 @@ public class FormularioTbl extends ComponenteMain {
 
       this.salvarRegistro();
       this.montarLayoutCadastro();
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -321,18 +307,17 @@ public class FormularioTbl extends ComponenteMain {
       this.getBtnSalvar().setTagPai(this.getPnlComando());
 
       if (this.getBooBtnCancelarVisivel()) {
+
         this.getBtnCancelar().setTagPai(this.getPnlComando());
       }
 
       this.montarLayoutCampos();
 
       this.getObjLimiteFloat().setTagPai(this.getPnlComando());
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -345,9 +330,11 @@ public class FormularioTbl extends ComponenteMain {
     try {
 
       if (this.getIntRegistroId() > 0) {
+
         this.getTbl().buscarRegistro(this.getIntRegistroId());
       }
       else {
+
         this.getTbl().zerarColunas();
       }
 
@@ -362,12 +349,10 @@ public class FormularioTbl extends ComponenteMain {
           }
         }
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -381,16 +366,16 @@ public class FormularioTbl extends ComponenteMain {
 
       // TODO: Implementar mensagens de erro
       msg = new Mensagem();
+
       msg.setStrTitulo("Ok");
       msg.setStrMensagem("Salvo com sucesso!");
       msg.setEnmTipo(Mensagem.EnmTipo.POSITIVA);
-      PaginaHtml.getI().mostrarMsgCliente(msg);
 
+      PaginaHtml.getI().mostrarMsgCliente(msg);
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -406,18 +391,18 @@ public class FormularioTbl extends ComponenteMain {
     try {
 
       if (!this.getBooSalvar()) {
+
         return;
       }
 
       this.mostrarMsgSalvo();
+
       intId = this.getTbl().salvarRegistroPost();
       this.setIntRegistroId(intId);
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -441,12 +426,10 @@ public class FormularioTbl extends ComponenteMain {
     try {
 
       this.addCss(tagCss.setPadding(10, "px"));
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -461,5 +444,4 @@ public class FormularioTbl extends ComponenteMain {
 
     _tbl = tbl;
   }
-
 }

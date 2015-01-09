@@ -26,12 +26,10 @@ public class WebSocketFileTransfer extends WebSocketMain {
 
         _lstObjWsFileTransfer = new ArrayList<ObjWsFileTransfer>();
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -60,12 +58,10 @@ public class WebSocketFileTransfer extends WebSocketMain {
 
       wftResultado = new ObjWsFileTransfer(objSession);
       this.getLstObjWsFileTransfer().add(wftResultado);
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -83,12 +79,10 @@ public class WebSocketFileTransfer extends WebSocketMain {
 
       wft = this.getObjWsFileTransfer(objSession);
       wft.salvar();
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -118,12 +112,10 @@ public class WebSocketFileTransfer extends WebSocketMain {
 
         this.processarData(objSession, strMensagem);
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -134,7 +126,6 @@ public class WebSocketFileTransfer extends WebSocketMain {
   public void onOpen(Session objSession, EndpointConfig objEndpointConfig) {
 
     super.onOpen(objSession, objEndpointConfig);
-
   }
 
   private void processarData(Session objSession, String strMensagem) {
@@ -147,12 +138,10 @@ public class WebSocketFileTransfer extends WebSocketMain {
       wft = this.getObjWsFileTransfer(objSession);
       intTamanho = wft.addBytes(strMensagem);
       objSession.getBasicRemote().sendText("{ 'type': 'DATA', 'code': 200, 'bytesRead': " + intTamanho + " }");
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -163,12 +152,10 @@ public class WebSocketFileTransfer extends WebSocketMain {
     try {
 
       objSession.getBasicRemote().sendText("{ 'type': 'AUTH', 'message': 'Authentification success', 'code': 200 }");
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -184,15 +171,12 @@ public class WebSocketFileTransfer extends WebSocketMain {
       wft.setStrJsonStor(strMensagem);
 
       objSession.getBasicRemote().sendText("{ 'type': 'STOR', 'message': 'Upload initialized. Wait for data', 'code': 200 }");
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
   }
-
 }

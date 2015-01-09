@@ -16,6 +16,7 @@ import com.sun.org.apache.xml.internal.security.utils.Base64;
 public class ObjWsFileTransfer extends ObjMain {
 
   public enum EnmTipo {
+
     BASE64_BINARY,
     BINARY,
   }
@@ -34,12 +35,10 @@ public class ObjWsFileTransfer extends ObjMain {
     try {
 
       this.setObjSession(objSession);
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -59,7 +58,6 @@ public class ObjWsFileTransfer extends ObjMain {
       if (this.getEnmTipo() == EnmTipo.BASE64_BINARY) {
 
         arrBte = Base64.decode(strMensagem);
-
       }
       else {
 
@@ -67,14 +65,14 @@ public class ObjWsFileTransfer extends ObjMain {
       }
 
       this.getBos().write(arrBte);
-      intResultado = arrBte.length;
-      this.setIntTamanhoEscrito(this.getIntTamanhoEscrito() + intResultado);
 
+      intResultado = arrBte.length;
+
+      this.setIntTamanhoEscrito(this.getIntTamanhoEscrito() + intResultado);
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -92,15 +90,14 @@ public class ObjWsFileTransfer extends ObjMain {
       if (_bos == null) {
 
         objFile = new File("c:/ws_temp/server/" + this.getStrNome());
+
         fos = new FileOutputStream(objFile);
         _bos = new BufferedOutputStream(fos);
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -113,12 +110,10 @@ public class ObjWsFileTransfer extends ObjMain {
     try {
 
       _enmTipo = this.getJse().getAsJsonObject().get("type").getAsString().equals("binary") ? EnmTipo.BINARY : EnmTipo.BASE64_BINARY;
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -134,12 +129,10 @@ public class ObjWsFileTransfer extends ObjMain {
 
         _intTamanho = this.getJse().getAsJsonObject().get("size").getAsInt();
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -160,12 +153,10 @@ public class ObjWsFileTransfer extends ObjMain {
 
         _jse = new JsonParser().parse(this.getStrJsonStor().replace("STOR: ", ""));
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -192,12 +183,10 @@ public class ObjWsFileTransfer extends ObjMain {
 
         _strNome = this.getJse().getAsJsonObject().get("filename").getAsString();
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -211,12 +200,10 @@ public class ObjWsFileTransfer extends ObjMain {
 
       this.getBos().flush();
       this.getBos().close();
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -236,5 +223,4 @@ public class ObjWsFileTransfer extends ObjMain {
 
     _strJsonStor = strJsonStor;
   }
-
 }

@@ -10,17 +10,6 @@ public class Imagem extends Tag {
   public Imagem() {
 
     super("img");
-
-    try {
-
-    }
-    catch (Exception ex) {
-
-      new Erro("Erro inesperado.\n", ex);
-
-    }
-    finally {
-    }
   }
 
   @Override
@@ -31,15 +20,12 @@ public class Imagem extends Tag {
     try {
 
       lstObjJsTag.add(new JavaScriptTag(AppWeb.JS_IMAGEM));
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
   }
-
 }

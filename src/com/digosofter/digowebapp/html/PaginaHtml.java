@@ -110,15 +110,6 @@ public class PaginaHtml extends Objeto {
 
   protected void addCssArquivo(List<CssTag> lstTagCss) {
 
-    try {
-
-    }
-    catch (Exception ex) {
-
-      new Erro("Erro inesperado.\n", ex);
-    }
-    finally {
-    }
   }
 
   /**
@@ -137,7 +128,6 @@ public class PaginaHtml extends Objeto {
 
         objJavaScriptTag.setTagPai(this.getTagHead());
       }
-
     }
     catch (Exception ex) {
 
@@ -254,6 +244,7 @@ public class PaginaHtml extends Objeto {
       msgPositiva.setEnmTipo(Mensagem.EnmTipo.POSITIVA);
 
       strJs = "";
+
       strJs += "Mensagem_ESTRUTURA_INFO_ALERTA = '" + msgAlerta.toString() + "';";
       strJs += "Mensagem_ESTRUTURA_INFO_LOAD = '" + msgLoad.toString() + "';";
       strJs += "Mensagem_ESTRUTURA_INFO_NEGATIVA = '" + msgNegativa.toString() + "';";
@@ -284,6 +275,7 @@ public class PaginaHtml extends Objeto {
       }
 
       _cssImp = new CssTag();
+
       _cssImp.setStrId("cssImp");
     }
     catch (Exception ex) {
@@ -559,7 +551,6 @@ public class PaginaHtml extends Objeto {
 
         _tagHead = new Tag("head");
       }
-
     }
     catch (Exception ex) {
 

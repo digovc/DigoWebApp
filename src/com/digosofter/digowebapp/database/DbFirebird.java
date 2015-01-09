@@ -1,6 +1,5 @@
 package com.digosofter.digowebapp.database;
 
-
 public class DbFirebird extends DataBaseWeb {
 
   private static final String STR_DRIVE_NAME = "firebirdsql";
@@ -22,5 +21,4 @@ public class DbFirebird extends DataBaseWeb {
 
     return STR_PACKEGE_CLASS_NAME;
   }
-
 }

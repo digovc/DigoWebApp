@@ -14,12 +14,10 @@ public class Botao extends Tag {
     try {
 
       this.setStrConteudo("Botão");
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -33,12 +31,10 @@ public class Botao extends Tag {
     try {
 
       lstObjJsTag.add(new JavaScriptTag(AppWeb.JS_BOTAO));
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -59,15 +55,12 @@ public class Botao extends Tag {
       this.addCss(tagCss.setPaddingRight(25));
       this.addCss(tagCss.setPaddingTop(7));
       this.addCss(tagCss.setMarginLeft(5));
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
   }
-
 }

@@ -32,13 +32,12 @@ public abstract class WebSocketMain {
     try {
 
       objGson = new Gson();
-      objSession.getBasicRemote().sendText(objGson.toJson(objWsInterlocutor));
 
+      objSession.getBasicRemote().sendText(objGson.toJson(objWsInterlocutor));
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -51,16 +50,15 @@ public abstract class WebSocketMain {
     try {
 
       objWsInterlocutor = new ObjWsInterlocutor();
+
       objWsInterlocutor.setIntFuncId(FNC_MSG_ERRO);
       objWsInterlocutor.setStrJson(strMsg);
 
       this.enviar(objSession, objWsInterlocutor);
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -73,16 +71,15 @@ public abstract class WebSocketMain {
     try {
 
       objWsInterlocutor = new ObjWsInterlocutor();
+
       objWsInterlocutor.setIntFuncId(FNC_MSG_POSITIVA);
       objWsInterlocutor.setStrJson(strMsg);
 
       this.enviar(objSession, objWsInterlocutor);
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -100,12 +97,10 @@ public abstract class WebSocketMain {
 
       strSessaoId = ((WsSession) objSession).getHttpSessionId();
       objUsuarioResultado = AppWeb.getI().getObjUsuarioPorSessaoId(strSessaoId);
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -116,16 +111,6 @@ public abstract class WebSocketMain {
   @OnClose
   public void onClose(Session session, CloseReason closeReason) {
 
-    try {
-
-    }
-    catch (Exception ex) {
-
-      new Erro("Erro inesperado.\n", ex);
-
-    }
-    finally {
-    }
   }
 
   @OnMessage
@@ -134,12 +119,10 @@ public abstract class WebSocketMain {
     try {
 
       this.processarMensagem(objSession, strMensagem);
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -151,31 +134,11 @@ public abstract class WebSocketMain {
    */
   protected void onObjWsMainRecebido(Session objSession, ObjWsInterlocutor objWsMain) {
 
-    try {
-
-    }
-    catch (Exception ex) {
-
-      new Erro("Erro inesperado.\n", ex);
-
-    }
-    finally {
-    }
   }
 
   @OnOpen
   public void onOpen(Session objSession, EndpointConfig objEndpointConfig) {
 
-    try {
-
-    }
-    catch (Exception ex) {
-
-      new Erro("Erro inesperado.\n", ex);
-
-    }
-    finally {
-    }
   }
 
   /**
@@ -189,14 +152,14 @@ public abstract class WebSocketMain {
     try {
 
       objGson = new Gson();
-      objWsInterlocutor = objGson.fromJson(strMensagem, ObjWsInterlocutor.class);
-      this.onObjWsMainRecebido(objSession, objWsInterlocutor);
 
+      objWsInterlocutor = objGson.fromJson(strMensagem, ObjWsInterlocutor.class);
+
+      this.onObjWsMainRecebido(objSession, objWsInterlocutor);
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -216,17 +179,14 @@ public abstract class WebSocketMain {
       objUsuario = this.getObjUsuarioPorSession(objSession);
 
       booResultado = objUsuario.getBooLogado();
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
 
     return booResultado;
   }
-
 }

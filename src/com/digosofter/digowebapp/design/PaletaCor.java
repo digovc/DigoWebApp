@@ -29,12 +29,10 @@ public class PaletaCor extends Objeto {
       PaginaHtml.getI().getLstTagJs().add(new JavaScriptTag("res/js/lib/JDigo/design/PaletaCor.js"));
 
       AppWeb.getI().getLstObjPaletaCor().add(this);
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -45,12 +43,10 @@ public class PaletaCor extends Objeto {
     try {
 
       PaginaHtml.getI().addJsCodigo(strJs);
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -95,15 +91,14 @@ public class PaletaCor extends Objeto {
 
     try {
 
-      if (_strObjJavaScriptNome == "") {
+      if (Utils.getBooStrVazia(_strObjJavaScriptNome)) {
+
         _strObjJavaScriptNome = "objPaletaCor" + this.getStrNome();
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -123,14 +118,13 @@ public class PaletaCor extends Objeto {
       _booSelecionado = booSelecionado;
 
       if (_booSelecionado) {
+
         AppWeb.getI().setObjPaletaCorSelecionada(this);
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -143,14 +137,13 @@ public class PaletaCor extends Objeto {
     try {
 
       _strCorBorda = strCorBorda;
+
       strJs = this.getStrObjJavaScriptNome() + ".setStrCorControleClicado('" + _strCorControleClicado + "');";
       this.addJs(strJs);
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -163,12 +156,10 @@ public class PaletaCor extends Objeto {
     try {
 
       _strCorBorda2 = strCorBorda2;
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -183,14 +174,13 @@ public class PaletaCor extends Objeto {
     try {
 
       _strCorControleClicado = strCorControleClicado;
+
       strJs = this.getStrObjJavaScriptNome() + ".setStrCorControleClicado('" + _strCorControleClicado + "');";
       this.addJs(strJs);
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -203,14 +193,13 @@ public class PaletaCor extends Objeto {
     try {
 
       _strCorControleMouse = strCorControleMouse;
+
       strJs = this.getStrObjJavaScriptNome() + ".setStrCorControleMouse('" + _strCorControleMouse + "');";
       this.addJs(strJs);
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -223,14 +212,13 @@ public class PaletaCor extends Objeto {
     try {
 
       _strCorControleNormal = strCorControleNormal;
+
       strJs = this.getStrObjJavaScriptNome() + ".setStrCorControleNormal('" + _strCorControleNormal + "');";
       this.addJs(strJs);
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -243,14 +231,13 @@ public class PaletaCor extends Objeto {
     try {
 
       _strCorFundo = strCorFundo;
+
       strJs = this.getStrObjJavaScriptNome() + ".setStrCorFundo('" + _strCorFundo + "');";
       this.addJs(strJs);
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -260,5 +247,4 @@ public class PaletaCor extends Objeto {
 
     _strSombra = strSombra;
   }
-
 }

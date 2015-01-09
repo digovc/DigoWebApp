@@ -11,12 +11,10 @@ public class LimiteFloat extends Tag {
     try {
 
       this.setBooForcarTagDupla(true);
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -30,15 +28,12 @@ public class LimiteFloat extends Tag {
     try {
 
       this.addCss(tagCss.setClearBoth());
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
   }
-
 }

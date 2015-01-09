@@ -8,12 +8,12 @@ import com.digosofter.digowebapp.AppWeb;
 public class Formulario extends Tag {
 
   public enum EnmMetodo {
+
     GET,
-    POST
+    POST,
   }
 
   private EnmMetodo _enmMetodo = EnmMetodo.POST;
-
   private String _strAction;
 
   public Formulario(String strAction, EnmMetodo enmMetodo) {
@@ -24,12 +24,10 @@ public class Formulario extends Tag {
 
       this.setStrAction(strAction);
       this.setEnmMetodo(enmMetodo);
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -43,12 +41,10 @@ public class Formulario extends Tag {
     try {
 
       lstObjJsTag.add(new JavaScriptTag(AppWeb.JS_FORMULARIO));
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -71,6 +67,7 @@ public class Formulario extends Tag {
     try {
 
       _enmMetodo = enmMetodo;
+
       switch (_enmMetodo) {
         case GET:
           strMetodo = "get";
@@ -84,12 +81,10 @@ public class Formulario extends Tag {
       }
 
       this.getLstAtr().add(new Atributo("method", strMetodo));
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -100,16 +95,14 @@ public class Formulario extends Tag {
     try {
 
       _strAction = strAction;
-      this.getLstAtr().add(new Atributo("action", _strAction));
 
+      this.getLstAtr().add(new Atributo("action", _strAction));
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
   }
-
 }

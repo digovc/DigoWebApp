@@ -27,6 +27,7 @@ public abstract class UtilsWeb {
 
       url = new URL("http://checkip.amazonaws.com");
       bfr = new BufferedReader(new InputStreamReader(url.openStream()));
+
       strResultado = bfr.readLine();
     }
     catch (Exception ex) {

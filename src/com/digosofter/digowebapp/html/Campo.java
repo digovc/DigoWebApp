@@ -8,6 +8,7 @@ import com.digosofter.digowebapp.AppWeb;
 public class Campo extends Tag {
 
   public enum EnmTipo {
+
     BUTTON,
     CHECKBOX,
     COLOR,
@@ -31,8 +32,7 @@ public class Campo extends Tag {
     TEXT_AREA,
     TIME,
     URL,
-    WEEK
-
+    WEEK,
   }
 
   private EnmTipo _enmTipo = EnmTipo.TEXT;
@@ -43,17 +43,6 @@ public class Campo extends Tag {
   public Campo() {
 
     super("input");
-
-    try {
-
-    }
-    catch (Exception ex) {
-
-      new Erro("Erro inesperado.\n", ex);
-
-    }
-    finally {
-    }
   }
 
   @Override
@@ -64,12 +53,10 @@ public class Campo extends Tag {
     try {
 
       lstObjJsTag.add(new JavaScriptTag(AppWeb.JS_CAMPO));
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -98,12 +85,10 @@ public class Campo extends Tag {
     try {
 
       this.addCss(CssTag.getIMain().addCss("box-sizing", "border-box"));
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -194,12 +179,10 @@ public class Campo extends Tag {
           this.getAtrType().setStrValor("text");
           break;
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -218,12 +201,10 @@ public class Campo extends Tag {
 
         this.getLstAtr().add(new Atributo("name", _strId));
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -234,13 +215,12 @@ public class Campo extends Tag {
     try {
 
       _strPlaceHolder = strPlaceHolder;
-      this.getLstAtr().add(new Atributo("placeholder", _strPlaceHolder));
 
+      this.getLstAtr().add(new Atributo("placeholder", _strPlaceHolder));
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -260,15 +240,12 @@ public class Campo extends Tag {
           this.addAtr("value", _strValor);
           break;
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
   }
-
 }

@@ -38,7 +38,6 @@ public abstract class DbTabelaWeb extends DbTabela {
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -58,7 +57,6 @@ public abstract class DbTabelaWeb extends DbTabela {
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -78,6 +76,7 @@ public abstract class DbTabelaWeb extends DbTabela {
       rst = this.getRst(cln, strFiltroValor);
 
       if (rst == null || !rst.first()) {
+
         return;
       }
 
@@ -85,12 +84,10 @@ public abstract class DbTabelaWeb extends DbTabela {
 
         cln2.setStrValor(rst.getString(cln2.getStrNomeSimplificado()));
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -131,16 +128,15 @@ public abstract class DbTabelaWeb extends DbTabela {
     try {
 
       sql = "select max(_cln_chave_primaria_nome) from _tbl_nome;";
+
       sql = sql.replace("_tbl_nome", this.getStrNomeSimplificado());
       sql = sql.replace("_cln_chave_primaria_nome", this.getClnChavePrimaria().getStrNomeSimplificado());
 
       intResultado = this.getObjDb().execSqlGetInt(sql);
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -160,19 +156,19 @@ public abstract class DbTabelaWeb extends DbTabela {
       for (DbColuna cln : this.getLstCln()) {
 
         if (cln.getIntFrmLinha() == intLinha) {
+
           intResultado++;
         }
       }
 
       if (intResultado == this.getLstCln().size()) {
+
         intResultado = 1;
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -199,15 +195,14 @@ public abstract class DbTabelaWeb extends DbTabela {
         lstIntResultado = new ArrayList<Integer>();
 
         for (int intIndex = 0; intIndex < lstStr.size(); intIndex++) {
+
           lstIntResultado.add(Integer.valueOf(lstStr.get(intIndex)));
         }
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -231,16 +226,13 @@ public abstract class DbTabelaWeb extends DbTabela {
         do {
 
           lstIntResultado.add(objResultSet.getInt(1));
-
         }
         while (objResultSet.next());
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -256,12 +248,10 @@ public abstract class DbTabelaWeb extends DbTabela {
 
         _lstObjDbView = new ArrayList<DbView>();
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -291,12 +281,10 @@ public abstract class DbTabelaWeb extends DbTabela {
 
         lstStrRetorno.add(cln.getStrNomeSimplificado());
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -323,22 +311,22 @@ public abstract class DbTabelaWeb extends DbTabela {
       for (DbColuna cln : this.getLstCln()) {
 
         if (booPreenchida && Utils.getBooStrVazia(cln.getStrValor())) {
+
           continue;
         }
 
         strEstrutura = Utils.STR_VAZIA;
+
         strEstrutura += cln.getStrNomeSimplificado();
         strEstrutura += "=";
         strEstrutura += cln.getStrValorSql();
 
         lstStrRetorno.add(strEstrutura);
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -363,17 +351,16 @@ public abstract class DbTabelaWeb extends DbTabela {
       for (DbColuna cln : this.getLstCln()) {
 
         if (booPreenchida && Utils.getBooStrVazia(cln.getStrValor())) {
+
           continue;
         }
 
         lstStrRetorno.add(cln.getStrValorSql());
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -411,12 +398,10 @@ public abstract class DbTabelaWeb extends DbTabela {
           while (objResultSet.next());
         }
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -444,7 +429,6 @@ public abstract class DbTabelaWeb extends DbTabela {
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -463,12 +447,10 @@ public abstract class DbTabelaWeb extends DbTabela {
       lstCln.add(cln);
 
       rstResultado = this.getRst(lstCln, lstObjDbFiltro, lstClnOrdem);
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -487,15 +469,14 @@ public abstract class DbTabelaWeb extends DbTabela {
       lstObjDbFiltro.add(new DbFiltro(clnFiltro, strFiltro));
 
       rstResultado = this.getRst(this.getLstCln(), lstObjDbFiltro, null);
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
+
     return rstResultado;
   }
 
@@ -506,12 +487,10 @@ public abstract class DbTabelaWeb extends DbTabela {
     try {
 
       rstResultado = this.getRst(clnFiltro, String.valueOf(intFiltro));
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -526,12 +505,10 @@ public abstract class DbTabelaWeb extends DbTabela {
     try {
 
       rstResultado = this.getRst(cln, lstObjDbFiltro, this.getClnChavePrimaria());
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -553,6 +530,7 @@ public abstract class DbTabelaWeb extends DbTabela {
       }
 
       sql = "select _lst_cln_nome from _from where _where order by _order;";
+
       sql = sql.replace("_lst_cln_nome", this.getSqlParteLstClnNome(lstCln));
       sql = sql.replace("_from", this.getStrNomeSimplificado());
       sql = sql.replace("_where", this.getSqlParteWhere(lstObjDbFiltro));
@@ -561,12 +539,10 @@ public abstract class DbTabelaWeb extends DbTabela {
       sql = sql.replace("where <null>", "");
 
       rstResultado = ((DataBaseWeb) this.getObjDb()).execSqlGetRst(sql);
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -585,19 +561,19 @@ public abstract class DbTabelaWeb extends DbTabela {
     try {
 
       if (this.getLstObjDbFiltroConsulta().size() > 0) {
+
         rstResultado = this.getRst(this.getLstClnConsulta(), this.getLstObjDbFiltroConsulta(), null);
       }
       else {
+
         rstResultado = this.getRst(this.getLstClnConsulta(), null, null);
       }
 
       this.getLstObjDbFiltroConsulta().clear();
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -613,12 +589,12 @@ public abstract class DbTabelaWeb extends DbTabela {
 
     List<DbColuna> lstCln;
     List<DbColuna> lstClnOrdem;
-
     ResultSet objResultSetResultado = null;
 
     try {
 
       lstCln = new ArrayList<DbColuna>();
+
       lstCln.add(this.getClnChavePrimaria());
       lstCln.add(this.getClnNome());
 
@@ -626,12 +602,10 @@ public abstract class DbTabelaWeb extends DbTabela {
       lstClnOrdem.add(this.getClnNome());
 
       objResultSetResultado = this.getRst(lstCln, null, lstClnOrdem);
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -646,23 +620,23 @@ public abstract class DbTabelaWeb extends DbTabela {
     try {
 
       if (lstCln == null || lstCln.size() == 0) {
+
         return "*";
       }
 
       for (DbColuna cln : lstCln) {
+
         strResultado += cln.getTbl().getStrNomeSimplificado();
         strResultado += ".";
         strResultado += cln.getStrNomeSimplificado();
-        strResultado += ",";
+        strResultado += ", ";
       }
 
-      strResultado = Utils.removerUltimaLetra(strResultado);
-
+      strResultado = Utils.removerUltimaLetra(strResultado, 2);
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -699,7 +673,6 @@ public abstract class DbTabelaWeb extends DbTabela {
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -709,6 +682,7 @@ public abstract class DbTabelaWeb extends DbTabela {
 
   private String getSqlParteWhere(List<DbFiltro> lstObjDbFiltro) {
 
+    boolean booPrimeiroTermo = true;
     String strResultado = Utils.STR_VAZIA;
 
     try {
@@ -720,39 +694,22 @@ public abstract class DbTabelaWeb extends DbTabela {
 
       for (DbFiltro objDbFiltro : lstObjDbFiltro) {
 
-        strResultado += objDbFiltro.toString();
-        strResultado += " ";
+        strResultado += objDbFiltro.getSqlFiltro(booPrimeiroTermo);
+        strResultado += ", ";
+
+        booPrimeiroTermo = false;
       }
 
-      strResultado = strResultado.substring(4);
-      strResultado = Utils.removerUltimaLetra(strResultado);
+      strResultado = Utils.removerUltimaLetra(strResultado, 2);
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
 
     return strResultado;
-  }
-
-  @Override
-  protected int inicializarColunas(int intOrdem) {
-
-    try {
-
-    }
-    catch (Exception ex) {
-
-      new Erro("Erro inesperado.\n", ex);
-
-    }
-    finally {
-    }
-
-    return intOrdem;
   }
 
   /**
@@ -771,11 +728,10 @@ public abstract class DbTabelaWeb extends DbTabela {
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
-  };
+  }
 
   /**
    * Persiste os valores atuais das colunas no banco de dados. Caso o valor da
@@ -821,12 +777,10 @@ public abstract class DbTabelaWeb extends DbTabela {
       }
 
       this.buscarRegistro(intResultado);
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -861,12 +815,10 @@ public abstract class DbTabelaWeb extends DbTabela {
       }
 
       intResultado = this.salvar();
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }

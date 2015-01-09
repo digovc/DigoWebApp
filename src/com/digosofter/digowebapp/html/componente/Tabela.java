@@ -30,12 +30,10 @@ public class Tabela extends ComponenteMain {
 
       this.setTbl(tbl);
       this.setStrId("div_" + this.getTbl().getStrNome());
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -52,14 +50,13 @@ public class Tabela extends ComponenteMain {
       lstObjJsTag.add(new JavaScriptTag(AppWeb.JS_TABLESORTER));
 
       if (this.getBooPesquisa()) {
+
         lstObjJsTag.add(new JavaScriptTag(AppWeb.JS_QUICKSEARCH));
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -83,12 +80,10 @@ public class Tabela extends ComponenteMain {
       strJsCodigo += "');";
 
       tagJs.addJsCodigo(strJsCodigo);
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -106,14 +101,13 @@ public class Tabela extends ComponenteMain {
       if (_pnlPesquisa == null) {
 
         _pnlPesquisa = new Painel();
+
         _pnlPesquisa.addCss(CssTag.getIMain().setPadding(10, "px"));
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -128,6 +122,7 @@ public class Tabela extends ComponenteMain {
       if (_tagTable == null) {
 
         _tagTable = new Tag("table");
+
         _tagTable.addAtr("border", "1px");
         _tagTable.addCss(CssTag.getIMain().addCss("border-collapse", "collapse"));
         _tagTable.addCss(CssTag.getIMain().setCursor("pointer"));
@@ -135,12 +130,10 @@ public class Tabela extends ComponenteMain {
         _tagTable.addCss(CssTag.getIMain().setHeight(650, "px"));
         _tagTable.addCss(CssTag.getIMain().setOverflowY("scroll"));
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -156,12 +149,10 @@ public class Tabela extends ComponenteMain {
 
         _tagTbody = new Tag("tbody");
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -177,12 +168,10 @@ public class Tabela extends ComponenteMain {
 
         _tagThead = new Tag("thead");
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -202,15 +191,14 @@ public class Tabela extends ComponenteMain {
       if (_txtPesquisa == null) {
 
         _txtPesquisa = new Campo();
+
         _txtPesquisa.setStrId("txtPesquisa_" + this.getTbl().getStrNomeSimplificado());
         _txtPesquisa.setStrPlaceHolder("Pesquisa");
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -226,6 +214,7 @@ public class Tabela extends ComponenteMain {
     try {
 
       if (this.getBooPesquisa()) {
+
         this.getPnlPesquisa().setTagPai(this);
         this.getTxtPesquisa().setTagPai(this.getPnlPesquisa());
       }
@@ -239,7 +228,6 @@ public class Tabela extends ComponenteMain {
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -253,6 +241,7 @@ public class Tabela extends ComponenteMain {
     try {
 
       tagTr = new Tag("tr");
+
       tagTr.setTagPai(this.getTagThead());
       tagTr.addCss(CssTag.getIMain().setBorderBottom(1, "#999"));
 
@@ -262,12 +251,10 @@ public class Tabela extends ComponenteMain {
         tagTh.setStrConteudo(cln.getStrNomeExibicao());
         tagTh.setTagPai(tagTr);
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -283,6 +270,7 @@ public class Tabela extends ComponenteMain {
     try {
 
       tagTr = new Tag("tr");
+
       tagTr.setTagPai(this.getTagTbody());
 
       if (objResultSet.getRow() % 2 == 0) {
@@ -296,6 +284,7 @@ public class Tabela extends ComponenteMain {
         strValorFormatado = cln.getStrValorFormatado(strValor);
 
         tagTd = new Tag("td");
+
         tagTd.setTagPai(tagTr);
         tagTd.setStrConteudo(strValorFormatado);
         tagTd.addCss(CssTag.getIMain().setOverflow("hidden"));
@@ -303,12 +292,10 @@ public class Tabela extends ComponenteMain {
         tagTd.addCss(CssTag.getIMain().addCss("text-overflow", "ellipsis"));
         tagTd.addCss(((DbColunaWeb) cln).getStrCss());
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -327,16 +314,13 @@ public class Tabela extends ComponenteMain {
         do {
 
           this.montarLayoutLinha(rst);
-
         }
         while (rst.next());
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }

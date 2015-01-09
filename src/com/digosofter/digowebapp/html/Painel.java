@@ -17,12 +17,10 @@ public class Painel extends Tag {
     try {
 
       this.setBooForcarTagDupla(true);
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -40,7 +38,6 @@ public class Painel extends Tag {
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -54,10 +51,12 @@ public class Painel extends Tag {
     try {
 
       if (!this.getBooMarkdown()) {
+
         return;
       }
 
       cssMarkdown = new CssTag();
+
       cssMarkdown.addAtr("href", "res/css/markdown.css");
       cssMarkdown.addAtr("rel", "stylesheet");
 
@@ -72,7 +71,6 @@ public class Painel extends Tag {
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -89,6 +87,7 @@ public class Painel extends Tag {
       lstObjJsTag.add(new JavaScriptTag(AppWeb.JS_PAINEL));
 
       if (this.getBooMarkdown()) {
+
         lstObjJsTag.add(new JavaScriptTag("res/js/lib/JDigo/lib/Markdown.Converter.js"));
         lstObjJsTag.add(new JavaScriptTag("res/js/lib/JDigo/lib/Markdown.Extra.js"));
         lstObjJsTag.add(new JavaScriptTag("res/js/lib/JDigo/lib/highlight.pack.js"));
@@ -97,7 +96,6 @@ public class Painel extends Tag {
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -110,10 +108,12 @@ public class Painel extends Tag {
     try {
 
       if (!this.getBooMarkdown()) {
+
         return;
       }
 
       strJsCodigo = Utils.STR_VAZIA;
+
       strJsCodigo += "var objMdConverter = new Markdown.Converter();";
       strJsCodigo += "Markdown.Extra.init(objMdConverter);";
       strJsCodigo += "var strHtml = objMdConverter.makeHtml($('#_pnl_id').html());";
@@ -123,12 +123,10 @@ public class Painel extends Tag {
       strJsCodigo = strJsCodigo.replace("_pnl_id", this.getStrId());
 
       PaginaHtml.getI().addJsCodigo(strJsCodigo);
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -147,14 +145,13 @@ public class Painel extends Tag {
     try {
 
       if (this.getBooMarkdown()) {
+
         this.addJsCodigoConverterMarkdown();
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -173,15 +170,12 @@ public class Painel extends Tag {
     try {
 
       this.addCss(tagCss.setTextAlign("center"));
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
   }
-
 }

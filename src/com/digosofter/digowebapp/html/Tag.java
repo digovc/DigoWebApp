@@ -38,7 +38,6 @@ public class Tag extends Objeto {
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -49,12 +48,10 @@ public class Tag extends Objeto {
     try {
 
       this.getLstAtr().add(new Atributo(strNome, String.valueOf(intValor)));
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -65,12 +62,10 @@ public class Tag extends Objeto {
     try {
 
       this.getLstAtr().add(new Atributo(strNome, strValor));
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -81,12 +76,10 @@ public class Tag extends Objeto {
     try {
 
       this.getAtrClass().getLstStrValor().add(strClassCss);
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -94,16 +87,6 @@ public class Tag extends Objeto {
 
   protected void addCssArquivo(List<CssTag> lstTagCss) {
 
-    try {
-
-    }
-    catch (Exception ex) {
-
-      new Erro("Erro inesperado.\n", ex);
-
-    }
-    finally {
-    }
   }
 
   /**
@@ -115,12 +98,10 @@ public class Tag extends Objeto {
     try {
 
       lstObjJsTag.add(new JavaScriptTag(AppWeb.JS_TAG));
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -131,16 +112,6 @@ public class Tag extends Objeto {
    */
   protected void addJsCodigo(JavaScriptTag tagJs) {
 
-    try {
-
-    }
-    catch (Exception ex) {
-
-      new Erro("Erro inesperado.\n", ex);
-
-    }
-    finally {
-    }
   }
 
   public Atributo getAtrClass() {
@@ -150,14 +121,13 @@ public class Tag extends Objeto {
       if (_atrClass == null) {
 
         _atrClass = new Atributo("class");
+
         this.getLstAtr().add(_atrClass);
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -170,16 +140,17 @@ public class Tag extends Objeto {
     try {
 
       if (_atrSrc != null) {
+
         return _atrSrc;
       }
 
       _atrSrc = new Atributo("src");
+
       this.getLstAtr().add(_atrSrc);
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -194,14 +165,13 @@ public class Tag extends Objeto {
       if (_atrType == null) {
 
         _atrType = new Atributo("type");
+
         this.getLstAtr().add(_atrType);
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -224,14 +194,13 @@ public class Tag extends Objeto {
     try {
 
       if (_lstAtr == null) {
+
         _lstAtr = new ArrayList<Atributo>();
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -244,14 +213,13 @@ public class Tag extends Objeto {
     try {
 
       if (_lstTag == null) {
+
         _lstTag = new ArrayList<Tag>();
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -269,6 +237,7 @@ public class Tag extends Objeto {
     try {
 
       if (!Utils.getBooStrVazia(_strAbertura)) {
+
         return _strAbertura;
       }
 
@@ -277,10 +246,10 @@ public class Tag extends Objeto {
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
+
     return _strAbertura;
   }
 
@@ -303,12 +272,10 @@ public class Tag extends Objeto {
           stbAtrFormatado.append("\"");
         }
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -326,6 +293,7 @@ public class Tag extends Objeto {
     try {
 
       if (!Utils.getBooStrVazia(_strFechamento)) {
+
         return _strFechamento;
       }
 
@@ -334,10 +302,10 @@ public class Tag extends Objeto {
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
+
     return _strFechamento;
   }
 
@@ -358,7 +326,6 @@ public class Tag extends Objeto {
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -382,6 +349,7 @@ public class Tag extends Objeto {
       if (!Utils.getBooStrVazia(this.getStrConteudo()) || !this.getLstTag().isEmpty() || this.getBooForcarTagDupla()) {
 
         if (!Utils.getBooStrVazia(this.getStrLink())) {
+
           stbTagFormatada.append("<a href=\"");
           stbTagFormatada.append(this.getStrLink());
           stbTagFormatada.append("\">");
@@ -394,12 +362,14 @@ public class Tag extends Objeto {
         stbTagFormatada.append(this.getStrConteudo());
 
         for (Tag tag : this.getLstTag()) {
+
           stbTagFormatada.append(tag.getStrTagFormatada());
         }
 
         stbTagFormatada.append(this.getStrAbertura());
 
         if (this.getBooBarraNoFinal()) {
+
           stbTagFormatada.append("/");
         }
 
@@ -407,6 +377,7 @@ public class Tag extends Objeto {
         stbTagFormatada.append(this.getStrFechamento());
 
         if (!Utils.getBooStrVazia(this.getStrLink())) {
+
           stbTagFormatada.append("</a>");
         }
 
@@ -414,6 +385,7 @@ public class Tag extends Objeto {
       else {
 
         if (!Utils.getBooStrVazia(this.getStrLink())) {
+
           stbTagFormatada.append("<a href=\"");
           stbTagFormatada.append(this.getStrLink());
           stbTagFormatada.append("\">");
@@ -424,21 +396,21 @@ public class Tag extends Objeto {
         stbTagFormatada.append(this.getStrAtributoFormatado());
 
         if (this.getBooBarraNoFinal()) {
+
           stbTagFormatada.append("/");
         }
 
         stbTagFormatada.append(this.getStrFechamento());
 
         if (!Utils.getBooStrVazia(this.getStrLink())) {
+
           stbTagFormatada.append("</a>");
         }
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -451,6 +423,7 @@ public class Tag extends Objeto {
     try {
 
       if (!Utils.getBooStrVazia(_strTagNome)) {
+
         return _strTagNome;
       }
 
@@ -459,17 +432,17 @@ public class Tag extends Objeto {
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
+
     return _strTagNome;
   }
 
   private String getStrTitle() {
 
     return _strTitle;
-  };
+  }
 
   public Tag getTagPai() {
 
@@ -484,12 +457,10 @@ public class Tag extends Objeto {
     try {
 
       this.getAtrClass().getLstStrValor().clear();
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -503,12 +474,10 @@ public class Tag extends Objeto {
       this.addJsArquivo(PaginaHtml.getI().getLstTagJs());
       this.addJsCodigo(PaginaHtml.getI().getTagJsMain());
       this.setCss(CssTag.getIMain());
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -539,16 +508,6 @@ public class Tag extends Objeto {
    */
   protected void setCss(CssTag tagCss) {
 
-    try {
-
-    }
-    catch (Exception ex) {
-
-      new Erro("Erro inesperado.\n", ex);
-
-    }
-    finally {
-    }
   }
 
   private void setLstAtr(List<Atributo> lstAtr) {
@@ -568,6 +527,7 @@ public class Tag extends Objeto {
       _strSrc = strSrc;
 
       if (Utils.getBooStrVazia(_strSrc)) {
+
         return;
       }
 
@@ -576,7 +536,6 @@ public class Tag extends Objeto {
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -607,13 +566,12 @@ public class Tag extends Objeto {
     try {
 
       _strId = strId;
-      this.getLstAtr().add(new Atributo("id", _strId));
 
+      this.getLstAtr().add(new Atributo("id", _strId));
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -637,13 +595,12 @@ public class Tag extends Objeto {
     try {
 
       _strNome = strNome;
-      this.addAtr("name", _strNome);
 
+      this.addAtr("name", _strNome);
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -659,13 +616,12 @@ public class Tag extends Objeto {
     try {
 
       _strTitle = strTitle;
-      this.getLstAtr().add(new Atributo("title", _strTitle));
 
+      this.getLstAtr().add(new Atributo("title", _strTitle));
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -682,12 +638,10 @@ public class Tag extends Objeto {
 
       _tagPai = tagPai;
       _tagPai.getLstTag().add(this);
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -703,5 +657,4 @@ public class Tag extends Objeto {
 
     return this.getStrTagFormatada();
   }
-
 }

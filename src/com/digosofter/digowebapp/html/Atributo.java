@@ -18,16 +18,15 @@ public class Atributo extends Objeto {
     try {
 
       if (Utils.getBooStrVazia(strNome)) {
+
         strNome = "attr";
       }
 
       this.setStrNome(strNome);
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -38,17 +37,16 @@ public class Atributo extends Objeto {
     try {
 
       if (Utils.getBooStrVazia(strNome)) {
+
         strNome = "attr";
       }
 
       this.setStrNome(strNome);
       this.setStrValor(strValor);
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -59,6 +57,7 @@ public class Atributo extends Objeto {
     try {
 
       if (_lstStrValor != null) {
+
         return _lstStrValor;
       }
 
@@ -67,7 +66,6 @@ public class Atributo extends Objeto {
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -80,19 +78,19 @@ public class Atributo extends Objeto {
     try {
 
       if (!Utils.getBooStrVazia(_strDelimitador)) {
+
         return _strDelimitador;
       }
 
       _strDelimitador = " ";
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
+
     return _strDelimitador;
   }
 
@@ -101,24 +99,26 @@ public class Atributo extends Objeto {
     try {
 
       if (!Utils.getBooStrVazia(_strValor)) {
+
         return _strValor;
       }
 
       _strValor = Utils.STR_VAZIA;
 
       for (String strValor : this.getLstStrValor()) {
+
         if (Utils.getBooStrVazia(strValor)) {
+
           continue;
         }
+
         _strValor += strValor;
         _strValor += this.getStrDelimitador();
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -138,6 +138,7 @@ public class Atributo extends Objeto {
       _strValor = strValor;
 
       if (Utils.getBooStrVazia(_strValor)) {
+
         return;
       }
 
@@ -147,10 +148,8 @@ public class Atributo extends Objeto {
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
   }
-
 }

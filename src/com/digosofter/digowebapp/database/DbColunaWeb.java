@@ -35,7 +35,6 @@ public class DbColunaWeb extends DbColuna {
           do {
 
             objCampoComboBox.addNomeValor(rst.getString(1), rst.getString(2));
-
           }
           while (rst.next());
 
@@ -52,12 +51,10 @@ public class DbColunaWeb extends DbColuna {
 
         objCampoComboBox.addNomeValor(this.getLstIntOpcaoValor().get(i).toString(), this.getLstStrOpcao().get(i));
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -76,12 +73,10 @@ public class DbColunaWeb extends DbColuna {
         default:
           break;
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }

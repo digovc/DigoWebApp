@@ -27,12 +27,10 @@ public class Popup extends ComponenteMain {
 
       this.getLstObjPopupItem().add(ppi);
       ppi.setIntOrdem(this.getLstObjPopupItem().size());
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -46,12 +44,10 @@ public class Popup extends ComponenteMain {
     try {
 
       lstObjJsTag.add(new JavaScriptTag(AppWeb.JS_POPUP));
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -65,12 +61,10 @@ public class Popup extends ComponenteMain {
 
         _lstObjPopupItem = new ArrayList<PopupItem>();
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -86,12 +80,10 @@ public class Popup extends ComponenteMain {
 
         _pnlOpcao = new Painel();
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -108,12 +100,10 @@ public class Popup extends ComponenteMain {
 
       this.getPnlOpcao().setTagPai(this);
       this.montarLayoutLstObjPopupItem();
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -127,12 +117,10 @@ public class Popup extends ComponenteMain {
 
         objPopupItem.setTagPai(this.getPnlOpcao());
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -151,15 +139,12 @@ public class Popup extends ComponenteMain {
       this.addCss(tagCss.setPadding(1, "px"));
       this.addCss(tagCss.setPosition("absolute"));
       this.addCss(tagCss.setZ(100));
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
   }
-
 }

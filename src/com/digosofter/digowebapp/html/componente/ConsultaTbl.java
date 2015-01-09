@@ -11,9 +11,7 @@ import com.digosofter.digowebapp.html.Painel;
 public class ConsultaTbl extends ComponenteMain {
 
   private Botao _btnNovo;
-
   private Painel _pnlLista;
-
   private DbTabelaWeb _tbl;
 
   public ConsultaTbl(DbTabelaWeb tbl) {
@@ -21,12 +19,10 @@ public class ConsultaTbl extends ComponenteMain {
     try {
 
       this.setTbl(tbl);
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -39,14 +35,13 @@ public class ConsultaTbl extends ComponenteMain {
       if (_btnNovo == null) {
 
         _btnNovo = new Botao();
+
         _btnNovo.setStrConteudo("Novo");
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -59,14 +54,13 @@ public class ConsultaTbl extends ComponenteMain {
     try {
 
       if (_pnlLista == null) {
+
         _pnlLista = new Painel();
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -92,12 +86,10 @@ public class ConsultaTbl extends ComponenteMain {
       this.getPnlComando().setTagPai(this);
       this.getBtnNovo().setTagPai(this.getPnlComando());
       this.getTagLimiteFloat().setTagPai(this.getPnlComando());
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -137,7 +129,6 @@ public class ConsultaTbl extends ComponenteMain {
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -159,16 +150,13 @@ public class ConsultaTbl extends ComponenteMain {
         do {
 
           this.montarLayoutLinha(objResultSet);
-
         }
         while (objResultSet.next());
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -183,12 +171,10 @@ public class ConsultaTbl extends ComponenteMain {
 
       this.addCss(tagCss.setPadding(5, "px"));
       this.addCss(tagCss.setBorder(1, "solid", "black"));
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -198,5 +184,4 @@ public class ConsultaTbl extends ComponenteMain {
 
     _tbl = tbl;
   }
-
 }

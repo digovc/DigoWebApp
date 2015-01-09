@@ -17,12 +17,10 @@ public class ComboBox extends Campo {
     try {
 
       this.setStrTagNome("select");
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -37,12 +35,10 @@ public class ComboBox extends Campo {
 
       this.getLstStrValor().add(strValor);
       this.getLstStrNome().add(strNome);
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -58,14 +54,13 @@ public class ComboBox extends Campo {
     try {
 
       if (_lstStrNome == null) {
+
         _lstStrNome = new ArrayList<String>();
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -78,14 +73,13 @@ public class ComboBox extends Campo {
     try {
 
       if (_lstStrValor == null) {
+
         _lstStrValor = new ArrayList<String>();
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -100,20 +94,20 @@ public class ComboBox extends Campo {
     try {
 
       if (!Utils.getBooStrVazia(this.getStrValor()) && this.getStrValor().equals(this.getLstStrValor().get(intOrdem))) {
+
         tagResultado = new Tag("option selected");
       }
       else {
+
         tagResultado = new Tag("option");
       }
 
       tagResultado.addAtr("value", this.getLstStrValor().get(intOrdem));
       tagResultado.setStrConteudo(this.getLstStrNome().get(intOrdem));
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -135,12 +129,10 @@ public class ComboBox extends Campo {
       }
 
       this.montarLayoutItens();
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -153,15 +145,14 @@ public class ComboBox extends Campo {
     try {
 
       for (int i = 0; i < this.getLstStrValor().size(); i++) {
+
         tagOption = this.getNewTagOption(i);
         tagOption.setTagPai(this);
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }

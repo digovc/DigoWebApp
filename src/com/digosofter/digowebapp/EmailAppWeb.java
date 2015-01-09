@@ -47,7 +47,6 @@ public class EmailAppWeb extends Objeto {
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -66,7 +65,6 @@ public class EmailAppWeb extends Objeto {
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -90,7 +88,6 @@ public class EmailAppWeb extends Objeto {
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -132,7 +129,6 @@ public class EmailAppWeb extends Objeto {
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -147,12 +143,10 @@ public class EmailAppWeb extends Objeto {
 
       this.getLstStrToEmail().add(strEmail);
       this.getLstStrToNome().add(strNome);
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -165,6 +159,7 @@ public class EmailAppWeb extends Objeto {
     try {
 
       objHtmlEmail = new HtmlEmail();
+
       objHtmlEmail.addReplyTo(this.getStrReplyToEmail(), this.getStrReplyToNome());
       objHtmlEmail.setAuthenticator(this.getObjDefaultAuthenticator());
       objHtmlEmail.setFrom(this.getStrFromEmail(), this.getStrFromNome());
@@ -179,12 +174,10 @@ public class EmailAppWeb extends Objeto {
       this.addTo(objHtmlEmail);
 
       objHtmlEmail.send();
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -204,16 +197,16 @@ public class EmailAppWeb extends Objeto {
 
     try {
 
-      if (_lstStrBccEmail == null) {
+      if (_lstStrBccEmail != null) {
 
-        _lstStrBccEmail = new ArrayList<String>();
+        return _lstStrBccEmail;
       }
 
+      _lstStrBccEmail = new ArrayList<String>();
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -225,16 +218,16 @@ public class EmailAppWeb extends Objeto {
 
     try {
 
-      if (_lstStrBccNome == null) {
+      if (_lstStrBccNome != null) {
 
-        _lstStrBccNome = new ArrayList<String>();
+        return _lstStrBccNome;
       }
 
+      _lstStrBccNome = new ArrayList<String>();
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -246,16 +239,16 @@ public class EmailAppWeb extends Objeto {
 
     try {
 
-      if (_lstStrCcEmail == null) {
+      if (_lstStrCcEmail != null) {
 
-        _lstStrCcEmail = new ArrayList<String>();
+        return _lstStrCcEmail;
       }
 
+      _lstStrCcEmail = new ArrayList<String>();
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -267,16 +260,16 @@ public class EmailAppWeb extends Objeto {
 
     try {
 
-      if (_lstStrCcNome == null) {
+      if (_lstStrCcNome != null) {
 
-        _lstStrCcNome = new ArrayList<String>();
+        return _lstStrCcNome;
       }
 
+      _lstStrCcNome = new ArrayList<String>();
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -288,16 +281,16 @@ public class EmailAppWeb extends Objeto {
 
     try {
 
-      if (_lstStrToEmail == null) {
+      if (_lstStrToEmail != null) {
 
-        _lstStrToEmail = new ArrayList<String>();
+        return _lstStrToEmail;
       }
 
+      _lstStrToEmail = new ArrayList<String>();
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -309,16 +302,16 @@ public class EmailAppWeb extends Objeto {
 
     try {
 
-      if (_lstStrToNome == null) {
+      if (_lstStrToNome != null) {
 
-        _lstStrToNome = new ArrayList<String>();
+        return _lstStrToNome;
       }
 
+      _lstStrToNome = new ArrayList<String>();
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -415,5 +408,4 @@ public class EmailAppWeb extends Objeto {
 
     _strSmtp = strSmtp;
   }
-
 }

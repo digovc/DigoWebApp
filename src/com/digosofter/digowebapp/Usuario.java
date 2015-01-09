@@ -12,17 +12,17 @@ public class Usuario extends Objeto {
     try {
 
       for (Usuario objUsuario : AppWeb.getI().getLstObjUsuarioSessao()) {
+
         if (objUsuario.getStrSessaoId().equals(strSessionId)) {
+
           objUsuarioResultado = objUsuario;
           break;
         }
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -39,12 +39,10 @@ public class Usuario extends Objeto {
     try {
 
       AppWeb.getI().getLstObjUsuarioSessao().add(this);
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -79,5 +77,4 @@ public class Usuario extends Objeto {
 
     _strSessaoId = strSessaoId;
   }
-
 }

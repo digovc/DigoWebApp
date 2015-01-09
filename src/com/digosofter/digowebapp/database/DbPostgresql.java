@@ -10,17 +10,6 @@ public class DbPostgresql extends DataBaseWeb {
   public DbPostgresql(String strHost, int intPort, String strDbName, String strUser, String strPassword) {
 
     super(strHost, intPort, strDbName, strUser, strPassword);
-
-    try {
-
-    }
-    catch (Exception ex) {
-
-      new Erro("Erro inesperado.\n", ex);
-
-    }
-    finally {
-    }
   }
 
   @Override
@@ -34,5 +23,4 @@ public class DbPostgresql extends DataBaseWeb {
 
     return STR_PACKEGE_CLASS_NAME;
   }
-
 }

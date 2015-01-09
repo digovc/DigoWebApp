@@ -9,6 +9,7 @@ import com.digosofter.digowebapp.html.Painel;
 public class Mensagem extends ComponenteMain {
 
   public enum EnmTipo {
+
     ALERTA,
     LOAD,
     NEGATIVA,
@@ -28,12 +29,10 @@ public class Mensagem extends ComponenteMain {
     try {
 
       this.setStrId("msg");
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -71,10 +70,10 @@ public class Mensagem extends ComponenteMain {
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
+
     return strResultado;
   }
 
@@ -93,6 +92,7 @@ public class Mensagem extends ComponenteMain {
       }
 
       _imgIcon = new Imagem();
+
       _imgIcon.setSrc(this.definirSrc());
       _imgIcon.addCss(CssTag.getIMain().setHeight(50, "px"));
       _imgIcon.addCss(CssTag.getIMain().setWidth(50, "px"));
@@ -100,7 +100,6 @@ public class Mensagem extends ComponenteMain {
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -115,6 +114,7 @@ public class Mensagem extends ComponenteMain {
       if (_pnlConteudo == null) {
 
         _pnlConteudo = new Painel();
+
         _pnlConteudo.addCss(CssTag.getIMain().setBorder(1, "outset", AppWeb.getI().getObjPaletaCor().getStrCorBorda()));
         _pnlConteudo.addCss(CssTag.getIMain().setBorderRadius(5, 5, 5, 5));
         _pnlConteudo.addCss(CssTag.getIMain().setBoxShadow(0, 2, 2, 2, AppWeb.getI().getObjPaletaCor().getStrCorBorda()));
@@ -123,12 +123,10 @@ public class Mensagem extends ComponenteMain {
         _pnlConteudo.addCss(CssTag.getIMain().setBackgroundColor("white"));
         _pnlConteudo.addCss(CssTag.getIMain().addCss("margin", "auto"));
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -143,14 +141,13 @@ public class Mensagem extends ComponenteMain {
       if (_pnlMensagem == null) {
 
         _pnlMensagem = new Painel();
+
         _pnlMensagem.setStrConteudo(this.getStrMensagem());
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -166,18 +163,17 @@ public class Mensagem extends ComponenteMain {
       if (_pnlTitulo == null) {
 
         _pnlTitulo = super.getPnlTitulo();
+
         _pnlTitulo.setStrConteudo(this.getStrTitulo());
         _pnlTitulo.addCss(CssTag.getIMain().setFontNegrito());
         _pnlTitulo.addCss(CssTag.getIMain().setMarginBottom(5));
         _pnlTitulo.addCss(CssTag.getIMain().setPaddingTop(5));
         _pnlTitulo.addCss(CssTag.getIMain().setBorderTop(1, AppWeb.getI().getObjPaletaCor().getStrCorBorda()));
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -206,12 +202,10 @@ public class Mensagem extends ComponenteMain {
       this.getImgIcon().setTagPai(this.getPnlConteudo());
       this.getPnlTitulo().setTagPai(this.getPnlConteudo());
       this.getPnlMensagem().setTagPai(this.getPnlConteudo());
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -228,12 +222,10 @@ public class Mensagem extends ComponenteMain {
       this.addCss(tagCss.setPaddingTop(50));
       this.addCss(tagCss.setWidth(100, "%"));
       this.addCss(tagCss.setZ(100));
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -257,15 +249,12 @@ public class Mensagem extends ComponenteMain {
     try {
 
       _strTitulo = strTitulo;
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
   }
-
 }

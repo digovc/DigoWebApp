@@ -28,7 +28,6 @@ public class CampoFrmTbl extends ComponenteMain {
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -39,12 +38,10 @@ public class CampoFrmTbl extends ComponenteMain {
     try {
 
       this.getObjCampo().setStrValor(this.getCln().getStrValor());
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -60,12 +57,14 @@ public class CampoFrmTbl extends ComponenteMain {
 
       // ComboBox
       if (this.getCln().getClnRef() != null || this.getCln().getLstStrOpcao().size() > 0) {
+
         this.definirTipoCampoComboBox();
         return;
       }
 
       // CheckBox
       if (this.getCln().getEnmTipo() == EnmTipo.BOOLEAN) {
+
         this.definirTipoCampoCheckBox();
         return;
       }
@@ -74,14 +73,13 @@ public class CampoFrmTbl extends ComponenteMain {
       this.setObjCampo(new Campo());
 
       if (this.getCln().getIntTamanhoCampo() >= 120) {
+
         this.getObjCampo().setEnmTipo(Campo.EnmTipo.TEXT_AREA);
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -97,15 +95,14 @@ public class CampoFrmTbl extends ComponenteMain {
     try {
 
       objCampo = new Campo();
+
       objCampo.setEnmTipo(Campo.EnmTipo.CHECKBOX);
 
       this.setObjCampo(objCampo);
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -122,14 +119,13 @@ public class CampoFrmTbl extends ComponenteMain {
     try {
 
       objCampoComboBox = new ComboBox();
+
       ((DbColunaWeb) this.getCln()).carregarComboBox(objCampoComboBox);
       this.setObjCampo(objCampoComboBox);
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -154,12 +150,10 @@ public class CampoFrmTbl extends ComponenteMain {
       intPeso = this.getCln().getIntFrmLinhaPeso();
       intPesoSoma = this.getIntPesoSoma();
       dblResultado = 100 / (double) intPesoSoma * intPeso;
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -185,14 +179,13 @@ public class CampoFrmTbl extends ComponenteMain {
       }
 
       if (intResultado == 0) {
+
         intResultado = 1;
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -218,15 +211,14 @@ public class CampoFrmTbl extends ComponenteMain {
         }
 
         if (!Utils.getBooStrVazia(this.getCln().getStrValor())) {
+
           this.carregarValorRegistro();
         }
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -241,15 +233,14 @@ public class CampoFrmTbl extends ComponenteMain {
       if (_pnlCampo == null) {
 
         _pnlCampo = new Painel();
+
         _pnlCampo.addCss(CssTag.getIMain().setPaddingLeft(10));
         _pnlCampo.addCss(CssTag.getIMain().setPaddingRight(10));
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -265,17 +256,16 @@ public class CampoFrmTbl extends ComponenteMain {
       if (_pnlTitulo == null) {
 
         _pnlTitulo = super.getPnlTitulo();
+
         _pnlTitulo.setStrConteudo(this.getCln().getStrNomeExibicao());
         _pnlTitulo.addCss(CssTag.getIMain().setPaddingLeft(10));
         _pnlTitulo.addCss(CssTag.getIMain().setPaddingRight(10));
         _pnlTitulo.addCss(CssTag.getIMain().setTextAlign("left"));
       }
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -293,12 +283,10 @@ public class CampoFrmTbl extends ComponenteMain {
       this.getPnlTitulo().setTagPai(this);
       this.getPnlCampo().setTagPai(this);
       this.getObjCampo().setTagPai(this.getPnlCampo());
-
     }
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -323,7 +311,6 @@ public class CampoFrmTbl extends ComponenteMain {
     catch (Exception ex) {
 
       new Erro("Erro inesperado.\n", ex);
-
     }
     finally {
     }
@@ -333,5 +320,4 @@ public class CampoFrmTbl extends ComponenteMain {
 
     _objCampo = objCampo;
   }
-
 }
