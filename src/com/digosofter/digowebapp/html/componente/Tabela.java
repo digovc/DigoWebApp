@@ -98,12 +98,14 @@ public class Tabela extends ComponenteMain {
 
     try {
 
-      if (_pnlPesquisa == null) {
+      if (_pnlPesquisa != null) {
 
-        _pnlPesquisa = new Painel();
-
-        _pnlPesquisa.addCss(CssTag.getIMain().setPadding(10, "px"));
+        return _pnlPesquisa;
       }
+
+      _pnlPesquisa = new Painel();
+
+      _pnlPesquisa.addCss(CssTag.getIMain().setPadding(10, "px"));
     }
     catch (Exception ex) {
 
@@ -119,17 +121,19 @@ public class Tabela extends ComponenteMain {
 
     try {
 
-      if (_tagTable == null) {
+      if (_tagTable != null) {
 
-        _tagTable = new Tag("table");
-
-        _tagTable.addAtr("border", "1px");
-        _tagTable.addCss(CssTag.getIMain().addCss("border-collapse", "collapse"));
-        _tagTable.addCss(CssTag.getIMain().setCursor("pointer"));
-        _tagTable.addCss(CssTag.getIMain().setDisplay("block"));
-        _tagTable.addCss(CssTag.getIMain().setHeight(650, "px"));
-        _tagTable.addCss(CssTag.getIMain().setOverflowY("scroll"));
+        return _tagTable;
       }
+
+      _tagTable = new Tag("table");
+
+      _tagTable.addAtr("border", "1px");
+      _tagTable.addCss(CssTag.getIMain().addCss("border-collapse", "collapse"));
+      _tagTable.addCss(CssTag.getIMain().setCursor("pointer"));
+      _tagTable.addCss(CssTag.getIMain().setDisplay("block"));
+      _tagTable.addCss(CssTag.getIMain().setHeight(650, "px"));
+      _tagTable.addCss(CssTag.getIMain().setOverflowY("scroll"));
     }
     catch (Exception ex) {
 
@@ -145,10 +149,12 @@ public class Tabela extends ComponenteMain {
 
     try {
 
-      if (_tagTbody == null) {
+      if (_tagTbody != null) {
 
-        _tagTbody = new Tag("tbody");
+        return _tagTbody;
       }
+
+      _tagTbody = new Tag("tbody");
     }
     catch (Exception ex) {
 
@@ -164,10 +170,12 @@ public class Tabela extends ComponenteMain {
 
     try {
 
-      if (_tagThead == null) {
+      if (_tagThead != null) {
 
-        _tagThead = new Tag("thead");
+        return _tagThead;
       }
+
+      _tagThead = new Tag("thead");
     }
     catch (Exception ex) {
 
@@ -188,13 +196,15 @@ public class Tabela extends ComponenteMain {
 
     try {
 
-      if (_txtPesquisa == null) {
+      if (_txtPesquisa != null) {
 
-        _txtPesquisa = new Campo();
-
-        _txtPesquisa.setStrId("txtPesquisa_" + this.getTbl().getStrNomeSimplificado());
-        _txtPesquisa.setStrPlaceHolder("Pesquisa");
+        return _txtPesquisa;
       }
+
+      _txtPesquisa = new Campo();
+
+      _txtPesquisa.setStrId("txtPesquisa_" + this.getTbl().getStrNomeSimplificado());
+      _txtPesquisa.setStrPlaceHolder("Pesquisa");
     }
     catch (Exception ex) {
 

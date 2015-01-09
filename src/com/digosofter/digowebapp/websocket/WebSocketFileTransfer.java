@@ -22,10 +22,12 @@ public class WebSocketFileTransfer extends WebSocketMain {
 
     try {
 
-      if (_lstObjWsFileTransfer == null) {
+      if (_lstObjWsFileTransfer != null) {
 
-        _lstObjWsFileTransfer = new ArrayList<ObjWsFileTransfer>();
+        return _lstObjWsFileTransfer;
       }
+
+      _lstObjWsFileTransfer = new ArrayList<ObjWsFileTransfer>();
     }
     catch (Exception ex) {
 
@@ -136,6 +138,7 @@ public class WebSocketFileTransfer extends WebSocketMain {
     try {
 
       wft = this.getObjWsFileTransfer(objSession);
+
       intTamanho = wft.addBytes(strMensagem);
       objSession.getBasicRemote().sendText("{ 'type': 'DATA', 'code': 200, 'bytesRead': " + intTamanho + " }");
     }

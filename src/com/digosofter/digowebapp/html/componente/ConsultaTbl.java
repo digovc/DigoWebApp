@@ -32,12 +32,14 @@ public class ConsultaTbl extends ComponenteMain {
 
     try {
 
-      if (_btnNovo == null) {
+      if (_btnNovo != null) {
 
-        _btnNovo = new Botao();
-
-        _btnNovo.setStrConteudo("Novo");
+        return _btnNovo;
       }
+
+      _btnNovo = new Botao();
+
+      _btnNovo.setStrConteudo("Novo");
     }
     catch (Exception ex) {
 
@@ -53,10 +55,12 @@ public class ConsultaTbl extends ComponenteMain {
 
     try {
 
-      if (_pnlLista == null) {
+      if (_pnlLista != null) {
 
-        _pnlLista = new Painel();
+        return _pnlLista;
       }
+
+      _pnlLista = new Painel();
     }
     catch (Exception ex) {
 

@@ -197,23 +197,25 @@ public class CampoFrmTbl extends ComponenteMain {
 
     try {
 
-      if (_objCampo == null) {
+      if (_objCampo != null) {
 
-        this.definirTipoCampo();
+        return _objCampo;
+      }
 
-        _objCampo.setStrNome(this.getCln().getStrNomeSimplificado());
-        _objCampo.addCss(CssTag.getIMain().setPadding(5, "px"));
-        _objCampo.addCss(CssTag.getIMain().setWidth(100, "%"));
+      this.definirTipoCampo();
 
-        if (this.getCln().getIntTamanhoCampo() > 0) {
+      _objCampo.setStrNome(this.getCln().getStrNomeSimplificado());
+      _objCampo.addCss(CssTag.getIMain().setPadding(5, "px"));
+      _objCampo.addCss(CssTag.getIMain().setWidth(100, "%"));
 
-          _objCampo.addAtr("maxlength", this.getCln().getIntTamanhoCampo());
-        }
+      if (this.getCln().getIntTamanhoCampo() > 0) {
 
-        if (!Utils.getBooStrVazia(this.getCln().getStrValor())) {
+        _objCampo.addAtr("maxlength", this.getCln().getIntTamanhoCampo());
+      }
 
-          this.carregarValorRegistro();
-        }
+      if (!Utils.getBooStrVazia(this.getCln().getStrValor())) {
+
+        this.carregarValorRegistro();
       }
     }
     catch (Exception ex) {
@@ -230,13 +232,15 @@ public class CampoFrmTbl extends ComponenteMain {
 
     try {
 
-      if (_pnlCampo == null) {
+      if (_pnlCampo != null) {
 
-        _pnlCampo = new Painel();
-
-        _pnlCampo.addCss(CssTag.getIMain().setPaddingLeft(10));
-        _pnlCampo.addCss(CssTag.getIMain().setPaddingRight(10));
+        return _pnlCampo;
       }
+
+      _pnlCampo = new Painel();
+
+      _pnlCampo.addCss(CssTag.getIMain().setPaddingLeft(10));
+      _pnlCampo.addCss(CssTag.getIMain().setPaddingRight(10));
     }
     catch (Exception ex) {
 
@@ -253,15 +257,17 @@ public class CampoFrmTbl extends ComponenteMain {
 
     try {
 
-      if (_pnlTitulo == null) {
+      if (_pnlTitulo != null) {
 
-        _pnlTitulo = super.getPnlTitulo();
-
-        _pnlTitulo.setStrConteudo(this.getCln().getStrNomeExibicao());
-        _pnlTitulo.addCss(CssTag.getIMain().setPaddingLeft(10));
-        _pnlTitulo.addCss(CssTag.getIMain().setPaddingRight(10));
-        _pnlTitulo.addCss(CssTag.getIMain().setTextAlign("left"));
+        return _pnlTitulo;
       }
+
+      _pnlTitulo = super.getPnlTitulo();
+
+      _pnlTitulo.setStrConteudo(this.getCln().getStrNomeExibicao());
+      _pnlTitulo.addCss(CssTag.getIMain().setPaddingLeft(10));
+      _pnlTitulo.addCss(CssTag.getIMain().setPaddingRight(10));
+      _pnlTitulo.addCss(CssTag.getIMain().setTextAlign("left"));
     }
     catch (Exception ex) {
 

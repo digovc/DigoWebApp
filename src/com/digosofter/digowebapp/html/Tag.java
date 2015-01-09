@@ -118,12 +118,14 @@ public class Tag extends Objeto {
 
     try {
 
-      if (_atrClass == null) {
+      if (_atrClass != null) {
 
-        _atrClass = new Atributo("class");
-
-        this.getLstAtr().add(_atrClass);
+        return _atrClass;
       }
+
+      _atrClass = new Atributo("class");
+
+      this.getLstAtr().add(_atrClass);
     }
     catch (Exception ex) {
 
@@ -162,12 +164,14 @@ public class Tag extends Objeto {
 
     try {
 
-      if (_atrType == null) {
+      if (_atrType != null) {
 
-        _atrType = new Atributo("type");
-
-        this.getLstAtr().add(_atrType);
+        return _atrType;
       }
+
+      _atrType = new Atributo("type");
+
+      this.getLstAtr().add(_atrType);
     }
     catch (Exception ex) {
 
@@ -193,10 +197,12 @@ public class Tag extends Objeto {
 
     try {
 
-      if (_lstAtr == null) {
+      if (_lstAtr != null) {
 
-        _lstAtr = new ArrayList<Atributo>();
+        return _lstAtr;
       }
+
+      _lstAtr = new ArrayList<Atributo>();
     }
     catch (Exception ex) {
 
@@ -212,10 +218,12 @@ public class Tag extends Objeto {
 
     try {
 
-      if (_lstTag == null) {
+      if (_lstTag != null) {
 
-        _lstTag = new ArrayList<Tag>();
+        return _lstTag;
       }
+
+      _lstTag = new ArrayList<Tag>();
     }
     catch (Exception ex) {
 
@@ -262,15 +270,18 @@ public class Tag extends Objeto {
 
       for (Atributo atr : this.getLstAtr()) {
 
-        if (!strAtributoIncluido.contains("#" + atr.getStrNome() + "#")) {
+        if (strAtributoIncluido.contains("#" + atr.getStrNome() + "#")) {
 
-          strAtributoIncluido += "#" + atr.getStrNome() + "#";
-          stbAtrFormatado.append(" ");
-          stbAtrFormatado.append(atr.getStrNome());
-          stbAtrFormatado.append("=\"");
-          stbAtrFormatado.append(Utils.getStrConcatenarLst(atr.getLstStrValor(), atr.getStrDelimitador(), true));
-          stbAtrFormatado.append("\"");
+          continue;
         }
+
+        strAtributoIncluido += "#" + atr.getStrNome() + "#";
+
+        stbAtrFormatado.append(" ");
+        stbAtrFormatado.append(atr.getStrNome());
+        stbAtrFormatado.append("=\"");
+        stbAtrFormatado.append(Utils.getStrConcatenarLst(atr.getLstStrValor(), atr.getStrDelimitador(), true));
+        stbAtrFormatado.append("\"");
       }
     }
     catch (Exception ex) {
@@ -381,31 +392,30 @@ public class Tag extends Objeto {
           stbTagFormatada.append("</a>");
         }
 
+        return stbTagFormatada.toString();
       }
-      else {
 
-        if (!Utils.getBooStrVazia(this.getStrLink())) {
+      if (!Utils.getBooStrVazia(this.getStrLink())) {
 
-          stbTagFormatada.append("<a href=\"");
-          stbTagFormatada.append(this.getStrLink());
-          stbTagFormatada.append("\">");
-        }
+        stbTagFormatada.append("<a href=\"");
+        stbTagFormatada.append(this.getStrLink());
+        stbTagFormatada.append("\">");
+      }
 
-        stbTagFormatada.append(this.getStrAbertura());
-        stbTagFormatada.append(this.getStrTagNome());
-        stbTagFormatada.append(this.getStrAtributoFormatado());
+      stbTagFormatada.append(this.getStrAbertura());
+      stbTagFormatada.append(this.getStrTagNome());
+      stbTagFormatada.append(this.getStrAtributoFormatado());
 
-        if (this.getBooBarraNoFinal()) {
+      if (this.getBooBarraNoFinal()) {
 
-          stbTagFormatada.append("/");
-        }
+        stbTagFormatada.append("/");
+      }
 
-        stbTagFormatada.append(this.getStrFechamento());
+      stbTagFormatada.append(this.getStrFechamento());
 
-        if (!Utils.getBooStrVazia(this.getStrLink())) {
+      if (!Utils.getBooStrVazia(this.getStrLink())) {
 
-          stbTagFormatada.append("</a>");
-        }
+        stbTagFormatada.append("</a>");
       }
     }
     catch (Exception ex) {
@@ -439,7 +449,7 @@ public class Tag extends Objeto {
     return _strTagNome;
   }
 
-  private String getStrTitle() {
+  protected String getStrTitle() {
 
     return _strTitle;
   }
@@ -483,16 +493,6 @@ public class Tag extends Objeto {
     }
   }
 
-  private void setAtrClass(Atributo atrClass) {
-
-    _atrClass = atrClass;
-  }
-
-  private void setAtrType(Atributo atrType) {
-
-    _atrType = atrType;
-  }
-
   public void setBooBarraNoFinal(boolean booBarraNoFinal) {
 
     _booBarraNoFinal = booBarraNoFinal;
@@ -508,16 +508,6 @@ public class Tag extends Objeto {
    */
   protected void setCss(CssTag tagCss) {
 
-  }
-
-  private void setLstAtr(List<Atributo> lstAtr) {
-
-    _lstAtr = lstAtr;
-  }
-
-  private void setLstTag(List<Tag> lstTag) {
-
-    _lstTag = lstTag;
   }
 
   public void setSrc(String strSrc) {
@@ -541,11 +531,6 @@ public class Tag extends Objeto {
     }
   }
 
-  private void setStrAbertura(String strAbertura) {
-
-    _strAbertura = strAbertura;
-  }
-
   public void setStrConteudo(String strConteudo) {
 
     _strConteudo = strConteudo;
@@ -554,11 +539,6 @@ public class Tag extends Objeto {
   public void setStrConteudo(StringBuilder stbConteudo) {
 
     this.setStrConteudo(stbConteudo.toString());
-  }
-
-  private void setStrFechamento(String strFechamento) {
-
-    _strFechamento = strFechamento;
   }
 
   public void setStrId(String strId) {

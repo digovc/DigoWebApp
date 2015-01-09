@@ -86,16 +86,18 @@ public class JavaScriptTag extends Tag {
 
     try {
 
-      if (!this.getLstStrMetodos().isEmpty()) {
+      if (this.getLstStrMetodos().isEmpty()) {
 
-        strBuilder = new StringBuilder();
-
-        strBuilder.append("$(document).ready(function(){");
-        strBuilder.append(Utils.getStrConcatenarLst(this.getLstStrMetodos(), Utils.STR_VAZIA, true));
-        strBuilder.append("});");
-
-        this.setStrConteudo(strBuilder.toString());
+        return super.getStrTagFormatada();
       }
+
+      strBuilder = new StringBuilder();
+
+      strBuilder.append("$(document).ready(function(){");
+      strBuilder.append(Utils.getStrConcatenarLst(this.getLstStrMetodos(), Utils.STR_VAZIA, true));
+      strBuilder.append("});");
+
+      this.setStrConteudo(strBuilder.toString());
     }
     catch (Exception ex) {
 

@@ -86,12 +86,14 @@ public class Painel extends Tag {
 
       lstObjJsTag.add(new JavaScriptTag(AppWeb.JS_PAINEL));
 
-      if (this.getBooMarkdown()) {
+      if (!this.getBooMarkdown()) {
 
-        lstObjJsTag.add(new JavaScriptTag("res/js/lib/JDigo/lib/Markdown.Converter.js"));
-        lstObjJsTag.add(new JavaScriptTag("res/js/lib/JDigo/lib/Markdown.Extra.js"));
-        lstObjJsTag.add(new JavaScriptTag("res/js/lib/JDigo/lib/highlight.pack.js"));
+        return;
       }
+
+      lstObjJsTag.add(new JavaScriptTag("res/js/lib/JDigo/lib/Markdown.Converter.js"));
+      lstObjJsTag.add(new JavaScriptTag("res/js/lib/JDigo/lib/Markdown.Extra.js"));
+      lstObjJsTag.add(new JavaScriptTag("res/js/lib/JDigo/lib/highlight.pack.js"));
     }
     catch (Exception ex) {
 
@@ -144,10 +146,12 @@ public class Painel extends Tag {
 
     try {
 
-      if (this.getBooMarkdown()) {
+      if (!this.getBooMarkdown()) {
 
-        this.addJsCodigoConverterMarkdown();
+        return;
       }
+
+      this.addJsCodigoConverterMarkdown();
     }
     catch (Exception ex) {
 

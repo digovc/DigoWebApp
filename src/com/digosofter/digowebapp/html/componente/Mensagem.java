@@ -111,18 +111,20 @@ public class Mensagem extends ComponenteMain {
 
     try {
 
-      if (_pnlConteudo == null) {
+      if (_pnlConteudo != null) {
 
-        _pnlConteudo = new Painel();
-
-        _pnlConteudo.addCss(CssTag.getIMain().setBorder(1, "outset", AppWeb.getI().getObjPaletaCor().getStrCorBorda()));
-        _pnlConteudo.addCss(CssTag.getIMain().setBorderRadius(5, 5, 5, 5));
-        _pnlConteudo.addCss(CssTag.getIMain().setBoxShadow(0, 2, 2, 2, AppWeb.getI().getObjPaletaCor().getStrCorBorda()));
-        _pnlConteudo.addCss(CssTag.getIMain().setDisplay("table"));
-        _pnlConteudo.addCss(CssTag.getIMain().setPadding(5, "px"));
-        _pnlConteudo.addCss(CssTag.getIMain().setBackgroundColor("white"));
-        _pnlConteudo.addCss(CssTag.getIMain().addCss("margin", "auto"));
+        return _pnlConteudo;
       }
+
+      _pnlConteudo = new Painel();
+
+      _pnlConteudo.addCss(CssTag.getIMain().setBorder(1, "outset", AppWeb.getI().getObjPaletaCor().getStrCorBorda()));
+      _pnlConteudo.addCss(CssTag.getIMain().setBorderRadius(5, 5, 5, 5));
+      _pnlConteudo.addCss(CssTag.getIMain().setBoxShadow(0, 2, 2, 2, AppWeb.getI().getObjPaletaCor().getStrCorBorda()));
+      _pnlConteudo.addCss(CssTag.getIMain().setDisplay("table"));
+      _pnlConteudo.addCss(CssTag.getIMain().setPadding(5, "px"));
+      _pnlConteudo.addCss(CssTag.getIMain().setBackgroundColor("white"));
+      _pnlConteudo.addCss(CssTag.getIMain().addCss("margin", "auto"));
     }
     catch (Exception ex) {
 
@@ -138,12 +140,14 @@ public class Mensagem extends ComponenteMain {
 
     try {
 
-      if (_pnlMensagem == null) {
+      if (_pnlMensagem != null) {
 
-        _pnlMensagem = new Painel();
-
-        _pnlMensagem.setStrConteudo(this.getStrMensagem());
+        return _pnlMensagem;
       }
+
+      _pnlMensagem = new Painel();
+
+      _pnlMensagem.setStrConteudo(this.getStrMensagem());
     }
     catch (Exception ex) {
 
@@ -160,16 +164,18 @@ public class Mensagem extends ComponenteMain {
 
     try {
 
-      if (_pnlTitulo == null) {
+      if (_pnlTitulo != null) {
 
-        _pnlTitulo = super.getPnlTitulo();
-
-        _pnlTitulo.setStrConteudo(this.getStrTitulo());
-        _pnlTitulo.addCss(CssTag.getIMain().setFontNegrito());
-        _pnlTitulo.addCss(CssTag.getIMain().setMarginBottom(5));
-        _pnlTitulo.addCss(CssTag.getIMain().setPaddingTop(5));
-        _pnlTitulo.addCss(CssTag.getIMain().setBorderTop(1, AppWeb.getI().getObjPaletaCor().getStrCorBorda()));
+        return _pnlTitulo;
       }
+
+      _pnlTitulo = super.getPnlTitulo();
+
+      _pnlTitulo.setStrConteudo(this.getStrTitulo());
+      _pnlTitulo.addCss(CssTag.getIMain().setFontNegrito());
+      _pnlTitulo.addCss(CssTag.getIMain().setMarginBottom(5));
+      _pnlTitulo.addCss(CssTag.getIMain().setPaddingTop(5));
+      _pnlTitulo.addCss(CssTag.getIMain().setBorderTop(1, AppWeb.getI().getObjPaletaCor().getStrCorBorda()));
     }
     catch (Exception ex) {
 

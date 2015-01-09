@@ -57,10 +57,12 @@ public class Popup extends ComponenteMain {
 
     try {
 
-      if (_lstObjPopupItem == null) {
+      if (_lstObjPopupItem != null) {
 
-        _lstObjPopupItem = new ArrayList<PopupItem>();
+        return _lstObjPopupItem;
       }
+
+      _lstObjPopupItem = new ArrayList<PopupItem>();
     }
     catch (Exception ex) {
 
@@ -76,10 +78,12 @@ public class Popup extends ComponenteMain {
 
     try {
 
-      if (_pnlOpcao == null) {
+      if (_pnlOpcao != null) {
 
-        _pnlOpcao = new Painel();
+        return _pnlOpcao;
       }
+
+      _pnlOpcao = new Painel();
     }
     catch (Exception ex) {
 

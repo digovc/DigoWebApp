@@ -53,10 +53,12 @@ public class ComboBox extends Campo {
 
     try {
 
-      if (_lstStrNome == null) {
+      if (_lstStrNome != null) {
 
-        _lstStrNome = new ArrayList<String>();
+        return _lstStrNome;
       }
+
+      _lstStrNome = new ArrayList<String>();
     }
     catch (Exception ex) {
 
@@ -72,10 +74,12 @@ public class ComboBox extends Campo {
 
     try {
 
-      if (_lstStrValor == null) {
+      if (_lstStrValor != null) {
 
-        _lstStrValor = new ArrayList<String>();
+        return _lstStrValor;
       }
+
+      _lstStrValor = new ArrayList<String>();
     }
     catch (Exception ex) {
 

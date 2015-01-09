@@ -95,13 +95,15 @@ public class FormularioTbl extends ComponenteMain {
 
     try {
 
-      if (_btnCancelar == null) {
+      if (_btnCancelar != null) {
 
-        _btnCancelar = new Botao();
-
-        _btnCancelar.setStrId("btnCancelar");
-        _btnCancelar.setStrConteudo("Cancelar");
+        return _btnCancelar;
       }
+
+      _btnCancelar = new Botao();
+
+      _btnCancelar.setStrId("btnCancelar");
+      _btnCancelar.setStrConteudo("Cancelar");
     }
     catch (Exception ex) {
 
@@ -117,13 +119,15 @@ public class FormularioTbl extends ComponenteMain {
 
     try {
 
-      if (_btnSalvar == null) {
+      if (_btnSalvar != null) {
 
-        _btnSalvar = new Botao();
-
-        _btnSalvar.setStrConteudo("Salvar");
-        _btnSalvar.setStrId("btnSalvar");
+        return _btnSalvar;
       }
+
+      _btnSalvar = new Botao();
+
+      _btnSalvar.setStrConteudo("Salvar");
+      _btnSalvar.setStrId("btnSalvar");
     }
     catch (Exception ex) {
 
@@ -139,16 +143,18 @@ public class FormularioTbl extends ComponenteMain {
 
     try {
 
-      if (_frm == null) {
+      if (_frm != null) {
 
-        _frm = new Formulario(this.getStrAction(), Formulario.EnmMetodo.POST);
+        return _frm;
+      }
 
-        _frm.setStrId("frm_" + this.getTbl().getStrNomeSimplificado());
+      _frm = new Formulario(this.getStrAction(), Formulario.EnmMetodo.POST);
 
-        if (!this.getBooSubmit()) {
+      _frm.setStrId("frm_" + this.getTbl().getStrNomeSimplificado());
 
-          _frm.addAtr("onsubmit", "return false;");
-        }
+      if (!this.getBooSubmit()) {
+
+        _frm.addAtr("onsubmit", "return false;");
       }
     }
     catch (Exception ex) {
@@ -192,10 +198,12 @@ public class FormularioTbl extends ComponenteMain {
 
     try {
 
-      if (_intRegistroId == 0) {
+      if (_intRegistroId != 0) {
 
-        _intRegistroId = AppWeb.getI().getIntParam("id");
+        return _intRegistroId;
       }
+
+      _intRegistroId = AppWeb.getI().getIntParam("id");
     }
     catch (Exception ex) {
 
@@ -211,10 +219,12 @@ public class FormularioTbl extends ComponenteMain {
 
     try {
 
-      if (_objLimiteFloat == null) {
+      if (_objLimiteFloat != null) {
 
-        _objLimiteFloat = new LimiteFloat();
+        return _objLimiteFloat;
       }
+
+      _objLimiteFloat = new LimiteFloat();
     }
     catch (Exception ex) {
 
@@ -230,10 +240,12 @@ public class FormularioTbl extends ComponenteMain {
 
     try {
 
-      if (_pnlCampos == null) {
+      if (_pnlCampos != null) {
 
-        _pnlCampos = new Painel();
+        return _pnlCampos;
       }
+
+      _pnlCampos = new Painel();
     }
     catch (Exception ex) {
 
@@ -249,18 +261,20 @@ public class FormularioTbl extends ComponenteMain {
 
     try {
 
-      if (Utils.getBooStrVazia(_strAction)) {
+      if (!Utils.getBooStrVazia(_strAction)) {
 
-        _strAction = AppWeb.getI().getStrPagSolicitada();
+        return _strAction;
+      }
 
-        _strAction += "?save=";
-        _strAction += this.getTbl().getStrNomeSimplificado();
+      _strAction = AppWeb.getI().getStrPagSolicitada();
 
-        if (this.getIntRegistroId() > 0) {
+      _strAction += "?save=";
+      _strAction += this.getTbl().getStrNomeSimplificado();
 
-          _strAction += "&id=";
-          _strAction += this.getIntRegistroId();
-        }
+      if (this.getIntRegistroId() > 0) {
+
+        _strAction += "&id=";
+        _strAction += this.getIntRegistroId();
       }
     }
     catch (Exception ex) {

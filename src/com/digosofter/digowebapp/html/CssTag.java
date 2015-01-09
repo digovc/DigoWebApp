@@ -720,7 +720,6 @@ public class CssTag extends Tag {
       stb.append(strFontFamily);
 
       strResultado = this.addCss("font-family", stb.toString());
-
     }
     catch (Exception ex) {
 
@@ -1269,6 +1268,7 @@ public class CssTag extends Tag {
       stb = new StringBuilder();
 
       stb.append(strTextAlign);
+
       strResultado = this.addCss("text-align", stb.toString());
     }
     catch (Exception ex) {
@@ -1409,6 +1409,7 @@ public class CssTag extends Tag {
       stb = new StringBuilder();
 
       stb.append(intZ);
+
       strResultado = this.addCss("z-index", stb.toString());
     }
     catch (Exception ex) {

@@ -56,13 +56,15 @@ public class PopupItem extends ItemMain {
 
     try {
 
-      if (_pnlTitulo == null) {
+      if (_pnlTitulo != null) {
 
-        _pnlTitulo = super.getPnlTitulo();
-
-        _pnlTitulo.setStrConteudo(this.getStrNomeExibicao());
-        _pnlTitulo.addCss(CssTag.getIMain().setTextAlign("left"));
+        return _pnlTitulo;
       }
+
+      _pnlTitulo = super.getPnlTitulo();
+
+      _pnlTitulo.setStrConteudo(this.getStrNomeExibicao());
+      _pnlTitulo.addCss(CssTag.getIMain().setTextAlign("left"));
     }
     catch (Exception ex) {
 

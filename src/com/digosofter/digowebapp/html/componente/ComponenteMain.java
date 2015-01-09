@@ -42,13 +42,15 @@ public abstract class ComponenteMain extends Tag {
 
     try {
 
-      if (_pnlComando == null) {
+      if (_pnlComando != null) {
 
-        _pnlComando = new Painel();
-
-        _pnlComando.addCss(CssTag.getIMain().setPaddingLeft(10));
-        _pnlComando.addCss(CssTag.getIMain().setPaddingRight(10));
+        return _pnlComando;
       }
+
+      _pnlComando = new Painel();
+
+      _pnlComando.addCss(CssTag.getIMain().setPaddingLeft(10));
+      _pnlComando.addCss(CssTag.getIMain().setPaddingRight(10));
     }
     catch (Exception ex) {
 
@@ -64,10 +66,12 @@ public abstract class ComponenteMain extends Tag {
 
     try {
 
-      if (_pnlTitulo == null) {
+      if (_pnlTitulo != null) {
 
-        _pnlTitulo = new Painel();
+        return _pnlTitulo;
       }
+
+      _pnlTitulo = new Painel();
     }
     catch (Exception ex) {
 
@@ -83,10 +87,12 @@ public abstract class ComponenteMain extends Tag {
 
     try {
 
-      if (_tagLimiteFloat == null) {
+      if (_tagLimiteFloat != null) {
 
-        _tagLimiteFloat = new LimiteFloat();
+        return _tagLimiteFloat;
       }
+
+      _tagLimiteFloat = new LimiteFloat();
     }
     catch (Exception ex) {
 

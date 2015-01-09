@@ -244,10 +244,12 @@ public abstract class DbTabelaWeb extends DbTabela {
 
     try {
 
-      if (_lstObjDbView == null) {
+      if (_lstObjDbView != null) {
 
-        _lstObjDbView = new ArrayList<DbView>();
+        return _lstObjDbView;
       }
+
+      _lstObjDbView = new ArrayList<DbView>();
     }
     catch (Exception ex) {
 
@@ -384,20 +386,19 @@ public abstract class DbTabelaWeb extends DbTabela {
 
       objResultSet = ((DataBaseWeb) this.getObjDb()).execSqlGetRst(sql);
 
-      if (objResultSet != null) {
+      lstStrResultado = new ArrayList<String>();
 
-        if (objResultSet.first()) {
+      if (objResultSet == null || !objResultSet.first()) {
 
-          lstStrResultado = new ArrayList<String>();
-
-          do {
-
-            lstStrResultado.add(objResultSet.getString(1));
-
-          }
-          while (objResultSet.next());
-        }
+        return lstStrResultado;
       }
+
+      do {
+
+        lstStrResultado.add(objResultSet.getString(1));
+
+      }
+      while (objResultSet.next());
     }
     catch (Exception ex) {
 
@@ -422,6 +423,7 @@ public abstract class DbTabelaWeb extends DbTabela {
     try {
 
       lstClnOrdem = new ArrayList<DbColuna>();
+
       lstClnOrdem.add(clnOrdem);
 
       rstResultado = this.getRst(cln, lstObjDbFiltro, lstClnOrdem);
@@ -444,6 +446,7 @@ public abstract class DbTabelaWeb extends DbTabela {
     try {
 
       lstCln = new ArrayList<DbColuna>();
+
       lstCln.add(cln);
 
       rstResultado = this.getRst(lstCln, lstObjDbFiltro, lstClnOrdem);
@@ -466,6 +469,7 @@ public abstract class DbTabelaWeb extends DbTabela {
     try {
 
       lstObjDbFiltro = new ArrayList<DbFiltro>();
+
       lstObjDbFiltro.add(new DbFiltro(clnFiltro, strFiltro));
 
       rstResultado = this.getRst(this.getLstCln(), lstObjDbFiltro, null);

@@ -223,11 +223,11 @@ public class PaginaHtml extends Objeto {
    */
   private void addJsCodigoMensagem(JavaScriptTag tagJs) {
 
-    String strJs;
     Mensagem msgAlerta;
     Mensagem msgLoad;
     Mensagem msgNegativa;
     Mensagem msgPositiva;
+    String strJs;
 
     try {
 
@@ -508,10 +508,12 @@ public class PaginaHtml extends Objeto {
 
     try {
 
-      if (_tagBody == null) {
+      if (_tagBody != null) {
 
-        _tagBody = new Tag("body");
+        return _tagBody;
       }
+
+      _tagBody = new Tag("body");
     }
     catch (Exception ex) {
 
@@ -527,11 +529,14 @@ public class PaginaHtml extends Objeto {
 
     try {
 
-      if (_tagDocType == null) {
+      if (_tagDocType != null) {
 
-        _tagDocType = new Tag("!DOCTYPE html");
-        _tagDocType.setBooBarraNoFinal(false);
+        return _tagDocType;
       }
+
+      _tagDocType = new Tag("!DOCTYPE html");
+
+      _tagDocType.setBooBarraNoFinal(false);
     }
     catch (Exception ex) {
 
@@ -547,10 +552,12 @@ public class PaginaHtml extends Objeto {
 
     try {
 
-      if (_tagHead == null) {
+      if (_tagHead != null) {
 
-        _tagHead = new Tag("head");
+        return _tagHead;
       }
+
+      _tagHead = new Tag("head");
     }
     catch (Exception ex) {
 
@@ -566,13 +573,15 @@ public class PaginaHtml extends Objeto {
 
     try {
 
-      if (_tagHtml == null) {
+      if (_tagHtml != null) {
 
-        _tagHtml = new Tag("html");
-
-        _tagHtml.getLstAtr().add(new Atributo("xmlns", "http://www.w3.org/1999/xhtml"));
-        _tagHtml.getLstAtr().add(new Atributo("lang", "pt-br"));
+        return _tagHtml;
       }
+
+      _tagHtml = new Tag("html");
+
+      _tagHtml.getLstAtr().add(new Atributo("xmlns", "http://www.w3.org/1999/xhtml"));
+      _tagHtml.getLstAtr().add(new Atributo("lang", "pt-br"));
     }
     catch (Exception ex) {
 
@@ -588,14 +597,16 @@ public class PaginaHtml extends Objeto {
 
     try {
 
-      if (_tagIcon == null) {
+      if (_tagIcon != null) {
 
-        _tagIcon = new Tag("link");
-
-        _tagIcon.addAtr("rel", "shortcut icon");
-        _tagIcon.addAtr("href", this.getStrSrcIcon());
-        _tagIcon.addAtr("type", "image/x-icon");
+        return _tagIcon;
       }
+
+      _tagIcon = new Tag("link");
+
+      _tagIcon.addAtr("rel", "shortcut icon");
+      _tagIcon.addAtr("href", this.getStrSrcIcon());
+      _tagIcon.addAtr("type", "image/x-icon");
     }
     catch (Exception ex) {
 
@@ -611,14 +622,16 @@ public class PaginaHtml extends Objeto {
 
     try {
 
-      if (_tagJsMain == null) {
+      if (_tagJsMain != null) {
 
-        _tagJsMain = new JavaScriptTag(null);
-
-        _tagJsMain.setIntPrioridade(6);
-
-        this.getLstTagJs().add(_tagJsMain);
+        return _tagJsMain;
       }
+
+      _tagJsMain = new JavaScriptTag(null);
+
+      _tagJsMain.setIntPrioridade(6);
+
+      this.getLstTagJs().add(_tagJsMain);
     }
     catch (Exception ex) {
 
@@ -634,16 +647,18 @@ public class PaginaHtml extends Objeto {
 
     try {
 
-      if (_tagMeta == null) {
+      if (_tagMeta != null) {
 
-        _tagMeta = new Tag("meta");
-
-        _tagMeta.getLstAtr().add(new Atributo("http-equiv", "Content-Type"));
-        _tagMeta.getLstAtr().add(new Atributo("content"));
-        _tagMeta.getLstAtr().get(1).setStrDelimitador(";");
-        _tagMeta.getLstAtr().get(1).getLstStrValor().add("text/html");
-        _tagMeta.getLstAtr().get(1).getLstStrValor().add(" charset=ISO-8859-1");
+        return _tagMeta;
       }
+
+      _tagMeta = new Tag("meta");
+
+      _tagMeta.getLstAtr().add(new Atributo("http-equiv", "Content-Type"));
+      _tagMeta.getLstAtr().add(new Atributo("content"));
+      _tagMeta.getLstAtr().get(1).setStrDelimitador(";");
+      _tagMeta.getLstAtr().get(1).getLstStrValor().add("text/html");
+      _tagMeta.getLstAtr().get(1).getLstStrValor().add(" charset=ISO-8859-1");
     }
     catch (Exception ex) {
 
@@ -659,10 +674,12 @@ public class PaginaHtml extends Objeto {
 
     try {
 
-      if (_tagTitle == null) {
+      if (_tagTitle != null) {
 
-        _tagTitle = new Tag("title");
+        return _tagTitle;
       }
+
+      _tagTitle = new Tag("title");
     }
     catch (Exception ex) {
 

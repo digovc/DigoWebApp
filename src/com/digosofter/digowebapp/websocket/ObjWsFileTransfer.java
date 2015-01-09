@@ -87,13 +87,16 @@ public class ObjWsFileTransfer extends ObjMain {
 
     try {
 
-      if (_bos == null) {
+      if (_bos != null) {
 
-        objFile = new File("c:/ws_temp/server/" + this.getStrNome());
-
-        fos = new FileOutputStream(objFile);
-        _bos = new BufferedOutputStream(fos);
+        return _bos;
       }
+
+      objFile = new File("c:/ws_temp/server/" + this.getStrNome());
+
+      fos = new FileOutputStream(objFile);
+
+      _bos = new BufferedOutputStream(fos);
     }
     catch (Exception ex) {
 
@@ -125,10 +128,12 @@ public class ObjWsFileTransfer extends ObjMain {
 
     try {
 
-      if (_intTamanho == 0) {
+      if (_intTamanho != 0) {
 
-        _intTamanho = this.getJse().getAsJsonObject().get("size").getAsInt();
+        return _intTamanho;
       }
+
+      _intTamanho = this.getJse().getAsJsonObject().get("size").getAsInt();
     }
     catch (Exception ex) {
 
@@ -149,10 +154,12 @@ public class ObjWsFileTransfer extends ObjMain {
 
     try {
 
-      if (_jse == null) {
+      if (_jse != null) {
 
-        _jse = new JsonParser().parse(this.getStrJsonStor().replace("STOR: ", ""));
+        return _jse;
       }
+
+      _jse = new JsonParser().parse(this.getStrJsonStor().replace("STOR: ", ""));
     }
     catch (Exception ex) {
 
@@ -179,10 +186,12 @@ public class ObjWsFileTransfer extends ObjMain {
 
     try {
 
-      if (Utils.getBooStrVazia(_strNome)) {
+      if (!Utils.getBooStrVazia(_strNome)) {
 
-        _strNome = this.getJse().getAsJsonObject().get("filename").getAsString();
+        return _strNome;
       }
+
+      _strNome = this.getJse().getAsJsonObject().get("filename").getAsString();
     }
     catch (Exception ex) {
 

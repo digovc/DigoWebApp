@@ -37,15 +37,17 @@ public abstract class TblMain extends DbTabelaWeb {
 
     try {
 
-      if (_clnBooAtivo == null) {
+      if (_clnBooAtivo != null) {
 
-        _clnBooAtivo = new DbColunaWeb("boo_ativo", this, DbColunaWeb.EnmTipo.BOOLEAN);
-
-        _clnBooAtivo.setBooVisivelCadastro(false);
-        _clnBooAtivo.setBooVisivelConsulta(false);
-        _clnBooAtivo.setIntFrmLinha(2);
-        _clnBooAtivo.setIntFrmLinhaPeso(2);
+        return _clnBooAtivo;
       }
+
+      _clnBooAtivo = new DbColunaWeb("boo_ativo", this, DbColunaWeb.EnmTipo.BOOLEAN);
+
+      _clnBooAtivo.setBooVisivelCadastro(false);
+      _clnBooAtivo.setBooVisivelConsulta(false);
+      _clnBooAtivo.setIntFrmLinha(2);
+      _clnBooAtivo.setIntFrmLinhaPeso(2);
     }
     catch (Exception ex) {
 
@@ -61,13 +63,15 @@ public abstract class TblMain extends DbTabelaWeb {
 
     try {
 
-      if (_clnDttAlteracao == null) {
+      if (_clnDttAlteracao != null) {
 
-        _clnDttAlteracao = new DbColunaWeb("dtt_alteracao", this, DbColunaWeb.EnmTipo.TIMESTAMP_WITHOUT_TIME_ZONE);
-
-        _clnDttAlteracao.setBooVisivelCadastro(false);
-        _clnDttAlteracao.setBooVisivelConsulta(false);
+        return _clnDttAlteracao;
       }
+
+      _clnDttAlteracao = new DbColunaWeb("dtt_alteracao", this, DbColunaWeb.EnmTipo.TIMESTAMP_WITHOUT_TIME_ZONE);
+
+      _clnDttAlteracao.setBooVisivelCadastro(false);
+      _clnDttAlteracao.setBooVisivelConsulta(false);
     }
     catch (Exception ex) {
 
@@ -83,13 +87,15 @@ public abstract class TblMain extends DbTabelaWeb {
 
     try {
 
-      if (_clnDttCadastro == null) {
+      if (_clnDttCadastro != null) {
 
-        _clnDttCadastro = new DbColunaWeb("dtt_cadastro", this, DbColunaWeb.EnmTipo.TIMESTAMP_WITHOUT_TIME_ZONE);
-
-        _clnDttCadastro.setBooVisivelCadastro(false);
-        _clnDttCadastro.setBooVisivelConsulta(false);
+        return _clnDttCadastro;
       }
+
+      _clnDttCadastro = new DbColunaWeb("dtt_cadastro", this, DbColunaWeb.EnmTipo.TIMESTAMP_WITHOUT_TIME_ZONE);
+
+      _clnDttCadastro.setBooVisivelCadastro(false);
+      _clnDttCadastro.setBooVisivelConsulta(false);
     }
     catch (Exception ex) {
 
@@ -105,13 +111,15 @@ public abstract class TblMain extends DbTabelaWeb {
 
     try {
 
-      if (_clnDttExclusao == null) {
+      if (_clnDttExclusao != null) {
 
-        _clnDttExclusao = new DbColunaWeb("dtt_exclusao", this, DbColunaWeb.EnmTipo.TIMESTAMP_WITHOUT_TIME_ZONE);
-
-        _clnDttExclusao.setBooVisivelCadastro(false);
-        _clnDttExclusao.setBooVisivelConsulta(false);
+        return _clnDttExclusao;
       }
+
+      _clnDttExclusao = new DbColunaWeb("dtt_exclusao", this, DbColunaWeb.EnmTipo.TIMESTAMP_WITHOUT_TIME_ZONE);
+
+      _clnDttExclusao.setBooVisivelCadastro(false);
+      _clnDttExclusao.setBooVisivelConsulta(false);
     }
     catch (Exception ex) {
 
@@ -127,14 +135,16 @@ public abstract class TblMain extends DbTabelaWeb {
 
     try {
 
-      if (_clnIntId == null) {
+      if (_clnIntId != null) {
 
-        _clnIntId = new DbColunaWeb("int_id", this, DbColunaWeb.EnmTipo.BIGSERIAL);
-
-        _clnIntId.setBooChavePrimaria(true);
-        _clnIntId.setBooVisivelCadastro(false);
-        _clnIntId.setBooVisivelConsulta(false);
+        return _clnIntId;
       }
+
+      _clnIntId = new DbColunaWeb("int_id", this, DbColunaWeb.EnmTipo.BIGSERIAL);
+
+      _clnIntId.setBooChavePrimaria(true);
+      _clnIntId.setBooVisivelCadastro(false);
+      _clnIntId.setBooVisivelConsulta(false);
     }
     catch (Exception ex) {
 
@@ -150,12 +160,14 @@ public abstract class TblMain extends DbTabelaWeb {
 
     try {
 
-      if (_clnIntUsuarioAlteracaoId == null) {
+      if (_clnIntUsuarioAlteracaoId != null) {
 
-        _clnIntUsuarioAlteracaoId = new DbColunaWeb("int_usuario_alteracao_id", this, DbColunaWeb.EnmTipo.BIGINT);
-
-        _clnIntUsuarioAlteracaoId.setBooVisivelCadastro(false);
+        return _clnIntUsuarioAlteracaoId;
       }
+
+      _clnIntUsuarioAlteracaoId = new DbColunaWeb("int_usuario_alteracao_id", this, DbColunaWeb.EnmTipo.BIGINT);
+
+      _clnIntUsuarioAlteracaoId.setBooVisivelCadastro(false);
     }
     catch (Exception ex) {
 
@@ -171,12 +183,14 @@ public abstract class TblMain extends DbTabelaWeb {
 
     try {
 
-      if (_clnIntUsuarioCadastroId == null) {
+      if (_clnIntUsuarioCadastroId != null) {
 
-        _clnIntUsuarioCadastroId = new DbColunaWeb("int_usuario_cadastro_id", this, DbColunaWeb.EnmTipo.BIGINT);
-
-        _clnIntUsuarioCadastroId.setBooVisivelCadastro(false);
+        return _clnIntUsuarioCadastroId;
       }
+
+      _clnIntUsuarioCadastroId = new DbColunaWeb("int_usuario_cadastro_id", this, DbColunaWeb.EnmTipo.BIGINT);
+
+      _clnIntUsuarioCadastroId.setBooVisivelCadastro(false);
     }
     catch (Exception ex) {
 
