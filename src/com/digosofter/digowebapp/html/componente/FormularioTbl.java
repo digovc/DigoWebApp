@@ -6,6 +6,7 @@ import com.digosofter.digojava.Utils;
 import com.digosofter.digojava.database.DbColuna;
 import com.digosofter.digojava.erro.Erro;
 import com.digosofter.digowebapp.AppWeb;
+import com.digosofter.digowebapp.database.DbColunaWeb;
 import com.digosofter.digowebapp.database.DbTabelaWeb;
 import com.digosofter.digowebapp.html.Botao;
 import com.digosofter.digowebapp.html.CssTag;
@@ -358,7 +359,7 @@ public class FormularioTbl extends ComponenteMain {
 
           if (cln.getIntFrmLinha() == intIndex) {
 
-            objCampoFrmTbl = new CampoFrmTbl(cln);
+            objCampoFrmTbl = new CampoFrmTbl((DbColunaWeb) cln);
             objCampoFrmTbl.setTagPai(this.getPnlCampos());
           }
         }

@@ -13,12 +13,12 @@ import com.digosofter.digowebapp.html.componente.ComponenteMain;
 
 public class CampoFrmTbl extends ComponenteMain {
 
-  private DbColuna _cln;
+  private DbColunaWeb _cln;
   private Campo _objCampo;
   private Painel _pnlCampo;
   private Painel _pnlTitulo;
 
-  public CampoFrmTbl(DbColuna cln) {
+  public CampoFrmTbl(DbColunaWeb cln) {
 
     try {
 
@@ -120,7 +120,7 @@ public class CampoFrmTbl extends ComponenteMain {
 
       objCampoComboBox = new ComboBox();
 
-      ((DbColunaWeb) this.getCln()).carregarComboBox(objCampoComboBox);
+      (this.getCln()).carregarComboBox(objCampoComboBox);
       this.setObjCampo(objCampoComboBox);
     }
     catch (Exception ex) {
@@ -131,7 +131,7 @@ public class CampoFrmTbl extends ComponenteMain {
     }
   }
 
-  private DbColuna getCln() {
+  private DbColunaWeb getCln() {
 
     return _cln;
   }
@@ -298,7 +298,7 @@ public class CampoFrmTbl extends ComponenteMain {
     }
   }
 
-  private void setCln(DbColuna cln) {
+  private void setCln(DbColunaWeb cln) {
 
     _cln = cln;
   }
