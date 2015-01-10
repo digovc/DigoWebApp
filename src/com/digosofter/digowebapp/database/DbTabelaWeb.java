@@ -699,12 +699,12 @@ public abstract class DbTabelaWeb extends DbTabela {
       for (DbFiltro objDbFiltro : lstObjDbFiltro) {
 
         strResultado += objDbFiltro.getSqlFiltro(booPrimeiroTermo);
-        strResultado += ", ";
+        strResultado += " ";
 
         booPrimeiroTermo = false;
       }
 
-      strResultado = Utils.removerUltimaLetra(strResultado, 2);
+      strResultado = Utils.removerUltimaLetra(strResultado);
     }
     catch (Exception ex) {
 
