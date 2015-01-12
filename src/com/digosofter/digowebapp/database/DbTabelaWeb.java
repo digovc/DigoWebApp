@@ -127,7 +127,7 @@ public abstract class DbTabelaWeb extends DbTabela {
 
     try {
 
-      sql = "select max(_cln_chave_primaria_nome) from _tbl_nome;";
+      sql = "select max (_cln_chave_primaria_nome) from _tbl_nome;";
 
       sql = sql.replace("_tbl_nome", this.getStrNomeSimplificado());
       sql = sql.replace("_cln_chave_primaria_nome", this.getClnChavePrimaria().getStrNomeSimplificado());
@@ -278,6 +278,7 @@ public abstract class DbTabelaWeb extends DbTabela {
       for (DbColuna cln : this.getLstCln()) {
 
         if (booPreenchida && Utils.getBooStrVazia(cln.getStrValor())) {
+
           continue;
         }
 
@@ -317,11 +318,10 @@ public abstract class DbTabelaWeb extends DbTabela {
           continue;
         }
 
-        strEstrutura = Utils.STR_VAZIA;
+        strEstrutura = "_cln_nome = '_cln_valor'";
 
-        strEstrutura += cln.getStrNomeSimplificado();
-        strEstrutura += "=";
-        strEstrutura += cln.getStrValorSql();
+        strEstrutura = strEstrutura.replace("_cln_nome", cln.getStrNomeSimplificado());
+        strEstrutura = strEstrutura.replace("_cln_valor", cln.getStrValorSql());
 
         lstStrRetorno.add(strEstrutura);
       }
@@ -344,6 +344,7 @@ public abstract class DbTabelaWeb extends DbTabela {
    */
   protected List<String> getLstStrClnValor(boolean booPreenchida) {
 
+    String strEstrutura;
     List<String> lstStrRetorno = null;
 
     try {
@@ -357,7 +358,11 @@ public abstract class DbTabelaWeb extends DbTabela {
           continue;
         }
 
-        lstStrRetorno.add("'" + cln.getStrValorSql() + "'");
+        strEstrutura = "'_cln_valor'";
+
+        strEstrutura = strEstrutura.replace("_cln_valor", cln.getStrValorSql());
+
+        lstStrRetorno.add(strEstrutura);
       }
     }
     catch (Exception ex) {
@@ -382,7 +387,10 @@ public abstract class DbTabelaWeb extends DbTabela {
 
     try {
 
-      sql = "select " + cln.getStrNomeSimplificado() + " from " + this.getStrNomeSimplificado() + ";";
+      sql = "select _cln_nome from _tbl_nome;";
+
+      sql = sql.replace("_cln_nome", cln.getStrNomeSimplificado());
+      sql = sql.replace("_tbl_nome", cln.getTbl().getStrNomeSimplificado());
 
       objResultSet = ((DataBaseWeb) this.getObjDb()).execSqlGetRst(sql);
 
@@ -396,7 +404,6 @@ public abstract class DbTabelaWeb extends DbTabela {
       do {
 
         lstStrResultado.add(objResultSet.getString(1));
-
       }
       while (objResultSet.next());
     }
@@ -619,6 +626,7 @@ public abstract class DbTabelaWeb extends DbTabela {
 
   private String getSqlParteLstClnNome(List<DbColuna> lstCln) {
 
+    String strEstrutura;
     String strResultado = Utils.STR_VAZIA;
 
     try {
@@ -630,10 +638,12 @@ public abstract class DbTabelaWeb extends DbTabela {
 
       for (DbColuna cln : lstCln) {
 
-        strResultado += cln.getTbl().getStrNomeSimplificado();
-        strResultado += ".";
-        strResultado += cln.getStrNomeSimplificado();
-        strResultado += ", ";
+        strEstrutura = "_tbl_nome._cln_nome, ";
+
+        strEstrutura = strEstrutura.replace("_tbl_nome", cln.getTbl().getStrNomeSimplificado());
+        strEstrutura = strEstrutura.replace("_cln_nome", cln.getStrNomeSimplificado());
+
+        strResultado += strEstrutura;
       }
 
       strResultado = Utils.removerUltimaLetra(strResultado, 2);
@@ -650,6 +660,7 @@ public abstract class DbTabelaWeb extends DbTabela {
 
   private String getSqlParteOrderBy(List<DbColuna> lstClnOrdem) {
 
+    String strEstrutura;
     String strResultado = Utils.STR_VAZIA;
 
     try {
@@ -665,14 +676,15 @@ public abstract class DbTabelaWeb extends DbTabela {
 
       for (DbColuna cln : lstClnOrdem) {
 
-        strResultado += cln.getTbl().getStrNomeSimplificado();
-        strResultado += ".";
-        strResultado += cln.getStrNomeSimplificado();
-        strResultado += ", ";
+        strEstrutura = "_tbl_nome._cln_nome, ";
+
+        strEstrutura = strEstrutura.replace("_tbl_nome", cln.getTbl().getStrNomeSimplificado());
+        strEstrutura = strEstrutura.replace("_cln_nome", cln.getStrNomeSimplificado());
+
+        strResultado += strEstrutura;
       }
 
-      strResultado = Utils.removerUltimaLetra(strResultado);
-      strResultado = Utils.removerUltimaLetra(strResultado);
+      strResultado = Utils.removerUltimaLetra(strResultado, 2);
     }
     catch (Exception ex) {
 
@@ -737,7 +749,8 @@ public abstract class DbTabelaWeb extends DbTabela {
 
         this.getClnChavePrimaria().setStrValor(null);
 
-        sql = "INSERT INTO _tbl_nome (_cln_nome) VALUES (_cln_valor) RETURNING _cln_chave_primaria_nome;";
+        sql = "insert into _tbl_nome (_cln_nome) values (_cln_valor) returning _cln_chave_primaria_nome;";
+
         sql = sql.replace("_tbl_nome", this.getStrNomeSimplificado());
         sql = sql.replace("_cln_nome", Utils.getStrConcatenarLst(this.getLstStrClnNome(true), ", ", true));
         sql = sql.replace("_cln_chave_primaria_nome", this.getClnChavePrimaria().getStrNomeSimplificado());
@@ -747,13 +760,14 @@ public abstract class DbTabelaWeb extends DbTabela {
       }
       else {
 
-        sql = "UPDATE _tbl_nome SET _cln_nome_valor WHERE _cln_chave_primaria='_cln_chave_primaria_valor'; INSERT INTO _tbl_nome (_cln_nome) SELECT _cln_valor WHERE NOT EXISTS (SELECT 1 FROM _tbl_nome WHERE _cln_chave_primaria='_cln_chave_primaria_valor');";
+        sql = "update _tbl_nome set _cln_nome_valor where _cln_chave_primaria = '_cln_chave_primaria_valor'; insert into _tbl_nome (_cln_nome) select _cln_valor where not exists (select true from _tbl_nome where _cln_chave_primaria = '_cln_chave_primaria_valor');";
+
         sql = sql.replace("_tbl_nome", this.getStrNomeSimplificado());
         sql = sql.replace("_cln_chave_primaria_valor", this.getClnChavePrimaria().getStrValor());
         sql = sql.replace("_cln_chave_primaria", this.getClnChavePrimaria().getStrNomeSimplificado());
-        sql = sql.replace("_cln_nome_valor", Utils.getStrConcatenarLst(this.getLstStrClnNomeValor(true), ",", true));
-        sql = sql.replace("_cln_nome", Utils.getStrConcatenarLst(this.getLstStrClnNome(true), ",", true));
-        sql = sql.replace("_cln_valor", Utils.getStrConcatenarLst(this.getLstStrClnValor(true), ",", true));
+        sql = sql.replace("_cln_nome_valor", Utils.getStrConcatenarLst(this.getLstStrClnNomeValor(true), ", ", true));
+        sql = sql.replace("_cln_nome", Utils.getStrConcatenarLst(this.getLstStrClnNome(true), ", ", true));
+        sql = sql.replace("_cln_valor", Utils.getStrConcatenarLst(this.getLstStrClnValor(true), ", ", true));
 
         intResultado = this.getClnChavePrimaria().getIntValor();
         ((DataBaseWeb) this.getObjDb()).execSql(sql);
