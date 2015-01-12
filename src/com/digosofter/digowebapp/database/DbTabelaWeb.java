@@ -717,27 +717,6 @@ public abstract class DbTabelaWeb extends DbTabela {
   }
 
   /**
-   * Limpa os valores de todas as colunas da tabela.
-   */
-  @Override
-  public void limparColunas() {
-
-    try {
-
-      for (DbColuna cln : this.getLstCln()) {
-
-        cln.setStrValor(null);
-      }
-    }
-    catch (Exception ex) {
-
-      new Erro("Erro inesperado.\n", ex);
-    }
-    finally {
-    }
-  }
-
-  /**
    * Persiste os valores atuais das colunas no banco de dados. Caso o valor da
    * coluna chave-primária já exista faz apenas um "update", do contrário insere
    * uma nova linha na tabela. Logo após incluir o registro, atualiza os valores
@@ -838,21 +817,5 @@ public abstract class DbTabelaWeb extends DbTabela {
   private void setObjConsultaTbl(ConsultaTbl objConsultaTbl) {
 
     _objConsultaTbl = objConsultaTbl;
-  }
-
-  /**
-   * Apelido para "limparColunas()".
-   */
-  public void zerarColunas() {
-
-    this.limparColunas();
-  }
-
-  /**
-   * Apelido para "limparColunas()".
-   */
-  public void zerarValores() {
-
-    this.limparColunas();
   }
 }

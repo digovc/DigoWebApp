@@ -350,7 +350,7 @@ public class FormularioTbl extends ComponenteMain {
       }
       else {
 
-        this.getTbl().zerarColunas();
+        this.getTbl().limparColunas();
       }
 
       for (int intIndex = 1; intIndex <= this.getIntQtdLinha(); intIndex++) {
