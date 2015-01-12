@@ -357,7 +357,7 @@ public abstract class DbTabelaWeb extends DbTabela {
           continue;
         }
 
-        lstStrRetorno.add(cln.getStrValorSql());
+        lstStrRetorno.add("'" + cln.getStrValorSql() + "'");
       }
     }
     catch (Exception ex) {
@@ -737,11 +737,11 @@ public abstract class DbTabelaWeb extends DbTabela {
 
         this.getClnChavePrimaria().setStrValor(null);
 
-        sql = "INSERT INTO _tbl_nome (_cln_nome) VALUES(_cln_valor) RETURNING _cln_chave_primaria_nome;";
+        sql = "INSERT INTO _tbl_nome (_cln_nome) VALUES (_cln_valor) RETURNING _cln_chave_primaria_nome;";
         sql = sql.replace("_tbl_nome", this.getStrNomeSimplificado());
-        sql = sql.replace("_cln_nome", Utils.getStrConcatenarLst(this.getLstStrClnNome(true), ",", true));
+        sql = sql.replace("_cln_nome", Utils.getStrConcatenarLst(this.getLstStrClnNome(true), ", ", true));
         sql = sql.replace("_cln_chave_primaria_nome", this.getClnChavePrimaria().getStrNomeSimplificado());
-        sql = sql.replace("_cln_valor", Utils.getStrConcatenarLst(this.getLstStrClnValor(true), ",", true));
+        sql = sql.replace("_cln_valor", Utils.getStrConcatenarLst(this.getLstStrClnValor(true), ", ", true));
 
         intResultado = this.getObjDb().execSqlGetInt(sql);
       }
