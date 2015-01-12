@@ -42,7 +42,7 @@ public abstract class DbFuncao extends DbTabelaWeb {
    * banco de dados. Esta consulta faz uso do valores contidos na propriedade
    * "lstStrParamIn" desta função.
    */
-  public ResultSet getRst() {
+  public ResultSet getRstConsulta() {
 
     ResultSet rstResultado = null;
     String sql;
@@ -88,18 +88,21 @@ public abstract class DbFuncao extends DbTabelaWeb {
 
   private String getStrParamInFormatado() {
 
+    String strEstrutura;
     String strResultado = Utils.STR_VAZIA;
 
     try {
 
-      for (String str : this.getLstStrParamIn()) {
+      for (String strParamIn : this.getLstStrParamIn()) {
 
-        str = "'" + str + "', ";
-        strResultado += str;
+        strEstrutura = "'_param_valor', ";
+
+        strEstrutura = strEstrutura.replace("_param_valor", strParamIn);
+
+        strResultado += strEstrutura;
       }
 
-      strResultado = Utils.removerUltimaLetra(strResultado);
-      strResultado = Utils.removerUltimaLetra(strResultado);
+      strResultado = Utils.removerUltimaLetra(strResultado, 2);
     }
     catch (Exception ex) {
 
