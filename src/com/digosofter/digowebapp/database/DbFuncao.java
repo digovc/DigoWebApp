@@ -42,6 +42,7 @@ public abstract class DbFuncao extends DbTabelaWeb {
    * banco de dados. Esta consulta faz uso do valores contidos na propriedade
    * "lstStrParamIn" desta função.
    */
+  @Override
   public ResultSet getRstConsulta() {
 
     ResultSet rstResultado = null;

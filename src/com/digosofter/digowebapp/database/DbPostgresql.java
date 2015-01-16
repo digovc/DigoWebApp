@@ -1,6 +1,5 @@
 package com.digosofter.digowebapp.database;
 
-import com.digosofter.digojava.erro.Erro;
 
 public class DbPostgresql extends DataBaseWeb {
 

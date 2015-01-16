@@ -32,30 +32,11 @@ public class Usuario extends Objeto {
     return objUsuarioResultado;
   }
 
-  private HashMap<String, String> _lstKeyValue;
-
-  public HashMap<String, String> getLstKeyValue() {
-
-    try {
-
-      if (_lstKeyValue != null) {
-
-        return _lstKeyValue;
-      }
-
-      _lstKeyValue = new HashMap<String, String>();
-    }
-    catch (Exception ex) {
-
-      new Erro("Erro inesperado.\n", ex);
-    }
-    finally {
-    }
-    return _lstKeyValue;
-  }
-
   private boolean _booLogado;
+
   private int _intUsuarioId;
+
+  private HashMap<String, String> _lstKeyValue;
   private String _strSessaoId;
 
   public Usuario() {
@@ -80,6 +61,26 @@ public class Usuario extends Objeto {
   public int getIntUsuarioId() {
 
     return _intUsuarioId;
+  }
+
+  public HashMap<String, String> getLstKeyValue() {
+
+    try {
+
+      if (_lstKeyValue != null) {
+
+        return _lstKeyValue;
+      }
+
+      _lstKeyValue = new HashMap<String, String>();
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+    }
+    finally {
+    }
+    return _lstKeyValue;
   }
 
   public String getStrSessaoId() {

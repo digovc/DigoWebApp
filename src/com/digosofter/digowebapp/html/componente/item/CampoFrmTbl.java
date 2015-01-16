@@ -120,7 +120,7 @@ public class CampoFrmTbl extends ComponenteMain {
 
       objCampoComboBox = new ComboBox();
 
-      (this.getCln()).carregarComboBox(objCampoComboBox);
+      this.getCln().carregarComboBox(objCampoComboBox);
       this.setObjCampo(objCampoComboBox);
     }
     catch (Exception ex) {
