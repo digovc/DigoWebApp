@@ -35,16 +35,19 @@ function Mensagem(strTitulo, strMsg, intTipo) {
   var _booBloquearTela = true;
 
   this.getBooBloquearTela = function() {
+
     return _booBloquearTela;
   };
 
   this.setBooBloquearTela = function(booBloquearTela) {
+
     _booBloquearTela = booBloquearTela;
   };
 
   var _intTipo = Mensagem_TIPO_POSITIVA;
 
   this.getIntTipo = function() {
+
     return _intTipo;
   };
 
@@ -52,26 +55,41 @@ function Mensagem(strTitulo, strMsg, intTipo) {
    * 0 = alerta; 1 = load; 2 = negativa; 3 = positiva.
    */
   this.setIntTipo = function(intTipo) {
-    _intTipo = intTipo;
+
+    try {
+
+      _intTipo = intTipo;
+
+      _this.setBooBloquearTela(!_intTipo == 3);
+
+    } catch (e) {
+
+      new Erro("Erro inesperado.", e);
+    } finally {
+    }
   };
 
   var _strMsg = "";
 
   this.getStrMsg = function() {
+
     return _strMsg;
   };
 
   this.setStrMsg = function(strMsg) {
+
     _strMsg = strMsg;
   };
 
   var _strTitulo = "";
 
   this.getStrTitulo = function() {
+
     return _strTitulo;
   };
 
   this.setStrTitulo = function(strTitulo) {
+
     _strTitulo = strTitulo;
   };
 
@@ -129,10 +147,10 @@ function Mensagem(strTitulo, strMsg, intTipo) {
       tag = tag.replace("_titulo", _this.getStrTitulo());
       tag = tag.replace("_msg", _this.getStrMsg());
 
-      _this.setStrEstrutura(tag);
       _this.montarLayoutBloquearTela(tag)
 
     } catch (e) {
+
       new Erro("Erro inesperado.", e);
     }
   };
@@ -143,17 +161,19 @@ function Mensagem(strTitulo, strMsg, intTipo) {
 
       if (!_this.getBooBloquearTela()) {
 
+        _this.setStrEstrutura(tag);
         return false;
       }
 
       tag = $(tag).css("background", "rgba(0, 0, 0, 0.15)");
       tag = $(tag).css("bottom", "0px");
-      tag = $(tag).css("top", "0px");
 
       _this.setStrEstrutura(tag[0]);
 
     } catch (e) {
+
       new Erro("Erro inesperado.", e);
+    } finally {
     }
   };
 
@@ -173,7 +193,9 @@ function Mensagem(strTitulo, strMsg, intTipo) {
       }
 
       intTempo = _this.getStrMsg().length * 75;
+
       $("body").append(_this.toHtml());
+
       Mensagem_BOO_MENSAGEM_VISIVEL = true;
 
       if (_this.getIntTipo() == 1) {
@@ -194,6 +216,7 @@ function Mensagem(strTitulo, strMsg, intTipo) {
       }, intTempo);
 
     } catch (e) {
+
       new Erro("Erro inesperado.", e);
     }
   };
@@ -209,6 +232,7 @@ function Mensagem(strTitulo, strMsg, intTipo) {
       _this.setStrMsg(strMsg);
 
     } catch (e) {
+
       new Erro("Erro inesperado.", e);
     }
   }

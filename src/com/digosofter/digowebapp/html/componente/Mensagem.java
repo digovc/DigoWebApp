@@ -1,5 +1,6 @@
 package com.digosofter.digowebapp.html.componente;
 
+import com.digosofter.digojava.Utils;
 import com.digosofter.digojava.erro.Erro;
 import com.digosofter.digowebapp.AppWeb;
 import com.digosofter.digowebapp.html.CssTag;
@@ -21,6 +22,7 @@ public class Mensagem extends ComponenteMain {
   private Painel _pnlConteudo;
   private Painel _pnlMensagem;
   private Painel _pnlTitulo;
+  private String _strJsCodigo;
   private String _strMensagem = "_msg";
   private String _strTitulo = "_titulo";
 
@@ -187,6 +189,34 @@ public class Mensagem extends ComponenteMain {
     return _pnlTitulo;
   }
 
+  public String getStrJsCodigo() {
+
+    try {
+
+      if (!Utils.getBooStrVazia(_strJsCodigo)) {
+
+        return _strJsCodigo;
+      }
+
+      _strJsCodigo = "var msg_msg_id = new Mensagem('_msg_title', '_msg_msg', _msg_tipo); msg_msg_id.mostrar();";
+
+      _strJsCodigo = _strJsCodigo.replace("_msg_id", String.valueOf(this.getIntIndexObjeto()));
+      _strJsCodigo = _strJsCodigo.replace("_msg_title", this.getStrTitulo());
+      _strJsCodigo = _strJsCodigo.replace("_msg_msg", this.getStrMensagem());
+      _strJsCodigo = _strJsCodigo.replace("_msg_tipo", String.valueOf(this.getEnmTipo().ordinal()));
+
+      return _strJsCodigo;
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+    }
+    finally {
+    }
+
+    return null;
+  }
+
   public String getStrMensagem() {
 
     return _strMensagem;
@@ -224,8 +254,9 @@ public class Mensagem extends ComponenteMain {
 
     try {
 
+      this.addCss(tagCss.setPaddingTop(25));
       this.addCss(tagCss.setPosition("fixed"));
-      this.addCss(tagCss.setPaddingTop(50));
+      this.addCss(tagCss.setTop(0));
       this.addCss(tagCss.setWidth(100, "%"));
       this.addCss(tagCss.setZ(100));
     }

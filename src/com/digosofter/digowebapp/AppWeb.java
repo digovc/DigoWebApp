@@ -237,7 +237,7 @@ public abstract class AppWeb extends App {
     return _objHttpServletResponse;
   }
 
-  private HttpSession getObjHttpSession() {
+  public HttpSession getObjHttpSession() {
 
     return _objHttpSession;
   }

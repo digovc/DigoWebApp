@@ -177,8 +177,9 @@ function WebSocketMain(strUrl) {
         return false;
       }
 
-      msg = new Mensagem("Ok " + objUsuario.getStrNome(), strMsgPositiva, Mensagem_TIPO_POSITIVA);
+      msg = new Mensagem("Hey " + objUsuario.getStrNome(), strMsgPositiva, Mensagem_TIPO_POSITIVA);
 
+      msg.setBooBloquearTela(false);
       msg.mostrar();
 
     } catch (e) {
@@ -188,6 +189,25 @@ function WebSocketMain(strUrl) {
   };
 
   this.processarObjWsInterlocutor = function(objWsInterlocutor) {
+
+    try {
+
+      switch (objWsInterlocutor._intFncId) {
+
+      case WebSocketMain_FNC_MSG_ERRO:
+
+        this.processarMsgErro(objWsInterlocutor._strJson);
+        return true;
+
+      case WebSocketMain_FNC_MSG_POSITIVA:
+
+        this.processarMsgPositiva(objWsInterlocutor._strJson);
+        return true;
+      }
+    } catch (e) {
+
+      new Erro("Erro inesperado.", e);
+    }
   };
 
   // FIM MÉTODO
@@ -195,8 +215,6 @@ function WebSocketMain(strUrl) {
   /* Construtor */
   {
     try {
-
-      this.abrirConexao();
 
     } catch (e) {
 

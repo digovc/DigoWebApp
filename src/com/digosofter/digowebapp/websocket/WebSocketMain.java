@@ -6,17 +6,16 @@ import javax.websocket.OnClose;
 import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
 import javax.websocket.Session;
-import javax.websocket.server.ServerEndpoint;
 
 import org.apache.tomcat.websocket.WsSession;
 
+import com.digosofter.digojava.Objeto;
 import com.digosofter.digojava.erro.Erro;
 import com.digosofter.digowebapp.AppWeb;
 import com.digosofter.digowebapp.Usuario;
 import com.google.gson.Gson;
 
-@ServerEndpoint("/ws/ws_main")
-public abstract class WebSocketMain {
+public abstract class WebSocketMain extends Objeto {
 
   public static final int FNC_MSG_ERRO = 70000;
   public static final int FNC_MSG_POSITIVA = 701000;
@@ -86,6 +85,31 @@ public abstract class WebSocketMain {
   }
 
   /**
+   * Verifica se o usuário atrelado ao objeto "Session" está "logado" no
+   * sistema.
+   */
+  protected boolean getBooUsuarioLogado(Session objSession) {
+
+    boolean booResultado = false;
+    Usuario objUsuario;
+
+    try {
+
+      objUsuario = this.getObjUsuarioPorSession(objSession);
+
+      booResultado = objUsuario.getBooLogado();
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+    }
+    finally {
+    }
+
+    return booResultado;
+  }
+
+  /**
    * Retorna o usuário referente a sessão passada como parâmetro.
    */
   protected Usuario getObjUsuarioPorSession(Session objSession) {
@@ -109,7 +133,7 @@ public abstract class WebSocketMain {
   }
 
   @OnClose
-  public void onClose(Session session, CloseReason closeReason) {
+  public void onClose(Session objSession, CloseReason objCloseReason) {
 
   }
 
@@ -163,30 +187,5 @@ public abstract class WebSocketMain {
     }
     finally {
     }
-  }
-
-  /**
-   * Verifica se o usuário atrelado ao objeto "Session" está "logado" no
-   * sistema.
-   */
-  protected boolean verificarUsuarioLogado(Session objSession) {
-
-    boolean booResultado = false;
-    Usuario objUsuario;
-
-    try {
-
-      objUsuario = this.getObjUsuarioPorSession(objSession);
-
-      booResultado = objUsuario.getBooLogado();
-    }
-    catch (Exception ex) {
-
-      new Erro("Erro inesperado.\n", ex);
-    }
-    finally {
-    }
-
-    return booResultado;
   }
 }

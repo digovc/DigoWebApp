@@ -1,5 +1,7 @@
 package com.digosofter.digowebapp;
 
+import java.util.HashMap;
+
 import com.digosofter.digojava.Objeto;
 import com.digosofter.digojava.erro.Erro;
 
@@ -28,6 +30,28 @@ public class Usuario extends Objeto {
     }
 
     return objUsuarioResultado;
+  }
+
+  private HashMap<String, String> _lstKeyValue;
+
+  public HashMap<String, String> getLstKeyValue() {
+
+    try {
+
+      if (_lstKeyValue != null) {
+
+        return _lstKeyValue;
+      }
+
+      _lstKeyValue = new HashMap<String, String>();
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+    }
+    finally {
+    }
+    return _lstKeyValue;
   }
 
   private boolean _booLogado;

@@ -77,6 +77,7 @@ public class PaginaHtml extends Objeto {
       this.setI(this);
       this.addCssArquivo(this.getLstTagCss());
       this.addJsArquivo(this.getLstTagJs());
+      this.addJsCodigoMensagem();
     }
     catch (Exception ex) {
 
@@ -188,7 +189,6 @@ public class PaginaHtml extends Objeto {
       strJs += "objUsuario.setIntUsuarioId(" + objUsuario.getIntUsuarioId() + ");";
       strJs += "objUsuario.setStrNome('" + objUsuario.getStrNome() + "');";
 
-      this.addJsCodigoMensagem(tagJs);
       tagJs.addJsCodigo(strJs);
     }
     catch (Exception ex) {
@@ -221,7 +221,7 @@ public class PaginaHtml extends Objeto {
    * Adiciona as estrutura das mensagens para as suas respectivas variáveis
    * "JavaScript".
    */
-  private void addJsCodigoMensagem(JavaScriptTag tagJs) {
+  private void addJsCodigoMensagem() {
 
     Mensagem msgAlerta;
     Mensagem msgLoad;
@@ -250,7 +250,7 @@ public class PaginaHtml extends Objeto {
       strJs += "Mensagem_ESTRUTURA_INFO_NEGATIVA = '" + msgNegativa.toString() + "';";
       strJs += "Mensagem_ESTRUTURA_INFO_POSITIVA = '" + msgPositiva.toString() + "';";
 
-      tagJs.addJsCodigo(strJs);
+      this.getTagJsMain().addJsCodigo(strJs);
     }
     catch (Exception ex) {
 
@@ -737,20 +737,9 @@ public class PaginaHtml extends Objeto {
    */
   public void mostrarMsgCliente(Mensagem msg) {
 
-    String strJs;
-
     try {
 
-      strJs = "var ";
-      strJs += "msg" + msg.getIntIndexObjeto();
-      strJs += "= new Mensagem(";
-      strJs += "'" + msg.getStrTitulo() + "',";
-      strJs += "'" + msg.getStrMensagem() + "',";
-      strJs += msg.getEnmTipo().ordinal();
-      strJs += ");";
-      strJs += "msg" + msg.getIntIndexObjeto() + ".mostrar();";
-
-      this.addJsCodigo(strJs);
+      this.addJsCodigo(msg.getStrJsCodigo());
     }
     catch (Exception ex) {
 
