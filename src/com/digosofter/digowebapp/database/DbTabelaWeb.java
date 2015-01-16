@@ -571,14 +571,7 @@ public abstract class DbTabelaWeb extends DbTabela {
 
     try {
 
-      if (this.getLstObjDbFiltroConsulta().size() > 0) {
-
-        rstResultado = this.getRst(this.getLstClnConsulta(), this.getLstObjDbFiltroConsulta(), null);
-      }
-      else {
-
-        rstResultado = this.getRst(this.getLstClnConsulta(), null, null);
-      }
+      rstResultado = this.getRst(this.getLstClnConsulta(), this.getLstObjDbFiltroConsulta(), null);
 
       this.getLstObjDbFiltroConsulta().clear();
     }

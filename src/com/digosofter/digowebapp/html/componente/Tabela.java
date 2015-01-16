@@ -270,11 +270,36 @@ public class Tabela extends ComponenteMain {
     }
   }
 
-  private void montarLayoutLinha(ResultSet objResultSet) {
+  private void montarLayoutColuna(DbColuna cln, Tag tagTr, ResultSet objResultSet) {
 
     String strValor;
     String strValorFormatado;
     Tag tagTd;
+
+    try {
+
+      strValor = objResultSet.getString(cln.getStrNomeSimplificado());
+      strValorFormatado = cln.getStrValorFormatado(strValor);
+
+      tagTd = new Tag("td");
+
+      tagTd.setTagPai(tagTr);
+      tagTd.setStrConteudo(strValorFormatado);
+      tagTd.addCss(CssTag.getIMain().setOverflow("hidden"));
+      tagTd.addCss(CssTag.getIMain().setWhiteSpace("nowrap"));
+      tagTd.addCss(CssTag.getIMain().addCss("text-overflow", "ellipsis"));
+      tagTd.addCss(((DbColunaWeb) cln).getStrCss());
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+    }
+    finally {
+    }
+  }
+
+  private void montarLayoutLinha(ResultSet objResultSet) {
+
     Tag tagTr;
 
     try {
@@ -290,17 +315,7 @@ public class Tabela extends ComponenteMain {
 
       for (DbColuna cln : this.getTbl().getLstClnConsulta()) {
 
-        strValor = objResultSet.getString(cln.getStrNomeSimplificado());
-        strValorFormatado = cln.getStrValorFormatado(strValor);
-
-        tagTd = new Tag("td");
-
-        tagTd.setTagPai(tagTr);
-        tagTd.setStrConteudo(strValorFormatado);
-        tagTd.addCss(CssTag.getIMain().setOverflow("hidden"));
-        tagTd.addCss(CssTag.getIMain().setWhiteSpace("nowrap"));
-        tagTd.addCss(CssTag.getIMain().addCss("text-overflow", "ellipsis"));
-        tagTd.addCss(((DbColunaWeb) cln).getStrCss());
+        this.montarLayoutColuna(cln, tagTr, objResultSet);
       }
     }
     catch (Exception ex) {
