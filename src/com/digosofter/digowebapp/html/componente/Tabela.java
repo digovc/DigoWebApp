@@ -232,6 +232,7 @@ public class Tabela extends ComponenteMain {
       this.getTagTable().setTagPai(this);
       this.getTagThead().setTagPai(this.getTagTable());
       this.getTagTbody().setTagPai(this.getTagTable());
+
       this.montarLayoutCabecalho();
       this.montarLayoutLinhas();
     }
@@ -258,6 +259,7 @@ public class Tabela extends ComponenteMain {
       for (DbColuna cln : this.getTbl().getLstClnConsulta()) {
 
         tagTh = new Tag("th");
+
         tagTh.setStrConteudo(cln.getStrNomeExibicao());
         tagTh.setTagPai(tagTr);
       }
