@@ -8,6 +8,7 @@ import org.apache.commons.mail.Email;
 import org.apache.commons.mail.HtmlEmail;
 
 import com.digosofter.digojava.Objeto;
+import com.digosofter.digojava.Utils;
 import com.digosofter.digojava.erro.Erro;
 
 public class EmailAppWeb extends Objeto {
@@ -160,7 +161,6 @@ public class EmailAppWeb extends Objeto {
 
       objHtmlEmail = new HtmlEmail();
 
-      objHtmlEmail.addReplyTo(this.getStrReplyToEmail(), this.getStrReplyToNome());
       objHtmlEmail.setAuthenticator(this.getObjDefaultAuthenticator());
       objHtmlEmail.setFrom(this.getStrFromEmail(), this.getStrFromNome());
       objHtmlEmail.setHostName(this.getStrSmtp());
@@ -168,6 +168,11 @@ public class EmailAppWeb extends Objeto {
       objHtmlEmail.setSSLOnConnect(this.getBooSsl());
       objHtmlEmail.setSmtpPort(this.getIntSmtpPort());
       objHtmlEmail.setSubject(this.getStrAssunto());
+
+      if (!Utils.getBooStrVazia(this.getStrReplyToEmail())) {
+
+        objHtmlEmail.addReplyTo(this.getStrReplyToEmail(), this.getStrReplyToNome());
+      }
 
       this.addBcc(objHtmlEmail);
       this.addCc(objHtmlEmail);

@@ -73,7 +73,7 @@ public class Tabela extends ComponenteMain {
 
       strJsCodigo = "var tbl__tbl_nome = new Tabela('_tbl_id');";
 
-      strJsCodigo = strJsCodigo.replace("_tbl_nome", this.getTbl().getStrNomeSimplificado());
+      strJsCodigo = strJsCodigo.replace("_tbl_nome", this.getTbl().getStrNome());
       strJsCodigo = strJsCodigo.replace("_tbl_id", this.getStrId());
 
       tagJs.addJsCodigo(strJsCodigo);

@@ -17,9 +17,64 @@ function Tabela(strId) {
 
   var _this = this;
 
+  var _fncLinhaClick = null;
+
+  this.getFncLinhaClick = function() {
+
+    try {
+
+      if (_fncLinhaClick != null) {
+
+        return _fncLinhaClick;
+      }
+
+      _fncLinhaClick = function(evt) {
+
+        var strRegistroId;
+        var url;
+
+        try {
+
+          strRegistroId = $($(evt.currentTarget).find("td")[0]).html();
+
+          url = "_url_atual?id=_registro_id";
+
+          url = url.replace("_url_atual", window.location.href);
+          url = url.replace("_registro_id", strRegistroId);
+
+          window.location.href = url;
+
+        } catch (e) {
+
+          new Erro("Erro inesperado.", e);
+        } finally {
+        }
+      }
+    } catch (e) {
+
+      new Erro("Erro inesperado.", e);
+    } finally {
+    }
+
+    return _fncLinhaClick;
+  };
+
   // FIM ATRIBUTO
 
   // MÉTODO
+
+  this.setEventos = function() {
+
+    try {
+
+      _this.getJq().find("tr").click(this.getFncLinhaClick());
+
+    } catch (e) {
+
+      new Erro("Erro inesperado.", e);
+    } finally {
+    }
+  };
 
   this.setOrdenacao = function() {
 
@@ -56,6 +111,7 @@ function Tabela(strId) {
       _this.setStrId(strId);
       _this.setPesquisa();
       _this.setOrdenacao();
+      _this.setEventos();
 
     } catch (e) {
 

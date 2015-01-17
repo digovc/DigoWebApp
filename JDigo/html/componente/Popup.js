@@ -86,17 +86,17 @@ function Popup(strId) {
 
     try {
 
-      this.setBooVisivel(true);
-      this.getJq().remove();
+      _this.setBooVisivel(true);
+      _this.getJq().remove();
 
-      $("body").append(this.getStrEstrutura());
+      $("body").append(_this.getStrEstrutura());
 
-      this.getJq().css("left", intX);
-      this.getJq().css("top", intY);
-      this.getJq().slideDown("fast");
+      _this.getJq().css("left", intX);
+      _this.getJq().css("top", intY);
+      _this.getJq().slideDown("fast");
 
-      this.setItens();
-      this.setEventos();
+      _this.setItens();
+      _this.setEventos();
 
     } catch (e) {
       new Erro("Erro inesperado.", e);
@@ -107,8 +107,8 @@ function Popup(strId) {
 
     try {
 
-      this.getJq().mouseleave(this.getFncMouseLeave());
-      this.setEventosItens();
+      _this.getJq().mouseleave(_this.getFncMouseLeave());
+      _this.setEventosItens();
 
     } catch (e) {
       new Erro("Erro inesperado.", e);
@@ -122,15 +122,15 @@ function Popup(strId) {
 
     try {
 
-      this.setArrPpiAcao(null);
+      _this.setArrPpiAcao(null);
 
-      arrTag = this.getJq().find("[id*=ppiAcao]");
+      arrTag = _this.getJq().find("[id*=ppiAcao]");
 
       for (var i = 0; i < arrTag.length; i++) {
         var tag = arrTag[i];
 
-        ppiAcao = new PopupItem(tag.id, this);
-        this.getArrPpiAcao().push(ppiAcao);
+        ppiAcao = new PopupItem(tag.id, _this);
+        _this.getArrPpiAcao().push(ppiAcao);
       }
 
     } catch (e) {
@@ -142,8 +142,8 @@ function Popup(strId) {
 
     try {
 
-      for (var i = 0; i < this.getArrPpiAcao().length; i++) {
-        var ppiAcao = this.getArrPpiAcao()[i];
+      for (var i = 0; i < _this.getArrPpiAcao().length; i++) {
+        var ppiAcao = _this.getArrPpiAcao()[i];
 
         ppiAcao.setEventos();
       }
@@ -159,7 +159,7 @@ function Popup(strId) {
 
     try {
 
-      this.setStrId(strId);
+      _this.setStrId(strId);
 
     } catch (e) {
       new Erro("Erro inesperado.", e);
