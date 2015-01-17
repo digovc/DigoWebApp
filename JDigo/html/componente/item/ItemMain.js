@@ -7,7 +7,7 @@
 /**
  * Classe que representa itens
  */
-function ItemMain() {
+function ItemMain(strId) {
   // HERANÇA
 
   ComponenteMain.apply(this);
@@ -35,12 +35,13 @@ function ItemMain() {
   // MÉTODO
   // FIM MÉTODO
 
-  /* Construtor */{
-    
-    
+  /* Construtor */
+  {
+
     try {
-      
-      
+
+      _this.setStrId(strId);
+
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }

@@ -2,52 +2,44 @@
  *
  */
 function Imagem(strId) {
-	// HERANÇA
+  // HERANÇA
 
-	Tag.apply(this);
-	Objeto.apply(this);
+  Tag.apply(this);
+  Objeto.apply(this);
 
-	// FIM HERANÇA
+  // FIM HERANÇA
 
-	// ATRIBUTO
+  // ATRIBUTO
 
   var _this = this;
 
-	// FIM ATRIBUTO
+  // FIM ATRIBUTO
 
-	// MÉTODO
+  // MÉTODO
 
-	this.setObjImage = function(objImage) {
-		
-		
-		try {
-			
+  this.setObjImage = function(objImage) {
 
-			this.getJq().attr("src", objImage.src)
+    try {
 
-			
-		} catch (e) {
-			new Erro("Erro inesperado.", e);
-		}
-	}
+      this.getJq().attr("src", objImage.src)
 
-	// FIM MÉTODO
+    } catch (e) {
+      new Erro("Erro inesperado.", e);
+    }
+  }
 
-	/* Construtor */{
-		
-		
-		try {
-			
+  // FIM MÉTODO
 
-			if (!Utils.getBooStrVazia(strId)) {
+  /* Construtor */
+  {
 
-			  this.setStrId(strId);
-			}
+    try {
 
-			
-		} catch (e) {
-			new Erro("Erro inesperado.", e);
-		}
-	}
+      this.setStrId(strId);
+
+    } catch (e) {
+      new Erro("Erro inesperado.", e);
+    }
+  }
 
 }

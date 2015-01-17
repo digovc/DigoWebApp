@@ -52,10 +52,7 @@ function Formulario(strId) {
 
     try {
 
-      if (!Utils.getBooStrVazia(strId)) {
-
-        this.setStrId(strId);
-      }
+      this.setStrId(strId);
 
     } catch (e) {
       new Erro("Erro inesperado.", e);

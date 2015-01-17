@@ -2,33 +2,26 @@
 // ATRIBUTOS GLOBAIS
 // CLASSE
 function Painel(strId) {
-	// HERANÇA
+  // HERANÇA
 
   Tag.apply(this);
-	Objeto.apply(this);
+  Objeto.apply(this);
 
-	// ATRIBUTO
-	// MÉTODO
+  // ATRIBUTO
+  // MÉTODO
 
-	/* Construtor */
-	{
-		
+  /* Construtor */
+  {
 
-	  var _this = this;
+    var _this = this;
 
-		
-		try {
-			
+    try {
 
-			if (!Utils.getBooStrVazia(strId)) {
+      this.setStrId(strId);
 
-			  this.setStrId(strId);
-			}
-
-			
-		} catch (e) {
-			new Erro("Erro inesperado.", e);
-		}
-	}
+    } catch (e) {
+      new Erro("Erro inesperado.", e);
+    }
+  }
 
 }

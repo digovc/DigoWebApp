@@ -8,38 +8,32 @@
  *
  */
 function FormularioTbl(strId) {
-	// HERANÇA
+  // HERANÇA
 
   ComponenteMain.apply(this);
   Tag.apply(this);
   Objeto.apply(this);
 
-	// FIM HERANÇA
+  // FIM HERANÇA
 
-	// ATRIBUTO
+  // ATRIBUTO
 
   var _this = this;
 
-	// FIM ATRIBUTO
+  // FIM ATRIBUTO
 
-	// MÉTODO
-	// FIM MÉTODO
+  // MÉTODO
+  // FIM MÉTODO
 
-	/* Construtor */{
-		
-		
-		try {
-			
+  /* Construtor */{
 
-			if (!Utils.getBooStrVazia(strId)) {
+    try {
 
-			  this.setStrId(strId);
-			}
+      this.setStrId(strId);
 
-			
-		} catch (e) {
-			new Erro("Erro inesperado.", e);
-		}
-	}
+    } catch (e) {
+      new Erro("Erro inesperado.", e);
+    }
+  }
 
 }

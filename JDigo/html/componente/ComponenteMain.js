@@ -7,7 +7,7 @@
 /**
  *
  */
-function ComponenteMain() {
+function ComponenteMain(strId) {
   // HERANÇA
 
   Tag.apply(this);
@@ -25,11 +25,11 @@ function ComponenteMain() {
   // FIM MÉTODO
 
   /* Construtor */{
-    
-    
+
     try {
-      
-      
+
+      _this.setStrId(strId);
+
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
@@ -40,7 +40,7 @@ function ComponenteMain() {
 
 // var objComponenteMain;
 // $(document).ready(function() {
-//	objComponenteMain = new ComponenteMain();
+// objComponenteMain = new ComponenteMain();
 // });
 
 // FIM INICIALIZAÇÃO

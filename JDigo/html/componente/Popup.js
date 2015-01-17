@@ -23,17 +23,14 @@ function Popup(strId) {
   var _arrPpiAcao = null;
 
   this.getArrPpiAcao = function() {
-    
-    
+
     try {
-      
 
       if (_arrPpiAcao == null) {
 
         _arrPpiAcao = new Array();
       }
 
-      
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
@@ -48,29 +45,23 @@ function Popup(strId) {
   var _fncMouseLeave = null;
 
   this.getFncMouseLeave = function() {
-    
-    
+
     try {
-      
 
       if (_fncMouseLeave == null) {
 
         _fncMouseLeave = function(evt) {
-          
-          
+
           try {
-            
 
             _this.getJq().remove();
 
-            
           } catch (e) {
             new Erro("Erro inesperado.", e);
           }
         };
       }
 
-      
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
@@ -83,21 +74,17 @@ function Popup(strId) {
   // MÉTODO
 
   this.acaoClick = function(ppi) {
-    
-    
+
     try {
-      
-      
+
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
   };
 
   this.mostrarPopup = function(intX, intY) {
-    
-    
+
     try {
-      
 
       this.setBooVisivel(true);
       this.getJq().remove();
@@ -111,36 +98,29 @@ function Popup(strId) {
       this.setItens();
       this.setEventos();
 
-      
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
   };
 
   this.setEventos = function() {
-    
-    
+
     try {
-      
 
       this.getJq().mouseleave(this.getFncMouseLeave());
       this.setEventosItens();
 
-      
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
   };
 
   this.setItens = function() {
-    
 
     var arrTag;
     var ppiAcao;
 
-    
     try {
-      
 
       this.setArrPpiAcao(null);
 
@@ -153,17 +133,14 @@ function Popup(strId) {
         this.getArrPpiAcao().push(ppiAcao);
       }
 
-      
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
   };
 
   this.setEventosItens = function() {
-    
-    
+
     try {
-      
 
       for (var i = 0; i < this.getArrPpiAcao().length; i++) {
         var ppiAcao = this.getArrPpiAcao()[i];
@@ -171,7 +148,6 @@ function Popup(strId) {
         ppiAcao.setEventos();
       }
 
-      
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
@@ -180,17 +156,11 @@ function Popup(strId) {
   // FIM MÉTODO
 
   /* Construtor */{
-    
-    
+
     try {
-      
 
-      if (!Utils.getBooStrVazia(strId)) {
+      this.setStrId(strId);
 
-        this.setStrId(strId);
-      }
-
-      
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }

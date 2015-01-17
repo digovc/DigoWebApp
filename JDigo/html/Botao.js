@@ -2,33 +2,27 @@
 // ATRIBUTOS GLOBAIS
 // CLASSE
 function Botao(strId) {
-	// HERANÇA
+  // HERANÇA
 
-	Tag.apply(this);
-	Objeto.apply(this);
+  Tag.apply(this);
+  Objeto.apply(this);
 
-	// ATRIBUTO
+  // ATRIBUTO
 
   var _this = this;
 
-	// MÉTODO
+  // MÉTODO
 
-	/* Construtor */
-	{
-		
-		
-		try {
-			
+  /* Construtor */
+  {
 
-			if (!Utils.getBooStrVazia(strId)) {
+    try {
 
-			  this.setStrId(strId);
-			}
+      this.setStrId(strId);
 
-			
-		} catch (e) {
-			new Erro("Erro inesperado.", e);
-		}
-	}
+    } catch (e) {
+      new Erro("Erro inesperado.", e);
+    }
+  }
 
 }

@@ -8,69 +8,58 @@
  *
  */
 function Campo(strId) {
-	// HERANÇA
+  // HERANÇA
 
-	Tag.apply(this);
-	Objeto.apply(this);
+  Tag.apply(this);
+  Objeto.apply(this);
 
-	// FIM HERANÇA
+  // FIM HERANÇA
 
-	// ATRIBUTO
+  // ATRIBUTO
 
   var _this = this;
 
-	var _strValor = null;
-	this.getStrValor = function() {
-		
-		
-		try {
-			
+  var _strValor = null;
+  this.getStrValor = function() {
 
-			_strValor = this.getJq().val();
+    try {
 
-			
-		} catch (e) {
-			new Erro("Erro inesperado.", e);
-		}
+      _strValor = this.getJq().val();
 
-		return _strValor;
-	}
+    } catch (e) {
+      new Erro("Erro inesperado.", e);
+    }
 
-	this.setStrValor = function(strValor) {
-		
-		
-		try {
-			
+    return _strValor;
+  }
 
-			_strValor = strValor;
-			this.getJq().val(_strValor);
+  this.setStrValor = function(strValor) {
 
-			
-		} catch (e) {
-			new Erro("Erro inesperado.", e);
-		}
-	}
+    try {
 
-	// FIM ATRIBUTO
+      _strValor = strValor;
+      this.getJq().val(_strValor);
 
-	// MÉTODO
-	// FIM MÉTODO
+    } catch (e) {
+      new Erro("Erro inesperado.", e);
+    }
+  }
 
-	/* Construtor */
-	{
-		
-		
-		try {
-			
+  // FIM ATRIBUTO
 
-			if (!Utils.getBooStrVazia(strId)) {
-				this.setStrId(strId);
-			}
+  // MÉTODO
+  // FIM MÉTODO
 
-			
-		} catch (e) {
-			new Erro("Erro inesperado.", e);
-		}
-	}
+  /* Construtor */
+  {
+
+    try {
+
+      this.setStrId(strId);
+
+    } catch (e) {
+      new Erro("Erro inesperado.", e);
+    }
+  }
 
 }

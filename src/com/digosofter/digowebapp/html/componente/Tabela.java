@@ -71,13 +71,10 @@ public class Tabela extends ComponenteMain {
 
     try {
 
-      strJsCodigo = "";
+      strJsCodigo = "var tbl__tbl_nome = new Tabela('_tbl_id');";
 
-      strJsCodigo += "var tbl_";
-      strJsCodigo += this.getTbl().getStrNome();
-      strJsCodigo += " = new Tabela('";
-      strJsCodigo += this.getStrId();
-      strJsCodigo += "');";
+      strJsCodigo = strJsCodigo.replace("_tbl_nome", this.getTbl().getStrNomeSimplificado());
+      strJsCodigo = strJsCodigo.replace("_tbl_id", this.getStrId());
 
       tagJs.addJsCodigo(strJsCodigo);
     }
@@ -129,6 +126,7 @@ public class Tabela extends ComponenteMain {
       _tagTable = new Tag("table");
 
       _tagTable.addAtr("border", "1px");
+
       _tagTable.addCss(CssTag.getIMain().addCss("border-collapse", "collapse"));
       _tagTable.addCss(CssTag.getIMain().setCursor("pointer"));
       _tagTable.addCss(CssTag.getIMain().setDisplay("block"));
@@ -287,10 +285,11 @@ public class Tabela extends ComponenteMain {
 
       tagTd.setTagPai(tagTr);
       tagTd.setStrConteudo(strValorFormatado);
+
+      tagTd.addCss(((DbColunaWeb) cln).getStrCss());
+      tagTd.addCss(CssTag.getIMain().addCss("text-overflow", "ellipsis"));
       tagTd.addCss(CssTag.getIMain().setOverflow("hidden"));
       tagTd.addCss(CssTag.getIMain().setWhiteSpace("nowrap"));
-      tagTd.addCss(CssTag.getIMain().addCss("text-overflow", "ellipsis"));
-      tagTd.addCss(((DbColunaWeb) cln).getStrCss());
     }
     catch (Exception ex) {
 
@@ -336,14 +335,16 @@ public class Tabela extends ComponenteMain {
 
       rst = this.getTbl().getRstConsulta();
 
-      if (rst != null && rst.first()) {
+      if (rst == null || !rst.first()) {
 
-        do {
-
-          this.montarLayoutLinha(rst);
-        }
-        while (rst.next());
+        return;
       }
+
+      do {
+
+        this.montarLayoutLinha(rst);
+      }
+      while (rst.next());
     }
     catch (Exception ex) {
 

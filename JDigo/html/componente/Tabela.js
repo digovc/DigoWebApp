@@ -22,31 +22,27 @@ function Tabela(strId) {
   // MÉTODO
 
   this.setOrdenacao = function() {
-    
-    
+
     try {
-      
 
       this.getJq().find('table').tablesorter();
 
-      
     } catch (e) {
+
       new Erro("Erro inesperado.", e);
     }
   };
 
   this.setPesquisa = function() {
-    
-    
+
     try {
-      
 
       if ('quicksearch' in $('document')) {
+
         this.getJq().find("input").quicksearch('#' + this.getStrId() + ' table tbody tr');
       }
-
-      
     } catch (e) {
+
       new Erro("Erro inesperado.", e);
     }
   };
@@ -54,17 +50,15 @@ function Tabela(strId) {
   // FIM MÉTODO
 
   /* Construtor */{
-    
-    
+
     try {
-      
 
       _this.setStrId(strId);
       _this.setPesquisa();
       _this.setOrdenacao();
 
-      
     } catch (e) {
+
       new Erro("Erro inesperado.", e);
     }
   }
