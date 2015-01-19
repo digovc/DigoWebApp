@@ -27,43 +27,6 @@ function WebSocketMain(strUrl) {
 
   // FIM ATRIBUTO ABSTRATO
 
-  var _fncOnMessage;
-
-  /**
-   * Método que deve ser implementado pela classe de instância para receber e
-   * processar as mensagens vindas do servidor.
-   */
-  this.getFncOnMessage = function() {
-
-    try {
-
-      if (_fncOnMessage != null) {
-
-        return _fncOnMessage;
-      }
-
-      _fncOnMessage = function(evt) {
-
-        var objWsInterlocutor;
-
-        try {
-
-          objWsInterlocutor = JSON.parse(evt.data);
-          _this.processarObjWsInterlocutor(objWsInterlocutor);
-
-        } catch (e) {
-
-          new Erro("Erro inesperado.", e);
-        }
-      };
-    } catch (e) {
-
-      new Erro("Erro inesperado.", e);
-    }
-
-    return _fncOnMessage;
-  };
-
   var _objWebSocket;
 
   this.getObjWebSocket = function() {
@@ -83,7 +46,7 @@ function WebSocketMain(strUrl) {
 
       _objWebSocket = new WebSocket(this.getStrUrl());
 
-      _objWebSocket.onmessage = this.getFncOnMessage();
+      _objWebSocket.onmessage = this.evtOnMessage;
 
     } catch (e) {
 
@@ -142,6 +105,27 @@ function WebSocketMain(strUrl) {
     } catch (e) {
 
       new Erro("Erro inesperado.", e);
+    }
+  };
+
+  /**
+   * Método que deve ser implementado pela classe de instância para receber e
+   * processar as mensagens vindas do servidor.
+   */
+  this.evtOnMessage = function(evt) {
+
+    var objWsInterlocutor;
+
+    try {
+
+      objWsInterlocutor = JSON.parse(evt.data);
+
+      _this.processarObjWsInterlocutor(objWsInterlocutor);
+
+    } catch (e) {
+
+      new Erro("Erro inesperado.", e);
+    } finally {
     }
   };
 

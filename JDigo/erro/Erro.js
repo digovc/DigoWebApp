@@ -23,9 +23,9 @@ function Erro(strMensagem, e) {
   var _strMensagemFormatada;
 
   this.getStrMensagemFormatada = function() {
-    
+
     try {
-      
+
 
       _strMensagemFormatada = "";
       _strMensagemFormatada += this.getStrMensagem();
@@ -59,10 +59,10 @@ function Erro(strMensagem, e) {
 
   /* Construtor */
   {
-    
-    
+
+
     try {
-      
+
 
       this.setStrMensagem(strMensagem);
 
@@ -72,7 +72,7 @@ function Erro(strMensagem, e) {
 
       alert(this.getStrMensagemFormatada());
 
-      
+
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }

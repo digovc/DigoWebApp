@@ -61,15 +61,15 @@ function PaletaCor(strNome) {
 
   /* Construtor */
   {
-    
-    
+
+
     try {
-      
+
 
       this.setStrNome(strNome);
       appWeb.getArrObjPaletaCor()[appWeb.getArrObjPaletaCor().length] = this;
 
-      
+
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }

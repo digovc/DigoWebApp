@@ -20,19 +20,19 @@ function _Utils() {
   // MÉTODO
 
   this.carregarImagem = function(strSrc, evtOnLoad) {
-    
+
 
     var img;
 
-    
+
     try {
-      
+
 
       img = new Image;
       img.src = strSrc;
       img.onload = evtOnLoad;
 
-      
+
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
@@ -41,13 +41,13 @@ function _Utils() {
   }
 
   this.getBooStrVazia = function(str) {
-    
+
 
     var booResultado = false;
 
-    
+
     try {
-      
+
 
       if (str == null) {
         booResultado = true;
@@ -55,7 +55,7 @@ function _Utils() {
         booResultado = true;
       }
 
-      
+
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
@@ -64,14 +64,14 @@ function _Utils() {
   }
 
   this.getBooValidarEmail = function(strEmail) {
-    
+
 
     var booResultado = false;
     var objRe;
 
-    
+
     try {
-      
+
 
       objRe = new RegExp(/^[A-Za-z0-9_\-\.]+@[A-Za-z0-9_\-\.]{2,}\.[A-Za-z0-9]{2,}(\.[A-Za-z0-9])?/);
 
@@ -84,7 +84,7 @@ function _Utils() {
         booResultado = true;
       }
 
-      
+
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
@@ -93,13 +93,13 @@ function _Utils() {
   }
 
   this.getStrTamanhoFixo = function(str, intTamanho, chrComplemento, booDireita) {
-    
+
 
     var intDif;
 
-    
+
     try {
-      
+
 
       str = String(str);
 
@@ -125,7 +125,7 @@ function _Utils() {
         }
       }
 
-      
+
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
@@ -134,13 +134,13 @@ function _Utils() {
   };
 
   this.mostrarLstMensagemInformacao = function(lstStrMensagem) {
-    
+
 
     var strMensagemFormatada = "";
 
-    
+
     try {
-      
+
 
       strMensagemFormatada = "Informação:";
       strMensagemFormatada += "\n\n\n";
@@ -155,42 +155,42 @@ function _Utils() {
 
       Utils.mostrarMensagemInformacao(strMensagemFormatada)
 
-      
+
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
   }
 
   this.mostrarMensagemInformacao = function(strMensagem) {
-    
+
 
     var strMensagemFormatada;
 
-    
+
     try {
-      
+
 
       strMensagemFormatada += strMensagem;
 
       alert(strMensagemFormatada);
 
-      
+
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
   }
 
   this.replaceAll = function(str, strAntigo, strNovo) {
-    
-    
+
+
     try {
-      
+
 
       while (str.indexOf(strAntigo) != -1) {
         str = str.replace(strAntigo, strNovo);
       }
 
-      
+
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
@@ -202,11 +202,11 @@ function _Utils() {
 
   /* Construtor */
   {
-    
-    
+
+
     try {
-      
-      
+
+
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }

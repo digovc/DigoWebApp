@@ -17,57 +17,38 @@ function Tabela(strId) {
 
   var _this = this;
 
-  var _fncLinhaClick = null;
+  // FIM ATRIBUTO
 
-  this.getFncLinhaClick = function() {
+  // MÉTODO
+
+  this.evtLinhaClick = function(evt) {
+
+    var strRegistroId;
+    var url;
 
     try {
 
-      if (_fncLinhaClick != null) {
+      strRegistroId = $($(evt.currentTarget).find("td")[0]).html();
 
-        return _fncLinhaClick;
-      }
+      url = "_url_atual?id=_registro_id";
 
-      _fncLinhaClick = function(evt) {
+      url = url.replace("_url_atual", window.location.href);
+      url = url.replace("_registro_id", strRegistroId);
 
-        var strRegistroId;
-        var url;
+      window.location.href = url;
 
-        try {
-
-          strRegistroId = $($(evt.currentTarget).find("td")[0]).html();
-
-          url = "_url_atual?id=_registro_id";
-
-          url = url.replace("_url_atual", window.location.href);
-          url = url.replace("_registro_id", strRegistroId);
-
-          window.location.href = url;
-
-        } catch (e) {
-
-          new Erro("Erro inesperado.", e);
-        } finally {
-        }
-      }
     } catch (e) {
 
       new Erro("Erro inesperado.", e);
     } finally {
     }
-
-    return _fncLinhaClick;
   };
-
-  // FIM ATRIBUTO
-
-  // MÉTODO
 
   this.setEventos = function() {
 
     try {
 
-      _this.getJq().find("tr").click(this.getFncLinhaClick());
+      _this.getJq().find("tr").click(_this.evtLinhaClick);
 
     } catch (e) {
 

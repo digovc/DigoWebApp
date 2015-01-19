@@ -34,17 +34,17 @@ function Objeto() {
   var _strNomeExibicao = "";
 
   this.getStrNomeExibicao = function() {
-    
-    
+
+
     try {
-      
+
 
       if (_strNomeExibicao == "") {
 
         _strNomeExibicao = this.getStrNome();
       }
 
-      
+
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
@@ -60,15 +60,15 @@ function Objeto() {
 
   /* Construtor */
   {
-    
-    
+
+
     try {
-      
+
 
       Objeto_intId++;
       this.setIntId(Objeto_intId);
 
-      
+
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }

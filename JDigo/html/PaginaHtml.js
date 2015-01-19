@@ -8,38 +8,27 @@
  *
  */
 function PaginaHtml() {
-	// HERANÇA
+  // HERANÇA
 
-	Objeto.apply(this);
+  Objeto.apply(this);
 
-	// FIM HERANÇA
+  // FIM HERANÇA
 
-	// ATRIBUTO
+  // ATRIBUTO
 
   var _this = this;
 
-	// FIM ATRIBUTO
+  // FIM ATRIBUTO
 
-	// MÉTODO
-	// FIM MÉTODO
+  // MÉTODO
+  // FIM MÉTODO
 
-	/* Construtor */{
-		
-		
-		try {
-			
-			
-		} catch (e) {
-			new Erro("Erro inesperado.", e);
-		}
-	}
+  /* Construtor */{
 
+    try {
+
+    } catch (e) {
+      new Erro("Erro inesperado.", e);
+    }
+  }
 }
-// INICIALIZAÇÃO
-
-// var objPaginaHtml;
-// $(document).ready(function() {
-//	objPaginaHtml = new PaginaHtml();
-// });
-
-// FIM INICIALIZAÇÃO

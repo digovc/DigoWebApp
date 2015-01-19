@@ -21,88 +21,6 @@ function PopupItem(strId, ppp) {
 
   var _this = this;
 
-  var _fncClick = null;
-
-  this.getFncClick = function() {
-
-    try {
-
-      if (_fncClick == null) {
-
-        _fncClick = function(evt) {
-
-          try {
-
-            _this.click();
-            _this.getPpp().getJq().remove();
-
-          } catch (e) {
-            new Erro("Erro inesperado.", e);
-          }
-        }
-      }
-
-    } catch (e) {
-      new Erro("Erro inesperado.", e);
-    }
-
-    return _fncClick;
-  };
-
-  var _fncMouseEnter = null;
-
-  this.getFncMouseEnter = function() {
-
-    try {
-
-      if (_fncMouseEnter == null) {
-
-        _fncMouseEnter = function(evt) {
-
-          try {
-
-            $("#" + evt.target.id).css("background-color", "#e1e1e1");
-
-          } catch (e) {
-            new Erro("Erro inesperado.", e);
-          }
-        }
-      }
-
-    } catch (e) {
-      new Erro("Erro inesperado.", e);
-    }
-
-    return _fncMouseEnter;
-  };
-
-  var _fncMouseLeave = null;
-
-  this.getFncMouseLeave = function() {
-
-    try {
-
-      if (_fncMouseLeave == null) {
-
-        _fncMouseLeave = function(evt) {
-
-          try {
-
-            $("#" + evt.target.id).css("background-color", "");
-
-          } catch (e) {
-            new Erro("Erro inesperado.", e);
-          }
-        }
-      }
-
-    } catch (e) {
-      new Erro("Erro inesperado.", e);
-    }
-
-    return _fncMouseLeave;
-  };
-
   var _intOrdem = null;
 
   this.getIntOrdem = function() {
@@ -134,14 +52,42 @@ function PopupItem(strId, ppp) {
 
   // MÉTODO
 
-  this.click = function() {
+  this.evtClick = function(evt) {
 
     try {
 
-      this.getPpp().acaoClick(this);
+      _this.getPpp().acaoClick(_this);
+      _this.getPpp().getJq().remove();
 
     } catch (e) {
+
       new Erro("Erro inesperado.", e);
+    }
+  };
+
+  this.evtMouseEnter = function(evt) {
+
+    try {
+
+      $("#" + evt.target.id).css("background-color", "#e1e1e1");
+
+    } catch (e) {
+
+      new Erro("Erro inesperado.", e);
+    } finally {
+    }
+  };
+
+  this.evtMouseLeave = function(evt) {
+
+    try {
+
+      $("#" + evt.target.id).css("background-color", "");
+
+    } catch (e) {
+
+      new Erro("Erro inesperado.", e);
+    } finally {
     }
   };
 
@@ -149,9 +95,9 @@ function PopupItem(strId, ppp) {
 
     try {
 
-      this.getJq().click(this.getFncClick());
-      this.getJq().mouseenter(this.getFncMouseEnter());
-      this.getJq().mouseleave(this.getFncMouseLeave());
+      this.getJq().click(_this.evtClick);
+      this.getJq().mouseenter(_this.evtMouseEnter);
+      this.getJq().mouseleave(_this.evtMouseLeave);
 
     } catch (e) {
       new Erro("Erro inesperado.", e);
@@ -167,10 +113,12 @@ function PopupItem(strId, ppp) {
       this.setStrId(strId);
 
       if (ppp != null) {
+
         this.setPpp(ppp);
       }
 
     } catch (e) {
+
       new Erro("Erro inesperado.", e);
     }
   }

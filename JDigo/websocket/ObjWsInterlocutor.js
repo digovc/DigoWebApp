@@ -43,11 +43,9 @@ function ObjWsInterlocutor() {
 
   /* Construtor */
   {
-    
-    
+
     try {
-      
-      
+
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }

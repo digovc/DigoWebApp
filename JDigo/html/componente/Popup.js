@@ -42,33 +42,6 @@ function Popup(strId) {
     _arrPpiAcao = arrPpiAcao;
   }
 
-  var _fncMouseLeave = null;
-
-  this.getFncMouseLeave = function() {
-
-    try {
-
-      if (_fncMouseLeave == null) {
-
-        _fncMouseLeave = function(evt) {
-
-          try {
-
-            _this.getJq().remove();
-
-          } catch (e) {
-            new Erro("Erro inesperado.", e);
-          }
-        };
-      }
-
-    } catch (e) {
-      new Erro("Erro inesperado.", e);
-    }
-
-    return _fncMouseLeave;
-  };
-
   // FIM ATRIBUTO
 
   // MÉTODO
@@ -79,6 +52,19 @@ function Popup(strId) {
 
     } catch (e) {
       new Erro("Erro inesperado.", e);
+    }
+  };
+
+  this.evtMouseLeave = function(evt) {
+
+    try {
+
+      _this.getJq().remove();
+
+    } catch (e) {
+
+      new Erro("Erro inesperado.", e);
+    } finally {
     }
   };
 
@@ -107,7 +93,7 @@ function Popup(strId) {
 
     try {
 
-      _this.getJq().mouseleave(_this.getFncMouseLeave());
+      _this.getJq().mouseleave(_this.evtMouseLeave);
       _this.setEventosItens();
 
     } catch (e) {
@@ -155,8 +141,8 @@ function Popup(strId) {
 
   // FIM MÉTODO
 
-  /* Construtor */{
-
+  /* Construtor */
+  {
     try {
 
       _this.setStrId(strId);
