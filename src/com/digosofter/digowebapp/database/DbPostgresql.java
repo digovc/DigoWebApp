@@ -1,6 +1,5 @@
 package com.digosofter.digowebapp.database;
 
-
 public class DbPostgresql extends DataBaseWeb {
 
   private static final String STR_DRIVE_NAME = "postgresql";

@@ -459,7 +459,7 @@ public class CssTag extends Tag {
     return strResultado;
   }
 
-  public String setBorderRadius(int intTopLeftPx, int intTopRightPx, int intBottomLeftPx, int intBottomRightPx) {
+  public String setBorderRadius(int intTopLeftPx, int intTopRightPx, int intBottomRightPx, int intBottomLeftPx) {
 
     String strResultado = Utils.STR_VAZIA;
     StringBuilder stb;

@@ -576,7 +576,7 @@ public class Tag extends Objeto {
 
       _strNome = strNome;
 
-      this.addAtr("name", _strNome);
+      this.addAtr("name", Utils.getStrSimplificada(_strNome));
     }
     catch (Exception ex) {
 

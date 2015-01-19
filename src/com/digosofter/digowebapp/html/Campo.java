@@ -85,6 +85,9 @@ public class Campo extends Tag {
     try {
 
       this.addCss(CssTag.getIMain().addCss("box-sizing", "border-box"));
+      this.addCss(CssTag.getIMain().setMarginBottom(10));
+      this.addCss(CssTag.getIMain().setMarginTop(10));
+      this.addCss(CssTag.getIMain().setWidth(100, "%"));
     }
     catch (Exception ex) {
 
