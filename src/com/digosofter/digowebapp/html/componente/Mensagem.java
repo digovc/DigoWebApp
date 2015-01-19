@@ -200,7 +200,7 @@ public class Mensagem extends ComponenteMain {
 
       _strJsCodigo = "var msg_msg_id = new Mensagem('_msg_title', '_msg_msg', _msg_tipo); msg_msg_id.mostrar();";
 
-      _strJsCodigo = _strJsCodigo.replace("_msg_id", String.valueOf(this.getIntIndexObjeto()));
+      _strJsCodigo = _strJsCodigo.replace("_msg_id", String.valueOf(this.getIntObjetoId()));
       _strJsCodigo = _strJsCodigo.replace("_msg_title", this.getStrTitulo());
       _strJsCodigo = _strJsCodigo.replace("_msg_msg", this.getStrMensagem());
       _strJsCodigo = _strJsCodigo.replace("_msg_tipo", String.valueOf(this.getEnmTipo().ordinal()));

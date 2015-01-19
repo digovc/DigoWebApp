@@ -330,7 +330,7 @@ public class Tag extends Objeto {
       }
 
       _strId = "id_int_id";
-      _strId = _strId.replace("_int_id", String.valueOf(this.getIntIndexObjeto()));
+      _strId = _strId.replace("_int_id", String.valueOf(this.getIntObjetoId()));
 
       this.getLstAtr().add(new Atributo("id", _strId));
     }
