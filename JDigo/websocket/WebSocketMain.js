@@ -44,9 +44,9 @@ function WebSocketMain(strUrl) {
         return _objWebSocket;
       }
 
-      _objWebSocket = new WebSocket(this.getStrUrl());
+      _objWebSocket = new WebSocket(_this.getStrUrl());
 
-      _objWebSocket.onmessage = this.evtOnMessage;
+      _objWebSocket.onmessage = _this.evtOnMessage;
 
     } catch (e) {
 
@@ -88,7 +88,7 @@ function WebSocketMain(strUrl) {
 
     try {
 
-      this.getObjWebSocket();
+      _this.getObjWebSocket();
 
     } catch (e) {
 
@@ -100,7 +100,7 @@ function WebSocketMain(strUrl) {
 
     try {
 
-      this.getObjWebSocket().send(JSON.stringify(objWsInterlocutor));
+      _this.getObjWebSocket().send(JSON.stringify(objWsInterlocutor));
 
     } catch (e) {
 
@@ -180,12 +180,12 @@ function WebSocketMain(strUrl) {
 
       case WebSocketMain_FNC_MSG_ERRO:
 
-        this.processarMsgErro(objWsInterlocutor._strJson);
+        _this.processarMsgErro(objWsInterlocutor._strJson);
         return true;
 
       case WebSocketMain_FNC_MSG_POSITIVA:
 
-        this.processarMsgPositiva(objWsInterlocutor._strJson);
+        _this.processarMsgPositiva(objWsInterlocutor._strJson);
         return true;
       }
     } catch (e) {

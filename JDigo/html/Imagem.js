@@ -21,7 +21,7 @@ function Imagem(strId) {
 
     try {
 
-      this.getJq().attr("src", objImage.src)
+      _this.getJq().attr("src", objImage.src)
 
     } catch (e) {
       new Erro("Erro inesperado.", e);
@@ -35,7 +35,7 @@ function Imagem(strId) {
 
     try {
 
-      this.setStrId(strId);
+      _this.setStrId(strId);
 
     } catch (e) {
       new Erro("Erro inesperado.", e);

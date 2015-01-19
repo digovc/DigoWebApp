@@ -66,7 +66,7 @@ function PaletaCor(strNome) {
     try {
 
 
-      this.setStrNome(strNome);
+      _this.setStrNome(strNome);
       appWeb.getArrObjPaletaCor()[appWeb.getArrObjPaletaCor().length] = this;
 
 

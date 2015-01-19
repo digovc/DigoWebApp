@@ -27,7 +27,7 @@ function Formulario(strId) {
 
     try {
 
-      this.getJq().submit();
+      _this.getJq().submit();
 
     } catch (e) {
       new Erro("Erro inesperado.", e);
@@ -52,7 +52,7 @@ function Formulario(strId) {
 
     try {
 
-      this.setStrId(strId);
+      _this.setStrId(strId);
 
     } catch (e) {
       new Erro("Erro inesperado.", e);

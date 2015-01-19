@@ -26,16 +26,15 @@ function Erro(strMensagem, e) {
 
     try {
 
-
       _strMensagemFormatada = "";
-      _strMensagemFormatada += this.getStrMensagem();
+      _strMensagemFormatada += _this.getStrMensagem();
 
-      if (this.getStrMensagemTecnica() != "") {
+      if (_this.getStrMensagemTecnica() != "") {
 
         _strMensagemFormatada += "\n\n\n"
         _strMensagemFormatada += "Detalhes:"
         _strMensagemFormatada += "\n\n"
-        _strMensagemFormatada += this.getStrMensagemTecnica();
+        _strMensagemFormatada += _this.getStrMensagemTecnica();
       }
 
     } catch (e) {
@@ -60,18 +59,15 @@ function Erro(strMensagem, e) {
   /* Construtor */
   {
 
-
     try {
 
-
-      this.setStrMensagem(strMensagem);
+      _this.setStrMensagem(strMensagem);
 
       if (e != null) {
-        this.setStrMensagemTecnica(e.message)
+        _this.setStrMensagemTecnica(e.message)
       }
 
-      alert(this.getStrMensagemFormatada());
-
+      alert(_this.getStrMensagemFormatada());
 
     } catch (e) {
       new Erro("Erro inesperado.", e);

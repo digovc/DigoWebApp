@@ -41,7 +41,7 @@ function Objeto() {
 
       if (_strNomeExibicao == "") {
 
-        _strNomeExibicao = this.getStrNome();
+        _strNomeExibicao = _this.getStrNome();
       }
 
 
@@ -66,7 +66,7 @@ function Objeto() {
 
 
       Objeto_intId++;
-      this.setIntId(Objeto_intId);
+      _this.setIntId(Objeto_intId);
 
 
     } catch (e) {

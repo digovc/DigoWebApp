@@ -19,21 +19,21 @@ function ObjWsInterlocutor() {
   this._intFncId = 0;
 
   this.getIntFncId = function() {
-    return this._intFncId;
+    return _this._intFncId;
   }
 
   this.setIntFncId = function(intFncId) {
-    this._intFncId = intFncId;
+    _this._intFncId = intFncId;
   }
 
   this._strJson = null;
 
   this.getStrJson = function() {
-    return this._strJson;
+    return _this._strJson;
   }
 
   this.setStrJson = function(strJson) {
-    this._strJson = strJson;
+    _this._strJson = strJson;
   }
 
   // FIM ATRIBUTO

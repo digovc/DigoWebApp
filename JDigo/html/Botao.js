@@ -18,7 +18,7 @@ function Botao(strId) {
 
     try {
 
-      this.setStrId(strId);
+      _this.setStrId(strId);
 
     } catch (e) {
       new Erro("Erro inesperado.", e);

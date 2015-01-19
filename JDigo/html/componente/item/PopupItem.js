@@ -27,7 +27,7 @@ function PopupItem(strId, ppp) {
 
     try {
 
-      _intOrdem = this.getStrId();
+      _intOrdem = _this.getStrId();
       _intOrdem = _intOrdem.replace("ppiAcao", "");
       _intOrdem = window.parseInt(_intOrdem);
 
@@ -95,9 +95,9 @@ function PopupItem(strId, ppp) {
 
     try {
 
-      this.getJq().click(_this.evtClick);
-      this.getJq().mouseenter(_this.evtMouseEnter);
-      this.getJq().mouseleave(_this.evtMouseLeave);
+      _this.getJq().click(_this.evtClick);
+      _this.getJq().mouseenter(_this.evtMouseEnter);
+      _this.getJq().mouseleave(_this.evtMouseLeave);
 
     } catch (e) {
       new Erro("Erro inesperado.", e);
@@ -110,11 +110,11 @@ function PopupItem(strId, ppp) {
 
     try {
 
-      this.setStrId(strId);
+      _this.setStrId(strId);
 
       if (ppp != null) {
 
-        this.setPpp(ppp);
+        _this.setPpp(ppp);
       }
 
     } catch (e) {

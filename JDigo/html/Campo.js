@@ -25,7 +25,7 @@ function Campo(strId) {
 
     try {
 
-      _strValor = this.getJq().val();
+      _strValor = _this.getJq().val();
 
     } catch (e) {
       new Erro("Erro inesperado.", e);
@@ -39,7 +39,7 @@ function Campo(strId) {
     try {
 
       _strValor = strValor;
-      this.getJq().val(_strValor);
+      _this.getJq().val(_strValor);
 
     } catch (e) {
       new Erro("Erro inesperado.", e);
@@ -56,7 +56,7 @@ function Campo(strId) {
 
     try {
 
-      this.setStrId(strId);
+      _this.setStrId(strId);
 
     } catch (e) {
       new Erro("Erro inesperado.", e);

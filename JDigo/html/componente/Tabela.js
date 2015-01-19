@@ -61,7 +61,7 @@ function Tabela(strId) {
 
     try {
 
-      this.getJq().find('table').tablesorter();
+      _this.getJq().find('table').tablesorter();
 
     } catch (e) {
 
@@ -75,7 +75,7 @@ function Tabela(strId) {
 
       if ('quicksearch' in $('document')) {
 
-        this.getJq().find("input").quicksearch('#' + this.getStrId() + ' table tbody tr');
+        _this.getJq().find("input").quicksearch('#' + _this.getStrId() + ' table tbody tr');
       }
     } catch (e) {
 

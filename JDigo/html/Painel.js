@@ -30,7 +30,7 @@ function Painel(strId) {
 
     try {
 
-      this.setStrId(strId);
+      _this.setStrId(strId);
 
     } catch (e) {
 
