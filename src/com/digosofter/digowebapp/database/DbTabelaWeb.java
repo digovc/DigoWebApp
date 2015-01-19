@@ -422,6 +422,15 @@ public abstract class DbTabelaWeb extends DbTabela {
     return _objConsultaTbl;
   }
 
+  /**
+   * Retorna um "ResultSet" com os todas as linhas, com todas as colunas deta
+   * tabela.
+   */
+  public ResultSet getRst() {
+
+    return this.getRst(this.getLstCln(), null, null);
+  }
+
   public ResultSet getRst(DbColuna cln, List<DbFiltro> lstObjDbFiltro, DbColuna clnOrdem) {
 
     List<DbColuna> lstClnOrdem;
@@ -534,12 +543,6 @@ public abstract class DbTabelaWeb extends DbTabela {
 
     try {
 
-      if (lstClnOrdem == null || lstClnOrdem.size() == 0) {
-
-        lstClnOrdem = new ArrayList<DbColuna>();
-        lstClnOrdem.add(this.getClnChavePrimaria());
-      }
-
       sql = "select _lst_cln_nome from _from where _where order by _order;";
 
       sql = sql.replace("_lst_cln_nome", this.getSqlParteLstClnNome(lstCln));
@@ -547,7 +550,8 @@ public abstract class DbTabelaWeb extends DbTabela {
       sql = sql.replace("_where", this.getSqlParteWhere(lstObjDbFiltro));
       sql = sql.replace("_order", this.getSqlParteOrderBy(lstClnOrdem));
 
-      sql = sql.replace("where <null>", "");
+      sql = sql.replace(" where <null>", "");
+      sql = sql.replace(" order by <null>", "");
 
       rstResultado = ((DataBaseWeb) this.getObjDb()).execSqlGetRst(sql);
     }
@@ -660,11 +664,7 @@ public abstract class DbTabelaWeb extends DbTabela {
 
       if (lstClnOrdem == null || lstClnOrdem.size() == 0) {
 
-        strResultado = "_tbl_nome._cln_nome";
-        strResultado = strResultado.replace("_tbl_nome", this.getStrNomeSimplificado());
-        strResultado = strResultado.replace("_cln_nome", this.getClnChavePrimaria().getStrNomeSimplificado());
-
-        return strResultado;
+        return "<null>";
       }
 
       for (DbColuna cln : lstClnOrdem) {
