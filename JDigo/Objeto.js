@@ -11,14 +11,14 @@ function Objeto() {
 
   var _this = this;
 
-  var _intId = 0;
+  var _intObjetoId = 0;
 
-  this.getIntId = function() {
-    return _intId;
+  this.getIntObjetoId = function() {
+    return _intObjetoId;
   }
 
-  this.setIntId = function(intId) {
-    _intId = intId;
+  this.setIntObjetoId = function(intObjetoId) {
+    _intObjetoId = intObjetoId;
   }
 
   var _strNome = "";
@@ -35,17 +35,17 @@ function Objeto() {
 
   this.getStrNomeExibicao = function() {
 
-
     try {
 
+      if (!Utils.getBooVazia(_strNomeExibicao)) {
 
-      if (_strNomeExibicao == "") {
-
-        _strNomeExibicao = _this.getStrNome();
+        return _strNomeExibicao;
       }
 
+      _strNomeExibicao = _this.getStrNome();
 
     } catch (e) {
+
       new Erro("Erro inesperado.", e);
     }
 
@@ -61,13 +61,10 @@ function Objeto() {
   /* Construtor */
   {
 
-
     try {
 
-
       Objeto_intId++;
-      _this.setIntId(Objeto_intId);
-
+      _this.setIntObjetoId(Objeto_intId);
 
     } catch (e) {
       new Erro("Erro inesperado.", e);

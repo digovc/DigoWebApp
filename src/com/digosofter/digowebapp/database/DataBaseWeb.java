@@ -235,17 +235,20 @@ public abstract class DataBaseWeb extends DataBase {
   public ResultSet execView(String strViewNome) {
 
     ResultSet objResultSetResultado = null;
-    StringBuilder strBuilder;
+    String sql;
 
     try {
 
-      strBuilder = new StringBuilder();
+      if (Utils.getBooStrVazia(strViewNome)) {
 
-      strBuilder.append("select * from ");
-      strBuilder.append(strViewNome);
-      strBuilder.append(";");
+        return null;
+      }
 
-      objResultSetResultado = this.execSqlGetRst(strBuilder.toString());
+      sql = "select * from _viw_name;";
+
+      sql = sql.replace("_viw_name", strViewNome);
+
+      objResultSetResultado = this.execSqlGetRst(sql);
     }
     catch (Exception ex) {
 

@@ -34,13 +34,4 @@ function ComponenteMain(strId) {
       new Erro("Erro inesperado.", e);
     }
   }
-
 }
-// INICIALIZAÇÃO
-
-// var objComponenteMain;
-// $(document).ready(function() {
-// objComponenteMain = new ComponenteMain();
-// });
-
-// FIM INICIALIZAÇÃO
