@@ -9,13 +9,11 @@ import com.digosofter.digowebapp.html.Campo;
 import com.digosofter.digowebapp.html.ComboBox;
 import com.digosofter.digowebapp.html.CssTag;
 import com.digosofter.digowebapp.html.Painel;
-import com.digosofter.digowebapp.html.componente.ComponenteMain;
 
-public class CampoFrmTbl extends ComponenteMain {
+public class CampoFrmTbl extends LabelCampo {
 
   private DbColunaWeb _cln;
-  private Campo _objCampo;
-  private Painel _pnlCampo;
+  private Campo _tagCampo;
   private Painel _pnlTitulo;
 
   public CampoFrmTbl(DbColunaWeb cln) {
@@ -23,7 +21,6 @@ public class CampoFrmTbl extends ComponenteMain {
     try {
 
       this.setCln(cln);
-      this.addCss(CssTag.getIMain().setWidth(this.getDblCampoWidth(), "%"));
     }
     catch (Exception ex) {
 
@@ -37,7 +34,7 @@ public class CampoFrmTbl extends ComponenteMain {
 
     try {
 
-      this.getObjCampo().setStrValor(this.getCln().getStrValor());
+      this.getTagCampo().setStrValor(this.getCln().getStrValor());
     }
     catch (Exception ex) {
 
@@ -70,11 +67,11 @@ public class CampoFrmTbl extends ComponenteMain {
       }
 
       // Comum
-      this.setObjCampo(new Campo());
+      this.setTagCampo(new Campo());
 
       if (this.getCln().getIntTamanhoCampo() >= 120) {
 
-        this.getObjCampo().setEnmTipo(Campo.EnmTipo.TEXT_AREA);
+        this.getTagCampo().setEnmTipo(Campo.EnmTipo.TEXT_AREA);
       }
     }
     catch (Exception ex) {
@@ -90,15 +87,15 @@ public class CampoFrmTbl extends ComponenteMain {
    */
   private void definirTipoCampoCheckBox() {
 
-    Campo objCampo;
+    Campo tagCampo;
 
     try {
 
-      objCampo = new Campo();
+      tagCampo = new Campo();
 
-      objCampo.setEnmTipo(Campo.EnmTipo.CHECKBOX);
+      tagCampo.setEnmTipo(Campo.EnmTipo.CHECKBOX);
 
-      this.setObjCampo(objCampo);
+      this.setTagCampo(tagCampo);
     }
     catch (Exception ex) {
 
@@ -114,14 +111,14 @@ public class CampoFrmTbl extends ComponenteMain {
    */
   private void definirTipoCampoComboBox() {
 
-    ComboBox objCampoComboBox;
+    ComboBox tagCmb;
 
     try {
 
-      objCampoComboBox = new ComboBox();
+      tagCmb = new ComboBox();
 
-      this.getCln().carregarComboBox(objCampoComboBox);
-      this.setObjCampo(objCampoComboBox);
+      this.getCln().carregarComboBox(tagCmb);
+      this.setTagCampo(tagCmb);
     }
     catch (Exception ex) {
 
@@ -193,24 +190,24 @@ public class CampoFrmTbl extends ComponenteMain {
     return intResultado;
   }
 
-  private Campo getObjCampo() {
+  protected Campo getTagCampo() {
 
     try {
 
-      if (_objCampo != null) {
+      if (_tagCampo != null) {
 
-        return _objCampo;
+        return _tagCampo;
       }
 
       this.definirTipoCampo();
 
-      _objCampo.setStrNome(this.getCln().getStrNomeSimplificado());
-      _objCampo.addCss(CssTag.getIMain().setPadding(5, "px"));
-      _objCampo.addCss(CssTag.getIMain().setWidth(100, "%"));
+      _tagCampo.addCss(CssTag.getIMain().setPadding(5, "px"));
+
+      _tagCampo.setStrNome(this.getCln().getStrNomeSimplificado());
 
       if (this.getCln().getIntTamanhoCampo() > 0) {
 
-        _objCampo.addAtr("maxlength", this.getCln().getIntTamanhoCampo());
+        _tagCampo.addAtr("maxlength", this.getCln().getIntTamanhoCampo());
       }
 
       if (!Utils.getBooStrVazia(this.getCln().getStrValor())) {
@@ -225,31 +222,7 @@ public class CampoFrmTbl extends ComponenteMain {
     finally {
     }
 
-    return _objCampo;
-  }
-
-  private Painel getPnlCampo() {
-
-    try {
-
-      if (_pnlCampo != null) {
-
-        return _pnlCampo;
-      }
-
-      _pnlCampo = new Painel();
-
-      _pnlCampo.addCss(CssTag.getIMain().setPaddingLeft(10));
-      _pnlCampo.addCss(CssTag.getIMain().setPaddingRight(10));
-    }
-    catch (Exception ex) {
-
-      new Erro("Erro inesperado.\n", ex);
-    }
-    finally {
-    }
-
-    return _pnlCampo;
+    return _tagCampo;
   }
 
   @Override
@@ -265,9 +238,6 @@ public class CampoFrmTbl extends ComponenteMain {
       _pnlTitulo = super.getPnlTitulo();
 
       _pnlTitulo.setStrConteudo(this.getCln().getStrNomeExibicao());
-      _pnlTitulo.addCss(CssTag.getIMain().setPaddingLeft(10));
-      _pnlTitulo.addCss(CssTag.getIMain().setPaddingRight(10));
-      _pnlTitulo.addCss(CssTag.getIMain().setTextAlign("left"));
     }
     catch (Exception ex) {
 
@@ -277,25 +247,6 @@ public class CampoFrmTbl extends ComponenteMain {
     }
 
     return _pnlTitulo;
-  }
-
-  @Override
-  protected void montarLayout() {
-
-    super.montarLayout();
-
-    try {
-
-      this.getPnlTitulo().setTagPai(this);
-      this.getPnlCampo().setTagPai(this);
-      this.getObjCampo().setTagPai(this.getPnlCampo());
-    }
-    catch (Exception ex) {
-
-      new Erro("Erro inesperado.\n", ex);
-    }
-    finally {
-    }
   }
 
   private void setCln(DbColunaWeb cln) {
@@ -310,9 +261,7 @@ public class CampoFrmTbl extends ComponenteMain {
 
     try {
 
-      this.addCss(tagCss.setFloat("left"));
-      this.addCss(tagCss.setPaddingBottom(5));
-      this.addCss(tagCss.setPaddingTop(5));
+      this.addCss(tagCss.setWidth(this.getDblCampoWidth(), "%"));
     }
     catch (Exception ex) {
 
@@ -322,8 +271,8 @@ public class CampoFrmTbl extends ComponenteMain {
     }
   }
 
-  private void setObjCampo(Campo objCampo) {
+  private void setTagCampo(Campo tagCampo) {
 
-    _objCampo = objCampo;
+    _tagCampo = tagCampo;
   }
 }
