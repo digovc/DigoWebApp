@@ -16,6 +16,7 @@ import com.digosofter.digowebapp.html.Tag;
 
 public class Tabela extends ComponenteMain {
 
+  private boolean _booClick = true;
   private boolean _booPesquisa = true;
   private Painel _pnlPesquisa;
   private Tag _tagTable;
@@ -71,10 +72,11 @@ public class Tabela extends ComponenteMain {
 
     try {
 
-      strJsCodigo = "var tbl__tbl_nome = new Tabela('_tbl_id');";
+      strJsCodigo = "var tbl__tbl_nome = new Tabela('_tbl_id', _click);";
 
       strJsCodigo = strJsCodigo.replace("_tbl_nome", this.getTbl().getStrNome());
       strJsCodigo = strJsCodigo.replace("_tbl_id", this.getStrId());
+      strJsCodigo = strJsCodigo.replace("_click", this.getBooClick() ? "true" : "false");
 
       tagJs.addJsCodigo(strJsCodigo);
     }
@@ -84,6 +86,11 @@ public class Tabela extends ComponenteMain {
     }
     finally {
     }
+  }
+
+  private boolean getBooClick() {
+
+    return _booClick;
   }
 
   private boolean getBooPesquisa() {
@@ -103,6 +110,7 @@ public class Tabela extends ComponenteMain {
       _pnlPesquisa = new Painel();
 
       _pnlPesquisa.addCss(CssTag.getIMain().setPadding(10, "px"));
+      _pnlPesquisa.addCss(CssTag.getIMain().setPaddingBottom(0));
     }
     catch (Exception ex) {
 
@@ -125,13 +133,18 @@ public class Tabela extends ComponenteMain {
 
       _tagTable = new Tag("table");
 
-      _tagTable.addAtr("border", "1px");
+      _tagTable.addAtr("border", "0px");
 
       _tagTable.addCss(CssTag.getIMain().addCss("border-collapse", "collapse"));
+      _tagTable.addCss(CssTag.getIMain().addCss("max-height", "500px"));
+      _tagTable.addCss(CssTag.getIMain().setBorder(1, "solid", "gray"));
+      _tagTable.addCss(CssTag.getIMain().setBorderRadius(25, 0, 0, 0));
+      _tagTable.addCss(CssTag.getIMain().setBoxShadow(0, 0, 5, 0, "gray"));
       _tagTable.addCss(CssTag.getIMain().setCursor("pointer"));
       _tagTable.addCss(CssTag.getIMain().setDisplay("block"));
-      _tagTable.addCss(CssTag.getIMain().setHeight(650, "px"));
-      _tagTable.addCss(CssTag.getIMain().setOverflowY("scroll"));
+      _tagTable.addCss(CssTag.getIMain().setHeight(100, "%"));
+      _tagTable.addCss(CssTag.getIMain().setMargin(10, "px"));
+      _tagTable.addCss(CssTag.getIMain().setOverflowY("auto"));
     }
     catch (Exception ex) {
 
@@ -174,6 +187,10 @@ public class Tabela extends ComponenteMain {
       }
 
       _tagThead = new Tag("thead");
+
+      _tagThead.addCss(CssTag.getIMain().addCss("white-space", "nowrap"));
+      _tagThead.addCss(CssTag.getIMain().setBackgroundColor("gray"));
+      _tagThead.addCss(CssTag.getIMain().setColor("white"));
     }
     catch (Exception ex) {
 
@@ -203,6 +220,8 @@ public class Tabela extends ComponenteMain {
 
       _txtPesquisa.setStrId("txtPesquisa_" + this.getTbl().getStrNomeSimplificado());
       _txtPesquisa.setStrPlaceHolder("Pesquisa");
+
+      _txtPesquisa.addCss(CssTag.getIMain().setWidth(30, "%"));
     }
     catch (Exception ex) {
 
@@ -244,7 +263,6 @@ public class Tabela extends ComponenteMain {
 
   private void montarLayoutCabecalho() {
 
-    Tag tagTh;
     Tag tagTr;
 
     try {
@@ -256,10 +274,7 @@ public class Tabela extends ComponenteMain {
 
       for (DbColuna cln : this.getTbl().getLstClnConsulta()) {
 
-        tagTh = new Tag("th");
-
-        tagTh.setStrConteudo(cln.getStrNomeExibicao());
-        tagTh.setTagPai(tagTr);
+        this.montarLayoutCabecalhoItem(cln, tagTr);
       }
     }
     catch (Exception ex) {
@@ -270,7 +285,31 @@ public class Tabela extends ComponenteMain {
     }
   }
 
-  private void montarLayoutColuna(DbColuna cln, Tag tagTr, ResultSet objResultSet) {
+  private void montarLayoutCabecalhoItem(DbColuna cln, Tag tagTr) {
+
+    Tag tagTh;
+
+    try {
+
+      tagTh = new Tag("th");
+
+      tagTh.addCss(CssTag.getIMain().setPadding(5, "px"));
+      tagTh.addCss(CssTag.getIMain().setPaddingLeft(30));
+      tagTh.addCss(CssTag.getIMain().setPaddingRight(30));
+
+      tagTh.setStrConteudo(cln.getStrNomeExibicao());
+
+      tagTh.setTagPai(tagTr);
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+    }
+    finally {
+    }
+  }
+
+  private void montarLayoutColuna(DbColuna cln, Tag tagTr, ResultSet rst) {
 
     String strValor;
     String strValorFormatado;
@@ -278,7 +317,7 @@ public class Tabela extends ComponenteMain {
 
     try {
 
-      strValor = objResultSet.getString(cln.getStrNomeSimplificado());
+      strValor = rst.getString(cln.getStrNomeSimplificado());
       strValorFormatado = cln.getStrValorFormatado(strValor);
 
       tagTd = new Tag("td");
@@ -289,6 +328,7 @@ public class Tabela extends ComponenteMain {
       tagTd.addCss(((DbColunaWeb) cln).getStrCss());
       tagTd.addCss(CssTag.getIMain().addCss("text-overflow", "ellipsis"));
       tagTd.addCss(CssTag.getIMain().setOverflow("hidden"));
+      tagTd.addCss(CssTag.getIMain().setPadding(5, "px"));
       tagTd.addCss(CssTag.getIMain().setWhiteSpace("nowrap"));
     }
     catch (Exception ex) {
@@ -299,7 +339,7 @@ public class Tabela extends ComponenteMain {
     }
   }
 
-  private void montarLayoutLinha(ResultSet objResultSet) {
+  private void montarLayoutLinha(ResultSet rst) {
 
     Tag tagTr;
 
@@ -309,14 +349,14 @@ public class Tabela extends ComponenteMain {
 
       tagTr.setTagPai(this.getTagTbody());
 
-      if (objResultSet.getRow() % 2 == 0) {
+      if (rst.getRow() % 2 == 0) {
 
-        tagTr.addCss(CssTag.getIMain().setBackgroundColor("#F6F4F0"));
+        tagTr.addCss(CssTag.getIMain().setBackgroundColor("#FAFAFA"));
       }
 
       for (DbColuna cln : this.getTbl().getLstClnConsulta()) {
 
-        this.montarLayoutColuna(cln, tagTr, objResultSet);
+        this.montarLayoutColuna(cln, tagTr, rst);
       }
     }
     catch (Exception ex) {
@@ -352,6 +392,11 @@ public class Tabela extends ComponenteMain {
     }
     finally {
     }
+  }
+
+  public void setBooClick(boolean booClick) {
+
+    _booClick = booClick;
   }
 
   public void setBooPesquisa(boolean booPesquisa) {

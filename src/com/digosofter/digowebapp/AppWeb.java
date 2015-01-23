@@ -21,6 +21,7 @@ public abstract class AppWeb extends App {
 
   public static final String JS_BOTAO = "res/js/lib/JDigo/html/Botao.js";
   public static final String JS_CAMPO = "res/js/lib/JDigo/html/Campo.js";
+  public static final String JS_COMBO_BOX = "res/js/lib/JDigo/html/ComboBox.js";
   public static final String JS_COMPONENTE_MAIN = "res/js/lib/JDigo/html/componente/ComponenteMain.js";
   public static final String JS_FORMULARIO = "res/js/lib/JDigo/html/Formulario.js";
   public static final String JS_FORMULARIO_TBL = "res/js/lib/JDigo/html/componente/FormularioTbl.js";

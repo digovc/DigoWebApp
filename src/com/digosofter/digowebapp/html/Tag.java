@@ -521,7 +521,9 @@ public class Tag extends Objeto {
         return;
       }
 
-      this.getAtrSrc().setStrValor(strSrc);
+      _strSrc += "?" + Utils.getStrSimplificada(AppWeb.getI().getStrVersao());
+
+      this.getAtrSrc().setStrValor(_strSrc);
     }
     catch (Exception ex) {
 

@@ -120,29 +120,25 @@ public class CssTag extends Tag {
   public String addCss(String strCssNome, String strValor) {
 
     AtributoCss objAtributoCssNovo;
-    boolean booExiste;
     String strResultado = Utils.STR_VAZIA;
 
     try {
-
-      booExiste = false;
 
       for (AtributoCss atrCss : this.getLstAtrCss()) {
 
         if (atrCss.getStrNome().equals(strCssNome) && atrCss.getStrValor().equals(strValor)) {
 
-          booExiste = true;
-          strResultado = atrCss.getStrClassAssociada();
+          return atrCss.getStrClassAssociada();
         }
       }
 
-      if (!booExiste) {
+      strResultado = "c" + String.valueOf(this.getLstAtrCss().size());
 
-        objAtributoCssNovo = new AtributoCss(strCssNome, strValor);
-        strResultado = "c" + String.valueOf(this.getLstAtrCss().size());
-        objAtributoCssNovo.setStrClassAssociada(strResultado);
-        this.getLstAtrCss().add(objAtributoCssNovo);
-      }
+      objAtributoCssNovo = new AtributoCss(strCssNome, strValor);
+
+      objAtributoCssNovo.setStrClassAssociada(strResultado);
+
+      this.getLstAtrCss().add(objAtributoCssNovo);
     }
     catch (Exception ex) {
 
@@ -234,6 +230,7 @@ public class CssTag extends Tag {
       for (AtributoCss atrCss : this.getLstAtrCss()) {
 
         strAttCss = "._class_nome{_att_nome:_att_valor}";
+
         strAttCss = strAttCss.replace("_class_nome", atrCss.getStrClassAssociada());
         strAttCss = strAttCss.replace("_att_nome", atrCss.getStrNome());
         strAttCss = strAttCss.replace("_att_valor", atrCss.getStrValor());

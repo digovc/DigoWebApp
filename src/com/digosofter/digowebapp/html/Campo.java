@@ -2,6 +2,7 @@ package com.digosofter.digowebapp.html;
 
 import java.util.List;
 
+import com.digosofter.digojava.Utils;
 import com.digosofter.digojava.erro.Erro;
 import com.digosofter.digowebapp.AppWeb;
 
@@ -35,7 +36,9 @@ public class Campo extends Tag {
     WEEK,
   }
 
+  private boolean _booDisabled;
   private EnmTipo _enmTipo = EnmTipo.TEXT;
+  private int _intValor;
   private String _strId;
   private String _strPlaceHolder;
   private String _strValor;
@@ -62,9 +65,30 @@ public class Campo extends Tag {
     }
   }
 
+  public boolean getBooDisabled() {
+
+    return _booDisabled;
+  }
+
   private EnmTipo getEnmTipo() {
 
     return _enmTipo;
+  }
+
+  public int getIntValor() {
+
+    try {
+
+      _intValor = Integer.valueOf(this.getStrValor());
+    }
+    catch (Exception ex) {
+
+      return 0;
+    }
+    finally {
+    }
+
+    return _intValor;
   }
 
   protected String getStrPlaceHolder() {
@@ -78,6 +102,99 @@ public class Campo extends Tag {
   }
 
   @Override
+  protected void montarLayout() {
+
+    super.montarLayout();
+
+    try {
+
+      this.montarLayoutValor();
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+    }
+    finally {
+    }
+  }
+
+  private void montarLayoutValor() {
+
+    try {
+
+      if (Utils.getBooStrVazia(this.getStrValor())) {
+
+        return;
+      }
+
+      switch (this.getEnmTipo()) {
+        case TEXT_AREA:
+          this.setStrConteudo(this.getStrValor());
+          break;
+        case CHECKBOX:
+          this.montarLayoutValorCheckBox();
+          break;
+        default:
+          this.addAtr("value", this.getStrValor());
+          break;
+      }
+
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+    }
+    finally {
+    }
+  }
+
+  private void montarLayoutValorCheckBox() {
+
+    try {
+
+      if (Utils.getBooStrVazia(this.getStrValor())) {
+
+        return;
+      }
+
+      switch (this.getStrValor().toLowerCase()) {
+        case "s":
+        case "sim":
+        case "1":
+        case "true":
+        case "t":
+          this.addAtr("checked", "");
+          break;
+      }
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+    }
+    finally {
+    }
+  }
+
+  public void setBooDisabled(boolean booDisabled) {
+
+    try {
+
+      _booDisabled = booDisabled;
+
+      if (_booDisabled) {
+
+        this.addAtr("disabled", "");
+      }
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+    }
+    finally {
+    }
+  }
+
+  @Override
   protected void setCss(CssTag tagCss) {
 
     super.setCss(tagCss);
@@ -85,8 +202,8 @@ public class Campo extends Tag {
     try {
 
       this.addCss(CssTag.getIMain().addCss("box-sizing", "border-box"));
-      this.addCss(CssTag.getIMain().setMarginBottom(10));
-      this.addCss(CssTag.getIMain().setMarginTop(10));
+      this.addCss(CssTag.getIMain().setMarginBottom(5));
+      this.addCss(CssTag.getIMain().setPadding(5, "px"));
       this.addCss(CssTag.getIMain().setWidth(100, "%"));
     }
     catch (Exception ex) {
@@ -115,9 +232,11 @@ public class Campo extends Tag {
           break;
         case DATE:
           this.getAtrType().setStrValor("date");
+          this.addCss(CssTag.getIMain().setTextAlign("right"));
           break;
         case DATETIME:
           this.getAtrType().setStrValor("datetime");
+          this.addCss(CssTag.getIMain().setTextAlign("right"));
           break;
         case DATETIME_LOCAL:
           this.getAtrType().setStrValor("datetime-local");
@@ -139,6 +258,7 @@ public class Campo extends Tag {
           break;
         case NUMBER:
           this.getAtrType().setStrValor("number");
+          this.addCss(CssTag.getIMain().setTextAlign("right"));
           break;
         case PASSWORD:
           this.getAtrType().setStrValor("password");
@@ -167,7 +287,8 @@ public class Campo extends Tag {
         case TEXT_AREA:
           this.setStrTagNome("textarea");
           this.setBooForcarTagDupla(true);
-          this.addAtr("rows", "5");
+          this.addAtr("rows", "7");
+          this.addCss(CssTag.getIMain().setWidth(100, "%"));
           break;
         case TIME:
           this.getAtrType().setStrValor("time");
@@ -182,6 +303,22 @@ public class Campo extends Tag {
           this.getAtrType().setStrValor("text");
           break;
       }
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+    }
+    finally {
+    }
+  }
+
+  public void setIntValor(int intValor) {
+
+    try {
+
+      _intValor = intValor;
+
+      this.setStrValor(String.valueOf(_intValor));
     }
     catch (Exception ex) {
 
@@ -231,24 +368,6 @@ public class Campo extends Tag {
 
   public void setStrValor(String strValor) {
 
-    try {
-
-      _strValor = strValor;
-
-      switch (this.getEnmTipo()) {
-        case TEXT_AREA:
-          this.setStrConteudo(_strValor);
-          break;
-        default:
-          this.addAtr("value", _strValor);
-          break;
-      }
-    }
-    catch (Exception ex) {
-
-      new Erro("Erro inesperado.\n", ex);
-    }
-    finally {
-    }
+    _strValor = strValor;
   }
 }

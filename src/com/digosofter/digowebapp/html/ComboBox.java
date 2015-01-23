@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.digosofter.digojava.Utils;
 import com.digosofter.digojava.erro.Erro;
+import com.digosofter.digowebapp.AppWeb;
 
 public class ComboBox extends Campo {
 
@@ -17,6 +18,24 @@ public class ComboBox extends Campo {
     try {
 
       this.setStrTagNome("select");
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+    }
+    finally {
+    }
+  }
+
+  @Override
+  protected void addJsArquivo(List<JavaScriptTag> lstObjJsTag) {
+
+    super.addJsArquivo(lstObjJsTag);
+
+    try {
+
+      lstObjJsTag.add(new JavaScriptTag(AppWeb.JS_CAMPO));
+      lstObjJsTag.add(new JavaScriptTag(AppWeb.JS_COMBO_BOX));
     }
     catch (Exception ex) {
 

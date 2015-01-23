@@ -8,13 +8,11 @@ import com.digosofter.digowebapp.database.DbColunaWeb;
 import com.digosofter.digowebapp.html.Campo;
 import com.digosofter.digowebapp.html.ComboBox;
 import com.digosofter.digowebapp.html.CssTag;
-import com.digosofter.digowebapp.html.Painel;
 
 public class CampoFrmTbl extends LabelCampo {
 
   private DbColunaWeb _cln;
   private Campo _tagCampo;
-  private Painel _pnlTitulo;
 
   public CampoFrmTbl(DbColunaWeb cln) {
 
@@ -190,7 +188,8 @@ public class CampoFrmTbl extends LabelCampo {
     return intResultado;
   }
 
-  protected Campo getTagCampo() {
+  @Override
+  public Campo getTagCampo() {
 
     try {
 
@@ -200,8 +199,6 @@ public class CampoFrmTbl extends LabelCampo {
       }
 
       this.definirTipoCampo();
-
-      _tagCampo.addCss(CssTag.getIMain().setPadding(5, "px"));
 
       _tagCampo.setStrNome(this.getCln().getStrNomeSimplificado());
 
@@ -225,19 +222,13 @@ public class CampoFrmTbl extends LabelCampo {
     return _tagCampo;
   }
 
-  @Override
-  protected Painel getPnlTitulo() {
+  private void setCln(DbColunaWeb cln) {
 
     try {
 
-      if (_pnlTitulo != null) {
+      _cln = cln;
 
-        return _pnlTitulo;
-      }
-
-      _pnlTitulo = super.getPnlTitulo();
-
-      _pnlTitulo.setStrConteudo(this.getCln().getStrNomeExibicao());
+      this.setStrLabel(this.getCln().getStrNomeExibicao());
     }
     catch (Exception ex) {
 
@@ -245,13 +236,6 @@ public class CampoFrmTbl extends LabelCampo {
     }
     finally {
     }
-
-    return _pnlTitulo;
-  }
-
-  private void setCln(DbColunaWeb cln) {
-
-    _cln = cln;
   }
 
   @Override
@@ -261,7 +245,7 @@ public class CampoFrmTbl extends LabelCampo {
 
     try {
 
-      this.addCss(tagCss.setWidth(this.getDblCampoWidth(), "%"));
+      // this.addCss(tagCss.setWidth(this.getDblCampoWidth(), "%"));
     }
     catch (Exception ex) {
 

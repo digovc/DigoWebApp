@@ -105,6 +105,8 @@ public class FormularioTbl extends ComponenteMain {
 
       _btnCancelar.setStrId("btnCancelar");
       _btnCancelar.setStrConteudo("Cancelar");
+
+      _btnCancelar.addCss(CssTag.getIMain().setMarginTop(15));
     }
     catch (Exception ex) {
 
@@ -129,6 +131,8 @@ public class FormularioTbl extends ComponenteMain {
 
       _btnSalvar.setStrConteudo("Salvar");
       _btnSalvar.setStrId("btnSalvar");
+
+      _btnSalvar.addCss(CssTag.getIMain().setMarginTop(15));
     }
     catch (Exception ex) {
 
@@ -360,6 +364,7 @@ public class FormularioTbl extends ComponenteMain {
           if (cln.getIntFrmLinha() == intIndex) {
 
             objCampoFrmTbl = new CampoFrmTbl((DbColunaWeb) cln);
+
             objCampoFrmTbl.setTagPai(this.getPnlCampos());
           }
         }

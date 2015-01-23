@@ -28,12 +28,12 @@ public abstract class DbTabelaWeb extends DbTabela {
   /**
    * Adiciona a estrutura completa de uma lista na tag passada como parâmetro.
    */
-  public void adicionarConsultaTbl(Tag tag) {
+  public void adicionarConsultaTbl(Tag tagPai) {
 
     try {
 
       this.setObjConsultaTbl(new ConsultaTbl(this));
-      this.getObjConsultaTbl().setTagPai(tag);
+      this.getObjConsultaTbl().setTagPai(tagPai);
     }
     catch (Exception ex) {
 

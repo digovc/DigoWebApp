@@ -9,7 +9,7 @@ import com.digosofter.digowebapp.html.Painel;
 public class LabelCampo extends ItemMain {
 
   private Painel _pnlCampo;
-  private Painel _pnlTitulo;
+  private Painel _pnlLabel;
   private String _strLabel;
   private Campo _tagCampo;
 
@@ -24,8 +24,7 @@ public class LabelCampo extends ItemMain {
 
       _pnlCampo = new Painel();
 
-      _pnlCampo.addCss(CssTag.getIMain().setPaddingLeft(10));
-      _pnlCampo.addCss(CssTag.getIMain().setPaddingRight(10));
+      _pnlCampo.addCss(CssTag.getIMain().setPadding(5, "px"));
     }
     catch (Exception ex) {
 
@@ -37,21 +36,18 @@ public class LabelCampo extends ItemMain {
     return _pnlCampo;
   }
 
-  @Override
-  protected Painel getPnlTitulo() {
+  private Painel getPnlLabel() {
 
     try {
 
-      if (_pnlTitulo != null) {
+      if (_pnlLabel != null) {
 
-        return _pnlTitulo;
+        return _pnlLabel;
       }
 
-      _pnlTitulo = super.getPnlTitulo();
+      _pnlLabel = new Painel();
 
-      _pnlTitulo.addCss(CssTag.getIMain().setPaddingLeft(10));
-      _pnlTitulo.addCss(CssTag.getIMain().setPaddingRight(10));
-      _pnlTitulo.addCss(CssTag.getIMain().setTextAlign("left"));
+      _pnlLabel.addCss(CssTag.getIMain().setTextAlign("initial"));
     }
     catch (Exception ex) {
 
@@ -60,7 +56,7 @@ public class LabelCampo extends ItemMain {
     finally {
     }
 
-    return _pnlTitulo;
+    return _pnlLabel;
   }
 
   protected String getStrLabel() {
@@ -68,7 +64,7 @@ public class LabelCampo extends ItemMain {
     return _strLabel;
   }
 
-  protected Campo getTagCampo() {
+  public Campo getTagCampo() {
 
     try {
 
@@ -78,8 +74,6 @@ public class LabelCampo extends ItemMain {
       }
 
       _tagCampo = new Campo();
-
-      _tagCampo.addCss(CssTag.getIMain().setPadding(5, "px"));
     }
     catch (Exception ex) {
 
@@ -98,7 +92,7 @@ public class LabelCampo extends ItemMain {
 
     try {
 
-      this.getPnlTitulo().setTagPai(this);
+      this.getPnlLabel().setTagPai(this);
       this.getPnlCampo().setTagPai(this);
       this.getTagCampo().setTagPai(this.getPnlCampo());
     }
@@ -117,9 +111,11 @@ public class LabelCampo extends ItemMain {
 
     try {
 
+      this.addCss(tagCss.setBorderBottom(1, "#e0e0e0"));
       this.addCss(tagCss.setFloat("left"));
-      this.addCss(tagCss.setPaddingBottom(5));
-      this.addCss(tagCss.setPaddingTop(5));
+      this.addCss(tagCss.setMarginBottom(10));
+      this.addCss(tagCss.setMarginRight(10));
+      this.addCss(tagCss.addCss("min-width", "200px"));
     }
     catch (Exception ex) {
 
@@ -135,10 +131,13 @@ public class LabelCampo extends ItemMain {
 
       _strLabel = strLabel;
 
-      if (!Utils.getBooStrVazia(_strLabel)) {
+      if (Utils.getBooStrVazia(_strLabel)) {
 
-        this.getPnlTitulo().setStrConteudo(_strLabel);
+        return;
       }
+
+      this.getPnlLabel().setStrConteudo(_strLabel);
+      this.setStrTitle(_strLabel);
     }
     catch (Exception ex) {
 

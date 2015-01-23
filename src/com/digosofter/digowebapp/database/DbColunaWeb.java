@@ -18,7 +18,7 @@ public class DbColunaWeb extends DbColuna {
    * Carrega "comboBox" com os devidos valores de acordo com a tabela
    * referenciada ou as opções default da coluna.
    */
-  public void carregarComboBox(ComboBox objCampoComboBox) {
+  public void carregarComboBox(ComboBox cmb) {
 
     ResultSet rst;
 
@@ -28,13 +28,13 @@ public class DbColunaWeb extends DbColuna {
 
         rst = ((DbTabelaWeb) this.getClnRef().getTbl()).getRstNomeValor();
 
-        objCampoComboBox.setBooOpcaoVazia(!this.getClnRef().getBooNotNull());
+        cmb.setBooOpcaoVazia(!this.getClnRef().getBooNotNull());
 
         if (rst != null && rst.first()) {
 
           do {
 
-            objCampoComboBox.addNomeValor(rst.getString(1), rst.getString(2));
+            cmb.addNomeValor(rst.getString(1), rst.getString(2));
           }
           while (rst.next());
 
@@ -49,7 +49,7 @@ public class DbColunaWeb extends DbColuna {
 
       for (int i = 0; i < this.getLstIntOpcaoValor().size(); i++) {
 
-        objCampoComboBox.addNomeValor(this.getLstIntOpcaoValor().get(i).toString(), this.getLstStrOpcao().get(i));
+        cmb.addNomeValor(this.getLstIntOpcaoValor().get(i).toString(), this.getLstStrOpcao().get(i));
       }
     }
     catch (Exception ex) {
@@ -62,14 +62,18 @@ public class DbColunaWeb extends DbColuna {
 
   public String getStrCss() {
 
-    String strCss = "";
-
     try {
 
       switch (this.getEnmTipoGrupo()) {
         case ALPHANUMERICO:
-          strCss += CssTag.getIMain().setTextAlign("left");
-          break;
+          return CssTag.getIMain().setTextAlign(CssTag.CSS_TEXT_ALIGN_ESQUERDA);
+
+        case TEMPORAL:
+          return CssTag.getIMain().setTextAlign(CssTag.CSS_TEXT_ALIGN_DIREITA);
+
+        case NUMERICO:
+          return CssTag.getIMain().setTextAlign(CssTag.CSS_TEXT_ALIGN_DIREITA);
+
         default:
           break;
       }
@@ -81,6 +85,6 @@ public class DbColunaWeb extends DbColuna {
     finally {
     }
 
-    return strCss;
+    return null;
   }
 }

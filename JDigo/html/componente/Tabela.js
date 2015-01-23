@@ -4,7 +4,7 @@
 // FIM ATRIBUTOS GLOBAIS
 // CLASSE
 
-function Tabela(strId) {
+function Tabela(strId, booClick) {
   // HERANÇA
 
   ComponenteMain.apply(this);
@@ -16,6 +16,16 @@ function Tabela(strId) {
   // ATRIBUTO
 
   var _this = this;
+
+  var _booClick = true;
+
+  this.getBooClick = function() {
+    return _booClick;
+  };
+
+  this.setBooClick = function(booClick) {
+    _booClick = booClick;
+  };
 
   // FIM ATRIBUTO
 
@@ -44,11 +54,73 @@ function Tabela(strId) {
     }
   };
 
+  this.evtLinhaMouseEnter = function(evt) {
+
+    try {
+
+      if (evt == null) {
+
+        return;
+      }
+
+      if (evt.target == null) {
+
+        return;
+      }
+
+      if (evt.target.parentElement == null) {
+
+        return;
+      }
+
+      $(evt.target.parentElement).css("background-color", "rgb(228, 228, 228)");
+
+    } catch (e) {
+
+      new Erro("Erro inesperado.", e);
+    } finally {
+    }
+  };
+
+  this.evtLinhaMouseLeave = function(evt) {
+
+    try {
+
+      if (evt == null) {
+
+        return;
+      }
+
+      if (evt.target == null) {
+
+        return;
+      }
+
+      if (evt.target.parentElement == null) {
+
+        return;
+      }
+
+      $(evt.target.parentElement).css("background-color", "");
+
+    } catch (e) {
+
+      new Erro("Erro inesperado.", e);
+    } finally {
+    }
+  };
+
   this.setEventos = function() {
 
     try {
 
-      _this.getJq().find("tr").click(_this.evtLinhaClick);
+      if (_this.getBooClick()) {
+
+        _this.getJq().find("tr").click(_this.evtLinhaClick);
+      }
+
+      _this.getJq().find("tr").mouseenter(_this.evtLinhaMouseEnter);
+      _this.getJq().find("tr").mouseleave(_this.evtLinhaMouseLeave);
 
     } catch (e) {
 
@@ -90,6 +162,7 @@ function Tabela(strId) {
     try {
 
       _this.setStrId(strId);
+      _this.setBooClick(booClick);
       _this.setPesquisa();
       _this.setOrdenacao();
       _this.setEventos();
