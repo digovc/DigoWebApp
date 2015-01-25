@@ -49,23 +49,23 @@ public class Mensagem extends ComponenteMain {
       switch (this.getEnmTipo()) {
 
         case ALERTA:
-          strResultado = "res/media/info_alerta.png";
+          strResultado = "res/media/png/info_alerta.png";
           break;
 
         case LOAD:
-          strResultado = "res/media/load.gif";
+          strResultado = "res/media/gif/load.gif";
           break;
 
         case NEGATIVA:
-          strResultado = "res/media/info_negativa.png";
+          strResultado = "res/media/png/info_negativa.png";
           break;
 
         case POSITIVA:
-          strResultado = "res/media/info_positiva.png";
+          strResultado = "res/media/png/info_positiva.png";
           break;
 
         default:
-          strResultado = "res/media/info_alerta.png";
+          strResultado = "res/media/png/info_alerta.png";
           break;
       }
     }

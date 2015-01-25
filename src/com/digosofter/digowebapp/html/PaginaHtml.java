@@ -487,7 +487,7 @@ public class PaginaHtml extends Objeto {
         return _strSrcIcon;
       }
 
-      _strSrcIcon = "res/media/favicon.ico";
+      _strSrcIcon = "res/media/ico/favicon.ico";
     }
     catch (Exception ex) {
 
