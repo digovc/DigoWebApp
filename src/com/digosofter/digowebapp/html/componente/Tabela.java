@@ -3,6 +3,7 @@ package com.digosofter.digowebapp.html.componente;
 import java.sql.ResultSet;
 import java.util.List;
 
+import com.digosofter.digojava.Utils;
 import com.digosofter.digojava.database.DbColuna;
 import com.digosofter.digojava.erro.Erro;
 import com.digosofter.digowebapp.AppWeb;
@@ -16,7 +17,7 @@ import com.digosofter.digowebapp.html.Tag;
 
 public class Tabela extends ComponenteMain {
 
-  private boolean _booClick = true;
+  private String _strPagClick;
   private boolean _booPesquisa = true;
   private Painel _pnlPesquisa;
   private Tag _tagTable;
@@ -72,11 +73,11 @@ public class Tabela extends ComponenteMain {
 
     try {
 
-      strJsCodigo = "var tbl__tbl_nome = new Tabela('_tbl_id', _click);";
+      strJsCodigo = "var tbl__tbl_nome = new Tabela('_tbl_id', _pag_click);";
 
       strJsCodigo = strJsCodigo.replace("_tbl_nome", this.getTbl().getStrNome());
       strJsCodigo = strJsCodigo.replace("_tbl_id", this.getStrId());
-      strJsCodigo = strJsCodigo.replace("_click", this.getBooClick() ? "true" : "false");
+      strJsCodigo = strJsCodigo.replace("_pag_click", !Utils.getBooStrVazia(this.getStrPagClick()) ? "'" + this.getStrPagClick() + "'" : "null");
 
       tagJs.addJsCodigo(strJsCodigo);
     }
@@ -88,9 +89,9 @@ public class Tabela extends ComponenteMain {
     }
   }
 
-  private boolean getBooClick() {
+  private String getStrPagClick() {
 
-    return _booClick;
+    return _strPagClick;
   }
 
   private boolean getBooPesquisa() {
@@ -394,9 +395,9 @@ public class Tabela extends ComponenteMain {
     }
   }
 
-  public void setBooClick(boolean booClick) {
+  public void setStrPagClick(String strPagClick) {
 
-    _booClick = booClick;
+    _strPagClick = strPagClick;
   }
 
   public void setBooPesquisa(boolean booPesquisa) {

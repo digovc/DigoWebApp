@@ -26,13 +26,17 @@ public abstract class WebSocketMain extends Objeto {
    */
   protected void enviar(Session objSession, ObjWsInterlocutor objWsInterlocutor) {
 
-    Gson objGson;
-
     try {
 
-      objGson = new Gson();
+      synchronized (objSession) {
 
-      objSession.getBasicRemote().sendText(objGson.toJson(objWsInterlocutor));
+        if (!objSession.isOpen()) {
+
+          return;
+        }
+
+        objSession.getBasicRemote().sendText(AppWeb.getI().getObjGson().toJson(objWsInterlocutor));
+      }
     }
     catch (Exception ex) {
 

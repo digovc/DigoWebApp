@@ -1,11 +1,16 @@
 ﻿// CONSTANTE
+// FIM CONSTANTE
 
 // ATRIBUTOS GLOBAIS
+
 var Objeto_intId = 0;
+
+// FIM ATRIBUTOS GLOBAIS
 
 // CLASSE
 function Objeto() {
   // HERANÇA
+  // FIM HERANÇA
 
   // ATRIBUTO
 
@@ -56,7 +61,10 @@ function Objeto() {
     _strNomeExibicao = strNomeExibicao;
   }
 
+  // FIM ATRIBUTO
+
   // MÉTODO
+  // FIM MÉTODO
 
   /* Construtor */
   {
@@ -70,5 +78,4 @@ function Objeto() {
       new Erro("Erro inesperado.", e);
     }
   }
-
 }

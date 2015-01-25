@@ -27,6 +27,16 @@ function WebSocketMain(strUrl) {
 
   // FIM ATRIBUTO ABSTRATO
 
+  var _booConectado = false;
+
+  this.getBooConectado = function() {
+    return _booConectado;
+  };
+
+  this.setBooConectado = function(booConectado) {
+    _booConectado = booConectado;
+  };
+
   var _objWebSocket;
 
   this.getObjWebSocket = function() {
@@ -46,7 +56,9 @@ function WebSocketMain(strUrl) {
 
       _objWebSocket = new WebSocket(_this.getStrUrl());
 
+      _objWebSocket.onclose = _this.evtOnClose;
       _objWebSocket.onmessage = _this.evtOnMessage;
+      _objWebSocket.onopen = _this.evtOnOpen;
 
     } catch (e) {
 
@@ -108,10 +120,19 @@ function WebSocketMain(strUrl) {
     }
   };
 
-  /**
-   * Método que deve ser implementado pela classe de instância para receber e
-   * processar as mensagens vindas do servidor.
-   */
+  this.evtOnClise = function(evt) {
+
+    try {
+
+      _this.setBooConectado(false);
+
+    } catch (e) {
+
+      new Erro("Erro inesperado.", e);
+    } finally {
+    }
+  };
+
   this.evtOnMessage = function(evt) {
 
     var objWsInterlocutor;
@@ -121,6 +142,19 @@ function WebSocketMain(strUrl) {
       objWsInterlocutor = JSON.parse(evt.data);
 
       _this.processarObjWsInterlocutor(objWsInterlocutor);
+
+    } catch (e) {
+
+      new Erro("Erro inesperado.", e);
+    } finally {
+    }
+  };
+
+  this.evtOnOpen = function(evt) {
+
+    try {
+
+      _this.setBooConectado(true);
 
     } catch (e) {
 

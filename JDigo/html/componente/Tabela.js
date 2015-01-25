@@ -4,7 +4,7 @@
 // FIM ATRIBUTOS GLOBAIS
 // CLASSE
 
-function Tabela(strId, booClick) {
+function Tabela(strId, strPagClick) {
   // HERANÇA
 
   ComponenteMain.apply(this);
@@ -17,14 +17,14 @@ function Tabela(strId, booClick) {
 
   var _this = this;
 
-  var _booClick = true;
+  var _strPagClick = null;
 
-  this.getBooClick = function() {
-    return _booClick;
+  this.getStrPagClick = function() {
+    return _strPagClick;
   };
 
-  this.setBooClick = function(booClick) {
-    _booClick = booClick;
+  this.setStrPagClick = function(strPagClick) {
+    _strPagClick = strPagClick;
   };
 
   // FIM ATRIBUTO
@@ -40,9 +40,9 @@ function Tabela(strId, booClick) {
 
       strRegistroId = $($(evt.currentTarget).find("td")[0]).html();
 
-      url = "_url_atual?id=_registro_id";
+      url = "_pag_click?id=_registro_id";
 
-      url = url.replace("_url_atual", window.location.href);
+      url = url.replace("_pag_click", _this.getStrPagClick());
       url = url.replace("_registro_id", strRegistroId);
 
       window.location.href = url;
@@ -114,7 +114,7 @@ function Tabela(strId, booClick) {
 
     try {
 
-      if (_this.getBooClick()) {
+      if (!Utils.getBooStrVazia(_this.getStrPagClick())) {
 
         _this.getJq().find("tr").click(_this.evtLinhaClick);
       }
@@ -162,7 +162,7 @@ function Tabela(strId, booClick) {
     try {
 
       _this.setStrId(strId);
-      _this.setBooClick(booClick);
+      _this.setStrPagClick(strPagClick);
       _this.setPesquisa();
       _this.setOrdenacao();
       _this.setEventos();
