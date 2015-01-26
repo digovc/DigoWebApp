@@ -357,11 +357,11 @@ public class FormularioTbl extends ComponenteMain {
         this.getTbl().limparColunas();
       }
 
-      for (int intIndex = 1; intIndex <= this.getIntQtdLinha(); intIndex++) {
+      for (int i = 1; i <= this.getIntQtdLinha(); i++) {
 
         for (DbColuna cln : this.getTbl().getLstClnCadastro()) {
 
-          if (cln.getIntFrmLinha() == intIndex) {
+          if (cln.getIntFrmLinha() == i) {
 
             objCampoFrmTbl = new CampoFrmTbl((DbColunaWeb) cln);
 

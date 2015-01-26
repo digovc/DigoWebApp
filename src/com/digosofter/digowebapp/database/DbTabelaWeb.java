@@ -194,9 +194,9 @@ public abstract class DbTabelaWeb extends DbTabela {
 
         lstIntResultado = new ArrayList<Integer>();
 
-        for (int intIndex = 0; intIndex < lstStr.size(); intIndex++) {
+        for (int i = 0; i < lstStr.size(); i++) {
 
-          lstIntResultado.add(Integer.valueOf(lstStr.get(intIndex)));
+          lstIntResultado.add(Integer.valueOf(lstStr.get(i)));
         }
       }
     }
