@@ -53,7 +53,7 @@ public abstract class AppWeb extends App {
   private Usuario _objUsuarioAtual;
   private String _strPagSolicitada;
 
-  public AppWeb(String strAppNome) {
+  protected AppWeb(String strAppNome) {
 
     try {
 

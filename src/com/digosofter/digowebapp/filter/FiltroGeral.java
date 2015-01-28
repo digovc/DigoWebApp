@@ -30,13 +30,19 @@ public class FiltroGeral implements Filter {
       objHttpServletRequest = (HttpServletRequest) objServletRequest;
       strPath = objHttpServletRequest.getRequestURI().substring(objHttpServletRequest.getContextPath().length());
 
-      if (strPath.startsWith("/res")) {
+      if (strPath.startsWith("/res/")) {
 
         objFilterChain.doFilter(objServletRequest, objServletResponse);
         return;
       }
 
-      if (strPath.startsWith("/ws")) {
+      if (strPath.startsWith("/app/")) {
+
+        objFilterChain.doFilter(objServletRequest, objServletResponse);
+        return;
+      }
+
+      if (strPath.startsWith("/ws/")) {
 
         objFilterChain.doFilter(objServletRequest, objServletResponse);
         return;
