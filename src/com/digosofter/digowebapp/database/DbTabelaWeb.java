@@ -763,7 +763,8 @@ public abstract class DbTabelaWeb extends DbTabela {
         sql = sql.replace("_cln_valor", Utils.getStrConcatenarLst(this.getLstStrClnValor(true), ", ", true));
 
         intResultado = this.getClnChavePrimaria().getIntValor();
-        ((DataBaseWeb) this.getObjDb()).execSql(sql);
+
+        this.getObjDb().execSql(sql);
       }
 
       this.buscarRegistro(intResultado);
