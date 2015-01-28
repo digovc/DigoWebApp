@@ -13,7 +13,6 @@ import com.digosofter.digowebapp.html.componente.item.PopupItem;
 public class Popup extends ComponenteMain {
 
   private List<PopupItem> _lstObjPopupItem;
-
   private Painel _pnlOpcao;
 
   public void addItem(PopupItem ppi) {
