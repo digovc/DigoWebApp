@@ -96,6 +96,14 @@ public abstract class DbFuncao extends DbTabelaWeb {
 
       for (String strParamIn : this.getLstStrParamIn()) {
 
+        if (Utils.getBooStrVazia(strParamIn)) {
+
+          strResultado += "null, ";
+          continue;
+        }
+
+        strParamIn = strParamIn.replace("'", "''");
+
         strEstrutura = "'_param_valor', ";
 
         strEstrutura = strEstrutura.replace("_param_valor", strParamIn);
