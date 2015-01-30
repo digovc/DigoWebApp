@@ -22,30 +22,39 @@ function AppWeb() {
 
     try {
 
-      if (_arrObjPaletaCor == null) {
+      if (_arrObjPaletaCor != null) {
 
-        _arrObjPaletaCor = new Array();
+        return _arrObjPaletaCor;
       }
 
+      _arrObjPaletaCor = new Array();
+
     } catch (e) {
+
       new Erro("Erro inesperado.", e);
     }
 
     return _arrObjPaletaCor;
   }
 
+  this._booEmFoco = null;
+
+  this.getBooEmFoco = function() {
+    return _this._booEmFoco;
+  };
+
+  this.setBooEmFoco = function(booEmFoco) {
+    _this._booEmFoco = booEmFoco;
+  };
+
   var _intPaletaCorSelecionada = 0;
 
   this.getIntPaletaCorSelecionada = function() {
-
     return _intPaletaCorSelecionada;
-
   }
 
   this.setIntPaletaCorSelecionada = function(intPaletaCorSelecionada) {
-
     _intPaletaCorSelecionada = intPaletaCorSelecionada;
-
   }
 
   var _msgLoad = null;
@@ -92,6 +101,32 @@ function AppWeb() {
     }
   };
 
+  this.evtBlur = function(evt) {
+
+    try {
+
+      _this.setBooEmFoco(false);
+
+    } catch (e) {
+
+      new Erro("Erro inesperado.", e);
+    } finally {
+    }
+  };
+
+  this.evtFocus = function(evt) {
+
+    try {
+
+      _this.setBooEmFoco(true);
+
+    } catch (e) {
+
+      new Erro("Erro inesperado.", e);
+    } finally {
+    }
+  };
+
   this.imprimir = function(pag) {
 
     var objWindow;
@@ -104,6 +139,7 @@ function AppWeb() {
       objWindow.close();
 
     } catch (e) {
+
       new Erro("Erro inesperado.", e);
     }
   };
@@ -116,6 +152,7 @@ function AppWeb() {
       _this.getMsgLoad().mostrar();
 
     } catch (e) {
+
       new Erro("Erro inesperado.", e);
     }
   };
@@ -130,6 +167,7 @@ function AppWeb() {
       msg.mostrar();
 
     } catch (e) {
+
       new Erro("Erro inesperado.", e);
     }
   };
@@ -144,6 +182,7 @@ function AppWeb() {
       msg.mostrar();
 
     } catch (e) {
+
       new Erro("Erro inesperado.", e);
     }
   };
@@ -158,7 +197,25 @@ function AppWeb() {
       msg.mostrar();
 
     } catch (e) {
+
       new Erro("Erro inesperado.", e);
+    }
+  };
+
+  this.setEventos = function() {
+
+    try {
+
+      $(window).focus(_this.evtFocus);
+      $(window).blur(_this.evtBlur);
+
+      window.onfocus = _this.evtFocus;
+      window.onblur = _this.evtBlur;
+
+    } catch (e) {
+
+      new Erro("Erro inesperado.", e);
+    } finally {
     }
   };
 
@@ -168,6 +225,9 @@ function AppWeb() {
   {
 
     try {
+
+      _this.setBooEmFoco(true);
+      _this.setEventos();
 
     } catch (e) {
       new Erro("Erro inesperado.", e);

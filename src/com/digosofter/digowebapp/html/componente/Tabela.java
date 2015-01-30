@@ -139,7 +139,6 @@ public class Tabela extends ComponenteMain {
       _tagTable.addCss(CssTag.getIMain().addCss("border-collapse", "collapse"));
       _tagTable.addCss(CssTag.getIMain().addCss("max-height", "500px"));
       _tagTable.addCss(CssTag.getIMain().setBorder(1, "solid", "gray"));
-      _tagTable.addCss(CssTag.getIMain().setBorderRadius(25, 0, 0, 0));
       _tagTable.addCss(CssTag.getIMain().setBoxShadow(0, 0, 5, 0, "gray"));
       _tagTable.addCss(CssTag.getIMain().setCursor("pointer"));
       _tagTable.addCss(CssTag.getIMain().setDisplay("block"));

@@ -48,10 +48,6 @@ public class Mensagem extends ComponenteMain {
 
       switch (this.getEnmTipo()) {
 
-        case ALERTA:
-          strResultado = "res/media/png/info_alerta.png";
-          break;
-
         case LOAD:
           strResultado = "res/media/gif/load.gif";
           break;
@@ -96,6 +92,9 @@ public class Mensagem extends ComponenteMain {
       _imgIcon = new Imagem();
 
       _imgIcon.setSrc(this.definirSrc());
+
+      _imgIcon.addCss(CssTag.getIMain().setBorderRight(1, "rgb(115, 115, 115)"));
+      _imgIcon.addCss(CssTag.getIMain().setFloat("left"));
       _imgIcon.addCss(CssTag.getIMain().setHeight(50, "px"));
       _imgIcon.addCss(CssTag.getIMain().setWidth(50, "px"));
     }
@@ -120,13 +119,12 @@ public class Mensagem extends ComponenteMain {
 
       _pnlConteudo = new Painel();
 
+      _pnlConteudo.addCss(CssTag.getIMain().addCss("margin", "auto"));
+      _pnlConteudo.addCss(CssTag.getIMain().setBackgroundColor("white"));
       _pnlConteudo.addCss(CssTag.getIMain().setBorder(1, "outset", AppWeb.getI().getObjPaletaCor().getStrCorBorda()));
-      _pnlConteudo.addCss(CssTag.getIMain().setBorderRadius(5, 5, 5, 5));
-      _pnlConteudo.addCss(CssTag.getIMain().setBoxShadow(0, 2, 2, 2, AppWeb.getI().getObjPaletaCor().getStrCorBorda()));
+      _pnlConteudo.addCss(CssTag.getIMain().setBoxShadow(0, 0, 25, 0, "rgb(115, 115, 115)"));
       _pnlConteudo.addCss(CssTag.getIMain().setDisplay("table"));
       _pnlConteudo.addCss(CssTag.getIMain().setPadding(5, "px"));
-      _pnlConteudo.addCss(CssTag.getIMain().setBackgroundColor("white"));
-      _pnlConteudo.addCss(CssTag.getIMain().addCss("margin", "auto"));
     }
     catch (Exception ex) {
 
@@ -174,10 +172,10 @@ public class Mensagem extends ComponenteMain {
       _pnlTitulo = super.getPnlTitulo();
 
       _pnlTitulo.setStrConteudo(this.getStrTitulo());
+
       _pnlTitulo.addCss(CssTag.getIMain().setFontNegrito());
       _pnlTitulo.addCss(CssTag.getIMain().setMarginBottom(5));
       _pnlTitulo.addCss(CssTag.getIMain().setPaddingTop(5));
-      _pnlTitulo.addCss(CssTag.getIMain().setBorderTop(1, AppWeb.getI().getObjPaletaCor().getStrCorBorda()));
     }
     catch (Exception ex) {
 

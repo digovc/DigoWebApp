@@ -1,6 +1,8 @@
 ﻿// CONSTANTE
 
 var Mensagem_BOO_MENSAGEM_VISIVEL = false;
+var Mensagem_STR_MENSAGEM_ULTIMA = "";
+
 var Mensagem_ESTRUTURA_INFO_ALERTA = "";
 var Mensagem_ESTRUTURA_INFO_LOAD = "";
 var Mensagem_ESTRUTURA_INFO_NEGATIVA = "";
@@ -40,14 +42,12 @@ function Mensagem(strTitulo, strMsg, intTipo) {
   };
 
   this.setBooBloquearTela = function(booBloquearTela) {
-
     _booBloquearTela = booBloquearTela;
   };
 
   var _intTipo = Mensagem_TIPO_POSITIVA;
 
   this.getIntTipo = function() {
-
     return _intTipo;
   };
 
@@ -59,7 +59,6 @@ function Mensagem(strTitulo, strMsg, intTipo) {
     try {
 
       _intTipo = intTipo;
-
       _this.setBooBloquearTela(!_intTipo == 3);
 
     } catch (e) {
@@ -69,27 +68,61 @@ function Mensagem(strTitulo, strMsg, intTipo) {
     }
   };
 
+  var _srcIcon = null;
+
+  this.getSrcIcon = function() {
+
+    try {
+
+      if (_srcIcon != null) {
+
+        return _srcIcon;
+      }
+
+      switch (_this.getIntTipo()) {
+
+      case Mensagem_TIPO_LOAD:
+        _srcIcon = "res/media/gif/load.gif";
+        break;
+
+      case Mensagem_TIPO_NEGATIVA:
+        _srcIcon = "res/media/png/info_negativa.png";
+        break;
+
+      case Mensagem_TIPO_POSITIVA:
+        _srcIcon = "res/media/png/info_positiva.png";
+        break;
+
+      default:
+        _srcIcon = "res/media/png/info_alerta.png";
+        break;
+      }
+    } catch (e) {
+
+      new Erro("Erro inesperado.", e);
+    } finally {
+    }
+
+    return _srcIcon;
+  };
+
   var _strMsg = "";
 
   this.getStrMsg = function() {
-
     return _strMsg;
   };
 
   this.setStrMsg = function(strMsg) {
-
     _strMsg = strMsg;
   };
 
   var _strTitulo = "";
 
   this.getStrTitulo = function() {
-
     return _strTitulo;
   };
 
   this.setStrTitulo = function(strTitulo) {
-
     _strTitulo = strTitulo;
   };
 
@@ -183,6 +216,12 @@ function Mensagem(strTitulo, strMsg, intTipo) {
 
     try {
 
+      if (!appWeb.getBooEmFoco()) {
+
+        _this.mostrarNotificacao();
+        return false;
+      }
+
       if (Mensagem_BOO_MENSAGEM_VISIVEL) {
 
         window.setTimeout(function() {
@@ -205,19 +244,58 @@ function Mensagem(strTitulo, strMsg, intTipo) {
 
       window.setTimeout(function() {
 
-        $(document).find("#msg").fadeOut("slow");
+        _this.esconder();
 
-        window.setTimeout(function() {
-
-          $(document).find("#msg").remove();
-          Mensagem_BOO_MENSAGEM_VISIVEL = false;
-
-        }, 250);
       }, intTempo);
 
     } catch (e) {
 
       new Erro("Erro inesperado.", e);
+    }
+  };
+
+  this.mostrarNotificacao = function() {
+
+    var objNotificacaoOption;
+
+    try {
+
+      if (Mensagem_STR_MENSAGEM_ULTIMA == _this.getStrTitulo() + _this.getStrMsg()) {
+
+        return false;
+      }
+
+      objNotificacaoOption = {
+
+        body : _this.getStrMsg(),
+        icon : _this.getSrcIcon(),
+      }
+
+      if (!("Notification" in window)) {
+
+        return false;
+
+      } else if (Notification.permission === "granted") {
+
+        new Notification(_this.getStrTitulo(), objNotificacaoOption);
+
+      } else if (Notification.permission !== 'denied') {
+
+        Notification.requestPermission(function(permission) {
+
+          if (permission === "granted") {
+
+            new Notification(_this.getStrTitulo(), objNotificacaoOption);
+          }
+        });
+      }
+
+      Mensagem_STR_MENSAGEM_ULTIMA = _this.getStrTitulo() + _this.getStrMsg();
+
+    } catch (e) {
+
+      new Erro("Erro inesperado.", e);
+    } finally {
     }
   };
 
