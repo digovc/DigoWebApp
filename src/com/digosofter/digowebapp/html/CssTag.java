@@ -79,8 +79,11 @@ public class CssTag extends Tag {
 
       _iMain = new CssTag();
 
+      _iMain.addCssPuro("::-webkit-scrollbar-corner{background-color:rgb(239,239,239)}");
+      _iMain.addCssPuro("::-webkit-scrollbar-thumb{background-color:rgb(215, 215, 215);border:1px solid rgb(195,195,195)}");
+      _iMain.addCssPuro("::-webkit-scrollbar-track{background-color:rgb(239,239,239)}");
+      _iMain.addCssPuro("::-webkit-scrollbar{height:12px;width:12px}");
       _iMain.addCssPuro("a{color:#428bca;text-decoration:none}");
-      _iMain.addCssPuro("::-webkit-scrollbar {height:12px;width:12px}::-webkit-scrollbar-track{background-color:rgb(239, 239, 239)}::-webkit-scrollbar-thumb{background-color:rgb(215, 215, 215);border: 1px solid darkgrey}");
     }
     catch (Exception ex) {
 

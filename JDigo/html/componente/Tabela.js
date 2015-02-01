@@ -116,11 +116,11 @@ function Tabela(strId, strPagClick) {
 
       if (!Utils.getBooStrVazia(_this.getStrPagClick())) {
 
-        _this.getJq().find("tr").click(_this.evtLinhaClick);
+        _this.getJq().find("tbody tr").click(_this.evtLinhaClick);
       }
 
-      _this.getJq().find("tr").mouseenter(_this.evtLinhaMouseEnter);
-      _this.getJq().find("tr").mouseleave(_this.evtLinhaMouseLeave);
+      _this.getJq().find("tbody tr").mouseenter(_this.evtLinhaMouseEnter);
+      _this.getJq().find("tbody tr").mouseleave(_this.evtLinhaMouseLeave);
 
     } catch (e) {
 
