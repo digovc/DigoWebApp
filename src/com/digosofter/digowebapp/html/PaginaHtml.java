@@ -514,14 +514,6 @@ public class PaginaHtml extends Objeto {
       }
 
       _tagBody = new Tag("body");
-
-      _tagBody.addCss(CssTag.getIMain().addCss("scrollbar-face-color", "#000000"));
-      _tagBody.addCss(CssTag.getIMain().addCss("scrollbar-shadow-color", "#2D2C4D"));
-      _tagBody.addCss(CssTag.getIMain().addCss("scrollbar-highlight-color", "#7D7E94"));
-      _tagBody.addCss(CssTag.getIMain().addCss("scrollbar-3dlight-color", "#7D7E94"));
-      _tagBody.addCss(CssTag.getIMain().addCss("scrollbar-darkshadow-color", "#2D2C4D"));
-      _tagBody.addCss(CssTag.getIMain().addCss("scrollbar-track-color", "#7D7E94"));
-      _tagBody.addCss(CssTag.getIMain().addCss("scrollbar-arrow-color", "#C1C1D1"));
     }
     catch (Exception ex) {
 
