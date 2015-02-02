@@ -98,17 +98,16 @@ public abstract class AppWeb extends App {
 
   public boolean getBooUsuarioExiste(String strSessaoId) {
 
-    boolean booResultado = false;
-
     try {
 
-      for (Usuario usuario : this.getLstObjUsuarioSessao()) {
+      for (Usuario objUsuario : this.getLstObjUsuarioSessao()) {
 
-        if (usuario.getStrSessaoId().equals(strSessaoId)) {
+        if (!objUsuario.getStrSessaoId().equals(strSessaoId)) {
 
-          booResultado = true;
-          break;
+          continue;
         }
+
+        return true;
       }
     }
     catch (Exception ex) {
@@ -118,7 +117,7 @@ public abstract class AppWeb extends App {
     finally {
     }
 
-    return booResultado;
+    return false;
   }
 
   public String getDirLocal() {
@@ -254,11 +253,12 @@ public abstract class AppWeb extends App {
 
       for (PaletaCor objPaletaCor : this.getLstObjPaletaCor()) {
 
-        if (objPaletaCor.getBooSelecionado()) {
+        if (!objPaletaCor.getBooSelecionado()) {
 
-          _objPaletaCor = objPaletaCor;
-          return _objPaletaCor;
+          continue;
         }
+
+        _objPaletaCor = objPaletaCor;
       }
 
       if (_objPaletaCor == null) {
@@ -301,13 +301,19 @@ public abstract class AppWeb extends App {
 
     try {
 
+      if (_objUsuarioAtual != null && _objUsuarioAtual.getStrSessaoId() == this.getObjHttpSession().getId()) {
+
+        return _objUsuarioAtual;
+      }
+
       for (Usuario objUsuario : this.getLstObjUsuarioSessao()) {
 
-        if (objUsuario.getStrSessaoId() == this.getObjHttpSession().getId()) {
+        if (objUsuario.getStrSessaoId() != this.getObjHttpSession().getId()) {
 
-          _objUsuarioAtual = objUsuario;
-          break;
+          continue;
         }
+
+        return _objUsuarioAtual = objUsuario;
       }
     }
     catch (Exception ex) {
@@ -322,17 +328,16 @@ public abstract class AppWeb extends App {
 
   public Usuario getObjUsuarioPorSessaoId(String strSessaoId) {
 
-    Usuario objUsuarioResultado = null;
-
     try {
 
       for (Usuario objUsuario : this.getLstObjUsuarioSessao()) {
 
-        if (objUsuario.getStrSessaoId().equals(strSessaoId)) {
+        if (!objUsuario.getStrSessaoId().equals(strSessaoId)) {
 
-          objUsuarioResultado = objUsuario;
-          break;
+          continue;
         }
+
+        return objUsuario;
       }
     }
     catch (Exception ex) {
@@ -342,7 +347,7 @@ public abstract class AppWeb extends App {
     finally {
     }
 
-    return objUsuarioResultado;
+    return null;
   }
 
   public String getStrPagSolicitada() {

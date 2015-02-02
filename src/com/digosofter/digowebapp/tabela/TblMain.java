@@ -23,7 +23,7 @@ public abstract class TblMain extends DbTabelaWeb {
 
     try {
 
-      this.inicializarViews(this.getLstObjDbView());
+      this.inicializarViews(this.getLstViw());
     }
     catch (Exception ex) {
 

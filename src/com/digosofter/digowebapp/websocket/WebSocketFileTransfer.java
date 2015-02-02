@@ -51,14 +51,16 @@ public class WebSocketFileTransfer extends WebSocketMain {
 
       for (ObjWsFileTransfer wft : this.getLstObjWsFileTransfer()) {
 
-        if (wft.getObjSession() == objSession) {
+        if (wft.getObjSession() != objSession) {
 
-          wftResultado = wft;
-          return wftResultado;
+          continue;
         }
+
+        return wft;
       }
 
       wftResultado = new ObjWsFileTransfer(objSession);
+
       this.getLstObjWsFileTransfer().add(wftResultado);
     }
     catch (Exception ex) {

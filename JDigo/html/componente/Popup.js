@@ -105,6 +105,7 @@ function Popup(strId) {
 
     var arrTag;
     var ppiAcao;
+    var tag;
 
     try {
 
@@ -113,28 +114,33 @@ function Popup(strId) {
       arrTag = _this.getJq().find("[id*=ppiAcao]");
 
       for (var i = 0; i < arrTag.length; i++) {
-        var tag = arrTag[i];
+
+        tag = arrTag[i];
 
         ppiAcao = new PopupItem(tag.id, _this);
+
         _this.getArrPpiAcao().push(ppiAcao);
       }
 
     } catch (e) {
+
       new Erro("Erro inesperado.", e);
     }
   };
 
   this.setEventosItens = function() {
 
+    var ppiAcao;
+
     try {
 
       for (var i = 0; i < _this.getArrPpiAcao().length; i++) {
-        var ppiAcao = _this.getArrPpiAcao()[i];
 
+        ppiAcao = _this.getArrPpiAcao()[i];
         ppiAcao.setEventos();
       }
-
     } catch (e) {
+
       new Erro("Erro inesperado.", e);
     }
   };

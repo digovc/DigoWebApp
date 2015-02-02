@@ -17,7 +17,7 @@ import com.digosofter.digowebapp.html.componente.FormularioTbl;
 public abstract class DbTabelaWeb extends DbTabela {
 
   private FormularioTbl _frmTbl;
-  private List<DbView> _lstObjDbView;
+  private List<DbView> _lstViw;
   private ConsultaTbl _objConsultaTbl;
 
   public DbTabelaWeb(String strNome) {
@@ -240,16 +240,16 @@ public abstract class DbTabelaWeb extends DbTabela {
     return lstIntResultado;
   }
 
-  public List<DbView> getLstObjDbView() {
+  public List<DbView> getLstViw() {
 
     try {
 
-      if (_lstObjDbView != null) {
+      if (_lstViw != null) {
 
-        return _lstObjDbView;
+        return _lstViw;
       }
 
-      _lstObjDbView = new ArrayList<DbView>();
+      _lstViw = new ArrayList<DbView>();
     }
     catch (Exception ex) {
 
@@ -258,7 +258,7 @@ public abstract class DbTabelaWeb extends DbTabela {
     finally {
     }
 
-    return _lstObjDbView;
+    return _lstViw;
   }
 
   /**

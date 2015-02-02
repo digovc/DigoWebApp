@@ -138,6 +138,7 @@ function _Utils() {
       Utils.mostrarMensagemInformacao(strMensagemFormatada)
 
     } catch (e) {
+
       new Erro("Erro inesperado.", e);
     }
   }

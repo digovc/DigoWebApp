@@ -9,17 +9,16 @@ public class Usuario extends Objeto {
 
   public static Usuario getObjUsuarioPelaSessionId(String strSessionId) {
 
-    Usuario objUsuarioResultado = null;
-
     try {
 
       for (Usuario objUsuario : AppWeb.getI().getLstObjUsuarioSessao()) {
 
-        if (objUsuario.getStrSessaoId().equals(strSessionId)) {
+        if (!objUsuario.getStrSessaoId().equals(strSessionId)) {
 
-          objUsuarioResultado = objUsuario;
-          break;
+          continue;
         }
+
+        return objUsuario;
       }
     }
     catch (Exception ex) {
@@ -29,7 +28,7 @@ public class Usuario extends Objeto {
     finally {
     }
 
-    return objUsuarioResultado;
+    return null;
   }
 
   private boolean _booLogado;
