@@ -17,9 +17,9 @@ import com.digosofter.digowebapp.html.Tag;
 
 public class Tabela extends ComponenteMain {
 
-  private String _strPagClick;
   private boolean _booPesquisa = true;
   private Painel _pnlPesquisa;
+  private String _strPagClick;
   private Tag _tagTable;
   private Tag _tagTbody;
   private Tag _tagThead;
@@ -89,11 +89,6 @@ public class Tabela extends ComponenteMain {
     }
   }
 
-  private String getStrPagClick() {
-
-    return _strPagClick;
-  }
-
   private boolean getBooPesquisa() {
 
     return _booPesquisa;
@@ -121,6 +116,11 @@ public class Tabela extends ComponenteMain {
     }
 
     return _pnlPesquisa;
+  }
+
+  private String getStrPagClick() {
+
+    return _strPagClick;
   }
 
   private Tag getTagTable() {
@@ -394,14 +394,14 @@ public class Tabela extends ComponenteMain {
     }
   }
 
-  public void setStrPagClick(String strPagClick) {
-
-    _strPagClick = strPagClick;
-  }
-
   public void setBooPesquisa(boolean booPesquisa) {
 
     _booPesquisa = booPesquisa;
+  }
+
+  public void setStrPagClick(String strPagClick) {
+
+    _strPagClick = strPagClick;
   }
 
   private void setTbl(DbTabelaWeb tbl) {

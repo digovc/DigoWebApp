@@ -289,6 +289,31 @@ public class CssTag extends Tag {
     return strResultado;
   }
 
+  public String setBackgroundGradiente(String hexColor1, String hexColor2) {
+
+    String strResultado = Utils.STR_VAZIA;
+    String css;
+
+    try {
+
+      css = "linear-gradient(to bottom,_cor_2,_cor_1)";
+
+      css = css.replace("_cor_1", hexColor1);
+      css = css.replace("_cor_2", hexColor2);
+
+      strResultado = this.addCss("background", css);
+
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+    }
+    finally {
+    }
+
+    return strResultado;
+  }
+
   public String setBackgroundImage(String strSrcImagem) {
 
     String strResultado = Utils.STR_VAZIA;

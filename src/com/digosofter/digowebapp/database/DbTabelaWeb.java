@@ -240,27 +240,6 @@ public abstract class DbTabelaWeb extends DbTabela {
     return lstIntResultado;
   }
 
-  public List<DbView> getLstViw() {
-
-    try {
-
-      if (_lstViw != null) {
-
-        return _lstViw;
-      }
-
-      _lstViw = new ArrayList<DbView>();
-    }
-    catch (Exception ex) {
-
-      new Erro("Erro inesperado.\n", ex);
-    }
-    finally {
-    }
-
-    return _lstViw;
-  }
-
   /**
    * Retorna um "List<String>" com os nomes das colunas.
    *
@@ -417,6 +396,27 @@ public abstract class DbTabelaWeb extends DbTabela {
     }
 
     return lstStrResultado;
+  }
+
+  public List<DbView> getLstViw() {
+
+    try {
+
+      if (_lstViw != null) {
+
+        return _lstViw;
+      }
+
+      _lstViw = new ArrayList<DbView>();
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+    }
+    finally {
+    }
+
+    return _lstViw;
   }
 
   private ConsultaTbl getObjConsultaTbl() {
