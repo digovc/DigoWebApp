@@ -180,7 +180,7 @@ public class PaginaHtml extends Objeto {
 
     try {
 
-      objUsuario = AppWeb.getI().getObjUsuarioAtual();
+      objUsuario = AppWeb.getI().getUsrAtual();
 
       strJs = "";
 

@@ -50,7 +50,7 @@ public abstract class AppWeb extends App {
   private PaletaCor _objPaletaCor;
   private PrintWriter _objPrintWriter;
   private ServletContext _objServletContext;
-  private Usuario _objUsuarioAtual;
+  private Usuario _usrAtual;
   private String _strPagSolicitada;
 
   protected AppWeb(String strAppNome) {
@@ -100,7 +100,7 @@ public abstract class AppWeb extends App {
 
     try {
 
-      for (Usuario objUsuario : this.getLstObjUsuarioSessao()) {
+      for (Usuario objUsuario : this.getLstUsrSessao()) {
 
         if (!objUsuario.getStrSessaoId().equals(strSessaoId)) {
 
@@ -206,7 +206,7 @@ public abstract class AppWeb extends App {
     return _lstObjPaletaCor;
   }
 
-  public List<Usuario> getLstObjUsuarioSessao() {
+  public List<Usuario> getLstUsrSessao() {
 
     try {
 
@@ -297,23 +297,23 @@ public abstract class AppWeb extends App {
     return _objServletContext;
   }
 
-  public Usuario getObjUsuarioAtual() {
+  public Usuario getUsrAtual() {
 
     try {
 
-      if (_objUsuarioAtual != null && _objUsuarioAtual.getStrSessaoId() == this.getObjHttpSession().getId()) {
+      if (_usrAtual != null && _usrAtual.getStrSessaoId() == this.getObjHttpSession().getId()) {
 
-        return _objUsuarioAtual;
+        return _usrAtual;
       }
 
-      for (Usuario objUsuario : this.getLstObjUsuarioSessao()) {
+      for (Usuario usr : this.getLstUsrSessao()) {
 
-        if (objUsuario.getStrSessaoId() != this.getObjHttpSession().getId()) {
+        if (usr.getStrSessaoId() != this.getObjHttpSession().getId()) {
 
           continue;
         }
 
-        return _objUsuarioAtual = objUsuario;
+        return _usrAtual = usr;
       }
     }
     catch (Exception ex) {
@@ -323,14 +323,14 @@ public abstract class AppWeb extends App {
     finally {
     }
 
-    return _objUsuarioAtual;
+    return _usrAtual;
   }
 
   public Usuario getObjUsuarioPorSessaoId(String strSessaoId) {
 
     try {
 
-      for (Usuario objUsuario : this.getLstObjUsuarioSessao()) {
+      for (Usuario objUsuario : this.getLstUsrSessao()) {
 
         if (!objUsuario.getStrSessaoId().equals(strSessaoId)) {
 

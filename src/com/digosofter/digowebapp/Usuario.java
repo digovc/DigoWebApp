@@ -7,11 +7,11 @@ import com.digosofter.digojava.erro.Erro;
 
 public class Usuario extends Objeto {
 
-  public static Usuario getObjUsuarioPelaSessionId(String strSessionId) {
+  public static Usuario getUsrPorSessionId(String strSessionId) {
 
     try {
 
-      for (Usuario objUsuario : AppWeb.getI().getLstObjUsuarioSessao()) {
+      for (Usuario objUsuario : AppWeb.getI().getLstUsrSessao()) {
 
         if (!objUsuario.getStrSessaoId().equals(strSessionId)) {
 
@@ -32,17 +32,16 @@ public class Usuario extends Objeto {
   }
 
   private boolean _booLogado;
-
   private int _intUsuarioId;
-
   private HashMap<String, String> _lstKeyValue;
+  private String _srcPerfil;
   private String _strSessaoId;
 
   public Usuario() {
 
     try {
 
-      AppWeb.getI().getLstObjUsuarioSessao().add(this);
+      AppWeb.getI().getLstUsrSessao().add(this);
     }
     catch (Exception ex) {
 
@@ -82,6 +81,11 @@ public class Usuario extends Objeto {
     return _lstKeyValue;
   }
 
+  public String getSrcPerfil() {
+
+    return _srcPerfil;
+  }
+
   public String getStrSessaoId() {
 
     return _strSessaoId;
@@ -95,6 +99,11 @@ public class Usuario extends Objeto {
   public void setIntUsuarioId(int intUsuarioId) {
 
     _intUsuarioId = intUsuarioId;
+  }
+
+  public void setSrcPerfil(String srcPerfil) {
+
+    _srcPerfil = srcPerfil;
   }
 
   public void setStrSessaoId(String strSessaoId) {
