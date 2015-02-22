@@ -17,7 +17,7 @@ public abstract class TblMain extends DbTabelaWeb {
   private DbColunaWeb _clnIntUsuarioAlteracaoId;
   private DbColunaWeb _clnIntUsuarioCadastroId;
 
-  public TblMain(String strNome) {
+  protected TblMain(String strNome) {
 
     super(strNome);
 

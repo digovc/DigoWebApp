@@ -20,7 +20,7 @@ public abstract class DbTabelaWeb extends DbTabela {
   private List<DbView> _lstViw;
   private ConsultaTbl _objConsultaTbl;
 
-  public DbTabelaWeb(String strNome) {
+  protected DbTabelaWeb(String strNome) {
 
     super(strNome);
   }
