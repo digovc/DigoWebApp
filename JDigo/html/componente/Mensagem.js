@@ -141,7 +141,7 @@ function Mensagem(strTitulo, strMsg, intTipo) {
         $(document).find("#msg").remove();
         Mensagem_BOO_MENSAGEM_VISIVEL = false;
 
-      }, 250);
+      }, 400);
 
     } catch (e) {
       new Erro("Erro inesperado.", e);

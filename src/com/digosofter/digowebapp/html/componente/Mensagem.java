@@ -93,9 +93,13 @@ public class Mensagem extends ComponenteMain {
 
       _imgIcon.setSrc(this.definirSrc());
 
-      _imgIcon.addCss(CssTag.getIMain().setBorderRight(1, "rgb(115, 115, 115)"));
+      _imgIcon.addCss(CssTag.getIMain().setBorder(1, "solid", "gray"));
+      _imgIcon.addCss(CssTag.getIMain().setBorderRadius(30, 30, 30, 30));
+      _imgIcon.addCss(CssTag.getIMain().setBoxShadow(0, 0, 3, 0, "gray"));
       _imgIcon.addCss(CssTag.getIMain().setFloat("left"));
       _imgIcon.addCss(CssTag.getIMain().setHeight(50, "px"));
+      _imgIcon.addCss(CssTag.getIMain().setMargin(5, "px"));
+      _imgIcon.addCss(CssTag.getIMain().setPadding(5, "px"));
       _imgIcon.addCss(CssTag.getIMain().setWidth(50, "px"));
     }
     catch (Exception ex) {
