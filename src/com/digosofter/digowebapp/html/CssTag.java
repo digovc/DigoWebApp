@@ -296,7 +296,7 @@ public class CssTag extends Tag {
 
     try {
 
-      css = "linear-gradient(to bottom,_cor_2,_cor_1)";
+      css = "linear-gradient(to bottom,_cor_1,_cor_2)";
 
       css = css.replace("_cor_1", hexColor1);
       css = css.replace("_cor_2", hexColor2);
