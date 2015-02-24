@@ -396,7 +396,7 @@ public class PaginaHtml extends Objeto {
 
   private List<JavaScriptTag> getLstTagJsOrdenado() {
 
-    boolean booJsAdicionado;
+    boolean booAdicionado;
 
     try {
 
@@ -409,29 +409,38 @@ public class PaginaHtml extends Objeto {
 
       for (JavaScriptTag tagJs : this.getLstTagJs()) {
 
-        booJsAdicionado = false;
+        booAdicionado = false;
 
         for (JavaScriptTag tagJsAdicionada : _lstTagJsOrdenado) {
 
-          if (tagJsAdicionada.getSrc() == tagJs.getSrc()) {
+          if (tagJs == null || Utils.getBooStrVazia(tagJs.getSrc())) {
 
-            booJsAdicionado = true;
+            _lstTagJsOrdenado.add(tagJs);
+            booAdicionado = true;
+            break;
+          }
+
+          if (tagJs.getSrc().equals(tagJsAdicionada.getSrc())) {
+
+            booAdicionado = true;
             break;
           }
         }
 
-        if (!booJsAdicionado) {
+        if (booAdicionado) {
 
-          _lstTagJsOrdenado.add(tagJs);
+          continue;
         }
+
+        _lstTagJsOrdenado.add(tagJs);
       }
 
       Collections.sort(_lstTagJsOrdenado, new Comparator<JavaScriptTag>() {
 
         @Override
-        public int compare(final JavaScriptTag objJsTag1, final JavaScriptTag objJsTag2) {
+        public int compare(final JavaScriptTag tagJs1, final JavaScriptTag tagJs2) {
 
-          return objJsTag1.getIntPrioridade() < objJsTag2.getIntPrioridade() ? -1 : objJsTag1.getIntPrioridade() > objJsTag2.getIntPrioridade() ? +1 : 0;
+          return tagJs1.getIntPrioridade() < tagJs2.getIntPrioridade() ? -1 : tagJs1.getIntPrioridade() > tagJs2.getIntPrioridade() ? +1 : 0;
         }
       });
     }
