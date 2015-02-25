@@ -664,10 +664,7 @@ public class PaginaHtml extends Objeto {
       _tagMeta = new Tag("meta");
 
       _tagMeta.getLstAtr().add(new Atributo("http-equiv", "Content-Type"));
-      _tagMeta.getLstAtr().add(new Atributo("content"));
-      _tagMeta.getLstAtr().get(1).setStrDelimitador(";");
-      _tagMeta.getLstAtr().get(1).getLstStrValor().add("text/html");
-      _tagMeta.getLstAtr().get(1).getLstStrValor().add(" charset=ISO-8859-1");
+      _tagMeta.getLstAtr().add(new Atributo("content", this.getStrDescricao()));
     }
     catch (Exception ex) {
 
@@ -710,9 +707,9 @@ public class PaginaHtml extends Objeto {
       this.montarLayoutTitulo();
 
       this.getTagHead().setTagPai(this.getTagHtml());
+      this.getTagTitle().setTagPai(this.getTagHead());
       this.getTagMeta().setTagPai(this.getTagHead());
       this.getTagIcon().setTagPai(this.getTagHead());
-      this.getTagTitle().setTagPai(this.getTagHead());
       this.getCssMain().setTagPai(this.getTagHead());
       this.getCssImp().setTagPai(this.getTagHead());
     }
