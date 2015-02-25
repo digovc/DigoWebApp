@@ -725,10 +725,12 @@ public class PaginaHtml extends Objeto {
 
     try {
 
-      if (Utils.getBooStrVazia(this.getStrTitulo())) {
+      if (!Utils.getBooStrVazia(this.getStrTitulo())) {
 
-        this.setStrTitulo("Página sem título");
+        return;
       }
+
+      this.setStrTitulo("Página sem título");
     }
     catch (Exception ex) {
 
@@ -791,8 +793,10 @@ public class PaginaHtml extends Objeto {
 
     try {
 
-      _strTitulo = strTitulo;
-      _strTitulo += " - " + AppWeb.getI().getStrNome();
+      _strTitulo = "_titulo - _app_nome";
+
+      _strTitulo = _strTitulo.replace("_titulo", strTitulo);
+      _strTitulo = _strTitulo.replace("_app_nome", AppWeb.getI().getStrNome());
 
       this.getTagTitle().setStrConteudo(_strTitulo);
     }
