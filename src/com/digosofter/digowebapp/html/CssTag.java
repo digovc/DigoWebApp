@@ -1019,6 +1019,30 @@ public class CssTag extends Tag {
     return strResultado;
   }
 
+  public String setMinWidth(double dblMinWidth) {
+
+    String strResultado = Utils.STR_VAZIA;
+    StringBuilder stb;
+
+    try {
+
+      stb = new StringBuilder();
+
+      stb.append(dblMinWidth);
+      stb.append("px");
+
+      strResultado = this.addCss("min-width", stb.toString());
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+    }
+    finally {
+    }
+
+    return strResultado;
+  }
+
   public String setOpacity(double dblOpacity) {
 
     String strResultado = Utils.STR_VAZIA;
