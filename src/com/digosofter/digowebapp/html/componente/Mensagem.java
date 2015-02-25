@@ -2,7 +2,6 @@ package com.digosofter.digowebapp.html.componente;
 
 import com.digosofter.digojava.Utils;
 import com.digosofter.digojava.erro.Erro;
-import com.digosofter.digowebapp.AppWeb;
 import com.digosofter.digowebapp.html.CssTag;
 import com.digosofter.digowebapp.html.Imagem;
 import com.digosofter.digowebapp.html.Painel;
