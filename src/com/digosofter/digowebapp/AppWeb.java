@@ -32,6 +32,7 @@ public abstract class AppWeb extends App {
   public static final String JS_POPUP = "res/js/lib/JDigo/html/componente/Popup.js";
   public static final String JS_POPUP_ITEM = "res/js/lib/JDigo/html/componente/item/PopupItem.js";
   public static final String JS_QUICKSEARCH = "res/js/lib/JDigo/lib/jquery.quicksearch.min.js";
+  public static final String JS_RELATORIO_MAIN = "res/js/lib/JDigo/html/relatorio/RelatorioMain.js";
   public static final String JS_TABELA = "res/js/lib/JDigo/html/componente/Tabela.js";
   public static final String JS_TABLESORTER = "res/js/lib/JDigo/lib/jquery.tablesorter.min.js";
   public static final String JS_TAG = "res/js/lib/JDigo/html/Tag.js";
@@ -50,8 +51,8 @@ public abstract class AppWeb extends App {
   private PaletaCor _objPaletaCor;
   private PrintWriter _objPrintWriter;
   private ServletContext _objServletContext;
-  private Usuario _usrAtual;
   private String _strPagSolicitada;
+  private Usuario _usrAtual;
 
   protected AppWeb(String strAppNome) {
 
@@ -297,35 +298,6 @@ public abstract class AppWeb extends App {
     return _objServletContext;
   }
 
-  public Usuario getUsrAtual() {
-
-    try {
-
-      if (_usrAtual != null && _usrAtual.getStrSessaoId() == this.getObjHttpSession().getId()) {
-
-        return _usrAtual;
-      }
-
-      for (Usuario usr : this.getLstUsrSessao()) {
-
-        if (usr.getStrSessaoId() != this.getObjHttpSession().getId()) {
-
-          continue;
-        }
-
-        return _usrAtual = usr;
-      }
-    }
-    catch (Exception ex) {
-
-      new Erro("Erro inesperado.\n", ex);
-    }
-    finally {
-    }
-
-    return _usrAtual;
-  }
-
   public Usuario getObjUsuarioPorSessaoId(String strSessaoId) {
 
     try {
@@ -375,6 +347,35 @@ public abstract class AppWeb extends App {
     }
 
     return strResultado;
+  }
+
+  public Usuario getUsrAtual() {
+
+    try {
+
+      if (_usrAtual != null && _usrAtual.getStrSessaoId() == this.getObjHttpSession().getId()) {
+
+        return _usrAtual;
+      }
+
+      for (Usuario usr : this.getLstUsrSessao()) {
+
+        if (usr.getStrSessaoId() != this.getObjHttpSession().getId()) {
+
+          continue;
+        }
+
+        return _usrAtual = usr;
+      }
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+    }
+    finally {
+    }
+
+    return _usrAtual;
   }
 
   public void reencaminhar(String strUrl) {

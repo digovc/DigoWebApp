@@ -115,7 +115,7 @@ public class LabelCampo extends ItemMain {
       this.addCss(tagCss.setFloat("left"));
       this.addCss(tagCss.setMarginBottom(10));
       this.addCss(tagCss.setMarginRight(10));
-      this.addCss(tagCss.setMinWidth(195));
+      this.addCss(tagCss.setMinWidth(150));
     }
     catch (Exception ex) {
 

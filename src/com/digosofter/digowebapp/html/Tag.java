@@ -34,6 +34,13 @@ public class Tag extends Objeto {
 
       this.setStrTagNome(strTagName);
       this.setStrConteudo(Utils.STR_VAZIA);
+
+      if (this instanceof CssTag) {
+
+        return;
+      }
+
+      this.setCss(CssTag.getIMain());
     }
     catch (Exception ex) {
 
@@ -483,7 +490,6 @@ public class Tag extends Objeto {
       this.addCssArquivo(PaginaHtml.getI().getLstTagCss());
       this.addJsArquivo(PaginaHtml.getI().getLstTagJs());
       this.addJsCodigo(PaginaHtml.getI().getTagJsMain());
-      this.setCss(CssTag.getIMain());
     }
     catch (Exception ex) {
 
