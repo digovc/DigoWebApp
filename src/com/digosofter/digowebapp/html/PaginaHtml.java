@@ -265,7 +265,7 @@ public class PaginaHtml extends Objeto {
     return _booPagSimples;
   }
 
-  private CssTag getCssImp() {
+  protected CssTag getCssImp() {
 
     try {
 
@@ -277,6 +277,7 @@ public class PaginaHtml extends Objeto {
       _cssImp = new CssTag();
 
       _cssImp.setStrId("cssImp");
+      _cssImp.addAtr("media", "print");
     }
     catch (Exception ex) {
 
@@ -288,7 +289,7 @@ public class PaginaHtml extends Objeto {
     return _cssImp;
   }
 
-  public CssTag getCssMain() {
+  protected CssTag getCssMain() {
 
     try {
 
