@@ -143,19 +143,19 @@ public class ConsultaTbl extends ComponenteMain {
    */
   private void montarLayoutLista() {
 
-    ResultSet objResultSet;
+    ResultSet rst;
 
     try {
 
-      objResultSet = this.getTbl().getRstConsulta();
+      rst = this.getTbl().getRstConsulta();
 
-      if (objResultSet != null && objResultSet.first()) {
+      if (rst != null && rst.first()) {
 
         do {
 
-          this.montarLayoutLinha(objResultSet);
+          this.montarLayoutLinha(rst);
         }
-        while (objResultSet.next());
+        while (rst.next());
       }
     }
     catch (Exception ex) {
