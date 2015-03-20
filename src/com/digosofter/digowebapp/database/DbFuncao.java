@@ -72,7 +72,7 @@ public abstract class DbFuncao extends DbTabelaWeb {
 
     try {
 
-      strResultado = "_fnc_nome (_params)";
+      strResultado = "_fnc_nome(_params)";
 
       strResultado = strResultado.replace("_fnc_nome", super.getStrNomeSimplificado());
       strResultado = strResultado.replace("_params", this.getStrParamInFormatado());
