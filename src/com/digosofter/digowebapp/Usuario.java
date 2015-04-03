@@ -3,6 +3,7 @@ package com.digosofter.digowebapp;
 import java.util.HashMap;
 
 import com.digosofter.digojava.Objeto;
+import com.digosofter.digojava.Utils;
 import com.digosofter.digojava.erro.Erro;
 
 public class Usuario extends Objeto {
@@ -35,6 +36,7 @@ public class Usuario extends Objeto {
   private int _intUsuarioId;
   private HashMap<String, String> _lstKeyValue;
   private String _srcPerfil;
+  private String _strPrimeiroNome;
   private String _strSessaoId;
 
   public Usuario() {
@@ -84,6 +86,32 @@ public class Usuario extends Objeto {
   public String getSrcPerfil() {
 
     return _srcPerfil;
+  }
+
+  public String getStrPrimeiroNome() {
+
+    try {
+
+      if (!Utils.getBooStrVazia(_strPrimeiroNome)) {
+
+        return _strPrimeiroNome;
+      }
+
+      if (Utils.getBooStrVazia(this.getStrNome())) {
+
+        return Utils.STR_VAZIA;
+      }
+
+      _strPrimeiroNome = this.getStrNome().split(" ")[0];
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+    }
+    finally {
+    }
+
+    return _strPrimeiroNome;
   }
 
   public String getStrSessaoId() {
