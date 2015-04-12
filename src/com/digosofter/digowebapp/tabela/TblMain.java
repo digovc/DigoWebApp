@@ -203,11 +203,11 @@ public abstract class TblMain extends DbTabelaWeb {
   }
 
   @Override
-  protected int inicializarColunas(int intOrdem) {
+  protected int inicializarColuna(int intOrdem) {
 
     try {
 
-      intOrdem = super.inicializarColunas(intOrdem);
+      intOrdem = super.inicializarColuna(intOrdem);
 
       this.getClnBooAtivo().setIntOrdem(++intOrdem);
       this.getClnDttAlteracao().setIntOrdem(++intOrdem);

@@ -577,9 +577,9 @@ public abstract class DbTabelaWeb extends DbTabela {
 
     try {
 
-      rstResultado = this.getRst(this.getLstClnConsulta(), this.getLstObjDbFiltroConsulta(), null);
+      rstResultado = this.getRst(this.getLstClnConsulta(), this.getLstFilConsulta(), null);
 
-      this.getLstObjDbFiltroConsulta().clear();
+      this.getLstFilCadastro().clear();
     }
     catch (Exception ex) {
 
