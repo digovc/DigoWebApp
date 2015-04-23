@@ -39,7 +39,7 @@ public class FormularioTbl extends ComponenteMain {
     try {
 
       this.setTbl(tbl);
-      this.setStrId("div_frm_" + this.getTbl().getStrNomeSimplificado());
+      this.setStrId("div_frm_" + this.getTbl().getStrNomeSql());
     }
     catch (Exception ex) {
 
@@ -75,7 +75,7 @@ public class FormularioTbl extends ComponenteMain {
 
     try {
 
-      _booSalvar = this.getTbl().getStrNomeSimplificado().equals(AppWeb.getI().getStrParam("save"));
+      _booSalvar = this.getTbl().getStrNomeSql().equals(AppWeb.getI().getStrParam("save"));
     }
     catch (Exception ex) {
 
@@ -155,7 +155,7 @@ public class FormularioTbl extends ComponenteMain {
 
       _frm = new Formulario(this.getStrAction(), Formulario.EnmMetodo.POST);
 
-      _frm.setStrId("frm_" + this.getTbl().getStrNomeSimplificado());
+      _frm.setStrId("frm_" + this.getTbl().getStrNomeSql());
 
       if (!this.getBooSubmit()) {
 
@@ -274,7 +274,7 @@ public class FormularioTbl extends ComponenteMain {
       _strAction = AppWeb.getI().getStrPagSolicitada();
 
       _strAction += "?save=";
-      _strAction += this.getTbl().getStrNomeSimplificado();
+      _strAction += this.getTbl().getStrNomeSql();
 
       if (this.getIntRegistroId() > 0) {
 

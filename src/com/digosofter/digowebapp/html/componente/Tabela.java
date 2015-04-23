@@ -218,7 +218,7 @@ public class Tabela extends ComponenteMain {
 
       _txtPesquisa = new Campo();
 
-      _txtPesquisa.setStrId("txtPesquisa_" + this.getTbl().getStrNomeSimplificado());
+      _txtPesquisa.setStrId("txtPesquisa_" + this.getTbl().getStrNomeSql());
       _txtPesquisa.setStrPlaceHolder("Pesquisa");
 
       _txtPesquisa.addCss(CssTag.getIMain().setWidth(30, "%"));
@@ -317,7 +317,7 @@ public class Tabela extends ComponenteMain {
 
     try {
 
-      strValor = rst.getString(cln.getStrNomeSimplificado());
+      strValor = rst.getString(cln.getStrNomeSql());
       strValorFormatado = cln.getStrValorFormatado(strValor);
 
       tagTd = new Tag("td");

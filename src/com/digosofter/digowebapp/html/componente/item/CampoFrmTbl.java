@@ -200,7 +200,7 @@ public class CampoFrmTbl extends LabelCampo {
 
       this.definirTipoCampo();
 
-      _tagCampo.setStrNome(this.getCln().getStrNomeSimplificado());
+      _tagCampo.setStrNome(this.getCln().getStrNomeSql());
 
       if (this.getCln().getIntTamanhoCampo() > 0) {
 

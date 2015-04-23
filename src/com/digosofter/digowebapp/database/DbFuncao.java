@@ -2,6 +2,7 @@ package com.digosofter.digowebapp.database;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import com.digosofter.digojava.Utils;
@@ -16,7 +17,32 @@ public abstract class DbFuncao extends DbTabelaWeb {
     super(strNome);
   }
 
-  public List<String> getLstStrParamIn() {
+  public void addParam(double dblParam) {
+
+    this.addParam(String.valueOf(dblParam));
+  }
+
+  public void addParam(GregorianCalendar dttParam) {
+
+    this.addParam(Utils.getStrDataFormatada(dttParam, Utils.EnmDataFormato.YYYY_MM_DD_HH_MM_SS));
+  }
+
+  public void addParam(int intParam) {
+
+    this.addParam(Double.valueOf(intParam));
+  }
+
+  public void addParam(String strParam) {
+
+    this.getLstStrParamIn().add(strParam);
+  }
+
+  public void addParamFk(int intParam) {
+
+    this.addParam(intParam > 0 ? String.valueOf(intParam) : null);
+  }
+
+  private List<String> getLstStrParamIn() {
 
     try {
 
@@ -51,7 +77,7 @@ public abstract class DbFuncao extends DbTabelaWeb {
     try {
 
       sql = "select * from _fnc_nome;";
-      sql = sql.replace("_fnc_nome", this.getStrNomeSimplificado());
+      sql = sql.replace("_fnc_nome", this.getStrNomeSql());
 
       rstResultado = ((DataBaseWeb) this.getObjDb()).execSqlGetRst(sql);
     }
@@ -66,7 +92,7 @@ public abstract class DbFuncao extends DbTabelaWeb {
   }
 
   @Override
-  public String getStrNomeSimplificado() {
+  public String getStrNomeSql() {
 
     String strResultado = Utils.STR_VAZIA;
 
@@ -74,8 +100,8 @@ public abstract class DbFuncao extends DbTabelaWeb {
 
       strResultado = "_fnc_nome(_params)";
 
-      strResultado = strResultado.replace("_fnc_nome", super.getStrNomeSimplificado());
-      strResultado = strResultado.replace("_params", this.getStrParamInFormatado());
+      strResultado = strResultado.replace("_fnc_nome", super.getStrNomeSql());
+      strResultado = strResultado.replace("_params", this.getStrParamFormatado());
     }
     catch (Exception ex) {
 
@@ -87,7 +113,7 @@ public abstract class DbFuncao extends DbTabelaWeb {
     return strResultado;
   }
 
-  private String getStrParamInFormatado() {
+  private String getStrParamFormatado() {
 
     String strEstrutura;
     String strResultado = Utils.STR_VAZIA;
@@ -121,5 +147,19 @@ public abstract class DbFuncao extends DbTabelaWeb {
     }
 
     return strResultado;
+  }
+
+  public void limparParametros() {
+
+    try {
+
+      this.getLstStrParamIn().clear();
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+    }
+    finally {
+    }
   }
 }
