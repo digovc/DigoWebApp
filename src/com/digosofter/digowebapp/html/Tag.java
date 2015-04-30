@@ -527,7 +527,7 @@ public class Tag extends Objeto {
         return;
       }
 
-      _strSrc += "?" + Utils.getStrSimplificada(AppWeb.getI().getStrVersao());
+      _strSrc += "?" + Utils.simplificar(AppWeb.getI().getStrVersao());
 
       this.getAtrSrc().setStrValor(_strSrc);
     }
@@ -584,7 +584,7 @@ public class Tag extends Objeto {
 
       _strNome = strNome;
 
-      this.addAtr("name", Utils.getStrSimplificada(_strNome));
+      this.addAtr("name", Utils.simplificar(_strNome));
     }
     catch (Exception ex) {
 

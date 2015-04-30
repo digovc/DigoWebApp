@@ -98,7 +98,17 @@ public abstract class DbFuncao extends DbTabelaWeb {
 
     try {
 
-      strResultado = "_fnc_nome(_params)";
+      if (this.getLstStrParamIn() == null) {
+
+        return super.getStrNomeSql();
+      }
+
+      if (this.getLstStrParamIn().isEmpty()) {
+
+        return super.getStrNomeSql();
+      }
+
+      strResultado = "_fnc_nome (_params)";
 
       strResultado = strResultado.replace("_fnc_nome", super.getStrNomeSql());
       strResultado = strResultado.replace("_params", this.getStrParamFormatado());
@@ -119,6 +129,16 @@ public abstract class DbFuncao extends DbTabelaWeb {
     String strResultado = Utils.STR_VAZIA;
 
     try {
+
+      if (this.getLstStrParamIn() == null) {
+
+        return Utils.STR_VAZIA;
+      }
+
+      if (this.getLstStrParamIn().isEmpty()) {
+
+        return Utils.STR_VAZIA;
+      }
 
       for (String strParamIn : this.getLstStrParamIn()) {
 
