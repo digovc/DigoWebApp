@@ -311,20 +311,16 @@ public class Tabela extends ComponenteMain {
 
   private void montarLayoutColuna(DbColuna cln, Tag tagTr, ResultSet rst) {
 
-    String strValor;
-    String strValorFormatado;
     Tag tagTd;
 
     try {
 
-      strValor = rst.getString(cln.getStrNomeSql());
-      strValorFormatado = cln.getStrValorFormatado(strValor);
+      cln.setStrValor(rst.getString(cln.getStrNomeSql()));
 
       tagTd = new Tag("td");
 
       tagTd.setTagPai(tagTr);
-      tagTd.setStrConteudo(strValorFormatado);
-
+      tagTd.setStrConteudo(cln.getStrValorExibicao());
       tagTd.addCss(((DbColunaWeb) cln).getStrCss());
       tagTd.addCss(CssTag.getIMain().addCss("text-overflow", "ellipsis"));
       tagTd.addCss(CssTag.getIMain().setOverflow("hidden"));
