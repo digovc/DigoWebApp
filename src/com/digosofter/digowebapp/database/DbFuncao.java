@@ -29,7 +29,7 @@ public abstract class DbFuncao extends DbTabelaWeb {
 
   public void addParam(int intParam) {
 
-    this.addParam(Double.valueOf(intParam));
+    this.addParam(String.valueOf(intParam));
   }
 
   public void addParam(String strParam) {
