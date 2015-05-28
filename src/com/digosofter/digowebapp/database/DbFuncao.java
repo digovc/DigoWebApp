@@ -71,7 +71,6 @@ public abstract class DbFuncao extends DbTabelaWeb {
   @Override
   public ResultSet getRstConsulta() {
 
-    ResultSet rstResultado = null;
     String sql;
 
     try {
@@ -79,7 +78,7 @@ public abstract class DbFuncao extends DbTabelaWeb {
       sql = "select * from _fnc_nome;";
       sql = sql.replace("_fnc_nome", this.getStrNomeSql());
 
-      rstResultado = ((DataBaseWeb) this.getObjDb()).execSqlGetRst(sql);
+      return ((DataBaseWeb) this.getObjDb()).execSqlGetRst(sql);
     }
     catch (Exception ex) {
 
@@ -88,7 +87,7 @@ public abstract class DbFuncao extends DbTabelaWeb {
     finally {
     }
 
-    return rstResultado;
+    return null;
   }
 
   @Override

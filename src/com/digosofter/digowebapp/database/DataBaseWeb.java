@@ -157,7 +157,7 @@ public abstract class DataBaseWeb extends DataBase {
   public List<String> execSqlGetLstStr(String sql) {
 
     ResultSet rst;
-    List<String> lstStrResultado = null;
+    List<String> lstStrResultado;
 
     try {
 
@@ -175,6 +175,10 @@ public abstract class DataBaseWeb extends DataBase {
         lstStrResultado.add(rst.getString(1));
       }
       while (rst.next());
+
+      rst.close();
+
+      return lstStrResultado;
     }
     catch (Exception ex) {
 
@@ -183,18 +187,18 @@ public abstract class DataBaseWeb extends DataBase {
     finally {
     }
 
-    return lstStrResultado;
+    return null;
   }
 
   public ResultSet execSqlGetRst(String sql) {
 
-    ResultSet rstResultado = null;
     Statement objStatement;
 
     try {
 
       objStatement = this.getObjConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-      rstResultado = objStatement.executeQuery(sql);
+
+      return objStatement.executeQuery(sql);
     }
     catch (Exception ex) {
 
@@ -203,7 +207,7 @@ public abstract class DataBaseWeb extends DataBase {
     finally {
     }
 
-    return rstResultado;
+    return null;
   }
 
   @Override
@@ -235,7 +239,6 @@ public abstract class DataBaseWeb extends DataBase {
 
   public ResultSet execView(String strViewNome) {
 
-    ResultSet objResultSetResultado = null;
     String sql;
 
     try {
@@ -246,10 +249,9 @@ public abstract class DataBaseWeb extends DataBase {
       }
 
       sql = "select * from _viw_name;";
-
       sql = sql.replace("_viw_name", strViewNome);
 
-      objResultSetResultado = this.execSqlGetRst(sql);
+      return this.execSqlGetRst(sql);
     }
     catch (Exception ex) {
 
@@ -258,7 +260,7 @@ public abstract class DataBaseWeb extends DataBase {
     finally {
     }
 
-    return objResultSetResultado;
+    return null;
   }
 
   private int getIntPort() {

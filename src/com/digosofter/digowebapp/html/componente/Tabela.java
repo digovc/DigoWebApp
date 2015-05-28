@@ -381,6 +381,8 @@ public class Tabela extends ComponenteMain {
         this.montarLayoutLinha(rst);
       }
       while (rst.next());
+
+      rst.close();
     }
     catch (Exception ex) {
 

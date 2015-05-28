@@ -1,6 +1,7 @@
 package com.digosofter.digowebapp.database;
 
 import java.sql.ResultSet;
+import java.util.Map.Entry;
 
 import com.digosofter.digojava.database.DbColuna;
 import com.digosofter.digojava.erro.Erro;
@@ -30,26 +31,29 @@ public class DbColunaWeb extends DbColuna {
 
         cmb.setBooOpcaoVazia(!this.getClnRef().getBooNotNull());
 
-        if (rst != null && rst.first()) {
-
-          do {
-
-            cmb.addNomeValor(rst.getString(1), rst.getString(2));
-          }
-          while (rst.next());
+        if (rst == null || !rst.first()) {
 
           return;
         }
+
+        do {
+
+          cmb.addOpcao(rst.getInt(1), rst.getString(2));
+        }
+        while (rst.next());
+
+        rst.close();
+        return;
       }
 
-      if (this.getLstStrOpcao().size() == 0) {
+      if (this.getMapOpcao().size() == 0) {
 
         return;
       }
 
-      for (int i = 0; i < this.getLstIntOpcaoValor().size(); i++) {
+      for (Entry<Integer, String> opc : this.getMapOpcao().entrySet()) {
 
-        cmb.addNomeValor(this.getLstIntOpcaoValor().get(i).toString(), this.getLstStrOpcao().get(i));
+        cmb.addOpcao(opc.getKey(), opc.getValue());
       }
     }
     catch (Exception ex) {

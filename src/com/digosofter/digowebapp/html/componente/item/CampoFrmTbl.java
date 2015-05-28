@@ -51,7 +51,7 @@ public class CampoFrmTbl extends LabelCampo {
     try {
 
       // ComboBox
-      if (this.getCln().getClnRef() != null || this.getCln().getLstStrOpcao().size() > 0) {
+      if ((this.getCln().getClnRef() != null) || (!this.getCln().getMapOpcao().isEmpty())) {
 
         this.definirTipoCampoComboBox();
         return;

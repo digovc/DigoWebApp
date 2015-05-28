@@ -103,7 +103,7 @@ public class ConsultaTbl extends ComponenteMain {
    * Monta o layout de uma linha baseado no registro posicionado no objeto
    * "objResultSet".
    */
-  private void montarLayoutLinha(ResultSet objResultSet) {
+  private void montarLayoutLinha(ResultSet rst) {
 
     // String strNome;
     // String strValor;
@@ -149,14 +149,18 @@ public class ConsultaTbl extends ComponenteMain {
 
       rst = this.getTbl().getRstConsulta();
 
-      if (rst != null && rst.first()) {
+      if (rst == null || !rst.first()) {
 
-        do {
-
-          this.montarLayoutLinha(rst);
-        }
-        while (rst.next());
+        return;
       }
+
+      do {
+
+        this.montarLayoutLinha(rst);
+      }
+      while (rst.next());
+
+      rst.close();
     }
     catch (Exception ex) {
 

@@ -1,7 +1,8 @@
 package com.digosofter.digowebapp.html;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map.Entry;
 
 import com.digosofter.digojava.Utils;
 import com.digosofter.digojava.erro.Erro;
@@ -10,8 +11,8 @@ import com.digosofter.digowebapp.AppWeb;
 public class ComboBox extends Campo {
 
   private boolean _booOpcaoVazia;
-  private List<String> _lstStrNome;
-  private List<String> _lstStrValor;
+
+  private HashMap<Integer, String> _mapOpcao;
 
   public ComboBox() {
 
@@ -46,14 +47,18 @@ public class ComboBox extends Campo {
   }
 
   /**
-   * Adiciona uma opção à lista do "comboBox".
+   * Adiciona uma opção à lista do "Combobox".
    */
-  public void addNomeValor(String strValor, String strNome) {
+  public void addOpcao(int intValor, String strNome) {
 
     try {
 
-      this.getLstStrValor().add(strValor);
-      this.getLstStrNome().add(strNome);
+      if (this.getMapOpcao().containsKey(intValor)) {
+
+        return;
+      }
+
+      this.getMapOpcao().put(intValor, strNome);
     }
     catch (Exception ex) {
 
@@ -68,16 +73,16 @@ public class ComboBox extends Campo {
     return _booOpcaoVazia;
   }
 
-  private List<String> getLstStrNome() {
+  protected HashMap<Integer, String> getMapOpcao() {
 
     try {
 
-      if (_lstStrNome != null) {
+      if (_mapOpcao != null) {
 
-        return _lstStrNome;
+        return _mapOpcao;
       }
 
-      _lstStrNome = new ArrayList<String>();
+      _mapOpcao = new HashMap<Integer, String>();
     }
     catch (Exception ex) {
 
@@ -86,19 +91,26 @@ public class ComboBox extends Campo {
     finally {
     }
 
-    return _lstStrNome;
+    return _mapOpcao;
   }
 
-  private List<String> getLstStrValor() {
+  private Tag getNewTagOption(int intValor, String strNome) {
+
+    Tag tagResultado;
 
     try {
 
-      if (_lstStrValor != null) {
+      tagResultado = new Tag("option");
 
-        return _lstStrValor;
+      if (this.getIntValor() == intValor) {
+
+        tagResultado.addAtr("selected", null);
       }
 
-      _lstStrValor = new ArrayList<String>();
+      tagResultado.addAtr("value", intValor);
+      tagResultado.setStrConteudo(strNome);
+
+      return tagResultado;
     }
     catch (Exception ex) {
 
@@ -107,35 +119,7 @@ public class ComboBox extends Campo {
     finally {
     }
 
-    return _lstStrValor;
-  }
-
-  private Tag getNewTagOption(int intOrdem) {
-
-    Tag tagResultado = null;
-
-    try {
-
-      if (!Utils.getBooStrVazia(this.getStrValor()) && this.getStrValor().equals(this.getLstStrValor().get(intOrdem))) {
-
-        tagResultado = new Tag("option selected");
-      }
-      else {
-
-        tagResultado = new Tag("option");
-      }
-
-      tagResultado.addAtr("value", this.getLstStrValor().get(intOrdem));
-      tagResultado.setStrConteudo(this.getLstStrNome().get(intOrdem));
-    }
-    catch (Exception ex) {
-
-      new Erro("Erro inesperado.\n", ex);
-    }
-    finally {
-    }
-
-    return tagResultado;
+    return null;
   }
 
   @Override
@@ -145,10 +129,9 @@ public class ComboBox extends Campo {
 
     try {
 
-      if (this.getLstStrValor().size() == 0 || this.getBooOpcaoVazia()) {
+      if (this.getMapOpcao().isEmpty() || this.getBooOpcaoVazia()) {
 
-        this.getLstStrValor().add(0, "-1");
-        this.getLstStrNome().add(0, "");
+        this.getMapOpcao().put(-1, Utils.STR_VAZIA);
       }
 
       this.montarLayoutItens();
@@ -167,9 +150,9 @@ public class ComboBox extends Campo {
 
     try {
 
-      for (int i = 0; i < this.getLstStrValor().size(); i++) {
+      for (Entry<Integer, String> opc : this.getMapOpcao().entrySet()) {
 
-        tagOption = this.getNewTagOption(i);
+        tagOption = this.getNewTagOption(opc.getKey(), opc.getValue());
         tagOption.setTagPai(this);
       }
     }
@@ -184,15 +167,5 @@ public class ComboBox extends Campo {
   public void setBooOpcaoVazia(boolean booOpcaoVazia) {
 
     _booOpcaoVazia = booOpcaoVazia;
-  }
-
-  public void setLstStrNome(List<String> lstStrNome) {
-
-    _lstStrNome = lstStrNome;
-  }
-
-  public void setLstStrValor(List<String> lstStrValor) {
-
-    _lstStrValor = lstStrValor;
   }
 }

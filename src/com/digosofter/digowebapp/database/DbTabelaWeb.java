@@ -84,6 +84,8 @@ public abstract class DbTabelaWeb extends DbTabela {
 
         cln2.setStrValor(rst.getString(cln2.getStrNomeSql()));
       }
+
+      rst.close();
     }
     catch (Exception ex) {
 
@@ -212,23 +214,29 @@ public abstract class DbTabelaWeb extends DbTabela {
 
   public List<Integer> getLstIntClnValor(DbColunaWeb cln, List<DbFiltro> lstObjDbFiltro) {
 
-    List<Integer> lstIntResultado = null;
-    ResultSet objResultSet;
+    List<Integer> lstIntResultado;
+    ResultSet rst;
 
     try {
 
-      objResultSet = this.getRst(cln, lstObjDbFiltro);
+      rst = this.getRst(cln, lstObjDbFiltro);
 
-      if (objResultSet != null && objResultSet.first()) {
+      if (rst == null || !rst.first()) {
 
-        lstIntResultado = new ArrayList<Integer>();
-
-        do {
-
-          lstIntResultado.add(objResultSet.getInt(1));
-        }
-        while (objResultSet.next());
+        return null;
       }
+
+      lstIntResultado = new ArrayList<Integer>();
+
+      do {
+
+        lstIntResultado.add(rst.getInt(1));
+      }
+      while (rst.next());
+
+      rst.close();
+
+      return lstIntResultado;
     }
     catch (Exception ex) {
 
@@ -237,7 +245,7 @@ public abstract class DbTabelaWeb extends DbTabela {
     finally {
     }
 
-    return lstIntResultado;
+    return null;
   }
 
   /**
@@ -362,8 +370,8 @@ public abstract class DbTabelaWeb extends DbTabela {
    */
   public List<String> getLstStrClnValor(DbColunaWeb cln) {
 
-    List<String> lstStrResultado = null;
-    ResultSet objResultSet;
+    List<String> lstStrResultado;
+    ResultSet rst;
     String sql;
 
     try {
@@ -373,20 +381,24 @@ public abstract class DbTabelaWeb extends DbTabela {
       sql = sql.replace("_cln_nome", cln.getStrNomeSql());
       sql = sql.replace("_tbl_nome", cln.getTbl().getStrNomeSql());
 
-      objResultSet = ((DataBaseWeb) this.getObjDb()).execSqlGetRst(sql);
+      rst = ((DataBaseWeb) this.getObjDb()).execSqlGetRst(sql);
 
       lstStrResultado = new ArrayList<String>();
 
-      if (objResultSet == null || !objResultSet.first()) {
+      if (rst == null || !rst.first()) {
 
         return lstStrResultado;
       }
 
       do {
 
-        lstStrResultado.add(objResultSet.getString(1));
+        lstStrResultado.add(rst.getString(1));
       }
-      while (objResultSet.next());
+      while (rst.next());
+
+      rst.close();
+
+      return lstStrResultado;
     }
     catch (Exception ex) {
 
@@ -395,7 +407,7 @@ public abstract class DbTabelaWeb extends DbTabela {
     finally {
     }
 
-    return lstStrResultado;
+    return null;
   }
 
   public List<DbView> getLstViw() {
@@ -436,7 +448,6 @@ public abstract class DbTabelaWeb extends DbTabela {
   public ResultSet getRst(DbColuna cln, List<DbFiltro> lstObjDbFiltro, DbColuna clnOrdem) {
 
     List<DbColuna> lstClnOrdem;
-    ResultSet rstResultado = null;
 
     try {
 
@@ -444,7 +455,7 @@ public abstract class DbTabelaWeb extends DbTabela {
 
       lstClnOrdem.add(clnOrdem);
 
-      rstResultado = this.getRst(cln, lstObjDbFiltro, lstClnOrdem);
+      return this.getRst(cln, lstObjDbFiltro, lstClnOrdem);
     }
     catch (Exception ex) {
 
@@ -453,13 +464,12 @@ public abstract class DbTabelaWeb extends DbTabela {
     finally {
     }
 
-    return rstResultado;
+    return null;
   }
 
   public ResultSet getRst(DbColuna cln, List<DbFiltro> lstObjDbFiltro, List<DbColuna> lstClnOrdem) {
 
     List<DbColuna> lstCln;
-    ResultSet rstResultado = null;
 
     try {
 
@@ -467,7 +477,7 @@ public abstract class DbTabelaWeb extends DbTabela {
 
       lstCln.add(cln);
 
-      rstResultado = this.getRst(lstCln, lstObjDbFiltro, lstClnOrdem);
+      return this.getRst(lstCln, lstObjDbFiltro, lstClnOrdem);
     }
     catch (Exception ex) {
 
@@ -476,13 +486,12 @@ public abstract class DbTabelaWeb extends DbTabela {
     finally {
     }
 
-    return rstResultado;
+    return null;
   }
 
   public ResultSet getRst(DbColuna clnFiltro, String strFiltro) {
 
     List<DbFiltro> lstObjDbFiltro;
-    ResultSet rstResultado = null;
 
     try {
 
@@ -490,7 +499,7 @@ public abstract class DbTabelaWeb extends DbTabela {
 
       lstObjDbFiltro.add(new DbFiltro(clnFiltro, strFiltro));
 
-      rstResultado = this.getRst(this.getLstCln(), lstObjDbFiltro, null);
+      return this.getRst(this.getLstCln(), lstObjDbFiltro, null);
     }
     catch (Exception ex) {
 
@@ -499,48 +508,21 @@ public abstract class DbTabelaWeb extends DbTabela {
     finally {
     }
 
-    return rstResultado;
+    return null;
   }
 
   public ResultSet getRst(DbColunaWeb clnFiltro, int intFiltro) {
 
-    ResultSet rstResultado = null;
-
-    try {
-
-      rstResultado = this.getRst(clnFiltro, String.valueOf(intFiltro));
-    }
-    catch (Exception ex) {
-
-      new Erro("Erro inesperado.\n", ex);
-    }
-    finally {
-    }
-
-    return rstResultado;
+    return this.getRst(clnFiltro, String.valueOf(intFiltro));
   }
 
   public ResultSet getRst(DbColunaWeb cln, List<DbFiltro> lstObjDbFiltro) {
 
-    ResultSet rstResultado = null;
-
-    try {
-
-      rstResultado = this.getRst(cln, lstObjDbFiltro, this.getClnChavePrimaria());
-    }
-    catch (Exception ex) {
-
-      new Erro("Erro inesperado.\n", ex);
-    }
-    finally {
-    }
-
-    return rstResultado;
+    return this.getRst(cln, lstObjDbFiltro, this.getClnChavePrimaria());
   }
 
   public ResultSet getRst(List<DbColuna> lstCln, List<DbFiltro> lstObjDbFiltro, List<DbColuna> lstClnOrdem) {
 
-    ResultSet rstResultado = null;
     String sql;
 
     try {
@@ -555,7 +537,7 @@ public abstract class DbTabelaWeb extends DbTabela {
       sql = sql.replace(" where <null>", "");
       sql = sql.replace(" order by <null>", "");
 
-      rstResultado = ((DataBaseWeb) this.getObjDb()).execSqlGetRst(sql);
+      return ((DataBaseWeb) this.getObjDb()).execSqlGetRst(sql);
     }
     catch (Exception ex) {
 
@@ -564,7 +546,7 @@ public abstract class DbTabelaWeb extends DbTabela {
     finally {
     }
 
-    return rstResultado;
+    return null;
   }
 
   /**
@@ -573,13 +555,15 @@ public abstract class DbTabelaWeb extends DbTabela {
    */
   public ResultSet getRstConsulta() {
 
-    ResultSet rstResultado = null;
+    ResultSet rstResultado;
 
     try {
 
       rstResultado = this.getRst(this.getLstClnConsulta(), this.getLstFilConsulta(), null);
 
       this.getLstFilCadastro().clear();
+
+      return rstResultado;
     }
     catch (Exception ex) {
 
@@ -588,7 +572,7 @@ public abstract class DbTabelaWeb extends DbTabela {
     finally {
     }
 
-    return rstResultado;
+    return null;
   }
 
   /**
@@ -599,7 +583,6 @@ public abstract class DbTabelaWeb extends DbTabela {
 
     List<DbColuna> lstCln;
     List<DbColuna> lstClnOrdem;
-    ResultSet objResultSetResultado = null;
 
     try {
 
@@ -611,7 +594,7 @@ public abstract class DbTabelaWeb extends DbTabela {
       lstClnOrdem = new ArrayList<DbColuna>();
       lstClnOrdem.add(this.getClnNome());
 
-      objResultSetResultado = this.getRst(lstCln, null, lstClnOrdem);
+      return this.getRst(lstCln, null, lstClnOrdem);
     }
     catch (Exception ex) {
 
@@ -620,7 +603,7 @@ public abstract class DbTabelaWeb extends DbTabela {
     finally {
     }
 
-    return objResultSetResultado;
+    return null;
   }
 
   private String getSqlParteLstClnNome(List<DbColuna> lstCln) {
