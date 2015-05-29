@@ -17,6 +17,7 @@ import com.digosofter.digowebapp.design.PaletaCor;
 public abstract class AppWeb extends App {
 
   private static List<PaletaCor> _lstObjPaletaCor;
+
   private static AppWeb i;
 
   public static final String JS_BOTAO = "res/js/lib/JDigo/html/Botao.js";
@@ -43,6 +44,7 @@ public abstract class AppWeb extends App {
     return i;
   }
 
+  private boolean _booOcupado;
   private String _dirLocal;
   private List<Usuario> _lstObjUsuarioSessao;
   private HttpServletRequest _objHttpServletRequest;
@@ -95,6 +97,11 @@ public abstract class AppWeb extends App {
     }
     finally {
     }
+  }
+
+  public boolean getBooOcupado() {
+
+    return _booOcupado;
   }
 
   public boolean getBooUsuarioExiste(String strSessaoId) {
@@ -405,6 +412,11 @@ public abstract class AppWeb extends App {
     }
     finally {
     }
+  }
+
+  public void setBooOcupado(boolean booOcupado) {
+
+    _booOcupado = booOcupado;
   }
 
   private void setI(AppWeb _i) {
