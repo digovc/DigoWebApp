@@ -1,6 +1,6 @@
 package com.digosofter.digowebapp.html;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map.Entry;
 
@@ -12,7 +12,7 @@ public class ComboBox extends Campo {
 
   private boolean _booOpcaoVazia;
 
-  private HashMap<Integer, String> _mapOpcao;
+  private LinkedHashMap<Integer, String> _mapOpcao;
 
   public ComboBox() {
 
@@ -73,7 +73,7 @@ public class ComboBox extends Campo {
     return _booOpcaoVazia;
   }
 
-  protected HashMap<Integer, String> getMapOpcao() {
+  protected LinkedHashMap<Integer, String> getMapOpcao() {
 
     try {
 
@@ -82,7 +82,7 @@ public class ComboBox extends Campo {
         return _mapOpcao;
       }
 
-      _mapOpcao = new HashMap<Integer, String>();
+      _mapOpcao = new LinkedHashMap<Integer, String>();
     }
     catch (Exception ex) {
 
