@@ -15,7 +15,6 @@ public abstract class UtilsWeb {
   public static String getStrIpExterno() {
 
     BufferedReader bfr;
-    String strResultado = Utils.STR_VAZIA;
     URL url;
 
     try {
@@ -28,7 +27,7 @@ public abstract class UtilsWeb {
       url = new URL("http://checkip.amazonaws.com");
       bfr = new BufferedReader(new InputStreamReader(url.openStream()));
 
-      strResultado = bfr.readLine();
+      return bfr.readLine();
     }
     catch (Exception ex) {
 
@@ -37,12 +36,11 @@ public abstract class UtilsWeb {
     finally {
     }
 
-    return strResultado;
+    return null;
   }
 
   public static String getStrLinkHtml(String strTexto, String strLink) {
 
-    String strResultado = Utils.STR_VAZIA;
     StringBuilder strBuilder;
 
     try {
@@ -50,7 +48,7 @@ public abstract class UtilsWeb {
       strBuilder = new StringBuilder();
       strBuilder.append("<a href=\"" + strLink + "\">" + strTexto + "</a>");
 
-      strResultado = strBuilder.toString();
+      return strBuilder.toString();
     }
     catch (Exception ex) {
 
@@ -59,6 +57,6 @@ public abstract class UtilsWeb {
     finally {
     }
 
-    return strResultado;
+    return null;
   }
 }
