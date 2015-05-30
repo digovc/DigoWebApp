@@ -36,7 +36,7 @@ public class PopupItem extends ItemMain {
 
     try {
 
-      lstObjJsTag.add(new JavaScriptTag(AppWeb.JS_POPUP_ITEM));
+      lstObjJsTag.add(new JavaScriptTag(AppWeb.STR_JS_POPUP_ITEM));
     }
     catch (Exception ex) {
 

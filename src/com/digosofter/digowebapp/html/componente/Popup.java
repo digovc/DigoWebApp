@@ -42,7 +42,7 @@ public class Popup extends ComponenteMain {
 
     try {
 
-      lstObjJsTag.add(new JavaScriptTag(AppWeb.JS_POPUP));
+      lstObjJsTag.add(new JavaScriptTag(AppWeb.STR_JS_POPUP));
     }
     catch (Exception ex) {
 

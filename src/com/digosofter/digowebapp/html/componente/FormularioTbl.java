@@ -56,7 +56,7 @@ public class FormularioTbl extends ComponenteMain {
 
     try {
 
-      lstObjJsTag.add(new JavaScriptTag(AppWeb.JS_FORMULARIO_TBL));
+      lstObjJsTag.add(new JavaScriptTag(AppWeb.STR_JS_FORMULARIO_TBL));
     }
     catch (Exception ex) {
 

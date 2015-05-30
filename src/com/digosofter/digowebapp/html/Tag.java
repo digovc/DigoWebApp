@@ -104,7 +104,7 @@ public class Tag extends Objeto {
 
     try {
 
-      lstObjJsTag.add(new JavaScriptTag(AppWeb.JS_TAG));
+      lstObjJsTag.add(new JavaScriptTag(AppWeb.STR_JS_TAG));
     }
     catch (Exception ex) {
 

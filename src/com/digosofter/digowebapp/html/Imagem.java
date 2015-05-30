@@ -19,7 +19,7 @@ public class Imagem extends Tag {
 
     try {
 
-      lstObjJsTag.add(new JavaScriptTag(AppWeb.JS_IMAGEM));
+      lstObjJsTag.add(new JavaScriptTag(AppWeb.STR_JS_IMAGEM));
     }
     catch (Exception ex) {
 

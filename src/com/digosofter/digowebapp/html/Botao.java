@@ -30,7 +30,7 @@ public class Botao extends Tag {
 
     try {
 
-      lstObjJsTag.add(new JavaScriptTag(AppWeb.JS_BOTAO));
+      lstObjJsTag.add(new JavaScriptTag(AppWeb.STR_JS_BOTAO));
     }
     catch (Exception ex) {
 

@@ -20,24 +20,24 @@ public abstract class AppWeb extends App {
 
   private static AppWeb i;
 
-  public static final String JS_BOTAO = "res/js/lib/JDigo/html/Botao.js";
-  public static final String JS_CAMPO = "res/js/lib/JDigo/html/Campo.js";
-  public static final String JS_COMBO_BOX = "res/js/lib/JDigo/html/ComboBox.js";
-  public static final String JS_COMPONENTE_MAIN = "res/js/lib/JDigo/html/componente/ComponenteMain.js";
-  public static final String JS_FORMULARIO = "res/js/lib/JDigo/html/Formulario.js";
-  public static final String JS_FORMULARIO_TBL = "res/js/lib/JDigo/html/componente/FormularioTbl.js";
-  public static final String JS_IMAGEM = "res/js/lib/JDigo/html/Imagem.js";
-  public static final String JS_ITEM_MAIN = "res/js/lib/JDigo/html/componente/item/ItemMain.js";
-  public static final String JS_MOOTOOLS = "res/js/lib/JDigo/lib/mootools-core-1.4.5.js";
-  public static final String JS_PAINEL = "res/js/lib/JDigo/html/Painel.js";
-  public static final String JS_POPUP = "res/js/lib/JDigo/html/componente/Popup.js";
-  public static final String JS_POPUP_ITEM = "res/js/lib/JDigo/html/componente/item/PopupItem.js";
-  public static final String JS_QUICKSEARCH = "res/js/lib/JDigo/lib/jquery.quicksearch.min.js";
-  public static final String JS_RELATORIO_MAIN = "res/js/lib/JDigo/html/relatorio/RelatorioMain.js";
-  public static final String JS_TABELA = "res/js/lib/JDigo/html/componente/Tabela.js";
-  public static final String JS_TABLESORTER = "res/js/lib/JDigo/lib/jquery.tablesorter.min.js";
-  public static final String JS_TAG = "res/js/lib/JDigo/html/Tag.js";
-  public static final String JS_WEBSOCKET_FILE_TRANSFER = "res/js/lib/JDigo/lib/WebSocketFileTransfer.js";
+  public static final String STR_JS_BOTAO = "res/js/lib/JDigo/html/Botao.js";
+  public static final String STR_JS_CAMPO = "res/js/lib/JDigo/html/Campo.js";
+  public static final String STR_JS_COMBO_BOX = "res/js/lib/JDigo/html/ComboBox.js";
+  public static final String STR_JS_COMPONENTE_MAIN = "res/js/lib/JDigo/html/componente/ComponenteMain.js";
+  public static final String STR_JS_FORMULARIO = "res/js/lib/JDigo/html/Formulario.js";
+  public static final String STR_JS_FORMULARIO_TBL = "res/js/lib/JDigo/html/componente/FormularioTbl.js";
+  public static final String STR_JS_IMAGEM = "res/js/lib/JDigo/html/Imagem.js";
+  public static final String STR_JS_ITEM_MAIN = "res/js/lib/JDigo/html/componente/item/ItemMain.js";
+  public static final String STR_JS_MOOTOOLS = "res/js/lib/JDigo/lib/mootools-core-1.4.5.js";
+  public static final String STR_JS_PAINEL = "res/js/lib/JDigo/html/Painel.js";
+  public static final String STR_JS_POPUP = "res/js/lib/JDigo/html/componente/Popup.js";
+  public static final String STR_JS_POPUP_ITEM = "res/js/lib/JDigo/html/componente/item/PopupItem.js";
+  public static final String STR_JS_QUICKSEARCH = "res/js/lib/JDigo/lib/jquery.quicksearch.min.js";
+  public static final String STR_JS_RELATORIO_MAIN = "res/js/lib/JDigo/html/relatorio/RelatorioMain.js";
+  public static final String STR_JS_TABELA = "res/js/lib/JDigo/html/componente/Tabela.js";
+  public static final String STR_JS_TABLESORTER = "res/js/lib/JDigo/lib/jquery.tablesorter.min.js";
+  public static final String STR_JS_TAG = "res/js/lib/JDigo/html/Tag.js";
+  public static final String STR_JS_WEBSOCKET_FILE_TRANSFER = "res/js/lib/JDigo/lib/WebSocketFileTransfer.js";
 
   public static AppWeb getI() {
 
@@ -46,7 +46,7 @@ public abstract class AppWeb extends App {
 
   private boolean _booOcupado;
   private String _dirLocal;
-  private List<Usuario> _lstObjUsuarioSessao;
+  private List<Usuario> _lstUsr;
   private HttpServletRequest _objHttpServletRequest;
   private HttpServletResponse _objHttpServletResponse;
   private HttpSession _objHttpSession;
@@ -99,6 +99,30 @@ public abstract class AppWeb extends App {
     }
   }
 
+  public void addUsr(Usuario usr) {
+
+    try {
+
+      if (usr == null) {
+
+        return;
+      }
+
+      if (this.getLstUsr().contains(usr)) {
+
+        return;
+      }
+
+      this.getLstUsr().add(usr);
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+    }
+    finally {
+    }
+  }
+
   public boolean getBooOcupado() {
 
     return _booOcupado;
@@ -113,7 +137,7 @@ public abstract class AppWeb extends App {
         return false;
       }
 
-      for (Usuario usr : this.getLstUsrSessao()) {
+      for (Usuario usr : this.getLstUsr()) {
 
         if (usr == null) {
 
@@ -165,15 +189,19 @@ public abstract class AppWeb extends App {
    */
   public int getIntParam(String strParamNome) {
 
-    int intResultado = -1;
     String strParam;
 
     try {
 
+      if (Utils.getBooStrVazia(strParamNome)) {
+
+        return -1;
+      }
+
       strParam = this.getObjHttpServletRequest().getParameter(strParamNome);
       strParam = !Utils.getBooStrVazia(strParam) ? strParam : "-1";
 
-      intResultado = Integer.valueOf(strParam);
+      return Integer.valueOf(strParam);
     }
     catch (Exception ex) {
 
@@ -182,25 +210,7 @@ public abstract class AppWeb extends App {
     finally {
     }
 
-    return intResultado;
-  }
-
-  public int getIntPostParam(String strParamNome) {
-
-    int intResultado = -1;
-
-    try {
-
-      intResultado = Integer.valueOf(this.getObjHttpServletRequest().getParameter(strParamNome));
-    }
-    catch (Exception ex) {
-
-      intResultado = -1;
-    }
-    finally {
-    }
-
-    return intResultado;
+    return -1;
   }
 
   public List<PaletaCor> getLstObjPaletaCor() {
@@ -224,16 +234,16 @@ public abstract class AppWeb extends App {
     return _lstObjPaletaCor;
   }
 
-  public List<Usuario> getLstUsrSessao() {
+  public List<Usuario> getLstUsr() {
 
     try {
 
-      if (_lstObjUsuarioSessao != null) {
+      if (_lstUsr != null) {
 
-        return _lstObjUsuarioSessao;
+        return _lstUsr;
       }
 
-      _lstObjUsuarioSessao = new ArrayList<Usuario>();
+      _lstUsr = new ArrayList<Usuario>();
     }
     catch (Exception ex) {
 
@@ -242,7 +252,7 @@ public abstract class AppWeb extends App {
     finally {
     }
 
-    return _lstObjUsuarioSessao;
+    return _lstUsr;
   }
 
   public HttpServletRequest getObjHttpServletRequest() {
@@ -271,12 +281,18 @@ public abstract class AppWeb extends App {
 
       for (PaletaCor objPaletaCor : this.getLstObjPaletaCor()) {
 
+        if (objPaletaCor == null) {
+
+          continue;
+        }
+
         if (!objPaletaCor.getBooSelecionado()) {
 
           continue;
         }
 
         _objPaletaCor = objPaletaCor;
+        break;
       }
 
       if (_objPaletaCor == null) {
@@ -315,18 +331,53 @@ public abstract class AppWeb extends App {
     return _objServletContext;
   }
 
-  public Usuario getObjUsuarioPorSessaoId(String strSessaoId) {
+  public String getStrPagSolicitada() {
+
+    return _strPagSolicitada;
+  }
+
+  /**
+   * Retorna o valor do parâmetro "GET" ou "POST" vindo do cliente indicado pelo
+   * nome contido em "strParamNome". Caso não exista retorna "null".
+   */
+  public String getStrParam(String strParamNome) {
 
     try {
 
-      for (Usuario objUsuario : this.getLstUsrSessao()) {
+      if (Utils.getBooStrVazia(strParamNome)) {
 
-        if (!objUsuario.getStrSessaoId().equals(strSessaoId)) {
+        return null;
+      }
+
+      return this.getObjHttpServletRequest().getParameter(strParamNome);
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+    }
+    finally {
+    }
+
+    return null;
+  }
+
+  public Usuario getUsr(String strSessaoId) {
+
+    try {
+
+      for (Usuario usr : this.getLstUsr()) {
+
+        if (usr == null) {
 
           continue;
         }
 
-        return objUsuario;
+        if (!usr.getStrSessaoId().equals(strSessaoId)) {
+
+          continue;
+        }
+
+        return usr;
       }
     }
     catch (Exception ex) {
@@ -339,50 +390,30 @@ public abstract class AppWeb extends App {
     return null;
   }
 
-  public String getStrPagSolicitada() {
-
-    return _strPagSolicitada;
-  }
-
-  /**
-   * Retorna o valor do parâmetro "GET" ou "POST" vindo do cliente indicado pelo
-   * nome contido em "strParamNome". Caso não exista retorna "null".
-   */
-  public String getStrParam(String strParamNome) {
-
-    String strResultado = null;
-
-    try {
-
-      strResultado = this.getObjHttpServletRequest().getParameter(strParamNome);
-    }
-    catch (Exception ex) {
-
-      new Erro("Erro inesperado.\n", ex);
-    }
-    finally {
-    }
-
-    return strResultado;
-  }
-
   public Usuario getUsrAtual() {
 
     try {
 
-      if (_usrAtual != null && _usrAtual.getStrSessaoId() == this.getObjHttpSession().getId()) {
+      if (_usrAtual != null && _usrAtual.getStrSessaoId().equals(this.getObjHttpSession().getId())) {
 
         return _usrAtual;
       }
 
-      for (Usuario usr : this.getLstUsrSessao()) {
+      for (Usuario usr : this.getLstUsr()) {
 
-        if (usr.getStrSessaoId() != this.getObjHttpSession().getId()) {
+        if (usr == null) {
 
           continue;
         }
 
-        return _usrAtual = usr;
+        if (!usr.getStrSessaoId().equals(this.getObjHttpSession().getId())) {
+
+          continue;
+        }
+
+        _usrAtual = usr;
+
+        break;
       }
     }
     catch (Exception ex) {
@@ -398,6 +429,11 @@ public abstract class AppWeb extends App {
   public void reencaminhar(String strUrl) {
 
     try {
+
+      if (Utils.getBooStrVazia(strUrl)) {
+
+        return;
+      }
 
       this.getObjHttpServletResponse().sendRedirect(strUrl);
     }
@@ -454,6 +490,11 @@ public abstract class AppWeb extends App {
 
       _objHttpServletRequest = objHttpServletRequest;
 
+      if (_objHttpServletRequest == null) {
+
+        return;
+      }
+
       this.setStrPagSolicitada(_objHttpServletRequest.getRequestURI().replace(_objHttpServletRequest.getContextPath() + "/app/", Utils.STR_VAZIA));
       this.setObjHttpSession(_objHttpServletRequest.getSession());
     }
@@ -471,6 +512,11 @@ public abstract class AppWeb extends App {
 
       _objHttpServletResponse = objHttpServletResponse;
 
+      if (_objHttpServletResponse == null) {
+
+        return;
+      }
+
       this.setObjPrintWriter(_objHttpServletResponse.getWriter());
     }
     catch (Exception ex) {
@@ -483,19 +529,24 @@ public abstract class AppWeb extends App {
 
   private void setObjHttpSession(HttpSession objHttpSession) {
 
-    Usuario objUsuario;
+    Usuario usr;
 
     try {
 
       _objHttpSession = objHttpSession;
+
+      if (_objHttpSession == null) {
+
+        return;
+      }
 
       if (this.getBooUsuarioExiste(_objHttpSession.getId())) {
 
         return;
       }
 
-      objUsuario = new Usuario();
-      objUsuario.setStrSessaoId(_objHttpSession.getId());
+      usr = new Usuario();
+      usr.setStrSessaoId(_objHttpSession.getId());
     }
     catch (Exception ex) {
 

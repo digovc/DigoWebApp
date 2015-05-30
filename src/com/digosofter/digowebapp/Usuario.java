@@ -12,7 +12,7 @@ public class Usuario extends Objeto {
 
     try {
 
-      for (Usuario objUsuario : AppWeb.getI().getLstUsrSessao()) {
+      for (Usuario objUsuario : AppWeb.getI().getLstUsr()) {
 
         if (!objUsuario.getStrSessaoId().equals(strSessionId)) {
 
@@ -43,7 +43,7 @@ public class Usuario extends Objeto {
 
     try {
 
-      AppWeb.getI().getLstUsrSessao().add(this);
+      AppWeb.getI().addUsr(this);
     }
     catch (Exception ex) {
 

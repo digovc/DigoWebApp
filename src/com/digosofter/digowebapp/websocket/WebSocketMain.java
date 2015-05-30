@@ -124,7 +124,7 @@ public abstract class WebSocketMain extends Objeto {
     try {
 
       strSessaoId = ((WsSession) objSession).getHttpSessionId();
-      objUsuarioResultado = AppWeb.getI().getObjUsuarioPorSessaoId(strSessaoId);
+      objUsuarioResultado = AppWeb.getI().getUsr(strSessaoId);
     }
     catch (Exception ex) {
 
