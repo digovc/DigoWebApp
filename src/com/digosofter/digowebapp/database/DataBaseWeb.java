@@ -45,6 +45,11 @@ public abstract class DataBaseWeb extends DataBase {
 
     try {
 
+      if (Utils.getBooStrVazia(sql)) {
+
+        return;
+      }
+
       objStatement = this.getObjConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
       objStatement.execute(sql);
     }
@@ -56,25 +61,34 @@ public abstract class DataBaseWeb extends DataBase {
     }
   }
 
-  public boolean execSqlGetBoolean(String sql) {
+  public boolean execSqlGetBoo(String sql) {
 
-    boolean booResultado = false;
     String str;
 
     try {
 
-      str = this.execSqlGetStr(sql).toLowerCase();
+      if (Utils.getBooStrVazia(sql)) {
+
+        return false;
+      }
+
+      str = this.execSqlGetStr(sql);
+
+      if (Utils.getBooStrVazia(str)) {
+
+        return false;
+      }
+
+      str = str.toLowerCase();
 
       switch (str) {
 
+        case "1":
+        case "s":
+        case "sim":
         case "t":
         case "true":
           return true;
-
-        case "f":
-        case "false":
-        case "":
-          return false;
 
         default:
           return false;
@@ -87,7 +101,7 @@ public abstract class DataBaseWeb extends DataBase {
     finally {
     }
 
-    return booResultado;
+    return false;
   }
 
   /**
@@ -99,10 +113,14 @@ public abstract class DataBaseWeb extends DataBase {
   @Override
   public int execSqlGetInt(String sql) {
 
-    int intResultado = 0;
     String str;
 
     try {
+
+      if (Utils.getBooStrVazia(sql)) {
+
+        return 0;
+      }
 
       str = this.execSqlGetStr(sql);
 
@@ -111,7 +129,7 @@ public abstract class DataBaseWeb extends DataBase {
         return 0;
       }
 
-      intResultado = Integer.valueOf(str);
+      return Integer.valueOf(str);
     }
     catch (Exception ex) {
 
@@ -120,29 +138,41 @@ public abstract class DataBaseWeb extends DataBase {
     finally {
     }
 
-    return intResultado;
+    return 0;
   }
 
   public List<Integer> execSqlGetLstInt(String sql) {
 
-    List<Integer> lstIntResultado = null;
+    List<Integer> lstIntResultado;
     List<String> lstStr;
 
     try {
 
-      lstStr = this.execSqlGetLstStr(sql);
+      if (Utils.getBooStrVazia(sql)) {
+
+        return null;
+      }
 
       lstIntResultado = new ArrayList<Integer>();
+      lstStr = this.execSqlGetLstStr(sql);
 
       if (lstStr == null || lstStr.isEmpty()) {
 
-        return lstIntResultado;
+        return null;
       }
 
       for (String str : lstStr) {
 
+        if (Utils.getBooStrVazia(str)) {
+
+          lstIntResultado.add(0);
+          continue;
+        }
+
         lstIntResultado.add(Integer.valueOf(str));
       }
+
+      return lstIntResultado;
     }
     catch (Exception ex) {
 
@@ -151,15 +181,20 @@ public abstract class DataBaseWeb extends DataBase {
     finally {
     }
 
-    return lstIntResultado;
+    return null;
   }
 
   public List<String> execSqlGetLstStr(String sql) {
 
-    ResultSet rst;
     List<String> lstStrResultado;
+    ResultSet rst;
 
     try {
+
+      if (Utils.getBooStrVazia(sql)) {
+
+        return null;
+      }
 
       rst = this.execSqlGetRst(sql);
 
@@ -167,7 +202,7 @@ public abstract class DataBaseWeb extends DataBase {
 
       if (rst == null || !rst.first()) {
 
-        return lstStrResultado;
+        return null;
       }
 
       do {
@@ -196,6 +231,11 @@ public abstract class DataBaseWeb extends DataBase {
 
     try {
 
+      if (Utils.getBooStrVazia(sql)) {
+
+        return null;
+      }
+
       objStatement = this.getObjConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 
       return objStatement.executeQuery(sql);
@@ -213,7 +253,6 @@ public abstract class DataBaseWeb extends DataBase {
   @Override
   public String execSqlGetStr(String sql) {
 
-    String strResultado = Utils.STR_VAZIA;
     List<String> lstStr;
 
     try {
@@ -222,10 +261,10 @@ public abstract class DataBaseWeb extends DataBase {
 
       if (lstStr == null || lstStr.isEmpty()) {
 
-        return strResultado;
+        return null;
       }
 
-      strResultado = lstStr.get(0);
+      return lstStr.get(0);
     }
     catch (Exception ex) {
 
@@ -234,7 +273,7 @@ public abstract class DataBaseWeb extends DataBase {
     finally {
     }
 
-    return strResultado;
+    return null;
   }
 
   public ResultSet execView(String strViewNome) {
