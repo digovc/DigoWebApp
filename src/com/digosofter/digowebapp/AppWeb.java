@@ -108,9 +108,19 @@ public abstract class AppWeb extends App {
 
     try {
 
-      for (Usuario objUsuario : this.getLstUsrSessao()) {
+      if (Utils.getBooStrVazia(strSessaoId)) {
 
-        if (!objUsuario.getStrSessaoId().equals(strSessaoId)) {
+        return false;
+      }
+
+      for (Usuario usr : this.getLstUsrSessao()) {
+
+        if (usr == null) {
+
+          continue;
+        }
+
+        if (!usr.getStrSessaoId().equals(strSessaoId)) {
 
           continue;
         }
