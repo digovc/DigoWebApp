@@ -93,7 +93,7 @@ public abstract class DbFuncao extends DbTabelaWeb {
   @Override
   public String getStrNomeSql() {
 
-    String strResultado = Utils.STR_VAZIA;
+    String strResultado;
 
     try {
 
@@ -111,6 +111,8 @@ public abstract class DbFuncao extends DbTabelaWeb {
 
       strResultado = strResultado.replace("_fnc_nome", super.getStrNomeSql());
       strResultado = strResultado.replace("_params", this.getStrParamFormatado());
+
+      return strResultado;
     }
     catch (Exception ex) {
 
@@ -119,13 +121,13 @@ public abstract class DbFuncao extends DbTabelaWeb {
     finally {
     }
 
-    return strResultado;
+    return null;
   }
 
   private String getStrParamFormatado() {
 
     String strEstrutura;
-    String strResultado = Utils.STR_VAZIA;
+    String strResultado;
 
     try {
 
@@ -138,6 +140,8 @@ public abstract class DbFuncao extends DbTabelaWeb {
 
         return Utils.STR_VAZIA;
       }
+
+      strResultado = Utils.STR_VAZIA;
 
       for (String strParamIn : this.getLstStrParamIn()) {
 
@@ -156,7 +160,7 @@ public abstract class DbFuncao extends DbTabelaWeb {
         strResultado += strEstrutura;
       }
 
-      strResultado = Utils.removerUltimaLetra(strResultado, 2);
+      return Utils.removerUltimaLetra(strResultado, 2);
     }
     catch (Exception ex) {
 
@@ -165,20 +169,11 @@ public abstract class DbFuncao extends DbTabelaWeb {
     finally {
     }
 
-    return strResultado;
+    return null;
   }
 
   public void limparParametros() {
 
-    try {
-
-      this.getLstStrParamIn().clear();
-    }
-    catch (Exception ex) {
-
-      new Erro("Erro inesperado.\n", ex);
-    }
-    finally {
-    }
+    this.getLstStrParamIn().clear();
   }
 }
