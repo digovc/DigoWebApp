@@ -152,6 +152,11 @@ public class Combobox extends Campo {
 
       for (Entry<Integer, String> opc : this.getMapOpcao().entrySet()) {
 
+        if (opc == null) {
+
+          return;
+        }
+
         tagOption = this.getNewTagOption(opc.getKey(), opc.getValue());
         tagOption.setTagPai(this);
       }

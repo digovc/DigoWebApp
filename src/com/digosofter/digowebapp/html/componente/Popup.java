@@ -137,7 +137,7 @@ public class Popup extends ComponenteMain {
     try {
 
       this.addCss(tagCss.setBackgroundColor("white"));
-      this.addCss(tagCss.setBorder(1, "outset", AppWeb.getI().getObjPaletaCor().getStrCorBorda2()));
+      this.addCss(tagCss.setBorder(1, "outset", AppWeb.getI().getObjPaletaCor().getCorBorda2()));
       this.addCss(tagCss.setDisplay("none"));
       this.addCss(tagCss.setPadding(1, "px"));
       this.addCss(tagCss.setPosition("absolute"));

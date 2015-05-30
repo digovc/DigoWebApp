@@ -5,7 +5,6 @@ import com.digosofter.digojava.erro.Erro;
 public class AtributoCss extends Atributo {
 
   private String _strClassAssociada;
-
   private String _strValor;
 
   public AtributoCss(String strNome, String strValor) {
@@ -25,12 +24,37 @@ public class AtributoCss extends Atributo {
 
   }
 
+  public String getStrAtrFormatado() {
+
+    String strResultado;
+
+    try {
+
+      strResultado = "._class_nome{_att_nome:_att_valor}";
+
+      strResultado = strResultado.replace("_class_nome", this.getStrClassAssociada());
+      strResultado = strResultado.replace("_att_nome", this.getStrNome());
+      strResultado = strResultado.replace("_att_valor", this.getStrValor());
+
+      return strResultado;
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+    }
+    finally {
+    }
+
+    return null;
+  }
+
   public String getStrClassAssociada() {
 
     return _strClassAssociada;
   }
 
-  private String getstrValor() {
+  @Override
+  public String getStrValor() {
 
     return _strValor;
   }
@@ -40,7 +64,8 @@ public class AtributoCss extends Atributo {
     _strClassAssociada = strClassAssociada;
   }
 
-  private void setstrValor(String strValor) {
+  @Override
+  public void setStrValor(String strValor) {
 
     _strValor = strValor;
   }

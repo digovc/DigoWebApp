@@ -50,11 +50,11 @@ public class Botao extends Tag {
       this.addCss(tagCss.setColor("#333"));
       this.addCss(tagCss.setFloat("right"));
       this.addCss(tagCss.setFontNegrito());
+      this.addCss(tagCss.setMarginLeft(5));
       this.addCss(tagCss.setPaddingBottom(7));
       this.addCss(tagCss.setPaddingLeft(25));
       this.addCss(tagCss.setPaddingRight(25));
       this.addCss(tagCss.setPaddingTop(7));
-      this.addCss(tagCss.setMarginLeft(5));
     }
     catch (Exception ex) {
 

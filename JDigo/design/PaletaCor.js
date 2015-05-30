@@ -14,44 +14,44 @@ function PaletaCor(strNome) {
 
   var _this = this;
 
-  var _strCorControleClicado = "";
+  var _corControleClicado = null;
 
-  this.getStrCorControleClicado = function() {
-    return _strCorControleClicado;
+  this.getCorControleClicado = function() {
+    return _corControleClicado;
   }
 
-  this.setStrCorControleClicado = function(strCorControleClicado) {
-    _strCorControleClicado = strCorControleClicado;
+  this.setCorControleClicado = function(corControleClicado) {
+    _corControleClicado = corControleClicado;
   }
 
-  var _strCorControleMouse = "";
+  var _corControleMouse = "";
 
-  this.getStrCorControleMouse = function() {
-    return _strCorControleMouse;
+  this.getCorControleMouse = function() {
+    return _corControleMouse;
   }
 
-  this.setStrCorControleMouse = function(strCorControleMouse) {
-    _strCorControleMouse = strCorControleMouse;
+  this.setCorControleMouse = function(corControleMouse) {
+    _corControleMouse = corControleMouse;
   }
 
-  var _strCorControleNormal = "";
+  var _corControleNormal = "";
 
-  this.getStrCorControleNormal = function() {
-    return _strCorControleNormal;
+  this.getCorControleNormal = function() {
+    return _corControleNormal;
   }
 
-  this.setStrCorControleNormal = function(strCorControleNormal) {
-    _strCorControleNormal = strCorControleNormal;
+  this.setCorControleNormal = function(corControleNormal) {
+    _corControleNormal = corControleNormal;
   }
 
-  var _strCorFundo = "";
+  var _corFundo = "";
 
-  this.getStrCorFundo = function() {
-    return _strCorFundo;
+  this.getCorFundo = function() {
+    return _corFundo;
   }
 
-  this.setStrCorFundo = function(strCorFundo) {
-    _strCorFundo = strCorFundo;
+  this.setCorFundo = function(corFundo) {
+    _corFundo = corFundo;
   }
 
   // FIM ATRIBUTO
@@ -62,19 +62,14 @@ function PaletaCor(strNome) {
   /* Construtor */
   {
 
-
     try {
 
-
       _this.setStrNome(strNome);
-      appWeb.getArrObjPaletaCor()[appWeb.getArrObjPaletaCor().length] = this;
 
+      appWeb.getArrObjPaletaCor()[appWeb.getArrObjPaletaCor().length] = _this;
 
     } catch (e) {
       new Erro("Erro inesperado.", e);
     }
   }
-
 }
-// INICIALIZAÇÃO
-// FIM INICIALIZAÇÃO

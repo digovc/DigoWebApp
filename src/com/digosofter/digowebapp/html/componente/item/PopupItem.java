@@ -110,7 +110,7 @@ public class PopupItem extends ItemMain {
 
     try {
 
-      this.addCss(tagCss.setBorderBottom(1, AppWeb.getI().getObjPaletaCor().getStrCorBorda()));
+      this.addCss(tagCss.setBorderBottom(1, AppWeb.getI().getObjPaletaCor().getCorBorda()));
       this.addCss(tagCss.setCursor("pointer"));
       this.addCss(tagCss.setPadding(10, "px"));
     }

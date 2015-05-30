@@ -61,6 +61,7 @@ public abstract class DataBaseWeb extends DataBase {
     }
   }
 
+  @Override
   public boolean execSqlGetBoo(String sql) {
 
     String str;

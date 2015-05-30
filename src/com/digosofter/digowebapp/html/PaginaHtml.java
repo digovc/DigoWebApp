@@ -14,7 +14,6 @@ import com.digosofter.digowebapp.html.componente.Mensagem;
 
 public class PaginaHtml extends Objeto {
 
-  private static CssTag _cssMain;
   private static PaginaHtml i;
 
   public static final String JS_APP_WEB = "res/js/lib/JDigo/AppWeb.js";
@@ -54,7 +53,6 @@ public class PaginaHtml extends Objeto {
   }
 
   private boolean _booPagSimples;
-  private CssTag _cssImp;
   private List<CssTag> _lstTagCss;
   private List<CssTag> _lstTagCssOrdenado;
   private List<JavaScriptTag> _lstTagJs;
@@ -263,52 +261,6 @@ public class PaginaHtml extends Objeto {
   private boolean getBooPagSimples() {
 
     return _booPagSimples;
-  }
-
-  protected CssTag getCssImp() {
-
-    try {
-
-      if (_cssImp != null) {
-
-        return _cssImp;
-      }
-
-      _cssImp = new CssTag();
-
-      _cssImp.setStrId("cssImp");
-      _cssImp.addAtr("media", "print");
-    }
-    catch (Exception ex) {
-
-      new Erro("Erro inesperado.\n", ex);
-    }
-    finally {
-    }
-
-    return _cssImp;
-  }
-
-  protected CssTag getCssMain() {
-
-    try {
-
-      if (_cssMain != null) {
-
-        return _cssMain;
-      }
-
-      _cssMain = CssTag.getIMain();
-      _cssMain.setStrId("cssMain");
-    }
-    catch (Exception ex) {
-
-      new Erro("Erro inesperado.\n", ex);
-    }
-    finally {
-    }
-
-    return _cssMain;
   }
 
   public List<CssTag> getLstTagCss() {
@@ -711,8 +663,9 @@ public class PaginaHtml extends Objeto {
       this.getTagTitle().setTagPai(this.getTagHead());
       this.getTagMeta().setTagPai(this.getTagHead());
       this.getTagIcon().setTagPai(this.getTagHead());
-      this.getCssMain().setTagPai(this.getTagHead());
-      this.getCssImp().setTagPai(this.getTagHead());
+
+      CssTag.getIMain().setTagPai(this.getTagHead());
+      CssTag.getIImpr().setTagPai(this.getTagHead());
     }
     catch (Exception ex) {
 

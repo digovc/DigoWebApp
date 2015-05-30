@@ -50,6 +50,20 @@ public class Tag extends Objeto {
     }
   }
 
+  public void addAtr(String strNome) {
+
+    try {
+
+      this.getLstAtr().add(new Atributo(strNome));
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+    }
+    finally {
+    }
+  }
+
   public void addAtr(String strNome, int intValor) {
 
     try {

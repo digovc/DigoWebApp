@@ -8,6 +8,7 @@ import com.digosofter.digojava.erro.Erro;
 
 public class CssTag extends Tag {
 
+  private static CssTag _iImp;
   private static CssTag _iMain;
 
   public static final String CSS_BORDER_TIPO_SOLID = "solid";
@@ -63,10 +64,36 @@ public class CssTag extends Tag {
   public static final String CSS_TEXT_ALIGN_CENTRO = "center";
   public static final String CSS_TEXT_ALIGN_DIREITA = "right";
   public static final String CSS_TEXT_ALIGN_ESQUERDA = "left";
-
   public static final String CSS_TEXT_DECORATION_NONE = "none";
-
   public static final String CSS_WHITE_SPACE_NOWRAP = "nowrap";
+
+  private static final String STR_CLASS_NOME_SUFIXO = "c";
+  public static final String STR_CSS_IMPRESSAO_ID = "cssImp";
+  public static final String STR_CSS_MAIN_ID = "cssMain";
+
+  public static CssTag getIImpr() {
+
+    try {
+
+      if (_iImp != null) {
+
+        return _iImp;
+      }
+
+      _iImp = new CssTag();
+
+      _iImp.addAtr("media", "print");
+      _iImp.setStrId(CssTag.STR_CSS_IMPRESSAO_ID);
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+    }
+    finally {
+    }
+
+    return _iImp;
+  }
 
   public static CssTag getIMain() {
 
@@ -78,6 +105,8 @@ public class CssTag extends Tag {
       }
 
       _iMain = new CssTag();
+
+      _iMain.setStrId(CssTag.STR_CSS_MAIN_ID);
 
       _iMain.addCssPuro("::-webkit-scrollbar-corner{background-color:rgb(239,239,239)}");
       _iMain.addCssPuro("::-webkit-scrollbar-thumb{background-color:rgb(215, 215, 215);border:1px solid rgb(195,195,195)}");
@@ -93,11 +122,6 @@ public class CssTag extends Tag {
     }
 
     return _iMain;
-  }
-
-  public static void setCssMainInst(CssTag cssMainInst) {
-
-    _iMain = cssMainInst;
   }
 
   private String _cssPuro;
@@ -121,28 +145,41 @@ public class CssTag extends Tag {
     }
   }
 
-  public String addCss(String strCssNome, String strValor) {
-
-    AtributoCss objAtributoCssNovo;
-    String strResultado = Utils.STR_VAZIA;
+  public String addCss(String strNome, String strValor) {
 
     try {
 
-      for (AtributoCss atrCss : this.getLstAtrCss()) {
+      if (Utils.getBooStrVazia(strNome)) {
 
-        if (atrCss.getStrNome().equals(strCssNome) && atrCss.getStrValor().equals(strValor)) {
-
-          return atrCss.getStrClassAssociada();
-        }
+        return null;
       }
 
-      strResultado = "c" + String.valueOf(this.getLstAtrCss().size());
+      if (Utils.getBooStrVazia(strValor)) {
 
-      objAtributoCssNovo = new AtributoCss(strCssNome, strValor);
+        return null;
+      }
 
-      objAtributoCssNovo.setStrClassAssociada(strResultado);
+      for (AtributoCss atrCss2 : this.getLstAtrCss()) {
 
-      this.getLstAtrCss().add(objAtributoCssNovo);
+        if (atrCss2 == null) {
+
+          continue;
+        }
+
+        if (!atrCss2.getStrNome().equals(strNome)) {
+
+          continue;
+        }
+
+        if (!atrCss2.getStrValor().equals(strValor)) {
+
+          continue;
+        }
+
+        return atrCss2.getStrClassAssociada();
+      }
+
+      return this.addCssNovo(strNome, strValor);
     }
     catch (Exception ex) {
 
@@ -151,7 +188,44 @@ public class CssTag extends Tag {
     finally {
     }
 
-    return strResultado;
+    return null;
+  }
+
+  private String addCssNovo(String strNome, String strValor) {
+
+    AtributoCss atrCss;
+    String strResultado;
+
+    try {
+
+      if (Utils.getBooStrVazia(strNome)) {
+
+        return null;
+      }
+
+      if (Utils.getBooStrVazia(strValor)) {
+
+        return null;
+      }
+
+      strResultado = CssTag.STR_CLASS_NOME_SUFIXO + String.valueOf(this.getLstAtrCss().size());
+
+      atrCss = new AtributoCss(strNome, strValor);
+
+      atrCss.setStrClassAssociada(strResultado);
+
+      this.getLstAtrCss().add(atrCss);
+
+      return strResultado;
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+    }
+    finally {
+    }
+
+    return null;
   }
 
   private void addCssPuro(String css) {
@@ -198,12 +272,12 @@ public class CssTag extends Tag {
 
     try {
 
-      this.setStrConteudo(Utils.STR_VAZIA);
-
       if (_lstAtrCss != null) {
 
         return _lstAtrCss;
       }
+
+      this.setStrConteudo(Utils.STR_VAZIA);
 
       _lstAtrCss = new ArrayList<AtributoCss>();
     }
@@ -220,8 +294,6 @@ public class CssTag extends Tag {
   @Override
   public String getStrConteudo() {
 
-    String strAttCss;
-
     try {
 
       if (!Utils.getBooStrVazia(_strConteudo)) {
@@ -233,13 +305,12 @@ public class CssTag extends Tag {
 
       for (AtributoCss atrCss : this.getLstAtrCss()) {
 
-        strAttCss = "._class_nome{_att_nome:_att_valor}";
+        if (atrCss == null) {
 
-        strAttCss = strAttCss.replace("_class_nome", atrCss.getStrClassAssociada());
-        strAttCss = strAttCss.replace("_att_nome", atrCss.getStrNome());
-        strAttCss = strAttCss.replace("_att_valor", atrCss.getStrValor());
+          continue;
+        }
 
-        _strConteudo += strAttCss;
+        _strConteudo += atrCss.getStrAtrFormatado();
       }
 
       _strConteudo += this.getCssPuro();
@@ -260,6 +331,8 @@ public class CssTag extends Tag {
     try {
 
       this.verificarCssExterna();
+
+      return super.getStrTagFormatada();
     }
     catch (Exception ex) {
 
@@ -268,16 +341,19 @@ public class CssTag extends Tag {
     finally {
     }
 
-    return super.getStrTagFormatada();
+    return null;
   }
 
-  public String setBackgroundColor(String hexColor) {
-
-    String strResultado = Utils.STR_VAZIA;
+  public String setBackgroundColor(String cor) {
 
     try {
 
-      strResultado = this.addCss("background-color", hexColor);
+      if (Utils.getBooStrVazia(cor)) {
+
+        return null;
+      }
+
+      return this.addCss("background-color", cor);
     }
     catch (Exception ex) {
 
@@ -286,22 +362,31 @@ public class CssTag extends Tag {
     finally {
     }
 
-    return strResultado;
+    return null;
   }
 
-  public String setBackgroundGradiente(String hexColor1, String hexColor2) {
+  public String setBackgroundGradiente(String cor, String cor2) {
 
-    String strResultado = Utils.STR_VAZIA;
     String css;
 
     try {
 
+      if (Utils.getBooStrVazia(cor)) {
+
+        return null;
+      }
+
+      if (Utils.getBooStrVazia(cor2)) {
+
+        return null;
+      }
+
       css = "linear-gradient(to bottom,_cor_1,_cor_2)";
 
-      css = css.replace("_cor_1", hexColor1);
-      css = css.replace("_cor_2", hexColor2);
+      css = css.replace("_cor_1", cor);
+      css = css.replace("_cor_2", cor2);
 
-      strResultado = this.addCss("background", css);
+      return this.addCss("background", css);
 
     }
     catch (Exception ex) {
@@ -311,23 +396,24 @@ public class CssTag extends Tag {
     finally {
     }
 
-    return strResultado;
+    return null;
   }
 
-  public String setBackgroundImage(String strSrcImagem) {
+  public String setBackgroundImage(String srcImagem) {
 
-    String strResultado = Utils.STR_VAZIA;
-    StringBuilder stb;
+    String css;
 
     try {
 
-      stb = new StringBuilder();
+      if (Utils.getBooStrVazia(srcImagem)) {
 
-      stb.append("url('");
-      stb.append(strSrcImagem);
-      stb.append("')");
+        return null;
+      }
+      css = "url('_src_imagem')";
 
-      strResultado = this.addCss("background-image", stb.toString());
+      css = css.replace("_src_imagem", srcImagem);
+
+      return this.addCss("background-image", css);
     }
     catch (Exception ex) {
 
@@ -336,21 +422,19 @@ public class CssTag extends Tag {
     finally {
     }
 
-    return strResultado;
+    return null;
   }
 
-  public String setBackgroundRepeat(String strRepeat) {
-
-    String strResultado = Utils.STR_VAZIA;
-    StringBuilder stb;
+  public String setBackgroundRepeat(String css) {
 
     try {
 
-      stb = new StringBuilder();
+      if (Utils.getBooStrVazia(css)) {
 
-      stb.append(strRepeat);
+        return null;
+      }
 
-      strResultado = this.addCss("background-repeat", stb.toString());
+      return this.addCss("background-repeat", css);
     }
     catch (Exception ex) {
 
@@ -359,21 +443,19 @@ public class CssTag extends Tag {
     finally {
     }
 
-    return strResultado;
+    return null;
   }
 
-  public String setBackgroundSize(String strSize) {
-
-    String strResultado = Utils.STR_VAZIA;
-    StringBuilder stb;
+  public String setBackgroundSize(String css) {
 
     try {
 
-      stb = new StringBuilder();
+      if (Utils.getBooStrVazia(css)) {
 
-      stb.append(strSize);
+        return null;
+      }
 
-      strResultado = this.addCss("background-size", stb.toString());
+      return this.addCss("background-size", css);
     }
     catch (Exception ex) {
 
@@ -382,48 +464,27 @@ public class CssTag extends Tag {
     finally {
     }
 
-    return strResultado;
+    return null;
   }
 
   public String setBooCenter() {
 
-    String strResultado = Utils.STR_VAZIA;
-    StringBuilder stb;
-
-    try {
-
-      stb = new StringBuilder();
-
-      stb.append("0 auto");
-
-      strResultado = this.addCss("margin", stb.toString());
-    }
-    catch (Exception ex) {
-
-      new Erro("Erro inesperado.\n", ex);
-    }
-    finally {
-    }
-
-    return strResultado;
+    return this.addCss("margin", "0 auto");
   }
 
-  public String setBorder(int intBorderPx, String strTipo, String hexColor) {
+  public String setBorder(int intBorderPx, String strTipo, String cor) {
 
-    String strResultado = Utils.STR_VAZIA;
-    StringBuilder stb;
+    String css;
 
     try {
 
-      stb = new StringBuilder();
+      css = "_border_pxpx _tipo _cor";
 
-      stb.append(intBorderPx);
-      stb.append("px ");
-      stb.append(strTipo);
-      stb.append(" ");
-      stb.append(hexColor);
+      css = css.replace("_border_px", String.valueOf(intBorderPx));
+      css = css.replace("_tipo", strTipo);
+      css = css.replace("_cor", cor);
 
-      strResultado = this.addCss("border", stb.toString());
+      return this.addCss("border", css);
     }
     catch (Exception ex) {
 
@@ -432,23 +493,20 @@ public class CssTag extends Tag {
     finally {
     }
 
-    return strResultado;
+    return null;
   }
 
-  public String setBorderBottom(int intBorderBottomPx, String hexColor) {
+  public String setBorderBottom(int intBorderBottomPx, String cor) {
 
-    String strResultado = Utils.STR_VAZIA;
-    StringBuilder stb;
+    String css;
 
     try {
 
-      stb = new StringBuilder();
+      css = "_border_bottom_pxpx solid _cor";
+      css = css.replace("_border_bottom_px", String.valueOf(intBorderBottomPx));
+      css = css.replace("_cor", cor);
 
-      stb.append(intBorderBottomPx);
-      stb.append("px solid ");
-      stb.append(hexColor);
-
-      strResultado = this.addCss("border-bottom", stb.toString());
+      return this.addCss("border-bottom", css);
     }
     catch (Exception ex) {
 
@@ -457,23 +515,20 @@ public class CssTag extends Tag {
     finally {
     }
 
-    return strResultado;
+    return null;
   }
 
-  public String setBorderLeft(int intBorderLeftPx, String hexColor) {
+  public String setBorderLeft(int intBorderLeftPx, String cor) {
 
-    String strResultado = Utils.STR_VAZIA;
-    StringBuilder stb;
+    String css;
 
     try {
 
-      stb = new StringBuilder();
+      css = "_border_left_pxpx solid _cor";
+      css = css.replace("_border_left_px", String.valueOf(intBorderLeftPx));
+      css = css.replace("_cor", cor);
 
-      stb.append(intBorderLeftPx);
-      stb.append("px solid ");
-      stb.append(hexColor);
-
-      strResultado = this.addCss("border-left", stb.toString());
+      return this.addCss("border-left", css);
     }
     catch (Exception ex) {
 
@@ -482,28 +537,23 @@ public class CssTag extends Tag {
     finally {
     }
 
-    return strResultado;
+    return null;
   }
 
   public String setBorderRadius(int intTopLeftPx, int intTopRightPx, int intBottomRightPx, int intBottomLeftPx) {
 
-    String strResultado = Utils.STR_VAZIA;
-    StringBuilder stb;
+    String css;
 
     try {
 
-      stb = new StringBuilder();
+      css = "_top_left_pxpx _top_right_pxpx _bottom_right_pxpx _bottom_left_pxpx";
 
-      stb.append(intTopLeftPx);
-      stb.append("px ");
-      stb.append(intTopRightPx);
-      stb.append("px ");
-      stb.append(intBottomRightPx);
-      stb.append("px ");
-      stb.append(intBottomLeftPx);
-      stb.append("px");
+      css = css.replace("_top_left_px", String.valueOf(intTopLeftPx));
+      css = css.replace("_top_right_px", String.valueOf(intTopRightPx));
+      css = css.replace("_bottom_right_px", String.valueOf(intBottomRightPx));
+      css = css.replace("_bottom_left_px", String.valueOf(intBottomLeftPx));
 
-      strResultado = this.addCss("border-radius", stb.toString());
+      return this.addCss("border-radius", css);
     }
     catch (Exception ex) {
 
@@ -512,23 +562,21 @@ public class CssTag extends Tag {
     finally {
     }
 
-    return strResultado;
+    return null;
   }
 
-  public String setBorderRight(int intBorderRightPx, String hexColor) {
+  public String setBorderRight(int intBorderRightPx, String cor) {
 
-    String strResultado = Utils.STR_VAZIA;
-    StringBuilder stb;
+    String css;
 
     try {
 
-      stb = new StringBuilder();
+      css = "_border_tight_pxpx solid _cor";
 
-      stb.append(intBorderRightPx);
-      stb.append("px solid ");
-      stb.append(hexColor);
+      css = css.replace("_border_tight_px", String.valueOf(intBorderRightPx));
+      css = css.replace("_cor", cor);
 
-      strResultado = this.addCss("border-right", stb.toString());
+      return this.addCss("border-right", css);
     }
     catch (Exception ex) {
 
@@ -537,23 +585,21 @@ public class CssTag extends Tag {
     finally {
     }
 
-    return strResultado;
+    return null;
   }
 
-  public String setBorderTop(int intBorderTopPx, String hexColor) {
+  public String setBorderTop(int intBorderTopPx, String cor) {
 
-    String strResultado = Utils.STR_VAZIA;
-    StringBuilder stb;
+    String css;
 
     try {
 
-      stb = new StringBuilder();
+      css = "_border_top_pxpx solid _cor";
 
-      stb.append(intBorderTopPx);
-      stb.append("px solid ");
-      stb.append(hexColor);
+      css = css.replace("_border_top_px", String.valueOf(intBorderTopPx));
+      css = css.replace("_cor", cor);
 
-      strResultado = this.addCss("border-top", stb.toString());
+      return this.addCss("border-top", css);
     }
     catch (Exception ex) {
 
@@ -562,22 +608,19 @@ public class CssTag extends Tag {
     finally {
     }
 
-    return strResultado;
+    return null;
   }
 
   public String setBottom(int intBottom) {
 
-    String strResultado = Utils.STR_VAZIA;
-    StringBuilder stb;
+    String css;
 
     try {
 
-      stb = new StringBuilder();
+      css = "_bottompx";
+      css = css.replace("_bottom", String.valueOf(intBottom));
 
-      stb.append(intBottom);
-      stb.append("px");
-
-      strResultado = this.addCss("bottom", stb.toString());
+      return this.addCss("bottom", css);
     }
     catch (Exception ex) {
 
@@ -586,29 +629,24 @@ public class CssTag extends Tag {
     finally {
     }
 
-    return strResultado;
+    return null;
   }
 
-  public String setBoxShadow(int intHorizontal, int intVertical, int intBlur, int intSpread, String hexColor) {
+  public String setBoxShadow(int intHorizontal, int intVertical, int intBlur, int intSpread, String cor) {
 
-    String strResultado = Utils.STR_VAZIA;
-    StringBuilder stb;
+    String css;
 
     try {
 
-      stb = new StringBuilder();
+      css = "_horizontal_pxpx _vertical_pxpx _blur_pxpx _spread_pxpx _cor";
 
-      stb.append(intHorizontal);
-      stb.append("px ");
-      stb.append(intVertical);
-      stb.append("px ");
-      stb.append(intBlur);
-      stb.append("px ");
-      stb.append(intSpread);
-      stb.append("px ");
-      stb.append(hexColor);
+      css = css.replace("_horizontal_px", String.valueOf(intHorizontal));
+      css = css.replace("_vertical_px", String.valueOf(intVertical));
+      css = css.replace("_blur_px", String.valueOf(intBlur));
+      css = css.replace("_spread_px", String.valueOf(intSpread));
+      css = css.replace("_cor", cor);
 
-      strResultado = this.addCss("box-shadow", stb.toString());
+      return this.addCss("box-shadow", css);
     }
     catch (Exception ex) {
 
@@ -617,34 +655,24 @@ public class CssTag extends Tag {
     finally {
     }
 
-    return strResultado;
+    return null;
   }
 
   public String setClearBoth() {
 
-    String strResultado = Utils.STR_VAZIA;
-
-    try {
-
-      strResultado = this.addCss("clear", "both");
-    }
-    catch (Exception ex) {
-
-      new Erro("Erro inesperado.\n", ex);
-    }
-    finally {
-    }
-
-    return strResultado;
+    return this.addCss("clear", "both");
   }
 
-  public String setColor(String hexColor) {
-
-    String strResultado = Utils.STR_VAZIA;
+  public String setColor(String cor) {
 
     try {
 
-      strResultado = this.addCss("color", hexColor);
+      if (Utils.getBooStrVazia(cor)) {
+
+        return null;
+      }
+
+      return this.addCss("color", cor);
     }
     catch (Exception ex) {
 
@@ -653,7 +681,7 @@ public class CssTag extends Tag {
     finally {
     }
 
-    return strResultado;
+    return null;
   }
 
   /**
@@ -663,6 +691,7 @@ public class CssTag extends Tag {
   @Override
   protected void setCss(CssTag tagCss) {
 
+    // Fazer nada.
   }
 
   private void setCssPuro(String cssPuro) {
@@ -672,11 +701,14 @@ public class CssTag extends Tag {
 
   public String setCursor(String strCursor) {
 
-    String strResultado = Utils.STR_VAZIA;
-
     try {
 
-      strResultado = this.addCss("cursor", strCursor);
+      if (Utils.getBooStrVazia(strCursor)) {
+
+        return null;
+      }
+
+      return this.addCss("cursor", strCursor);
     }
     catch (Exception ex) {
 
@@ -685,21 +717,19 @@ public class CssTag extends Tag {
     finally {
     }
 
-    return strResultado;
+    return null;
   }
 
   public String setDisplay(String strDisplay) {
 
-    String strResultado = Utils.STR_VAZIA;
-    StringBuilder stb;
-
     try {
 
-      stb = new StringBuilder();
+      if (Utils.getBooStrVazia(strDisplay)) {
 
-      stb.append(strDisplay);
+        return null;
+      }
 
-      strResultado = this.addCss("display", stb.toString());
+      return this.addCss("display", strDisplay);
     }
     catch (Exception ex) {
 
@@ -708,21 +738,19 @@ public class CssTag extends Tag {
     finally {
     }
 
-    return strResultado;
+    return null;
   }
 
   public String setFloat(String strFloat) {
 
-    String strResultado = Utils.STR_VAZIA;
-    StringBuilder stb;
-
     try {
 
-      stb = new StringBuilder();
+      if (Utils.getBooStrVazia(strFloat)) {
 
-      stb.append(strFloat);
+        return null;
+      }
 
-      strResultado = this.addCss("float", stb.toString());
+      return this.addCss("float", strFloat);
     }
     catch (Exception ex) {
 
@@ -731,21 +759,19 @@ public class CssTag extends Tag {
     finally {
     }
 
-    return strResultado;
+    return null;
   }
 
   public String setFontFamily(String strFontFamily) {
 
-    String strResultado = Utils.STR_VAZIA;
-    StringBuilder stb;
-
     try {
 
-      stb = new StringBuilder();
+      if (Utils.getBooStrVazia(strFontFamily)) {
 
-      stb.append(strFontFamily);
+        return null;
+      }
 
-      strResultado = this.addCss("font-family", stb.toString());
+      return this.addCss("font-family", strFontFamily);
     }
     catch (Exception ex) {
 
@@ -754,40 +780,26 @@ public class CssTag extends Tag {
     finally {
     }
 
-    return strResultado;
+    return null;
   }
 
   public String setFontNegrito() {
 
-    String strResultado = Utils.STR_VAZIA;
-
-    try {
-
-      strResultado = this.addCss("font-weight", "bold");
-    }
-    catch (Exception ex) {
-
-      new Erro("Erro inesperado.\n", ex);
-    }
-    finally {
-    }
-
-    return strResultado;
+    return this.addCss("font-weight", "bold");
   }
 
   public String setFontSize(double dblFontSize, String strGrandeza) {
 
-    String strResultado = Utils.STR_VAZIA;
-    StringBuilder stb;
+    String css;
 
     try {
 
-      stb = new StringBuilder();
+      css = "_font_size_font_grandeza";
 
-      stb.append(dblFontSize);
-      stb.append(strGrandeza);
+      css = css.replace("_font_size", String.valueOf(dblFontSize));
+      css = css.replace("_font_grandeza", strGrandeza);
 
-      strResultado = this.addCss("font-size", stb.toString());
+      return this.addCss("font-size", css);
     }
     catch (Exception ex) {
 
@@ -796,21 +808,19 @@ public class CssTag extends Tag {
     finally {
     }
 
-    return strResultado;
+    return null;
   }
 
   public String setFontStyle(String strFontStyle) {
 
-    String strResultado = Utils.STR_VAZIA;
-    StringBuilder stb;
-
     try {
 
-      stb = new StringBuilder();
+      if (Utils.getBooStrVazia(strFontStyle)) {
 
-      stb.append(strFontStyle);
+        return null;
+      }
 
-      strResultado = this.addCss("font-style", stb.toString());
+      return this.addCss("font-style", strFontStyle);
     }
     catch (Exception ex) {
 
@@ -819,22 +829,21 @@ public class CssTag extends Tag {
     finally {
     }
 
-    return strResultado;
+    return null;
   }
 
   public String setHeight(double dblHeight, String strGrandeza) {
 
-    String strResultado = Utils.STR_VAZIA;
-    StringBuilder stb;
+    String css;
 
     try {
 
-      stb = new StringBuilder();
+      css = "_height_grandeza";
 
-      stb.append(dblHeight);
-      stb.append(strGrandeza);
+      css = css.replace("_height", String.valueOf(dblHeight));
+      css = css.replace("_grandeza", strGrandeza);
 
-      strResultado = this.addCss("height", stb.toString());
+      return this.addCss("height", css);
     }
     catch (Exception ex) {
 
@@ -843,22 +852,14 @@ public class CssTag extends Tag {
     finally {
     }
 
-    return strResultado;
+    return null;
   }
 
   public String setLeft(int intLeft) {
 
-    String strResultado = Utils.STR_VAZIA;
-    StringBuilder stb;
-
     try {
 
-      stb = new StringBuilder();
-
-      stb.append(intLeft);
-      stb.append("px");
-
-      strResultado = this.addCss("left", stb.toString());
+      return this.addCss("left", String.valueOf(intLeft));
     }
     catch (Exception ex) {
 
@@ -867,7 +868,7 @@ public class CssTag extends Tag {
     finally {
     }
 
-    return strResultado;
+    return null;
   }
 
   protected void setLstAtrCss(List<AtributoCss> lstAtrCss) {
@@ -877,17 +878,16 @@ public class CssTag extends Tag {
 
   public String setMargin(int intMargin, String strGrandeza) {
 
-    String strResultado = Utils.STR_VAZIA;
-    StringBuilder stb;
+    String css;
 
     try {
 
-      stb = new StringBuilder();
+      css = "_margin_grandeza";
 
-      stb.append(intMargin);
-      stb.append(strGrandeza);
+      css = css.replace("_margin", String.valueOf(intMargin));
+      css = css.replace("_grandeza", strGrandeza);
 
-      strResultado = this.addCss("margin", stb.toString());
+      return this.addCss("margin", css);
     }
     catch (Exception ex) {
 
@@ -896,22 +896,19 @@ public class CssTag extends Tag {
     finally {
     }
 
-    return strResultado;
+    return null;
   }
 
   public String setMarginBottom(int intMarginBottomPx) {
 
-    String strResultado = Utils.STR_VAZIA;
-    StringBuilder stb;
+    String css;
 
     try {
 
-      stb = new StringBuilder();
+      css = "_margin_bottom_pxpx";
+      css = css.replace("_margin_bottom_px", String.valueOf(intMarginBottomPx));
 
-      stb.append(intMarginBottomPx);
-      stb.append("px");
-
-      strResultado = this.addCss("margin-bottom", stb.toString());
+      return this.addCss("margin-bottom", css);
     }
     catch (Exception ex) {
 
@@ -920,22 +917,19 @@ public class CssTag extends Tag {
     finally {
     }
 
-    return strResultado;
+    return null;
   }
 
   public String setMarginLeft(int intMarginLeftPx) {
 
-    String strResultado = Utils.STR_VAZIA;
-    StringBuilder stb;
+    String css;
 
     try {
 
-      stb = new StringBuilder();
+      css = "_margin_left_pxpx";
+      css = css.replace("_margin_left_px", String.valueOf(intMarginLeftPx));
 
-      stb.append(intMarginLeftPx);
-      stb.append("px");
-
-      strResultado = this.addCss("margin-left", stb.toString());
+      return this.addCss("margin-left", css);
     }
     catch (Exception ex) {
 
@@ -944,22 +938,19 @@ public class CssTag extends Tag {
     finally {
     }
 
-    return strResultado;
+    return null;
   }
 
   public String setMarginRight(int intMarginRightPx) {
 
-    String strResultado = Utils.STR_VAZIA;
-    StringBuilder stb;
+    String css;
 
     try {
 
-      stb = new StringBuilder();
+      css = "_margin_right_pxpx";
+      css = css.replace("_margin_right_px", String.valueOf(intMarginRightPx));
 
-      stb.append(intMarginRightPx);
-      stb.append("px");
-
-      strResultado = this.addCss("margin-right", stb.toString());
+      return this.addCss("margin-right", css);
     }
     catch (Exception ex) {
 
@@ -968,22 +959,19 @@ public class CssTag extends Tag {
     finally {
     }
 
-    return strResultado;
+    return null;
   }
 
   public String setMarginTop(int intMarginTopPx) {
 
-    String strResultado = Utils.STR_VAZIA;
-    StringBuilder stb;
+    String css;
 
     try {
 
-      stb = new StringBuilder();
+      css = "_margin_top_pxpx";
+      css = css.replace("_margin_top_px", String.valueOf(intMarginTopPx));
 
-      stb.append(intMarginTopPx);
-      stb.append("px");
-
-      strResultado = this.addCss("margin-top", stb.toString());
+      return this.addCss("margin-top", css);
     }
     catch (Exception ex) {
 
@@ -992,22 +980,19 @@ public class CssTag extends Tag {
     finally {
     }
 
-    return strResultado;
+    return null;
   }
 
   public String setMinHeight(double dblMinHeight) {
 
-    String strResultado = Utils.STR_VAZIA;
-    StringBuilder stb;
+    String css;
 
     try {
 
-      stb = new StringBuilder();
+      css = "_min_height_pxpx";
+      css = css.replace("_min_height_px", String.valueOf(dblMinHeight));
 
-      stb.append(dblMinHeight);
-      stb.append("px");
-
-      strResultado = this.addCss("min-height", stb.toString());
+      return this.addCss("min-height", css);
     }
     catch (Exception ex) {
 
@@ -1016,22 +1001,19 @@ public class CssTag extends Tag {
     finally {
     }
 
-    return strResultado;
+    return null;
   }
 
   public String setMinWidth(double dblMinWidth) {
 
-    String strResultado = Utils.STR_VAZIA;
-    StringBuilder stb;
+    String css;
 
     try {
 
-      stb = new StringBuilder();
+      css = "_min_width_pxpx";
+      css = css.replace("_min_width_px", String.valueOf(dblMinWidth));
 
-      stb.append(dblMinWidth);
-      stb.append("px");
-
-      strResultado = this.addCss("min-width", stb.toString());
+      return this.addCss("min-width", css);
     }
     catch (Exception ex) {
 
@@ -1040,21 +1022,14 @@ public class CssTag extends Tag {
     finally {
     }
 
-    return strResultado;
+    return null;
   }
 
   public String setOpacity(double dblOpacity) {
 
-    String strResultado = Utils.STR_VAZIA;
-    StringBuilder stb;
-
     try {
 
-      stb = new StringBuilder();
-
-      stb.append(dblOpacity);
-
-      strResultado = this.addCss("opacity", stb.toString());
+      return this.addCss("opacity", String.valueOf(dblOpacity));
     }
     catch (Exception ex) {
 
@@ -1063,21 +1038,19 @@ public class CssTag extends Tag {
     finally {
     }
 
-    return strResultado;
+    return null;
   }
 
   public String setOverflow(String strOverflowPx) {
 
-    String strResultado = Utils.STR_VAZIA;
-    StringBuilder stb;
-
     try {
 
-      stb = new StringBuilder();
+      if (Utils.getBooStrVazia(strOverflowPx)) {
 
-      stb.append(strOverflowPx);
+        return null;
+      }
 
-      strResultado = this.addCss("overflow", stb.toString());
+      return this.addCss("overflow", strOverflowPx);
     }
     catch (Exception ex) {
 
@@ -1086,21 +1059,19 @@ public class CssTag extends Tag {
     finally {
     }
 
-    return strResultado;
+    return null;
   }
 
   public String setOverflowX(String strOverflowPx) {
 
-    String strResultado = Utils.STR_VAZIA;
-    StringBuilder stb;
-
     try {
 
-      stb = new StringBuilder();
+      if (Utils.getBooStrVazia(strOverflowPx)) {
 
-      stb.append(strOverflowPx);
+        return null;
+      }
 
-      strResultado = this.addCss("overflow-x", stb.toString());
+      return this.addCss("overflow-x", strOverflowPx);
     }
     catch (Exception ex) {
 
@@ -1109,21 +1080,19 @@ public class CssTag extends Tag {
     finally {
     }
 
-    return strResultado;
+    return null;
   }
 
   public String setOverflowY(String strOverflowPx) {
 
-    String strResultado = Utils.STR_VAZIA;
-    StringBuilder stb;
-
     try {
 
-      stb = new StringBuilder();
+      if (Utils.getBooStrVazia(strOverflowPx)) {
 
-      stb.append(strOverflowPx);
+        return null;
+      }
 
-      strResultado = this.addCss("overflow-y", stb.toString());
+      return this.addCss("overflow-y", strOverflowPx);
     }
     catch (Exception ex) {
 
@@ -1132,22 +1101,21 @@ public class CssTag extends Tag {
     finally {
     }
 
-    return strResultado;
+    return null;
   }
 
   public String setPadding(int intPadding, String strGrandeza) {
 
-    String strResultado = Utils.STR_VAZIA;
-    StringBuilder stb;
+    String css;
 
     try {
 
-      stb = new StringBuilder();
+      css = "_padding_grandeza";
 
-      stb.append(intPadding);
-      stb.append(strGrandeza);
+      css = css.replace("_padding", String.valueOf(intPadding));
+      css = css.replace("_grandeza", strGrandeza);
 
-      strResultado = this.addCss("padding", stb.toString());
+      return this.addCss("padding", css);
     }
     catch (Exception ex) {
 
@@ -1156,22 +1124,19 @@ public class CssTag extends Tag {
     finally {
     }
 
-    return strResultado;
+    return null;
   }
 
   public String setPaddingBottom(int intPaddingBottomPx) {
 
-    String strResultado = Utils.STR_VAZIA;
-    StringBuilder stb;
+    String css;
 
     try {
 
-      stb = new StringBuilder();
+      css = "_padding_bottom_pxpx";
+      css = css.replace("_padding_bottom_px", String.valueOf(intPaddingBottomPx));
 
-      stb.append(intPaddingBottomPx);
-      stb.append("px");
-
-      strResultado = this.addCss("padding-bottom", stb.toString());
+      return this.addCss("padding-bottom", css);
     }
     catch (Exception ex) {
 
@@ -1180,22 +1145,19 @@ public class CssTag extends Tag {
     finally {
     }
 
-    return strResultado;
+    return null;
   }
 
   public String setPaddingLeft(int intPaddingLeftPx) {
 
-    String strResultado = Utils.STR_VAZIA;
-    StringBuilder stb;
+    String css;
 
     try {
 
-      stb = new StringBuilder();
+      css = "_padding_left_pxpx";
+      css = css.replace("_padding_left_px", String.valueOf(intPaddingLeftPx));
 
-      stb.append(intPaddingLeftPx);
-      stb.append("px");
-
-      strResultado = this.addCss("padding-left", stb.toString());
+      return this.addCss("padding-left", css);
     }
     catch (Exception ex) {
 
@@ -1204,22 +1166,19 @@ public class CssTag extends Tag {
     finally {
     }
 
-    return strResultado;
+    return null;
   }
 
   public String setPaddingRight(int intPaddingRightPx) {
 
-    String strResultado = Utils.STR_VAZIA;
-    StringBuilder stb;
+    String css;
 
     try {
 
-      stb = new StringBuilder();
+      css = "_padding_right_pxpx";
+      css = css.replace("_padding_right_px", String.valueOf(intPaddingRightPx));
 
-      stb.append(intPaddingRightPx);
-      stb.append("px");
-
-      strResultado = this.addCss("padding-right", stb.toString());
+      return this.addCss("padding-right", css);
     }
     catch (Exception ex) {
 
@@ -1228,22 +1187,19 @@ public class CssTag extends Tag {
     finally {
     }
 
-    return strResultado;
+    return null;
   }
 
   public String setPaddingTop(int intPaddingTopPx) {
 
-    String strResultado = Utils.STR_VAZIA;
-    StringBuilder stb;
+    String css;
 
     try {
 
-      stb = new StringBuilder();
+      css = "_padding_top_pxpx";
+      css = css.replace("_padding_top_px", String.valueOf(intPaddingTopPx));
 
-      stb.append(intPaddingTopPx);
-      stb.append("px");
-
-      strResultado = this.addCss("padding-top", stb.toString());
+      return this.addCss("padding-top", css);
     }
     catch (Exception ex) {
 
@@ -1252,21 +1208,19 @@ public class CssTag extends Tag {
     finally {
     }
 
-    return strResultado;
+    return null;
   }
 
   public String setPosition(String strPosition) {
 
-    String strResultado = Utils.STR_VAZIA;
-    StringBuilder stb;
-
     try {
 
-      stb = new StringBuilder();
+      if (Utils.getBooStrVazia(strPosition)) {
 
-      stb.append(strPosition);
+        return null;
+      }
 
-      strResultado = this.addCss("position", stb.toString());
+      return this.addCss("position", strPosition);
     }
     catch (Exception ex) {
 
@@ -1275,22 +1229,19 @@ public class CssTag extends Tag {
     finally {
     }
 
-    return strResultado;
+    return null;
   }
 
   public String setRight(int intRight) {
 
-    String strResultado = Utils.STR_VAZIA;
-    StringBuilder stb;
+    String css;
 
     try {
 
-      stb = new StringBuilder();
+      css = "_right_pxpx";
+      css = css.replace("_right_px", String.valueOf(intRight));
 
-      stb.append(intRight);
-      stb.append("px");
-
-      strResultado = this.addCss("right", stb.toString());
+      return this.addCss("right", css);
     }
     catch (Exception ex) {
 
@@ -1299,7 +1250,7 @@ public class CssTag extends Tag {
     finally {
     }
 
-    return strResultado;
+    return null;
   }
 
   @Override
@@ -1310,16 +1261,9 @@ public class CssTag extends Tag {
 
   public String setTextAlign(String strTextAlign) {
 
-    String strResultado = Utils.STR_VAZIA;
-    StringBuilder stb;
-
     try {
 
-      stb = new StringBuilder();
-
-      stb.append(strTextAlign);
-
-      strResultado = this.addCss("text-align", stb.toString());
+      return this.addCss("text-align", strTextAlign);
     }
     catch (Exception ex) {
 
@@ -1328,21 +1272,19 @@ public class CssTag extends Tag {
     finally {
     }
 
-    return strResultado;
+    return null;
   }
 
   public String setTextDecoration(String strTextDecoration) {
 
-    String strResultado = Utils.STR_VAZIA;
-    StringBuilder stb;
-
     try {
 
-      stb = new StringBuilder();
+      if (Utils.getBooStrVazia(strTextDecoration)) {
 
-      stb.append(strTextDecoration);
+        return null;
+      }
 
-      strResultado = this.addCss("text-decoration", stb.toString());
+      return this.addCss("text-decoration", strTextDecoration);
     }
     catch (Exception ex) {
 
@@ -1351,27 +1293,23 @@ public class CssTag extends Tag {
     finally {
     }
 
-    return strResultado;
+    return null;
   }
 
-  public String setTextShadow(int intX, int intY, int intBlur, String strColor) {
+  public String setTextShadow(int intX, int intY, int intBlur, String cor) {
 
-    String strResultado = Utils.STR_VAZIA;
-    StringBuilder stb;
+    String css;
 
     try {
 
-      stb = new StringBuilder();
+      css = "_x_pxpx _y_pxpx _blur_pxpx _cor";
 
-      stb.append(intX);
-      stb.append("px ");
-      stb.append(intY);
-      stb.append("px ");
-      stb.append(intBlur);
-      stb.append("px ");
-      stb.append(strColor);
+      css = css.replace("_x_px", String.valueOf(intX));
+      css = css.replace("_y_px", String.valueOf(intY));
+      css = css.replace("_blur_px", String.valueOf(intBlur));
+      css = css.replace("_cor", cor);
 
-      strResultado = this.addCss("text-shadow", stb.toString());
+      return this.addCss("text-shadow", css);
     }
     catch (Exception ex) {
 
@@ -1380,22 +1318,20 @@ public class CssTag extends Tag {
     finally {
     }
 
-    return strResultado;
+    return null;
   }
 
   public String setTop(int intTop) {
 
-    String strResultado = Utils.STR_VAZIA;
-    StringBuilder stb;
+    String css;
 
     try {
 
-      stb = new StringBuilder();
+      css = "_top_pxpx";
 
-      stb.append(intTop);
-      stb.append("px");
+      css = css.replace("_top_px", String.valueOf(intTop));
 
-      strResultado = this.addCss("top", stb.toString());
+      return this.addCss("top", css);
     }
     catch (Exception ex) {
 
@@ -1404,16 +1340,19 @@ public class CssTag extends Tag {
     finally {
     }
 
-    return strResultado;
+    return null;
   }
 
   public String setWhiteSpace(String strWhiteSpace) {
 
-    String strResultado = Utils.STR_VAZIA;
-
     try {
 
-      strResultado = this.addCss("white-space", strWhiteSpace);
+      if (Utils.getBooStrVazia(strWhiteSpace)) {
+
+        return null;
+      }
+
+      return this.addCss("white-space", strWhiteSpace);
     }
     catch (Exception ex) {
 
@@ -1422,22 +1361,21 @@ public class CssTag extends Tag {
     finally {
     }
 
-    return strResultado;
+    return null;
   }
 
   public String setWidth(double dblWidth, String strGrandeza) {
 
-    String strResultado = Utils.STR_VAZIA;
-    StringBuilder stb;
+    String css;
 
     try {
 
-      stb = new StringBuilder();
+      css = "_width_grandeza";
 
-      stb.append(dblWidth);
-      stb.append(strGrandeza);
+      css = css.replace("_width", String.valueOf(dblWidth));
+      css = css.replace("_grandeza", strGrandeza);
 
-      strResultado = this.addCss("width", stb.toString());
+      return this.addCss("width", css);
     }
     catch (Exception ex) {
 
@@ -1446,42 +1384,24 @@ public class CssTag extends Tag {
     finally {
     }
 
-    return strResultado;
+    return null;
   }
 
   public String setZ(int intZ) {
 
-    String strResultado = Utils.STR_VAZIA;
-    StringBuilder stb;
-
-    try {
-
-      stb = new StringBuilder();
-
-      stb.append(intZ);
-
-      strResultado = this.addCss("z-index", stb.toString());
-    }
-    catch (Exception ex) {
-
-      new Erro("Erro inesperado.\n", ex);
-    }
-    finally {
-    }
-
-    return strResultado;
+    return this.addCss("z-index", String.valueOf(intZ));
   }
 
   private void verificarCssExterna() {
 
     try {
 
-      if ("cssMain".equals(this.getStrId())) {
+      if (CssTag.STR_CSS_MAIN_ID.equals(this.getStrId())) {
 
         return;
       }
 
-      if ("cssImp".equals(this.getStrId())) {
+      if (CssTag.STR_CSS_IMPRESSAO_ID.equals(this.getStrId())) {
 
         return;
       }

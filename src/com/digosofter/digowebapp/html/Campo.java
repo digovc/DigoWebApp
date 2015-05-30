@@ -158,12 +158,13 @@ public class Campo extends Tag {
       }
 
       switch (this.getStrValor().toLowerCase()) {
+
+        case "1":
         case "s":
         case "sim":
-        case "1":
-        case "true":
         case "t":
-          this.addAtr("checked", "");
+        case "true":
+          this.addAtr("checked");
           break;
       }
     }
@@ -183,7 +184,7 @@ public class Campo extends Tag {
 
       if (_booDisabled) {
 
-        this.addAtr("disabled", "");
+        this.addAtr("disabled");
       }
     }
     catch (Exception ex) {
@@ -337,10 +338,12 @@ public class Campo extends Tag {
 
       _strId = this.getStrId();
 
-      if (this.getEnmTipo() != EnmTipo.RADIO) {
+      if (EnmTipo.RADIO.equals(this.getEnmTipo())) {
 
-        this.getLstAtr().add(new Atributo("name", _strId));
+        return;
       }
+
+      this.getLstAtr().add(new Atributo("name", _strId));
     }
     catch (Exception ex) {
 

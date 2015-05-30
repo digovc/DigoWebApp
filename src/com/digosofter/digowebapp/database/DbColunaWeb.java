@@ -1,7 +1,6 @@
 package com.digosofter.digowebapp.database;
 
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Map.Entry;
 
 import com.digosofter.digojava.database.DbColuna;
@@ -45,6 +44,37 @@ public class DbColunaWeb extends DbColuna {
     }
   }
 
+  private void carregarComboboxClnRef(Combobox cmb) {
+
+    ResultSet rst;
+
+    try {
+
+      rst = ((DbTabelaWeb) this.getClnRef().getTbl()).getRstNomeValor();
+
+      cmb.setBooOpcaoVazia(!this.getClnRef().getBooNotNull());
+
+      if (rst == null || !rst.first()) {
+
+        return;
+      }
+
+      do {
+
+        cmb.addOpcao(rst.getInt(1), rst.getString(2));
+      }
+      while (rst.next());
+
+      rst.close();
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+    }
+    finally {
+    }
+  }
+
   private void carregarComboboxMapOpcao(Combobox cmb) {
 
     try {
@@ -68,37 +98,6 @@ public class DbColunaWeb extends DbColuna {
 
         cmb.addOpcao(opc.getKey(), opc.getValue());
       }
-    }
-    catch (Exception ex) {
-
-      new Erro("Erro inesperado.\n", ex);
-    }
-    finally {
-    }
-  }
-
-  private void carregarComboboxClnRef(Combobox cmb) {
-
-    ResultSet rst;
-
-    try {
-
-      rst = ((DbTabelaWeb) this.getClnRef().getTbl()).getRstNomeValor();
-
-      cmb.setBooOpcaoVazia(!this.getClnRef().getBooNotNull());
-
-      if (rst == null || !rst.first()) {
-
-        return;
-      }
-
-      do {
-
-        cmb.addOpcao(rst.getInt(1), rst.getString(2));
-      }
-      while (rst.next());
-
-      rst.close();
     }
     catch (Exception ex) {
 

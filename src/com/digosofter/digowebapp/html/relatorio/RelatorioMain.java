@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.digosofter.digojava.erro.Erro;
 import com.digosofter.digowebapp.AppWeb;
+import com.digosofter.digowebapp.html.CssTag;
 import com.digosofter.digowebapp.html.JavaScriptTag;
 import com.digosofter.digowebapp.html.PaginaHtml;
 import com.digosofter.digowebapp.html.Titulo;
@@ -68,7 +69,7 @@ public abstract class RelatorioMain extends PaginaHtml {
 
       _ttl.limparClass();
 
-      _ttl.addCss(this.getCssMain().setTextAlign("center"));
+      _ttl.addCss(CssTag.getIMain().setTextAlign("center"));
     }
     catch (Exception ex) {
 
@@ -96,7 +97,7 @@ public abstract class RelatorioMain extends PaginaHtml {
 
       _ttlSub.limparClass();
 
-      _ttlSub.addCss(this.getCssMain().setTextAlign("center"));
+      _ttlSub.addCss(CssTag.getIMain().setTextAlign("center"));
     }
     catch (Exception ex) {
 
