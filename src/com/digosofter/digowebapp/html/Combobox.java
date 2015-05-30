@@ -35,8 +35,8 @@ public class Combobox extends Campo {
 
     try {
 
-      lstObjJsTag.add(new JavaScriptTag(AppWeb.STR_JS_CAMPO));
-      lstObjJsTag.add(new JavaScriptTag(AppWeb.STR_JS_COMBO_BOX));
+      lstObjJsTag.add(new JavaScriptTag(AppWeb.DIR_JS_CAMPO));
+      lstObjJsTag.add(new JavaScriptTag(AppWeb.DIR_JS_COMBO_BOX));
     }
     catch (Exception ex) {
 

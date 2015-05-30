@@ -48,12 +48,12 @@ public class Tabela extends ComponenteMain {
 
     try {
 
-      lstObjJsTag.add(new JavaScriptTag(AppWeb.STR_JS_TABELA));
-      lstObjJsTag.add(new JavaScriptTag(AppWeb.STR_JS_TABLESORTER));
+      lstObjJsTag.add(new JavaScriptTag(AppWeb.DIR_JS_TABELA));
+      lstObjJsTag.add(new JavaScriptTag(AppWeb.DIR_JS_TABLESORTER));
 
       if (this.getBooPesquisa()) {
 
-        lstObjJsTag.add(new JavaScriptTag(AppWeb.STR_JS_QUICKSEARCH));
+        lstObjJsTag.add(new JavaScriptTag(AppWeb.DIR_JS_QUICKSEARCH));
       }
     }
     catch (Exception ex) {

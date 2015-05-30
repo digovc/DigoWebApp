@@ -55,7 +55,7 @@ public class Campo extends Tag {
 
     try {
 
-      lstObjJsTag.add(new JavaScriptTag(AppWeb.STR_JS_CAMPO));
+      lstObjJsTag.add(new JavaScriptTag(AppWeb.DIR_JS_CAMPO));
     }
     catch (Exception ex) {
 

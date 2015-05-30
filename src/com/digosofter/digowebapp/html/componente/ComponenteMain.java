@@ -28,7 +28,7 @@ public abstract class ComponenteMain extends Tag {
 
     try {
 
-      lstObjJsTag.add(new JavaScriptTag(AppWeb.STR_JS_COMPONENTE_MAIN));
+      lstObjJsTag.add(new JavaScriptTag(AppWeb.DIR_JS_COMPONENTE_MAIN));
     }
     catch (Exception ex) {
 

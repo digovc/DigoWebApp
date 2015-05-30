@@ -38,7 +38,7 @@ public abstract class RelatorioMain extends PaginaHtml {
 
     try {
 
-      lstObjJsTag.add(new JavaScriptTag(AppWeb.STR_JS_RELATORIO_MAIN));
+      lstObjJsTag.add(new JavaScriptTag(AppWeb.DIR_JS_RELATORIO_MAIN));
     }
     catch (Exception ex) {
 

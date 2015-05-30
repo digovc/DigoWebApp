@@ -16,7 +16,7 @@ public abstract class ItemMain extends ComponenteMain {
 
     try {
 
-      lstObjJsTag.add(new JavaScriptTag(AppWeb.STR_JS_ITEM_MAIN));
+      lstObjJsTag.add(new JavaScriptTag(AppWeb.DIR_JS_ITEM_MAIN));
     }
     catch (Exception ex) {
 

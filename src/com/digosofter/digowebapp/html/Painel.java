@@ -84,7 +84,7 @@ public class Painel extends Tag {
 
     try {
 
-      lstObjJsTag.add(new JavaScriptTag(AppWeb.STR_JS_PAINEL));
+      lstObjJsTag.add(new JavaScriptTag(AppWeb.DIR_JS_PAINEL));
 
       if (!this.getBooMarkdown()) {
 

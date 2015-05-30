@@ -20,24 +20,24 @@ public abstract class AppWeb extends App {
 
   private static AppWeb i;
 
-  public static final String STR_JS_BOTAO = "res/js/lib/JDigo/html/Botao.js";
-  public static final String STR_JS_CAMPO = "res/js/lib/JDigo/html/Campo.js";
-  public static final String STR_JS_COMBO_BOX = "res/js/lib/JDigo/html/ComboBox.js";
-  public static final String STR_JS_COMPONENTE_MAIN = "res/js/lib/JDigo/html/componente/ComponenteMain.js";
-  public static final String STR_JS_FORMULARIO = "res/js/lib/JDigo/html/Formulario.js";
-  public static final String STR_JS_FORMULARIO_TBL = "res/js/lib/JDigo/html/componente/FormularioTbl.js";
-  public static final String STR_JS_IMAGEM = "res/js/lib/JDigo/html/Imagem.js";
-  public static final String STR_JS_ITEM_MAIN = "res/js/lib/JDigo/html/componente/item/ItemMain.js";
-  public static final String STR_JS_MOOTOOLS = "res/js/lib/JDigo/lib/mootools-core-1.4.5.js";
-  public static final String STR_JS_PAINEL = "res/js/lib/JDigo/html/Painel.js";
-  public static final String STR_JS_POPUP = "res/js/lib/JDigo/html/componente/Popup.js";
-  public static final String STR_JS_POPUP_ITEM = "res/js/lib/JDigo/html/componente/item/PopupItem.js";
-  public static final String STR_JS_QUICKSEARCH = "res/js/lib/JDigo/lib/jquery.quicksearch.min.js";
-  public static final String STR_JS_RELATORIO_MAIN = "res/js/lib/JDigo/html/relatorio/RelatorioMain.js";
-  public static final String STR_JS_TABELA = "res/js/lib/JDigo/html/componente/Tabela.js";
-  public static final String STR_JS_TABLESORTER = "res/js/lib/JDigo/lib/jquery.tablesorter.min.js";
-  public static final String STR_JS_TAG = "res/js/lib/JDigo/html/Tag.js";
-  public static final String STR_JS_WEBSOCKET_FILE_TRANSFER = "res/js/lib/JDigo/lib/WebSocketFileTransfer.js";
+  public static final String DIR_JS_BOTAO = "res/js/lib/JDigo/html/Botao.js";
+  public static final String DIR_JS_CAMPO = "res/js/lib/JDigo/html/Campo.js";
+  public static final String DIR_JS_COMBO_BOX = "res/js/lib/JDigo/html/ComboBox.js";
+  public static final String DIR_JS_COMPONENTE_MAIN = "res/js/lib/JDigo/html/componente/ComponenteMain.js";
+  public static final String DIR_JS_FORMULARIO = "res/js/lib/JDigo/html/Formulario.js";
+  public static final String DIR_JS_FORMULARIO_TBL = "res/js/lib/JDigo/html/componente/FormularioTbl.js";
+  public static final String DIR_JS_IMAGEM = "res/js/lib/JDigo/html/Imagem.js";
+  public static final String DIR_JS_ITEM_MAIN = "res/js/lib/JDigo/html/componente/item/ItemMain.js";
+  public static final String DIR_JS_MOOTOOLS = "res/js/lib/JDigo/lib/mootools-core-1.4.5.js";
+  public static final String DIR_JS_PAINEL = "res/js/lib/JDigo/html/Painel.js";
+  public static final String DIR_JS_POPUP = "res/js/lib/JDigo/html/componente/Popup.js";
+  public static final String DIR_JS_POPUP_ITEM = "res/js/lib/JDigo/html/componente/item/PopupItem.js";
+  public static final String DIR_JS_QUICKSEARCH = "res/js/lib/JDigo/lib/jquery.quicksearch.min.js";
+  public static final String DIR_JS_RELATORIO_MAIN = "res/js/lib/JDigo/html/relatorio/RelatorioMain.js";
+  public static final String DIR_JS_TABELA = "res/js/lib/JDigo/html/componente/Tabela.js";
+  public static final String DIR_JS_TABLESORTER = "res/js/lib/JDigo/lib/jquery.tablesorter.min.js";
+  public static final String DIR_JS_TAG = "res/js/lib/JDigo/html/Tag.js";
+  public static final String DIR_JS_WEBSOCKET_FILE_TRANSFER = "res/js/lib/JDigo/lib/WebSocketFileTransfer.js";
 
   public static AppWeb getI() {
 

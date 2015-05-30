@@ -41,7 +41,7 @@ public class Formulario extends Tag {
 
     try {
 
-      lstObjJsTag.add(new JavaScriptTag(AppWeb.STR_JS_FORMULARIO));
+      lstObjJsTag.add(new JavaScriptTag(AppWeb.DIR_JS_FORMULARIO));
     }
     catch (Exception ex) {
 
