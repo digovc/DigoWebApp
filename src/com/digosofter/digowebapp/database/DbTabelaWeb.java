@@ -32,6 +32,11 @@ public abstract class DbTabelaWeb extends DbTabela {
 
     try {
 
+      if (tagPai == null) {
+
+        return;
+      }
+
       this.setObjConsultaTbl(new ConsultaTbl(this));
       this.getObjConsultaTbl().setTagPai(tagPai);
     }
@@ -50,6 +55,11 @@ public abstract class DbTabelaWeb extends DbTabela {
   public void adicionarFrmTbl(Tag tag) {
 
     try {
+
+      if (tag == null) {
+
+        return;
+      }
 
       this.setFrmTbl(new FormularioTbl(this));
       this.getFrmTbl().setTagPai(tag);
@@ -73,6 +83,7 @@ public abstract class DbTabelaWeb extends DbTabela {
     try {
 
       this.limparColunas();
+
       rst = this.getRst(cln, strFiltroValor);
 
       if (rst == null || !rst.first()) {
@@ -124,7 +135,6 @@ public abstract class DbTabelaWeb extends DbTabela {
    */
   public int getIntMaxId() {
 
-    int intResultado = 0;
     String sql;
 
     try {
@@ -134,7 +144,7 @@ public abstract class DbTabelaWeb extends DbTabela {
       sql = sql.replace("_tbl_nome", this.getStrNomeSql());
       sql = sql.replace("_cln_chave_primaria_nome", this.getClnChavePrimaria().getStrNomeSql());
 
-      intResultado = this.getObjDb().execSqlGetInt(sql);
+      return this.getObjDb().execSqlGetInt(sql);
     }
     catch (Exception ex) {
 
@@ -143,7 +153,7 @@ public abstract class DbTabelaWeb extends DbTabela {
     finally {
     }
 
-    return intResultado;
+    return 0;
   }
 
   /**
@@ -151,22 +161,33 @@ public abstract class DbTabelaWeb extends DbTabela {
    */
   public int getIntQtdCampo(int intLinha) {
 
-    int intResultado = 0;
+    int intResultado;
 
     try {
 
+      intResultado = 0;
+
       for (DbColuna cln : this.getLstCln()) {
 
-        if (cln.getIntFrmLinha() == intLinha) {
+        if (cln == null) {
 
-          intResultado++;
+          continue;
         }
+
+        if (cln.getIntFrmLinha() != intLinha) {
+
+          continue;
+        }
+
+        intResultado++;
       }
 
       if (intResultado == this.getLstCln().size()) {
 
         intResultado = 1;
       }
+
+      return intResultado;
     }
     catch (Exception ex) {
 
@@ -175,7 +196,7 @@ public abstract class DbTabelaWeb extends DbTabela {
     finally {
     }
 
-    return intResultado;
+    return 1;
 
   }
 
@@ -185,22 +206,26 @@ public abstract class DbTabelaWeb extends DbTabela {
    */
   public List<Integer> getLstIntClnValor(DbColunaWeb cln) {
 
-    List<Integer> lstIntResultado = null;
+    List<Integer> lstIntResultado;
     List<String> lstStr;
 
     try {
 
       lstStr = this.getLstStrClnValor(cln);
 
-      if (lstStr != null) {
+      if (lstStr == null) {
 
-        lstIntResultado = new ArrayList<Integer>();
-
-        for (int i = 0; i < lstStr.size(); i++) {
-
-          lstIntResultado.add(Integer.valueOf(lstStr.get(i)));
-        }
+        return null;
       }
+
+      lstIntResultado = new ArrayList<Integer>();
+
+      for (int i = 0; i < lstStr.size(); i++) {
+
+        lstIntResultado.add(Integer.valueOf(lstStr.get(i)));
+      }
+
+      return lstIntResultado;
     }
     catch (Exception ex) {
 
@@ -209,7 +234,7 @@ public abstract class DbTabelaWeb extends DbTabela {
     finally {
     }
 
-    return lstIntResultado;
+    return null;
   }
 
   public List<Integer> getLstIntClnValor(DbColunaWeb cln, List<DbFiltro> lstObjDbFiltro) {
@@ -256,13 +281,18 @@ public abstract class DbTabelaWeb extends DbTabela {
    */
   protected List<String> getLstStrClnNome(boolean booPreenchida) {
 
-    List<String> lstStrRetorno = null;
+    List<String> lstStrRetorno;
 
     try {
 
       lstStrRetorno = new ArrayList<String>();
 
       for (DbColuna cln : this.getLstCln()) {
+
+        if (cln == null) {
+
+          continue;
+        }
 
         if (booPreenchida && Utils.getBooStrVazia(cln.getStrValor())) {
 
@@ -271,6 +301,8 @@ public abstract class DbTabelaWeb extends DbTabela {
 
         lstStrRetorno.add(cln.getStrNomeSql());
       }
+
+      return lstStrRetorno;
     }
     catch (Exception ex) {
 
@@ -279,7 +311,7 @@ public abstract class DbTabelaWeb extends DbTabela {
     finally {
     }
 
-    return lstStrRetorno;
+    return null;
   }
 
   /**
@@ -291,8 +323,7 @@ public abstract class DbTabelaWeb extends DbTabela {
    */
   protected List<String> getLstStrClnNomeValor(boolean booPreenchida) {
 
-    List<String> lstStrRetorno = null;
-    String strEstrutura;
+    List<String> lstStrRetorno;
 
     try {
 
@@ -300,19 +331,20 @@ public abstract class DbTabelaWeb extends DbTabela {
 
       for (DbColuna cln : this.getLstCln()) {
 
+        if (cln == null) {
+
+          continue;
+        }
+
         if (booPreenchida && Utils.getBooStrVazia(cln.getStrValor())) {
 
           continue;
         }
 
-        strEstrutura = "_cln_nome = '_cln_valor'";
-
-        strEstrutura = strEstrutura.replace("_cln_nome", cln.getStrNomeSql());
-        strEstrutura = strEstrutura.replace("_cln_valor", cln.getStrValorSql());
-        strEstrutura = strEstrutura.replace("'<null>'", "null");
-
-        lstStrRetorno.add(strEstrutura);
+        lstStrRetorno.add(cln.getStrNomeValor());
       }
+
+      return lstStrRetorno;
     }
     catch (Exception ex) {
 
@@ -321,7 +353,7 @@ public abstract class DbTabelaWeb extends DbTabela {
     finally {
     }
 
-    return lstStrRetorno;
+    return null;
   }
 
   /**
@@ -332,14 +364,19 @@ public abstract class DbTabelaWeb extends DbTabela {
    */
   protected List<String> getLstStrClnValor(boolean booPreenchida) {
 
+    List<String> lstStrRetorno;
     String strEstrutura;
-    List<String> lstStrRetorno = null;
 
     try {
 
       lstStrRetorno = new ArrayList<String>();
 
       for (DbColuna cln : this.getLstCln()) {
+
+        if (cln == null) {
+
+          continue;
+        }
 
         if (booPreenchida && Utils.getBooStrVazia(cln.getStrValor())) {
 
@@ -349,10 +386,12 @@ public abstract class DbTabelaWeb extends DbTabela {
         strEstrutura = "'_cln_valor'";
 
         strEstrutura = strEstrutura.replace("_cln_valor", cln.getStrValorSql());
-        strEstrutura = strEstrutura.replace("'<null>'", "null");
+        strEstrutura = strEstrutura.replace("'null'", "null");
 
         lstStrRetorno.add(strEstrutura);
       }
+
+      return lstStrRetorno;
     }
     catch (Exception ex) {
 
@@ -361,7 +400,7 @@ public abstract class DbTabelaWeb extends DbTabela {
     finally {
     }
 
-    return lstStrRetorno;
+    return null;
   }
 
   /**
@@ -375,6 +414,11 @@ public abstract class DbTabelaWeb extends DbTabela {
     String sql;
 
     try {
+
+      if (cln == null) {
+
+        return null;
+      }
 
       sql = "select _cln_nome from _tbl_nome;";
 
@@ -620,6 +664,11 @@ public abstract class DbTabelaWeb extends DbTabela {
 
       for (DbColuna cln : lstCln) {
 
+        if (cln == null) {
+
+          continue;
+        }
+
         strEstrutura = "_tbl_nome._cln_nome, ";
 
         strEstrutura = strEstrutura.replace("_tbl_nome", cln.getTbl().getStrNomeSql());
@@ -643,7 +692,7 @@ public abstract class DbTabelaWeb extends DbTabela {
   private String getSqlParteOrderBy(List<DbColuna> lstClnOrdem) {
 
     String strEstrutura;
-    String strResultado = Utils.STR_VAZIA;
+    String strResultado;
 
     try {
 
@@ -651,6 +700,8 @@ public abstract class DbTabelaWeb extends DbTabela {
 
         return "<null>";
       }
+
+      strResultado = Utils.STR_VAZIA;
 
       for (DbColuna cln : lstClnOrdem) {
 
@@ -662,7 +713,7 @@ public abstract class DbTabelaWeb extends DbTabela {
         strResultado += strEstrutura;
       }
 
-      strResultado = Utils.removerUltimaLetra(strResultado, 2);
+      return Utils.removerUltimaLetra(strResultado, 2);
     }
     catch (Exception ex) {
 
@@ -671,30 +722,33 @@ public abstract class DbTabelaWeb extends DbTabela {
     finally {
     }
 
-    return strResultado;
+    return null;
   }
 
-  private String getSqlParteWhere(List<DbFiltro> lstObjDbFiltro) {
+  private String getSqlParteWhere(List<DbFiltro> lstFil) {
 
-    boolean booPrimeiroTermo = true;
-    String strResultado = Utils.STR_VAZIA;
+    boolean booPrimeiroTermo;
+    String strResultado;
 
     try {
 
-      if (lstObjDbFiltro == null || lstObjDbFiltro.size() == 0) {
+      if (lstFil == null || lstFil.size() == 0) {
 
         return "<null>";
       }
 
-      for (DbFiltro objDbFiltro : lstObjDbFiltro) {
+      booPrimeiroTermo = true;
+      strResultado = Utils.STR_VAZIA;
 
-        strResultado += objDbFiltro.getSqlFiltro(booPrimeiroTermo);
+      for (DbFiltro fil : lstFil) {
+
+        strResultado += fil.getSqlFiltro(booPrimeiroTermo);
         strResultado += " ";
 
         booPrimeiroTermo = false;
       }
 
-      strResultado = Utils.removerUltimaLetra(strResultado);
+      return Utils.removerUltimaLetra(strResultado);
     }
     catch (Exception ex) {
 
@@ -703,7 +757,7 @@ public abstract class DbTabelaWeb extends DbTabela {
     finally {
     }
 
-    return strResultado;
+    return null;
   }
 
   /**
@@ -715,7 +769,7 @@ public abstract class DbTabelaWeb extends DbTabela {
    */
   public int salvar() {
 
-    int intResultado = 0;
+    int intResultado;
     String sql;
     String strId;
 
@@ -753,6 +807,8 @@ public abstract class DbTabelaWeb extends DbTabela {
       }
 
       this.buscarRegistro(intResultado);
+
+      return intResultado;
     }
     catch (Exception ex) {
 
@@ -761,7 +817,7 @@ public abstract class DbTabelaWeb extends DbTabela {
     finally {
     }
 
-    return intResultado;
+    return 0;
   }
 
   /**
@@ -769,7 +825,6 @@ public abstract class DbTabelaWeb extends DbTabela {
    */
   public int salvarRegistroPost() {
 
-    int intResultado = -1;
     String strPostValor;
     String strId;
 
@@ -786,11 +841,16 @@ public abstract class DbTabelaWeb extends DbTabela {
 
       for (DbColuna cln : this.getLstClnCadastro()) {
 
+        if (cln == null) {
+
+          continue;
+        }
+
         strPostValor = AppWeb.getI().getStrParam(cln.getStrNomeSql());
         cln.setStrValor(strPostValor);
       }
 
-      intResultado = this.salvar();
+      return this.salvar();
     }
     catch (Exception ex) {
 
@@ -799,7 +859,7 @@ public abstract class DbTabelaWeb extends DbTabela {
     finally {
     }
 
-    return intResultado;
+    return 0;
   }
 
   private void setFrmTbl(FormularioTbl frmTbl) {
