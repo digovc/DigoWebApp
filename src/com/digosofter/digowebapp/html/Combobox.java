@@ -8,13 +8,13 @@ import com.digosofter.digojava.Utils;
 import com.digosofter.digojava.erro.Erro;
 import com.digosofter.digowebapp.AppWeb;
 
-public class ComboBox extends Campo {
+public class Combobox extends Campo {
 
   private boolean _booOpcaoVazia;
 
   private LinkedHashMap<Integer, String> _mapOpcao;
 
-  public ComboBox() {
+  public Combobox() {
 
     try {
 

@@ -1,11 +1,12 @@
 package com.digosofter.digowebapp.database;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Map.Entry;
 
 import com.digosofter.digojava.database.DbColuna;
 import com.digosofter.digojava.erro.Erro;
-import com.digosofter.digowebapp.html.ComboBox;
+import com.digosofter.digowebapp.html.Combobox;
 import com.digosofter.digowebapp.html.CssTag;
 
 public class DbColunaWeb extends DbColuna {
@@ -19,30 +20,37 @@ public class DbColunaWeb extends DbColuna {
    * Carrega "comboBox" com os devidos valores de acordo com a tabela
    * referenciada ou as opções default da coluna.
    */
-  public void carregarComboBox(ComboBox cmb) {
-
-    ResultSet rst;
+  public void carregarCombobox(Combobox cmb) {
 
     try {
 
+      if (cmb == null) {
+
+        return;
+      }
+
       if (this.getClnRef() != null) {
 
-        rst = ((DbTabelaWeb) this.getClnRef().getTbl()).getRstNomeValor();
+        this.carregarComboboxClnRef(cmb);
+        return;
+      }
 
-        cmb.setBooOpcaoVazia(!this.getClnRef().getBooNotNull());
+      this.carregarComboboxMapOpcao(cmb);
+    }
+    catch (Exception ex) {
 
-        if (rst == null || !rst.first()) {
+      new Erro("Erro inesperado.\n", ex);
+    }
+    finally {
+    }
+  }
 
-          return;
-        }
+  private void carregarComboboxMapOpcao(Combobox cmb) {
 
-        do {
+    try {
 
-          cmb.addOpcao(rst.getInt(1), rst.getString(2));
-        }
-        while (rst.next());
+      if (cmb == null) {
 
-        rst.close();
         return;
       }
 
@@ -53,8 +61,44 @@ public class DbColunaWeb extends DbColuna {
 
       for (Entry<Integer, String> opc : this.getMapOpcao().entrySet()) {
 
+        if (opc == null) {
+
+          continue;
+        }
+
         cmb.addOpcao(opc.getKey(), opc.getValue());
       }
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+    }
+    finally {
+    }
+  }
+
+  private void carregarComboboxClnRef(Combobox cmb) {
+
+    ResultSet rst;
+
+    try {
+
+      rst = ((DbTabelaWeb) this.getClnRef().getTbl()).getRstNomeValor();
+
+      cmb.setBooOpcaoVazia(!this.getClnRef().getBooNotNull());
+
+      if (rst == null || !rst.first()) {
+
+        return;
+      }
+
+      do {
+
+        cmb.addOpcao(rst.getInt(1), rst.getString(2));
+      }
+      while (rst.next());
+
+      rst.close();
     }
     catch (Exception ex) {
 
@@ -69,8 +113,6 @@ public class DbColunaWeb extends DbColuna {
     try {
 
       switch (this.getEnmTipoGrupo()) {
-        case ALPHANUMERICO:
-          return CssTag.getIMain().setTextAlign(CssTag.CSS_TEXT_ALIGN_ESQUERDA);
 
         case TEMPORAL:
           return CssTag.getIMain().setTextAlign(CssTag.CSS_TEXT_ALIGN_DIREITA);
@@ -79,7 +121,7 @@ public class DbColunaWeb extends DbColuna {
           return CssTag.getIMain().setTextAlign(CssTag.CSS_TEXT_ALIGN_DIREITA);
 
         default:
-          break;
+          return CssTag.getIMain().setTextAlign(CssTag.CSS_TEXT_ALIGN_ESQUERDA);
       }
     }
     catch (Exception ex) {

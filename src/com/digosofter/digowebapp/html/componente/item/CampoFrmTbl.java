@@ -6,7 +6,7 @@ import com.digosofter.digojava.database.DbColuna.EnmTipo;
 import com.digosofter.digojava.erro.Erro;
 import com.digosofter.digowebapp.database.DbColunaWeb;
 import com.digosofter.digowebapp.html.Campo;
-import com.digosofter.digowebapp.html.ComboBox;
+import com.digosofter.digowebapp.html.Combobox;
 import com.digosofter.digowebapp.html.CssTag;
 
 public class CampoFrmTbl extends LabelCampo {
@@ -109,13 +109,13 @@ public class CampoFrmTbl extends LabelCampo {
    */
   private void definirTipoCampoComboBox() {
 
-    ComboBox tagCmb;
+    Combobox tagCmb;
 
     try {
 
-      tagCmb = new ComboBox();
+      tagCmb = new Combobox();
 
-      this.getCln().carregarComboBox(tagCmb);
+      this.getCln().carregarCombobox(tagCmb);
       this.setTagCampo(tagCmb);
     }
     catch (Exception ex) {
