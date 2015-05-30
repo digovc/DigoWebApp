@@ -30,19 +30,24 @@ public class EmailAppWeb extends Objeto {
   private String _strReplyToNome;
   private String _strSmtp = "smtp.gmail.com";
 
-  private void addBcc(Email objEmail) {
+  private void addBcc(Email eml) {
 
     String strEmail;
     String strNome;
 
     try {
 
+      if (eml == null) {
+
+        return;
+      }
+
       for (int i = 0; i < this.getLstStrBccEmail().size(); i++) {
 
         strEmail = this.getLstStrBccEmail().get(i);
         strNome = this.getLstStrBccNome().get(i);
 
-        objEmail.addBcc(strEmail, strNome);
+        eml.addBcc(strEmail, strNome);
       }
     }
     catch (Exception ex) {
@@ -60,6 +65,16 @@ public class EmailAppWeb extends Objeto {
 
     try {
 
+      if (Utils.getBooStrVazia(strEmail)) {
+
+        return;
+      }
+
+      if (Utils.getBooStrVazia(strNome)) {
+
+        strNome = strEmail;
+      }
+
       this.getLstStrBccEmail().add(strEmail);
       this.getLstStrBccNome().add(strNome);
     }
@@ -71,19 +86,24 @@ public class EmailAppWeb extends Objeto {
     }
   }
 
-  private void addCc(Email objEmail) {
+  private void addCc(Email eml) {
 
     String strEmail;
     String strNome;
 
     try {
 
+      if (eml == null) {
+
+        return;
+      }
+
       for (int i = 0; i < this.getLstStrCcEmail().size(); i++) {
 
         strEmail = this.getLstStrCcEmail().get(i);
         strNome = this.getLstStrCcNome().get(i);
 
-        objEmail.addCc(strEmail, strNome);
+        eml.addCc(strEmail, strNome);
       }
     }
     catch (Exception ex) {
@@ -101,6 +121,16 @@ public class EmailAppWeb extends Objeto {
 
     try {
 
+      if (Utils.getBooStrVazia(strEmail)) {
+
+        return;
+      }
+
+      if (Utils.getBooStrVazia(strNome)) {
+
+        strNome = strEmail;
+      }
+
       this.getLstStrCcEmail().add(strEmail);
       this.getLstStrCcNome().add(strNome);
     }
@@ -112,19 +142,24 @@ public class EmailAppWeb extends Objeto {
     }
   }
 
-  private void addTo(Email objEmail) {
+  private void addTo(Email eml) {
 
     String strEmail;
     String strNome;
 
     try {
 
+      if (eml == null) {
+
+        return;
+      }
+
       for (int i = 0; i < this.getLstStrToEmail().size(); i++) {
 
         strEmail = this.getLstStrToEmail().get(i);
         strNome = this.getLstStrToNome().get(i);
 
-        objEmail.addTo(strEmail, strNome);
+        eml.addTo(strEmail, strNome);
       }
     }
     catch (Exception ex) {
@@ -142,6 +177,16 @@ public class EmailAppWeb extends Objeto {
 
     try {
 
+      if (Utils.getBooStrVazia(strEmail)) {
+
+        return;
+      }
+
+      if (Utils.getBooStrVazia(strNome)) {
+
+        strNome = strEmail;
+      }
+
       this.getLstStrToEmail().add(strEmail);
       this.getLstStrToNome().add(strNome);
     }
@@ -155,30 +200,30 @@ public class EmailAppWeb extends Objeto {
 
   public void enviar() {
 
-    HtmlEmail objHtmlEmail;
+    HtmlEmail eml;
 
     try {
 
-      objHtmlEmail = new HtmlEmail();
+      eml = new HtmlEmail();
 
-      objHtmlEmail.setAuthenticator(this.getObjDefaultAuthenticator());
-      objHtmlEmail.setFrom(this.getStrFromEmail(), this.getStrFromNome());
-      objHtmlEmail.setHostName(this.getStrSmtp());
-      objHtmlEmail.setMsg(this.getStrMensagem());
-      objHtmlEmail.setSSLOnConnect(this.getBooSsl());
-      objHtmlEmail.setSmtpPort(this.getIntSmtpPort());
-      objHtmlEmail.setSubject(this.getStrAssunto());
+      eml.setAuthenticator(this.getObjDefaultAuthenticator());
+      eml.setFrom(this.getStrFromEmail(), this.getStrFromNome());
+      eml.setHostName(this.getStrSmtp());
+      eml.setMsg(this.getStrMensagem());
+      eml.setSmtpPort(this.getIntSmtpPort());
+      eml.setSSLOnConnect(this.getBooSsl());
+      eml.setSubject(this.getStrAssunto());
 
       if (!Utils.getBooStrVazia(this.getStrReplyToEmail())) {
 
-        objHtmlEmail.addReplyTo(this.getStrReplyToEmail(), this.getStrReplyToNome());
+        eml.addReplyTo(this.getStrReplyToEmail(), this.getStrReplyToNome());
       }
 
-      this.addBcc(objHtmlEmail);
-      this.addCc(objHtmlEmail);
-      this.addTo(objHtmlEmail);
+      this.addBcc(eml);
+      this.addCc(eml);
+      this.addTo(eml);
 
-      objHtmlEmail.send();
+      eml.send();
     }
     catch (Exception ex) {
 

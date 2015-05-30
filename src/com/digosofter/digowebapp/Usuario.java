@@ -1,6 +1,6 @@
 package com.digosofter.digowebapp;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.digosofter.digojava.Objeto;
 import com.digosofter.digojava.Utils;
@@ -8,33 +8,9 @@ import com.digosofter.digojava.erro.Erro;
 
 public class Usuario extends Objeto {
 
-  public static Usuario getUsrPorSessionId(String strSessionId) {
-
-    try {
-
-      for (Usuario objUsuario : AppWeb.getI().getLstUsr()) {
-
-        if (!objUsuario.getStrSessaoId().equals(strSessionId)) {
-
-          continue;
-        }
-
-        return objUsuario;
-      }
-    }
-    catch (Exception ex) {
-
-      new Erro("Erro inesperado.\n", ex);
-    }
-    finally {
-    }
-
-    return null;
-  }
-
   private boolean _booLogado;
   private int _intUsuarioId;
-  private HashMap<String, String> _lstKeyValue;
+  private LinkedHashMap<String, String> _mapPropriedade;
   private String _srcPerfil;
   private String _strPrimeiroNome;
   private String _strSessaoId;
@@ -63,16 +39,16 @@ public class Usuario extends Objeto {
     return _intUsuarioId;
   }
 
-  public HashMap<String, String> getLstKeyValue() {
+  public LinkedHashMap<String, String> getMapPropriedade() {
 
     try {
 
-      if (_lstKeyValue != null) {
+      if (_mapPropriedade != null) {
 
-        return _lstKeyValue;
+        return _mapPropriedade;
       }
 
-      _lstKeyValue = new HashMap<String, String>();
+      _mapPropriedade = new LinkedHashMap<String, String>();
     }
     catch (Exception ex) {
 
@@ -80,7 +56,8 @@ public class Usuario extends Objeto {
     }
     finally {
     }
-    return _lstKeyValue;
+
+    return _mapPropriedade;
   }
 
   public String getSrcPerfil() {
