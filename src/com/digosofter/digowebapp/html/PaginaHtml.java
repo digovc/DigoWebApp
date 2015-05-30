@@ -14,9 +14,8 @@ import com.digosofter.digowebapp.html.componente.Mensagem;
 
 public class PaginaHtml extends Objeto {
 
-  private static PaginaHtml i;
-
   public static final String DIR_JS_APP_WEB = "res/js/lib/JDigo/AppWeb.js";
+
   public static final String DIR_JS_ERRO = "res/js/lib/JDigo/erro/Erro.js";
   public static final String DIR_JS_LIB_DATE = "res/js/lib/JDigo/lib/date.js";
   public static final String DIR_JS_LIB_JQUERY = "res/js/lib/JDigo/lib/jquery-2.1.3.min.js";
@@ -30,6 +29,7 @@ public class PaginaHtml extends Objeto {
   public static final String DIR_JS_USUARIO = "res/js/lib/JDigo/Usuario.js";
   public static final String DIR_JS_UTILS = "res/js/lib/JDigo/Utils.js";
   public static final String DIR_JS_WEB_SOCKET = "res/js/lib/JDigo/websocket/WebSocketMain.js";
+  private static PaginaHtml i;
 
   public static PaginaHtml getI() {
 
@@ -73,8 +73,8 @@ public class PaginaHtml extends Objeto {
     try {
 
       this.setI(this);
-      this.addCssArquivo(this.getLstTagCss());
-      this.addJsArquivo(this.getLstTagJs());
+      this.addCss(this.getLstTagCss());
+      this.addJs(this.getLstTagJs());
       this.addJsCodigoMensagem();
     }
     catch (Exception ex) {
@@ -85,7 +85,7 @@ public class PaginaHtml extends Objeto {
     }
   }
 
-  private void addCssAoCabecalho() {
+  private void addCss() {
 
     try {
 
@@ -112,14 +112,14 @@ public class PaginaHtml extends Objeto {
     }
   }
 
-  protected void addCssArquivo(List<CssTag> lstTagCss) {
+  protected void addCss(List<CssTag> lstTagCss) {
 
   }
 
   /**
    * Acrescenta os arquivos de "JavaScript" para a "tagHead" na ordem correta.
    */
-  private void addJsAoCabecalho() {
+  private void addJs() {
 
     try {
 
@@ -127,6 +127,8 @@ public class PaginaHtml extends Objeto {
 
         return;
       }
+
+      this.addJsCodigo(this.getTagJsMain());
 
       for (JavaScriptTag tagJs : this.getLstTagJsOrdenado()) {
 
@@ -150,7 +152,7 @@ public class PaginaHtml extends Objeto {
    * Adiciona os arquivos "JavaScript" que fazem a página funcionar no
    * navegador.
    */
-  protected void addJsArquivo(List<JavaScriptTag> lstObjJsTag) {
+  protected void addJs(List<JavaScriptTag> lstObjJsTag) {
 
     try {
 
@@ -263,10 +265,10 @@ public class PaginaHtml extends Objeto {
 
       strJs = "";
 
-      strJs += "Mensagem_ESTRUTURA_INFO_ALERTA = '" + msgAlerta.toString() + "';";
-      strJs += "Mensagem_ESTRUTURA_INFO_LOAD = '" + msgLoad.toString() + "';";
-      strJs += "Mensagem_ESTRUTURA_INFO_NEGATIVA = '" + msgNegativa.toString() + "';";
-      strJs += "Mensagem_ESTRUTURA_INFO_POSITIVA = '" + msgPositiva.toString() + "';";
+      strJs += "Mensagem_ESTRUTURA_INFO_ALERTA = '" + msgAlerta.toHtml() + "';";
+      strJs += "Mensagem_ESTRUTURA_INFO_LOAD = '" + msgLoad.toHtml() + "';";
+      strJs += "Mensagem_ESTRUTURA_INFO_NEGATIVA = '" + msgNegativa.toHtml() + "';";
+      strJs += "Mensagem_ESTRUTURA_INFO_POSITIVA = '" + msgPositiva.toHtml() + "';";
 
       this.getTagJsMain().addJsCodigo(strJs);
     }
@@ -412,31 +414,6 @@ public class PaginaHtml extends Objeto {
     }
 
     return _lstTagJsOrdenado;
-  }
-
-  public String toHtml() {
-
-    String strResultado;
-
-    try {
-
-      this.montarLayout();
-
-      strResultado = "_tag_doc_type_tag_html";
-
-      strResultado = strResultado.replace("_tag_doc_type", this.getTagDocType().toHtml());
-      strResultado = strResultado.replace("_tag_html", this.getTagHtml().toHtml());
-
-      return strResultado;
-    }
-    catch (Exception ex) {
-
-      new Erro("Erro inesperado.\n", ex);
-    }
-    finally {
-    }
-
-    return null;
   }
 
   private String getStrSrcIcon() {
@@ -604,6 +581,8 @@ public class PaginaHtml extends Objeto {
     return _tagJsMain;
   }
 
+  // TODO: As tags "meta" só podem carregar um único atributo. Sendo assim
+  // precisa mudar este para uma lista.
   private Tag getTagMeta() {
 
     try {
@@ -662,18 +641,8 @@ public class PaginaHtml extends Objeto {
       this.getTagMeta().setTagPai(this.getTagHead());
       this.getTagIcon().setTagPai(this.getTagHead());
 
-      CssTag.getIMain().setTagPai(this.getTagHead());
       CssTag.getIImpr().setTagPai(this.getTagHead());
-
-      this.addJsCodigo(this.getTagJsMain());
-
-      this.getTagJsMain().setTagPai(this.getTagHead());
-
-      this.addCssAoCabecalho();
-      this.addJsAoCabecalho();
-
-      this.getTagHead().setTagPai(this.getTagHtml());
-      this.getTagBody().setTagPai(this.getTagHtml());
+      CssTag.getIMain().setTagPai(this.getTagHead());
     }
     catch (Exception ex) {
 
@@ -759,5 +728,45 @@ public class PaginaHtml extends Objeto {
     }
     finally {
     }
+  }
+
+  public String toHtml() {
+
+    String strBody;
+    String strConteudo;
+    String strHead;
+    String strResultado;
+
+    try {
+
+      this.montarLayout();
+
+      strBody = this.getTagBody().toHtml();
+
+      this.addCss();
+      this.addJs();
+
+      strHead = this.getTagHead().toHtml();
+
+      strConteudo = "_head_body";
+      strConteudo = strConteudo.replace("_head", strHead);
+      strConteudo = strConteudo.replace("_body", strBody);
+
+      this.getTagHtml().setStrConteudo(strConteudo);
+
+      strResultado = "_tag_doc_type_tag_html";
+      strResultado = strResultado.replace("_tag_doc_type", this.getTagDocType().toHtml());
+      strResultado = strResultado.replace("_tag_html", this.getTagHtml().toHtml());
+
+      return strResultado;
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+    }
+    finally {
+    }
+
+    return null;
   }
 }

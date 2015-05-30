@@ -370,7 +370,7 @@ public class Tag extends Objeto {
     return _strLink;
   }
 
-  public String getStrTagFormatada() {
+  public String toHtml() {
 
     StringBuilder stbTagFormatada = new StringBuilder();
 
@@ -395,7 +395,7 @@ public class Tag extends Objeto {
 
         for (Tag tag : this.getLstTag()) {
 
-          stbTagFormatada.append(tag.getStrTagFormatada());
+          stbTagFormatada.append(tag.toHtml());
         }
 
         stbTagFormatada.append(this.getStrAbertura());
@@ -647,16 +647,5 @@ public class Tag extends Objeto {
     }
     finally {
     }
-  }
-
-  public String toHtml() {
-
-    return this.getStrTagFormatada();
-  }
-
-  @Override
-  public String toString() {
-
-    return this.getStrTagFormatada();
   }
 }

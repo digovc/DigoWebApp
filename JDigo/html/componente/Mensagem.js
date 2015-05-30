@@ -1,12 +1,12 @@
 ﻿// CONSTANTE
 
 var Mensagem_BOO_MENSAGEM_VISIVEL = false;
-var Mensagem_STR_MENSAGEM_ULTIMA = "";
+var Mensagem_STR_MENSAGEM_ULTIMA = null;
 
-var Mensagem_ESTRUTURA_INFO_ALERTA = "";
-var Mensagem_ESTRUTURA_INFO_LOAD = "";
-var Mensagem_ESTRUTURA_INFO_NEGATIVA = "";
-var Mensagem_ESTRUTURA_INFO_POSITIVA = "";
+var Mensagem_ESTRUTURA_INFO_ALERTA = null;
+var Mensagem_ESTRUTURA_INFO_LOAD = null;
+var Mensagem_ESTRUTURA_INFO_NEGATIVA = null;
+var Mensagem_ESTRUTURA_INFO_POSITIVA = null;
 
 var Mensagem_TIPO_ALERTA = 0;
 var Mensagem_TIPO_LOAD = 1;

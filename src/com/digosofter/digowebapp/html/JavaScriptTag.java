@@ -80,7 +80,7 @@ public class JavaScriptTag extends Tag {
   }
 
   @Override
-  public String getStrTagFormatada() {
+  public String toHtml() {
 
     String strResultado;
 
@@ -88,7 +88,7 @@ public class JavaScriptTag extends Tag {
 
       if (this.getLstStrMetodos().isEmpty()) {
 
-        return super.getStrTagFormatada();
+        return super.toHtml();
       }
 
       strResultado = "$(document).ready(function(){_metodos});";
@@ -97,7 +97,7 @@ public class JavaScriptTag extends Tag {
 
       this.setStrConteudo(strResultado);
 
-      return super.getStrTagFormatada();
+      return super.toHtml();
     }
     catch (Exception ex) {
 

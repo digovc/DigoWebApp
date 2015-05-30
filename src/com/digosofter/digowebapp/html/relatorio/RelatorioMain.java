@@ -32,9 +32,9 @@ public abstract class RelatorioMain extends PaginaHtml {
   }
 
   @Override
-  protected void addJsArquivo(List<JavaScriptTag> lstObjJsTag) {
+  protected void addJs(List<JavaScriptTag> lstObjJsTag) {
 
-    super.addJsArquivo(lstObjJsTag);
+    super.addJs(lstObjJsTag);
 
     try {
 

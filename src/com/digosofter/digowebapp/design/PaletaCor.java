@@ -96,7 +96,7 @@ public class PaletaCor extends Objeto {
         return _strObjJavaScriptNome;
       }
 
-      _strObjJavaScriptNome = "objPaletaCor" + this.getStrNome();
+      _strObjJavaScriptNome = "objPaletaCor" + Utils.getStrPrimeiraMaiuscula(this.getStrNome());
     }
     catch (Exception ex) {
 
@@ -140,7 +140,12 @@ public class PaletaCor extends Objeto {
 
       _corBorda = corBorda;
 
-      strJs = this.getStrObjJavaScriptNome() + ".setCorControleClicado('" + _corControleClicado + "');";
+      if (Utils.getBooStrVazia(_corBorda)) {
+
+        return;
+      }
+
+      strJs = this.getStrObjJavaScriptNome() + ".setCorControleClicado('" + _corBorda + "');";
 
       this.addJs(strJs);
     }
@@ -178,6 +183,11 @@ public class PaletaCor extends Objeto {
 
       _corControleClicado = corControleClicado;
 
+      if (Utils.getBooStrVazia(_corControleClicado)) {
+
+        return;
+      }
+
       strJs = this.getStrObjJavaScriptNome() + ".setCorControleClicado('" + _corControleClicado + "');";
 
       this.addJs(strJs);
@@ -197,6 +207,11 @@ public class PaletaCor extends Objeto {
     try {
 
       _corControleMouse = corControleMouse;
+
+      if (Utils.getBooStrVazia(_corControleMouse)) {
+
+        return;
+      }
 
       strJs = this.getStrObjJavaScriptNome() + ".setCorControleMouse('" + _corControleMouse + "');";
 
@@ -218,6 +233,11 @@ public class PaletaCor extends Objeto {
 
       _corControleNormal = corControleNormal;
 
+      if (Utils.getBooStrVazia(_corControleNormal)) {
+
+        return;
+      }
+
       strJs = this.getStrObjJavaScriptNome() + ".setCorControleNormal('" + _corControleNormal + "');";
 
       this.addJs(strJs);
@@ -237,6 +257,11 @@ public class PaletaCor extends Objeto {
     try {
 
       _corFundo = corFundo;
+
+      if (Utils.getBooStrVazia(_corFundo)) {
+
+        return;
+      }
 
       strJs = this.getStrObjJavaScriptNome() + ".setCorFundo('" + _corFundo + "');";
 

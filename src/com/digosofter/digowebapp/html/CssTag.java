@@ -215,6 +215,7 @@ public class CssTag extends Tag {
       atrCss.setStrClassAssociada(strResultado);
 
       this.getLstAtrCss().add(atrCss);
+      this.setStrConteudo(Utils.STR_VAZIA);
 
       return strResultado;
     }
@@ -277,8 +278,6 @@ public class CssTag extends Tag {
         return _lstAtrCss;
       }
 
-      this.setStrConteudo(Utils.STR_VAZIA);
-
       _lstAtrCss = new ArrayList<AtributoCss>();
     }
     catch (Exception ex) {
@@ -323,25 +322,6 @@ public class CssTag extends Tag {
     }
 
     return _strConteudo;
-  }
-
-  @Override
-  public String getStrTagFormatada() {
-
-    try {
-
-      this.verificarCssExterna();
-
-      return super.getStrTagFormatada();
-    }
-    catch (Exception ex) {
-
-      new Erro("Erro inesperado.\n", ex);
-    }
-    finally {
-    }
-
-    return null;
   }
 
   public String setBackgroundColor(String cor) {
@@ -1392,22 +1372,25 @@ public class CssTag extends Tag {
     return this.addCss("z-index", String.valueOf(intZ));
   }
 
-  private void verificarCssExterna() {
+  @Override
+  public String toHtml() {
 
     try {
 
       if (CssTag.STR_CSS_MAIN_ID.equals(this.getStrId())) {
 
-        return;
+        return super.toHtml();
       }
 
       if (CssTag.STR_CSS_IMPRESSAO_ID.equals(this.getStrId())) {
 
-        return;
+        return super.toHtml();
       }
 
       this.setStrTagNome("link");
       this.setBooForcarTagDupla(false);
+
+      return super.toHtml();
     }
     catch (Exception ex) {
 
@@ -1415,5 +1398,7 @@ public class CssTag extends Tag {
     }
     finally {
     }
+
+    return null;
   }
 }
