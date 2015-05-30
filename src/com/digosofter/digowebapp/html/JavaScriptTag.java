@@ -82,7 +82,7 @@ public class JavaScriptTag extends Tag {
   @Override
   public String getStrTagFormatada() {
 
-    StringBuilder strBuilder;
+    String strResultado;
 
     try {
 
@@ -91,13 +91,13 @@ public class JavaScriptTag extends Tag {
         return super.getStrTagFormatada();
       }
 
-      strBuilder = new StringBuilder();
+      strResultado = "$(document).ready(function(){_metodos});";
 
-      strBuilder.append("$(document).ready(function(){");
-      strBuilder.append(Utils.getStrConcatenarLst(this.getLstStrMetodos(), Utils.STR_VAZIA, true));
-      strBuilder.append("});");
+      strResultado = strResultado.replace("_metodos", Utils.getStrConcatenarLst(this.getLstStrMetodos(), Utils.STR_VAZIA, true));
 
-      this.setStrConteudo(strBuilder.toString());
+      this.setStrConteudo(strResultado);
+
+      return super.getStrTagFormatada();
     }
     catch (Exception ex) {
 
@@ -106,7 +106,7 @@ public class JavaScriptTag extends Tag {
     finally {
     }
 
-    return super.getStrTagFormatada();
+    return null;
   }
 
   public void setIntPrioridade(int intPrioridade) {

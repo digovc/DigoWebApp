@@ -2,6 +2,7 @@ package com.digosofter.digowebapp.html;
 
 import java.util.List;
 
+import com.digosofter.digojava.Utils;
 import com.digosofter.digojava.erro.Erro;
 import com.digosofter.digowebapp.AppWeb;
 
@@ -22,8 +23,8 @@ public class Formulario extends Tag {
 
     try {
 
-      this.setStrAction(strAction);
       this.setEnmMetodo(enmMetodo);
+      this.setStrAction(strAction);
     }
     catch (Exception ex) {
 
@@ -50,12 +51,12 @@ public class Formulario extends Tag {
     }
   }
 
-  private EnmMetodo getEnmMetodo() {
+  protected EnmMetodo getEnmMetodo() {
 
     return _enmMetodo;
   }
 
-  private String getStrAction() {
+  protected String getStrAction() {
 
     return _strAction;
   }
@@ -69,12 +70,11 @@ public class Formulario extends Tag {
       _enmMetodo = enmMetodo;
 
       switch (_enmMetodo) {
-        case GET:
-          strMetodo = "get";
-          break;
+
         case POST:
           strMetodo = "post";
           break;
+
         default:
           strMetodo = "get";
           break;
@@ -95,6 +95,11 @@ public class Formulario extends Tag {
     try {
 
       _strAction = strAction;
+
+      if (Utils.getBooStrVazia(_strAction)) {
+
+        return;
+      }
 
       this.getLstAtr().add(new Atributo("action", _strAction));
     }
