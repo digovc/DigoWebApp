@@ -63,6 +63,7 @@ public class Painel extends Tag {
       lstTagCss.add(cssMarkdown);
 
       cssMarkdownMonoBlue = new CssTag();
+
       cssMarkdownMonoBlue.addAtr("href", "res/css/markdown-mono-blue.css");
       cssMarkdownMonoBlue.addAtr("rel", "stylesheet");
 
@@ -103,7 +104,24 @@ public class Painel extends Tag {
     }
   }
 
-  private void addJsCodigoConverterMarkdown() {
+  @Override
+  protected void addJsCodigo(JavaScriptTag tagJs) {
+
+    super.addJsCodigo(tagJs);
+
+    try {
+
+      this.addJsCodigoMarkdown(tagJs);
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+    }
+    finally {
+    }
+  }
+
+  private void addJsCodigoMarkdown(JavaScriptTag tagJs) {
 
     String strJsCodigo;
 
@@ -137,28 +155,6 @@ public class Painel extends Tag {
   private boolean getBooMarkdown() {
 
     return _booMarkdown;
-  }
-
-  @Override
-  protected void montarLayout() {
-
-    super.montarLayout();
-
-    try {
-
-      if (!this.getBooMarkdown()) {
-
-        return;
-      }
-
-      this.addJsCodigoConverterMarkdown();
-    }
-    catch (Exception ex) {
-
-      new Erro("Erro inesperado.\n", ex);
-    }
-    finally {
-    }
   }
 
   public void setBooMarkdown(boolean booMarkdown) {
