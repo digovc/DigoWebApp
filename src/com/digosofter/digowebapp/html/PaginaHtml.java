@@ -74,7 +74,7 @@ public class PaginaHtml extends Objeto {
 
       this.setI(this);
       this.addCss(this.getLstTagCss());
-      this.addJs(this.getLstTagJs());
+      this.addJsArquivo(this.getLstTagJs());
       this.addJsCodigoMensagem();
     }
     catch (Exception ex) {
@@ -152,7 +152,7 @@ public class PaginaHtml extends Objeto {
    * Adiciona os arquivos "JavaScript" que fazem a página funcionar no
    * navegador.
    */
-  protected void addJs(List<JavaScriptTag> lstObjJsTag) {
+  protected void addJsArquivo(List<JavaScriptTag> lstObjJsTag) {
 
     try {
 
@@ -472,7 +472,9 @@ public class PaginaHtml extends Objeto {
         return _tagDocType;
       }
 
-      _tagDocType = new Tag("!DOCTYPE html");
+      _tagDocType = new Tag("!DOCTYPE");
+
+      _tagDocType.addAtr("html");
 
       _tagDocType.setBooBarraNoFinal(false);
     }
@@ -518,8 +520,8 @@ public class PaginaHtml extends Objeto {
 
       _tagHtml = new Tag("html");
 
-      _tagHtml.getLstAtr().add(new Atributo("xmlns", "http://www.w3.org/1999/xhtml"));
-      _tagHtml.getLstAtr().add(new Atributo("lang", "pt-br"));
+      _tagHtml.addAtr("xmlns", "http://www.w3.org/1999/xhtml");
+      _tagHtml.addAtr("lang", "pt-br");
     }
     catch (Exception ex) {
 
@@ -594,8 +596,8 @@ public class PaginaHtml extends Objeto {
 
       _tagMeta = new Tag("meta");
 
-      _tagMeta.getLstAtr().add(new Atributo("http-equiv", "Content-Type"));
-      _tagMeta.getLstAtr().add(new Atributo("content", this.getStrDescricao()));
+      _tagMeta.addAtr("http-equiv", "Content-Type");
+      _tagMeta.addAtr("content", this.getStrDescricao());
     }
     catch (Exception ex) {
 

@@ -135,7 +135,7 @@ public class CssTag extends Tag {
     try {
 
       this.setBooForcarTagDupla(true);
-      this.getLstAtr().add(new Atributo("type", "text/css"));
+      this.addAtr("type", "text/css");
     }
     catch (Exception ex) {
 

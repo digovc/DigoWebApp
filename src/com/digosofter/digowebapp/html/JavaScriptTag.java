@@ -17,8 +17,8 @@ public class JavaScriptTag extends Tag {
 
     try {
 
+      this.addAtr("type", "text/javascript");
       this.setBooForcarTagDupla(true);
-      this.getLstAtr().add(new Atributo("type", "text/javascript"));
       this.setSrc(strSrc);
     }
     catch (Exception ex) {

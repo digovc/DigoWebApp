@@ -343,7 +343,7 @@ public class Campo extends Tag {
         return;
       }
 
-      this.getLstAtr().add(new Atributo("name", _strId));
+      this.addAtr("name", _strId);
     }
     catch (Exception ex) {
 
@@ -359,7 +359,7 @@ public class Campo extends Tag {
 
       _strPlaceHolder = strPlaceHolder;
 
-      this.getLstAtr().add(new Atributo("placeholder", _strPlaceHolder));
+      this.addAtr("placeholder", _strPlaceHolder);
     }
     catch (Exception ex) {
 

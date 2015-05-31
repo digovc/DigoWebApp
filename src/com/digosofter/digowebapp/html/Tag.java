@@ -11,7 +11,10 @@ import com.digosofter.digowebapp.AppWeb;
 public class Tag extends Objeto {
 
   private Atributo _atrClass;
+  private Atributo _atrId;
+  private Atributo _atrNome;
   private Atributo _atrSrc;
+  private Atributo _atrTitle;
   private Atributo _atrType;
   private boolean _booBarraNoFinal = true;
   private boolean _booForcarTagDupla;
@@ -33,7 +36,6 @@ public class Tag extends Objeto {
     try {
 
       this.setStrTagNome(strTagName);
-      this.setStrConteudo(Utils.STR_VAZIA);
 
       if (this instanceof CssTag) {
 
@@ -50,11 +52,26 @@ public class Tag extends Objeto {
     }
   }
 
-  public void addAtr(String strNome) {
+  public void addAtr(Atributo atr) {
 
     try {
 
-      this.getLstAtr().add(new Atributo(strNome));
+      if (atr == null) {
+
+        return;
+      }
+
+      if (Utils.getBooStrVazia(atr.getStrNome())) {
+
+        return;
+      }
+
+      if (this.getLstAtr().contains(atr)) {
+
+        return;
+      }
+
+      this.getLstAtr().add(atr);
     }
     catch (Exception ex) {
 
@@ -62,27 +79,37 @@ public class Tag extends Objeto {
     }
     finally {
     }
+  }
+
+  public void addAtr(String strNome) {
+
+    this.addAtr(strNome, null);
+  }
+
+  public void addAtr(String strNome, double dblValor) {
+
+    this.addAtr(strNome, String.valueOf(dblValor));
   }
 
   public void addAtr(String strNome, int intValor) {
 
-    try {
-
-      this.getLstAtr().add(new Atributo(strNome, String.valueOf(intValor)));
-    }
-    catch (Exception ex) {
-
-      new Erro("Erro inesperado.\n", ex);
-    }
-    finally {
-    }
+    this.addAtr(strNome, String.valueOf(intValor));
   }
 
   public void addAtr(String strNome, String strValor) {
 
+    Atributo atr;
+
     try {
 
-      this.getLstAtr().add(new Atributo(strNome, strValor));
+      if (Utils.getBooStrVazia(strNome)) {
+
+        return;
+      }
+
+      atr = new Atributo(strNome, strValor);
+
+      this.addAtr(atr);
     }
     catch (Exception ex) {
 
@@ -95,6 +122,16 @@ public class Tag extends Objeto {
   public void addCss(String strClassCss) {
 
     try {
+
+      if (Utils.getBooStrVazia(strClassCss)) {
+
+        return;
+      }
+
+      if (this.getAtrClass().getLstStrValor().contains(strClassCss)) {
+
+        return;
+      }
 
       this.getAtrClass().getLstStrValor().add(strClassCss);
     }
@@ -146,7 +183,7 @@ public class Tag extends Objeto {
 
       _atrClass = new Atributo("class");
 
-      this.getLstAtr().add(_atrClass);
+      this.addAtr(_atrClass);
     }
     catch (Exception ex) {
 
@@ -156,6 +193,52 @@ public class Tag extends Objeto {
     }
 
     return _atrClass;
+  }
+
+  private Atributo getAtrId() {
+
+    try {
+
+      if (_atrId != null) {
+
+        return _atrId;
+      }
+
+      _atrId = new Atributo("id");
+
+      this.addAtr(_atrId);
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+    }
+    finally {
+    }
+
+    return _atrId;
+  }
+
+  private Atributo getAtrNome() {
+
+    try {
+
+      if (_atrNome != null) {
+
+        return _atrNome;
+      }
+
+      _atrNome = new Atributo("name");
+
+      this.addAtr(_atrNome);
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+    }
+    finally {
+    }
+
+    return _atrNome;
   }
 
   private Atributo getAtrSrc() {
@@ -169,7 +252,7 @@ public class Tag extends Objeto {
 
       _atrSrc = new Atributo("src");
 
-      this.getLstAtr().add(_atrSrc);
+      this.addAtr(_atrSrc);
     }
     catch (Exception ex) {
 
@@ -179,6 +262,29 @@ public class Tag extends Objeto {
     }
 
     return _atrSrc;
+  }
+
+  private Atributo getAtrTitle() {
+
+    try {
+
+      if (_atrTitle != null) {
+
+        return _atrTitle;
+      }
+
+      _atrTitle = new Atributo("title");
+
+      this.addAtr(_atrTitle);
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+    }
+    finally {
+    }
+
+    return _atrTitle;
   }
 
   public Atributo getAtrType() {
@@ -192,7 +298,7 @@ public class Tag extends Objeto {
 
       _atrType = new Atributo("type");
 
-      this.getLstAtr().add(_atrType);
+      this.addAtr(_atrType);
     }
     catch (Exception ex) {
 
@@ -214,7 +320,7 @@ public class Tag extends Objeto {
     return _booForcarTagDupla;
   }
 
-  public List<Atributo> getLstAtr() {
+  private List<Atributo> getLstAtr() {
 
     try {
 
@@ -284,26 +390,38 @@ public class Tag extends Objeto {
 
   protected String getStrAtributoFormatado() {
 
-    String strAtributoIncluido = Utils.STR_VAZIA;
-    StringBuilder stbAtrFormatado = new StringBuilder();
+    List<String> lstStrAtrNomeAdicionado;
+    String strResultado;
 
     try {
 
+      lstStrAtrNomeAdicionado = new ArrayList<String>();
+      strResultado = Utils.STR_VAZIA;
+
       for (Atributo atr : this.getLstAtr()) {
 
-        if (strAtributoIncluido.contains("#" + atr.getStrNome() + "#")) {
+        if (atr == null) {
 
           continue;
         }
 
-        strAtributoIncluido += "#" + atr.getStrNome() + "#";
+        if (Utils.getBooStrVazia(atr.getStrNome())) {
 
-        stbAtrFormatado.append(" ");
-        stbAtrFormatado.append(atr.getStrNome());
-        stbAtrFormatado.append("=\"");
-        stbAtrFormatado.append(Utils.getStrConcatenarLst(atr.getLstStrValor(), atr.getStrDelimitador(), true));
-        stbAtrFormatado.append("\"");
+          continue;
+        }
+
+        if (lstStrAtrNomeAdicionado.contains(atr.getStrNome())) {
+
+          continue;
+        }
+
+        strResultado += atr.getStrFormatado();
+        strResultado += " ";
       }
+
+      strResultado = Utils.removerUltimaLetra(strResultado);
+
+      return strResultado;
     }
     catch (Exception ex) {
 
@@ -312,7 +430,7 @@ public class Tag extends Objeto {
     finally {
     }
 
-    return stbAtrFormatado.toString();
+    return null;
   }
 
   public String getStrConteudo() {
@@ -350,10 +468,9 @@ public class Tag extends Objeto {
         return _strId;
       }
 
-      _strId = "id_int_id";
-      _strId = _strId.replace("_int_id", String.valueOf(this.getIntObjetoId()));
+      _strId = this.getStrIdAuto();
 
-      this.getLstAtr().add(new Atributo("id", _strId));
+      this.getAtrId().setStrValor(_strId);
     }
     catch (Exception ex) {
 
@@ -365,79 +482,16 @@ public class Tag extends Objeto {
     return _strId;
   }
 
-  private String getStrLink() {
+  private String getStrIdAuto() {
 
-    return _strLink;
-  }
-
-  public String toHtml() {
-
-    StringBuilder stbTagFormatada = new StringBuilder();
+    String strResultado;
 
     try {
 
-      this.montarLayout();
+      strResultado = "id_int_id";
+      strResultado = strResultado.replace("_int_id", String.valueOf(this.getIntObjetoId()));
 
-      if (!Utils.getBooStrVazia(this.getStrConteudo()) || !this.getLstTag().isEmpty() || this.getBooForcarTagDupla()) {
-
-        if (!Utils.getBooStrVazia(this.getStrLink())) {
-
-          stbTagFormatada.append("<a href=\"");
-          stbTagFormatada.append(this.getStrLink());
-          stbTagFormatada.append("\">");
-        }
-
-        stbTagFormatada.append(this.getStrAbertura());
-        stbTagFormatada.append(this.getStrTagNome());
-        stbTagFormatada.append(this.getStrAtributoFormatado());
-        stbTagFormatada.append(this.getStrFechamento());
-        stbTagFormatada.append(this.getStrConteudo());
-
-        for (Tag tag : this.getLstTag()) {
-
-          stbTagFormatada.append(tag.toHtml());
-        }
-
-        stbTagFormatada.append(this.getStrAbertura());
-
-        if (this.getBooBarraNoFinal()) {
-
-          stbTagFormatada.append("/");
-        }
-
-        stbTagFormatada.append(this.getStrTagNome());
-        stbTagFormatada.append(this.getStrFechamento());
-
-        if (!Utils.getBooStrVazia(this.getStrLink())) {
-
-          stbTagFormatada.append("</a>");
-        }
-
-        return stbTagFormatada.toString();
-      }
-
-      if (!Utils.getBooStrVazia(this.getStrLink())) {
-
-        stbTagFormatada.append("<a href=\"");
-        stbTagFormatada.append(this.getStrLink());
-        stbTagFormatada.append("\">");
-      }
-
-      stbTagFormatada.append(this.getStrAbertura());
-      stbTagFormatada.append(this.getStrTagNome());
-      stbTagFormatada.append(this.getStrAtributoFormatado());
-
-      if (this.getBooBarraNoFinal()) {
-
-        stbTagFormatada.append("/");
-      }
-
-      stbTagFormatada.append(this.getStrFechamento());
-
-      if (!Utils.getBooStrVazia(this.getStrLink())) {
-
-        stbTagFormatada.append("</a>");
-      }
+      return strResultado;
     }
     catch (Exception ex) {
 
@@ -446,7 +500,12 @@ public class Tag extends Objeto {
     finally {
     }
 
-    return stbTagFormatada.toString();
+    return null;
+  }
+
+  private String getStrLink() {
+
+    return _strLink;
   }
 
   protected String getStrTagNome() {
@@ -481,20 +540,11 @@ public class Tag extends Objeto {
   }
 
   /**
-   * Limpa todas as "classes" já adicionadas à tag.
+   * Limpa todas as classes já adicionadas à tag.
    */
   public void limparClass() {
 
-    try {
-
-      this.getAtrClass().getLstStrValor().clear();
-    }
-    catch (Exception ex) {
-
-      new Erro("Erro inesperado.\n", ex);
-    }
-    finally {
-    }
+    this.getAtrClass().getLstStrValor().clear();
   }
 
   protected void montarLayout() {
@@ -569,7 +619,12 @@ public class Tag extends Objeto {
 
       _strId = strId;
 
-      this.getLstAtr().add(new Atributo("id", _strId));
+      if (Utils.getBooStrVazia(_strId)) {
+
+        _strId = this.getStrIdAuto();
+      }
+
+      this.getAtrId().setStrValor(_strId);
     }
     catch (Exception ex) {
 
@@ -586,7 +641,21 @@ public class Tag extends Objeto {
 
   public void setStrLinkNovaJanela(String strLink) {
 
-    _strLink = strLink + "\"target=\"_blank\"";
+    try {
+
+      if (Utils.getBooStrVazia(strLink)) {
+
+        return;
+      }
+
+      _strLink = strLink + "\"target=\"_blank\"";
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+    }
+    finally {
+    }
   }
 
   @Override
@@ -598,7 +667,12 @@ public class Tag extends Objeto {
 
       _strNome = strNome;
 
-      this.addAtr("name", Utils.simplificar(_strNome));
+      if (Utils.getBooStrVazia(_strNome)) {
+
+        return;
+      }
+
+      this.getAtrNome().setStrValor(Utils.simplificar(_strNome));
     }
     catch (Exception ex) {
 
@@ -610,7 +684,21 @@ public class Tag extends Objeto {
 
   protected void setStrTagNome(String strTagNome) {
 
-    _strTagNome = strTagNome;
+    try {
+
+      _strTagNome = strTagNome;
+
+      if (Utils.getBooStrVazia(_strTagNome)) {
+
+        _strTagNome = "div";
+      }
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+    }
+    finally {
+    }
   }
 
   public void setStrTitle(String strTitle) {
@@ -619,7 +707,12 @@ public class Tag extends Objeto {
 
       _strTitle = strTitle;
 
-      this.getLstAtr().add(new Atributo("title", _strTitle));
+      if (Utils.getBooStrVazia(_strTitle)) {
+
+        return;
+      }
+
+      this.getAtrTitle().setStrValor(_strTitle);
     }
     catch (Exception ex) {
 
@@ -639,6 +732,12 @@ public class Tag extends Objeto {
     try {
 
       _tagPai = tagPai;
+
+      if (_tagPai == null) {
+
+        return;
+      }
+
       _tagPai.getLstTag().add(this);
     }
     catch (Exception ex) {
@@ -647,5 +746,91 @@ public class Tag extends Objeto {
     }
     finally {
     }
+  }
+
+  public String toHtml() {
+
+    StringBuilder stbResultado;
+
+    try {
+
+      this.montarLayout();
+
+      stbResultado = new StringBuilder();
+
+      if (!Utils.getBooStrVazia(this.getStrConteudo()) || !this.getLstTag().isEmpty() || this.getBooForcarTagDupla()) {
+
+        if (!Utils.getBooStrVazia(this.getStrLink())) {
+
+          stbResultado.append("<a href=\"");
+          stbResultado.append(this.getStrLink());
+          stbResultado.append("\">");
+        }
+
+        stbResultado.append(this.getStrAbertura());
+        stbResultado.append(this.getStrTagNome());
+        stbResultado.append(!this.getLstAtr().isEmpty() ? " " : Utils.STR_VAZIA);
+        stbResultado.append(this.getStrAtributoFormatado());
+        stbResultado.append(this.getStrFechamento());
+
+        stbResultado.append(!Utils.getBooStrVazia(this.getStrConteudo()) ? this.getStrConteudo() : Utils.STR_VAZIA);
+
+        for (Tag tag : this.getLstTag()) {
+
+          stbResultado.append(tag.toHtml());
+        }
+
+        stbResultado.append(this.getStrAbertura());
+
+        if (this.getBooBarraNoFinal()) {
+
+          stbResultado.append("/");
+        }
+
+        stbResultado.append(this.getStrTagNome());
+        stbResultado.append(this.getStrFechamento());
+
+        if (!Utils.getBooStrVazia(this.getStrLink())) {
+
+          stbResultado.append("</a>");
+        }
+
+        return stbResultado.toString();
+      }
+
+      if (!Utils.getBooStrVazia(this.getStrLink())) {
+
+        stbResultado.append("<a href=\"");
+        stbResultado.append(this.getStrLink());
+        stbResultado.append("\">");
+      }
+
+      stbResultado.append(this.getStrAbertura());
+      stbResultado.append(this.getStrTagNome());
+      stbResultado.append(" ");
+      stbResultado.append(this.getStrAtributoFormatado());
+
+      if (this.getBooBarraNoFinal()) {
+
+        stbResultado.append("/");
+      }
+
+      stbResultado.append(this.getStrFechamento());
+
+      if (!Utils.getBooStrVazia(this.getStrLink())) {
+
+        stbResultado.append("</a>");
+      }
+
+      return stbResultado.toString();
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+    }
+    finally {
+    }
+
+    return null;
   }
 }

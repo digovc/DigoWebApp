@@ -94,6 +94,30 @@ public class Atributo extends Objeto {
     return _strDelimitador;
   }
 
+  public String getStrFormatado() {
+
+    String strResultado;
+
+    try {
+
+      strResultado = !Utils.getBooStrVazia(this.getStrValor()) ? "_nome=\"_valor\"" : "_nome";
+
+      strResultado = strResultado.replace("_valor", Utils.getStrConcatenarLst(this.getLstStrValor(), this.getStrDelimitador(), true));
+
+      strResultado = strResultado.replace("_nome", this.getStrNome());
+
+      return strResultado;
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+    }
+    finally {
+    }
+
+    return null;
+  }
+
   public String getStrValor() {
 
     try {

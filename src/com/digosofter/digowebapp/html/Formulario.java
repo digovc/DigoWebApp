@@ -80,7 +80,7 @@ public class Formulario extends Tag {
           break;
       }
 
-      this.getLstAtr().add(new Atributo("method", strMetodo));
+      this.addAtr("method", strMetodo);
     }
     catch (Exception ex) {
 
@@ -101,7 +101,7 @@ public class Formulario extends Tag {
         return;
       }
 
-      this.getLstAtr().add(new Atributo("action", _strAction));
+      this.addAtr("action", _strAction);
     }
     catch (Exception ex) {
 
