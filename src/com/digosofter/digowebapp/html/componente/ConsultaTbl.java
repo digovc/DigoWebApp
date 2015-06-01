@@ -86,7 +86,9 @@ public class ConsultaTbl extends ComponenteMain {
 
       this.getPnlTitulo().setTagPai(this);
       this.getPnlLista().setTagPai(this);
+
       this.montarLayoutLista();
+
       this.getPnlComando().setTagPai(this);
       this.getBtnNovo().setTagPai(this.getPnlComando());
       this.getTagLimiteFloat().setTagPai(this.getPnlComando());
@@ -101,7 +103,7 @@ public class ConsultaTbl extends ComponenteMain {
 
   /**
    * Monta o layout de uma linha baseado no registro posicionado no objeto
-   * "objResultSet".
+   * "rst".
    */
   private void montarLayoutLinha(ResultSet rst) {
 

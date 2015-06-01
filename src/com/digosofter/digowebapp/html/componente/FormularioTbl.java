@@ -19,7 +19,7 @@ import com.digosofter.digowebapp.html.componente.item.CampoFrmTbl;
 
 public class FormularioTbl extends ComponenteMain {
 
-  private boolean _booBtnCancelarVisivel = true;
+  private boolean _booCancelar = true;
   private boolean _booSalvar;
   private boolean _booSubmit;
   private Botao _btnCancelar;
@@ -66,9 +66,9 @@ public class FormularioTbl extends ComponenteMain {
     }
   }
 
-  private boolean getBooBtnCancelarVisivel() {
+  private boolean getBooCancelar() {
 
-    return _booBtnCancelarVisivel;
+    return _booCancelar;
   }
 
   private boolean getBooSalvar() {
@@ -325,7 +325,7 @@ public class FormularioTbl extends ComponenteMain {
       this.getPnlComando().setTagPai(this.getFrm());
       this.getBtnSalvar().setTagPai(this.getPnlComando());
 
-      if (this.getBooBtnCancelarVisivel()) {
+      if (this.getBooCancelar()) {
 
         this.getBtnCancelar().setTagPai(this.getPnlComando());
       }
@@ -428,9 +428,9 @@ public class FormularioTbl extends ComponenteMain {
     }
   }
 
-  public void setBooBtnCancelarVisivel(boolean booBtnCancelarVisivel) {
+  public void setBooCancelar(boolean booCancelar) {
 
-    _booBtnCancelarVisivel = booBtnCancelarVisivel;
+    _booCancelar = booCancelar;
   }
 
   public void setBooSubmit(boolean booSubmit) {
