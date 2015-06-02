@@ -18,9 +18,8 @@ public abstract class AppWeb extends App {
 
   private static List<PaletaCor> _lstObjPaletaCor;
 
-  private static AppWeb i;
-
   public static final String DIR_JS_BOTAO = "res/js/lib/JDigo/html/Botao.js";
+
   public static final String DIR_JS_CAMPO = "res/js/lib/JDigo/html/Campo.js";
   public static final String DIR_JS_COMBO_BOX = "res/js/lib/JDigo/html/ComboBox.js";
   public static final String DIR_JS_COMPONENTE_MAIN = "res/js/lib/JDigo/html/componente/ComponenteMain.js";
@@ -38,6 +37,7 @@ public abstract class AppWeb extends App {
   public static final String DIR_JS_TABLESORTER = "res/js/lib/JDigo/lib/jquery.tablesorter.min.js";
   public static final String DIR_JS_TAG = "res/js/lib/JDigo/html/Tag.js";
   public static final String DIR_JS_WEBSOCKET_FILE_TRANSFER = "res/js/lib/JDigo/lib/WebSocketFileTransfer.js";
+  private static AppWeb i;
 
   public static AppWeb getI() {
 
@@ -460,7 +460,7 @@ public abstract class AppWeb extends App {
     }
   }
 
-  public void setBooOcupado(boolean booOcupado) {
+  public synchronized void setBooOcupado(boolean booOcupado) {
 
     _booOcupado = booOcupado;
   }

@@ -129,11 +129,6 @@ public class Combobox extends Campo {
 
     try {
 
-      if (this.getMapOpcao().isEmpty() || this.getBooOpcaoVazia()) {
-
-        this.getMapOpcao().put(-1, Utils.STR_VAZIA);
-      }
-
       this.montarLayoutItens();
     }
     catch (Exception ex) {
@@ -149,6 +144,12 @@ public class Combobox extends Campo {
     Tag tagOption;
 
     try {
+
+      if (this.getMapOpcao().isEmpty() || this.getBooOpcaoVazia()) {
+
+        tagOption = this.getNewTagOption(-1, Utils.STR_VAZIA);
+        tagOption.setTagPai(this);
+      }
 
       for (Entry<Integer, String> opc : this.getMapOpcao().entrySet()) {
 
