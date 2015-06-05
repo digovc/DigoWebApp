@@ -1,0 +1,3 @@
+[submodule "JDigo"]
+	path = JDigo
+	url = https://digovc@bitbucket.org/digovc/pessoal-jdigo.git
