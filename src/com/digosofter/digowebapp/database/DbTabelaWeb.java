@@ -386,6 +386,7 @@ public abstract class DbTabelaWeb extends DbTabela {
         strEstrutura = "'_cln_valor'";
 
         strEstrutura = strEstrutura.replace("_cln_valor", cln.getStrValorSql());
+        strEstrutura = strEstrutura.replace("'<null>'", "null");
         strEstrutura = strEstrutura.replace("'null'", "null");
 
         lstStrRetorno.add(strEstrutura);

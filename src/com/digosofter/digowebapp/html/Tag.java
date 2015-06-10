@@ -17,6 +17,7 @@ public class Tag extends Objeto {
   private Atributo _atrTitle;
   private Atributo _atrType;
   private boolean _booBarraNoFinal = true;
+  private boolean _booClicavel;
   private boolean _booForcarTagDupla;
   private List<Atributo> _lstAtr;
   private List<Tag> _lstTag;
@@ -315,6 +316,11 @@ public class Tag extends Objeto {
     return _booBarraNoFinal;
   }
 
+  protected boolean getBooClicavel() {
+
+    return _booClicavel;
+  }
+
   protected boolean getBooForcarTagDupla() {
 
     return _booForcarTagDupla;
@@ -566,6 +572,27 @@ public class Tag extends Objeto {
   public void setBooBarraNoFinal(boolean booBarraNoFinal) {
 
     _booBarraNoFinal = booBarraNoFinal;
+  }
+
+  protected void setBooClicavel(boolean booClicavel) {
+
+    try {
+
+      _booClicavel = booClicavel;
+
+      if (!_booClicavel) {
+
+        return;
+      }
+
+      this.addCss(CssTag.getIMain().setCursor("pointer"));
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+    }
+    finally {
+    }
   }
 
   public void setBooForcarTagDupla(boolean booForcarTagDupla) {

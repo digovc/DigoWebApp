@@ -15,7 +15,6 @@ import com.digosofter.digowebapp.html.componente.Mensagem;
 public class PaginaHtml extends Objeto {
 
   public static final String DIR_JS_APP_WEB = "res/js/lib/JDigo/AppWeb.js";
-
   public static final String DIR_JS_ERRO = "res/js/lib/JDigo/erro/Erro.js";
   public static final String DIR_JS_LIB_DATE = "res/js/lib/JDigo/lib/date.js";
   public static final String DIR_JS_LIB_JQUERY = "res/js/lib/JDigo/lib/jquery-2.1.3.min.js";
@@ -55,6 +54,8 @@ public class PaginaHtml extends Objeto {
   private boolean _booPagSimples;
   private List<CssTag> _lstTagCss;
   private List<CssTag> _lstTagCssOrdenado;
+  private List<DartTag> _lstTagDart;
+  private List<DartTag> _lstTagDartOrdenado;
   private List<JavaScriptTag> _lstTagJs;
   private List<JavaScriptTag> _lstTagJsOrdenado;
   private String _strSrcIcon;
@@ -75,6 +76,7 @@ public class PaginaHtml extends Objeto {
       this.setI(this);
       this.addCss(this.getLstTagCss());
       this.addJsArquivo(this.getLstTagJs());
+      this.addJsDart(this.getLstTagDart());
       this.addJsCodigoMensagem();
     }
     catch (Exception ex) {
@@ -114,6 +116,33 @@ public class PaginaHtml extends Objeto {
 
   protected void addCss(List<CssTag> lstTagCss) {
 
+  }
+
+  private void addDart() {
+
+    try {
+
+      if (this.getBooPagSimples()) {
+
+        return;
+      }
+
+      for (DartTag tagDart : this.getLstTagDartOrdenado()) {
+
+        if (tagDart == null) {
+
+          continue;
+        }
+
+        tagDart.setTagPai(this.getTagHead());
+      }
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+    }
+    finally {
+    }
   }
 
   /**
@@ -156,6 +185,7 @@ public class PaginaHtml extends Objeto {
 
     try {
 
+      // lstObjJsTag.add(new JavaScriptTag("res/dart/main.dart.js"));
       lstObjJsTag.add(new JavaScriptTag(DIR_JS_LIB_JQUERY));
       lstObjJsTag.add(new JavaScriptTag(DIR_JS_LIB_JQUERY_UI));
       lstObjJsTag.add(new JavaScriptTag(DIR_JS_LIB_MD5));
@@ -280,6 +310,20 @@ public class PaginaHtml extends Objeto {
     }
   }
 
+  protected void addJsDart(List<DartTag> lstTagDart) {
+
+    try {
+
+      lstTagDart.add(new DartTag("res/dart/main.dart"));
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+    }
+    finally {
+    }
+  }
+
   private boolean getBooPagSimples() {
 
     return _booPagSimples;
@@ -344,6 +388,76 @@ public class PaginaHtml extends Objeto {
     }
 
     return _lstTagCssOrdenado;
+  }
+
+  public List<DartTag> getLstTagDart() {
+
+    try {
+
+      if (_lstTagDart != null) {
+
+        return _lstTagDart;
+      }
+
+      _lstTagDart = new ArrayList<DartTag>();
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+    }
+    finally {
+    }
+
+    return _lstTagDart;
+  }
+
+  private List<DartTag> getLstTagDartOrdenado() {
+
+    List<String> lstSrcDartAdicionado;
+
+    try {
+
+      if (_lstTagDartOrdenado != null) {
+
+        return _lstTagDartOrdenado;
+      }
+
+      _lstTagDartOrdenado = new ArrayList<DartTag>();
+      lstSrcDartAdicionado = new ArrayList<String>();
+
+      for (DartTag tagDart : this.getLstTagDart()) {
+
+        if (tagDart == null) {
+
+          continue;
+        }
+
+        if (lstSrcDartAdicionado.contains(tagDart.getSrc())) {
+
+          continue;
+        }
+
+        _lstTagDartOrdenado.add(tagDart);
+        lstSrcDartAdicionado.add(tagDart.getSrc());
+      }
+
+      Collections.sort(_lstTagDartOrdenado, new Comparator<DartTag>() {
+
+        @Override
+        public int compare(final DartTag tagDart, final DartTag tagDart2) {
+
+          return tagDart.getIntPrioridade() < tagDart2.getIntPrioridade() ? -1 : tagDart.getIntPrioridade() > tagDart2.getIntPrioridade() ? +1 : 0;
+        }
+      });
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+    }
+    finally {
+    }
+
+    return _lstTagDartOrdenado;
   }
 
   public List<JavaScriptTag> getLstTagJs() {
@@ -747,6 +861,7 @@ public class PaginaHtml extends Objeto {
 
       this.addCss();
       this.addJs();
+      this.addDart();
 
       strHead = this.getTagHead().toHtml();
 
