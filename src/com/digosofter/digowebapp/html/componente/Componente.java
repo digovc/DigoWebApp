@@ -10,13 +10,13 @@ import com.digosofter.digowebapp.html.LimiteFloat;
 import com.digosofter.digowebapp.html.Painel;
 import com.digosofter.digowebapp.html.Tag;
 
-public abstract class ComponenteMain extends Tag {
+public abstract class Componente extends Tag {
 
   private Painel _pnlComando;
   private Painel _pnlTitulo;
   private LimiteFloat _tagLimiteFloat;
 
-  public ComponenteMain() {
+  public Componente() {
 
     super("div");
   }

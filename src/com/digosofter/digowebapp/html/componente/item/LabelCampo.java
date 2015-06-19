@@ -6,7 +6,7 @@ import com.digosofter.digowebapp.html.Campo;
 import com.digosofter.digowebapp.html.CssTag;
 import com.digosofter.digowebapp.html.Painel;
 
-public class LabelCampo extends ItemMain {
+public class LabelCampo extends Item {
 
   private Painel _pnlCampo;
   private Painel _pnlLabel;

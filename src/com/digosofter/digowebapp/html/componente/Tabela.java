@@ -15,7 +15,7 @@ import com.digosofter.digowebapp.html.JavaScriptTag;
 import com.digosofter.digowebapp.html.Painel;
 import com.digosofter.digowebapp.html.Tag;
 
-public class Tabela extends ComponenteMain {
+public class Tabela extends Componente {
 
   private boolean _booPesquisa = true;
   private Painel _pnlPesquisa;

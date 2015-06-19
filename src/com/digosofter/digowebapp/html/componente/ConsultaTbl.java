@@ -8,7 +8,7 @@ import com.digosofter.digowebapp.html.Botao;
 import com.digosofter.digowebapp.html.CssTag;
 import com.digosofter.digowebapp.html.Painel;
 
-public class ConsultaTbl extends ComponenteMain {
+public class ConsultaTbl extends Componente {
 
   private Botao _btnNovo;
   private Painel _pnlLista;

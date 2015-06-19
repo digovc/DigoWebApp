@@ -7,7 +7,7 @@ import com.digosofter.digowebapp.database.DbColunaWeb;
 import com.digosofter.digowebapp.database.DbTabelaWeb;
 import com.digosofter.digowebapp.database.DbView;
 
-public abstract class TblMain extends DbTabelaWeb {
+public abstract class Tabela extends DbTabelaWeb {
 
   private DbColunaWeb _clnBooAtivo;
   private DbColunaWeb _clnDttAlteracao;
@@ -17,7 +17,7 @@ public abstract class TblMain extends DbTabelaWeb {
   private DbColunaWeb _clnIntUsuarioAlteracaoId;
   private DbColunaWeb _clnIntUsuarioCadastroId;
 
-  protected TblMain(String strNome) {
+  protected Tabela(String strNome) {
 
     super(strNome);
 

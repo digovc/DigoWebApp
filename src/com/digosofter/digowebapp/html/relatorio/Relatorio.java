@@ -10,13 +10,13 @@ import com.digosofter.digowebapp.html.PaginaHtml;
 import com.digosofter.digowebapp.html.Titulo;
 import com.digosofter.digowebapp.html.Titulo.EnmTipo;
 
-public abstract class RelatorioMain extends PaginaHtml {
+public abstract class Relatorio extends PaginaHtml {
 
   private String _strTitulo;
   private Titulo _ttl;
   private Titulo _ttlSub;
 
-  public RelatorioMain() {
+  public Relatorio() {
 
     try {
 

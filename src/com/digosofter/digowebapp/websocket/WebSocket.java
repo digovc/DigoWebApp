@@ -15,7 +15,7 @@ import com.digosofter.digowebapp.AppWeb;
 import com.digosofter.digowebapp.Usuario;
 import com.google.gson.Gson;
 
-public abstract class WebSocketMain extends Objeto {
+public abstract class WebSocket extends Objeto {
 
   public static final int FNC_MSG_ERRO = 70000;
   public static final int FNC_MSG_POSITIVA = 701000;

@@ -17,7 +17,7 @@ import com.digosofter.digowebapp.html.PaginaHtml;
 import com.digosofter.digowebapp.html.Painel;
 import com.digosofter.digowebapp.html.componente.item.CampoFrmTbl;
 
-public class FormularioTbl extends ComponenteMain {
+public class FormularioTbl extends Componente {
 
   private boolean _booCancelar = true;
   private boolean _booSalvar;

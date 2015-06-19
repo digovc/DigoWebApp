@@ -8,7 +8,7 @@ import com.digosofter.digowebapp.html.CssTag;
 import com.digosofter.digowebapp.html.JavaScriptTag;
 import com.digosofter.digowebapp.html.Painel;
 
-public class PopupItem extends ItemMain {
+public class PopupItem extends Item {
 
   private int _intOrdem;
   private Painel _pnlTitulo;

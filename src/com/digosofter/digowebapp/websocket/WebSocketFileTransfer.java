@@ -14,7 +14,7 @@ import javax.websocket.server.ServerEndpoint;
 import com.digosofter.digojava.erro.Erro;
 
 @ServerEndpoint("/ws/ws_file_transfer")
-public class WebSocketFileTransfer extends WebSocketMain {
+public class WebSocketFileTransfer extends WebSocket {
 
   private List<ObjWsFileTransfer> _lstObjWsFileTransfer;
 

@@ -5,9 +5,9 @@ import java.util.List;
 import com.digosofter.digojava.erro.Erro;
 import com.digosofter.digowebapp.AppWeb;
 import com.digosofter.digowebapp.html.JavaScriptTag;
-import com.digosofter.digowebapp.html.componente.ComponenteMain;
+import com.digosofter.digowebapp.html.componente.Componente;
 
-public abstract class ItemMain extends ComponenteMain {
+public abstract class Item extends Componente {
 
   @Override
   protected void addJsArquivo(List<JavaScriptTag> lstObjJsTag) {

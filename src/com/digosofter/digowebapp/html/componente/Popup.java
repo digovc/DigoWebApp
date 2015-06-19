@@ -10,7 +10,7 @@ import com.digosofter.digowebapp.html.JavaScriptTag;
 import com.digosofter.digowebapp.html.Painel;
 import com.digosofter.digowebapp.html.componente.item.PopupItem;
 
-public class Popup extends ComponenteMain {
+public class Popup extends Componente {
 
   private List<PopupItem> _lstObjPopupItem;
   private Painel _pnlOpcao;

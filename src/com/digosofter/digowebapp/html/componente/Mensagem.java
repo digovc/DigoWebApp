@@ -6,7 +6,7 @@ import com.digosofter.digowebapp.html.CssTag;
 import com.digosofter.digowebapp.html.Imagem;
 import com.digosofter.digowebapp.html.Painel;
 
-public class Mensagem extends ComponenteMain {
+public class Mensagem extends Componente {
 
   public enum EnmTipo {
 
