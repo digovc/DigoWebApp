@@ -16,558 +16,519 @@ import com.digosofter.digowebapp.design.PaletaCor;
 
 public abstract class AppWeb extends App {
 
-  private static List<PaletaCor> _lstObjPaletaCor;
-
-  public static final String DIR_JS_BOTAO = "res/js/lib/JDigo/html/Botao.js";
-
-  public static final String DIR_JS_CAMPO = "res/js/lib/JDigo/html/Campo.js";
-  public static final String DIR_JS_COMBO_BOX = "res/js/lib/JDigo/html/ComboBox.js";
-  public static final String DIR_JS_COMPONENTE_MAIN = "res/js/lib/JDigo/html/componente/ComponenteMain.js";
-  public static final String DIR_JS_FORMULARIO = "res/js/lib/JDigo/html/Formulario.js";
-  public static final String DIR_JS_FORMULARIO_TBL = "res/js/lib/JDigo/html/componente/FormularioTbl.js";
-  public static final String DIR_JS_IMAGEM = "res/js/lib/JDigo/html/Imagem.js";
-  public static final String DIR_JS_ITEM_MAIN = "res/js/lib/JDigo/html/componente/item/ItemMain.js";
-  public static final String DIR_JS_MOOTOOLS = "res/js/lib/JDigo/lib/mootools-core-1.4.5.js";
-  public static final String DIR_JS_PAINEL = "res/js/lib/JDigo/html/Painel.js";
-  public static final String DIR_JS_POPUP = "res/js/lib/JDigo/html/componente/Popup.js";
-  public static final String DIR_JS_POPUP_ITEM = "res/js/lib/JDigo/html/componente/item/PopupItem.js";
-  public static final String DIR_JS_QUICKSEARCH = "res/js/lib/JDigo/lib/jquery.quicksearch.min.js";
-  public static final String DIR_JS_RELATORIO_MAIN = "res/js/lib/JDigo/html/relatorio/RelatorioMain.js";
-  public static final String DIR_JS_TABELA = "res/js/lib/JDigo/html/componente/Tabela.js";
-  public static final String DIR_JS_TABLESORTER = "res/js/lib/JDigo/lib/jquery.tablesorter.min.js";
-  public static final String DIR_JS_TAG = "res/js/lib/JDigo/html/Tag.js";
-  public static final String DIR_JS_WEBSOCKET_FILE_TRANSFER = "res/js/lib/JDigo/lib/WebSocketFileTransfer.js";
-  private static AppWeb i;
+	private static List<PaletaCor> _lstObjPaletaCor;
 
-  public static AppWeb getI() {
+	public static final String DIR_JS_BOTAO = "res/js/lib/JDigo/html/Botao.js";
 
-    return i;
-  }
+	public static final String DIR_JS_CAMPO = "res/js/lib/JDigo/html/Campo.js";
+	public static final String DIR_JS_COMBO_BOX = "res/js/lib/JDigo/html/ComboBox.js";
+	public static final String DIR_JS_COMPONENTE_MAIN = "res/js/lib/JDigo/html/componente/ComponenteMain.js";
+	public static final String DIR_JS_FORMULARIO = "res/js/lib/JDigo/html/Formulario.js";
+	public static final String DIR_JS_FORMULARIO_TBL = "res/js/lib/JDigo/html/componente/FormularioTbl.js";
+	public static final String DIR_JS_IMAGEM = "res/js/lib/JDigo/html/Imagem.js";
+	public static final String DIR_JS_ITEM_MAIN = "res/js/lib/JDigo/html/componente/item/ItemMain.js";
+	public static final String DIR_JS_MOOTOOLS = "res/js/lib/JDigo/lib/mootools-core-1.4.5.js";
+	public static final String DIR_JS_PAINEL = "res/js/lib/JDigo/html/Painel.js";
+	public static final String DIR_JS_POPUP = "res/js/lib/JDigo/html/componente/Popup.js";
+	public static final String DIR_JS_POPUP_ITEM = "res/js/lib/JDigo/html/componente/item/PopupItem.js";
+	public static final String DIR_JS_QUICKSEARCH = "res/js/lib/JDigo/lib/jquery.quicksearch.min.js";
+	public static final String DIR_JS_RELATORIO_MAIN = "res/js/lib/JDigo/html/relatorio/RelatorioMain.js";
+	public static final String DIR_JS_TABELA = "res/js/lib/JDigo/html/componente/Tabela.js";
+	public static final String DIR_JS_TABLESORTER = "res/js/lib/JDigo/lib/jquery.tablesorter.min.js";
+	public static final String DIR_JS_TAG = "res/js/lib/JDigo/html/Tag.js";
+	public static final String DIR_JS_WEBSOCKET_FILE_TRANSFER = "res/js/lib/JDigo/lib/WebSocketFileTransfer.js";
+	private static AppWeb i;
 
-  private boolean _booOcupado;
-  private String _dirLocal;
-  private List<Usuario> _lstUsr;
-  private HttpServletRequest _objHttpServletRequest;
-  private HttpServletResponse _objHttpServletResponse;
-  private HttpSession _objHttpSession;
-  private PaletaCor _objPaletaCor;
-  private PrintWriter _objPrintWriter;
-  private ServletContext _objServletContext;
-  private String _strPagSolicitada;
-  private Usuario _usrAtual;
+	public static AppWeb getI() {
 
-  protected AppWeb(String strAppNome) {
+		return i;
+	}
 
-    try {
+	private boolean _booOcupado;
+	private String _dirLocal;
+	private List<Usuario> _lstUsr;
+	private HttpServletRequest _objHttpServletRequest;
+	private HttpServletResponse _objHttpServletResponse;
+	private HttpSession _objHttpSession;
+	private PaletaCor _objPaletaCor;
+	private PrintWriter _objPrintWriter;
+	private ServletContext _objServletContext;
+	private String _strPagSolicitada;
+	private Usuario _usrAtual;
 
-      this.setI(this);
-      this.setStrNome(strAppNome);
-    }
-    catch (Exception ex) {
+	protected AppWeb(String strAppNome) {
 
-      new Erro("Erro inesperado.\n", ex);
-    }
-    finally {
-    }
-  }
+		try {
 
-  public void addStrHtmlResposta(int intHtml) {
+			this.setI(this);
+			this.setStrNome(strAppNome);
+		} catch (Exception ex) {
 
-    try {
+			new Erro("Erro inesperado.\n", ex);
+		} finally {
+		}
+	}
 
-      this.getObjPrintWriter().print(intHtml);
-    }
-    catch (Exception ex) {
+	public void addStrHtmlResposta(int intHtml) {
 
-      new Erro("Erro inesperado.\n", ex);
-    }
-    finally {
-    }
-  }
+		try {
 
-  public void addStrHtmlResposta(String strHtml) {
+			this.getObjPrintWriter().print(intHtml);
+		} catch (Exception ex) {
 
-    try {
+			new Erro("Erro inesperado.\n", ex);
+		} finally {
+		}
+	}
 
-      this.getObjPrintWriter().print(strHtml);
-    }
-    catch (Exception ex) {
+	public void addStrHtmlResposta(String strHtml) {
 
-      new Erro("Erro inesperado.\n", ex);
-    }
-    finally {
-    }
-  }
+		try {
 
-  public void addUsr(Usuario usr) {
+			this.getObjPrintWriter().print(strHtml);
+		} catch (Exception ex) {
 
-    try {
+			new Erro("Erro inesperado.\n", ex);
+		} finally {
+		}
+	}
 
-      if (usr == null) {
+	public void addUsr(Usuario usr) {
 
-        return;
-      }
+		try {
 
-      if (this.getLstUsr().contains(usr)) {
+			if (usr == null) {
 
-        return;
-      }
+				return;
+			}
 
-      this.getLstUsr().add(usr);
-    }
-    catch (Exception ex) {
+			if (this.getLstUsr().contains(usr)) {
 
-      new Erro("Erro inesperado.\n", ex);
-    }
-    finally {
-    }
-  }
+				return;
+			}
 
-  public boolean getBooOcupado() {
+			this.getLstUsr().add(usr);
+		} catch (Exception ex) {
 
-    return _booOcupado;
-  }
+			new Erro("Erro inesperado.\n", ex);
+		} finally {
+		}
+	}
 
-  public boolean getBooUsuarioExiste(String strSessaoId) {
+	public boolean getBooOcupado() {
 
-    try {
+		return _booOcupado;
+	}
 
-      if (Utils.getBooStrVazia(strSessaoId)) {
+	public boolean getBooUsuarioExiste(String strSessaoId) {
 
-        return false;
-      }
+		try {
 
-      for (Usuario usr : this.getLstUsr()) {
+			if (Utils.getBooStrVazia(strSessaoId)) {
 
-        if (usr == null) {
+				return false;
+			}
 
-          continue;
-        }
+			for (Usuario usr : this.getLstUsr()) {
 
-        if (!usr.getStrSessaoId().equals(strSessaoId)) {
+				if (usr == null) {
 
-          continue;
-        }
+					continue;
+				}
 
-        return true;
-      }
-    }
-    catch (Exception ex) {
+				if (!usr.getStrSessaoId().equals(strSessaoId)) {
 
-      new Erro("Erro inesperado.\n", ex);
-    }
-    finally {
-    }
+					continue;
+				}
 
-    return false;
-  }
+				return true;
+			}
+		} catch (Exception ex) {
 
-  public String getDirLocal() {
+			new Erro("Erro inesperado.\n", ex);
+		} finally {
+		}
 
-    try {
+		return false;
+	}
 
-      if (!Utils.getBooStrVazia(_dirLocal)) {
+	public String getDirLocal() {
 
-        return _dirLocal;
-      }
+		try {
 
-      _dirLocal = this.getObjServletContext().getRealPath("/");
-    }
-    catch (Exception ex) {
+			if (!Utils.getBooStrVazia(_dirLocal)) {
 
-      new Erro("Erro inesperado.\n", ex);
-    }
-    finally {
-    }
+				return _dirLocal;
+			}
 
-    return _dirLocal;
-  }
+			_dirLocal = this.getObjServletContext().getRealPath("/");
+		} catch (Exception ex) {
 
-  /**
-   * Retorna o valor do parâmetro "GET" ou "POST" vindo do cliente indicado pelo
-   * nome contido em "strParamNome". Caso não exista retorna "-1".
-   */
-  public int getIntParam(String strParamNome) {
+			new Erro("Erro inesperado.\n", ex);
+		} finally {
+		}
 
-    String strParam;
+		return _dirLocal;
+	}
 
-    try {
+	/**
+	 * Retorna o valor do parâmetro "GET" ou "POST" vindo do cliente indicado
+	 * pelo nome contido em "strParamNome". Caso não exista retorna "-1".
+	 */
+	public int getIntParam(String strParamNome) {
 
-      if (Utils.getBooStrVazia(strParamNome)) {
+		String strParam;
 
-        return -1;
-      }
+		try {
 
-      strParam = this.getObjHttpServletRequest().getParameter(strParamNome);
-      strParam = !Utils.getBooStrVazia(strParam) ? strParam : "-1";
+			if (Utils.getBooStrVazia(strParamNome)) {
 
-      return Integer.valueOf(strParam);
-    }
-    catch (Exception ex) {
+				return -1;
+			}
 
-      new Erro("Erro inesperado.\n", ex);
-    }
-    finally {
-    }
+			strParam = this.getObjHttpServletRequest().getParameter(strParamNome);
+			strParam = !Utils.getBooStrVazia(strParam) ? strParam : "-1";
 
-    return -1;
-  }
+			return Integer.valueOf(strParam);
+		} catch (Exception ex) {
 
-  public List<PaletaCor> getLstObjPaletaCor() {
+			new Erro("Erro inesperado.\n", ex);
+		} finally {
+		}
 
-    try {
+		return -1;
+	}
 
-      if (_lstObjPaletaCor != null) {
+	public List<PaletaCor> getLstObjPaletaCor() {
 
-        return _lstObjPaletaCor;
-      }
+		try {
 
-      _lstObjPaletaCor = new ArrayList<PaletaCor>();
-    }
-    catch (Exception ex) {
+			if (_lstObjPaletaCor != null) {
 
-      new Erro("Erro inesperado.\n", ex);
-    }
-    finally {
-    }
+				return _lstObjPaletaCor;
+			}
 
-    return _lstObjPaletaCor;
-  }
+			_lstObjPaletaCor = new ArrayList<PaletaCor>();
+		} catch (Exception ex) {
 
-  public List<Usuario> getLstUsr() {
+			new Erro("Erro inesperado.\n", ex);
+		} finally {
+		}
 
-    try {
+		return _lstObjPaletaCor;
+	}
 
-      if (_lstUsr != null) {
+	public List<Usuario> getLstUsr() {
 
-        return _lstUsr;
-      }
+		try {
 
-      _lstUsr = new ArrayList<Usuario>();
-    }
-    catch (Exception ex) {
+			if (_lstUsr != null) {
 
-      new Erro("Erro inesperado.\n", ex);
-    }
-    finally {
-    }
+				return _lstUsr;
+			}
 
-    return _lstUsr;
-  }
+			_lstUsr = new ArrayList<Usuario>();
+		} catch (Exception ex) {
 
-  public HttpServletRequest getObjHttpServletRequest() {
+			new Erro("Erro inesperado.\n", ex);
+		} finally {
+		}
 
-    return _objHttpServletRequest;
-  }
+		return _lstUsr;
+	}
 
-  protected HttpServletResponse getObjHttpServletResponse() {
+	public HttpServletRequest getObjHttpServletRequest() {
 
-    return _objHttpServletResponse;
-  }
+		return _objHttpServletRequest;
+	}
 
-  public HttpSession getObjHttpSession() {
+	protected HttpServletResponse getObjHttpServletResponse() {
 
-    return _objHttpSession;
-  }
+		return _objHttpServletResponse;
+	}
 
-  public PaletaCor getObjPaletaCor() {
+	public HttpSession getObjHttpSession() {
 
-    try {
+		return _objHttpSession;
+	}
 
-      if (_objPaletaCor != null) {
+	public PaletaCor getObjPaletaCor() {
 
-        return _objPaletaCor;
-      }
+		try {
 
-      for (PaletaCor objPaletaCor : this.getLstObjPaletaCor()) {
+			if (_objPaletaCor != null) {
 
-        if (objPaletaCor == null) {
+				return _objPaletaCor;
+			}
 
-          continue;
-        }
+			for (PaletaCor objPaletaCor : this.getLstObjPaletaCor()) {
 
-        if (!objPaletaCor.getBooSelecionado()) {
+				if (objPaletaCor == null) {
 
-          continue;
-        }
+					continue;
+				}
 
-        _objPaletaCor = objPaletaCor;
-        break;
-      }
+				if (!objPaletaCor.getBooSelecionado()) {
 
-      if (_objPaletaCor == null) {
+					continue;
+				}
 
-        _objPaletaCor = new PaletaCor("default");
-      }
-    }
-    catch (Exception ex) {
+				_objPaletaCor = objPaletaCor;
+				break;
+			}
 
-      new Erro("Erro inesperado.\n", ex);
-    }
-    finally {
-    }
+			if (_objPaletaCor == null) {
 
-    return _objPaletaCor;
-  }
+				_objPaletaCor = new PaletaCor("default");
+			}
+		} catch (Exception ex) {
 
-  private PrintWriter getObjPrintWriter() {
+			new Erro("Erro inesperado.\n", ex);
+		} finally {
+		}
 
-    return _objPrintWriter;
-  }
+		return _objPaletaCor;
+	}
 
-  protected ServletContext getObjServletContext() {
+	private PrintWriter getObjPrintWriter() {
 
-    try {
+		return _objPrintWriter;
+	}
 
-      _objServletContext = this.getObjHttpServletRequest().getServletContext();
-    }
-    catch (Exception ex) {
+	protected ServletContext getObjServletContext() {
 
-      new Erro("Erro inesperado.\n", ex);
-    }
-    finally {
-    }
+		try {
 
-    return _objServletContext;
-  }
+			_objServletContext = this.getObjHttpServletRequest().getServletContext();
+		} catch (Exception ex) {
 
-  public String getStrPagSolicitada() {
+			new Erro("Erro inesperado.\n", ex);
+		} finally {
+		}
 
-    return _strPagSolicitada;
-  }
+		return _objServletContext;
+	}
 
-  /**
-   * Retorna o valor do parâmetro "GET" ou "POST" vindo do cliente indicado pelo
-   * nome contido em "strParamNome". Caso não exista retorna "null".
-   */
-  public String getStrParam(String strParamNome) {
+	public String getStrPagSolicitada() {
 
-    try {
+		return _strPagSolicitada;
+	}
 
-      if (Utils.getBooStrVazia(strParamNome)) {
+	/**
+	 * Retorna o valor do parâmetro "GET" ou "POST" vindo do cliente indicado
+	 * pelo nome contido em "strParamNome". Caso não exista retorna "null".
+	 */
+	public String getStrParam(String strParamNome) {
 
-        return null;
-      }
+		try {
 
-      return this.getObjHttpServletRequest().getParameter(strParamNome);
-    }
-    catch (Exception ex) {
+			if (Utils.getBooStrVazia(strParamNome)) {
 
-      new Erro("Erro inesperado.\n", ex);
-    }
-    finally {
-    }
+				return null;
+			}
 
-    return null;
-  }
+			return this.getObjHttpServletRequest().getParameter(strParamNome);
+		} catch (Exception ex) {
 
-  public Usuario getUsr(String strSessaoId) {
+			new Erro("Erro inesperado.\n", ex);
+		} finally {
+		}
 
-    try {
+		return null;
+	}
 
-      for (Usuario usr : this.getLstUsr()) {
+	public Usuario getUsr(String strSessaoId) {
 
-        if (usr == null) {
+		try {
 
-          continue;
-        }
+			for (Usuario usr : this.getLstUsr()) {
 
-        if (!usr.getStrSessaoId().equals(strSessaoId)) {
+				if (usr == null) {
 
-          continue;
-        }
+					continue;
+				}
 
-        return usr;
-      }
-    }
-    catch (Exception ex) {
+				if (!usr.getStrSessaoId().equals(strSessaoId)) {
 
-      new Erro("Erro inesperado.\n", ex);
-    }
-    finally {
-    }
+					continue;
+				}
 
-    return null;
-  }
+				return usr;
+			}
+		} catch (Exception ex) {
 
-  public Usuario getUsrAtual() {
+			new Erro("Erro inesperado.\n", ex);
+		} finally {
+		}
 
-    try {
+		return null;
+	}
 
-      if (_usrAtual != null && _usrAtual.getStrSessaoId().equals(this.getObjHttpSession().getId())) {
+	public Usuario getUsrAtual() {
 
-        return _usrAtual;
-      }
+		try {
 
-      for (Usuario usr : this.getLstUsr()) {
+			if (_usrAtual != null && _usrAtual.getStrSessaoId().equals(this.getObjHttpSession().getId())) {
 
-        if (usr == null) {
+				return _usrAtual;
+			}
 
-          continue;
-        }
+			for (Usuario usr : this.getLstUsr()) {
 
-        if (!usr.getStrSessaoId().equals(this.getObjHttpSession().getId())) {
+				if (usr == null) {
 
-          continue;
-        }
+					continue;
+				}
 
-        _usrAtual = usr;
+				if (!usr.getStrSessaoId().equals(this.getObjHttpSession().getId())) {
 
-        break;
-      }
-    }
-    catch (Exception ex) {
+					continue;
+				}
 
-      new Erro("Erro inesperado.\n", ex);
-    }
-    finally {
-    }
+				_usrAtual = usr;
 
-    return _usrAtual;
-  }
+				break;
+			}
+		} catch (Exception ex) {
 
-  public void reencaminhar(String strUrl) {
+			new Erro("Erro inesperado.\n", ex);
+		} finally {
+		}
 
-    try {
+		return _usrAtual;
+	}
 
-      if (Utils.getBooStrVazia(strUrl)) {
+	public void reencaminhar(String strUrl) {
 
-        return;
-      }
+		try {
 
-      this.getObjHttpServletResponse().sendRedirect(strUrl);
-    }
-    catch (Exception ex) {
+			if (Utils.getBooStrVazia(strUrl)) {
 
-      new Erro("Erro inesperado.\n", ex);
-    }
-    finally {
-    }
-  }
+				return;
+			}
 
-  public void responder(HttpServletRequest objRequest, HttpServletResponse objResponse) {
+			this.getObjHttpServletResponse().sendRedirect(strUrl);
+		} catch (Exception ex) {
 
-    try {
+			new Erro("Erro inesperado.\n", ex);
+		} finally {
+		}
+	}
 
-      this.setObjHttpServletRequest(objRequest);
-      this.setObjHttpServletResponse(objResponse);
-    }
-    catch (Exception ex) {
+	public void responder(HttpServletRequest objRequest, HttpServletResponse objResponse) {
 
-      new Erro("Erro inesperado.\n", ex);
-    }
-    finally {
-    }
-  }
+		try {
 
-  public synchronized void setBooOcupado(boolean booOcupado) {
+			this.setObjHttpServletRequest(objRequest);
+			this.setObjHttpServletResponse(objResponse);
+		} catch (Exception ex) {
 
-    _booOcupado = booOcupado;
-  }
+			new Erro("Erro inesperado.\n", ex);
+		} finally {
+		}
+	}
 
-  private void setI(AppWeb _i) {
+	public synchronized void setBooOcupado(boolean booOcupado) {
 
-    try {
+		_booOcupado = booOcupado;
+	}
 
-      if (i != null) {
+	private void setI(AppWeb _i) {
 
-        return;
-      }
+		try {
 
-      i = _i;
-    }
-    catch (Exception ex) {
+			if (i != null) {
 
-      new Erro("Erro ao instanciar objeto do tipo 'AppWeb'.\n", ex);
-    }
-    finally {
-    }
-  }
+				return;
+			}
 
-  private void setObjHttpServletRequest(HttpServletRequest objHttpServletRequest) {
+			i = _i;
+		} catch (Exception ex) {
 
-    try {
+			new Erro("Erro ao instanciar objeto do tipo 'AppWeb'.\n", ex);
+		} finally {
+		}
+	}
 
-      _objHttpServletRequest = objHttpServletRequest;
+	private void setObjHttpServletRequest(HttpServletRequest objHttpServletRequest) {
 
-      if (_objHttpServletRequest == null) {
+		try {
 
-        return;
-      }
+			_objHttpServletRequest = objHttpServletRequest;
 
-      this.setStrPagSolicitada(_objHttpServletRequest.getRequestURI().replace(_objHttpServletRequest.getContextPath() + "/app/", Utils.STR_VAZIA));
-      this.setObjHttpSession(_objHttpServletRequest.getSession());
-    }
-    catch (Exception ex) {
+			if (_objHttpServletRequest == null) {
 
-      new Erro("Erro inesperado.\n", ex);
-    }
-    finally {
-    }
-  }
+				return;
+			}
 
-  private void setObjHttpServletResponse(HttpServletResponse objHttpServletResponse) {
+			this.setStrPagSolicitada(_objHttpServletRequest.getRequestURI()
+					.replace(_objHttpServletRequest.getContextPath() + "/app/", Utils.STR_VAZIA));
+			this.setObjHttpSession(_objHttpServletRequest.getSession());
+		} catch (Exception ex) {
 
-    try {
+			new Erro("Erro inesperado.\n", ex);
+		} finally {
+		}
+	}
 
-      _objHttpServletResponse = objHttpServletResponse;
+	private void setObjHttpServletResponse(HttpServletResponse objHttpServletResponse) {
 
-      if (_objHttpServletResponse == null) {
+		try {
 
-        return;
-      }
+			_objHttpServletResponse = objHttpServletResponse;
 
-      this.setObjPrintWriter(_objHttpServletResponse.getWriter());
-    }
-    catch (Exception ex) {
+			if (_objHttpServletResponse == null) {
 
-      new Erro("Erro inesperado.\n", ex);
-    }
-    finally {
-    }
-  }
+				return;
+			}
 
-  private void setObjHttpSession(HttpSession objHttpSession) {
+			this.setObjPrintWriter(_objHttpServletResponse.getWriter());
+		} catch (Exception ex) {
 
-    Usuario usr;
+			new Erro("Erro inesperado.\n", ex);
+		} finally {
+		}
+	}
 
-    try {
+	private void setObjHttpSession(HttpSession objHttpSession) {
 
-      _objHttpSession = objHttpSession;
+		Usuario usr;
 
-      if (_objHttpSession == null) {
+		try {
 
-        return;
-      }
+			_objHttpSession = objHttpSession;
 
-      if (this.getBooUsuarioExiste(_objHttpSession.getId())) {
+			if (_objHttpSession == null) {
 
-        return;
-      }
+				return;
+			}
 
-      usr = new Usuario();
-      usr.setStrSessaoId(_objHttpSession.getId());
-    }
-    catch (Exception ex) {
+			if (this.getBooUsuarioExiste(_objHttpSession.getId())) {
 
-      new Erro("Erro inesperado.\n", ex);
-    }
-    finally {
-    }
-  }
+				return;
+			}
 
-  public void setObjPaletaCorSelecionada(PaletaCor objPaletaCorSelecionada) {
+			usr = new Usuario();
+			usr.setStrSessaoId(_objHttpSession.getId());
+		} catch (Exception ex) {
 
-    _objPaletaCor = objPaletaCorSelecionada;
-  }
+			new Erro("Erro inesperado.\n", ex);
+		} finally {
+		}
+	}
 
-  public void setObjPrintWriter(PrintWriter objPrintWriter) {
+	public void setObjPaletaCorSelecionada(PaletaCor objPaletaCorSelecionada) {
 
-    _objPrintWriter = objPrintWriter;
-  }
+		_objPaletaCor = objPaletaCorSelecionada;
+	}
 
-  private void setStrPagSolicitada(String strPagSolicitada) {
+	public void setObjPrintWriter(PrintWriter objPrintWriter) {
 
-    _strPagSolicitada = strPagSolicitada;
-  }
+		_objPrintWriter = objPrintWriter;
+	}
+
+	private void setStrPagSolicitada(String strPagSolicitada) {
+
+		_strPagSolicitada = strPagSolicitada;
+	}
 }
