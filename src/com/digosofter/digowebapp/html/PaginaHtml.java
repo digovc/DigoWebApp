@@ -185,7 +185,7 @@ public class PaginaHtml extends Objeto {
 
     try {
 
-      // lstObjJsTag.add(new JavaScriptTag("res/dart/main.dart.js"));
+      lstObjJsTag.add(new JavaScriptTag("res/dart/packages/browser/dart.js"));
       lstObjJsTag.add(new JavaScriptTag(DIR_JS_LIB_JQUERY));
       lstObjJsTag.add(new JavaScriptTag(DIR_JS_LIB_JQUERY_UI));
       lstObjJsTag.add(new JavaScriptTag(DIR_JS_LIB_MD5));
@@ -310,7 +310,7 @@ public class PaginaHtml extends Objeto {
     }
   }
 
-  protected void addJsDart(List<DartTag> lstTagDart) {
+  private void addJsDart(List<DartTag> lstTagDart) {
 
     try {
 
@@ -390,7 +390,7 @@ public class PaginaHtml extends Objeto {
     return _lstTagCssOrdenado;
   }
 
-  public List<DartTag> getLstTagDart() {
+  private List<DartTag> getLstTagDart() {
 
     try {
 
@@ -860,8 +860,8 @@ public class PaginaHtml extends Objeto {
       strBody = this.getTagBody().toHtml();
 
       this.addCss();
-      this.addJs();
       this.addDart();
+      this.addJs();
 
       strHead = this.getTagHead().toHtml();
 
