@@ -159,6 +159,11 @@ public class PaginaHtml extends Objeto {
 
       this.addJsCodigo(this.getTagJsMain());
 
+      if (AppWeb.getI().getBooDart()) {
+
+        return;
+      }
+
       for (JavaScriptTag tagJs : this.getLstTagJsOrdenado()) {
 
         if (tagJs == null) {

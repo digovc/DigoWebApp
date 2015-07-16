@@ -557,6 +557,8 @@ public class Tag extends Objeto {
 
     try {
 
+      this.salvarEstruturaSecundaria();
+
       this.addCssArquivo(PaginaHtml.getI().getLstTagCss());
       this.addJsArquivo(PaginaHtml.getI().getLstTagJs());
       this.addJsCodigo(PaginaHtml.getI().getTagJsMain());
@@ -567,6 +569,46 @@ public class Tag extends Objeto {
     }
     finally {
     }
+  }
+
+  /**
+   * Salva a estrutura html desta tag em um objeto JavaScript para ser utilizada
+   * no cliente.
+   */
+  public void salvarEstrutura() {
+
+    String strEstrutura;
+    String strJsCodigo;
+    String strJsNome;
+
+    try {
+
+      strEstrutura = this.toHtml();
+
+      strJsNome = "str__tag_id_estrutura";
+      strJsNome = strJsNome.replace("_tag_id", this.getClass().getSimpleName());
+
+      strJsCodigo = "var _str_js_nome = '_estrutura_html';";
+      strJsCodigo = strJsCodigo.replace("_str_js_nome", strJsNome);
+      strJsCodigo = strJsCodigo.replace("_estrutura_html", strEstrutura);
+
+      PaginaHtml.getI().getTagJsMain().addJsCodigo(strJsCodigo);
+    }
+    catch (Exception ex) {
+
+      new Erro("Erro inesperado.\n", ex);
+    }
+    finally {
+    }
+  }
+
+  /**
+   * Chamado dentro de {@link #montarLayout()}, este método deve ser
+   * implementado pelas classes que extendem esta, com o objetivo de salvar
+   * estruturas secundárias que serão utilizadas no cliente.
+   */
+  protected void salvarEstruturaSecundaria() {
+
   }
 
   public void setBooBarraNoFinal(boolean booBarraNoFinal) {
