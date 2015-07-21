@@ -16,10 +16,7 @@ import com.digosofter.digowebapp.design.Estilo;
 
 public abstract class AppWeb extends App {
 
-  private static List<Estilo> _lstObjEstilo;
-
   public static final String DIR_JS_BOTAO = "res/js/lib/JDigo/html/Botao.js";
-
   public static final String DIR_JS_CAMPO = "res/js/lib/JDigo/html/Campo.js";
   public static final String DIR_JS_COMBO_BOX = "res/js/lib/JDigo/html/ComboBox.js";
   public static final String DIR_JS_COMPONENTE_MAIN = "res/js/lib/JDigo/html/componente/ComponenteMain.js";
@@ -47,6 +44,7 @@ public abstract class AppWeb extends App {
   private boolean _booDart;
   private boolean _booOcupado;
   private String _dirLocal;
+  private List<Estilo> _lstObjEstilo;
   private List<Usuario> _lstUsr;
   private Estilo _objEstilo;
   private HttpServletRequest _objHttpServletRequest;
@@ -219,7 +217,7 @@ public abstract class AppWeb extends App {
     return -1;
   }
 
-  public List<Estilo> getLstObjEstilo() {
+  protected List<Estilo> getLstObjEstilo() {
 
     try {
 
@@ -229,7 +227,6 @@ public abstract class AppWeb extends App {
       }
 
       _lstObjEstilo = new ArrayList<Estilo>();
-
     }
     catch (Exception ex) {
 
@@ -271,20 +268,20 @@ public abstract class AppWeb extends App {
         return _objEstilo;
       }
 
-      for (Estilo objPaletaCor : this.getLstObjEstilo()) {
+      for (Estilo objEstilo : this.getLstObjEstilo()) {
 
-        if (objPaletaCor == null) {
-
-          continue;
-        }
-
-        if (!objPaletaCor.getBooSelecionado()) {
+        if (objEstilo == null) {
 
           continue;
         }
 
-        _objEstilo = objPaletaCor;
-        break;
+        if (!objEstilo.getBooSelecionado()) {
+
+          continue;
+        }
+
+        _objEstilo = objEstilo;
+        return _objEstilo;
       }
 
       if (_objEstilo == null) {

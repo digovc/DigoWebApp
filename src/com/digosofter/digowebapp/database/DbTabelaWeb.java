@@ -8,21 +8,22 @@ import com.digosofter.digojava.Utils;
 import com.digosofter.digojava.database.DbColuna;
 import com.digosofter.digojava.database.DbFiltro;
 import com.digosofter.digojava.database.DbTabela;
+import com.digosofter.digojava.database.Dominio;
 import com.digosofter.digojava.erro.Erro;
 import com.digosofter.digowebapp.AppWeb;
 import com.digosofter.digowebapp.html.Tag;
 import com.digosofter.digowebapp.html.componente.ConsultaTbl;
 import com.digosofter.digowebapp.html.componente.FormularioTbl;
 
-public abstract class DbTabelaWeb extends DbTabela {
+public abstract class DbTabelaWeb<T extends Dominio> extends DbTabela<T> {
 
   private FormularioTbl _frmTbl;
   private List<DbView> _lstViw;
   private ConsultaTbl _objConsultaTbl;
 
-  protected DbTabelaWeb(String strNome) {
+  protected DbTabelaWeb(String strNome, Class<T> clsDominio) {
 
-    super(strNome);
+    super(strNome, clsDominio);
   }
 
   /**
@@ -276,8 +277,9 @@ public abstract class DbTabelaWeb extends DbTabela {
   /**
    * Retorna um "List<String>" com os nomes das colunas.
    *
-   * @param "booPreenchida": Indica se o retorno só contém nome de colunas com
-   *        valores diferente de "null".
+   * @param "booPreenchida":
+   *          Indica se o retorno só contém nome de colunas com valores
+   *          diferente de "null".
    */
   protected List<String> getLstStrClnNome(boolean booPreenchida) {
 
@@ -318,8 +320,9 @@ public abstract class DbTabelaWeb extends DbTabela {
    * Retorna um "List<String>" com os nomes das colunas e seus valores na
    * síntese "tblNome.clnNome='clnValorFormatado'";.
    *
-   * @param "booPreenchida": Indica se o retorno só contém nome de colunas com
-   *        valores diferente de "null" ou "String vazia".
+   * @param "booPreenchida":
+   *          Indica se o retorno só contém nome de colunas com valores
+   *          diferente de "null" ou "String vazia".
    */
   protected List<String> getLstStrClnNomeValor(boolean booPreenchida) {
 
@@ -359,8 +362,9 @@ public abstract class DbTabelaWeb extends DbTabela {
   /**
    * Retorna um "List<String>" com os valores "sql" das colunas.
    *
-   * @param "booPreenchida": Indica se o retorno só contém nome de colunas com
-   *        valores diferente de "null".
+   * @param "booPreenchida":
+   *          Indica se o retorno só contém nome de colunas com valores
+   *          diferente de "null".
    */
   protected List<String> getLstStrClnValor(boolean booPreenchida) {
 

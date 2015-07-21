@@ -11,7 +11,7 @@ import com.digosofter.digojava.Objeto;
 import com.digosofter.digojava.Utils;
 import com.digosofter.digojava.erro.Erro;
 
-public class EmailAppWeb extends Objeto {
+public class EmailWeb extends Objeto {
 
   private boolean _booSsl = true;
   private int _intSmtpPort = 465;

@@ -6,15 +6,16 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 import com.digosofter.digojava.Utils;
+import com.digosofter.digojava.database.Dominio;
 import com.digosofter.digojava.erro.Erro;
 
-public abstract class DbFuncao extends DbTabelaWeb {
+public abstract class DbFuncao extends DbTabelaWeb<Dominio> {
 
   private List<String> _lstStrParamIn;
 
   public DbFuncao(String strNome) {
 
-    super(strNome);
+    super(strNome, null);
   }
 
   public void addParam(double dblParam) {

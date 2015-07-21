@@ -23,10 +23,10 @@ public class Tabela extends Componente {
   private Tag _tagTable;
   private Tag _tagTbody;
   private Tag _tagThead;
-  private DbTabelaWeb _tbl;
+  private DbTabelaWeb<?> _tbl;
   private Campo _txtPesquisa;
 
-  public Tabela(DbTabelaWeb tbl) {
+  public Tabela(DbTabelaWeb<?> tbl) {
 
     try {
 
@@ -202,7 +202,7 @@ public class Tabela extends Componente {
     return _tagThead;
   }
 
-  private DbTabelaWeb getTbl() {
+  private DbTabelaWeb<?> getTbl() {
 
     return _tbl;
   }
@@ -402,7 +402,7 @@ public class Tabela extends Componente {
     _strPagClick = strPagClick;
   }
 
-  private void setTbl(DbTabelaWeb tbl) {
+  private void setTbl(DbTabelaWeb<?> tbl) {
 
     _tbl = tbl;
   }

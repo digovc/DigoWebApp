@@ -837,9 +837,14 @@ public class CssTag extends Tag {
 
   public String setLeft(int intLeft) {
 
+    String css;
+
     try {
 
-      return this.addCss("left", String.valueOf(intLeft));
+      css = "_right_pxpx";
+      css = css.replace("_right_px", String.valueOf(intLeft));
+
+      return this.addCss("left", css);
     }
     catch (Exception ex) {
 

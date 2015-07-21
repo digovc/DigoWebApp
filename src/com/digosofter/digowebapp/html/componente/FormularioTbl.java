@@ -29,12 +29,12 @@ public class FormularioTbl extends Componente {
   private LimiteFloat _objLimiteFloat;
   private Painel _pnlCampos;
   private String _strAction;
-  private DbTabelaWeb _tbl;
+  private DbTabelaWeb<?> _tbl;
 
   /**
    * Formulário para cadastro de um registro da tabela passada como parâmetro.
    */
-  public FormularioTbl(DbTabelaWeb tbl) {
+  public FormularioTbl(DbTabelaWeb<?> tbl) {
 
     try {
 
@@ -292,7 +292,7 @@ public class FormularioTbl extends Componente {
     return _strAction;
   }
 
-  private DbTabelaWeb getTbl() {
+  private DbTabelaWeb<?> getTbl() {
 
     return _tbl;
   }
@@ -460,7 +460,7 @@ public class FormularioTbl extends Componente {
     _intRegistroId = intRegistroId;
   }
 
-  private void setTbl(DbTabelaWeb tbl) {
+  private void setTbl(DbTabelaWeb<?> tbl) {
 
     _tbl = tbl;
   }

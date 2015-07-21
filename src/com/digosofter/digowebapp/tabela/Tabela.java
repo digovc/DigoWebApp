@@ -2,12 +2,13 @@ package com.digosofter.digowebapp.tabela;
 
 import java.util.List;
 
+import com.digosofter.digojava.database.Dominio;
 import com.digosofter.digojava.erro.Erro;
 import com.digosofter.digowebapp.database.DbColunaWeb;
 import com.digosofter.digowebapp.database.DbTabelaWeb;
 import com.digosofter.digowebapp.database.DbView;
 
-public abstract class Tabela extends DbTabelaWeb {
+public abstract class Tabela<T extends Dominio> extends DbTabelaWeb<T> {
 
   private DbColunaWeb _clnBooAtivo;
   private DbColunaWeb _clnDttAlteracao;
@@ -17,9 +18,9 @@ public abstract class Tabela extends DbTabelaWeb {
   private DbColunaWeb _clnIntUsuarioAlteracaoId;
   private DbColunaWeb _clnIntUsuarioCadastroId;
 
-  protected Tabela(String strNome) {
+  protected Tabela(String strNome, Class<T> clsDominio) {
 
-    super(strNome);
+    super(strNome, clsDominio);
 
     try {
 
