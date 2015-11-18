@@ -59,7 +59,7 @@ public class EmailWeb extends Objeto {
   }
 
   /**
-   * Adiciona um email que receber· este email com cÛpia oculta.
+   * Adiciona um email que receber√° este email com c√≥pia oculta.
    */
   public void addBcc(String strEmail, String strNome) {
 
@@ -115,7 +115,7 @@ public class EmailWeb extends Objeto {
   }
 
   /**
-   * Adiciona um email que receber· este email com cÛpia.
+   * Adiciona um email que receber√° este email com c√≥pia.
    */
   public void addCc(String strEmail, String strNome) {
 
@@ -171,7 +171,7 @@ public class EmailWeb extends Objeto {
   }
 
   /**
-   * Adiciona um email que receber· este email.
+   * Adiciona um email que receber√° este email.
    */
   public void addTo(String strEmail, String strNome) {
 

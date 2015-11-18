@@ -32,7 +32,7 @@ public class FormularioTbl extends Componente {
   private DbTabelaWeb<?> _tbl;
 
   /**
-   * Formul·rio para cadastro de um registro da tabela passada como par‚metro.
+   * Formul√°rio para cadastro de um registro da tabela passada como par√¢metro.
    */
   public FormularioTbl(DbTabelaWeb<?> tbl) {
 
@@ -173,7 +173,7 @@ public class FormularioTbl extends Componente {
   }
 
   /**
-   * Retorna a quantidade de linhas contidas no formul·rio.
+   * Retorna a quantidade de linhas contidas no formul√°rio.
    */
   private int getIntQtdLinha() {
 

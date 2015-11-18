@@ -229,8 +229,8 @@ public abstract class Tabela<T extends Dominio> extends DbTabelaWeb<T> {
   }
 
   /**
-   * Método que inicializa a lista de views que a tabela possui. Este método é
-   * chamado na construção da classe.
+   * MÃ©todo que inicializa a lista de views que a tabela possui. Este mÃ©todo Ã©
+   * chamado na construÃ§Ã£o da classe.
    */
   protected void inicializarViews(List<DbView> lstObjDbView) {
 

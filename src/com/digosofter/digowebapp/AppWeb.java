@@ -188,8 +188,8 @@ public abstract class AppWeb extends App {
   }
 
   /**
-   * Retorna o valor do par‚metro "GET" ou "POST" vindo do cliente indicado pelo
-   * nome contido em "strParamNome". Caso n„o exista retorna "-1".
+   * Retorna o valor do par√¢metro "GET" ou "POST" vindo do cliente indicado pelo
+   * nome contido em "strParamNome". Caso n√£o exista retorna "-1".
    */
   public int getIntParam(String strParamNome) {
 
@@ -341,8 +341,8 @@ public abstract class AppWeb extends App {
   }
 
   /**
-   * Retorna o valor do par‚metro "GET" ou "POST" vindo do cliente indicado pelo
-   * nome contido em "strParamNome". Caso n„o exista retorna "null".
+   * Retorna o valor do par√¢metro "GET" ou "POST" vindo do cliente indicado pelo
+   * nome contido em "strParamNome". Caso n√£o exista retorna "null".
    */
   public String getStrParam(String strParamNome) {
 

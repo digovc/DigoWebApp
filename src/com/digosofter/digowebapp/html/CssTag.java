@@ -665,8 +665,8 @@ public class CssTag extends Tag {
   }
 
   /**
-   * N„o remover! Este mÈtodo tem de ser sob-escrito da classe pai para que n„o
-   * haja um loop infinito. E tambÈm porque esta tag n„o precisa de layout.
+   * N√£o remover! Este m√©todo tem de ser sob-escrito da classe pai para que n√£o
+   * haja um loop infinito. E tamb√©m porque esta tag n√£o precisa de layout.
    */
   @Override
   protected void setCss(CssTag tagCss) {

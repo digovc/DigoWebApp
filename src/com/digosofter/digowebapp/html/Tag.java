@@ -149,7 +149,7 @@ public class Tag extends Objeto {
   }
 
   /**
-   * Adiciona o arquivo "JavaScript" correspondente a esta classe ‡ p·gina do
+   * Adiciona o arquivo "JavaScript" correspondente a esta classe √† p√°gina do
    * cliente.
    */
   protected void addJsArquivo(List<JavaScriptTag> lstObjJsTag) {
@@ -167,7 +167,7 @@ public class Tag extends Objeto {
   }
 
   /**
-   * Adiciona cÛdigo ‡ tag de "JavaScript" da p·gina.
+   * Adiciona c√≥digo √† tag de "JavaScript" da p√°gina.
    */
   protected void addJsCodigo(JavaScriptTag tagJs) {
 
@@ -546,7 +546,7 @@ public class Tag extends Objeto {
   }
 
   /**
-   * Limpa todas as classes j· adicionadas ‡ tag.
+   * Limpa todas as classes j√° adicionadas √† tag.
    */
   public void limparClass() {
 
@@ -603,9 +603,9 @@ public class Tag extends Objeto {
   }
 
   /**
-   * Chamado dentro de {@link #montarLayout()}, este mÈtodo deve ser
+   * Chamado dentro de {@link #montarLayout()}, este m√©todo deve ser
    * implementado pelas classes que extendem esta, com o objetivo de salvar
-   * estruturas secund·rias que ser„o utilizadas no cliente.
+   * estruturas secund√°rias que ser√£o utilizadas no cliente.
    */
   protected void salvarEstruturaSecundaria() {
 
@@ -643,7 +643,7 @@ public class Tag extends Objeto {
   }
 
   /**
-   * MÈtodo respons·vel por carregar o "layout" da tag atravÈs de "css".
+   * M√©todo respons√°vel por carregar o "layout" da tag atrav√©s de "css".
    */
   protected void setCss(CssTag tagCss) {
 

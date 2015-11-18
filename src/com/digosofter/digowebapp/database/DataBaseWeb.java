@@ -109,7 +109,7 @@ public abstract class DataBaseWeb extends DataBase {
    * Executa um "SQL" e retorna o valor da primeira coluna que tem de ser um
    * inteiro.
    * <p>
-   * Caso o valor n„o exista no bando de dados retorna -1.
+   * Caso o valor n√£o exista no bando de dados retorna -1.
    */
   @Override
   public int execSqlGetInt(String sql) {

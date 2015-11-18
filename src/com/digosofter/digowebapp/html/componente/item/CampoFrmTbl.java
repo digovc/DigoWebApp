@@ -43,8 +43,8 @@ public class CampoFrmTbl extends LabelCampo {
   }
 
   /**
-   * Define o tipo de campo a ser colocado no formul·rio de acordo com o tipo de
-   * dado que È esperado para o mesmo.
+   * Define o tipo de campo a ser colocado no formul√°rio de acordo com o tipo de
+   * dado que √© esperado para o mesmo.
    */
   private void definirTipoCampo() {
 
@@ -81,7 +81,7 @@ public class CampoFrmTbl extends LabelCampo {
   }
 
   /**
-   * Define o campo como um "checkBox" para seleÁ„o de valores sim ou n„o.
+   * Define o campo como um "checkBox" para sele√ß√£o de valores sim ou n√£o.
    */
   private void definirTipoCampoCheckBox() {
 
@@ -104,8 +104,8 @@ public class CampoFrmTbl extends LabelCampo {
   }
 
   /**
-   * Define o campo como um "comboBox" para seleÁ„o de valor entre os
-   * prÈ-definidos.
+   * Define o campo como um "comboBox" para sele√ß√£o de valor entre os
+   * pr√©-definidos.
    */
   private void definirTipoCampoComboBox() {
 

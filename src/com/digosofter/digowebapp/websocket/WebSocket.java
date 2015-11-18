@@ -21,8 +21,8 @@ public abstract class WebSocket extends Objeto {
   public static final int FNC_MSG_POSITIVA = 701000;
 
   /**
-   * Envia o "ObjWsInterlocutor" para o cliente associado a sess„o indicada no
-   * objeto "Session" passado como par‚metro.
+   * Envia o "ObjWsInterlocutor" para o cliente associado a sess√£o indicada no
+   * objeto "Session" passado como par√¢metro.
    */
   protected void enviar(Session objSession, ObjWsInterlocutor objWsInterlocutor) {
 
@@ -89,7 +89,7 @@ public abstract class WebSocket extends Objeto {
   }
 
   /**
-   * Verifica se o usu·rio atrelado ao objeto "Session" est· "logado" no
+   * Verifica se o usu√°rio atrelado ao objeto "Session" est√° "logado" no
    * sistema.
    */
   protected boolean getBooUsuarioLogado(Session objSession) {
@@ -114,7 +114,7 @@ public abstract class WebSocket extends Objeto {
   }
 
   /**
-   * Retorna o usu·rio referente a sess„o passada como par‚metro.
+   * Retorna o usu√°rio referente a sess√£o passada como par√¢metro.
    */
   protected Usuario getObjUsuarioPorSession(Session objSession) {
 
@@ -157,7 +157,7 @@ public abstract class WebSocket extends Objeto {
   }
 
   /**
-   * MÈtodo disparado a cada solicitaÁ„o vinda do cliente contendo um
+   * M√©todo disparado a cada solicita√ß√£o vinda do cliente contendo um
    * "ObjWsMain".
    */
   protected void onObjWsMainRecebido(Session objSession, ObjWsInterlocutor objWsMain) {

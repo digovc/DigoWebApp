@@ -47,7 +47,7 @@ public class Combobox extends Campo {
   }
 
   /**
-   * Adiciona uma opção à lista do "Combobox".
+   * Adiciona uma opÃ§Ã£o Ã  lista do "Combobox".
    */
   public void addOpcao(int intValor, String strNome) {
 
@@ -155,7 +155,7 @@ public class Combobox extends Campo {
 
         if (opc == null) {
 
-          return;
+          continue;
         }
 
         tagOption = this.getNewTagOption(opc.getKey(), opc.getValue());

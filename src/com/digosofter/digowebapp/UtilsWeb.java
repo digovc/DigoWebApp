@@ -10,7 +10,7 @@ import com.digosofter.digojava.erro.Erro;
 public abstract class UtilsWeb {
 
   /**
-   * Retorna o número "IP" externo da máquina.
+   * Retorna o nÃºmero "IP" externo da mÃ¡quina.
    */
   public static String getStrIpExterno() {
 

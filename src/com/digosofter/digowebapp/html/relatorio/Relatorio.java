@@ -20,8 +20,8 @@ public abstract class Relatorio extends PaginaHtml {
 
     try {
 
-      this.setStrTitulo("Relatório sem nome");
-      this.setStrDescricao("A descrição deste relatório é desconhecida");
+      this.setStrTitulo("RelatÃ³rio sem nome");
+      this.setStrDescricao("A descriÃ§Ã£o deste relatÃ³rio Ã© desconhecida");
     }
     catch (Exception ex) {
 

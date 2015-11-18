@@ -27,7 +27,7 @@ public abstract class DbTabelaWeb<T extends Dominio> extends DbTabela<T> {
   }
 
   /**
-   * Adiciona a estrutura completa de uma lista na tag passada como par‚metro.
+   * Adiciona a estrutura completa de uma lista na tag passada como par√¢metro.
    */
   public void adicionarConsultaTbl(Tag tagPai) {
 
@@ -50,8 +50,8 @@ public abstract class DbTabelaWeb<T extends Dominio> extends DbTabela<T> {
   }
 
   /**
-   * Adiciona a estrutura completa de um formul·rio na tag passada como
-   * par‚metro.
+   * Adiciona a estrutura completa de um formul√°rio na tag passada como
+   * par√¢metro.
    */
   public void adicionarFrmTbl(Tag tag) {
 
@@ -75,7 +75,7 @@ public abstract class DbTabelaWeb<T extends Dominio> extends DbTabela<T> {
 
   /**
    * Atualizar os valores das colunas da tabela com o registro que satisfaz o
-   * filtro passado nos par‚metros "cln" e "strFiltroValor".
+   * filtro passado nos par√¢metros "cln" e "strFiltroValor".
    */
   public void buscarRegistro(DbColuna cln, String strFiltroValor) {
 
@@ -108,7 +108,7 @@ public abstract class DbTabelaWeb<T extends Dominio> extends DbTabela<T> {
   }
 
   /**
-   * Apelido para o mÈtodo
+   * Apelido para o m√©todo
    * "buscarRegistroPorCln(DbColuna cln, String strFiltroValor)".
    */
   public void buscarRegistro(DbColunaWeb cln, int intValor) {
@@ -158,7 +158,7 @@ public abstract class DbTabelaWeb<T extends Dominio> extends DbTabela<T> {
   }
 
   /**
-   * Retorna a quantidade de campos que existe na linha indicada por par‚metro.
+   * Retorna a quantidade de campos que existe na linha indicada por par√¢metro.
    */
   public int getIntQtdCampo(int intLinha) {
 
@@ -202,7 +202,7 @@ public abstract class DbTabelaWeb<T extends Dominio> extends DbTabela<T> {
   }
 
   /**
-   * Retorna uma "List<Integer>" contendo toda a coluna indicada no par‚metro
+   * Retorna uma "List<Integer>" contendo toda a coluna indicada no par√¢metro
    * "cln" da tabela no banco de dados.
    */
   public List<Integer> getLstIntClnValor(DbColunaWeb cln) {
@@ -278,7 +278,7 @@ public abstract class DbTabelaWeb<T extends Dominio> extends DbTabela<T> {
    * Retorna um "List<String>" com os nomes das colunas.
    *
    * @param "booPreenchida":
-   *          Indica se o retorno sÛ contÈm nome de colunas com valores
+   *          Indica se o retorno s√≥ cont√©m nome de colunas com valores
    *          diferente de "null".
    */
   protected List<String> getLstStrClnNome(boolean booPreenchida) {
@@ -318,10 +318,10 @@ public abstract class DbTabelaWeb<T extends Dominio> extends DbTabela<T> {
 
   /**
    * Retorna um "List<String>" com os nomes das colunas e seus valores na
-   * sÌntese "tblNome.clnNome='clnValorFormatado'";.
+   * s√≠ntese "tblNome.clnNome='clnValorFormatado'";.
    *
    * @param "booPreenchida":
-   *          Indica se o retorno sÛ contÈm nome de colunas com valores
+   *          Indica se o retorno s√≥ cont√©m nome de colunas com valores
    *          diferente de "null" ou "String vazia".
    */
   protected List<String> getLstStrClnNomeValor(boolean booPreenchida) {
@@ -363,7 +363,7 @@ public abstract class DbTabelaWeb<T extends Dominio> extends DbTabela<T> {
    * Retorna um "List<String>" com os valores "sql" das colunas.
    *
    * @param "booPreenchida":
-   *          Indica se o retorno sÛ contÈm nome de colunas com valores
+   *          Indica se o retorno s√≥ cont√©m nome de colunas com valores
    *          diferente de "null".
    */
   protected List<String> getLstStrClnValor(boolean booPreenchida) {
@@ -409,7 +409,7 @@ public abstract class DbTabelaWeb<T extends Dominio> extends DbTabela<T> {
   }
 
   /**
-   * Retorna uma "List<String>" contendo toda a coluna indicada no par‚metro
+   * Retorna uma "List<String>" contendo toda a coluna indicada no par√¢metro
    * "cln" da tabela no banco de dados.
    */
   public List<String> getLstStrClnValor(DbColunaWeb cln) {
@@ -625,7 +625,7 @@ public abstract class DbTabelaWeb<T extends Dominio> extends DbTabela<T> {
   }
 
   /**
-   * Retorna um objeto "ResultSet" com as colunas da chave-prim·ria e a coluna
+   * Retorna um objeto "ResultSet" com as colunas da chave-prim√°ria e a coluna
    * que representa o "nome" do registro.
    */
   public ResultSet getRstNomeValor() {
@@ -767,9 +767,9 @@ public abstract class DbTabelaWeb<T extends Dominio> extends DbTabela<T> {
 
   /**
    * Persiste os valores atuais das colunas no banco de dados. Caso o valor da
-   * coluna chave-prim·ria j· exista faz apenas um "update", do contr·rio insere
-   * uma nova linha na tabela. Logo apÛs incluir o registro, atualiza os valores
-   * de todas as colunas pelo que est· no banco de dados. Retorna o "intId" do
+   * coluna chave-prim√°ria j√° exista faz apenas um "update", do contr√°rio insere
+   * uma nova linha na tabela. Logo ap√≥s incluir o registro, atualiza os valores
+   * de todas as colunas pelo que est√° no banco de dados. Retorna o "intId" do
    * registro.
    */
   public int salvar() {
@@ -826,7 +826,7 @@ public abstract class DbTabelaWeb<T extends Dominio> extends DbTabela<T> {
   }
 
   /**
-   * Persiste os dados vindos do cliente pelo mÈtodo "POST" no banco de dados.
+   * Persiste os dados vindos do cliente pelo m√©todo "POST" no banco de dados.
    */
   public int salvarRegistroPost() {
 

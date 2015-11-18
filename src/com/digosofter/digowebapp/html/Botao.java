@@ -13,7 +13,7 @@ public class Botao extends Tag {
 
     try {
 
-      this.setStrConteudo("Bot„o");
+      this.setStrConteudo("Bot√£o");
     }
     catch (Exception ex) {
 

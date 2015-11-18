@@ -40,8 +40,8 @@ public class WebSocketFileTransfer extends WebSocket {
   }
 
   /**
-   * Retorna a inst‚ncia do "ObjWsFileTransfer" referente a sess„o passada como
-   * par‚metro.
+   * Retorna a inst√¢ncia do "ObjWsFileTransfer" referente a sess√£o passada como
+   * par√¢metro.
    */
   private ObjWsFileTransfer getObjWsFileTransfer(Session objSession) {
 

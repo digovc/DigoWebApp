@@ -17,7 +17,7 @@ public class DbColunaWeb extends DbColuna {
 
   /**
    * Carrega "comboBox" com os devidos valores de acordo com a tabela
-   * referenciada ou as opções default da coluna.
+   * referenciada ou as opÃ§Ãµes default da coluna.
    */
   public void carregarCombobox(Combobox cmb) {
 

@@ -67,7 +67,7 @@ public abstract class DbFuncao extends DbTabelaWeb<Dominio> {
   /**
    * Retorna um objeto "ResultSet" contendo o resultado da consulta feita no
    * banco de dados. Esta consulta faz uso do valores contidos na propriedade
-   * "lstStrParamIn" desta função.
+   * "lstStrParamIn" desta funÃ§Ã£o.
    */
   @Override
   public ResultSet getRstConsulta() {

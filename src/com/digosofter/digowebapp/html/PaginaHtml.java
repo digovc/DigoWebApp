@@ -183,7 +183,7 @@ public class PaginaHtml extends Objeto {
   }
 
   /**
-   * Adiciona os arquivos "JavaScript" que fazem a p·gina funcionar no
+   * Adiciona os arquivos "JavaScript" que fazem a p√°gina funcionar no
    * navegador.
    */
   protected void addJsArquivo(List<JavaScriptTag> lstObjJsTag) {
@@ -215,8 +215,8 @@ public class PaginaHtml extends Objeto {
   }
 
   /**
-   * Adiciona cÛdigos "JavaScript" indispens·veis para cada p·gina. Este mÈtodo
-   * È chamado durante o mÈtodo "montarLayout".
+   * Adiciona c√≥digos "JavaScript" indispens√°veis para cada p√°gina. Este m√©todo
+   * √© chamado durante o m√©todo "montarLayout".
    */
   protected void addJsCodigo(JavaScriptTag tagJs) {
 
@@ -250,8 +250,8 @@ public class PaginaHtml extends Objeto {
   }
 
   /**
-   * Adiciona cÛdigo "JavaScript" para ser executado no cliente apÛs o processo
-   * de carregamento ser concluÌdo.
+   * Adiciona c√≥digo "JavaScript" para ser executado no cliente ap√≥s o processo
+   * de carregamento ser conclu√≠do.
    */
   public void addJsCodigo(String strJsCodigo) {
 
@@ -273,7 +273,7 @@ public class PaginaHtml extends Objeto {
   }
 
   /**
-   * Adiciona as estrutura das mensagens para as suas respectivas vari·veis
+   * Adiciona as estrutura das mensagens para as suas respectivas vari√°veis
    * "JavaScript".
    */
   private void addJsCodigoMensagem() {
@@ -702,7 +702,7 @@ public class PaginaHtml extends Objeto {
     return _tagJsMain;
   }
 
-  // TODO: As tags "meta" sÛ podem carregar um ˙nico atributo. Sendo assim
+  // TODO: As tags "meta" s√≥ podem carregar um √∫nico atributo. Sendo assim
   // precisa mudar este para uma lista.
   private Tag getTagMeta() {
 
@@ -739,7 +739,7 @@ public class PaginaHtml extends Objeto {
 
       _tagTitle = new Tag("title");
 
-      _tagTitle.setStrConteudo("P·gina sem nome");
+      _tagTitle.setStrConteudo("P√°gina sem nome");
     }
     catch (Exception ex) {
 
@@ -752,7 +752,7 @@ public class PaginaHtml extends Objeto {
   }
 
   /**
-   * MÈtodo que monta o layout antes de gerar o HTML da p·gina.
+   * M√©todo que monta o layout antes de gerar o HTML da p√°gina.
    */
   protected void montarLayout() {
 
@@ -774,7 +774,7 @@ public class PaginaHtml extends Objeto {
   }
 
   /**
-   * Mostra uma mensagem usando de informaÁ„o ao cliente.
+   * Mostra uma mensagem usando de informa√ß√£o ao cliente.
    */
   public void mostrarMsgCliente(Mensagem msg) {
 

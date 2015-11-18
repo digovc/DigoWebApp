@@ -142,7 +142,7 @@ public class Painel extends Tag {
 
       strJsCodigo = strJsCodigo.replace("_pnl_id", this.getStrId());
 
-      PaginaHtml.getI().addJsCodigo(strJsCodigo);
+      tagJs.addJsCodigo(strJsCodigo);
     }
     catch (Exception ex) {
 
